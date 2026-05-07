@@ -1,0 +1,82 @@
+{
+  "iaa": {
+    "cohen_kappa_ann1_vs_ann2": 0.5263157894736843,
+    "interpretation": "Moderate",
+    "observed_agreement": 0.7,
+    "n_agree": 21,
+    "n_disagree": 9
+  },
+  "llm_vs_human": {
+    "n_valid": 30,
+    "kappa_llm_vs_ann1": 0.631578947368421,
+    "kappa_llm_vs_ann2": 0.4736842105263158,
+    "observed_agree_ann1": 0.7666666666666667,
+    "observed_agree_ann2": 0.6666666666666666,
+    "kappa_llm_vs_consensus": 0.7797202797202798,
+    "n_consensus_cases": 21,
+    "observed_agree_consensus": 0.8571428571428571,
+    "validation_passed_ann1": true,
+    "validation_passed_ann2": false
+  },
+  "criterion_correlation": {
+    "robustness": {
+      "r": 0.6142257706891276,
+      "p": 1.792299482181728e-07,
+      "n": 60,
+      "interpretation": "Strong"
+    },
+    "assertions": {
+      "r": 0.5677138508817027,
+      "p": 2.2398678080052402e-06,
+      "n": 60,
+      "interpretation": "Moderate"
+    },
+    "readability": {
+      "r": 0.7707702736393334,
+      "p": 5.904376173166798e-13,
+      "n": 60,
+      "interpretation": "Strong"
+    },
+    "conciseness": {
+      "r": 0.8108416328438892,
+      "p": 4.094468909110278e-15,
+      "n": 60,
+      "interpretation": "Very Strong"
+    }
+  },
+  "total_score_correlation": {
+    "r": 0.7528622902642891,
+    "p": 3.982762499810895e-12,
+    "n": 60,
+    "interpretation": "Strong"
+  },
+  "stratum_breakdown": {
+    "Clear": {
+      "n": 10,
+      "llm_agree_ann1": 10,
+      "llm_agree_ann1_pct": 1.0,
+      "llm_agree_ann2": 6,
+      "llm_agree_ann2_pct": 0.6,
+      "ann1_agree_ann2": 6,
+      "ann1_agree_ann2_pct": 0.6
+    },
+    "Marginal": {
+      "n": 10,
+      "llm_agree_ann1": 7,
+      "llm_agree_ann1_pct": 0.7,
+      "llm_agree_ann2": 9,
+      "llm_agree_ann2_pct": 0.9,
+      "ann1_agree_ann2": 8,
+      "ann1_agree_ann2_pct": 0.8
+    },
+    "Tie": {
+      "n": 10,
+      "llm_agree_ann1": 6,
+      "llm_agree_ann1_pct": 0.6,
+      "llm_agree_ann2": 5,
+      "llm_agree_ann2_pct": 0.5,
+      "ann1_agree_ann2": 7,
+      "ann1_agree_ann2_pct": 0.7
+    }
+  }
+}

@@ -1,0 +1,91 @@
+==============================================================================================================
+ REAL WORLD EVALUATION REPORT
+==============================================================================================================
+• Benchmark Size (N): 50 unique tasks.
+• Metric Format: point estimate (single run, N=1) — no CI reported.
+--------------------------------------------------------------------------------------------------------------
+| Model                        | Mode                | Config   |   Runs | Avg Tokens   | Pass@1   | Raw Cov   | Gated Cov   | Mut Score   |
+|------------------------------|---------------------|----------|--------|--------------|----------|-----------|-------------|-------------|
+| Pynguin (Baseline)           | Evolutionary Search | N/A      |      1 | 5,955        | 72.00%   | 67.3%     | 79.3%       | 6.2%        |
+| Qwen3-4B-Instruct            | Two-Step            | T=0.0    |      1 | 23,860       | 32.00%   | 80.8%     | 91.7%       | 20.7%       |
+| Qwen3-4B-Instruct            | One-Step            | T=0.0    |      1 | 21,768       | 32.00%   | 74.7%     | 90.9%       | 20.7%       |
+| granite-4.0-micro            | Two-Step            | T=0.0    |      1 | 20,440       | 26.00%   | 77.7%     | 83.6%       | 19.8%       |
+| gemma-3-4b-it                | Two-Step            | T=0.0    |      1 | 39,958       | 22.00%   | 72.5%     | 79.8%       | 21.5%       |
+| Ministral-3-3B-Reasoning     | Two-Step            | T=0.0    |      1 | 53,857       | 22.00%   | 73.7%     | 93.4%       | 15.1%       |
+| Ministral-3-8B-Instruct-8bit | Two-Step            | T=0.0    |      1 | 36,563       | 22.00%   | 76.4%     | 91.3%       | 17.7%       |
+| Ministral-3-3B-Reasoning     | One-Step            | T=0.0    |      1 | 108,663      | 14.00%   | 55.4%     | 95.1%       | 12.9%       |
+| Ministral-3-8B-Instruct-8bit | One-Step            | T=0.0    |      1 | 16,246       | 12.00%   | 61.8%     | 95.2%       | 7.4%        |
+| granite-4.0-micro            | One-Step            | T=0.0    |      1 | 11,720       | 10.00%   | 77.2%     | 88.0%       | 24.0%       |
+| gemma-3-4b-it                | One-Step            | T=0.0    |      1 | 35,281       | 8.00%    | 69.6%     | 78.9%       | 12.5%       |
+
+--------------------------------------------------------------------------------------------------------------
+Note: Raw Cov = ungated (all tasks, incl. failures). Gated Cov = assertion-passing tasks only (our metric).
+      [a] Wang et al. (2025a) baselines use Execution Correctness (EC): test compiles/runs without crash, NOT assertion-passing.
+          Their Gated Cov is therefore EC-gated (more lenient than our assertion-gated Gated Cov).
+      Literature baselines show point estimates only (no CI available from source papers).
+      See Footnote [1] for coverage methodology; Footnote [3] for literature metric definitions.
+
+==============================================================================================================
+ TABLE 2: RELIABILITY - REAL WORLD (Avg Failures)
+==============================================================================================================
+--------------------------------------------------------------------------------------------------------------
+| Model                        | Mode                | Config   |   Assert |   Runtime |   Syntax |   NoCode |   Timeout |
+|------------------------------|---------------------|----------|----------|-----------|----------|----------|-----------|
+| Pynguin (Baseline)           | Evolutionary Search | N/A      |        1 |         5 |        0 |        8 |         0 |
+| Qwen3-4B-Instruct            | Two-Step            | T=0.0    |        6 |        28 |        0 |        0 |         0 |
+| Qwen3-4B-Instruct            | One-Step            | T=0.0    |        5 |        25 |        0 |        4 |         0 |
+| granite-4.0-micro            | Two-Step            | T=0.0    |        7 |        29 |        0 |        1 |         0 |
+| gemma-3-4b-it                | Two-Step            | T=0.0    |        6 |        29 |        0 |        3 |         1 |
+| Ministral-3-3B-Reasoning     | Two-Step            | T=0.0    |        8 |        25 |        1 |        5 |         0 |
+| Ministral-3-8B-Instruct-8bit | Two-Step            | T=0.0    |        5 |        33 |        0 |        0 |         1 |
+| Ministral-3-3B-Reasoning     | One-Step            | T=0.0    |        5 |        20 |        0 |       18 |         0 |
+| Ministral-3-8B-Instruct-8bit | One-Step            | T=0.0    |        8 |        28 |        0 |        8 |         0 |
+| granite-4.0-micro            | One-Step            | T=0.0    |        7 |        37 |        1 |        0 |         0 |
+| gemma-3-4b-it                | One-Step            | T=0.0    |        6 |        36 |        0 |        4 |         0 |
+
+==============================================================================================================
+ TABLE 3: EFFICIENCY - REAL WORLD
+==============================================================================================================
+--------------------------------------------------------------------------------------------------------------
+| Model                        | Mode                | Config   |   TPS | Total Tokens   | Time   | Avg Time/Task (s)   |
+|------------------------------|---------------------|----------|-------|----------------|--------|---------------------|
+| Ministral-3-3B-Reasoning     | One-Step            | T=0.0    |   109 | 108,663        | 16.8m  | 20.2s               |
+| Ministral-3-3B-Reasoning     | Two-Step            | T=0.0    |   102 | 53,857         | 10.3m  | 12.4s               |
+| granite-4.0-micro            | One-Step            | T=0.0    |    98 | 11,720         | 2.3m   | 2.7s                |
+| granite-4.0-micro            | Two-Step            | T=0.0    |    90 | 20,440         | 6.2m   | 7.5s                |
+| Qwen3-4B-Instruct            | One-Step            | T=0.0    |    87 | 21,768         | 4.4m   | 5.3s                |
+| Qwen3-4B-Instruct            | Two-Step            | T=0.0    |    79 | 23,860         | 8.5m   | 10.2s               |
+| gemma-3-4b-it                | One-Step            | T=0.0    |    79 | 35,281         | 7.1m   | 8.5s                |
+| gemma-3-4b-it                | Two-Step            | T=0.0    |    74 | 39,958         | 11.0m  | 13.2s               |
+| Ministral-3-8B-Instruct-8bit | One-Step            | T=0.0    |    73 | 16,246         | 4.5m   | 5.4s                |
+| Ministral-3-8B-Instruct-8bit | Two-Step            | T=0.0    |    73 | 36,563         | 13.5m  | 16.2s               |
+| Pynguin (Baseline)           | Evolutionary Search | N/A      |    16 | 5,955          | 56.2m  | 67.5s               |
+
+--------------------------------------------------------------------------------------------------------------
+Note: Pynguin uses evolutionary search (SBST) and does not generate tokens; excluded from TPS comparisons. See Wall-Clock Efficiency figure.
+
+==============================================================================================================
+
+==============================================================================================================
+ FOOTNOTES
+==============================================================================================================
+[1] COVERAGE METHODOLOGY: Two coverage metrics are reported. 'Raw Cov' (ungated) measures line coverage for all test outcomes except TIMEOUT, SYNTAX_ERROR, and NO_CODE — even assertion-failing tests report actual coverage, reflecting how much of the solution code the test exercised before failing. 'Gated Cov' measures coverage restricted to assertion-passing tasks only (our Pass@1 criterion). Note: Wang et al. (2025a)'s 'Overall Line Coverage' (marked [a] in Table 1) applies a more lenient gating condition (Execution Correctness: test compiles and runs without crashing) rather than assertion passing; it is therefore not directly equivalent to our Gated Cov but is placed in the same column as the closest analogue. Both our metrics appear in Table 1.
+
+[2] PYNGUIN TPS REPRESENTATION: Pynguin does not generate tokens; it uses evolutionary search (SBST/AST mutations). Pynguin is excluded from TPS trend plots. For cross-paradigm efficiency comparison, refer to the Wall-Clock Efficiency figure.
+
+[3] STATISTICAL METHODOLOGY: All pairwise comparisons use Welch's t-test (unequal variances). P-values are Bonferroni-corrected for multiple comparisons. Effect sizes reported as Cohen's h (appropriate for proportions): |h|<0.2=negligible, 0.2-0.5=small, 0.5-0.8=medium, ≥0.8=large. 95% confidence intervals use t-distribution (N=1 runs, t-critical=inf, df=0).
+
+[4] N=1 RUNS JUSTIFICATION: 1 independent runs per configuration balances statistical rigor with computational cost. With N=1: (1) 95% CIs use t-critical value of inf (df=0); (2) Bootstrap analysis confirms ranking stability across resampling. The variance convergence table demonstrates diminishing returns for additional runs.
+
+[5] BOOTSTRAP STABILITY: Rankings assessed via 1000 bootstrap iterations resampling runs with replacement. 'Modal Rank' = most frequent rank position. 'Rank Stability' = percentage of iterations where configuration achieved its modal rank. High stability (>70%) indicates robust rankings.
+
+[6] BEST CONFIGURATION SELECTION: For Tables 4-7, 'best configuration' for each model is defined as the configuration (prompt mode + temperature) with the highest mean Pass@1 across N=1 runs, excluding configurations with zero variance (which cannot be used in statistical tests). This reduces comparisons from all temperature variants to one representative per model.
+
+EXPERIMENTAL SETUP (Real World Study):
+• Hardware: vLLM, Single RTX 4090, FP16 precision (INT4 for quantized) 4096 max tokens.
+• Baseline: Pynguin (DynaMOSA) running on CPU (Python 3.10-slim Docker) with 120s budget.
+• Dataset: 'Real World' - 50 Python functions from this repository's own codebase.
+• Definitions:
+  - Pass@1: % of tasks passing assertions.
+  - Raw Cov: Ungated line coverage (all tasks incl. assertion failures, excl. timeouts/syntax errors/no-code). Gated Cov: Assertion-passing tasks only.
+  - Total Tokens: Average total tokens generated per run.

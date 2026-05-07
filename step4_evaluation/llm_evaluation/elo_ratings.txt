@@ -1,0 +1,18 @@
+====================================================================================================
+                                            ELO RATINGS                                             
+====================================================================================================
+
+                                  Model  Elo Rating  Rank
+       Qwen3-4B-Instruct Two-Shot T=0.0 1660.748604     1
+           gemma-3-4b-it Two-Shot T=0.0 1597.590399     2
+       Qwen3-4B-Instruct One-Shot T=0.0 1586.416048     3
+ Ministral-3-8B-Instruct Two-Shot T=0.0 1569.747682     4
+Ministral-3-3B-Reasoning Two-Shot T=0.0 1544.925662     5
+           gemma-3-4b-it One-Shot T=0.0 1512.350107     6
+       granite-4.0-micro One-Shot T=0.0 1507.760409     7
+       granite-4.0-micro Two-Shot T=0.0 1504.767601     8
+Ministral-3-3B-Reasoning One-Shot T=0.0 1420.960411     9
+ Ministral-3-8B-Instruct One-Shot T=0.0 1413.047679    10
+                     Pynguin (Baseline) 1181.685398    11
+
+====================================================================================================

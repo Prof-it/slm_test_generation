@@ -1,0 +1,4521 @@
+[
+  {
+    "responses": [
+      {
+        "winner_display": "A",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "display_order": 1,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 2,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 24238,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 3,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 4,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 860,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 5,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "display_order": 5,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 6,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 76687,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "display_order": 7,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 8,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 9,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 67262,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 10,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 11,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 51632,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 12,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 13,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 14,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 15,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 67262,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 16,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 17,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 56372,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 18,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 56372,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 19,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 35148,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 20,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 21,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 22,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 23,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 90722,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "display_order": 24,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 25,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "display_order": 26,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 88910,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 27,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 28,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "task_id": 76687,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 29,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "task_id": 54579,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 30,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 63159,
+        "winner_actual": "B"
+      }
+    ],
+    "total_comparisons": 30,
+    "annotator_id": "p-063fde73",
+    "demographics": {
+      "domain_familiarity": [
+        "Machine Learning / Deep Learning"
+      ],
+      "years_experience": "2–4",
+      "testing_expertise": "Beginner"
+    },
+    "timestamp": "2026-03-15T10:12:33.879088+00:00",
+    "_doc_id": "p-063fde73"
+  },
+  {
+    "responses": [
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "display_order": 1,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 5,
+          "robustness": 4,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "display_order": 2,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "display_order": 3,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 4
+        },
+        "display_order": 4,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 5,
+          "conciseness": 4
+        },
+        "task_id": 76687,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 1,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 2
+        },
+        "display_order": 5,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "task_id": 24238,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 2,
+          "conciseness": 2
+        },
+        "display_order": 6,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 1,
+          "robustness": 1,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "task_id": 90722,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 4
+        },
+        "display_order": 7,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 4
+        },
+        "task_id": 88910,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "readability": 2,
+          "conciseness": 3
+        },
+        "display_order": 8,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 35148,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 3
+        },
+        "display_order": 9,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 10,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 56372,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 11,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 1,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 2
+        },
+        "display_order": 12,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "task_id": 24238,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 13,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 76687,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 14,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 2
+        },
+        "display_order": 15,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 67262,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "display_order": 16,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 67262,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 17,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 2,
+          "conciseness": 2
+        },
+        "task_id": 56372,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "display_order": 18,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 1,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 2
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 1,
+          "conciseness": 1
+        },
+        "display_order": 19,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "display_order": 20,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "task_id": 51632,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 21,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 22,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 23,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 24,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 3
+        },
+        "task_id": 860,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 25,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 1,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 26,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "task_id": 95673,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 27,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 28,
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 29,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 95673,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "display_order": 30,
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 1,
+          "robustness": 1,
+          "readability": 3,
+          "conciseness": 1
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      }
+    ],
+    "total_comparisons": 30,
+    "annotator_id": "p-26019f81",
+    "demographics": {
+      "domain_familiarity": [
+        "Machine Learning / Deep Learning",
+        "Web / API development"
+      ],
+      "years_experience": "0–1",
+      "testing_expertise": "Intermediate"
+    },
+    "timestamp": "2026-03-15T09:42:56.294899+00:00",
+    "_doc_id": "p-26019f81"
+  },
+  {
+    "responses": [
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "display_order": 1,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "display_order": 2,
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 5,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "display_order": 3,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "ab_swapped": false,
+        "notes": "Verilen örnek daha daha basit olabilir",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "display_order": 4,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 1,
+          "robustness": 1,
+          "readability": 1,
+          "conciseness": 1
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "display_order": 5,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 1,
+          "conciseness": 1
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "display_order": 6,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Tie",
+        "display_order": 7,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 3,
+          "readability": 2,
+          "conciseness": 3
+        },
+        "task_id": 860,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "display_order": 8,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "B"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "display_order": 9,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 1,
+          "robustness": 1,
+          "readability": 1,
+          "conciseness": 1
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "display_order": 10,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 4,
+          "readability": 3,
+          "conciseness": 2
+        },
+        "task_id": 67262,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "display_order": 11,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 2
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "display_order": 12,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Marginal",
+        "display_order": 13,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 2
+        },
+        "task_id": 90722,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "display_order": 14,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 1,
+          "robustness": 1,
+          "readability": 1,
+          "conciseness": 1
+        },
+        "task_id": 24238,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "display_order": 15,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Clear",
+        "display_order": 16,
+        "scores_display_a": {
+          "assertions": 1,
+          "robustness": 1,
+          "readability": 2,
+          "conciseness": 2
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 35148,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Clear",
+        "display_order": 17,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Marginal",
+        "display_order": 18,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 76687,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "display_order": 19,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 2
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "display_order": 20,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Clear",
+        "display_order": 21,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 67262,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Marginal",
+        "display_order": 22,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Marginal",
+        "display_order": 23,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Marginal",
+        "display_order": 24,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "display_order": 25,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 88910,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Tie",
+        "display_order": 26,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 56372,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "display_order": 27,
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 51632,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "Tie",
+        "stratum": "Marginal",
+        "display_order": 28,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 56372,
+        "winner_actual": "Tie"
+      },
+      {
+        "winner_display": "B",
+        "stratum": "Tie",
+        "display_order": 29,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "ab_swapped": true,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 76687,
+        "winner_actual": "A"
+      },
+      {
+        "winner_display": "A",
+        "stratum": "Clear",
+        "display_order": 30,
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 1,
+          "robustness": 1,
+          "readability": 1,
+          "conciseness": 1
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      }
+    ],
+    "total_comparisons": 30,
+    "annotator_id": "p-2dbc2990",
+    "demographics": {
+      "domain_familiarity": [
+        "Machine Learning / Deep Learning",
+        "Backend / Systems",
+        "Web / API development"
+      ],
+      "years_experience": "5–9",
+      "testing_expertise": "Intermediate"
+    },
+    "timestamp": "2026-03-05T20:30:46.933687+00:00",
+    "_doc_id": "p-2dbc2990"
+  },
+  {
+    "responses": [
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "display_order": 1,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 4,
+          "assertions": 4,
+          "conciseness": 5,
+          "readability": 5
+        },
+        "task_id": 95673,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 2,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "stratum": "Tie",
+        "winner_display": "B",
+        "display_order": 3,
+        "notes": "They essentially do the same thing, the only difference is that B has less unnecessary lines.",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 3
+        },
+        "task_id": 860,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 5,
+          "conciseness": 4,
+          "readability": 3
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 4,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 5,
+          "readability": 4
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 5,
+        "notes": "Both cover only one case",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 5,
+          "readability": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 4
+        },
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "display_order": 6,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 4
+        },
+        "task_id": 56372,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 1,
+          "assertions": 2,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "display_order": 7,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 8,
+        "notes": "B test does nothing",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 90722,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 5
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 9,
+        "notes": "B does not even work",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 35148,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 10,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 4,
+          "assertions": 4,
+          "conciseness": 2,
+          "readability": 3
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 11,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 12,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 4,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 4,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "stratum": "Tie",
+        "winner_display": "A",
+        "display_order": 13,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 4,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 14,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 4,
+          "conciseness": 1,
+          "readability": 3
+        },
+        "task_id": 67262,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 3
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 15,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 2,
+          "conciseness": 2,
+          "readability": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 16,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 17,
+        "notes": "Both are bad but A does no assertion",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 4,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "stratum": "Tie",
+        "winner_display": "A",
+        "display_order": 18,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 51632,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Tie",
+        "winner_display": "B",
+        "display_order": 19,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "task_id": 76687,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 3
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 20,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 2,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 3
+        },
+        "task_id": 88910,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 21,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 56372,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 4
+        },
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "display_order": 22,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 4,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 3
+        },
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "display_order": 23,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 4,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 3
+        },
+        "stratum": "Tie",
+        "winner_display": "B",
+        "display_order": 24,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 4,
+          "assertions": 3,
+          "conciseness": 5,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "display_order": 25,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 4,
+          "conciseness": 4,
+          "readability": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 4,
+          "readability": 3
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 26,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 76687,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 27,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 2,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 4,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 28,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 2,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 67262,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 29,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "task_id": 24238,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 1,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "display_order": 30,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 2,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      }
+    ],
+    "total_comparisons": 30,
+    "annotator_id": "p-316fdf3b",
+    "demographics": {
+      "domain_familiarity": [
+        "Machine Learning / Deep Learning"
+      ],
+      "years_experience": "2–4",
+      "testing_expertise": "Intermediate"
+    },
+    "timestamp": "2026-03-08T02:20:52.910065+00:00",
+    "_doc_id": "p-316fdf3b"
+  },
+  {
+    "responses": [
+      {
+        "display_order": 1,
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 1,
+          "readability": 1
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 76687,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 2,
+        "stratum": "Clear",
+        "winner_display": "A",
+        "scores_display_a": {
+          "robustness": 4,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 3,
+          "readability": 2
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 3,
+        "stratum": "Marginal",
+        "winner_display": "Tie",
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 95673,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 4,
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "scores_display_a": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 1,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 1,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 5,
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "scores_display_a": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 3,
+          "readability": 2
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 1,
+          "assertions": 1,
+          "conciseness": 3,
+          "readability": 2
+        },
+        "task_id": 56372,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 6,
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 1,
+          "conciseness": 2,
+          "readability": 2
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 7,
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 88910,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 8,
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 9,
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 1,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 10,
+        "stratum": "Clear",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 2,
+          "readability": 2
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 4,
+          "assertions": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 67262,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 11,
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 12,
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 2,
+          "readability": 2
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 4,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 13,
+        "stratum": "Clear",
+        "winner_display": "A",
+        "scores_display_a": {
+          "robustness": 5,
+          "assertions": 5,
+          "conciseness": 4,
+          "readability": 5
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 14,
+        "stratum": "Tie",
+        "winner_display": "A",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 95673,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 15,
+        "stratum": "Clear",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 2,
+          "conciseness": 2,
+          "readability": 2
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 4,
+          "conciseness": 3,
+          "readability": 2
+        },
+        "task_id": 24238,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 16,
+        "stratum": "Tie",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 51632,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 17,
+        "stratum": "Clear",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 4,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "task_id": 67262,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 18,
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 1,
+          "assertions": 2,
+          "conciseness": 2,
+          "readability": 2
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 4,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 90722,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 19,
+        "stratum": "Tie",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 2
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "task_id": 76687,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 20,
+        "stratum": "Clear",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 1,
+          "assertions": 2,
+          "conciseness": 3,
+          "readability": 1
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 21,
+        "stratum": "Tie",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 860,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 22,
+        "stratum": "Marginal",
+        "winner_display": "Tie",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 56372,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 23,
+        "stratum": "Clear",
+        "winner_display": "A",
+        "scores_display_a": {
+          "robustness": 4,
+          "assertions": 5,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 3,
+          "readability": 2
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 24,
+        "stratum": "Clear",
+        "winner_display": "A",
+        "scores_display_a": {
+          "robustness": 4,
+          "assertions": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 1,
+          "assertions": 2,
+          "conciseness": 3,
+          "readability": 2
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 25,
+        "stratum": "Clear",
+        "winner_display": "Tie",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 26,
+        "stratum": "Clear",
+        "winner_display": "A",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 35148,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 27,
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 2,
+          "assertions": 2,
+          "conciseness": 2,
+          "readability": 2
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 28,
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 29,
+        "stratum": "Tie",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "robustness": 4,
+          "assertions": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 30,
+        "stratum": "Marginal",
+        "winner_display": "B",
+        "scores_display_a": {
+          "robustness": 3,
+          "assertions": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "robustness": 4,
+          "assertions": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      }
+    ],
+    "total_comparisons": 30,
+    "annotator_id": "p-7c804be7",
+    "demographics": {
+      "domain_familiarity": [
+        "Machine Learning / Deep Learning",
+        "Backend / Systems"
+      ],
+      "years_experience": "2–4",
+      "testing_expertise": "Advanced"
+    },
+    "timestamp": "2026-03-14T16:14:47.167710+00:00",
+    "_doc_id": "p-7c804be7"
+  },
+  {
+    "responses": [
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 1,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 1,
+          "readability": 2,
+          "conciseness": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 2,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 3
+        },
+        "task_id": 76687,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "stratum": "Tie",
+        "winner_display": "A",
+        "display_order": 3,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 860,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 4,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 5,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "task_id": 88910,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 6,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 1,
+          "readability": 1,
+          "conciseness": 3
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 2
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 7,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 24238,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "stratum": "Tie",
+        "winner_display": "B",
+        "display_order": 8,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 51632,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 1,
+          "robustness": 2,
+          "readability": 1,
+          "conciseness": 2
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 9,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 5,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 10,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "task_id": 56372,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 1,
+          "robustness": 2,
+          "readability": 1,
+          "conciseness": 2
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 11,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 5,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 12,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "readability": 1,
+          "conciseness": 1
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "stratum": "Marginal",
+        "winner_display": "Tie",
+        "display_order": 13,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 14,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 5,
+          "conciseness": 4
+        },
+        "stratum": "Tie",
+        "winner_display": "A",
+        "display_order": 15,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 16,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 2,
+          "conciseness": 1
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 17,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 67262,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 18,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 76687,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 1,
+          "robustness": 1,
+          "readability": 1,
+          "conciseness": 1
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 19,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 35148,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 20,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 5,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 21,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 90722,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 1,
+          "robustness": 1,
+          "readability": 1,
+          "conciseness": 3
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 22,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 24238,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 5,
+          "readability": 5,
+          "conciseness": 4
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 23,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 24,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 54579,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 5,
+          "robustness": 3,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "stratum": "Clear",
+        "winner_display": "A",
+        "display_order": 25,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 3
+        },
+        "task_id": 63159,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 5,
+          "conciseness": 4
+        },
+        "stratum": "Marginal",
+        "winner_display": "Tie",
+        "display_order": 26,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 2,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "stratum": "Marginal",
+        "winner_display": "A",
+        "display_order": 27,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "task_id": 24238,
+        "winner_actual": "B"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 1,
+          "readability": 3,
+          "conciseness": 4
+        },
+        "stratum": "Clear",
+        "winner_display": "B",
+        "display_order": 28,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 67262,
+        "winner_actual": "A"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "stratum": "Tie",
+        "winner_display": "Tie",
+        "display_order": 29,
+        "notes": "",
+        "ab_swapped": false,
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 1,
+          "readability": 4,
+          "conciseness": 5
+        },
+        "task_id": 56372,
+        "winner_actual": "Tie"
+      },
+      {
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "readability": 4,
+          "conciseness": 4
+        },
+        "stratum": "Tie",
+        "winner_display": "A",
+        "display_order": 30,
+        "notes": "",
+        "ab_swapped": true,
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 1,
+          "readability": 5,
+          "conciseness": 5
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      }
+    ],
+    "total_comparisons": 30,
+    "annotator_id": "p-89e9aa58",
+    "demographics": {
+      "domain_familiarity": [
+        "Machine Learning / Deep Learning"
+      ],
+      "years_experience": "10+",
+      "testing_expertise": "Advanced"
+    },
+    "timestamp": "2026-02-26T19:23:39.984317+00:00",
+    "_doc_id": "p-89e9aa58"
+  },
+  {
+    "responses": [
+      {
+        "display_order": 1,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 5,
+          "robustness": 5,
+          "conciseness": 4,
+          "readability": 5
+        },
+        "winner_display": "A",
+        "ab_swapped": true,
+        "notes": "A is clearly more detailed",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 5
+        },
+        "task_id": 67262,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 2,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "Tie",
+        "ab_swapped": true,
+        "notes": "They are nearly exactly the same, magic numbering is a bad practice",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 54579,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 3,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": false,
+        "notes": "A lot more robust",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 4,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "winner_display": "Tie",
+        "ab_swapped": false,
+        "notes": "They are exactly the same",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 88910,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 5,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "B",
+        "ab_swapped": true,
+        "notes": "It has a mock but other than that it is the same",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 56372,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 6,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": true,
+        "notes": "They are nearly the same just one uses a UUID object for mock",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 7,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": false,
+        "notes": "Has more assertions",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 8,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": true,
+        "notes": "It mocks other does not",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 67262,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 9,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "winner_display": "Tie",
+        "ab_swapped": false,
+        "notes": "",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 10,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "winner_display": "B",
+        "ab_swapped": false,
+        "notes": "b checks serialization hashing etc. too instead of A that just checks the length",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 90722,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 11,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "B",
+        "ab_swapped": true,
+        "notes": "has more assertions",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 12,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 1
+        },
+        "winner_display": "B",
+        "ab_swapped": true,
+        "notes": "B has mocking, A has horrible naming",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 3
+        },
+        "task_id": 24238,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 13,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "B",
+        "ab_swapped": true,
+        "notes": "B has more assertions that checks the behaivor",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 14,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 1
+        },
+        "winner_display": "B",
+        "ab_swapped": true,
+        "notes": "B correctly tests with a ipv6 address",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 15,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "winner_display": "B",
+        "ab_swapped": false,
+        "notes": "It has automatic test comment warning, way more robust testing more than happy paths",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 16,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "winner_display": "A",
+        "ab_swapped": false,
+        "notes": "A tests meaningful functionality where B contains intentionally failing tests",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 35148,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 17,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "winner_display": "A",
+        "ab_swapped": false,
+        "notes": "A has more assertions that is mroe than happy path testing",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 1
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 18,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": false,
+        "notes": "More assertions that are higher quality with higher readability",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 1
+        },
+        "task_id": 63159,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 19,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": true,
+        "notes": "a test realistic behaivor",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 24238,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 20,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "B",
+        "ab_swapped": true,
+        "notes": "B has more assertions",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 51632,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 21,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "B",
+        "ab_swapped": false,
+        "notes": "B mocks where A is like integration testing without mocks",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 63159,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 22,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "winner_display": "Tie",
+        "ab_swapped": true,
+        "notes": "They are exactly the same",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 56372,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 23,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": true,
+        "notes": "A has mocking and better",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 95673,
+        "winner_actual": "B"
+      },
+      {
+        "display_order": 24,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": false,
+        "notes": "a url with a path with no scheme is tested in A and more robust",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 860,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 25,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": false,
+        "notes": "A has more assertions",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 23487,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 26,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "B",
+        "ab_swapped": true,
+        "notes": "a dictionary with nested data is tested in B which is better",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 76687,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 27,
+        "stratum": "Tie",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "winner_display": "Tie",
+        "ab_swapped": false,
+        "notes": "Exactly the same",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 3,
+          "readability": 3
+        },
+        "task_id": 23487,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 28,
+        "stratum": "Clear",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 4,
+          "conciseness": 1,
+          "readability": 4
+        },
+        "winner_display": "Tie",
+        "ab_swapped": true,
+        "notes": "\"A\" rewrite the production code which is bad but also has better edge case where B is fine for happy path testing therefore thats a tie ",
+        "scores_display_b": {
+          "assertions": 2,
+          "robustness": 2,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 24238,
+        "winner_actual": "Tie"
+      },
+      {
+        "display_order": 29,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 3,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 2
+        },
+        "winner_display": "B",
+        "ab_swapped": true,
+        "notes": "B is mocking successfully",
+        "scores_display_b": {
+          "assertions": 4,
+          "robustness": 4,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "task_id": 54579,
+        "winner_actual": "A"
+      },
+      {
+        "display_order": 30,
+        "stratum": "Marginal",
+        "scores_display_a": {
+          "assertions": 4,
+          "robustness": 3,
+          "conciseness": 4,
+          "readability": 4
+        },
+        "winner_display": "A",
+        "ab_swapped": true,
+        "notes": "A directly verify hash mocking where B is over mocking",
+        "scores_display_b": {
+          "assertions": 3,
+          "robustness": 4,
+          "conciseness": 3,
+          "readability": 4
+        },
+        "task_id": 76687,
+        "winner_actual": "B"
+      }
+    ],
+    "total_comparisons": 30,
+    "annotator_id": "p-ff3e8b62",
+    "demographics": {
+      "domain_familiarity": [
+        "Backend / Systems"
+      ],
+      "years_experience": "2–4",
+      "testing_expertise": "Beginner"
+    },
+    "timestamp": "2026-02-28T11:09:21.481372+00:00",
+    "_doc_id": "p-ff3e8b62"
+  }
+]

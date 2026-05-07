@@ -1,0 +1,1637 @@
+task_id,stratum,score_diff,model_a,model_b,model_a_total_score,model_b_total_score,docstring,focal_code,code_a,code_b,reasoning_pass_full
+24238,Clear,15.0,Qwen3-4B-Instruct One-Shot T=0.0,gemma-3-4b-it Two-Shot T=0.0,27.0,12.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def peek_filelike_length(self, stream: typing.Any) -> int | None:
+        """"""
+        Given a file-like stream object, return its length in number of bytes
+        without reading it into memory.
+        """"""
+        try:
+            # Is it an actual file?
+            fd = stream.fileno()
+            # Yup, seems to be an actual file.
+            length = os.fstat(fd).st_size
+        except (AttributeError, OSError):
+            # No... Maybe it's something that supports random access, like `io.BytesIO`?
+            try:
+                # Assuming so, go to end of stream to figure out its length,
+                # then put it back in place.
+                offset = stream.tell()
+                length = stream.seek(0, os.SEEK_END)
+                stream.seek(offset)
+            except (AttributeError, OSError):
+                # Not even that? Sorry, we're doomed...
+                return None
+
+        return length","```python
+def test_peek_filelike_length():
+    solution = Solution()
+    class MockStream:
+        def tell(self):
+            return 0
+        def seek(self, *args):
+            raise AttributeError(""seek not implemented"")
+
+    result = solution.peek_filelike_length(MockStream())
+    assert result is None
+```","```python
+import unittest
+from unittest.mock import patch, MagicMock
+from io import BytesIO
+
+class Solution:  #9
+    def peek_filelike_length(self, stream: typing.Any) -> int | None:  #10
+        """"""  #11
+        Given a file-like stream object, return its length in number of bytes  #12
+        without reading it into memory.  #13
+        """"""  #14
+        try:  #15
+            # Is it an actual file?  #16
+            fd = stream.fileno()  #17
+            # Yup, seems to be an actual file.  #18
+            length = os.fstat(fd).st_size  #19
+        except (AttributeError, OSError):  #20
+            # No... Maybe it's something that supports random access, like `io.BytesIO`?  #21
+            try:  #22
+                # Assuming so, go to end of stream to figure out its length,  #23
+                # then put it back in place.  #24
+                offset = stream.tell()  #25
+                length = stream.seek(0, os.SEEK_END)  #26
+                stream.seek(offset)  #27
+            except (AttributeError, OSError):  #28
+                # Not even that? Sorry, we're doomed...  #29
+                return None  #30
+  #31
+        return length  #32
+
+def test_peek_filelike_length():
+    with patch('os.fstat') as fstat_mock, patch('os.path.getsize') as getsize_mock:
+        stream = BytesIO(b""hello"")
+        solution = Solution()
+        result = solution.peek_filelike_length(stream)
+        assert result == 5
+        fstat_mock.return_value = MagicMock(st_size=5)
+        getsize_mock.return_value = 5
+        result = solution.peek_filelike_length(stream)
+        assert result == 5
+```","Test A is simpler but correctly tests one specific scenario (the None return path) with a clean, readable structure. Test B attempts more coverage but has significant issues: it redefines the Solution class unnecessarily, patches irrelevant functions, and the second assertion block doesn't actually test the fstat path as intended. Test A's single assertion is correct and meaningful, while Test B's second assertion is misleading. Neither test is comprehensive, but Test A is at least correct in what it tests. Test B's attempt at broader coverage is undermined by incorrect test setup and confusing structure. Overall, Test A scores better on readability and conciseness, while Test B scores slightly better on robustness attempt (even if flawed) but worse on readability and conciseness."
+56372,Marginal,4.0,Ministral-3-3B-Reasoning Two-Shot T=0.0,gemma-3-4b-it Two-Shot T=0.0,25.0,21.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def get_environment_proxies(self, ) -> dict[str, str | None]:
+        """"""Gets proxy information from the environment""""""
+
+        # urllib.request.getproxies() falls back on System
+        # Registry and Config for proxies on Windows and macOS.
+        # We don't want to propagate non-HTTP proxies into
+        # our configuration such as 'TRAVIS_APT_PROXY'.
+        proxy_info = getproxies()
+        mounts: dict[str, str | None] = {}
+
+        for scheme in (""http"", ""https"", ""all""):
+            if proxy_info.get(scheme):
+                hostname = proxy_info[scheme]
+                mounts[f""{scheme}://""] = (
+                    hostname if ""://"" in hostname else f""http://{hostname}""
+                )
+
+        no_proxy_hosts = [host.strip() for host in proxy_info.get(""no"", """").split("","")]
+        for hostname in no_proxy_hosts:
+            # See https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html for details
+            # on how names in `NO_PROXY` are handled.
+            if hostname == ""*"":
+                # If NO_PROXY=* is used or if ""*"" occurs as any one of the comma
+                # separated hostnames, then we should just bypass any information
+                # from HTTP_PROXY, HTTPS_PROXY, ALL_PROXY, and always ignore
+                # proxies.
+                return {}
+            elif hostname:
+                # NO_PROXY=.google.com is marked as ""all://*.google.com,
+                #   which disables ""www.google.com"" but not ""google.com""
+                # NO_PROXY=google.com is marked as ""all://*google.com,
+                #   which disables ""www.google.com"" and ""google.com"".
+                #   (But not ""wwwgoogle.com"")
+                # NO_PROXY can include domains, IPv6, IPv4 addresses and ""localhost""
+                #   NO_PROXY=example.com,::1,localhost,192.168.0.0/16
+                if ""://"" in hostname:
+                    mounts[hostname] = None
+                elif is_ipv4_hostname(hostname):
+                    mounts[f""all://{hostname}""] = None
+                elif is_ipv6_hostname(hostname):
+                    mounts[f""all://[{hostname}]""] = None
+                elif hostname.lower() == ""localhost"":
+                    mounts[f""all://{hostname}""] = None
+                else:
+                    mounts[f""all://*{hostname}""] = None
+
+        return mounts","```python
+def test_get_environment_proxies():
+    with patch('urllib.request.getproxies', return_value={}) as mock_getproxies:
+        solution = Solution()
+        assert solution.get_environment_proxies() == {}
+```","```python
+def test_get_environment_proxies():
+    solution = Solution()
+    assert solution.get_environment_proxies() == {}
+```","Both tests only cover a single trivial case (empty proxy environment) and neither tests the rich branching logic of the focal method (HTTP/HTTPS proxy schemes, NO_PROXY wildcard, domain patterns, IPv4/IPv6, localhost). Test A is superior to Test B because it properly mocks urllib.request.getproxies, making the test deterministic and isolated from the actual environment. Test B relies on the real environment having no proxies configured, which makes it fragile and environment-dependent. Test A demonstrates better testing practice by controlling the dependency, even though both tests are severely lacking in coverage of the method's actual logic."
+63159,Clear,24.0,granite-4.0-micro One-Shot T=0.0,Pynguin (Baseline),26.0,2.0,No docstring.,"import argparse
+import ast
+from concurrent.futures import ProcessPoolExecutor, as_completed
+import logging
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import json
+
+class Solution:
+    def run_cosmic_ray_analysis(self, source_code_str: str, test_code_str: str, per_test_timeout: int = 10, overall_timeout: int = 600) -> dict:
+        result_dict = {
+            ""mutation_score"": 0.0, ""total_mutants"": 0, ""killed_mutants"": 0,
+            ""survived_mutants"": 0, ""log"": """", ""error"": None
+        }
+        tmpdir = tempfile.mkdtemp(prefix=""cosmic_ray_"")
+
+        try:
+            work_dir = Path(tmpdir)
+
+            # 1. Write Files
+            (work_dir / ""under_test.py"").write_text(source_code_str, encoding='utf-8')
+            (work_dir / ""test_mutation.py"").write_text(test_code_str, encoding='utf-8')
+
+            # 2. Config Construction
+            python_exec = sys.executable.replace(""\\"", ""/"") 
+
+            config_content = f""""""
+    [cosmic-ray]
+    module-path = ""under_test.py""
+    timeout = {float(per_test_timeout)}
+    excluded-modules = []
+    test-command = ""{python_exec} -m pytest test_mutation.py""
+
+    [cosmic-ray.distributor]
+    name = ""local""
+    """"""
+            (work_dir / ""cr-config.toml"").write_text(config_content, encoding='utf-8')
+
+            # 3. Initialization
+            init_proc = subprocess.run(
+                [sys.executable, ""-m"", ""cosmic_ray.cli"", ""init"", ""cr-config.toml"", ""session.sqlite""],
+                cwd=work_dir, capture_output=True, text=True, timeout=60
+            )
+            if init_proc.returncode != 0:
+                raise RuntimeError(f""Init failed (Code {init_proc.returncode}): {init_proc.stderr}"")
+
+            # 4. Execution
+            exec_proc = subprocess.run(
+                [sys.executable, ""-m"", ""cosmic_ray.cli"", ""exec"", ""cr-config.toml"", ""session.sqlite""],
+                cwd=work_dir, capture_output=True, text=True, timeout=overall_timeout
+            )
+
+            # 5. Reporting
+            report_proc = subprocess.run(
+                [sys.executable, ""-m"", ""cosmic_ray.cli"", ""dump"", ""session.sqlite""],
+                cwd=work_dir, capture_output=True, text=True, timeout=30
+            )
+            if report_proc.returncode != 0:
+                pass
+
+            # Flatten lists and parse safely
+            raw_output = report_proc.stdout.strip()
+            mutants = []
+            try:
+                parsed = json.loads(raw_output)
+                if isinstance(parsed, list):
+                    for item in parsed:
+                        if isinstance(item, list): mutants.extend(item)
+                        else: mutants.append(item)
+                elif isinstance(parsed, dict):
+                    mutants.append(parsed)
+            except json.JSONDecodeError:
+                for line in raw_output.splitlines():
+                    if line.strip():
+                        try: 
+                            obj = json.loads(line)
+                            if isinstance(obj, list): mutants.extend(obj)
+                            else: mutants.append(obj)
+                        except: pass 
+
+            total = len(mutants)
+            killed = 0
+
+            for m in mutants:
+                if not isinstance(m, dict): continue
+                test_outcome = m.get('test_outcome')
+                if isinstance(test_outcome, dict):
+                    if test_outcome.get('outcome') == 'killed': killed += 1
+                elif isinstance(test_outcome, str):
+                    if test_outcome == 'killed': killed += 1
+
+            survived = total - killed
+            score = 0.0
+            if total > 0:
+                score = (killed / total) * 100.0
+
+            result_dict.update({
+                ""mutation_score"": score,
+                ""total_mutants"": total,
+                ""killed_mutants"": killed,
+                ""survived_mutants"": survived
+            })
+
+        except subprocess.TimeoutExpired:
+            result_dict[""error""] = ""Timeout during mutation analysis""
+        except Exception as e:
+            result_dict[""error""] = str(e)
+        finally:
+            try: shutil.rmtree(tmpdir, ignore_errors=True)
+            except: pass 
+
+        return result_dict","```python
+import unittest
+from unittest.mock import patch, MagicMock
+
+class TestRunCosmicRayAnalysis(unittest.TestCase):
+    def test_run_cosmic_ray_analysis(self):
+        solution = Solution()
+        result = solution.run_cosmic_ray_analysis(
+            source_code_str="""",
+            test_code_str=""""
+        )
+        self.assertEqual(result[""mutation_score""], 0.0)
+        self.assertEqual(result[""total_mutants""], 0)
+        self.assertEqual(result[""killed_mutants""], 0)
+        self.assertEqual(result[""survived_mutants""], 0)
+        self.assertEqual(result[""log""], """")
+        self.assertIsNone(result[""error""])
+```","# Test cases automatically generated.
+import under_test as module_0
+
+
+def test_case_0():
+    solution_0 = module_0.Solution()
+    dict_0 = solution_0.run_cosmic_ray_analysis(solution_0, solution_0)
+
+
+def test_case_1():
+    solution_0 = module_0.Solution()
+    str_0 = "";/""
+    dict_0 = solution_0.run_cosmic_ray_analysis(str_0, str_0)
+
+
+def test_case_2():
+    solution_0 = module_0.Solution()
+","Test A is significantly better than Test B. The critical differentiator is assertion quality: Test A has meaningful assertions checking all result fields with specific expected values, while Test B has zero assertions across all three test cases. A test without assertions is essentially worthless from a verification standpoint - it only checks that no exception is thrown.
+
+Test A also has better readability with proper unittest structure and clear AAA pattern. Test B's auto-generated tests have non-descriptive names and dead code (test_case_2 does nothing, dict_0 is never used).
+
+Both tests have poor robustness - Test A only tests one scenario, Test B tests a few scenarios but without any verification. Neither test mocks the subprocess calls, meaning they depend on the environment having cosmic_ray installed.
+
+Test A's main weakness is that it doesn't mock subprocess calls, so the test behavior depends on whether cosmic_ray is installed. If it's not installed, the init step will fail and error will be set, making the assertIsNone(result['error']) assertion fail. This is a significant design flaw, but at least the test has assertions."
+54579,Marginal,6.0,Ministral-3-3B-Reasoning One-Shot T=0.0,Pynguin (Baseline),24.0,18.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def is_ipv6_hostname(self, hostname: str) -> bool:
+        try:
+            ipaddress.IPv6Address(hostname.split(""/"")[0])
+        except Exception:
+            return False
+        return True","def test_is_ipv6_hostname():
+    solution = Solution()
+    with patch('ipaddress.IPv6Address') as mock_ipv6:
+        mock_ipv6.side_effect = ValueError(""Invalid IPv6 address"")
+        assert solution.is_ipv6_hostname(""invalid-ipv6"") == False","# Test cases automatically generated.
+# Please check them before you use them.
+import under_test as module_0
+
+
+def test_case_0():
+    solution_0 = module_0.Solution()
+    bool_0 = solution_0.is_ipv6_hostname(solution_0)
+    assert bool_0 is False
+","Both tests are weak overall. Test A at least tests a realistic scenario (an invalid IPv6 string) and uses mocking to simulate the failure, though the mock target path may be incorrect. Test B is auto-generated and tests an unrealistic input (passing a Solution object as hostname), which accidentally exercises the exception path. Test A is more readable and tests a more realistic scenario. Test B is slightly more concise but less meaningful. Neither test covers the positive case (valid IPv6 returning True), edge cases like empty strings, or addresses with path components. Test A is marginally better due to testing a realistic input scenario and having clearer intent, despite the potential mock path issue."
+56372,Tie,0.0,granite-4.0-micro Two-Shot T=0.0,gemma-3-4b-it Two-Shot T=0.0,18.0,18.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def get_environment_proxies(self, ) -> dict[str, str | None]:
+        """"""Gets proxy information from the environment""""""
+
+        # urllib.request.getproxies() falls back on System
+        # Registry and Config for proxies on Windows and macOS.
+        # We don't want to propagate non-HTTP proxies into
+        # our configuration such as 'TRAVIS_APT_PROXY'.
+        proxy_info = getproxies()
+        mounts: dict[str, str | None] = {}
+
+        for scheme in (""http"", ""https"", ""all""):
+            if proxy_info.get(scheme):
+                hostname = proxy_info[scheme]
+                mounts[f""{scheme}://""] = (
+                    hostname if ""://"" in hostname else f""http://{hostname}""
+                )
+
+        no_proxy_hosts = [host.strip() for host in proxy_info.get(""no"", """").split("","")]
+        for hostname in no_proxy_hosts:
+            # See https://curl.haxx.se/libcurl/c/CURLOPT_NOPROXY.html for details
+            # on how names in `NO_PROXY` are handled.
+            if hostname == ""*"":
+                # If NO_PROXY=* is used or if ""*"" occurs as any one of the comma
+                # separated hostnames, then we should just bypass any information
+                # from HTTP_PROXY, HTTPS_PROXY, ALL_PROXY, and always ignore
+                # proxies.
+                return {}
+            elif hostname:
+                # NO_PROXY=.google.com is marked as ""all://*.google.com,
+                #   which disables ""www.google.com"" but not ""google.com""
+                # NO_PROXY=google.com is marked as ""all://*google.com,
+                #   which disables ""www.google.com"" and ""google.com"".
+                #   (But not ""wwwgoogle.com"")
+                # NO_PROXY can include domains, IPv6, IPv4 addresses and ""localhost""
+                #   NO_PROXY=example.com,::1,localhost,192.168.0.0/16
+                if ""://"" in hostname:
+                    mounts[hostname] = None
+                elif is_ipv4_hostname(hostname):
+                    mounts[f""all://{hostname}""] = None
+                elif is_ipv6_hostname(hostname):
+                    mounts[f""all://[{hostname}]""] = None
+                elif hostname.lower() == ""localhost"":
+                    mounts[f""all://{hostname}""] = None
+                else:
+                    mounts[f""all://*{hostname}""] = None
+
+        return mounts","```python
+def test_get_environment_proxies():
+    solution = Solution()
+    assert solution.get_environment_proxies() == {}
+```","```python
+def test_get_environment_proxies():
+    solution = Solution()
+    assert solution.get_environment_proxies() == {}
+```","Both Test A and Test B are identical in every way - same code, same structure, same single assertion, same lack of mocking or edge case coverage. Neither test mocks getproxies(), neither tests the various NO_PROXY scenarios (wildcard, domain, IPv4, IPv6, localhost), neither tests HTTP_PROXY/HTTPS_PROXY/ALL_PROXY handling, and neither tests the URL formatting logic (adding http:// prefix). Both tests are essentially placeholder tests that verify almost nothing meaningful about the focal method's behavior. There is no basis for differentiation between the two tests."
+23487,Tie,2.0,granite-4.0-micro One-Shot T=0.0,granite-4.0-micro Two-Shot T=0.0,22.0,24.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def primitive_value_to_str(self, value: PrimitiveData) -> str:
+        """"""
+        Coerce a primitive data type into a string value.
+
+        Note that we prefer JSON-style 'true'/'false' for boolean values here.
+        """"""
+        if value is True:
+            return ""true""
+        elif value is False:
+            return ""false""
+        elif value is None:
+            return """"
+        return str(value)","```python
+import unittest
+from unittest.mock import MagicMock
+
+class TestPrimitiveValueToString(unittest.TestCase):
+    def test_primitive_value_to_str(self):
+        solution = Solution()
+        self.assertEqual(solution.primitive_value_to_str(123), ""123"")
+        self.assertEqual(solution.primitive_value_to_str(""hello""), ""hello"")
+        self.assertEqual(solution.primitive_value_to_str(None), """")
+```","```python
+def test_primitive_value_to_str():
+    solution = Solution()
+    assert solution.primitive_value_to_str(True) == ""true""
+```","Test A covers more cases (integer, string, None) but critically misses the boolean cases which are the most distinctive feature of this method. Test B covers only one case (True) but it happens to be one of the most important ones. Neither test is comprehensive. Test A has an unused MagicMock import which is a quality issue. Test B is cleaner but far too minimal. Overall, Test A provides slightly more value due to broader (if incomplete) coverage, while Test B is cleaner but nearly trivial in scope. Both are poor tests overall, but Test A edges out Test B on robustness despite missing booleans, because it at least covers 3 of the 4 branches (None, string/int as str(), and implicitly the else branch). Test B only covers 1 branch explicitly."
+24238,Clear,24.0,Qwen3-4B-Instruct One-Shot T=0.0,Pynguin (Baseline),26.0,2.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def peek_filelike_length(self, stream: typing.Any) -> int | None:
+        """"""
+        Given a file-like stream object, return its length in number of bytes
+        without reading it into memory.
+        """"""
+        try:
+            # Is it an actual file?
+            fd = stream.fileno()
+            # Yup, seems to be an actual file.
+            length = os.fstat(fd).st_size
+        except (AttributeError, OSError):
+            # No... Maybe it's something that supports random access, like `io.BytesIO`?
+            try:
+                # Assuming so, go to end of stream to figure out its length,
+                # then put it back in place.
+                offset = stream.tell()
+                length = stream.seek(0, os.SEEK_END)
+                stream.seek(offset)
+            except (AttributeError, OSError):
+                # Not even that? Sorry, we're doomed...
+                return None
+
+        return length","```python
+def test_peek_filelike_length():
+    solution = Solution()
+    class MockStream:
+        def tell(self):
+            return 0
+        def seek(self, *args):
+            raise AttributeError(""seek not implemented"")
+
+    result = solution.peek_filelike_length(MockStream())
+    assert result is None
+```","# Test cases automatically generated.
+# Please check them before you use them.
+import under_test as module_0
+
+
+def test_case_0():
+    solution_0 = module_0.Solution()
+    var_0 = solution_0.peek_filelike_length(solution_0)
+","Test A is significantly better than Test B. The critical differentiator is that Test B has NO assertions, making it essentially worthless as a quality gate - it only verifies the method doesn't crash. Test A at least asserts a specific return value (None) for a specific scenario. Test A also has better readability with a descriptive test name and a purposefully designed MockStream. Test B is auto-generated code with poor naming and no verification. Both tests have limited robustness (only testing one edge case), but Test A's explicit assertion gives it a clear advantage."
+63159,Clear,24.0,Qwen3-4B-Instruct One-Shot T=0.0,Pynguin (Baseline),26.0,2.0,No docstring.,"import argparse
+import ast
+from concurrent.futures import ProcessPoolExecutor, as_completed
+import logging
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import json
+
+class Solution:
+    def run_cosmic_ray_analysis(self, source_code_str: str, test_code_str: str, per_test_timeout: int = 10, overall_timeout: int = 600) -> dict:
+        result_dict = {
+            ""mutation_score"": 0.0, ""total_mutants"": 0, ""killed_mutants"": 0,
+            ""survived_mutants"": 0, ""log"": """", ""error"": None
+        }
+        tmpdir = tempfile.mkdtemp(prefix=""cosmic_ray_"")
+
+        try:
+            work_dir = Path(tmpdir)
+
+            # 1. Write Files
+            (work_dir / ""under_test.py"").write_text(source_code_str, encoding='utf-8')
+            (work_dir / ""test_mutation.py"").write_text(test_code_str, encoding='utf-8')
+
+            # 2. Config Construction
+            python_exec = sys.executable.replace(""\\"", ""/"") 
+
+            config_content = f""""""
+    [cosmic-ray]
+    module-path = ""under_test.py""
+    timeout = {float(per_test_timeout)}
+    excluded-modules = []
+    test-command = ""{python_exec} -m pytest test_mutation.py""
+
+    [cosmic-ray.distributor]
+    name = ""local""
+    """"""
+            (work_dir / ""cr-config.toml"").write_text(config_content, encoding='utf-8')
+
+            # 3. Initialization
+            init_proc = subprocess.run(
+                [sys.executable, ""-m"", ""cosmic_ray.cli"", ""init"", ""cr-config.toml"", ""session.sqlite""],
+                cwd=work_dir, capture_output=True, text=True, timeout=60
+            )
+            if init_proc.returncode != 0:
+                raise RuntimeError(f""Init failed (Code {init_proc.returncode}): {init_proc.stderr}"")
+
+            # 4. Execution
+            exec_proc = subprocess.run(
+                [sys.executable, ""-m"", ""cosmic_ray.cli"", ""exec"", ""cr-config.toml"", ""session.sqlite""],
+                cwd=work_dir, capture_output=True, text=True, timeout=overall_timeout
+            )
+
+            # 5. Reporting
+            report_proc = subprocess.run(
+                [sys.executable, ""-m"", ""cosmic_ray.cli"", ""dump"", ""session.sqlite""],
+                cwd=work_dir, capture_output=True, text=True, timeout=30
+            )
+            if report_proc.returncode != 0:
+                pass
+
+            # Flatten lists and parse safely
+            raw_output = report_proc.stdout.strip()
+            mutants = []
+            try:
+                parsed = json.loads(raw_output)
+                if isinstance(parsed, list):
+                    for item in parsed:
+                        if isinstance(item, list): mutants.extend(item)
+                        else: mutants.append(item)
+                elif isinstance(parsed, dict):
+                    mutants.append(parsed)
+            except json.JSONDecodeError:
+                for line in raw_output.splitlines():
+                    if line.strip():
+                        try: 
+                            obj = json.loads(line)
+                            if isinstance(obj, list): mutants.extend(obj)
+                            else: mutants.append(obj)
+                        except: pass 
+
+            total = len(mutants)
+            killed = 0
+
+            for m in mutants:
+                if not isinstance(m, dict): continue
+                test_outcome = m.get('test_outcome')
+                if isinstance(test_outcome, dict):
+                    if test_outcome.get('outcome') == 'killed': killed += 1
+                elif isinstance(test_outcome, str):
+                    if test_outcome == 'killed': killed += 1
+
+            survived = total - killed
+            score = 0.0
+            if total > 0:
+                score = (killed / total) * 100.0
+
+            result_dict.update({
+                ""mutation_score"": score,
+                ""total_mutants"": total,
+                ""killed_mutants"": killed,
+                ""survived_mutants"": survived
+            })
+
+        except subprocess.TimeoutExpired:
+            result_dict[""error""] = ""Timeout during mutation analysis""
+        except Exception as e:
+            result_dict[""error""] = str(e)
+        finally:
+            try: shutil.rmtree(tmpdir, ignore_errors=True)
+            except: pass 
+
+        return result_dict","```python
+def test_run_cosmic_ray_analysis():
+    solution = Solution()
+    source_code_str = ""def add(a, b):\n    return a + b""
+    test_code_str = ""def test_add():\n    assert add(2, 3) == 5""
+    result = solution.run_cosmic_ray_analysis(source_code_str, test_code_str)
+    assert result[""mutation_score""] >= 0.0 and result[""mutation_score""] <= 100.0
+    assert result[""total_mutants""] >= 0
+    assert result[""killed_mutants""] >= 0
+    assert result[""survived_mutants""] >= 0
+    assert result[""killed_mutants""] + result[""survived_mutants""] == result[""total_mutants""]
+    assert ""log"" in result
+    assert result[""error""] is None
+```","# Test cases automatically generated.
+# Please check them before you use them.
+import under_test as module_0
+
+
+def test_case_0():
+    solution_0 = module_0.Solution()
+    dict_0 = solution_0.run_cosmic_ray_analysis(solution_0, solution_0)
+
+
+def test_case_1():
+    solution_0 = module_0.Solution()
+    str_0 = "";/""
+    dict_0 = solution_0.run_cosmic_ray_analysis(str_0, str_0)
+
+
+def test_case_2():
+    solution_0 = module_0.Solution()
+","Test A is significantly better than Test B despite both having limitations. Test A at least has meaningful assertions that verify structural invariants of the result dictionary (score range, count relationships, key presence). Test B has zero assertions across all three test cases, making it completely worthless from a verification standpoint - it only checks that the method doesn't throw an exception. Test A tests a realistic happy-path scenario with a coherent source/test pair. Test B's auto-generated tests pass nonsensical inputs (a Solution object as source code) without verifying any outcomes. Test B's test_case_2 is entirely empty. The critical differentiator is that Test A actually verifies behavior while Test B verifies nothing. Test A's main weakness is assuming cosmic_ray is installed and working, making it an integration test that may fail in CI environments without the tool. Both tests lack true edge case coverage for the focal method's error handling paths."
+24238,Marginal,3.0,Qwen3-4B-Instruct One-Shot T=0.0,granite-4.0-micro One-Shot T=0.0,23.0,26.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def peek_filelike_length(self, stream: typing.Any) -> int | None:
+        """"""
+        Given a file-like stream object, return its length in number of bytes
+        without reading it into memory.
+        """"""
+        try:
+            # Is it an actual file?
+            fd = stream.fileno()
+            # Yup, seems to be an actual file.
+            length = os.fstat(fd).st_size
+        except (AttributeError, OSError):
+            # No... Maybe it's something that supports random access, like `io.BytesIO`?
+            try:
+                # Assuming so, go to end of stream to figure out its length,
+                # then put it back in place.
+                offset = stream.tell()
+                length = stream.seek(0, os.SEEK_END)
+                stream.seek(offset)
+            except (AttributeError, OSError):
+                # Not even that? Sorry, we're doomed...
+                return None
+
+        return length","```python
+def test_peek_filelike_length():
+    solution = Solution()
+    class MockStream:
+        def tell(self):
+            return 0
+        def seek(self, *args):
+            raise AttributeError(""seek not implemented"")
+
+    result = solution.peek_filelike_length(MockStream())
+    assert result is None
+```","```python
+import io
+import os
+from unittest.mock import MagicMock
+
+def test_peek_filelike_length():
+    solution = Solution()
+    buf = io.BytesIO(b'1234567890')
+    assert solution.peek_filelike_length(buf) == 10
+```","Test A covers a failure/edge case (returning None when stream doesn't support length detection) while Test B covers the happy path with a BytesIO stream. Test B has a stronger, more specific assertion (exact value 10 vs. None check) and is more readable and concise. Test A's MockStream is more complex than needed and has a slightly misleading tell() implementation. Test B uses a real standard library object which is more realistic and trustworthy. However, Test A does test an important edge case that Test B misses entirely. Neither test is comprehensive - ideally both scenarios plus actual file testing would be covered. Test B is overall cleaner and more professionally written, though Test A tests a different (and important) code path."
+88910,Tie,2.0,Qwen3-4B-Instruct Two-Shot T=0.0,Ministral-3-3B-Reasoning Two-Shot T=0.0,25.0,23.0,No docstring.,"from __future__ import annotations
+import re
+import warnings
+from importlib import import_module
+from typing import TYPE_CHECKING, TypeAlias
+from urllib.parse import ParseResult, urldefrag, urlparse, urlunparse
+from warnings import warn
+from w3lib.url import __all__ as _public_w3lib_objects
+from w3lib.url import add_or_replace_parameter as _add_or_replace_parameter
+from w3lib.url import any_to_uri as _any_to_uri
+from w3lib.url import parse_url as _parse_url
+from scrapy.exceptions import ScrapyDeprecationWarning
+
+class Solution:
+    def url_has_any_extension(self, url: UrlT, extensions: Iterable[str]) -> bool:
+        """"""Return True if the url ends with one of the extensions provided""""""
+        lowercase_path = _parse_url(url).path.lower()
+        return any(lowercase_path.endswith(ext) for ext in extensions)","```python
+def test_url_has_any_extension():
+    solution = Solution()
+    assert solution.url_has_any_extension(""https://example.com/path/to/file.pdf"", [""pdf"", ""jpg""]) is True
+```","```python
+def test_url_has_any_extension():
+    solution = Solution()
+    assert solution.url_has_any_extension(""https://example.com/path/to/file.txt"", [""txt"", ""pdf""]) == True
+```","Both tests are nearly identical in structure and quality. They each test a single happy-path scenario with one assertion. The only meaningful difference is that Test A uses `is True` (strict identity check) while Test B uses `== True` (equality check). Using `is True` is marginally better practice for boolean assertions in Python, as it ensures the return value is exactly `True` rather than any truthy value. Neither test covers edge cases, negative scenarios, or boundary values. Both are readable and concise. Overall, Test A is very slightly better due to the stricter assertion style."
+76687,Tie,1.0,Qwen3-4B-Instruct One-Shot T=0.0,Qwen3-4B-Instruct Two-Shot T=0.0,27.0,26.0,No docstring.,"from __future__ import annotations
+import hashlib
+import pickle
+from _hashlib import HASH, UnsupportedDigestmodError
+from collections.abc import Callable
+from typing import Any
+import cbor2
+
+class Solution:
+    def sha256_cbor(self, input: Any) -> bytes:
+        """"""Hash objects using CBOR serialization and SHA-256.
+
+        This option is useful for non-Python-dependent serialization and hashing.
+
+        Args:
+            input: Object to be serialized and hashed. Supported types include
+                basic Python types and complex structures like lists, tuples, and
+                dictionaries.
+                Custom classes must implement CBOR serialization methods.
+
+        Returns:
+            Bytes representing the SHA-256 hash of the CBOR serialized input.
+        """"""
+        input_bytes = cbor2.dumps(input, canonical=True)
+        return hashlib.sha256(input_bytes).digest()","```python
+def test_sha256_cbor():
+    solution = Solution()
+    # Test with a simple dictionary to ensure CBOR serialization and hashing work correctly
+    input_data = {""key"": ""value"", ""numbers"": [1, 2, 3]}
+    expected_hash = hashlib.sha256(cbor2.dumps(input_data, canonical=True)).digest()
+    result = solution.sha256_cbor(input_data)
+    assert result == expected_hash
+```","```python
+def test_sha256_cbor():
+    solution = Solution()
+    assert solution.sha256_cbor([1, 2, 3]) == hashlib.sha256(cbor2.dumps([1, 2, 3], canonical=True)).digest()
+```","Both tests cover only a single happy path scenario and are essentially tautological (they replicate the implementation logic to compute the expected value). Neither tests edge cases. Test A is more readable due to its AAA structure, descriptive variable names, and explanatory comment. Test B is more concise, fitting everything into a single assertion. Test A uses a slightly more complex input (dictionary with mixed types) while Test B uses a simple list. In terms of robustness and assertion strength, they are equivalent. The main differentiator is readability vs. conciseness trade-off, where Test A wins on readability and Test B wins on conciseness."
+23487,Marginal,4.0,Qwen3-4B-Instruct Two-Shot T=0.0,Ministral-3-8B-Instruct Two-Shot T=0.0,27.0,23.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def primitive_value_to_str(self, value: PrimitiveData) -> str:
+        """"""
+        Coerce a primitive data type into a string value.
+
+        Note that we prefer JSON-style 'true'/'false' for boolean values here.
+        """"""
+        if value is True:
+            return ""true""
+        elif value is False:
+            return ""false""
+        elif value is None:
+            return """"
+        return str(value)","```python
+def test_primitive_value_to_str():
+    solution = Solution()
+    assert solution.primitive_value_to_str(42) == ""42""
+    assert solution.primitive_value_to_str(3.14) == ""3.14""
+    assert solution.primitive_value_to_str(""hello"") == ""hello""
+```","```python
+def test_primitive_value_to_str():
+    solution = Solution()
+    assert solution.primitive_value_to_str(True) == ""true""
+```","Test A is clearly superior to Test B in terms of robustness. Test A covers three different data types (int, float, string) while Test B covers only one case (True). However, both tests miss the most critical special-case branches: True→'true', False→'false', None→'' for Test A, and False, None, and all non-boolean types for Test B. Test A provides more value overall because it tests multiple input types and verifies the str() fallback path, which is the most common code path. Test B tests only one of the three special branches. Neither test is comprehensive, but Test A is meaningfully better in coverage. Both are equally readable and concise."
+860,Tie,1.0,Qwen3-4B-Instruct One-Shot T=0.0,Ministral-3-3B-Reasoning Two-Shot T=0.0,26.0,27.0,No docstring.,"from __future__ import annotations
+import re
+import warnings
+from importlib import import_module
+from typing import TYPE_CHECKING, TypeAlias
+from urllib.parse import ParseResult, urldefrag, urlparse, urlunparse
+from warnings import warn
+from w3lib.url import __all__ as _public_w3lib_objects
+from w3lib.url import add_or_replace_parameter as _add_or_replace_parameter
+from w3lib.url import any_to_uri as _any_to_uri
+from w3lib.url import parse_url as _parse_url
+from scrapy.exceptions import ScrapyDeprecationWarning
+
+class Solution:
+    def add_http_if_no_scheme(self, url: str) -> str:
+        """"""Add http as the default scheme if it is missing from the url.""""""
+        match = re.match(r""^\w+://"", url, flags=re.IGNORECASE)
+        if not match:
+            parts = urlparse(url)
+            scheme = ""http:"" if parts.netloc else ""http://""
+            url = scheme + url
+
+        return url","```python
+def test_add_http_if_no_scheme():
+    solution = Solution()
+    # Test case where no scheme is present and netloc is missing (should add http://)
+    result = solution.add_http_if_no_scheme(""example.com/path"")
+    assert result == ""http://example.com/path""
+```","```python
+def test_add_http_if_no_scheme():
+    solution = Solution()
+    assert solution.add_http_if_no_scheme(""example.com"") == ""http://example.com""
+```","Both tests are very similar in quality - each tests only a single happy-path case with a single exact assertion. Test A adds a comment explaining the intent, which improves readability slightly. Test B is slightly more concise with its inline assertion style. Neither test covers the critical second branch of the method (where netloc IS present and 'http:' without '//' is used), nor do they test the case where a scheme already exists. Both are weak in robustness. Test A edges out Test B slightly on readability due to the explanatory comment, while Test B is marginally more concise."
+95673,Marginal,5.0,Qwen3-4B-Instruct One-Shot T=0.0,gemma-3-4b-it One-Shot T=0.0,25.0,30.0,No docstring.,"from __future__ import annotations
+import dataclasses
+import time
+import uuid
+from datetime import datetime, timezone
+from typing import Any, Generic, Optional, TypeVar
+from .broker import get_broker
+from .composition import pipeline
+from .encoder import Encoder, JSONEncoder
+from .errors import DecodeError
+from .results import ResultBackend
+
+class Solution:
+    def generate_unique_id(self, ) -> str:
+        """"""Generate a globally-unique message id.""""""
+        return str(uuid.uuid4())","```python
+def test_generate_unique_id():
+    solution = Solution()
+    # Mock uuid.uuid4 to ensure it returns a predictable value for testing
+    with patch('uuid.uuid4') as mock_uuid4:
+        mock_uuid4.return_value = ""mock-uuid-12345""
+        result = solution.generate_unique_id()
+        assert result == ""mock-uuid-12345""
+```","```python
+def test_generate_unique_id():
+    solution = Solution()
+    with patch('uuid.uuid4') as mock_uuid4:
+        mock_uuid4.return_value = uuid.UUID('a1b2c3d4-e5f6-7890-1234-567890abcdef')
+        assert solution.generate_unique_id() == 'a1b2c3d4-e5f6-7890-1234-567890abcdef'
+```","Both tests are structurally similar, mocking uuid.uuid4 and verifying the return value. The key difference is that Test B uses a proper uuid.UUID object as the mock return value, which means the str() call inside generate_unique_id() is actually exercised, making the test more faithful to the real behavior. Test A uses a plain string mock, which bypasses the str() conversion entirely and could mask bugs. Test B's assertion is therefore stronger and more accurate. Test A adds a comment for clarity but is slightly less precise in its mocking approach. Neither test covers edge cases or uniqueness properties. Overall, Test B is slightly superior due to its more accurate mocking strategy and equal or better conciseness."
+76687,Marginal,4.0,Ministral-3-8B-Instruct One-Shot T=0.0,gemma-3-4b-it One-Shot T=0.0,20.0,24.0,No docstring.,"from __future__ import annotations
+import hashlib
+import pickle
+from _hashlib import HASH, UnsupportedDigestmodError
+from collections.abc import Callable
+from typing import Any
+import cbor2
+
+class Solution:
+    def sha256_cbor(self, input: Any) -> bytes:
+        """"""Hash objects using CBOR serialization and SHA-256.
+
+        This option is useful for non-Python-dependent serialization and hashing.
+
+        Args:
+            input: Object to be serialized and hashed. Supported types include
+                basic Python types and complex structures like lists, tuples, and
+                dictionaries.
+                Custom classes must implement CBOR serialization methods.
+
+        Returns:
+            Bytes representing the SHA-256 hash of the CBOR serialized input.
+        """"""
+        input_bytes = cbor2.dumps(input, canonical=True)
+        return hashlib.sha256(input_bytes).digest()","import unittest
+from unittest.mock import patch, MagicMock
+import hashlib
+import cbor2
+
+def test_sha256_cbor():
+    solution = Solution()
+    test_input = {
+        ""key1"": ""value1"",
+        ""key2"": [1, 2, {""nested"": True}],
+        ""key3"": (3, 4, 5)
+    }
+    expected_hash = b'\x1c\xd0\xf4\x11\xd8\xdc\x28\xda\x3a\x9f\xe7\xa4\x50\x61\x39\xe2\x9c\x85\x36\x1b\x8e\x23\xf2\x54\x05\x5a\xa4\x14\x27\x3d\x51'
+    with patch('hashlib.sha256') as mock_sha256:
+        mock_sha256.return_value.digest.return_value = expected_hash
+        result = solution.sha256_cbor(test_input)
+        mock_sha256.assert_called_once()
+        assert result == expected_hash","```python
+def test_sha256_cbor():
+    solution = Solution()
+    with patch('cbor2.dumps') as mock_dumps:
+        mock_dumps.return_value = b""test_cbor_data""
+        result = solution.sha256_cbor({""key"": ""value""})
+        assert result == hashlib.sha256(b""test_cbor_data"").digest()
+```","Both tests cover only a single happy-path scenario with no edge cases, so they score equally low on robustness. Test B has stronger assertions than Test A: by mocking cbor2.dumps but using the real hashlib.sha256, it actually verifies the core logic of the method (that SHA-256 is applied to the CBOR bytes). Test A mocks hashlib.sha256 itself, making its assertion trivially true and not testing the actual hashing. Test B is more concise, but has a critical syntax issue (nested code fences) that would prevent it from running. Test A is more readable despite being more verbose. Overall, Test B has a better testing strategy but a critical formatting/syntax flaw, while Test A is runnable but tests less meaningfully."
+23487,Clear,9.0,granite-4.0-micro One-Shot T=0.0,Pynguin (Baseline),25.0,16.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def primitive_value_to_str(self, value: PrimitiveData) -> str:
+        """"""
+        Coerce a primitive data type into a string value.
+
+        Note that we prefer JSON-style 'true'/'false' for boolean values here.
+        """"""
+        if value is True:
+            return ""true""
+        elif value is False:
+            return ""false""
+        elif value is None:
+            return """"
+        return str(value)","```python
+import unittest
+from unittest.mock import MagicMock
+
+class TestPrimitiveValueToString(unittest.TestCase):
+    def test_primitive_value_to_str(self):
+        solution = Solution()
+        self.assertEqual(solution.primitive_value_to_str(123), ""123"")
+        self.assertEqual(solution.primitive_value_to_str(""hello""), ""hello"")
+        self.assertEqual(solution.primitive_value_to_str(None), """")
+```","# Test cases automatically generated.
+# Please check them before you use them.
+import pytest
+import under_test as module_0
+
+
+def test_case_0():
+    solution_0 = module_0.Solution()
+    solution_1 = module_0.Solution()
+    solution_2 = module_0.Solution()
+    bool_0 = True
+    str_0 = solution_1.primitive_value_to_str(bool_0)
+    assert str_0 == ""true""
+
+
+def test_case_1():
+    solution_0 = module_0.Solution()
+    float_0 = 1951.5
+    str_0 = solution_0.primitive_value_to_str(float_0)
+    assert str_0 == ""1951.5""
+    solution_1 = module_0.Solution()
+    solution_2 = module_0.Solution()
+    str_1 = solution_2.primitive_value_to_str(solution_2)
+    solution_3 = module_0.Solution()
+    none_type_0 = None
+    str_2 = solution_2.primitive_value_to_str(none_type_0)
+    assert str_2 == """"
+
+
+def test_case_2():
+    solution_0 = module_0.Solution()
+    solution_1 = module_0.Solution()
+    solution_2 = module_0.Solution()
+
+
+@pytest.mark.xfail(strict=True)
+def test_case_3():
+    solution_0 = module_0.Solution()
+    bool_0 = False
+    str_0 = solution_0.primitive_value_to_str(bool_0)
+    assert str_0 == ""false""
+    str_1 = solution_0.primitive_value_to_str(str_0)
+    assert str_1 == ""false""
+    str_2 = ""\x0c-,t}6-Zl&=}<\x0cMi^v4,""
+    dict_0 = {str_2: solution_0}
+    module_0.Solution(**dict_0)
+","Test A is cleaner, more readable, and more intentional, but misses the critical True/False boolean cases. Test B covers more branches (True, False, float, None) but has significant quality issues: test_case_2 is completely empty, test_case_3 marks the False branch test as xfail (making it unreliable), and the code is auto-generated with poor naming and unnecessary redundancy. Test A's missing boolean coverage is a significant gap since those are the primary special cases in the focal method. Test B technically touches more branches but the xfail on False makes it unreliable. Overall, Test A is more trustworthy and readable despite its coverage gap, while Test B has broader nominal coverage but poor quality and a misleading xfail that undermines confidence in the False branch."
+54579,Tie,0.0,Qwen3-4B-Instruct One-Shot T=0.0,Ministral-3-8B-Instruct Two-Shot T=0.0,28.0,28.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def is_ipv6_hostname(self, hostname: str) -> bool:
+        try:
+            ipaddress.IPv6Address(hostname.split(""/"")[0])
+        except Exception:
+            return False
+        return True","```python
+def test_is_ipv6_hostname():
+    solution = Solution()
+    assert solution.is_ipv6_hostname(""2001:0db8:85a3::8a2e:0370:7334"") == True
+```","```python
+def test_is_ipv6_hostname():
+    solution = Solution()
+    assert solution.is_ipv6_hostname(""2001:0db8:85a3:0000:0000:8a2e:0370:7334"") == True
+```","Both tests are nearly identical in quality — each tests a single valid IPv6 address and asserts True. Test A uses compressed notation (::) which is a slightly more interesting input since it exercises the abbreviated form, while Test B uses the fully expanded form which is more straightforward. Neither test covers edge cases like invalid addresses, IPv4 addresses, empty strings, None, or the path-splitting behavior (the split('/')[0] logic). Both are equally weak in robustness. The slight edge for Test A is that compressed IPv6 notation is a more nuanced input, but this difference is negligible. Overall, both tests are essentially equivalent in quality."
+95673,Tie,2.0,Ministral-3-8B-Instruct Two-Shot T=0.0,gemma-3-4b-it Two-Shot T=0.0,26.0,24.0,No docstring.,"from __future__ import annotations
+import dataclasses
+import time
+import uuid
+from datetime import datetime, timezone
+from typing import Any, Generic, Optional, TypeVar
+from .broker import get_broker
+from .composition import pipeline
+from .encoder import Encoder, JSONEncoder
+from .errors import DecodeError
+from .results import ResultBackend
+
+class Solution:
+    def generate_unique_id(self, ) -> str:
+        """"""Generate a globally-unique message id.""""""
+        return str(uuid.uuid4())","```python
+def test_generate_unique_id():
+    solution = Solution()
+    result = solution.generate_unique_id()
+    assert isinstance(result, str)
+    assert len(result) > 0
+```","```python
+from unittest.mock import patch, MagicMock
+import uuid
+
+def test_generate_unique_id():
+    with patch('uuid.uuid4', MagicMock(return_value='mock_uuid')):
+        solution = Solution()
+        assert solution.generate_unique_id() == 'mock_uuid'
+```","Both tests are relatively weak. Test A is simpler and more readable but only checks type and non-emptiness. Test B attempts to verify the internal implementation by mocking uuid.uuid4, but has a likely incorrect mock target path ('uuid.uuid4' instead of the module-specific path). Test A is more honest about what it tests (basic output validation), while Test B tries to be more specific but may not actually work as intended due to the patching issue. Neither test verifies UUID uniqueness (multiple calls return different values) or UUID4 format compliance. Test A is slightly preferred for correctness and readability, though both are weak overall."
+67262,Clear,12.0,Qwen3-4B-Instruct Two-Shot T=0.0,Ministral-3-8B-Instruct Two-Shot T=0.0,26.0,14.0,No docstring.,"import numbers
+import operator
+import warnings
+from collections.abc import Sequence
+from contextlib import suppress
+from functools import reduce, wraps
+from inspect import Parameter, isclass, signature
+import joblib
+import numpy as np
+import scipy.sparse as sp
+from sklearn import get_config as _get_config
+from sklearn.exceptions import DataConversionWarning, NotFittedError, PositiveSpectrumWarning
+from sklearn.utils._array_api import _asarray_with_order, _convert_to_numpy, _is_numpy_namespace, _max_precision_float_dtype, get_namespace, get_namespace_and_device
+from sklearn.utils._dataframe import is_pandas_df, is_pandas_df_or_series
+from sklearn.utils._isfinite import FiniteStatus, cy_isfinite
+from sklearn.utils._tags import get_tags
+from sklearn.utils.fixes import ComplexWarning, _object_dtype_isnan, _preserve_dia_indices_dtype
+
+class Solution:
+    def has_fit_parameter(self, estimator, parameter):
+        """"""Check whether the estimator's fit method supports the given parameter.
+
+        Parameters
+        ----------
+        estimator : object
+            An estimator to inspect.
+
+        parameter : str
+            The searched parameter.
+
+        Returns
+        -------
+        is_parameter : bool
+            Whether the parameter was found to be a named parameter of the
+            estimator's fit method.
+
+        Examples
+        --------
+        >>> from sklearn.svm import SVC
+        >>> from sklearn.utils.validation import has_fit_parameter
+        >>> has_fit_parameter(SVC(), ""sample_weight"")
+        True
+        """"""
+        return (
+            # This is used during test collection in common tests. The
+            # hasattr(estimator, ""fit"") makes it so that we don't fail for an estimator
+            # that does not have a `fit` method during collection of checks. The right
+            # checks will fail later.
+            hasattr(estimator, ""fit"") and parameter in signature(estimator.fit).parameters
+        )","```python
+def test_has_fit_parameter():
+    from sklearn.svm import SVC
+    assert Solution().has_fit_parameter(SVC(), ""sample_weight"") == True
+```","```python
+def test_has_fit_parameter():
+    from sklearn.svm import SVC
+    from sklearn.utils.validation import has_fit_parameter
+
+    # Mocking the estimator to ensure it has a 'fit' method with a valid signature
+    class MockEstimator:
+        def __init__(self):
+            self.fit = lambda *args, **kwargs: None
+
+        @property
+        def fit(self):
+            return self._fit
+
+        @fit.setter
+        def fit(self, value):
+            self._fit = value
+
+    mock_estimator = MockEstimator()
+
+    # Ensure the signature of the fit method includes the parameter
+    from inspect import Signature, Parameter
+    mock_estimator._fit = lambda x, y=1: None
+    mock_estimator._fit.__signature__ = Signature([Parameter('x', Parameter.POSITIONAL_OR_KEYWORD),
+                                                   Parameter('y', Parameter.POSITIONAL_OR_KEYWORD)])
+
+    assert has_fit_parameter(mock_estimator, ""y"") == True
+```","Both tests only cover the happy path (parameter exists → True) and fail to test negative cases, edge cases, or boundary conditions. Test A is far superior in readability and conciseness - it achieves the same coverage with a fraction of the code. Test B introduces unnecessary complexity through a convoluted MockEstimator class with property/setter patterns and manual signature manipulation, which makes it harder to read and understand without providing any additional test coverage. Test B also imports from sklearn.utils.validation instead of using Solution() which is inconsistent. Test A's simplicity is a virtue here since both tests are equally weak in robustness and assertion strength. Neither test is particularly good, but Test A is clearly better due to its clarity and efficiency."
+23487,Tie,0.0,Ministral-3-8B-Instruct Two-Shot T=0.0,granite-4.0-micro Two-Shot T=0.0,23.0,23.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def primitive_value_to_str(self, value: PrimitiveData) -> str:
+        """"""
+        Coerce a primitive data type into a string value.
+
+        Note that we prefer JSON-style 'true'/'false' for boolean values here.
+        """"""
+        if value is True:
+            return ""true""
+        elif value is False:
+            return ""false""
+        elif value is None:
+            return """"
+        return str(value)","```python
+def test_primitive_value_to_str():
+    solution = Solution()
+    assert solution.primitive_value_to_str(True) == ""true""
+```","```python
+def test_primitive_value_to_str():
+    solution = Solution()
+    assert solution.primitive_value_to_str(True) == ""true""
+```","Tests A and B are completely identical in content, structure, and quality. Both test only the True -> 'true' branch of the focal method, leaving False, None, and generic str() conversion untested. Both have one specific assertion. Both are readable and concise. There is no meaningful difference between the two options."
+67262,Clear,24.0,Qwen3-4B-Instruct One-Shot T=0.0,Ministral-3-3B-Reasoning One-Shot T=0.0,26.0,2.0,No docstring.,"import numbers
+import operator
+import warnings
+from collections.abc import Sequence
+from contextlib import suppress
+from functools import reduce, wraps
+from inspect import Parameter, isclass, signature
+import joblib
+import numpy as np
+import scipy.sparse as sp
+from sklearn import get_config as _get_config
+from sklearn.exceptions import DataConversionWarning, NotFittedError, PositiveSpectrumWarning
+from sklearn.utils._array_api import _asarray_with_order, _convert_to_numpy, _is_numpy_namespace, _max_precision_float_dtype, get_namespace, get_namespace_and_device
+from sklearn.utils._dataframe import is_pandas_df, is_pandas_df_or_series
+from sklearn.utils._isfinite import FiniteStatus, cy_isfinite
+from sklearn.utils._tags import get_tags
+from sklearn.utils.fixes import ComplexWarning, _object_dtype_isnan, _preserve_dia_indices_dtype
+
+class Solution:
+    def has_fit_parameter(self, estimator, parameter):
+        """"""Check whether the estimator's fit method supports the given parameter.
+
+        Parameters
+        ----------
+        estimator : object
+            An estimator to inspect.
+
+        parameter : str
+            The searched parameter.
+
+        Returns
+        -------
+        is_parameter : bool
+            Whether the parameter was found to be a named parameter of the
+            estimator's fit method.
+
+        Examples
+        --------
+        >>> from sklearn.svm import SVC
+        >>> from sklearn.utils.validation import has_fit_parameter
+        >>> has_fit_parameter(SVC(), ""sample_weight"")
+        True
+        """"""
+        return (
+            # This is used during test collection in common tests. The
+            # hasattr(estimator, ""fit"") makes it so that we don't fail for an estimator
+            # that does not have a `fit` method during collection of checks. The right
+            # checks will fail later.
+            hasattr(estimator, ""fit"") and parameter in signature(estimator.fit).parameters
+        )","```python
+def test_has_fit_parameter():
+    solution = Solution()
+    # Test case for SVC with sample_weight parameter
+    from sklearn.svm import SVC
+    assert solution.has_fit_parameter(SVC(), ""sample_weight"") is True
+```","def test_has_fit_parameter():
+    solution = Solution()
+    from sklearn.svm import SVC
+    from sklearn.utils.validation import has_fit_parameter
+    with patch('sklearn.utils.validation.has_fit_parameter', return_value=True) as mock:
+        assert solution.has_fit_parameter(SVC(), ""sample_weight"") == True","Test A is clearly superior to Test B. Test A directly tests the focal method with a real estimator and makes a meaningful assertion. While it only covers one happy path, it at least correctly tests the actual behavior. Test B is fundamentally broken in its design - it patches sklearn's has_fit_parameter function which is not called by the solution's implementation, making the mock completely ineffective. The assertion in Test B passes not because of the mock but because the real implementation works correctly, making the test misleading. Test A is simple, correct, and readable. Test B is confusing, incorrectly designed, and adds unnecessary complexity that provides no value. Both tests share the weakness of only testing one happy path scenario without edge cases."
+54579,Clear,13.0,Qwen3-4B-Instruct Two-Shot T=0.0,Ministral-3-3B-Reasoning Two-Shot T=0.0,34.0,21.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def is_ipv6_hostname(self, hostname: str) -> bool:
+        try:
+            ipaddress.IPv6Address(hostname.split(""/"")[0])
+        except Exception:
+            return False
+        return True","```python
+def test_is_ipv6_hostname():
+    solution = Solution()
+    assert solution.is_ipv6_hostname(""2001:0db8:85a3::8a2e:0370:7334"") == True
+    assert solution.is_ipv6_hostname(""::1"") == True
+    assert solution.is_ipv6_hostname(""2001:0db8:85a3::8a2e:0370:7334/80"") == True
+    assert solution.is_ipv6_hostname(""invalid"") == False
+    assert solution.is_ipv6_hostname(""::1/80"") == True
+```","```python
+def test_is_ipv6_hostname():
+    solution = Solution()
+    assert solution.is_ipv6_hostname(""invalid-ipv6"") == False
+```","Test A is significantly superior to Test B across all dimensions. Test A covers both positive and negative cases, including the critical path-suffix scenario (IPv6/port) that exercises the split('/')[0] logic in the focal method. Test B only tests a single negative case, missing the happy path entirely and the key branching logic. Both tests are readable and use exact boolean assertions, but Test A's broader coverage makes it far more valuable for quality assurance. Test B would fail to catch regressions in the positive-case logic or the path-splitting behavior."
+23487,Marginal,3.0,Qwen3-4B-Instruct Two-Shot T=0.0,granite-4.0-micro Two-Shot T=0.0,28.0,25.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def primitive_value_to_str(self, value: PrimitiveData) -> str:
+        """"""
+        Coerce a primitive data type into a string value.
+
+        Note that we prefer JSON-style 'true'/'false' for boolean values here.
+        """"""
+        if value is True:
+            return ""true""
+        elif value is False:
+            return ""false""
+        elif value is None:
+            return """"
+        return str(value)","```python
+def test_primitive_value_to_str():
+    solution = Solution()
+    assert solution.primitive_value_to_str(42) == ""42""
+    assert solution.primitive_value_to_str(3.14) == ""3.14""
+    assert solution.primitive_value_to_str(""hello"") == ""hello""
+```","```python
+def test_primitive_value_to_str():
+    solution = Solution()
+    assert solution.primitive_value_to_str(True) == ""true""
+```","Test A covers more cases (int, float, string) with exact assertions, but misses the most distinctive behavior of the method: boolean and None handling. Test B covers the most distinctive case (True->""true"") but only that one case. Neither test is comprehensive. Test A has better overall coverage breadth (3 cases vs 1), but ironically misses the special cases that make this method unique. Test B at least tests one of the special cases. Overall, Test A is slightly better due to broader coverage, but both are inadequate. Test A scores higher on robustness and assertion strength due to more cases covered, while Test B is marginally more focused on the unique behavior but too minimal."
+63159,Clear,17.0,Qwen3-4B-Instruct Two-Shot T=0.0,Ministral-3-3B-Reasoning One-Shot T=0.0,10.0,27.0,No docstring.,"import argparse
+import ast
+from concurrent.futures import ProcessPoolExecutor, as_completed
+import logging
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import json
+
+class Solution:
+    def run_cosmic_ray_analysis(self, source_code_str: str, test_code_str: str, per_test_timeout: int = 10, overall_timeout: int = 600) -> dict:
+        result_dict = {
+            ""mutation_score"": 0.0, ""total_mutants"": 0, ""killed_mutants"": 0,
+            ""survived_mutants"": 0, ""log"": """", ""error"": None
+        }
+        tmpdir = tempfile.mkdtemp(prefix=""cosmic_ray_"")
+
+        try:
+            work_dir = Path(tmpdir)
+
+            # 1. Write Files
+            (work_dir / ""under_test.py"").write_text(source_code_str, encoding='utf-8')
+            (work_dir / ""test_mutation.py"").write_text(test_code_str, encoding='utf-8')
+
+            # 2. Config Construction
+            python_exec = sys.executable.replace(""\\"", ""/"") 
+
+            config_content = f""""""
+    [cosmic-ray]
+    module-path = ""under_test.py""
+    timeout = {float(per_test_timeout)}
+    excluded-modules = []
+    test-command = ""{python_exec} -m pytest test_mutation.py""
+
+    [cosmic-ray.distributor]
+    name = ""local""
+    """"""
+            (work_dir / ""cr-config.toml"").write_text(config_content, encoding='utf-8')
+
+            # 3. Initialization
+            init_proc = subprocess.run(
+                [sys.executable, ""-m"", ""cosmic_ray.cli"", ""init"", ""cr-config.toml"", ""session.sqlite""],
+                cwd=work_dir, capture_output=True, text=True, timeout=60
+            )
+            if init_proc.returncode != 0:
+                raise RuntimeError(f""Init failed (Code {init_proc.returncode}): {init_proc.stderr}"")
+
+            # 4. Execution
+            exec_proc = subprocess.run(
+                [sys.executable, ""-m"", ""cosmic_ray.cli"", ""exec"", ""cr-config.toml"", ""session.sqlite""],
+                cwd=work_dir, capture_output=True, text=True, timeout=overall_timeout
+            )
+
+            # 5. Reporting
+            report_proc = subprocess.run(
+                [sys.executable, ""-m"", ""cosmic_ray.cli"", ""dump"", ""session.sqlite""],
+                cwd=work_dir, capture_output=True, text=True, timeout=30
+            )
+            if report_proc.returncode != 0:
+                pass
+
+            # Flatten lists and parse safely
+            raw_output = report_proc.stdout.strip()
+            mutants = []
+            try:
+                parsed = json.loads(raw_output)
+                if isinstance(parsed, list):
+                    for item in parsed:
+                        if isinstance(item, list): mutants.extend(item)
+                        else: mutants.append(item)
+                elif isinstance(parsed, dict):
+                    mutants.append(parsed)
+            except json.JSONDecodeError:
+                for line in raw_output.splitlines():
+                    if line.strip():
+                        try: 
+                            obj = json.loads(line)
+                            if isinstance(obj, list): mutants.extend(obj)
+                            else: mutants.append(obj)
+                        except: pass 
+
+            total = len(mutants)
+            killed = 0
+
+            for m in mutants:
+                if not isinstance(m, dict): continue
+                test_outcome = m.get('test_outcome')
+                if isinstance(test_outcome, dict):
+                    if test_outcome.get('outcome') == 'killed': killed += 1
+                elif isinstance(test_outcome, str):
+                    if test_outcome == 'killed': killed += 1
+
+            survived = total - killed
+            score = 0.0
+            if total > 0:
+                score = (killed / total) * 100.0
+
+            result_dict.update({
+                ""mutation_score"": score,
+                ""total_mutants"": total,
+                ""killed_mutants"": killed,
+                ""survived_mutants"": survived
+            })
+
+        except subprocess.TimeoutExpired:
+            result_dict[""error""] = ""Timeout during mutation analysis""
+        except Exception as e:
+            result_dict[""error""] = str(e)
+        finally:
+            try: shutil.rmtree(tmpdir, ignore_errors=True)
+            except: pass 
+
+        return result_dict","```python
+def test_run_cosmic_ray_analysis():
+    solution = Solution()
+    source_code_str = """"""def add(a, b):
+    return a + b""""""
+    test_code_str = """"""def test_add():
+    assert add(2, 3) == 5""""""
+    result = solution.run_cosmic_ray_analysis(source_code_str, test_code_str, per_test_timeout=10, overall_timeout=600)
+    assert result[""mutation_score""] >= 0.0 and result[""mutation_score""] <= 100.0
+    assert result[""total_mutants""] >= 0
+    assert result[""killed_mutants""] >= 0
+    assert result[""survived_mutants""] >= 0
+    assert result[""killed_mutants""] + result[""survived_mutants""] == result[""total_mutants""]
+    assert result[""error""] is None
+```","def test_run_cosmic_1():
+    solution = Solution()
+    source_code_str = ""def func():\n    return 1\n""
+    test_code_str = ""import pytest\n\ndef test_func():\n    assert func() == 1\n""
+    with patch('subprocess.run') as mock_run:
+        mock_run.side_effect = [
+            MagicMock(returncode=0, stdout="""", stderr=""""),
+            MagicMock(returncode=0, stdout=""[{\""test_outcome\"": {\""outcome\"": \""killed\""}}]"", stderr=""""),
+            MagicMock(returncode=0, stdout=""[{\""test_outcome\"": \""killed\""}]"", stderr="""")
+        ]
+        result = solution.run_cosmic_ray_analysis(source_code_str, test_code_str, per_test_timeout=5, overall_timeout=10)
+        assert result[""mutation_score""] == 100.0
+        assert result[""total_mutants""] == 1
+        assert result[""killed_mutants""] == 1
+        assert result[""survived_mutants""] == 0","Test B is significantly better than Test A for several reasons:
+
+1. Test A is essentially an integration test that requires cosmic-ray to be installed and working. It will fail in most CI environments. Test B properly mocks subprocess.run, making it a true unit test.
+
+2. Test B's assertions are specific and meaningful (exact values), while Test A's assertions are trivially true by construction (the math always holds, and the range check is always satisfied).
+
+3. Test B actually tests the core logic of the method (JSON parsing, outcome detection, score calculation) by controlling the subprocess output. Test A doesn't verify any specific behavior.
+
+4. Both tests lack coverage of edge cases, error paths, and boundary conditions, but Test B at least verifies the happy path correctly.
+
+5. Test A's assertion that error is None is the only meaningful check, but it depends on external tools working correctly, making it unreliable.
+
+Overall, Test B demonstrates better testing practices through proper mocking and specific assertions, despite both tests having room for improvement in edge case coverage."
+35148,Clear,21.0,Qwen3-4B-Instruct One-Shot T=0.0,Pynguin (Baseline),23.0,2.0,No docstring.,"import argparse
+import ast
+from concurrent.futures import ProcessPoolExecutor, as_completed
+import logging
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+import json
+
+class Solution:
+    def clean_jsonl_line(self, line):
+        line = line.strip()
+        if not line: return None
+        try: return json.loads(line)
+        except: 
+            try: return json.loads(line + ""}"")
+            except: return None","```python
+def test_clean_jsonl_line():
+    solution = Solution()
+    # Test case that triggers the fallback logic (line + ""}"") to validate the exception handling
+    line = '{""key"": ""value""}'  # This should be valid JSON and pass the first try
+    # To specifically trigger line 19, we need a malformed JSON that doesn't parse but adding ""}"" makes it valid
+    invalid_line = '{""key"": ""value""'
+    result = solution.clean_jsonl_line(invalid_line)
+    assert result == {'key': 'value'}, ""Expected valid JSON after adding '}'""
+```","# Test cases automatically generated
+import pytest
+import under_test as module_0
+import re as module_1
+import ast as module_2
+
+
+def test_case_0():
+    solution_0 = module_0.Solution()
+
+
+@pytest.mark.xfail(strict=True)
+def test_case_1():
+    solution_0 = module_0.Solution()
+    str_0 = "")\x0c""
+    var_0 = solution_0.clean_jsonl_line(str_0)
+    module_1.subn(solution_0, var_0, solution_0)
+
+
+@pytest.mark.xfail(strict=True)
+def test_case_2():
+    solution_0 = module_0.Solution()
+    str_0 = """"
+    var_0 = solution_0.clean_jsonl_line(str_0)
+    module_2.GtE(*var_0, **var_0)
+","Test A is clearly superior to Test B. Test A at least tests a meaningful code path (the fallback JSON parsing) with a real, specific assertion. Despite having dead code (the unused 'line' variable), it demonstrates understanding of the focal method's behavior. Test B, produces tests that are essentially meaningless for the focal method - test_case_0 has no assertions, and test_case_1/2 use xfail with unrelated module calls as indirect proxies rather than directly asserting on clean_jsonl_line's return values. Neither test suite is comprehensive, but Test A at least provides one meaningful verification of the fallback behavior."
+23487,Tie,0.0,Qwen3-4B-Instruct One-Shot T=0.0,Ministral-3-8B-Instruct Two-Shot T=0.0,26.0,26.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def primitive_value_to_str(self, value: PrimitiveData) -> str:
+        """"""
+        Coerce a primitive data type into a string value.
+
+        Note that we prefer JSON-style 'true'/'false' for boolean values here.
+        """"""
+        if value is True:
+            return ""true""
+        elif value is False:
+            return ""false""
+        elif value is None:
+            return """"
+        return str(value)","```python
+def test_primitive_value_to_str():
+    solution = Solution()
+    assert solution.primitive_value_to_str(123) == ""123""
+```","```python
+def test_primitive_value_to_str():
+    solution = Solution()
+    assert solution.primitive_value_to_str(True) == ""true""
+```","Both tests are minimal single-case tests. Test A covers a standard numeric conversion (happy path), while Test B covers the boolean True case which is actually a more distinctive behavior of this method (JSON-style 'true' instead of Python's 'True'). Test B tests a more meaningful/distinctive branch of the code since the boolean handling is the special logic worth verifying. Test A tests the fallback str() conversion which is less interesting. Both are equally weak in robustness, assertion strength, readability, and conciseness. Test B is marginally better because it tests the more distinctive behavior of the focal method."
+95673,Marginal,7.0,Qwen3-4B-Instruct Two-Shot T=0.0,gemma-3-4b-it Two-Shot T=0.0,26.0,19.0,No docstring.,"from __future__ import annotations
+import dataclasses
+import time
+import uuid
+from datetime import datetime, timezone
+from typing import Any, Generic, Optional, TypeVar
+from .broker import get_broker
+from .composition import pipeline
+from .encoder import Encoder, JSONEncoder
+from .errors import DecodeError
+from .results import ResultBackend
+
+class Solution:
+    def generate_unique_id(self, ) -> str:
+        """"""Generate a globally-unique message id.""""""
+        return str(uuid.uuid4())","```python
+def test_generate_unique_id():
+    solution = Solution()
+    assert isinstance(solution.generate_unique_id(), str)
+```","```python
+from unittest.mock import patch, MagicMock
+import uuid
+
+def test_generate_unique_id():
+    with patch('uuid.uuid4', MagicMock(return_value='mock_uuid')):
+        solution = Solution()
+        assert solution.generate_unique_id() == 'mock_uuid'
+```","Both tests are relatively weak for this focal method. Test A is simpler and more readable but only checks the return type. Test B attempts to use mocking to verify exact values, but this approach is flawed: (1) it patches uuid.uuid4 at the wrong module level (should patch the uuid reference in the module where Solution lives), (2) it doesn't test real behavior, (3) it adds complexity without meaningful benefit. For a method like generate_unique_id(), a better test would verify UUID format (using uuid.UUID parsing), call the method multiple times to verify uniqueness, and check the string format. Test A is slightly better overall because it at least tests the real method without incorrect mocking, and is cleaner and more readable, even though both are weak."
+54579,Marginal,7.0,Qwen3-4B-Instruct One-Shot T=0.0,Pynguin (Baseline),27.0,20.0,No docstring.,"from __future__ import annotations
+import ipaddress
+import os
+import re
+import typing
+from urllib.request import getproxies
+from ._types import PrimitiveData
+
+class Solution:
+    def is_ipv6_hostname(self, hostname: str) -> bool:
+        try:
+            ipaddress.IPv6Address(hostname.split(""/"")[0])
+        except Exception:
+            return False
+        return True","```python
+def test_is_ipv6_hostname():
+    solution = Solution()
+    assert solution.is_ipv6_hostname(""2001:0db8:85a3::8a2e:0370:7334"") == True
+```","# Test cases automatically generated
+import under_test as module_0
+
+
+def test_case_0():
+    solution_0 = module_0.Solution()
+    bool_0 = solution_0.is_ipv6_hostname(solution_0)
+    assert bool_0 is False
+","Both tests are minimal in coverage - Test A tests the happy path (valid IPv6 returns True), while Test B tests an unusual edge case (passing a non-string object returns False). Neither test is comprehensive. Test A is more readable with a clear test name and intent. Test B has poor readability due to auto-generated naming conventions. Both have similar assertion strength - specific boolean checks. Test A is slightly more concise. Neither test adequately covers the method's behavior (missing: invalid IPv6 strings, empty strings, IPv6 with path component like '2001:db8::1/prefix', IPv4 addresses, etc.). Overall, Test A is slightly better due to readability and testing the primary use case, while Test B at least tests an error path but with poor clarity."
+90722,Marginal,7.0,Qwen3-4B-Instruct One-Shot T=0.0,Qwen3-4B-Instruct Two-Shot T=0.0,23.0,30.0,No docstring.,"from __future__ import annotations
+import hashlib
+import pickle
+from _hashlib import HASH, UnsupportedDigestmodError
+from collections.abc import Callable
+from typing import Any
+import cbor2
+
+class Solution:
+    def sha256(self, input: Any) -> bytes:
+        """"""Hash any picklable Python object using SHA-256.
+
+        The input is serialized using pickle before hashing, which allows
+        arbitrary Python objects to be used. Note that this function does
+        not use a hash seed—if you need one, prepend it explicitly to the input.
+
+        Args:
+            input: Any picklable Python object.
+
+        Returns:
+            Bytes representing the SHA-256 hash of the serialized input.
+        """"""
+        input_bytes = pickle.dumps(input, protocol=pickle.HIGHEST_PROTOCOL)
+        return hashlib.sha256(input_bytes).digest()","```python
+def test_sha256():
+    solution = Solution()
+    # Test with a simple integer to ensure basic pickling and hashing works
+    result = solution.sha256(42)
+    expected_length = 32
+    assert len(result) == expected_length, f""Expected hash length to be 32, got {len(result)}""
+```","```python
+def test_sha256():
+    solution = Solution()
+    assert solution.sha256(""hello"") == hashlib.sha256(pickle.dumps(""hello"", protocol=pickle.HIGHEST_PROTOCOL)).digest()
+```","Both tests cover only a single happy-path input with no edge cases, so both score poorly on robustness. The key differentiator is assertion strength: Test A only checks the output length (32 bytes), which is a weak assertion that would pass even if the hash value were wrong. Test B checks the exact hash value by recomputing the expected result, which is a much stronger correctness verification. Test B is also more concise. Test A has slightly better readability due to the explanatory comment and named variable, but Test B's direct value comparison is cleaner and more meaningful. Overall, Test B is superior due to its stronger assertion quality."
+51632,Tie,1.0,Qwen3-4B-Instruct Two-Shot T=0.0,Ministral-3-8B-Instruct Two-Shot T=0.0,28.0,27.0,No docstring.,"from __future__ import annotations
+import re
+import warnings
+from importlib import import_module
+from typing import TYPE_CHECKING, TypeAlias
+from urllib.parse import ParseResult, urldefrag, urlparse, urlunparse
+from warnings import warn
+from w3lib.url import __all__ as _public_w3lib_objects
+from w3lib.url import add_or_replace_parameter as _add_or_replace_parameter
+from w3lib.url import any_to_uri as _any_to_uri
+from w3lib.url import parse_url as _parse_url
+from scrapy.exceptions import ScrapyDeprecationWarning
+
+class Solution:
+    def escape_ajax(self, url: str) -> str:
+        """"""
+        Return the crawlable url
+
+        >>> escape_ajax(""www.example.com/ajax.html#!key=value"")
+        'www.example.com/ajax.html?_escaped_fragment_=key%3Dvalue'
+        >>> escape_ajax(""www.example.com/ajax.html?k1=v1&k2=v2#!key=value"")
+        'www.example.com/ajax.html?k1=v1&k2=v2&_escaped_fragment_=key%3Dvalue'
+        >>> escape_ajax(""www.example.com/ajax.html?#!key=value"")
+        'www.example.com/ajax.html?_escaped_fragment_=key%3Dvalue'
+        >>> escape_ajax(""www.example.com/ajax.html#!"")
+        'www.example.com/ajax.html?_escaped_fragment_='
+
+        URLs that are not ""AJAX crawlable"" (according to Google) returned as-is:
+
+        >>> escape_ajax(""www.example.com/ajax.html#key=value"")
+        'www.example.com/ajax.html#key=value'
+        >>> escape_ajax(""www.example.com/ajax.html#"")
+        'www.example.com/ajax.html#'
+        >>> escape_ajax(""www.example.com/ajax.html"")
+        'www.example.com/ajax.html'
+        """"""
+        warn(
+            ""escape_ajax() is deprecated and will be removed in a future Scrapy version."",
+            ScrapyDeprecationWarning,
+            stacklevel=2,
+        )
+        defrag, frag = urldefrag(url)
+        if not frag.startswith(""!""):
+            return url
+        return _add_or_replace_parameter(defrag, ""_escaped_fragment_"", frag[1:])","```python
+def test_escape_ajax():
+    solution = Solution()
+    assert solution.escape_ajax(""www.example.com/ajax.html#!key=value"") == 'www.example.com/ajax.html?_escaped_fragment_=key%3Dvalue'
+    assert solution.escape_ajax(""www.example.com/ajax.html?k1=v1&k2=v2#!key=value"") == 'www.example.com/ajax.html?k1=v1&k2=v2&_escaped_fragment_=key%3Dvalue'
+    assert solution.escape_ajax(""www.example.com/ajax.html#!"") == 'www.example.com/ajax.html?_escaped_fragment_='
+```","```python
+def test_escape_ajax():
+    solution = Solution()
+    assert solution.escape_ajax(""www.example.com/ajax.html#key=value"") == ""www.example.com/ajax.html#key=value""
+```","Test A is clearly superior to Test B in terms of robustness, covering three distinct scenarios including the primary AJAX transformation cases and an edge case with an empty fragment. Test B only covers a single non-AJAX case. Both tests use exact string assertions (strong), and both are readable and concise. However, Test A provides meaningfully more coverage while remaining equally clean. Neither test covers the full range of cases from the docstring (e.g., non-AJAX URLs, no-fragment URLs, the '?#!' case), but Test A is substantially better than Test B overall."

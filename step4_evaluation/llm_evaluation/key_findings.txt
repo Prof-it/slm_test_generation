@@ -1,0 +1,19 @@
+====================================================================================================
+                               KEY FINDINGS - LLM-AS-JUDGE EVALUATION                               
+====================================================================================================
+
+[ELO] Top model by Elo rating: Qwen3-4B-Instruct Two-Shot T=0.0
+      Elo: 1661
+
+[SCORE] Top model by average score: Qwen3-4B-Instruct Two-Shot T=0.0
+        Score: 25.93 +/- 7.00
+
+[WIN RATE] Top model by win rate: Qwen3-4B-Instruct Two-Shot T=0.0
+           Win rate: 65.2% (45W-5L-19T)
+
+[*] Consistent winner across all metrics: Qwen3-4B-Instruct Two-Shot T=0.0
+
+[BIAS] Position bias detected in 4.6% of comparisons
+       This is expected and handled by double-pass methodology
+
+====================================================================================================
