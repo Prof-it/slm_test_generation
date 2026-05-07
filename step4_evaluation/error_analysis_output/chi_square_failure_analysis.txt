@@ -1,0 +1,420 @@
+CHI-SQUARE TEST OF INDEPENDENCE: FAILURE TYPE DISTRIBUTIONS
+TestEval vs Real-World Dataset
+======================================================================
+
+DATASETS
+  TestEval  (all)    : 232 failures, 12 models, 127 tasks
+  TestEval  (shared) : 100 failures, 5 models, 71 tasks
+  Realworld (all)    : 106 failures, 6 models, 41 tasks
+  Realworld (shared) : 100 failures, 5 models, 41 tasks
+
+THREATS ADDRESSED
+  Test selection : Fisher's exact (2x2), G-test (min exp<5), Pearson otherwise
+  Cat. merging   : iterative merge on *expected* counts until all >= 5
+  Effect size    : both uncorrected phi and bias-corrected V reported
+                   (bias correction can floor V=0 when N is small)
+  Multi-testing  : Bonferroni correction for 5 per-model tests
+                   Adjusted alpha = 0.05 / 5 = 0.0100
+  Pseudo-replic. : Analysis 4 aggregates to unique task_id level
+  Model imbalance: Analysis 1b restricts to 5 shared models (N=100 each)
+
+SIGNIFICANCE LEVELS (nominal): * p<.05  ** p<.01  *** p<.001  n.s. not sig.
+
+======================================================================
+  ANALYSIS 1 — POOLED (all models): failure_mode
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+Assertion                           132   56.9%           41   38.7%      173
+Other                               100   43.1%           65   61.3%      165
+Total                               232  100.0%          106  100.0%      338
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Assertion                          118.75        54.25
+Other                              113.25        51.75
+
+Test: Fisher's exact
+  N = 338,  OR = 2.0927
+  p = 0.002259  **
+
+Effect size:
+  Odds Ratio = 2.0927  (primary effect size for 2x2)
+  Uncorrected phi    = 0.1691
+  Bias-corrected V   = 0.1603  (small effect)
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Assertion                         +1.216          -1.799    
+Other                             -1.245          +1.843    
+  Positive = more than expected under H0; Negative = fewer
+  [Note: residuals are from Pearson chi-square; p from Fisher's exact]
+
+======================================================================
+  ANALYSIS 1b — POOLED (shared models only, N=100+100): failure_mode
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+Other                                56   56.0%           43   43.0%       99
+Runtime                              44   44.0%           57   57.0%      101
+Total                               100  100.0%          100  100.0%      200
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Other                               49.50        49.50
+Runtime                             50.50        50.50
+
+Test: Fisher's exact
+  N = 200,  OR = 1.6871
+  p = 0.089422  n.s.
+
+Effect size:
+  Odds Ratio = 1.6871  (primary effect size for 2x2)
+  Uncorrected phi    = 0.1300
+  Bias-corrected V   = 0.1093  (small effect)
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Other                             +0.924          -0.924    
+Runtime                           -0.915          +0.915    
+  Positive = more than expected under H0; Negative = fewer
+  [Note: residuals are from Pearson chi-square; p from Fisher's exact]
+
+======================================================================
+  ANALYSIS 2 — PER-MODEL (failure_mode, Bonferroni corrected)
+======================================================================
+  Shared models: Ministral-3-3B-Reasoning-2512, Ministral-3-8B-Instruct-2512-AWQ-8bit, Qwen3-4B-Instruct-2507, gemma-3-4b-it, granite-4.0-micro
+  Bonferroni alpha: 0.0100  (0.05 / 5 tests)
+
+======================================================================
+  Model: Ministral-3-3B-Reasoning-2512
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+Other                                10   50.0%            8   40.0%       18
+Runtime                              10   50.0%           12   60.0%       22
+Total                                20  100.0%           20  100.0%       40
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Other                                9.00         9.00
+Runtime                             11.00        11.00
+
+Test: Fisher's exact
+  N = 40,  OR = 1.5000
+  p = 0.751186  n.s.
+  (Bonferroni-adjusted alpha = 0.0100)
+
+Effect size:
+  Odds Ratio = 1.5000  (primary effect size for 2x2)
+  Uncorrected phi    = 0.1005
+  Bias-corrected V   = 0.0000  (negligible effect)  [bias correction overshot for small N; phi above is more informative]
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Other                             +0.333          -0.333    
+Runtime                           -0.302          +0.302    
+  Positive = more than expected under H0; Negative = fewer
+  [Note: residuals are from Pearson chi-square; p from Fisher's exact]
+
+======================================================================
+  Model: Ministral-3-8B-Instruct-2512-AWQ-8bit
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+Assertion                            10   50.0%           10   50.0%       20
+Runtime                              10   50.0%           10   50.0%       20
+Total                                20  100.0%           20  100.0%       40
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Assertion                           10.00        10.00
+Runtime                             10.00        10.00
+
+Test: Fisher's exact
+  N = 40,  OR = 1.0000
+  p = 1.000000  n.s.
+  (Bonferroni-adjusted alpha = 0.0100)
+
+Effect size:
+  Odds Ratio = 1.0000  (primary effect size for 2x2)
+  Uncorrected phi    = 0.0000
+  Bias-corrected V   = 0.0000  (negligible effect)
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Assertion                         +0.000          +0.000    
+Runtime                           +0.000          +0.000    
+  Positive = more than expected under H0; Negative = fewer
+  [Note: residuals are from Pearson chi-square; p from Fisher's exact]
+
+======================================================================
+  Model: Qwen3-4B-Instruct-2507
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+Assertion                            13   65.0%           10   50.0%       23
+Runtime                               7   35.0%           10   50.0%       17
+Total                                20  100.0%           20  100.0%       40
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Assertion                           11.50        11.50
+Runtime                              8.50         8.50
+
+Test: Fisher's exact
+  N = 40,  OR = 1.8571
+  p = 0.523107  n.s.
+  (Bonferroni-adjusted alpha = 0.0100)
+
+Effect size:
+  Odds Ratio = 1.8571  (primary effect size for 2x2)
+  Uncorrected phi    = 0.1517
+  Bias-corrected V   = 0.0000  (negligible effect)  [bias correction overshot for small N; phi above is more informative]
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Assertion                         +0.442          -0.442    
+Runtime                           -0.514          +0.514    
+  Positive = more than expected under H0; Negative = fewer
+  [Note: residuals are from Pearson chi-square; p from Fisher's exact]
+
+======================================================================
+  Model: gemma-3-4b-it
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+Other                                13   65.0%            7   35.0%       20
+Runtime                               7   35.0%           13   65.0%       20
+Total                                20  100.0%           20  100.0%       40
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Other                               10.00        10.00
+Runtime                             10.00        10.00
+
+Test: Fisher's exact
+  N = 40,  OR = 3.4490
+  p = 0.112834  n.s.
+  (Bonferroni-adjusted alpha = 0.0100)
+
+Effect size:
+  Odds Ratio = 3.4490  (primary effect size for 2x2)
+  Uncorrected phi    = 0.3000
+  Bias-corrected V   = 0.2570  (small effect)
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Other                             +0.949          -0.949    
+Runtime                           -0.949          +0.949    
+  Positive = more than expected under H0; Negative = fewer
+  [Note: residuals are from Pearson chi-square; p from Fisher's exact]
+
+======================================================================
+  Model: granite-4.0-micro
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+Other                                10   50.0%            8   40.0%       18
+Runtime                              10   50.0%           12   60.0%       22
+Total                                20  100.0%           20  100.0%       40
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Other                                9.00         9.00
+Runtime                             11.00        11.00
+
+Test: Fisher's exact
+  N = 40,  OR = 1.5000
+  p = 0.751186  n.s.
+  (Bonferroni-adjusted alpha = 0.0100)
+
+Effect size:
+  Odds Ratio = 1.5000  (primary effect size for 2x2)
+  Uncorrected phi    = 0.1005
+  Bias-corrected V   = 0.0000  (negligible effect)  [bias correction overshot for small N; phi above is more informative]
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Other                             +0.333          -0.333    
+Runtime                           -0.302          +0.302    
+  Positive = more than expected under H0; Negative = fewer
+  [Note: residuals are from Pearson chi-square; p from Fisher's exact]
+
+======================================================================
+  PER-MODEL SUMMARY  (stars use Bonferroni-adjusted alpha)
+======================================================================
+Model                                          Stat          p    phi   V_bc  Sig
+--------------------------------------------------------------------------------
+Ministral-3-3B-Reasoning-2512                 exact     0.7512  0.101  0.000  n.s.
+Ministral-3-8B-Instruct-2512-AWQ-8bit         exact     1.0000  0.000  0.000  n.s.
+Qwen3-4B-Instruct-2507                        exact     0.5231  0.152  0.000  n.s.
+gemma-3-4b-it                                 exact     0.1128  0.300  0.257  n.s.
+granite-4.0-micro                             exact     0.7512  0.101  0.000  n.s.
+
+  Significant at nominal alpha (p<.05):    0/5 models
+  Significant at Bonferroni alpha (0.0100): 0/5 models
+  [phi = uncorrected phi; V_bc = bias-corrected Cramer's V]
+  [V_bc=0 when bias correction > phi2, i.e., N too small to correct reliably]
+
+======================================================================
+  ANALYSIS 3 — POOLED: root_cause_category (N=232+106)
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+IncorrectAssertion                  135   58.2%           26   24.5%      161
+MissingDefinition                     8    3.4%           16   15.1%       24
+MockingError                          0    0.0%           28   26.4%       28
+Other                                16    6.9%           19   17.9%       35
+SemanticMisunderstanding             73   31.5%           17   16.0%       90
+Total                               232  100.0%          106  100.0%      338
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+IncorrectAssertion                 110.51        50.49
+MissingDefinition                   16.47         7.53
+MockingError                        19.22         8.78
+Other                               24.02        10.98
+SemanticMisunderstanding            61.78        28.22
+
+Test: Pearson chi-square
+  chi2(4, N=338) = 107.5368
+  p = 0.000000  ***
+
+Effect size:
+  Uncorrected phi    = 0.5641
+  Bias-corrected V   = 0.5543  (large effect)
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+IncorrectAssertion                +2.330 [*]      -3.447 [*]
+MissingDefinition                 -2.088 [*]      +3.089 [*]
+MockingError                      -4.384 [*]      +6.486 [*]
+Other                             -1.637          +2.422 [*]
+SemanticMisunderstanding          +1.428          -2.113 [*]
+  Positive = more than expected under H0; Negative = fewer
+
+======================================================================
+  ANALYSIS 4 — TASK-LEVEL (unique task_id, plurality mode across shared models): N=71 tasks + 41 tasks
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+Assertion                            44   62.0%           16   39.0%       60
+Other                                27   38.0%           25   61.0%       52
+Total                                71  100.0%           41  100.0%      112
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Assertion                           38.04        21.96
+Other                               32.96        19.04
+
+Test: Fisher's exact
+  N = 112,  OR = 2.5463
+  p = 0.029944  *
+
+Effect size:
+  Odds Ratio = 2.5463  (primary effect size for 2x2)
+  Uncorrected phi    = 0.2217
+  Bias-corrected V   = 0.2012  (small effect)
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+Assertion                         +0.967          -1.273    
+Other                             -1.039          +1.367    
+  Positive = more than expected under H0; Negative = fewer
+  [Note: residuals are from Pearson chi-square; p from Fisher's exact]
+
+======================================================================
+  ANALYSIS 4b — TASK-LEVEL root_cause_category: N=71 tasks + 41 tasks
+======================================================================
+
+Category                       TestEval       %    Realworld       %    Total
+----------------------------------------------------------------------
+IncorrectAssertion                   44   62.0%           12   29.3%       56
+Other                                 7    9.9%           24   58.5%       31
+SemanticMisunderstanding             20   28.2%            5   12.2%       25
+Total                                71  100.0%           41  100.0%      112
+
+Expected counts (for reference):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+IncorrectAssertion                  35.50        20.50
+Other                               19.65        11.35
+SemanticMisunderstanding            15.85         9.15
+
+Test: Pearson chi-square
+  chi2(2, N=112) = 30.7810
+  p = 0.000000  ***
+
+Effect size:
+  Uncorrected phi    = 0.5242
+  Bias-corrected V   = 0.5091  (large effect)
+
+Standardized Residuals (|r|>1.96 = p<.05 cell contribution):
+Category                         TestEval    Realworld
+-------------------------------------------------------
+IncorrectAssertion                +1.427          -1.877    
+Other                             -2.854 [*]      +3.756 [*]
+SemanticMisunderstanding          +1.043          -1.372    
+  Positive = more than expected under H0; Negative = fewer
+
+======================================================================
+  CONSOLIDATED FINDINGS
+======================================================================
+
+  failure_mode (Assertion vs Runtime):
+    Analysis 1  (pooled, all models,    N=338): p=0.0023 **, phi=0.169, V=0.160
+    Analysis 1b (pooled, shared models, N=200): p=0.0894 n.s., phi=0.130, V=0.109
+    Analysis 4  (task-level,            N=112): p=0.0299 *, phi=0.222, V=0.201
+
+  Per-model (Bonferroni corrected):
+    Ministral-3-3B-Reasoning-2512: p=0.7512 n.s.
+    Ministral-3-8B-Instruct-2512-AWQ-8bit: p=1.0000 n.s.
+    Qwen3-4B-Instruct-2507: p=0.5231 n.s.
+    gemma-3-4b-it: p=0.1128 n.s.
+    granite-4.0-micro: p=0.7512 n.s.
+
+  root_cause_category:
+    Analysis 3  (pooled, all models, N=338): p=0.0000 ***, phi=0.564, V=0.554
+    Analysis 4b (task-level,         N=112): p=0.0000 ***, phi=0.524, V=0.509
+
+  STANDARDIZED RESIDUALS SUMMARY (cells |r|>1.96, root_cause, Analysis 3):
+    IncorrectAssertion: TestEval over-represented (r=+2.33), Realworld under-represented (r=-3.45)
+    MissingDefinition: TestEval under-represented (r=-2.09), Realworld over-represented (r=+3.09)
+    MockingError: TestEval under-represented (r=-4.38), Realworld over-represented (r=+6.49)
+    Other: TestEval under-represented (r=-1.64), Realworld over-represented (r=+2.42)
+    SemanticMisunderstanding: TestEval over-represented (r=+1.43), Realworld under-represented (r=-2.11)
+
+  RECOMMENDED PAPER PHRASING (root_cause analysis):
+  The root cause distribution differed significantly between datasets,
+  chi2(4, N=338) = 107.54, p < .001, V = 0.55 (large).
+  Standardized residuals confirmed MockingError and EnvironmentMismatch were
+  substantially over-represented in the Real-World dataset, while
+  IncorrectAssertion dominated TestEval.

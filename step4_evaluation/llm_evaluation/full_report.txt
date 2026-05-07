@@ -1,0 +1,137 @@
+
+====================================================================================================
+  LLM-AS-JUDGE RESULTS ANALYSIS
+====================================================================================================
+
+====================================================================================================
+  1. OVERALL STATISTICS
+====================================================================================================
+Total comparisons: 263
+
+Winner distribution:
+  A                                                 : 131 ( 49.8%)
+  Tie                                               :  65 ( 24.7%)
+  B                                                 :  55 ( 20.9%)
+  Invalid_Bias                                      :  12 (  4.6%)
+
+====================================================================================================
+  2. POSITION BIAS ANALYSIS
+====================================================================================================
+Total biased comparisons: 12 (4.6%)
+
+Most affected model pairs:
+  1. Ministral-3-3B-Reasoning Two-Shot T=0.0  vs Pynguin (Baseline)                      : 2 times
+  2. Qwen3-4B-Instruct One-Shot T=0.0         vs Ministral-3-3B-Reasoning One-Shot T=0.0 : 2 times
+  3. Qwen3-4B-Instruct Two-Shot T=0.0         vs Ministral-3-8B-Instruct Two-Shot T=0.0  : 1 times
+  4. Ministral-3-8B-Instruct Two-Shot T=0.0   vs granite-4.0-micro Two-Shot T=0.0        : 1 times
+  5. Qwen3-4B-Instruct Two-Shot T=0.0         vs granite-4.0-micro Two-Shot T=0.0        : 1 times
+
+====================================================================================================
+  3. ELO RATINGS (Higher = Better)
+====================================================================================================
+Elo rating system: 1500 baseline, +32 per win, -32 per loss, +/-16 per tie
+
+                                  Model  Elo Rating  Rank
+       Qwen3-4B-Instruct Two-Shot T=0.0 1660.748604     1
+           gemma-3-4b-it Two-Shot T=0.0 1597.590399     2
+       Qwen3-4B-Instruct One-Shot T=0.0 1586.416048     3
+ Ministral-3-8B-Instruct Two-Shot T=0.0 1569.747682     4
+Ministral-3-3B-Reasoning Two-Shot T=0.0 1544.925662     5
+           gemma-3-4b-it One-Shot T=0.0 1512.350107     6
+       granite-4.0-micro One-Shot T=0.0 1507.760409     7
+       granite-4.0-micro Two-Shot T=0.0 1504.767601     8
+Ministral-3-3B-Reasoning One-Shot T=0.0 1420.960411     9
+ Ministral-3-8B-Instruct One-Shot T=0.0 1413.047679    10
+                     Pynguin (Baseline) 1181.685398    11
+
+====================================================================================================
+  4. BRADLEY-TERRY RATINGS (RECOMMENDED)
+====================================================================================================
+Same approach as LMArena leaderboard with 95% bootstrap confidence intervals
+Note: configurations with N < 28 comparisons (below Q1) are marked ⚠️ BELOW THRESHOLD and excluded from ranking claims.
+
+                                                     Model      Rating    CI_lower    CI_upper  Rank  Rank_lower  Rank_upper
+                          Qwen3-4B-Instruct Two-Shot T=0.0 1676.232005 1600.580457 1732.638784     1           1          11
+                              gemma-3-4b-it Two-Shot T=0.0 1573.610595 1461.762235 1667.511819     2           1          11
+                    Ministral-3-8B-Instruct Two-Shot T=0.0 1544.116509 1455.103349 1609.149875     3           2          11
+          gemma-3-4b-it One-Shot T=0.0  ⚠️ BELOW THRESHOLD 1537.315098 1313.873524 1717.142091     4           8           8
+      granite-4.0-micro One-Shot T=0.0  ⚠️ BELOW THRESHOLD 1489.023798 1340.332891 1599.413283     5           5           6
+                   Ministral-3-3B-Reasoning Two-Shot T=0.0 1478.429894 1370.473510 1545.501181     6           4          11
+                          Qwen3-4B-Instruct One-Shot T=0.0 1472.992964 1377.116858 1534.911121     7           1          11
+                          granite-4.0-micro Two-Shot T=0.0 1467.994699 1370.292638 1523.922970     8           3          11
+                   Ministral-3-3B-Reasoning One-Shot T=0.0 1304.845964 1116.922878 1421.088376     9           1          11
+Ministral-3-8B-Instruct One-Shot T=0.0  ⚠️ BELOW THRESHOLD 1291.613397 1100.233517 1426.053426    10           1          11
+                                        Pynguin (Baseline)  977.647793  740.013361 1088.110976    11           1          11
+
+====================================================================================================
+  5. WIN/LOSS/TIE RECORD
+====================================================================================================
+                                  Model  Wins  Losses  Ties  Total  Win Rate
+       Qwen3-4B-Instruct Two-Shot T=0.0    45       5    19     69  0.652174
+           gemma-3-4b-it Two-Shot T=0.0    24      10    11     45  0.533333
+           gemma-3-4b-it One-Shot T=0.0     5       4     2     11  0.454545
+ Ministral-3-8B-Instruct Two-Shot T=0.0    23      12    17     52  0.442308
+       granite-4.0-micro One-Shot T=0.0    11       7     7     25  0.440000
+       Qwen3-4B-Instruct One-Shot T=0.0    25      20    21     66  0.378788
+ Ministral-3-8B-Instruct One-Shot T=0.0     9      16     1     26  0.346154
+Ministral-3-3B-Reasoning Two-Shot T=0.0    18      17    18     53  0.339623
+       granite-4.0-micro Two-Shot T=0.0    17      13    23     53  0.320755
+Ministral-3-3B-Reasoning One-Shot T=0.0     8      17     5     30  0.266667
+                     Pynguin (Baseline)     1      65     6     72  0.013889
+
+====================================================================================================
+  6. AVERAGE TOTAL SCORES
+====================================================================================================
+                                  Model     Total       Std  N
+       Qwen3-4B-Instruct Two-Shot T=0.0 25.929577  6.995620 71
+ Ministral-3-8B-Instruct Two-Shot T=0.0 24.654545  3.496586 55
+           gemma-3-4b-it One-Shot T=0.0 24.636364  3.674797 11
+       granite-4.0-micro One-Shot T=0.0 23.884615  4.758207 26
+           gemma-3-4b-it Two-Shot T=0.0 23.804348 12.051736 46
+       granite-4.0-micro Two-Shot T=0.0 22.963636  6.784913 55
+       Qwen3-4B-Instruct One-Shot T=0.0 22.897059  6.993988 68
+Ministral-3-3B-Reasoning Two-Shot T=0.0 22.089286  6.990496 56
+ Ministral-3-8B-Instruct One-Shot T=0.0 18.964286  4.178877 28
+Ministral-3-3B-Reasoning One-Shot T=0.0 16.515152  8.363417 33
+                     Pynguin (Baseline)  7.714286  7.243191 77
+
+====================================================================================================
+  7. KEY FINDINGS
+====================================================================================================
+[ELO] Top model by Elo rating: Qwen3-4B-Instruct Two-Shot T=0.0
+      Elo: 1661
+
+[SCORE] Top model by average score: Qwen3-4B-Instruct Two-Shot T=0.0
+        Score: 25.93 +/- 7.00
+
+[WIN RATE] Top model by win rate: Qwen3-4B-Instruct Two-Shot T=0.0
+           Win rate: 65.2% (45W-5L-19T)
+
+[*] Consistent winner across all metrics: Qwen3-4B-Instruct Two-Shot T=0.0
+
+[BIAS] Position bias detected in 4.6% of comparisons
+       This is expected and handled by double-pass methodology
+
+====================================================================================================
+  8. RELIABILITY THRESHOLD ANALYSIS
+====================================================================================================
+Dynamic threshold (Q1 of comparison counts): N >= 28
+Tournament: 11 configurations, 26 comparable tasks
+Participation range: 11–72 comparisons (median 52)
+
+Configuration                                      N  Status
+----------------------------------------------------------------------
+  gemma-3-4b-it One-Shot T=0.0                    11  EXCLUDED (below Q1 — no ranking claim)
+  granite-4.0-micro One-Shot T=0.0                25  EXCLUDED (below Q1 — no ranking claim)
+  Ministral-3-8B-Instruct One-Shot T=0.0          26  EXCLUDED (below Q1 — no ranking claim)
+  Ministral-3-3B-Reasoning One-Shot T=0.0         30  retained
+  gemma-3-4b-it Two-Shot T=0.0                    45  retained
+  Ministral-3-8B-Instruct Two-Shot T=0.0          52  retained
+  Ministral-3-3B-Reasoning Two-Shot T=0.0         53  retained
+  granite-4.0-micro Two-Shot T=0.0                53  retained
+  Qwen3-4B-Instruct One-Shot T=0.0                66  retained
+  Qwen3-4B-Instruct Two-Shot T=0.0                69  retained
+  Pynguin (Baseline)                              72  retained
+
+Retained for ranking: 8/11 configurations
+See bradley_terry_ratings_filtered.txt for the valid ranking.

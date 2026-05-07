@@ -1,0 +1,753 @@
+2026-02-10 08:11:32 [INFO] - Loading data from /app/TestEval/data/realworld-py.jsonl...
+2026-02-10 08:11:32 [INFO] - === Starting RUN_1 (Seed: 42) ===
+Processing run_1:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 08:11:32 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 08:11:32 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_1:  54%|█████▍    | 27/50 [38:40<43:11, 112.68s/it]2026-02-10 08:50:13 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 08:50:13 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_1:  68%|██████▊   | 34/50 [47:18<22:17, 83.62s/it]2026-02-10 08:58:52 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 08:58:52 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_1:  70%|███████   | 35/50 [47:20<14:45, 59.05s/it]2026-02-10 08:58:53 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 08:58:53 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_1:  72%|███████▏  | 36/50 [47:21<09:44, 41.76s/it]2026-02-10 08:58:55 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 08:58:55 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_1:  74%|███████▍  | 37/50 [47:23<06:25, 29.66s/it]2026-02-10 08:58:56 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 08:58:56 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_1:  76%|███████▌  | 38/50 [47:24<04:14, 21.18s/it]2026-02-10 08:58:58 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 08:58:58 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_1:  88%|████████▊ | 44/50 [53:33<07:05, 70.97s/it]2026-02-10 09:05:07 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 09:05:07 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_1: 100%|██████████| 50/50 [56:14<00:00, 67.48s/it]
+2026-02-10 09:07:46 [INFO] - === Starting RUN_2 (Seed: 43) ===
+Processing run_2:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 09:07:46 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 09:07:46 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_2:  12%|█▏        | 6/50 [02:17<32:10, 43.87s/it]2026-02-10 09:11:05 [WARNING] - Pynguin CRASH for Task 24238.
+2026-02-10 09:11:05 [WARNING] - Reason: bserver.py:83
+           INFO     Iteration:     576, Coverage: 0.666667  searchobserver.py:83
+           INFO     Iteration:     577, Coverage: 0.666667  searchobserver.py:83
+           INFO     Iteration:     578, Coverage: 0.666667  searchobserver.py:83
+           INFO     Iteration:     579, Coverage: 0.666667  searchobserver.py:83
+           INFO     Iteration:     580, Coverage: 0.666667  searchobserver.py:83
+           INFO     Iteration:     581, Coverage: 0.666667  searchobserver.py:83
+
+Processing run_2:  54%|█████▍    | 27/50 [37:35<43:09, 112.57s/it]2026-02-10 09:45:23 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 09:45:23 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+[09:45:23] INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_2:  68%|██████▊   | 34/50 [46:02<21:49, 81.81s/it]2026-02-10 09:53:50 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 09:53:50 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_2:  70%|███████   | 35/50 [46:04<14:26, 57.79s/it]2026-02-10 09:53:51 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 09:53:51 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_2:  72%|███████▏  | 36/50 [46:05<09:31, 40.86s/it]2026-02-10 09:53:52 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 09:53:52 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_2:  74%|███████▍  | 37/50 [46:06<06:17, 29.00s/it]2026-02-10 09:53:54 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 09:53:54 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_2:  76%|███████▌  | 38/50 [46:08<04:08, 20.71s/it]2026-02-10 09:53:55 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 09:53:55 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_2:  88%|████████▊ | 44/50 [52:29<07:13, 72.26s/it]2026-02-10 10:00:18 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 10:00:18 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_2: 100%|██████████| 50/50 [55:30<00:00, 66.60s/it]
+2026-02-10 10:03:16 [INFO] - === Starting RUN_3 (Seed: 44) ===
+Processing run_3:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 10:03:17 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 10:03:17 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_3:  54%|█████▍    | 27/50 [38:41<43:12, 112.70s/it]2026-02-10 10:41:59 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 10:41:59 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_3:  68%|██████▊   | 34/50 [47:17<22:18, 83.65s/it]2026-02-10 10:50:35 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 10:50:35 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_3:  70%|███████   | 35/50 [47:18<14:44, 58.99s/it]2026-02-10 10:50:36 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 10:50:36 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_3:  72%|███████▏  | 36/50 [47:20<09:44, 41.72s/it]2026-02-10 10:50:38 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 10:50:38 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_3:  74%|███████▍  | 37/50 [47:21<06:25, 29.63s/it]2026-02-10 10:50:39 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 10:50:39 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_3:  76%|███████▌  | 38/50 [47:23<04:14, 21.18s/it]2026-02-10 10:50:41 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 10:50:41 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_3:  88%|████████▊ | 44/50 [54:23<08:09, 81.56s/it]2026-02-10 10:57:41 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 10:57:41 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_3: 100%|██████████| 50/50 [56:55<00:00, 68.32s/it]
+2026-02-10 11:00:12 [INFO] - === Starting RUN_4 (Seed: 45) ===
+Processing run_4:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 11:00:12 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 11:00:12 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_4:  54%|█████▍    | 27/50 [38:49<43:41, 113.98s/it]2026-02-10 11:39:03 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 11:39:03 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_4:  68%|██████▊   | 34/50 [47:43<22:58, 86.17s/it]2026-02-10 11:47:56 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 11:47:56 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_4:  70%|███████   | 35/50 [47:44<15:12, 60.81s/it]2026-02-10 11:47:58 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 11:47:58 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_4:  72%|███████▏  | 36/50 [47:46<10:02, 43.04s/it]2026-02-10 11:48:00 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 11:48:00 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_4:  74%|███████▍  | 37/50 [47:47<06:37, 30.60s/it]2026-02-10 11:48:01 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 11:48:01 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_4:  76%|███████▌  | 38/50 [47:49<04:22, 21.91s/it]2026-02-10 11:48:03 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 11:48:03 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_4:  88%|████████▊ | 44/50 [53:14<06:20, 63.44s/it]2026-02-10 11:53:28 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 11:53:28 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_4: 100%|██████████| 50/50 [56:26<00:00, 67.73s/it]
+2026-02-10 11:56:38 [INFO] - === Starting RUN_5 (Seed: 46) ===
+Processing run_5:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 11:56:39 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 11:56:39 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_5:  54%|█████▍    | 27/50 [38:42<43:12, 112.70s/it]2026-02-10 12:35:22 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 12:35:22 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+[12:35:22] INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_5:  68%|██████▊   | 34/50 [47:21<22:30, 84.39s/it]2026-02-10 12:44:01 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 12:44:01 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_5:  70%|███████   | 35/50 [47:22<14:52, 59.52s/it]2026-02-10 12:44:02 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 12:44:02 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_5:  72%|███████▏  | 36/50 [47:24<09:49, 42.08s/it]2026-02-10 12:44:04 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 12:44:04 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_5:  74%|███████▍  | 37/50 [47:25<06:28, 29.87s/it]2026-02-10 12:44:05 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 12:44:05 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_5:  76%|███████▌  | 38/50 [47:26<04:15, 21.33s/it]2026-02-10 12:44:07 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 12:44:07 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_5:  88%|████████▊ | 44/50 [53:58<07:22, 73.78s/it]2026-02-10 12:50:39 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 12:50:39 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_5: 100%|██████████| 50/50 [56:20<00:00, 67.61s/it]
+2026-02-10 12:52:59 [INFO] - === Starting RUN_6 (Seed: 47) ===
+Processing run_6:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 12:52:59 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 12:52:59 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_6:  54%|█████▍    | 27/50 [38:41<43:20, 113.08s/it]2026-02-10 13:31:41 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 13:31:41 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_6:  68%|██████▊   | 34/50 [49:13<28:46, 107.93s/it]2026-02-10 13:42:14 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 13:42:14 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_6:  70%|███████   | 35/50 [49:14<18:59, 75.98s/it] 2026-02-10 13:42:15 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 13:42:15 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_6:  72%|███████▏  | 36/50 [49:16<12:30, 53.61s/it]2026-02-10 13:42:16 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 13:42:16 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_6:  74%|███████▍  | 37/50 [49:17<08:13, 37.95s/it]2026-02-10 13:42:18 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 13:42:18 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+[13:42:18] INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_6:  76%|███████▌  | 38/50 [49:19<05:23, 26.99s/it]2026-02-10 13:42:19 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 13:42:19 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_6:  88%|████████▊ | 44/50 [54:34<06:17, 62.94s/it]2026-02-10 13:47:35 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 13:47:35 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_6: 100%|██████████| 50/50 [57:08<00:00, 68.56s/it]
+2026-02-10 13:50:07 [INFO] - === Starting RUN_7 (Seed: 48) ===
+Processing run_7:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 13:50:07 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 13:50:07 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_7:  54%|█████▍    | 27/50 [38:44<43:13, 112.76s/it]2026-02-10 14:28:53 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 14:28:53 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_7:  68%|██████▊   | 34/50 [47:28<22:31, 84.49s/it]2026-02-10 14:37:37 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 14:37:37 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_7:  70%|███████   | 35/50 [47:30<14:53, 59.56s/it]2026-02-10 14:37:38 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 14:37:38 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_7:  72%|███████▏  | 36/50 [47:31<09:49, 42.12s/it]2026-02-10 14:37:40 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 14:37:40 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_7:  74%|███████▍  | 37/50 [47:32<06:28, 29.92s/it]2026-02-10 14:37:41 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 14:37:41 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_7:  76%|███████▌  | 38/50 [47:34<04:16, 21.37s/it]2026-02-10 14:37:43 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 14:37:43 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_7:  88%|████████▊ | 44/50 [53:31<06:51, 68.56s/it]2026-02-10 14:43:40 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 14:43:40 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_7: 100%|██████████| 50/50 [56:09<00:00, 67.40s/it]
+2026-02-10 14:46:17 [INFO] - === Starting RUN_8 (Seed: 49) ===
+Processing run_8:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 14:46:17 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 14:46:17 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_8:  54%|█████▍    | 27/50 [38:39<43:17, 112.95s/it]2026-02-10 15:24:57 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 15:24:57 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_8:  68%|██████▊   | 34/50 [46:06<19:30, 73.16s/it]2026-02-10 15:32:24 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 15:32:24 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_8:  70%|███████   | 35/50 [46:07<12:54, 51.62s/it]2026-02-10 15:32:25 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 15:32:25 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_8:  72%|███████▏  | 36/50 [46:08<08:31, 36.57s/it]2026-02-10 15:32:27 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 15:32:27 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+[15:32:27] INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_8:  74%|███████▍  | 37/50 [46:10<05:38, 26.03s/it]2026-02-10 15:32:28 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 15:32:28 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_8:  76%|███████▌  | 38/50 [46:11<03:43, 18.64s/it]2026-02-10 15:32:30 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 15:32:30 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+[15:32:30] INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_8:  88%|████████▊ | 44/50 [52:37<07:16, 72.81s/it]2026-02-10 15:38:56 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 15:38:56 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_8: 100%|██████████| 50/50 [55:20<00:00, 66.42s/it]
+2026-02-10 15:41:37 [INFO] - === Starting RUN_9 (Seed: 50) ===
+Processing run_9:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 15:41:38 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 15:41:38 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_9:  54%|█████▍    | 27/50 [38:40<43:15, 112.84s/it]2026-02-10 16:20:19 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 16:20:19 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_9:  68%|██████▊   | 34/50 [47:05<21:48, 81.76s/it]2026-02-10 16:28:44 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 16:28:44 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_9:  70%|███████   | 35/50 [47:06<14:24, 57.64s/it]2026-02-10 16:28:45 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 16:28:45 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_9:  72%|███████▏  | 36/50 [47:07<09:30, 40.77s/it]2026-02-10 16:28:47 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 16:28:47 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_9:  74%|███████▍  | 37/50 [47:09<06:16, 28.96s/it]2026-02-10 16:28:48 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 16:28:48 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_9:  76%|███████▌  | 38/50 [47:10<04:08, 20.68s/it]2026-02-10 16:28:50 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 16:28:50 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_9:  88%|████████▊ | 44/50 [53:01<06:51, 68.61s/it]2026-02-10 16:34:41 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 16:34:41 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_9: 100%|██████████| 50/50 [56:22<00:00, 67.66s/it]
+2026-02-10 16:38:00 [INFO] - === Starting RUN_10 (Seed: 51) ===
+Processing run_10:   0%|          | 0/50 [00:00<?, ?it/s]2026-02-10 16:38:01 [WARNING] - Pynguin CRASH for Task 15497.
+2026-02-10 16:38:01 [WARNING] - Reason:
+                    │   11                                    │
+                    │   12 class Solution:                    │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'apscheduler._converters'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_10:  54%|█████▍    | 27/50 [38:39<43:15, 112.83s/it]2026-02-10 17:16:41 [WARNING] - Pynguin CRASH for Task 28825.
+2026-02-10 17:16:41 [WARNING] - Reason:
+                    ╰─────────────────────────────────────────╯
+                    ImportError: cannot import name
+                    'set_module' from 'pandas.util._decorators'
+                    (/usr/local/lib/python3.10/site-packages/pa
+                    ndas/util/_decorators.py)
+[17:16:41] INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_10:  68%|██████▊   | 34/50 [46:06<19:30, 73.17s/it]2026-02-10 17:24:08 [WARNING] - Pynguin CRASH for Task 67262.
+2026-02-10 17:24:08 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_10:  70%|███████   | 35/50 [46:07<12:54, 51.64s/it]2026-02-10 17:24:10 [WARNING] - Pynguin CRASH for Task 85517.
+2026-02-10 17:24:10 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_10:  72%|███████▏  | 36/50 [46:09<08:31, 36.56s/it]2026-02-10 17:24:11 [WARNING] - Pynguin CRASH for Task 23426.
+2026-02-10 17:24:11 [WARNING] - Reason:
+                    │   17 from sklearn.utils.fixes import Co │
+                    │      _preserve_dia_indices_dtype        │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_10:  74%|███████▍  | 37/50 [46:10<05:38, 26.00s/it]2026-02-10 17:24:12 [WARNING] - Pynguin CRASH for Task 46905.
+2026-02-10 17:24:12 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+           INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_10:  76%|███████▌  | 38/50 [46:11<03:43, 18.61s/it]2026-02-10 17:24:14 [WARNING] - Pynguin CRASH for Task 12280.
+2026-02-10 17:24:14 [WARNING] - Reason:
+                    │    17 from sklearn.utils.fixes import C │
+                    │       _preserve_dia_indices_dtype       │
+                    ╰─────────────────────────────────────────╯
+                    ModuleNotFoundError: No module named
+                    'sklearn.utils._dataframe'
+[17:24:14] INFO     Stop Pynguin Test Generation…               generator.py:110
+
+Processing run_10:  88%|████████▊ | 44/50 [53:08<07:55, 79.24s/it]2026-02-10 17:31:10 [WARNING] - Pynguin CRASH for Task 68859.
+2026-02-10 17:31:10 [WARNING] - Reason: tch:                                                  │
+│ ❱ 361 │   │   │   raise InvalidVersion(f"Invalid version: {version!r}")      │
+│   362 │   │   self._epoch = int(match.group("epoch")) if match.group("epoch" │
+│   363 │   │   self._release = tuple(map(int, match.group("release").split(". │
+│   364 │   │   self._pre = _parse_letter_version(match.group("pre_l"), match. │
+╰──────────────────────────────────────────────────────────────────────────────╯
+InvalidVersion: Invalid version: 'N/A'
+
+Processing run_10: 100%|██████████| 50/50 [55:43<00:00, 66.87s/it]
+2026-02-10 17:33:44 [INFO] - --- All 10 Pynguin Runs Completed in 33732.04s ---
+2026-02-10 17:33:44 [INFO] - Results saved to: /app/TestEval/predictions_testeval_pynguin
+2026-02-10 17:33:44 [WARNING] - !!! ERRORS DETECTED !!! Check 'pynguin_crash_log.txt' to see why Pynguin failed.

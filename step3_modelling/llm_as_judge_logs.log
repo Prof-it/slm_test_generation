@@ -1,0 +1,239 @@
+(venv) C:\Repos\slm-python-unit-test-benchmark>python step3_modelling/llm_as_judge.py --predictions_dir TestEval/predictions_realworld_1 --eval_dir evaluation_results_realworld_1 --evaluation_group full_factorial --output_dir TestEval/predictions_judgellm
+2026-02-24 21:26:52,470 - INFO - Loading global comparison cache to reuse evaluations across groups...
+2026-02-24 21:26:52,479 - INFO - Loaded 263 comparisons from global cache across all groups
+2026-02-24 21:26:52,479 - INFO -
+============================================================
+2026-02-24 21:26:52,479 - INFO - STARTING EVALUATION: full_factorial
+2026-02-24 21:26:52,479 - INFO - ============================================================
+2026-02-24 21:26:52,479 - INFO - Loading data for group: full_factorial...
+2026-02-24 21:26:52,480 - INFO - Eval dir override: evaluation_results_realworld_1
+2026-02-24 21:26:52,485 - INFO - Qwen3 Dense One-Shot T=0.0: 16/50 passing (32.0%)
+2026-02-24 21:26:52,486 - WARNING - No prediction files found for Qwen3 Dense One-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov_Qwen3-4B-Instruct*_temp_0.8.jsonl
+2026-02-24 21:26:52,486 - WARNING - No prediction files found for Qwen3 Dense One-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov_Qwen3-4B-Instruct*_temp_1.0.jsonl
+2026-02-24 21:26:52,490 - INFO - Qwen3 Dense Two-Shot T=0.0: 16/50 passing (32.0%)
+2026-02-24 21:26:52,491 - WARNING - No prediction files found for Qwen3 Dense Two-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov2_Qwen3-4B-Instruct*_temp_0.8.jsonl
+2026-02-24 21:26:52,492 - WARNING - No prediction files found for Qwen3 Dense Two-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov2_Qwen3-4B-Instruct*_temp_1.0.jsonl
+2026-02-24 21:26:52,495 - INFO - Ministral-8B Quant One-Shot T=0.0: 6/50 passing (12.0%)
+2026-02-24 21:26:52,495 - WARNING - No prediction files found for Ministral-8B Quant One-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov_Ministral-3-8B-Instruct*_temp_0.8.jsonl
+2026-02-24 21:26:52,496 - WARNING - No prediction files found for Ministral-8B Quant One-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov_Ministral-3-8B-Instruct*_temp_1.0.jsonl
+2026-02-24 21:26:52,500 - INFO - Ministral-8B Quant Two-Shot T=0.0: 11/50 passing (22.0%)
+2026-02-24 21:26:52,501 - WARNING - No prediction files found for Ministral-8B Quant Two-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov2_Ministral-3-8B-Instruct*_temp_0.8.jsonl
+2026-02-24 21:26:52,501 - WARNING - No prediction files found for Ministral-8B Quant Two-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov2_Ministral-3-8B-Instruct*_temp_1.0.jsonl
+2026-02-24 21:26:52,503 - INFO - granite Mamba One-Shot T=0.0: 5/50 passing (10.0%)
+2026-02-24 21:26:52,503 - WARNING - No prediction files found for granite Mamba One-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov_granite-4.0-micro_temp_0.8.jsonl
+2026-02-24 21:26:52,503 - WARNING - No prediction files found for granite Mamba One-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov_granite-4.0-micro_temp_1.0.jsonl
+2026-02-24 21:26:52,506 - INFO - granite Mamba Two-Shot T=0.0: 13/50 passing (26.0%)
+2026-02-24 21:26:52,507 - WARNING - No prediction files found for granite Mamba Two-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov2_granite-4.0-micro_temp_0.8.jsonl
+2026-02-24 21:26:52,507 - WARNING - No prediction files found for granite Mamba Two-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov2_granite-4.0-micro_temp_1.0.jsonl
+2026-02-24 21:26:52,511 - INFO - Ministral-3B Reasoning One-Shot T=0.0: 7/50 passing (14.0%)
+2026-02-24 21:26:52,511 - WARNING - No prediction files found for Ministral-3B Reasoning One-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov_Ministral-3-3B-Reasoning*_temp_0.8.jsonl
+2026-02-24 21:26:52,512 - WARNING - No prediction files found for Ministral-3B Reasoning One-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov_Ministral-3-3B-Reasoning*_temp_1.0.jsonl
+2026-02-24 21:26:52,516 - INFO - Ministral-3B Reasoning Two-Shot T=0.0: 11/50 passing (22.0%)
+2026-02-24 21:26:52,517 - WARNING - No prediction files found for Ministral-3B Reasoning Two-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov2_Ministral-3-3B-Reasoning*_temp_0.8.jsonl
+2026-02-24 21:26:52,518 - WARNING - No prediction files found for Ministral-3B Reasoning Two-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov2_Ministral-3-3B-Reasoning*_temp_1.0.jsonl
+2026-02-24 21:26:52,520 - INFO - gemma-3-4b-it One-Shot T=0.0: 4/50 passing (8.0%)
+2026-02-24 21:26:52,520 - WARNING - No prediction files found for gemma-3-4b-it One-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov_gemma-3-4b-it_temp_0.8.jsonl
+2026-02-24 21:26:52,521 - WARNING - No prediction files found for gemma-3-4b-it One-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov_gemma-3-4b-it_temp_1.0.jsonl
+2026-02-24 21:26:52,525 - INFO - gemma-3-4b-it Two-Shot T=0.0: 11/50 passing (22.0%)
+2026-02-24 21:26:52,525 - WARNING - No prediction files found for gemma-3-4b-it Two-Shot T=0.8: TestEval/predictions_realworld_1\run_1\linecov2_gemma-3-4b-it_temp_0.8.jsonl
+2026-02-24 21:26:52,525 - WARNING - No prediction files found for gemma-3-4b-it Two-Shot T=1.0: TestEval/predictions_realworld_1\run_1\linecov2_gemma-3-4b-it_temp_1.0.jsonl
+2026-02-24 21:26:52,527 - INFO - Pynguin (Baseline): 36/50 passing (72.0%)
+2026-02-24 21:26:52,527 - INFO - Loaded 44 tasks with passing tests across all models.
+2026-02-24 21:26:52,528 - INFO - Found existing results file for full_factorial. Loading completed comparisons...
+2026-02-24 21:26:52,576 - INFO - Loaded 263 completed comparisons from full_factorial.
+2026-02-24 21:26:52,576 - INFO - Total available cached comparisons: 263 (global: 263, local: 263)
+2026-02-24 21:26:52,576 - INFO - --- COST ESTIMATION (full_factorial) ---
+2026-02-24 21:26:52,576 - INFO - Pairs: 263 | API Calls: 526 (Double-Pass)
+2026-02-24 21:26:52,577 - INFO - Est. Cost: $5.52 (Input: ~789000 toks, Output: ~210400 toks)
+2026-02-24 21:26:52,577 - INFO - -------------------------------------
+2026-02-24 21:26:52,578 - INFO - Cache hits: 263 | New comparisons to perform: 0
+2026-02-24 21:26:52,578 - INFO - Evaluation complete for full_factorial:
+2026-02-24 21:26:52,578 - INFO -   - New comparisons: 0
+2026-02-24 21:26:52,578 - INFO -   - Reused from other groups: 0
+2026-02-24 21:26:52,578 - INFO -   - Already in this group: 263
+2026-02-24 21:26:52,578 - INFO -   - Total skipped (cached): 263
+2026-02-24 21:26:52,598 - INFO - 
+============================================================
+2026-02-24 21:26:52,598 - INFO - JUDGMENT RELIABILITY ANALYSIS
+2026-02-24 21:26:52,598 - INFO - ============================================================
+2026-02-24 21:26:52,598 - INFO - Total Comparisons: 263
+2026-02-24 21:26:52,598 - INFO - Bias Status Breakdown:
+2026-02-24 21:26:52,599 - INFO -   - None: 253 (96.2%)
+2026-02-24 21:26:52,599 - INFO -   - Stochastic_Noise: 7 (2.7%)
+2026-02-24 21:26:52,599 - INFO -   - Position_Bias_First: 2 (0.8%)
+2026-02-24 21:26:52,599 - INFO -   - Position_Bias_Second: 1 (0.4%)
+2026-02-24 21:26:52,599 - INFO - ✓ Low noise level: 7 stochastic disagreements (2.7%)
+2026-02-24 21:26:52,599 - INFO - ============================================================
+
+2026-02-24 21:26:52,599 - INFO - ============================================================
+2026-02-24 21:26:52,599 - INFO - TIE THRESHOLD SENSITIVITY ANALYSIS
+2026-02-24 21:26:52,600 - INFO - ============================================================
+2026-02-24 21:26:52,600 - INFO - Current Threshold: 2.0
+2026-02-24 21:26:52,600 - INFO - Tie Rate: 26.5% (67/253 comparisons)
+2026-02-24 21:26:52,600 - INFO - Score Diff - Median: 7.00, Mean: 9.76
+2026-02-24 21:26:52,600 - INFO - ✓ Threshold appears reasonable (10-40% ties is acceptable)
+2026-02-24 21:26:52,600 - INFO - ============================================================
+
+2026-02-24 21:26:52,600 - INFO - ============================================================
+2026-02-24 21:26:52,600 - INFO - PASS RATE ANALYSIS (Selection Bias Check)
+2026-02-24 21:26:52,600 - INFO - ============================================================
+2026-02-24 21:26:52,601 - WARNING - ⚠️  SELECTION BIAS DETECTED: Pass count range 4-36
+2026-02-24 21:26:52,601 - WARNING - ⚠️  Models with more passing tests may appear better due to larger sample size
+2026-02-24 21:26:52,601 - WARNING - ⚠️  Recommendation: Report pass rate alongside quality scores
+2026-02-24 21:26:52,601 - INFO - ============================================================
+
+2026-02-24 21:26:52,604 - INFO - Sampling for human validation (full_factorial)...
+2026-02-24 21:26:52,615 - INFO - Saved human sample to TestEval/predictions_judgellm\stratified_human_eval_full_factorial.csv2026-02-26 11:33:03,658 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:33:22,641 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:33:42,906 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:34:05,611 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:34:24,383 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:34:48,554 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:35:06,938 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:35:31,640 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:35:48,103 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:36:09,683 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:36:29,124 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:36:48,689 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:37:07,483 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:37:28,952 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:37:45,058 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:37:59,269 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:38:15,233 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:38:32,490 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:38:52,569 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:39:11,588 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:39:27,077 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:39:41,945 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:39:58,628 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:40:18,792 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:40:36,465 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:40:53,335 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:41:06,036 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:41:26,217 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:41:41,389 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:41:57,386 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:42:13,375 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:42:30,403 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:42:44,790 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:43:01,128 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:43:17,306 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:43:33,145 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:43:48,211 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:44:05,234 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:44:19,558 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:44:35,101 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:44:49,864 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:45:04,558 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:45:23,847 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:45:39,756 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:46:00,563 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:46:19,683 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:46:37,349 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:46:57,832 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:47:13,390 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:47:29,982 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:47:50,696 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:48:13,126 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:48:30,304 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:48:50,821 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:49:11,353 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:49:30,947 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:49:50,333 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:50:10,028 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:50:31,797 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:50:49,860 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:51:06,725 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:51:27,849 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:51:45,814 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:52:07,969 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:52:26,858 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:52:48,255 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:53:05,986 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:53:27,198 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:53:44,138 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:54:05,119 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:54:23,240 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:54:42,394 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:55:02,849 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:55:25,646 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:55:41,219 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:56:01,358 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:56:17,916 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:56:40,595 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:56:59,525 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:57:21,534 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:57:41,503 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:58:01,463 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:58:22,083 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:58:42,602 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:59:00,570 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:59:20,925 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 11:59:38,586 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:00:02,119 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:00:19,590 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:00:39,341 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:00:52,305 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:01:08,993 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:01:23,631 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:01:39,342 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:01:58,173 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:02:17,100 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:02:33,973 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:02:51,136 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:03:04,594 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:03:23,551 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:03:38,767 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:03:54,228 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:04:08,779 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:04:24,354 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:04:44,086 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:05:04,856 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:05:18,947 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:05:35,641 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:05:49,776 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:06:06,644 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:06:25,299 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:06:40,487 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:07:03,775 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:07:22,905 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:07:41,044 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:07:56,515 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:08:13,408 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:08:31,432 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:08:46,526 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:09:05,928 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:09:23,577 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:09:40,692 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:09:57,793 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:10:15,050 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:10:32,812 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:10:50,068 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:11:08,542 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:11:31,285 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:11:49,390 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:12:08,419 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:12:26,970 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:12:51,549 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:13:10,112 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:13:31,350 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:13:46,301 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:14:02,774 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:14:21,615 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:14:42,049 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:15:01,600 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:15:21,517 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:15:35,605 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:15:50,329 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:16:03,648 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:16:17,641 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:16:32,926 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:16:48,121 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:17:02,041 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:17:17,990 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:17:28,957 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:17:42,141 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:17:58,629 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:18:11,264 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:18:27,820 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"
+2026-02-26 12:18:47,601 - INFO - HTTP Request: POST https://api.anthropic.com/v1/messages "HTTP/1.1 200 OK"

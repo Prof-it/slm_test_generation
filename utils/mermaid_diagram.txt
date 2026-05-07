@@ -1,0 +1,33 @@
+flowchart LR
+    subgraph INPUT ["Input"]
+        direction TB
+        A1["TestEval<br>210 LeetCode Problems"]
+        A2["Real-World<br>50 Python Functions<br>(14 open-source libraries)"]
+    end
+
+    B["Data Preparation<br>Complexity Analysis · Solution Wrapping<br>Difficulty Balancing (Easy / Medium / Hard)"]
+
+    subgraph SLM_PIPE ["SLM Pipeline"]
+        direction TB
+        C1["Prompt Strategy<br>One-Step·Two-Step CoT"]
+        D["vLLM Inference<br>5 SLMs<br>T 0.0 - 1.0 · N Runs"]
+        E["Post-Processing<br>Code Sanitization · Regex <br>AST Extraction"]
+        C1 --> D --> E
+    end
+
+    PYNG["Pynguin Baseline<br>DynaMOSA · Genetic Algo<br>120's Budget"]
+
+    F["Test Execution<br>PyTest·Harness·Mock Inj"]
+
+    G["Metrics & Stat Analysis<br>Pass@1·Line Cov·Mut Score<br>TPS·CI·Cohen's d"]
+
+    classDef box padding:10px 24px,min-width:400px
+    class A1,A2,B,C1,D,E,PYNG,F,G box
+
+    A1 --> B
+    A2 --> B
+    B --> C1
+    B -.->|baseline| PYNG
+    E --> F
+    PYNG --> F
+    F --> G

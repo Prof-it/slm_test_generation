@@ -1,0 +1,365 @@
+==============================================================================================================
+ TESTEVAL EVALUATION REPORT
+==============================================================================================================
+• Benchmark Size (N): 210 unique tasks.
+• Metric Format: mean (±std)[95% CI lower, upper] - e.g., 25.71% (±0.82)[22.18, 29.24]
+• 95% CI computed using t-distribution (N=3 runs, t-critical=4.303, df=2).
+--------------------------------------------------------------------------------------------------------------
+| Model                           | Mode                             | Config   |   Runs | Avg Tokens   | Pass@1 (95% CI)              | Raw Cov (95% CI)          | Gated Cov (95% CI)         | Mut Score (95% CI)       |
+|---------------------------------|----------------------------------|----------|--------|--------------|------------------------------|---------------------------|----------------------------|--------------------------|
+| GPT-4o                          | Literature (Wang et al., 2025a)  | T=0.0    |      1 | -            | 99.59%[a]                    | -                         | 98.7%[a]                   | -                        |
+| Llama-3.1-8B-Instruct           | Literature (Wang et al., 2025a)  | T=0.0    |      1 | -            | 94.69%[a]                    | -                         | 88.9%[a]                   | -                        |
+| Pynguin (Baseline)              | Evolutionary Search              | N/A      |      3 | 690,313      | 70.79% (±1.37)[67.38, 74.21] | 76.9% (±2.3)[71.2, 82.5]  | 97.7% (±0.3)[97.0, 98.5]   | 21.5% (±1.7)[17.2, 25.7] |
+| granite-4.0-micro               | Two-Step                         | T=0.2    |      3 | 104,640      | 48.25% (±1.80)[43.78, 52.73] | 92.2% (±0.3)[91.6, 92.9]  | 92.5% (±0.3)[91.7, 93.3]   | 25.3% (±1.2)[22.2, 28.3] |
+| granite-4.0-micro               | One-Step                         | T=0.8    |      3 | 27,553       | 48.10% (±4.97)[35.75, 60.45] | 90.8% (±2.9)[83.7, 97.9]  | 89.7% (±4.5)[78.5, 100.0]  | 23.4% (±3.5)[14.6, 32.2] |
+| Ministral-3-3B-Reasoning        | One-Step                         | T=0.2    |      3 | 70,016       | 48.10% (±7.66)[29.06, 67.13] | 80.5% (±5.4)[67.2, 93.8]  | 78.9% (±8.0)[58.9, 98.9]   | 18.7% (±4.6)[7.3, 30.0]  |
+| granite-4.0-micro               | Two-Step                         | T=0.8    |      3 | 116,399      | 44.92% (±3.51)[36.20, 53.64] | 91.9% (±0.6)[90.4, 93.5]  | 93.2% (±0.6)[91.7, 94.7]   | 28.4% (±2.7)[21.7, 35.0] |
+| granite-4.0-micro               | One-Step                         | T=0.2    |      3 | 31,038       | 44.44% (±1.53)[40.64, 48.25] | 93.0% (±0.2)[92.6, 93.4]  | 93.0% (±0.2)[92.4, 93.6]   | 26.4% (±1.1)[23.8, 29.0] |
+| Ministral-3-8B-Instruct-4bit    | Two-Step                         | T=0.2    |      3 | 150,189      | 42.38% (±5.02)[29.92, 54.84] | 91.4% (±1.2)[88.5, 94.3]  | 93.2% (±0.7)[91.5, 94.9]   | 25.9% (±0.8)[24.0, 27.8] |
+| Ministral-3-8B-Instruct-8bit    | Two-Step                         | T=0.2    |      3 | 134,940      | 42.22% (±0.99)[39.76, 44.68] | 92.3% (±0.6)[90.8, 93.9]  | 92.7% (±0.3)[92.1, 93.4]   | 24.4% (±1.1)[21.7, 27.0] |
+| Qwen3-4B-Instruct               | One-Step                         | T=0.2    |      3 | 48,818       | 41.75% (±0.73)[39.94, 43.55] | 93.0% (±0.2)[92.6, 93.5]  | 92.7% (±0.1)[92.4, 92.9]   | 26.2% (±1.0)[23.6, 28.7] |
+| Qwen3-4B-Instruct               | One-Step                         | T=0.8    |      3 | 43,560       | 40.95% (±1.65)[36.85, 45.05] | 93.0% (±0.6)[91.7, 94.4]  | 92.6% (±0.2)[92.1, 93.1]   | 26.4% (±1.5)[22.7, 30.1] |
+| Qwen3-8B-4bit                   | Two-Step                         | T=0.2    |      3 | 946,407      | 39.52% (±0.48)[38.34, 40.71] | 52.7% (±1.9)[47.9, 57.4]  | 93.1% (±0.7)[91.2, 94.9]   | 25.6% (±2.1)[20.3, 30.9] |
+| Phi-4-mini-Instruct             | Literature (Huang et al., 2025b) | T=0.0    |      1 | -            | 39.05%                       | -                         | 80.6%                      | 47.2%                    |
+| Qwen3-8B-4bit                   | Two-Step                         | T=0.8    |      3 | 826,619      | 38.73% (±4.89)[26.59, 50.87] | 55.3% (±2.3)[49.5, 61.1]  | 92.9% (±0.8)[91.0, 94.8]   | 26.0% (±3.0)[18.5, 33.4] |
+| Qwen3-4B-Instruct               | Two-Step                         | T=0.8    |      3 | 119,916      | 38.57% (±1.72)[34.31, 42.84] | 92.3% (±0.4)[91.4, 93.3]  | 92.4% (±0.3)[91.6, 93.2]   | 25.0% (±1.1)[22.2, 27.7] |
+| DeepSeek-Coder-1.3B-Instruct    | Literature (Huang et al., 2025b) | T=0.0    |      1 | -            | 38.57%                       | -                         | 86.2%                      | 30.2%                    |
+| Qwen3-4B-Instruct               | Two-Step                         | T=0.2    |      3 | 121,294      | 37.46% (±2.62)[30.95, 43.98] | 92.7% (±0.2)[92.1, 93.3]  | 92.8% (±0.8)[90.9, 94.7]   | 22.8% (±1.2)[19.8, 25.7] |
+| Ministral-3-8B-Instruct-8bit    | One-Step                         | T=0.2    |      3 | 34,929       | 36.67% (±1.43)[33.12, 40.22] | 93.2% (±0.4)[92.2, 94.2]  | 92.4% (±0.6)[91.0, 93.8]   | 24.6% (±3.8)[15.3, 33.9] |
+| Ministral-3-3B-Reasoning        | One-Step                         | T=0.8    |      3 | 30,596       | 36.51% (±8.10)[16.39, 56.63] | 81.2% (±7.6)[62.2, 100.0] | 82.0% (±10.2)[56.7, 100.0] | 19.3% (±3.3)[11.0, 27.6] |
+| Ministral-3-8B-Instruct-8bit    | Two-Step                         | T=0.8    |      3 | 174,892      | 36.51% (±1.92)[31.73, 41.29] | 87.6% (±1.7)[83.2, 91.9]  | 89.5% (±1.2)[86.6, 92.4]   | 19.9% (±2.1)[14.7, 25.1] |
+| Ministral-3-8B-Instruct-4bit    | Two-Step                         | T=0.8    |      3 | 185,672      | 35.87% (±3.61)[26.92, 44.83] | 88.8% (±2.5)[82.7, 94.9]  | 88.2% (±2.1)[83.0, 93.5]   | 17.0% (±3.3)[8.7, 25.2]  |
+| Ministral-3-3B-Reasoning        | Two-Step                         | T=0.2    |      3 | 129,869      | 35.71% (±1.43)[32.17, 39.26] | 90.2% (±0.8)[88.2, 92.1]  | 92.1% (±0.5)[90.8, 93.3]   | 27.0% (±1.2)[24.0, 29.9] |
+| gemma-3-4b-it                   | One-Step                         | T=0.8    |      3 | 39,280       | 32.86% (±1.43)[29.31, 36.41] | 83.1% (±1.2)[80.1, 86.1]  | 84.3% (±1.8)[79.7, 88.9]   | 15.8% (±2.6)[9.3, 22.3]  |
+| gemma-3-4b-it                   | One-Step                         | T=0.2    |      3 | 38,567       | 32.38% (±1.43)[28.83, 35.93] | 83.5% (±0.2)[82.9, 84.0]  | 84.3% (±0.2)[83.8, 84.8]   | 13.3% (±1.5)[9.5, 17.1]  |
+| Ministral-3-8B-Instruct-8bit    | One-Step                         | T=0.8    |      3 | 27,903       | 31.11% (±3.34)[22.80, 39.42] | 86.9% (±2.6)[80.5, 93.4]  | 86.6% (±1.7)[82.3, 90.9]   | 21.4% (±7.7)[2.2, 40.6]  |
+| Ministral-3-3B-Reasoning        | Two-Step                         | T=0.8    |      3 | 165,229      | 30.32% (±4.70)[18.65, 41.99] | 81.9% (±7.4)[63.5, 100.0] | 89.4% (±2.0)[84.4, 94.4]   | 21.8% (±3.0)[14.3, 29.3] |
+| Gemma-3-4B-IT                   | Literature (Huang et al., 2025b) | T=0.0    |      1 | -            | 30.00%                       | -                         | 71.1%                      | 41.8%                    |
+| Llama-3.2-3B-Instruct           | One-Step                         | T=0.2    |      3 | 43,106       | 29.68% (±0.27)[29.00, 30.37] | 88.0% (±0.6)[86.5, 89.5]  | 93.2% (±0.5)[91.9, 94.4]   | 24.0% (±2.7)[17.3, 30.8] |
+| gemma-3-4b-it                   | Two-Step                         | T=0.2    |      3 | 84,378       | 27.94% (±1.80)[23.46, 32.41] | 88.8% (±1.3)[85.6, 91.9]  | 90.9% (±0.6)[89.3, 92.4]   | 25.2% (±1.5)[21.6, 28.9] |
+| Ministral-3-8B-Instruct-4bit    | One-Step                         | T=0.2    |      3 | 28,739       | 27.78% (±2.71)[21.05, 34.50] | 72.2% (±8.0)[52.4, 92.1]  | 89.6% (±0.8)[87.6, 91.5]   | 25.6% (±2.5)[19.2, 31.9] |
+| gemma-3-4b-it                   | Two-Step                         | T=0.8    |      3 | 83,064       | 26.83% (±2.40)[20.87, 32.78] | 89.4% (±0.5)[88.2, 90.6]  | 91.4% (±0.4)[90.4, 92.5]   | 25.4% (±0.7)[23.6, 27.2] |
+| Ministral-3-8B-Instruct-4bit    | One-Step                         | T=0.8    |      3 | 26,925       | 26.83% (±3.02)[19.31, 34.34] | 78.3% (±1.3)[75.0, 81.6]  | 82.4% (±2.9)[75.3, 89.5]   | 18.6% (±3.2)[10.8, 26.4] |
+| Llama-3.2-3B-Instruct           | One-Step                         | T=0.8    |      3 | 33,491       | 26.35% (±4.29)[15.68, 37.02] | 83.4% (±1.7)[79.3, 87.5]  | 92.2% (±0.6)[90.8, 93.6]   | 22.3% (±1.2)[19.3, 25.4] |
+| Ministral-3-3B-Instruct         | Two-Step                         | T=0.2    |      3 | 236,570      | 26.03% (±0.73)[24.22, 27.84] | 90.6% (±0.8)[88.6, 92.6]  | 90.5% (±2.4)[84.4, 96.6]   | 20.7% (±6.0)[5.8, 35.6]  |
+| Ministral-3-3B-Instruct         | One-Step                         | T=0.2    |      3 | 24,621       | 24.60% (±0.73)[22.80, 26.41] | 81.6% (±2.5)[75.4, 87.8]  | 91.3% (±1.3)[88.0, 94.6]   | 22.3% (±2.4)[16.3, 28.2] |
+| Meta-Llama-3.1-8B-Instruct-4bit | One-Step                         | T=0.2    |      3 | 106,580      | 24.44% (±1.20)[21.47, 27.42] | 81.4% (±1.7)[77.1, 85.7]  | 87.0% (±2.8)[80.0, 93.9]   | 21.3% (±3.7)[12.2, 30.4] |
+| Ministral-3-3B-Instruct         | Two-Step                         | T=0.8    |      3 | 247,644      | 23.81% (±4.36)[12.97, 34.65] | 89.4% (±0.7)[87.6, 91.2]  | 93.4% (±0.4)[92.3, 94.4]   | 23.7% (±1.7)[19.5, 27.9] |
+| Meta-Llama-3.1-8B-Instruct-4bit | One-Step                         | T=0.8    |      3 | 60,761       | 21.27% (±4.86)[9.19, 33.35]  | 65.1% (±8.3)[44.5, 85.7]  | 72.6% (±11.2)[44.9, 100.0] | 11.0% (±3.9)[1.4, 20.7]  |
+| Meta-Llama-3.1-8B-Instruct-4bit | Two-Step                         | T=0.2    |      3 | 142,757      | 20.32% (±1.80)[15.84, 24.80] | 86.5% (±2.1)[81.4, 91.6]  | 89.0% (±1.5)[85.3, 92.7]   | 23.7% (±2.4)[17.7, 29.7] |
+| Ministral-3-3B-Instruct         | One-Step                         | T=0.8    |      3 | 22,612       | 19.05% (±1.72)[14.78, 23.31] | 77.0% (±5.9)[62.3, 91.7]  | 86.9% (±2.8)[80.1, 93.8]   | 20.6% (±4.3)[10.0, 31.2] |
+| Meta-Llama-3.1-8B-Instruct-4bit | Two-Step                         | T=0.8    |      3 | 136,920      | 18.57% (±2.65)[11.99, 25.16] | 88.0% (±0.9)[85.7, 90.3]  | 90.4% (±0.8)[88.5, 92.4]   | 21.3% (±2.0)[16.2, 26.3] |
+| Llama-3.2-3B-Instruct           | Two-Step                         | T=0.2    |      3 | 128,675      | 16.98% (±1.20)[14.01, 19.96] | 85.5% (±1.1)[82.8, 88.2]  | 92.5% (±1.5)[88.8, 96.3]   | 28.2% (±1.5)[24.4, 32.0] |
+| Llama-3.2-3B-Instruct           | Two-Step                         | T=0.8    |      3 | 116,767      | 12.22% (±3.44)[3.66, 20.78]  | 83.3% (±0.6)[81.9, 84.6]  | 91.0% (±1.4)[87.4, 94.6]   | 22.2% (±3.6)[13.3, 31.1] |
+| Qwen3-8B-4bit                   | One-Step                         | T=0.2    |      3 | 1,620,449    | 10.00% (±0.48)[8.82, 11.18]  | 8.7% (±0.1)[8.4, 9.0]     | 81.7% (±5.1)[68.9, 94.4]   | 19.6% (±8.2)[0.0, 39.9]  |
+| Qwen3-8B-4bit                   | One-Step                         | T=0.8    |      3 | 1,651,123    | 7.46% (±0.99)[5.00, 9.92]    | 7.4% (±0.4)[6.4, 8.4]     | 85.3% (±4.9)[73.1, 97.4]   | 16.5% (±5.6)[2.6, 30.5]  |
+| Qwen3-4B-Thinking               | Two-Step                         | T=0.8    |      3 | 1,485,056    | 6.51% (±1.98)[1.58, 11.43]   | 7.4% (±1.8)[3.0, 11.8]    | 77.8% (±10.1)[52.7, 100.0] | 11.0% (±5.5)[0.0, 60.5]  |
+| Qwen3-4B-Thinking               | Two-Step                         | T=0.2    |      3 | 1,447,805    | 6.03% (±0.99)[3.57, 8.49]    | 7.3% (±1.9)[2.6, 11.9]    | 81.6% (±3.2)[73.7, 89.5]   | 19.8% (±15.5)[0.0, 58.3] |
+| Qwen3-4B-Thinking               | One-Step                         | T=0.8    |      3 | 2,223,344    | 4.44% (±1.80)[0.00, 8.92]    | 2.8% (±1.2)[0.0, 5.8]     | 56.6% (±7.8)[37.3, 75.9]   | 0.0% (±0.0)[0.0, 0.0]    |
+| Qwen3-4B-Thinking               | One-Step                         | T=0.2    |      3 | 2,205,488    | 2.70% (±1.80)[0.00, 7.18]    | 1.9% (±0.6)[0.4, 3.5]     | 44.7% (±1.9)[39.9, 49.5]   | 0.0% (±0.0)[0.0, 0.0]    |
+
+--------------------------------------------------------------------------------------------------------------
+Note: Raw Cov = ungated (all tasks, incl. failures). Gated Cov = assertion-passing tasks only (our metric).
+      [a] Wang et al. (2025a) baselines use Execution Correctness (EC): test compiles/runs without crash, NOT assertion-passing.
+          Their Gated Cov is therefore EC-gated (more lenient than our assertion-gated Gated Cov).
+      Literature baselines show point estimates only (no CI available from source papers).
+      See Footnote [1] for coverage methodology; Footnote [3] for literature metric definitions.
+
+==============================================================================================================
+ TABLE 2: RELIABILITY - TESTEVAL (Avg Failures)
+==============================================================================================================
+--------------------------------------------------------------------------------------------------------------
+| Model                           | Mode                | Config   |   Assert |   Runtime |   Syntax |   NoCode |   Timeout |
+|---------------------------------|---------------------|----------|----------|-----------|----------|----------|-----------|
+| Pynguin (Baseline)              | Evolutionary Search | N/A      |     14.3 |       3   |      0   |      1   |      43   |
+| granite-4.0-micro               | Two-Step            | T=0.2    |    101   |       7.7 |      0   |      0   |       0   |
+| granite-4.0-micro               | One-Step            | T=0.8    |    102.7 |       5   |      0   |      1.3 |       0   |
+| Ministral-3-3B-Reasoning        | One-Step            | T=0.2    |     93.3 |       5   |      0   |     10.7 |       0   |
+| granite-4.0-micro               | Two-Step            | T=0.8    |    107.3 |       7.3 |      0   |      0.7 |       0.3 |
+| granite-4.0-micro               | One-Step            | T=0.2    |    112.3 |       3.3 |      0   |      1   |       0   |
+| Ministral-3-8B-Instruct-4bit    | Two-Step            | T=0.2    |    110.7 |       8.3 |      0   |      2   |       0   |
+| Ministral-3-8B-Instruct-8bit    | Two-Step            | T=0.2    |    114.3 |       6.3 |      0   |      0.7 |       0   |
+| Qwen3-4B-Instruct               | One-Step            | T=0.2    |    118.7 |       1.7 |      0   |      2   |       0   |
+| Qwen3-4B-Instruct               | One-Step            | T=0.8    |    120.3 |       2.3 |      0   |      1.3 |       0   |
+| Qwen3-8B-4bit                   | Two-Step            | T=0.2    |     32   |       5.7 |      0   |     89   |       0.3 |
+| Qwen3-8B-4bit                   | Two-Step            | T=0.8    |     39.7 |       5.7 |      0   |     83.3 |       0   |
+| Qwen3-4B-Instruct               | Two-Step            | T=0.8    |    124   |       5   |      0   |      0   |       0   |
+| Qwen3-4B-Instruct               | Two-Step            | T=0.2    |    127   |       4.3 |      0   |      0   |       0   |
+| Ministral-3-8B-Instruct-8bit    | One-Step            | T=0.2    |    129   |       2   |      0   |      2   |       0   |
+| Ministral-3-3B-Reasoning        | One-Step            | T=0.8    |    110.7 |       8.7 |      0   |     14   |       0   |
+| Ministral-3-8B-Instruct-8bit    | Two-Step            | T=0.8    |    113   |      15   |      0   |      5   |       0.3 |
+| Ministral-3-8B-Instruct-4bit    | Two-Step            | T=0.8    |    118.3 |      14   |      0   |      1.7 |       0.7 |
+| Ministral-3-3B-Reasoning        | Two-Step            | T=0.2    |    121.3 |      10.7 |      0   |      3   |       0   |
+| gemma-3-4b-it                   | One-Step            | T=0.8    |    108.3 |      30   |      0   |      2   |       0.7 |
+| gemma-3-4b-it                   | One-Step            | T=0.2    |    112.3 |      26   |      0   |      2.7 |       1   |
+| Ministral-3-8B-Instruct-8bit    | One-Step            | T=0.8    |    124.7 |      13.3 |      0.3 |      6.3 |       0   |
+| Ministral-3-3B-Reasoning        | Two-Step            | T=0.8    |    111   |      18   |      0   |     17   |       0.3 |
+| Llama-3.2-3B-Instruct           | One-Step            | T=0.2    |    123.7 |      16.3 |      0   |      7.7 |       0   |
+| gemma-3-4b-it                   | Two-Step            | T=0.2    |    126.7 |      23.3 |      0   |      1.3 |       0   |
+| Ministral-3-8B-Instruct-4bit    | One-Step            | T=0.2    |    101.7 |       4.3 |      0   |     45.7 |       0   |
+| gemma-3-4b-it                   | Two-Step            | T=0.8    |    131.3 |      21.3 |      0   |      1   |       0   |
+| Ministral-3-8B-Instruct-4bit    | One-Step            | T=0.8    |    113.3 |      22.3 |      0   |     18   |       0   |
+| Llama-3.2-3B-Instruct           | One-Step            | T=0.8    |    116.7 |      26.7 |      0   |     11   |       0.3 |
+| Ministral-3-3B-Instruct         | Two-Step            | T=0.2    |    141.7 |      11   |      0   |      2.3 |       0.3 |
+| Ministral-3-3B-Instruct         | One-Step            | T=0.2    |    114.3 |      33.3 |      0   |     10.7 |       0   |
+| Meta-Llama-3.1-8B-Instruct-4bit | One-Step            | T=0.2    |    119.3 |      27.3 |      0   |     11.3 |       0.7 |
+| Ministral-3-3B-Instruct         | Two-Step            | T=0.8    |    138   |      17   |      0   |      4   |       1   |
+| Meta-Llama-3.1-8B-Instruct-4bit | One-Step            | T=0.8    |     88.7 |      55   |      0   |     21.3 |       0.3 |
+| Meta-Llama-3.1-8B-Instruct-4bit | Two-Step            | T=0.2    |    140.3 |      18.3 |      0   |      7.3 |       1.3 |
+| Ministral-3-3B-Instruct         | One-Step            | T=0.8    |    110   |      44.3 |      0   |     15   |       0.7 |
+| Meta-Llama-3.1-8B-Instruct-4bit | Two-Step            | T=0.8    |    142.3 |      24   |      0   |      3   |       1.7 |
+| Llama-3.2-3B-Instruct           | Two-Step            | T=0.2    |    137.3 |      30.7 |      0   |      6   |       0.3 |
+| Llama-3.2-3B-Instruct           | Two-Step            | T=0.8    |    136.7 |      41.7 |      0   |      6   |       0   |
+| Qwen3-8B-4bit                   | One-Step            | T=0.2    |      0.7 |       1.7 |      0   |    186.7 |       0   |
+| Qwen3-8B-4bit                   | One-Step            | T=0.8    |      1.3 |       2.3 |      0   |    190.7 |       0   |
+| Qwen3-4B-Thinking               | Two-Step            | T=0.8    |      0.7 |       9   |      0   |    186.7 |       0   |
+| Qwen3-4B-Thinking               | Two-Step            | T=0.2    |      1.7 |       8   |      0.3 |    187.3 |       0   |
+| Qwen3-4B-Thinking               | One-Step            | T=0.8    |      0   |       1.3 |      0   |    199.3 |       0   |
+| Qwen3-4B-Thinking               | One-Step            | T=0.2    |      0   |       3   |      0   |    201.3 |       0   |
+
+==============================================================================================================
+ TABLE 3: EFFICIENCY - TESTEVAL
+==============================================================================================================
+--------------------------------------------------------------------------------------------------------------
+| Model                           | Mode                | Config   |   TPS | Total Tokens   | Time   | Avg Time/Task (s)   |
+|---------------------------------|---------------------|----------|-------|----------------|--------|---------------------|
+| Qwen3-4B-Thinking               | One-Step            | T=0.8    |   393 | 2,223,344      | 89.1m  | 25.5s               |
+| Qwen3-4B-Thinking               | One-Step            | T=0.2    |   389 | 2,205,488      | 89.2m  | 25.5s               |
+| Llama-3.2-3B-Instruct           | One-Step            | T=0.2    |   242 | 43,106         | 3.5m   | 1.0s                |
+| granite-4.0-micro               | One-Step            | T=0.2    |   233 | 31,038         | 2.3m   | 0.7s                |
+| Ministral-3-3B-Reasoning        | One-Step            | T=0.2    |   221 | 70,016         | 4.8m   | 1.4s                |
+| Ministral-3-3B-Instruct         | One-Step            | T=0.2    |   214 | 24,621         | 2.1m   | 0.6s                |
+| Qwen3-4B-Instruct               | One-Step            | T=0.2    |   214 | 48,818         | 4.3m   | 1.2s                |
+| Ministral-3-3B-Reasoning        | One-Step            | T=0.8    |   210 | 30,596         | 2.6m   | 0.7s                |
+| Llama-3.2-3B-Instruct           | One-Step            | T=0.8    |   206 | 33,491         | 3.1m   | 0.9s                |
+| granite-4.0-micro               | One-Step            | T=0.8    |   203 | 27,553         | 2.5m   | 0.7s                |
+| Ministral-3-3B-Instruct         | One-Step            | T=0.8    |   184 | 22,612         | 2.2m   | 0.6s                |
+| gemma-3-4b-it                   | One-Step            | T=0.2    |   184 | 38,567         | 3.8m   | 1.1s                |
+| gemma-3-4b-it                   | One-Step            | T=0.8    |   178 | 39,280         | 3.9m   | 1.1s                |
+| Ministral-3-8B-Instruct-4bit    | One-Step            | T=0.8    |   176 | 26,925         | 2.5m   | 0.7s                |
+| Qwen3-4B-Instruct               | One-Step            | T=0.8    |   176 | 43,560         | 4.3m   | 1.2s                |
+| Ministral-3-8B-Instruct-4bit    | One-Step            | T=0.2    |   147 | 28,739         | 2.8m   | 0.8s                |
+| Ministral-3-8B-Instruct-8bit    | One-Step            | T=0.2    |   140 | 34,929         | 4.3m   | 1.2s                |
+| Ministral-3-3B-Instruct         | Two-Step            | T=0.8    |   132 | 247,644        | 31.7m  | 9.1s                |
+| Ministral-3-3B-Instruct         | Two-Step            | T=0.2    |   131 | 236,570        | 30.1m  | 8.6s                |
+| Ministral-3-8B-Instruct-8bit    | One-Step            | T=0.8    |   131 | 27,903         | 3.8m   | 1.1s                |
+| Qwen3-4B-Thinking               | Two-Step            | T=0.8    |   129 | 1,485,056      | 189.7m | 54.2s               |
+| Qwen3-4B-Thinking               | Two-Step            | T=0.2    |   126 | 1,447,805      | 189.4m | 54.1s               |
+| Pynguin (Baseline)              | Evolutionary Search | N/A      |   117 | 690,313        | 317.1m | 90.6s               |
+| Ministral-3-8B-Instruct-4bit    | Two-Step            | T=0.8    |   112 | 185,672        | 28.1m  | 8.0s                |
+| Ministral-3-8B-Instruct-4bit    | Two-Step            | T=0.2    |   111 | 150,189        | 22.6m  | 6.5s                |
+| Llama-3.2-3B-Instruct           | Two-Step            | T=0.8    |   106 | 116,767        | 18.5m  | 5.3s                |
+| Llama-3.2-3B-Instruct           | Two-Step            | T=0.2    |   106 | 128,675        | 20.3m  | 5.8s                |
+| Ministral-3-3B-Reasoning        | Two-Step            | T=0.8    |   102 | 165,229        | 27.1m  | 7.7s                |
+| Ministral-3-3B-Reasoning        | Two-Step            | T=0.2    |   102 | 129,869        | 21.4m  | 6.1s                |
+| granite-4.0-micro               | Two-Step            | T=0.8    |    98 | 116,399        | 20.1m  | 5.7s                |
+| granite-4.0-micro               | Two-Step            | T=0.2    |    97 | 104,640        | 18.2m  | 5.2s                |
+| Qwen3-4B-Instruct               | Two-Step            | T=0.8    |    84 | 119,916        | 24.2m  | 6.9s                |
+| Qwen3-4B-Instruct               | Two-Step            | T=0.2    |    84 | 121,294        | 24.4m  | 7.0s                |
+| Ministral-3-8B-Instruct-8bit    | Two-Step            | T=0.8    |    76 | 174,892        | 38.6m  | 11.0s               |
+| Ministral-3-8B-Instruct-8bit    | Two-Step            | T=0.2    |    75 | 134,940        | 30.4m  | 8.7s                |
+| gemma-3-4b-it                   | Two-Step            | T=0.2    |    74 | 84,378         | 19.2m  | 5.5s                |
+| gemma-3-4b-it                   | Two-Step            | T=0.8    |    74 | 83,064         | 19.0m  | 5.4s                |
+| Qwen3-8B-4bit                   | One-Step            | T=0.8    |    68 | 1,651,123      | 387.2m | 110.6s              |
+| Qwen3-8B-4bit                   | One-Step            | T=0.2    |    67 | 1,620,449      | 386.3m | 110.4s              |
+| Meta-Llama-3.1-8B-Instruct-4bit | One-Step            | T=0.2    |    40 | 106,580        | 39.2m  | 11.2s               |
+| Meta-Llama-3.1-8B-Instruct-4bit | One-Step            | T=0.8    |    28 | 60,761         | 42.3m  | 12.1s               |
+| Qwen3-8B-4bit                   | Two-Step            | T=0.2    |    23 | 946,407        | 659.4m | 188.4s              |
+| Qwen3-8B-4bit                   | Two-Step            | T=0.8    |    21 | 826,619        | 634.0m | 181.1s              |
+| Meta-Llama-3.1-8B-Instruct-4bit | Two-Step            | T=0.2    |    19 | 142,757        | 125.7m | 35.9s               |
+| Meta-Llama-3.1-8B-Instruct-4bit | Two-Step            | T=0.8    |    19 | 136,920        | 121.0m | 34.6s               |
+
+--------------------------------------------------------------------------------------------------------------
+Note: Pynguin uses evolutionary search (SBST) and does not generate tokens; excluded from TPS comparisons. See Wall-Clock Efficiency figure.
+
+==============================================================================================================
+ TABLE 4: BASELINE COMPARISON - TESTEVAL (SLMs vs Pynguin)
+==============================================================================================================
+• Compares each SLM's best configuration against the Pynguin deterministic baseline (11 comparisons).
+• Pynguin has zero variance (deterministic) and cannot be compared via statistical tests.
+• Relative difference = (SLM - Pynguin) / Pynguin × 100%
+• Best configuration = highest mean Pass@1 among non-zero-variance configs for each model.
+--------------------------------------------------------------------------------------------------------------
+| SLM Model                       | SLM Config      | SLM Pass@1   | Baseline           | Baseline Pass@1   | Difference   | Relative   |
+|---------------------------------|-----------------|--------------|--------------------|-------------------|--------------|------------|
+| granite-4.0-micro               | Two-Step, T=0.2 | 48.25%       | Pynguin (Baseline) | 70.79%            | -22.54%      | -31.8%     |
+| Ministral-3-3B-Reasoning        | One-Step, T=0.2 | 48.10%       | Pynguin (Baseline) | 70.79%            | -22.70%      | -32.1%     |
+| Ministral-3-8B-Instruct-4bit    | Two-Step, T=0.2 | 42.38%       | Pynguin (Baseline) | 70.79%            | -28.41%      | -40.1%     |
+| Ministral-3-8B-Instruct-8bit    | Two-Step, T=0.2 | 42.22%       | Pynguin (Baseline) | 70.79%            | -28.57%      | -40.4%     |
+| Qwen3-4B-Instruct               | One-Step, T=0.2 | 41.75%       | Pynguin (Baseline) | 70.79%            | -29.05%      | -41.0%     |
+| Qwen3-8B-4bit                   | Two-Step, T=0.2 | 39.52%       | Pynguin (Baseline) | 70.79%            | -31.27%      | -44.2%     |
+| gemma-3-4b-it                   | One-Step, T=0.8 | 32.86%       | Pynguin (Baseline) | 70.79%            | -37.94%      | -53.6%     |
+| Llama-3.2-3B-Instruct           | One-Step, T=0.2 | 29.68%       | Pynguin (Baseline) | 70.79%            | -41.11%      | -58.1%     |
+| Ministral-3-3B-Instruct         | Two-Step, T=0.2 | 26.03%       | Pynguin (Baseline) | 70.79%            | -44.76%      | -63.2%     |
+| Meta-Llama-3.1-8B-Instruct-4bit | One-Step, T=0.2 | 24.44%       | Pynguin (Baseline) | 70.79%            | -46.35%      | -65.5%     |
+| Qwen3-4B-Thinking               | Two-Step, T=0.8 | 6.51%        | Pynguin (Baseline) | 70.79%            | -64.29%      | -90.8%     |
+
+==============================================================================================================
+ TABLE 5: PAIRWISE STATISTICAL COMPARISONS - TESTEVAL (Best Config per Model)
+==============================================================================================================
+• Compares best configuration from each of 12 models (66 pairwise comparisons).
+• Bonferroni-corrected α = 0.0008 (family-wise α = 0.05)
+• p-value format: raw (corrected). * indicates significance after Bonferroni correction.
+• Effect size (Cohen's h): negligible (<0.2), small (0.2-0.5), medium (0.5-0.8), large (≥0.8)
+• Note: Zero-variance configs excluded (invalid for t-tests).
+--------------------------------------------------------------------------------------------------------------
+| Model A                         | Model B                         | Config A                 | Config B        | Mean A   | Mean B   | Diff    |   t-stat | p-value        |   Cohen's h | Effect     | Sig.   |
+|---------------------------------|---------------------------------|--------------------------|-----------------|----------|----------|---------|----------|----------------|-------------|------------|--------|
+| Pynguin (Baseline)              | Qwen3-4B-Thinking               | Evolutionary Search, N/A | Two-Step, T=0.8 | 70.79%   | 6.51%    | +64.29% |    46.15 | <.001 (<.001)* |        1.48 | large      | Yes*   |
+| granite-4.0-micro               | Qwen3-4B-Thinking               | Two-Step, T=0.2          | Two-Step, T=0.8 | 48.25%   | 6.51%    | +41.75% |    26.98 | <.001 (<.001)* |        1.02 | large      | Yes*   |
+| Ministral-3-3B-Reasoning        | Qwen3-4B-Thinking               | One-Step, T=0.2          | Two-Step, T=0.8 | 48.10%   | 6.51%    | +41.59% |     9.1  | 0.008 (0.520)  |        1.02 | large      | No     |
+| Pynguin (Baseline)              | Meta-Llama-3.1-8B-Instruct-4bit | Evolutionary Search, N/A | One-Step, T=0.2 | 70.79%   | 24.44%   | +46.35% |    44.02 | <.001 (<.001)* |        0.97 | large      | Yes*   |
+| Pynguin (Baseline)              | Ministral-3-3B-Instruct         | Evolutionary Search, N/A | Two-Step, T=0.2 | 70.79%   | 26.03%   | +44.76% |    49.85 | <.001 (0.001)* |        0.93 | large      | Yes*   |
+| Ministral-3-8B-Instruct-4bit    | Qwen3-4B-Thinking               | Two-Step, T=0.2          | Two-Step, T=0.8 | 42.38%   | 6.51%    | +35.87% |    11.52 | 0.003 (0.173)  |        0.9  | large      | No     |
+| Ministral-3-8B-Instruct-8bit    | Qwen3-4B-Thinking               | Two-Step, T=0.2          | Two-Step, T=0.8 | 42.22%   | 6.51%    | +35.71% |    27.91 | <.001 (0.008)* |        0.9  | large      | Yes*   |
+| Qwen3-4B-Instruct               | Qwen3-4B-Thinking               | One-Step, T=0.2          | Two-Step, T=0.8 | 41.75%   | 6.51%    | +35.24% |    28.9  | <.001 (0.020)* |        0.89 | large      | Yes*   |
+| Pynguin (Baseline)              | Llama-3.2-3B-Instruct           | Evolutionary Search, N/A | One-Step, T=0.2 | 70.79%   | 29.68%   | +41.11% |    50.79 | <.001 (0.015)* |        0.85 | large      | Yes*   |
+| Qwen3-8B-4bit                   | Qwen3-4B-Thinking               | Two-Step, T=0.2          | Two-Step, T=0.8 | 39.52%   | 6.51%    | +33.02% |    28.05 | <.001 (0.046)* |        0.84 | large      | Yes*   |
+| Pynguin (Baseline)              | gemma-3-4b-it                   | Evolutionary Search, N/A | One-Step, T=0.8 | 70.79%   | 32.86%   | +37.94% |    33.14 | <.001 (<.001)* |        0.78 | medium     | Yes*   |
+| gemma-3-4b-it                   | Qwen3-4B-Thinking               | One-Step, T=0.8          | Two-Step, T=0.8 | 32.86%   | 6.51%    | +26.35% |    18.68 | <.001 (0.006)* |        0.7  | medium     | Yes*   |
+| Llama-3.2-3B-Instruct           | Qwen3-4B-Thinking               | One-Step, T=0.2          | Two-Step, T=0.8 | 29.68%   | 6.51%    | +23.17% |    20.05 | 0.002 (0.137)  |        0.64 | medium     | No     |
+| Pynguin (Baseline)              | Qwen3-8B-4bit                   | Evolutionary Search, N/A | Two-Step, T=0.2 | 70.79%   | 39.52%   | +31.27% |    37.23 | <.001 (0.012)* |        0.64 | medium     | Yes*   |
+| Pynguin (Baseline)              | Qwen3-4B-Instruct               | Evolutionary Search, N/A | One-Step, T=0.2 | 70.79%   | 41.75%   | +29.05% |    32.35 | <.001 (0.004)* |        0.59 | medium     | Yes*   |
+| Pynguin (Baseline)              | Ministral-3-8B-Instruct-8bit    | Evolutionary Search, N/A | Two-Step, T=0.2 | 70.79%   | 42.22%   | +28.57% |    29.2  | <.001 (0.001)* |        0.59 | medium     | Yes*   |
+| Pynguin (Baseline)              | Ministral-3-8B-Instruct-4bit    | Evolutionary Search, N/A | Two-Step, T=0.2 | 70.79%   | 42.38%   | +28.41% |     9.46 | 0.007 (0.454)  |        0.58 | medium     | No     |
+| Ministral-3-3B-Instruct         | Qwen3-4B-Thinking               | Two-Step, T=0.2          | Two-Step, T=0.8 | 26.03%   | 6.51%    | +19.52% |    16.01 | 0.001 (0.087)  |        0.55 | medium     | No     |
+| Meta-Llama-3.1-8B-Instruct-4bit | Qwen3-4B-Thinking               | One-Step, T=0.2          | Two-Step, T=0.8 | 24.44%   | 6.51%    | +17.94% |    13.41 | <.001 (0.036)* |        0.52 | medium     | Yes*   |
+| Ministral-3-3B-Reasoning        | Meta-Llama-3.1-8B-Instruct-4bit | One-Step, T=0.2          | One-Step, T=0.2 | 48.10%   | 24.44%   | +23.65% |     5.28 | 0.031 (1.000)  |        0.5  | small      | No     |
+| granite-4.0-micro               | Meta-Llama-3.1-8B-Instruct-4bit | Two-Step, T=0.2          | One-Step, T=0.2 | 48.25%   | 24.44%   | +23.81% |    19.05 | <.001 (0.008)* |        0.5  | medium     | Yes*   |
+| Pynguin (Baseline)              | Ministral-3-3B-Reasoning        | Evolutionary Search, N/A | One-Step, T=0.2 | 70.79%   | 48.10%   | +22.70% |     5.05 | 0.033 (1.000)  |        0.47 | small      | No     |
+| granite-4.0-micro               | Ministral-3-3B-Instruct         | Two-Step, T=0.2          | Two-Step, T=0.2 | 48.25%   | 26.03%   | +22.22% |    19.8  | <.001 (0.040)* |        0.47 | small      | Yes*   |
+| Pynguin (Baseline)              | granite-4.0-micro               | Evolutionary Search, N/A | Two-Step, T=0.2 | 70.79%   | 48.25%   | +22.54% |    17.22 | <.001 (0.007)* |        0.46 | small      | Yes*   |
+| Ministral-3-3B-Reasoning        | Ministral-3-3B-Instruct         | One-Step, T=0.2          | Two-Step, T=0.2 | 48.10%   | 26.03%   | +22.06% |     4.96 | 0.037 (1.000)  |        0.46 | small      | No     |
+| Ministral-3-8B-Instruct-8bit    | Meta-Llama-3.1-8B-Instruct-4bit | Two-Step, T=0.2          | One-Step, T=0.2 | 42.22%   | 24.44%   | +17.78% |    19.8  | <.001 (0.003)* |        0.38 | small      | Yes*   |
+| Ministral-3-3B-Reasoning        | Llama-3.2-3B-Instruct           | One-Step, T=0.2          | One-Step, T=0.2 | 48.10%   | 29.68%   | +18.41% |     4.16 | 0.053 (1.000)  |        0.38 | small      | No     |
+| granite-4.0-micro               | Llama-3.2-3B-Instruct           | Two-Step, T=0.2          | One-Step, T=0.2 | 48.25%   | 29.68%   | +18.57% |    17.64 | 0.003 (0.172)  |        0.38 | small      | No     |
+| Ministral-3-8B-Instruct-4bit    | Meta-Llama-3.1-8B-Instruct-4bit | Two-Step, T=0.2          | One-Step, T=0.2 | 42.38%   | 24.44%   | +17.94% |     6.02 | 0.020 (1.000)  |        0.38 | small      | No     |
+| Qwen3-4B-Instruct               | Meta-Llama-3.1-8B-Instruct-4bit | One-Step, T=0.2          | One-Step, T=0.2 | 41.75%   | 24.44%   | +17.30% |    21.38 | <.001 (0.008)* |        0.37 | small      | Yes*   |
+| Ministral-3-8B-Instruct-4bit    | Ministral-3-3B-Instruct         | Two-Step, T=0.2          | Two-Step, T=0.2 | 42.38%   | 26.03%   | +16.35% |     5.59 | 0.028 (1.000)  |        0.35 | small      | No     |
+| Ministral-3-8B-Instruct-8bit    | Ministral-3-3B-Instruct         | Two-Step, T=0.2          | Two-Step, T=0.2 | 42.22%   | 26.03%   | +16.19% |    22.81 | <.001 (0.003)* |        0.34 | small      | Yes*   |
+| Qwen3-8B-4bit                   | Meta-Llama-3.1-8B-Instruct-4bit | Two-Step, T=0.2          | One-Step, T=0.2 | 39.52%   | 24.44%   | +15.08% |    20.25 | <.001 (0.040)* |        0.33 | small      | Yes*   |
+| Qwen3-4B-Instruct               | Ministral-3-3B-Instruct         | One-Step, T=0.2          | Two-Step, T=0.2 | 41.75%   | 26.03%   | +15.71% |    26.46 | <.001 (<.001)* |        0.33 | small      | Yes*   |
+| granite-4.0-micro               | gemma-3-4b-it                   | Two-Step, T=0.2          | One-Step, T=0.8 | 48.25%   | 32.86%   | +15.40% |    11.59 | <.001 (0.028)* |        0.32 | small      | Yes*   |
+| Ministral-3-3B-Reasoning        | gemma-3-4b-it                   | One-Step, T=0.2          | One-Step, T=0.8 | 48.10%   | 32.86%   | +15.24% |     3.39 | 0.070 (1.000)  |        0.31 | small      | No     |
+| Qwen3-8B-4bit                   | Ministral-3-3B-Instruct         | Two-Step, T=0.2          | Two-Step, T=0.2 | 39.52%   | 26.03%   | +13.49% |    26.88 | <.001 (0.003)* |        0.29 | small      | Yes*   |
+| Ministral-3-8B-Instruct-4bit    | Llama-3.2-3B-Instruct           | Two-Step, T=0.2          | One-Step, T=0.2 | 42.38%   | 29.68%   | +12.70% |     4.38 | 0.048 (1.000)  |        0.27 | small      | No     |
+| Ministral-3-8B-Instruct-8bit    | Llama-3.2-3B-Instruct           | Two-Step, T=0.2          | One-Step, T=0.2 | 42.22%   | 29.68%   | +12.54% |    21.11 | 0.001 (0.072)  |        0.26 | small      | No     |
+| Qwen3-4B-Instruct               | Llama-3.2-3B-Instruct           | One-Step, T=0.2          | One-Step, T=0.2 | 41.75%   | 29.68%   | +12.06% |    26.87 | <.001 (0.022)* |        0.25 | small      | Yes*   |
+| Qwen3-8B-4bit                   | Llama-3.2-3B-Instruct           | Two-Step, T=0.2          | One-Step, T=0.2 | 39.52%   | 29.68%   | +9.84%  |    31    | <.001 (0.003)* |        0.21 | small      | Yes*   |
+| Ministral-3-8B-Instruct-4bit    | gemma-3-4b-it                   | Two-Step, T=0.2          | One-Step, T=0.8 | 42.38%   | 32.86%   | +9.52%  |     3.16 | 0.072 (1.000)  |        0.2  | negligible | No     |
+| Ministral-3-8B-Instruct-8bit    | gemma-3-4b-it                   | Two-Step, T=0.2          | One-Step, T=0.8 | 42.22%   | 32.86%   | +9.37%  |     9.33 | 0.001 (0.083)  |        0.19 | negligible | No     |
+| gemma-3-4b-it                   | Meta-Llama-3.1-8B-Instruct-4bit | One-Step, T=0.8          | One-Step, T=0.2 | 32.86%   | 24.44%   | +8.41%  |     7.81 | 0.002 (0.108)  |        0.19 | negligible | No     |
+| Qwen3-4B-Instruct               | gemma-3-4b-it                   | One-Step, T=0.2          | One-Step, T=0.8 | 41.75%   | 32.86%   | +8.89%  |     9.6  | 0.002 (0.164)  |        0.18 | negligible | No     |
+| granite-4.0-micro               | Qwen3-8B-4bit                   | Two-Step, T=0.2          | Two-Step, T=0.2 | 48.25%   | 39.52%   | +8.73%  |     8.11 | 0.010 (0.661)  |        0.18 | negligible | No     |
+| Ministral-3-3B-Reasoning        | Qwen3-8B-4bit                   | One-Step, T=0.2          | Two-Step, T=0.2 | 48.10%   | 39.52%   | +8.57%  |     1.93 | 0.192 (1.000)  |        0.17 | negligible | No     |
+| gemma-3-4b-it                   | Ministral-3-3B-Instruct         | One-Step, T=0.8          | Two-Step, T=0.2 | 32.86%   | 26.03%   | +6.83%  |     7.37 | 0.005 (0.351)  |        0.15 | negligible | No     |
+| Qwen3-8B-4bit                   | gemma-3-4b-it                   | Two-Step, T=0.2          | One-Step, T=0.8 | 39.52%   | 32.86%   | +6.67%  |     7.67 | 0.009 (0.606)  |        0.14 | negligible | No     |
+| Ministral-3-3B-Reasoning        | Qwen3-4B-Instruct               | One-Step, T=0.2          | One-Step, T=0.2 | 48.10%   | 41.75%   | +6.35%  |     1.43 | 0.287 (1.000)  |        0.13 | negligible | No     |
+| granite-4.0-micro               | Qwen3-4B-Instruct               | Two-Step, T=0.2          | One-Step, T=0.2 | 48.25%   | 41.75%   | +6.51%  |     5.8  | 0.014 (0.955)  |        0.13 | negligible | No     |
+| Llama-3.2-3B-Instruct           | Meta-Llama-3.1-8B-Instruct-4bit | One-Step, T=0.2          | One-Step, T=0.2 | 29.68%   | 24.44%   | +5.24%  |     7.38 | 0.013 (0.890)  |        0.12 | negligible | No     |
+| granite-4.0-micro               | Ministral-3-8B-Instruct-8bit    | Two-Step, T=0.2          | Two-Step, T=0.2 | 48.25%   | 42.22%   | +6.03%  |     5.08 | 0.014 (0.893)  |        0.12 | negligible | No     |
+| granite-4.0-micro               | Ministral-3-8B-Instruct-4bit    | Two-Step, T=0.2          | Two-Step, T=0.2 | 48.25%   | 42.38%   | +5.87%  |     1.91 | 0.170 (1.000)  |        0.12 | negligible | No     |
+| Ministral-3-3B-Reasoning        | Ministral-3-8B-Instruct-8bit    | One-Step, T=0.2          | Two-Step, T=0.2 | 48.10%   | 42.22%   | +5.87%  |     1.32 | 0.315 (1.000)  |        0.12 | negligible | No     |
+| Ministral-3-3B-Reasoning        | Ministral-3-8B-Instruct-4bit    | One-Step, T=0.2          | Two-Step, T=0.2 | 48.10%   | 42.38%   | +5.71%  |     1.08 | 0.350 (1.000)  |        0.11 | negligible | No     |
+| Llama-3.2-3B-Instruct           | Ministral-3-3B-Instruct         | One-Step, T=0.2          | Two-Step, T=0.2 | 29.68%   | 26.03%   | +3.65%  |     8.13 | 0.007 (0.449)  |        0.08 | negligible | No     |
+| gemma-3-4b-it                   | Llama-3.2-3B-Instruct           | One-Step, T=0.8          | One-Step, T=0.2 | 32.86%   | 29.68%   | +3.17%  |     3.78 | 0.057 (1.000)  |        0.07 | negligible | No     |
+| Ministral-3-8B-Instruct-4bit    | Qwen3-8B-4bit                   | Two-Step, T=0.2          | Two-Step, T=0.2 | 42.38%   | 39.52%   | +2.86%  |     0.98 | 0.428 (1.000)  |        0.06 | negligible | No     |
+| Ministral-3-8B-Instruct-8bit    | Qwen3-8B-4bit                   | Two-Step, T=0.2          | Two-Step, T=0.2 | 42.22%   | 39.52%   | +2.70%  |     4.25 | 0.026 (1.000)  |        0.05 | negligible | No     |
+| Qwen3-4B-Instruct               | Qwen3-8B-4bit                   | One-Step, T=0.2          | Two-Step, T=0.2 | 41.75%   | 39.52%   | +2.22%  |     4.43 | 0.016 (1.000)  |        0.05 | negligible | No     |
+| Ministral-3-3B-Instruct         | Meta-Llama-3.1-8B-Instruct-4bit | Two-Step, T=0.2          | One-Step, T=0.2 | 26.03%   | 24.44%   | +1.59%  |     1.96 | 0.136 (1.000)  |        0.04 | negligible | No     |
+| Ministral-3-8B-Instruct-4bit    | Qwen3-4B-Instruct               | Two-Step, T=0.2          | One-Step, T=0.2 | 42.38%   | 41.75%   | +0.63%  |     0.22 | 0.848 (1.000)  |        0.01 | negligible | No     |
+| Ministral-3-8B-Instruct-8bit    | Qwen3-4B-Instruct               | Two-Step, T=0.2          | One-Step, T=0.2 | 42.22%   | 41.75%   | +0.48%  |     0.67 | 0.542 (1.000)  |        0.01 | negligible | No     |
+| Ministral-3-8B-Instruct-4bit    | Ministral-3-8B-Instruct-8bit    | Two-Step, T=0.2          | Two-Step, T=0.2 | 42.38%   | 42.22%   | +0.16%  |     0.05 | 0.962 (1.000)  |        0    | negligible | No     |
+| granite-4.0-micro               | Ministral-3-3B-Reasoning        | Two-Step, T=0.2          | One-Step, T=0.2 | 48.25%   | 48.10%   | +0.16%  |     0.03 | 0.975 (1.000)  |        0    | negligible | No     |
+
+--------------------------------------------------------------------------------------------------------------
+Interpretation: 26/66 comparisons show statistically significant differences (p<0.05, Bonferroni-corrected).
+  IMPORTANT: Non-significance (40 pairs) does NOT imply equivalence. Large effect sizes (h≥0.8) were observed
+  for 10/66 pairs, and 20/66 pairs show medium-to-large effects (h≥0.5),
+  suggesting meaningful practical differences despite limited statistical power (N=3 runs, 210 tasks).
+  See TestEval results (N=210 tasks) for more robust statistical inference with larger sample sizes.
+
+==============================================================================================================
+ TABLE 6: BOOTSTRAP RANKING STABILITY - TESTEVAL (Best Configs, 1000 iterations)
+==============================================================================================================
+• Rankings based on best configuration per model (excluding zero-variance baselines).
+• Top-1 Stability: 100.0% (best model remains #1 across resampling)
+• Top-3 Stability: 90.0% (top 3 models unchanged)
+• Interpretation: Robust (≥70%), Moderate (50-70%), Unstable (<50%)
+--------------------------------------------------------------------------------------------------------------
+| Model (Best Config)                               |   Modal Rank | Rank Stability   | Interpretation   |
+|---------------------------------------------------|--------------|------------------|------------------|
+| Pynguin (Baseline) (Evolutionary Search, N/A)     |            1 | 100.0%           | Robust           |
+| granite-4.0-micro (Two-Step, T=0.2)               |            2 | 56.4%            | Moderate         |
+| Ministral-3-3B-Reasoning (One-Step, T=0.2)        |            3 | 45.8%            | Unstable         |
+| Ministral-3-8B-Instruct-4bit (Two-Step, T=0.2)    |            4 | 48.9%            | Unstable         |
+| Ministral-3-8B-Instruct-8bit (Two-Step, T=0.2)    |            5 | 51.1%            | Moderate         |
+| Qwen3-4B-Instruct (One-Step, T=0.2)               |            6 | 50.5%            | Moderate         |
+| Qwen3-8B-4bit (Two-Step, T=0.2)                   |            7 | 85.0%            | Robust           |
+| gemma-3-4b-it (One-Step, T=0.8)                   |            8 | 100.0%           | Robust           |
+| Llama-3.2-3B-Instruct (One-Step, T=0.2)           |            9 | 100.0%           | Robust           |
+| Ministral-3-3B-Instruct (Two-Step, T=0.2)         |           10 | 99.6%            | Robust           |
+| Meta-Llama-3.1-8B-Instruct-4bit (One-Step, T=0.2) |           11 | 99.6%            | Robust           |
+| Qwen3-4B-Thinking (Two-Step, T=0.8)               |           12 | 100.0%           | Robust           |
+
+==============================================================================================================
+ TABLE 7: N=3 RUNS JUSTIFICATION - TESTEVAL (Variance Analysis)
+==============================================================================================================
+• Variance Distribution Across All 45 Configurations:
+  - Median Std: 1.80%, Mean Std: 2.48%
+  - Range: [0.27%, 8.10%]
+  - Zero-variance configs: 0.0% (due to discrete task granularity)
+• Table shows statistics for best configuration per model.
+• 95% CI Width = t-critical × SEM × 2 (t-critical = 4.303 for df=2)
+• N=3 runs: SEM = std / √3.
+--------------------------------------------------------------------------------------------------------------
+| Model                           | Best Config              | Mean   | Std   | SEM   | 95% CI Width   |
+|---------------------------------|--------------------------|--------|-------|-------|----------------|
+| Pynguin (Baseline)              | Evolutionary Search, N/A | 70.79% | 1.37% | 0.79% | ±3.41%         |
+| granite-4.0-micro               | Two-Step, T=0.2          | 48.25% | 1.80% | 1.04% | ±4.48%         |
+| Ministral-3-3B-Reasoning        | One-Step, T=0.2          | 48.10% | 7.66% | 4.42% | ±19.04%        |
+| Ministral-3-8B-Instruct-4bit    | Two-Step, T=0.2          | 42.38% | 5.02% | 2.90% | ±12.46%        |
+| Ministral-3-8B-Instruct-8bit    | Two-Step, T=0.2          | 42.22% | 0.99% | 0.57% | ±2.46%         |
+| Qwen3-4B-Instruct               | One-Step, T=0.2          | 41.75% | 0.73% | 0.42% | ±1.81%         |
+| Qwen3-8B-4bit                   | Two-Step, T=0.2          | 39.52% | 0.48% | 0.27% | ±1.18%         |
+| gemma-3-4b-it                   | One-Step, T=0.8          | 32.86% | 1.43% | 0.82% | ±3.55%         |
+| Llama-3.2-3B-Instruct           | One-Step, T=0.2          | 29.68% | 0.27% | 0.16% | ±0.68%         |
+| Ministral-3-3B-Instruct         | Two-Step, T=0.2          | 26.03% | 0.73% | 0.42% | ±1.81%         |
+| Meta-Llama-3.1-8B-Instruct-4bit | One-Step, T=0.2          | 24.44% | 1.20% | 0.69% | ±2.98%         |
+| Qwen3-4B-Thinking               | Two-Step, T=0.8          | 6.51%  | 1.98% | 1.14% | ±4.92%         |
+
+==============================================================================================================
+
+==============================================================================================================
+ FOOTNOTES
+==============================================================================================================
+[1] COVERAGE METHODOLOGY: Two coverage metrics are reported. 'Raw Cov' (ungated) measures line coverage for all test outcomes except TIMEOUT, SYNTAX_ERROR, and NO_CODE — even assertion-failing tests report actual coverage, reflecting how much of the solution code the test exercised before failing. 'Gated Cov' measures coverage restricted to assertion-passing tasks only (our Pass@1 criterion). Note: Wang et al. (2025a)'s 'Overall Line Coverage' (marked [a] in Table 1) applies a more lenient gating condition (Execution Correctness: test compiles and runs without crashing) rather than assertion passing; it is therefore not directly equivalent to our Gated Cov but is placed in the same column as the closest analogue. Both our metrics appear in Table 1.
+
+[2] PYNGUIN TPS REPRESENTATION: Pynguin does not generate tokens; it uses evolutionary search (SBST/AST mutations). Pynguin is excluded from TPS trend plots. For cross-paradigm efficiency comparison, refer to the Wall-Clock Efficiency figure.
+
+LITERATURE BASELINES: Results for five reference models are drawn from two independent studies that evaluated on the TestEval benchmark. Metric definitions differ between sources:
+  Wang et al. (2025a) — GPT-4o, Llama-3.1-8B-Instruct:
+    Pass@1 column reports their 'Execution Correctness' (EC): the fraction of tasks where the generated test compiles and runs to completion without an unhandled exception. EC does NOT require assertions to pass; it is therefore more lenient than our assertion-based Pass@1. Values are marked [a].
+    Gated Cov column reports their 'Overall Line Coverage': average line coverage measured over EC-passing tasks. Because the gating criterion is EC (not assertion passing), this metric is more lenient than our Gated Cov and is marked [a]. Mutation Score was not reported by Wang et al. (2025a) on TestEval.
+  Huang et al. (2025b) — Phi-4-mini-Instruct, DeepSeek-Coder-1.3B-Instruct, Gemma-3-4B-IT:
+    Pass@1 column reports their 'Pass@1': fraction of tasks where the generated test passes all assertions. This is assertion-based and directly comparable to our Pass@1.
+    Gated Cov column reports their 'LCov@1': average line coverage on assertion-passing tasks, directly comparable to our Gated Cov.
+    Mut Score reports their 'Mut@1': mutation score on TestEval (Table 5), comparable to ours.
+  Shared context: all baselines used the same TestEval benchmark (same tasks, same reference solutions). Inference details (engine, hardware, sampling) may differ from our setup (vLLM, RTX 4090, T=0.0).
+
+[4] STATISTICAL METHODOLOGY: All pairwise comparisons use Welch's t-test (unequal variances). P-values are Bonferroni-corrected for multiple comparisons. Effect sizes reported as Cohen's h (appropriate for proportions): |h|<0.2=negligible, 0.2-0.5=small, 0.5-0.8=medium, ≥0.8=large. 95% confidence intervals use t-distribution (N=3 runs, t-critical=4.303, df=2).
+
+[5] N=3 RUNS JUSTIFICATION: 3 independent runs per configuration balances statistical rigor with computational cost. With N=3: (1) 95% CIs use t-critical value of 4.303 (df=2); (2) Bootstrap analysis confirms ranking stability across resampling. The variance convergence table demonstrates diminishing returns for additional runs.
+
+[6] BOOTSTRAP STABILITY: Rankings assessed via 1000 bootstrap iterations resampling runs with replacement. 'Modal Rank' = most frequent rank position. 'Rank Stability' = percentage of iterations where configuration achieved its modal rank. High stability (>70%) indicates robust rankings.
+
+[7] BEST CONFIGURATION SELECTION: For Tables 4-7, 'best configuration' for each model is defined as the configuration (prompt mode + temperature) with the highest mean Pass@1 across N=3 runs, excluding configurations with zero variance (which cannot be used in statistical tests). This reduces comparisons from all temperature variants to one representative per model.
+
+EXPERIMENTAL SETUP (TestEval Study):
+• Hardware: vLLM, Single RTX 4090, FP16 precision (INT4 for quantized) 4096 max tokens.
+• Baseline: Literature baselines from Wang et al. (2025a) and Huang et al. (2025b) for comparison.
+• Dataset: 'TestEval' - 210 programming problems from TestEval benchmark.
+• Definitions:
+  - Pass@1: % of tasks passing assertions.
+  - Raw Cov: Ungated line coverage (all tasks incl. assertion failures, excl. timeouts/syntax errors/no-code). Gated Cov: Assertion-passing tasks only.
+  - Total Tokens: Average total tokens generated per run.

@@ -1,0 +1,26 @@
+anthropic==0.71.0 # For LLM-as-a-judge
+accelerate==1.11.0 # TestEval legacy HF inference pipeline use it
+cbor2==5.8.0 # For evaluation
+cosmic-ray==8.4.3 # For mutation testing
+firebase-admin==7.1.0 # Used to import humaneval results
+matplotlib==3.10.6 # Step 1 data understanding phase use it
+mlflow==3.5.0 # Used for saving data
+pandas==2.3.1 # Used in step 3 and step 4 for data handling
+pynguin==0.35.0 # Automatic test generator used for baseline approach to compare with SLMs
+python-docx==1.2.0 # Automatically generating docx tables from txt
+python-dotenv==1.2.1 # Used for loading env vars like api keys
+pytest==8.4.2 # Used by our tests folder for unit tests
+pytest-cov==5.0.0 # Used by our tests folder for unit tests
+radon==6.0.1 # Used in step 1 data understanding EDA for TestEval problem evaluation
+scrapy==2.14.1 # For evaluation
+scipy==1.15.3 # Used for step4_evaluation/create_summary_report.py
+seaborn==0.13.2 # Used in step 1 data understanding for visualization styles.
+sortedcontainers==2.4.0 # TestEval require it
+tabulate==0.9.0 # Used in step 4 evaluation step for creating summary report
+torch==2.9.0 # Used in TestEval for manual seeding and device checks
+transformers==4.57.3 # Used for loading tokenizers
+toml==0.10.2 # For configuration generation
+tqdm==4.67.1 # Used in all scripts for the progress bar
+vllm==0.12.0 # Used for inference in TestEval (our change). Comment out for Windows since has no equivalent.
+xxhash==3.6.0 # For evaluation
+w3lib==2.4.0 # For evaluation
