@@ -1,0 +1,179 @@
+==============================================================================================================
+ REAL WORLD EVALUATION REPORT
+==============================================================================================================
+• Benchmark Size (N): 50 unique tasks.
+• Metric Format: mean (±std)[95% CI lower, upper] - e.g., 25.71% (±0.82)[22.18, 29.24]
+• 95% CI computed using t-distribution (N=10 runs, t-critical=2.262, df=9).
+--------------------------------------------------------------------------------------------------------------
+| Model                        | Mode                | Config   |   Runs | Avg Tokens   | Pass@1 (95% CI)              | Raw Cov (95% CI)         | Gated Cov (95% CI)       | Mut Score (95% CI)       |
+|------------------------------|---------------------|----------|--------|--------------|------------------------------|--------------------------|--------------------------|--------------------------|
+| Pynguin (Baseline)           | Evolutionary Search | N/A      |     10 | 6,052        | 68.40% (±2.07)[66.92, 69.88] | 65.7% (±1.1)[64.9, 66.5] | 76.9% (±1.7)[75.7, 78.1] | 6.9% (±0.8)[6.3, 7.5]    |
+| Qwen3-4B-Instruct            | Two-Step            | T=0.2    |     10 | 24,673       | 34.80% (±5.43)[30.91, 38.69] | 78.0% (±2.7)[76.0, 79.9] | 88.8% (±4.7)[85.5, 92.2] | 17.2% (±3.9)[14.4, 20.0] |
+| Qwen3-4B-Instruct            | One-Step            | T=0.2    |     10 | 5,486        | 29.80% (±1.99)[28.38, 31.22] | 78.7% (±3.4)[76.3, 81.1] | 94.2% (±2.3)[92.5, 95.8] | 22.5% (±1.4)[21.5, 23.5] |
+| Ministral-3-8B-Instruct-8bit | Two-Step            | T=0.2    |     10 | 30,592       | 29.00% (±5.52)[25.05, 32.95] | 77.6% (±2.3)[76.0, 79.3] | 88.6% (±5.7)[84.5, 92.8] | 25.5% (±3.2)[23.2, 27.8] |
+| Ministral-3-3B-Reasoning     | Two-Step            | T=0.2    |     10 | 31,587       | 25.00% (±4.24)[21.96, 28.04] | 75.8% (±3.5)[73.4, 78.3] | 84.6% (±5.4)[80.7, 88.5] | 14.5% (±1.5)[13.4, 15.6] |
+| Ministral-3-8B-Instruct-8bit | One-Step            | T=0.2    |     10 | 9,838        | 24.40% (±1.84)[23.09, 25.71] | 71.0% (±3.7)[68.4, 73.7] | 93.5% (±2.6)[91.6, 95.3] | 21.6% (±2.7)[19.7, 23.5] |
+| granite-4.0-micro            | Two-Step            | T=0.2    |     10 | 22,095       | 23.00% (±3.43)[20.54, 25.46] | 76.7% (±4.0)[73.8, 79.5] | 85.1% (±5.9)[80.8, 89.3] | 17.4% (±2.0)[16.0, 18.9] |
+| granite-4.0-micro            | One-Step            | T=0.2    |     10 | 10,611       | 22.00% (±1.33)[21.05, 22.95] | 74.1% (±2.4)[72.4, 75.8] | 87.1% (±7.1)[82.0, 92.1] | 27.7% (±2.2)[26.1, 29.2] |
+| gemma-3-4b-it                | Two-Step            | T=0.2    |     10 | 28,568       | 21.00% (±2.71)[19.06, 22.94] | 74.2% (±3.0)[72.1, 76.4] | 84.8% (±8.6)[78.6, 90.9] | 26.5% (±4.1)[23.5, 29.4] |
+| Ministral-3-3B-Reasoning     | One-Step            | T=0.2    |     10 | 10,365       | 21.00% (±4.35)[17.89, 24.11] | 71.3% (±3.9)[68.5, 74.1] | 90.5% (±4.6)[87.2, 93.7] | 18.3% (±4.1)[15.4, 21.2] |
+| gemma-3-4b-it                | One-Step            | T=0.2    |     10 | 6,928        | 20.20% (±1.99)[18.78, 21.62] | 77.9% (±0.3)[77.8, 78.1] | 93.2% (±2.8)[91.2, 95.2] | 23.3% (±1.9)[21.9, 24.7] |
+
+--------------------------------------------------------------------------------------------------------------
+Note: Raw Cov = ungated (all tasks, incl. failures). Gated Cov = assertion-passing tasks only (our metric).
+      [a] Wang et al. (2025a) baselines use Execution Correctness (EC): test compiles/runs without crash, NOT assertion-passing.
+          Their Gated Cov is therefore EC-gated (more lenient than our assertion-gated Gated Cov).
+      Literature baselines show point estimates only (no CI available from source papers).
+      See Footnote [1] for coverage methodology; Footnote [3] for literature metric definitions.
+
+==============================================================================================================
+ TABLE 2: RELIABILITY - REAL WORLD (Avg Failures)
+==============================================================================================================
+--------------------------------------------------------------------------------------------------------------
+| Model                        | Mode                | Config   |   Assert |   Runtime |   Syntax |   NoCode |   Timeout |
+|------------------------------|---------------------|----------|----------|-----------|----------|----------|-----------|
+| Pynguin (Baseline)           | Evolutionary Search | N/A      |      1.3 |       6.2 |      0   |      8.1 |       0.2 |
+| Qwen3-4B-Instruct            | Two-Step            | T=0.2    |      5.3 |      26.6 |      0   |      0.4 |       0.3 |
+| Qwen3-4B-Instruct            | One-Step            | T=0.2    |      4.7 |      29.7 |      0   |      0.1 |       0.6 |
+| Ministral-3-8B-Instruct-8bit | Two-Step            | T=0.2    |      5.9 |      28.3 |      0   |      0.1 |       1.2 |
+| Ministral-3-3B-Reasoning     | Two-Step            | T=0.2    |      8.3 |      26.9 |      0   |      1.8 |       0.5 |
+| Ministral-3-8B-Instruct-8bit | One-Step            | T=0.2    |      5.4 |      27.4 |      0   |      5   |       0   |
+| granite-4.0-micro            | Two-Step            | T=0.2    |      9.9 |      27   |      0   |      1.1 |       0.5 |
+| granite-4.0-micro            | One-Step            | T=0.2    |      7.2 |      28.3 |      0   |      3.2 |       0.3 |
+| gemma-3-4b-it                | Two-Step            | T=0.2    |      9   |      27.7 |      0.1 |      2.4 |       0.3 |
+| Ministral-3-3B-Reasoning     | One-Step            | T=0.2    |      5.9 |      30.1 |      0.2 |      2.9 |       0.4 |
+| gemma-3-4b-it                | One-Step            | T=0.2    |      9.5 |      29.8 |      0.1 |      0.5 |       0   |
+
+==============================================================================================================
+ TABLE 3: EFFICIENCY - REAL WORLD
+==============================================================================================================
+--------------------------------------------------------------------------------------------------------------
+| Model                        | Mode                | Config   |   TPS | Total Tokens   | Time   | Avg Time/Task (s)   |
+|------------------------------|---------------------|----------|-------|----------------|--------|---------------------|
+| Ministral-3-3B-Reasoning     | One-Step            | T=0.2    |    86 | 10,365         | 1.8m   | 2.1s                |
+| Ministral-3-3B-Reasoning     | Two-Step            | T=0.2    |    83 | 31,587         | 7.7m   | 9.3s                |
+| granite-4.0-micro            | One-Step            | T=0.2    |    82 | 10,611         | 2.1m   | 2.6s                |
+| granite-4.0-micro            | Two-Step            | T=0.2    |    80 | 22,095         | 5.9m   | 7.0s                |
+| Qwen3-4B-Instruct            | One-Step            | T=0.2    |    73 | 5,486          | 1.3m   | 1.6s                |
+| Qwen3-4B-Instruct            | Two-Step            | T=0.2    |    71 | 24,673         | 8.3m   | 9.9s                |
+| gemma-3-4b-it                | One-Step            | T=0.2    |    67 | 6,928          | 1.9m   | 2.3s                |
+| Ministral-3-8B-Instruct-8bit | One-Step            | T=0.2    |    64 | 9,838          | 2.6m   | 3.1s                |
+| Ministral-3-8B-Instruct-8bit | Two-Step            | T=0.2    |    64 | 30,592         | 12.0m  | 14.4s               |
+| gemma-3-4b-it                | Two-Step            | T=0.2    |    61 | 28,568         | 8.6m   | 10.4s               |
+| Pynguin (Baseline)           | Evolutionary Search | N/A      |    16 | 6,052          | 56.2m  | 67.5s               |
+
+--------------------------------------------------------------------------------------------------------------
+Note: Pynguin uses evolutionary search (SBST) and does not generate tokens; excluded from TPS comparisons. See Wall-Clock Efficiency figure.
+
+==============================================================================================================
+ TABLE 4: BASELINE COMPARISON - REAL WORLD (SLMs vs Pynguin)
+==============================================================================================================
+• Compares each SLM's best configuration against the Pynguin deterministic baseline (5 comparisons).
+• Pynguin has zero variance (deterministic) and cannot be compared via statistical tests.
+• Relative difference = (SLM - Pynguin) / Pynguin × 100%
+• Best configuration = highest mean Pass@1 among non-zero-variance configs for each model.
+--------------------------------------------------------------------------------------------------------------
+| SLM Model                    | SLM Config      | SLM Pass@1   | Baseline           | Baseline Pass@1   | Difference   | Relative   |
+|------------------------------|-----------------|--------------|--------------------|-------------------|--------------|------------|
+| Qwen3-4B-Instruct            | Two-Step, T=0.2 | 34.80%       | Pynguin (Baseline) | 68.40%            | -33.60%      | -49.1%     |
+| Ministral-3-8B-Instruct-8bit | Two-Step, T=0.2 | 29.00%       | Pynguin (Baseline) | 68.40%            | -39.40%      | -57.6%     |
+| Ministral-3-3B-Reasoning     | Two-Step, T=0.2 | 25.00%       | Pynguin (Baseline) | 68.40%            | -43.40%      | -63.5%     |
+| granite-4.0-micro            | Two-Step, T=0.2 | 23.00%       | Pynguin (Baseline) | 68.40%            | -45.40%      | -66.4%     |
+| gemma-3-4b-it                | Two-Step, T=0.2 | 21.00%       | Pynguin (Baseline) | 68.40%            | -47.40%      | -69.3%     |
+
+==============================================================================================================
+ TABLE 5: PAIRWISE STATISTICAL COMPARISONS - REAL WORLD (Best Config per Model)
+==============================================================================================================
+• Compares best configuration from each of 6 models (15 pairwise comparisons).
+• Bonferroni-corrected α = 0.0033 (family-wise α = 0.05)
+• p-value format: raw (corrected). * indicates significance after Bonferroni correction.
+• Effect size (Cohen's h): negligible (<0.2), small (0.2-0.5), medium (0.5-0.8), large (≥0.8)
+• Note: Zero-variance configs excluded (invalid for t-tests).
+--------------------------------------------------------------------------------------------------------------
+| Model A                      | Model B                      | Config A                 | Config B        | Mean A   | Mean B   | Diff    |   t-stat | p-value        |   Cohen's h | Effect     | Sig.   |
+|------------------------------|------------------------------|--------------------------|-----------------|----------|----------|---------|----------|----------------|-------------|------------|--------|
+| Pynguin (Baseline)           | gemma-3-4b-it                | Evolutionary Search, N/A | Two-Step, T=0.2 | 68.40%   | 21.00%   | +47.40% |    44.01 | <.001 (<.001)* |        1    | large      | Yes*   |
+| Pynguin (Baseline)           | granite-4.0-micro            | Evolutionary Search, N/A | Two-Step, T=0.2 | 68.40%   | 23.00%   | +45.40% |    35.84 | <.001 (<.001)* |        0.95 | large      | Yes*   |
+| Pynguin (Baseline)           | Ministral-3-3B-Reasoning     | Evolutionary Search, N/A | Two-Step, T=0.2 | 68.40%   | 25.00%   | +43.40% |    29.08 | <.001 (<.001)* |        0.9  | large      | Yes*   |
+| Pynguin (Baseline)           | Ministral-3-8B-Instruct-8bit | Evolutionary Search, N/A | Two-Step, T=0.2 | 68.40%   | 29.00%   | +39.40% |    21.15 | <.001 (<.001)* |        0.81 | large      | Yes*   |
+| Pynguin (Baseline)           | Qwen3-4B-Instruct            | Evolutionary Search, N/A | Two-Step, T=0.2 | 68.40%   | 34.80%   | +33.60% |    18.28 | <.001 (<.001)* |        0.69 | medium     | Yes*   |
+| Qwen3-4B-Instruct            | gemma-3-4b-it                | Two-Step, T=0.2          | Two-Step, T=0.2 | 34.80%   | 21.00%   | +13.80% |     7.19 | <.001 (<.001)* |        0.31 | small      | Yes*   |
+| Qwen3-4B-Instruct            | granite-4.0-micro            | Two-Step, T=0.2          | Two-Step, T=0.2 | 34.80%   | 23.00%   | +11.80% |     5.81 | <.001 (<.001)* |        0.26 | small      | Yes*   |
+| Qwen3-4B-Instruct            | Ministral-3-3B-Reasoning     | Two-Step, T=0.2          | Two-Step, T=0.2 | 34.80%   | 25.00%   | +9.80%  |     4.5  | <.001 (0.005)* |        0.21 | small      | Yes*   |
+| Ministral-3-8B-Instruct-8bit | gemma-3-4b-it                | Two-Step, T=0.2          | Two-Step, T=0.2 | 29.00%   | 21.00%   | +8.00%  |     4.12 | 0.001 (0.018)* |        0.19 | negligible | Yes*   |
+| Ministral-3-8B-Instruct-8bit | granite-4.0-micro            | Two-Step, T=0.2          | Two-Step, T=0.2 | 29.00%   | 23.00%   | +6.00%  |     2.92 | 0.011 (0.158)  |        0.14 | negligible | No     |
+| Qwen3-4B-Instruct            | Ministral-3-8B-Instruct-8bit | Two-Step, T=0.2          | Two-Step, T=0.2 | 34.80%   | 29.00%   | +5.80%  |     2.37 | 0.029 (0.439)  |        0.12 | negligible | No     |
+| Ministral-3-3B-Reasoning     | gemma-3-4b-it                | Two-Step, T=0.2          | Two-Step, T=0.2 | 25.00%   | 21.00%   | +4.00%  |     2.51 | 0.024 (0.354)  |        0.1  | negligible | No     |
+| Ministral-3-8B-Instruct-8bit | Ministral-3-3B-Reasoning     | Two-Step, T=0.2          | Two-Step, T=0.2 | 29.00%   | 25.00%   | +4.00%  |     1.82 | 0.087 (1.000)  |        0.09 | negligible | No     |
+| Ministral-3-3B-Reasoning     | granite-4.0-micro            | Two-Step, T=0.2          | Two-Step, T=0.2 | 25.00%   | 23.00%   | +2.00%  |     1.16 | 0.262 (1.000)  |        0.05 | negligible | No     |
+| granite-4.0-micro            | gemma-3-4b-it                | Two-Step, T=0.2          | Two-Step, T=0.2 | 23.00%   | 21.00%   | +2.00%  |     1.45 | 0.166 (1.000)  |        0.05 | negligible | No     |
+
+--------------------------------------------------------------------------------------------------------------
+Interpretation: 9/15 comparisons show statistically significant differences (p<0.05, Bonferroni-corrected).
+  IMPORTANT: Non-significance (6 pairs) does NOT imply equivalence. Large effect sizes (h≥0.8) were observed
+  for 4/15 pairs, and 5/15 pairs show medium-to-large effects (h≥0.5),
+  suggesting meaningful practical differences despite limited statistical power (N=10 runs, 50 tasks).
+  See TestEval results (N=210 tasks) for more robust statistical inference with larger sample sizes.
+
+==============================================================================================================
+ TABLE 6: BOOTSTRAP RANKING STABILITY - REAL WORLD (Best Configs, 1000 iterations)
+==============================================================================================================
+• Rankings based on best configuration per model (excluding zero-variance baselines).
+• Top-1 Stability: 100.0% (best model remains #1 across resampling)
+• Top-3 Stability: 98.4% (top 3 models unchanged)
+• Interpretation: Robust (≥70%), Moderate (50-70%), Unstable (<50%)
+--------------------------------------------------------------------------------------------------------------
+| Model (Best Config)                            |   Modal Rank | Rank Stability   | Interpretation   |
+|------------------------------------------------|--------------|------------------|------------------|
+| Pynguin (Baseline) (Evolutionary Search, N/A)  |            1 | 100.0%           | Robust           |
+| Qwen3-4B-Instruct (Two-Step, T=0.2)            |            2 | 99.6%            | Robust           |
+| Ministral-3-8B-Instruct-8bit (Two-Step, T=0.2) |            3 | 97.7%            | Robust           |
+| Ministral-3-3B-Reasoning (Two-Step, T=0.2)     |            4 | 89.3%            | Robust           |
+| granite-4.0-micro (Two-Step, T=0.2)            |            5 | 84.6%            | Robust           |
+| gemma-3-4b-it (Two-Step, T=0.2)                |            6 | 93.2%            | Robust           |
+
+==============================================================================================================
+ TABLE 7: N=10 RUNS JUSTIFICATION - REAL WORLD (Variance Analysis)
+==============================================================================================================
+• Variance Distribution Across All 11 Configurations:
+  - Median Std: 2.71%, Mean Std: 3.17%
+  - Range: [1.33%, 5.52%]
+  - Zero-variance configs: 0.0% (due to discrete task granularity)
+• Table shows statistics for best configuration per model.
+• 95% CI Width = t-critical × SEM × 2 (t-critical = 2.262 for df=9)
+• N=10 runs: SEM = std / √10.
+--------------------------------------------------------------------------------------------------------------
+| Model                        | Best Config              | Mean   | Std   | SEM   | 95% CI Width   |
+|------------------------------|--------------------------|--------|-------|-------|----------------|
+| Pynguin (Baseline)           | Evolutionary Search, N/A | 68.40% | 2.07% | 0.65% | ±1.48%         |
+| Qwen3-4B-Instruct            | Two-Step, T=0.2          | 34.80% | 5.43% | 1.72% | ±3.89%         |
+| Ministral-3-8B-Instruct-8bit | Two-Step, T=0.2          | 29.00% | 5.52% | 1.74% | ±3.95%         |
+| Ministral-3-3B-Reasoning     | Two-Step, T=0.2          | 25.00% | 4.24% | 1.34% | ±3.04%         |
+| granite-4.0-micro            | Two-Step, T=0.2          | 23.00% | 3.43% | 1.09% | ±2.46%         |
+| gemma-3-4b-it                | Two-Step, T=0.2          | 21.00% | 2.71% | 0.86% | ±1.94%         |
+
+==============================================================================================================
+
+==============================================================================================================
+ FOOTNOTES
+==============================================================================================================
+[1] COVERAGE METHODOLOGY: Two coverage metrics are reported. 'Raw Cov' (ungated) measures line coverage for all test outcomes except TIMEOUT, SYNTAX_ERROR, and NO_CODE — even assertion-failing tests report actual coverage, reflecting how much of the solution code the test exercised before failing. 'Gated Cov' measures coverage restricted to assertion-passing tasks only (our Pass@1 criterion). Note: Wang et al. (2025a)'s 'Overall Line Coverage' (marked [a] in Table 1) applies a more lenient gating condition (Execution Correctness: test compiles and runs without crashing) rather than assertion passing; it is therefore not directly equivalent to our Gated Cov but is placed in the same column as the closest analogue. Both our metrics appear in Table 1.
+
+[2] PYNGUIN TPS REPRESENTATION: Pynguin does not generate tokens; it uses evolutionary search (SBST/AST mutations). Pynguin is excluded from TPS trend plots. For cross-paradigm efficiency comparison, refer to the Wall-Clock Efficiency figure.
+
+[3] STATISTICAL METHODOLOGY: All pairwise comparisons use Welch's t-test (unequal variances). P-values are Bonferroni-corrected for multiple comparisons. Effect sizes reported as Cohen's h (appropriate for proportions): |h|<0.2=negligible, 0.2-0.5=small, 0.5-0.8=medium, ≥0.8=large. 95% confidence intervals use t-distribution (N=10 runs, t-critical=2.262, df=9).
+
+[4] N=10 RUNS JUSTIFICATION: 10 independent runs per configuration balances statistical rigor with computational cost. With N=10: (1) 95% CIs use t-critical value of 2.262 (df=9); (2) Bootstrap analysis confirms ranking stability across resampling. The variance convergence table demonstrates diminishing returns for additional runs.
+
+[5] BOOTSTRAP STABILITY: Rankings assessed via 1000 bootstrap iterations resampling runs with replacement. 'Modal Rank' = most frequent rank position. 'Rank Stability' = percentage of iterations where configuration achieved its modal rank. High stability (>70%) indicates robust rankings.
+
+[6] BEST CONFIGURATION SELECTION: For Tables 4-7, 'best configuration' for each model is defined as the configuration (prompt mode + temperature) with the highest mean Pass@1 across N=10 runs, excluding configurations with zero variance (which cannot be used in statistical tests). This reduces comparisons from all temperature variants to one representative per model.
+
+EXPERIMENTAL SETUP (Real World Study):
+• Hardware: vLLM, Single RTX 4090, FP16 precision (INT4 for quantized) 4096 max tokens.
+• Baseline: Pynguin (DynaMOSA) running on CPU (Python 3.10-slim Docker) with 120s budget.
+• Dataset: 'Real World' - 50 Python functions from this repository's own codebase.
+• Definitions:
+  - Pass@1: % of tasks passing assertions.
+  - Raw Cov: Ungated line coverage (all tasks incl. assertion failures, excl. timeouts/syntax errors/no-code). Gated Cov: Assertion-passing tasks only.
+  - Total Tokens: Average total tokens generated per run.

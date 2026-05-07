@@ -1,0 +1,728 @@
+(venv) C:\Repos\slm-python-unit-test-benchmark>python step4_evaluation/evaluate_results.py --input-dir TestEval/predictions_initial --output-dir evaluation_results_initial --run-mutation
+2026-02-16 10:14:25,970 - INFO - Scanning TestEval\predictions_initial recursively...
+2026-02-16 10:14:25,973 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_gemma-3-4b-it_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_gemma-3-4b-it_temp_0.0_evaluated.jsonl
+2026-02-16 10:14:25,973 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 10:50:57,838 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_granite-4.0-micro_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_granite-4.0-micro_temp_0.0_evaluated.jsonl
+2026-02-16 10:50:57,839 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 10:50:57,860 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 11:39:06,289 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_Llama-3.2-3B-Instruct_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_Llama-3.2-3B-Instruct_temp_0.0_evaluated.jsonl
+2026-02-16 11:39:06,290 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 11:39:06,323 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 11:39:06,329 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 12:09:08,071 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_Meta-Llama-3.1-8B-Instruct-AWQ-INT4_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_Meta-Llama-3.1-8B-Instruct-AWQ-INT4_temp_0.0_evaluated.jsonl
+2026-02-16 12:09:08,071 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 12:09:08,106 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 12:09:08,108 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 12:09:08,117 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 12:09:08,119 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 12:09:08,128 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 12:09:08,140 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 12:09:08,142 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 12:09:08,148 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+Executing 196 remaining evaluations with 12 workers...
+Progress: 150/196 finished
+Done.
+2026-02-16 12:40:29,291 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_Ministral-3-3B-Instruct-2512_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_Ministral-3-3B-Instruct-2512_temp_0.0_evaluated.jsonl
+2026-02-16 12:40:29,291 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 12:40:29,336 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 12:40:29,345 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 12:40:29,353 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 12:40:29,369 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 12:40:29,371 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 13:12:38,388 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0_evaluated.jsonl
+2026-02-16 13:12:38,388 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 13:12:38,431 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 13:12:38,435 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 13:12:38,437 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 13:12:38,444 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 13:12:38,451 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 13:54:22,372 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_Ministral-3-8B-Instruct-2512-AWQ-4bit_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_Ministral-3-8B-Instruct-2512-AWQ-4bit_temp_0.0_evaluated.jsonl
+2026-02-16 13:54:22,373 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 14:37:12,400 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_Ministral-3-8B-Instruct-2512-AWQ-8bit_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_Ministral-3-8B-Instruct-2512-AWQ-8bit_temp_0.0_evaluated.jsonl
+2026-02-16 14:37:12,401 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 15:13:00,468 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_Qwen3-4B-Instruct-2507_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_Qwen3-4B-Instruct-2507_temp_0.0_evaluated.jsonl
+2026-02-16 15:13:00,468 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 15:56:01,810 - INFO - Processing TestEval\predictions_initial\run_1\linecov2_Qwen3-4B-Thinking-2507_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov2_Qwen3-4B-Thinking-2507_temp_0.0_evaluated.jsonl
+2026-02-16 15:56:01,811 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 15:56:01,866 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 15:56:01,868 - WARNING - Skipping test piece for line 15 (SyntaxError in generated code)
+2026-02-16 15:56:01,869 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 15:56:01,870 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 15:56:01,870 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 15:56:01,871 - WARNING - Skipping test piece for line 15 (SyntaxError in generated code)
+2026-02-16 15:56:01,872 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 15:56:01,872 - WARNING - Skipping test piece for line 47 (SyntaxError in generated code)
+2026-02-16 15:56:01,873 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 15:56:01,874 - WARNING - Skipping test piece for line 41 (SyntaxError in generated code)
+2026-02-16 15:56:01,875 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 15:56:01,877 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 15:56:01,878 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 15:56:01,879 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 15:56:01,880 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 15:56:01,881 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 15:56:01,881 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 15:56:01,882 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 15:56:01,883 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 15:56:01,884 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 15:56:01,885 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 15:56:01,886 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 15:56:01,887 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 15:56:01,887 - WARNING - Skipping test piece for line 42 (SyntaxError in generated code)
+2026-02-16 15:56:01,888 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 15:56:01,889 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 15:56:01,892 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 15:56:01,893 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 15:56:01,893 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 15:56:01,894 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 15:56:01,895 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 15:56:01,896 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 15:56:01,897 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 15:56:01,898 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 15:56:01,899 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 15:56:01,900 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 15:56:01,903 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 15:56:01,904 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 15:56:01,905 - WARNING - Skipping test piece for line 43 (SyntaxError in generated code)
+2026-02-16 15:56:01,906 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 15:56:01,907 - WARNING - Skipping test piece for line 36 (SyntaxError in generated code)
+2026-02-16 15:56:01,908 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 15:56:01,909 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 15:56:01,910 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 15:56:01,911 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 15:56:01,912 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 15:56:01,913 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 15:56:01,914 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 15:56:01,915 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 15:56:01,916 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 15:56:01,916 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 15:56:01,917 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 15:56:01,918 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 15:56:01,918 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 15:56:01,919 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 15:56:01,922 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 15:56:01,923 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 15:56:01,924 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 15:56:01,924 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 15:56:01,925 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 15:56:01,926 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 15:56:01,927 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 15:56:01,928 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 15:56:01,929 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 15:56:01,930 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 15:56:01,930 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 15:56:01,931 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 15:56:01,932 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 15:56:01,933 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 15:56:01,934 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 15:56:01,935 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 15:56:01,935 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 15:56:01,936 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 15:56:01,937 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 15:56:01,939 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 15:56:01,940 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 15:56:01,941 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 16:44:34,829 - INFO - Processing TestEval\predictions_initial\run_1\linecov_gemma-3-4b-it_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_gemma-3-4b-it_temp_0.0_evaluated.jsonl
+2026-02-16 16:44:34,830 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 16:44:34,886 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 16:44:34,907 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 17:21:27,224 - INFO - Processing TestEval\predictions_initial\run_1\linecov_granite-4.0-micro_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_granite-4.0-micro_temp_0.0_evaluated.jsonl
+2026-02-16 17:21:27,225 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 17:21:27,268 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 18:08:34,275 - INFO - Processing TestEval\predictions_initial\run_1\linecov_Llama-3.2-3B-Instruct_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_Llama-3.2-3B-Instruct_temp_0.0_evaluated.jsonl
+2026-02-16 18:08:34,275 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 18:08:34,304 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 18:08:34,316 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 18:08:34,321 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 18:08:34,329 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 18:08:34,336 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 18:08:34,344 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 18:08:34,349 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 18:08:34,377 - WARNING - Skipping test piece for line 15 (SyntaxError in generated code)
+2026-02-16 18:08:34,383 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 18:08:34,383 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 18:08:34,383 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 18:08:34,384 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 18:08:34,384 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 18:08:34,384 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 18:08:34,384 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 18:08:34,390 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 18:08:34,390 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 18:47:34,172 - INFO - Processing TestEval\predictions_initial\run_1\linecov_Meta-Llama-3.1-8B-Instruct-AWQ-INT4_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_Meta-Llama-3.1-8B-Instruct-AWQ-INT4_temp_0.0_evaluated.jsonl
+2026-02-16 18:47:34,173 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 18:47:34,215 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 18:47:34,219 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 18:47:34,225 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 18:47:34,230 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 18:47:34,230 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 18:47:34,237 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 18:47:34,237 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 18:47:34,240 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 18:47:34,252 - WARNING - Skipping test piece for line 59 (SyntaxError in generated code)
+2026-02-16 18:47:34,253 - WARNING - Skipping test piece for line 67 (SyntaxError in generated code)
+2026-02-16 18:47:34,261 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 18:47:34,262 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 18:47:34,263 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 18:47:34,263 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 18:47:34,265 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+2026-02-16 18:47:34,265 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 18:47:34,266 - WARNING - Skipping test piece for line 34 (SyntaxError in generated code)
+2026-02-16 18:47:34,267 - WARNING - Skipping test piece for line 35 (SyntaxError in generated code)
+2026-02-16 18:47:34,271 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 18:47:34,272 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 18:47:34,273 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+2026-02-16 18:47:34,274 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 18:47:34,323 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 18:47:34,333 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 18:47:34,333 - WARNING - Skipping test piece for line 40 (SyntaxError in generated code)
+2026-02-16 18:47:34,340 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+Executing 197 remaining evaluations with 12 workers...
+Progress: 150/197 finished
+Done.
+2026-02-16 19:19:08,730 - INFO - Processing TestEval\predictions_initial\run_1\linecov_Ministral-3-3B-Instruct-2512_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_Ministral-3-3B-Instruct-2512_temp_0.0_evaluated.jsonl
+2026-02-16 19:19:08,731 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 19:19:08,765 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 19:19:08,767 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 19:19:08,768 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 19:19:08,770 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 19:19:08,770 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 19:19:08,771 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 19:19:08,772 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 19:19:08,772 - WARNING - Skipping test piece for line 39 (SyntaxError in generated code)
+2026-02-16 19:19:08,775 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 19:19:08,781 - WARNING - Skipping test piece for line 48 (SyntaxError in generated code)
+2026-02-16 19:19:08,786 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 19:19:08,787 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 19:19:08,793 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 19:19:08,794 - WARNING - Skipping test piece for line 35 (SyntaxError in generated code)
+2026-02-16 19:19:08,802 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 19:19:08,803 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 19:19:08,803 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 19:19:08,804 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 19:53:42,518 - INFO - Processing TestEval\predictions_initial\run_1\linecov_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_Ministral-3-3B-Reasoning-2512_temp_0.0_evaluated.jsonl
+2026-02-16 19:53:42,519 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 19:53:42,561 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 19:53:42,562 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 19:53:42,564 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 19:53:42,564 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 19:53:42,569 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 19:53:42,570 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 19:53:42,573 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 19:53:42,576 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 19:53:42,578 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 19:53:42,580 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 19:53:42,583 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 19:53:42,586 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 19:53:42,588 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+2026-02-16 19:53:42,592 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 19:53:42,595 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 19:53:42,611 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 20:35:59,883 - INFO - Processing TestEval\predictions_initial\run_1\linecov_Ministral-3-8B-Instruct-2512-AWQ-4bit_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_Ministral-3-8B-Instruct-2512-AWQ-4bit_temp_0.0_evaluated.jsonl
+2026-02-16 20:35:59,884 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 20:35:59,914 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 20:35:59,919 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 20:35:59,926 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 20:35:59,927 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 20:35:59,928 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 21:13:19,099 - INFO - Processing TestEval\predictions_initial\run_1\linecov_Ministral-3-8B-Instruct-2512-AWQ-8bit_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_Ministral-3-8B-Instruct-2512-AWQ-8bit_temp_0.0_evaluated.jsonl
+2026-02-16 21:13:19,099 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 21:13:19,133 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 21:13:19,146 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 21:13:19,147 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 21:13:19,147 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 21:13:19,149 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 21:13:19,151 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 21:50:10,840 - INFO - Processing TestEval\predictions_initial\run_1\linecov_Qwen3-4B-Instruct-2507_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_Qwen3-4B-Instruct-2507_temp_0.0_evaluated.jsonl
+2026-02-16 21:50:10,842 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 21:50:10,863 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 21:50:10,874 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 21:50:10,923 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 12 workers...
+Progress: 200/210 finished
+Done.
+2026-02-16 22:34:32,270 - INFO - Processing TestEval\predictions_initial\run_1\linecov_Qwen3-4B-Thinking-2507_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_Qwen3-4B-Thinking-2507_temp_0.0_evaluated.jsonl
+2026-02-16 22:34:32,270 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 22:34:32,314 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 22:34:32,314 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 22:34:32,315 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,316 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,316 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 22:34:32,318 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,319 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,320 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,321 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,321 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,322 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,322 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,322 - WARNING - Skipping test piece for line 34 (SyntaxError in generated code)
+2026-02-16 22:34:32,323 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,324 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,325 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,325 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,326 - WARNING - Skipping test piece for line 47 (SyntaxError in generated code)
+2026-02-16 22:34:32,326 - WARNING - Skipping test piece for line 48 (SyntaxError in generated code)
+2026-02-16 22:34:32,327 - WARNING - Skipping test piece for line 49 (SyntaxError in generated code)
+2026-02-16 22:34:32,328 - WARNING - Skipping test piece for line 51 (SyntaxError in generated code)
+2026-02-16 22:34:32,328 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,329 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 22:34:32,329 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,330 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 22:34:32,330 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,331 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 22:34:32,332 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,332 - WARNING - Skipping test piece for line 34 (SyntaxError in generated code)
+2026-02-16 22:34:32,334 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 22:34:32,334 - WARNING - Skipping test piece for line 41 (SyntaxError in generated code)
+2026-02-16 22:34:32,335 - WARNING - Skipping test piece for line 43 (SyntaxError in generated code)
+2026-02-16 22:34:32,336 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 22:34:32,337 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 22:34:32,338 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,338 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,339 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,339 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,340 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,341 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,341 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,342 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,342 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,343 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,343 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,343 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,345 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,345 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,346 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,346 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,347 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 22:34:32,348 - WARNING - Skipping test piece for line 35 (SyntaxError in generated code)
+2026-02-16 22:34:32,349 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,350 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,350 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 22:34:32,351 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,351 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,352 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 22:34:32,352 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 22:34:32,352 - WARNING - Skipping test piece for line 42 (SyntaxError in generated code)
+2026-02-16 22:34:32,352 - WARNING - Skipping test piece for line 48 (SyntaxError in generated code)
+2026-02-16 22:34:32,352 - WARNING - Skipping test piece for line 57 (SyntaxError in generated code)
+2026-02-16 22:34:32,353 - WARNING - Skipping test piece for line 59 (SyntaxError in generated code)
+2026-02-16 22:34:32,353 - WARNING - Skipping test piece for line 67 (SyntaxError in generated code)
+2026-02-16 22:34:32,353 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,353 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,354 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 22:34:32,354 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 22:34:32,355 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,356 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,357 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,357 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,357 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,358 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,358 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,359 - WARNING - Skipping test piece for line 15 (SyntaxError in generated code)
+2026-02-16 22:34:32,360 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,361 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,361 - WARNING - Skipping test piece for line 37 (SyntaxError in generated code)
+2026-02-16 22:34:32,362 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,362 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,363 - WARNING - Skipping test piece for line 42 (SyntaxError in generated code)
+2026-02-16 22:34:32,363 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 22:34:32,365 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,365 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,366 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,367 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,367 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,368 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,368 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 22:34:32,369 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 22:34:32,370 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,370 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,371 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,371 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+2026-02-16 22:34:32,372 - WARNING - Skipping test piece for line 37 (SyntaxError in generated code)
+2026-02-16 22:34:32,372 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,372 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,373 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,373 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,374 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,375 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,375 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,376 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 22:34:32,376 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,377 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 22:34:32,377 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,378 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 22:34:32,379 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 22:34:32,380 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 22:34:32,381 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,381 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,382 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+2026-02-16 22:34:32,382 - WARNING - Skipping test piece for line 34 (SyntaxError in generated code)
+2026-02-16 22:34:32,383 - WARNING - Skipping test piece for line 35 (SyntaxError in generated code)
+2026-02-16 22:34:32,383 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 22:34:32,383 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,385 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,386 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,386 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,387 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 22:34:32,388 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,389 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,389 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,390 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-16 22:34:32,391 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 22:34:32,391 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,392 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 22:34:32,394 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,395 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,396 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,397 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,397 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,397 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,398 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,398 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,399 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,400 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,400 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+2026-02-16 22:34:32,401 - WARNING - Skipping test piece for line 36 (SyntaxError in generated code)
+2026-02-16 22:34:32,402 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,402 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,403 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,403 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,404 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,405 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,405 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,406 - WARNING - Skipping test piece for line 36 (SyntaxError in generated code)
+2026-02-16 22:34:32,406 - WARNING - Skipping test piece for line 37 (SyntaxError in generated code)
+2026-02-16 22:34:32,407 - WARNING - Skipping test piece for line 39 (SyntaxError in generated code)
+2026-02-16 22:34:32,407 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,408 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,409 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,410 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,410 - WARNING - Skipping test piece for line 40 (SyntaxError in generated code)
+2026-02-16 22:34:32,411 - WARNING - Skipping test piece for line 44 (SyntaxError in generated code)
+2026-02-16 22:34:32,412 - WARNING - Skipping test piece for line 46 (SyntaxError in generated code)
+2026-02-16 22:34:32,413 - WARNING - Skipping test piece for line 43 (SyntaxError in generated code)
+2026-02-16 22:34:32,415 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,415 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,416 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+2026-02-16 22:34:32,417 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 22:34:32,417 - WARNING - Skipping test piece for line 36 (SyntaxError in generated code)
+2026-02-16 22:34:32,418 - WARNING - Skipping test piece for line 37 (SyntaxError in generated code)
+2026-02-16 22:34:32,419 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,419 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 22:34:32,420 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,420 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,421 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,422 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 22:34:32,422 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-02-16 22:34:32,422 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,422 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,422 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,422 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,423 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,423 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,424 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,425 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,426 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 22:34:32,426 - WARNING - Skipping test piece for line 35 (SyntaxError in generated code)
+2026-02-16 22:34:32,427 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 22:34:32,427 - WARNING - Skipping test piece for line 40 (SyntaxError in generated code)
+2026-02-16 22:34:32,428 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,429 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 22:34:32,429 - WARNING - Skipping test piece for line 39 (SyntaxError in generated code)
+2026-02-16 22:34:32,430 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,431 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 22:34:32,431 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,432 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,432 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,433 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,434 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,434 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,435 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,435 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,436 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,437 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,437 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,438 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 22:34:32,438 - WARNING - Skipping test piece for line 34 (SyntaxError in generated code)
+2026-02-16 22:34:32,439 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,440 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,441 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,441 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,442 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,443 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,445 - WARNING - Skipping test piece for line 39 (SyntaxError in generated code)
+2026-02-16 22:34:32,445 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,446 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,447 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,448 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,448 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,449 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,450 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,450 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,451 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 22:34:32,451 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+2026-02-16 22:34:32,452 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,452 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,453 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 22:34:32,454 - WARNING - Skipping test piece for line 39 (SyntaxError in generated code)
+2026-02-16 22:34:32,454 - WARNING - Skipping test piece for line 40 (SyntaxError in generated code)
+2026-02-16 22:34:32,455 - WARNING - Skipping test piece for line 49 (SyntaxError in generated code)
+2026-02-16 22:34:32,455 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,456 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 22:34:32,456 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,457 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,458 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 22:34:32,459 - WARNING - Skipping test piece for line 42 (SyntaxError in generated code)
+2026-02-16 22:34:32,460 - WARNING - Skipping test piece for line 15 (SyntaxError in generated code)
+2026-02-16 22:34:32,461 - WARNING - Skipping test piece for line 15 (SyntaxError in generated code)
+2026-02-16 22:34:32,462 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,462 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,463 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,463 - WARNING - Skipping test piece for line 35 (SyntaxError in generated code)
+2026-02-16 22:34:32,463 - WARNING - Skipping test piece for line 36 (SyntaxError in generated code)
+2026-02-16 22:34:32,463 - WARNING - Skipping test piece for line 42 (SyntaxError in generated code)
+2026-02-16 22:34:32,464 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,465 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,465 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,466 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-16 22:34:32,466 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 22:34:32,467 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-02-16 22:34:32,468 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,468 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,469 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 22:34:32,470 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,470 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,471 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,472 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,472 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,473 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 22:34:32,473 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,475 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 22:34:32,476 - WARNING - Skipping test piece for line 34 (SyntaxError in generated code)
+2026-02-16 22:34:32,476 - WARNING - Skipping test piece for line 35 (SyntaxError in generated code)
+2026-02-16 22:34:32,477 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 22:34:32,478 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,479 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,479 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,480 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,481 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,481 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,482 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,483 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,483 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,484 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,484 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,485 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,486 - WARNING - Skipping test piece for line 51 (SyntaxError in generated code)
+2026-02-16 22:34:32,487 - WARNING - Skipping test piece for line 36 (SyntaxError in generated code)
+2026-02-16 22:34:32,488 - WARNING - Skipping test piece for line 34 (SyntaxError in generated code)
+2026-02-16 22:34:32,489 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,489 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,490 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,491 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,491 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-16 22:34:32,492 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,492 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-02-16 22:34:32,493 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+2026-02-16 22:34:32,493 - WARNING - Skipping test piece for line 42 (SyntaxError in generated code)
+2026-02-16 22:34:32,494 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,495 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-16 22:34:32,495 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,496 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,497 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 22:34:32,497 - WARNING - Skipping test piece for line 40 (SyntaxError in generated code)
+2026-02-16 22:34:32,498 - WARNING - Skipping test piece for line 41 (SyntaxError in generated code)
+2026-02-16 22:34:32,498 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-02-16 22:34:32,499 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,500 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,501 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-02-16 22:34:32,501 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,502 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-02-16 22:34:32,503 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,503 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,503 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+2026-02-16 22:34:32,505 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-16 22:34:32,505 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,506 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-02-16 22:34:32,506 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-16 22:34:32,507 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-02-16 22:34:32,508 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-16 22:34:32,508 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,509 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-02-16 22:34:32,510 - WARNING - Skipping test piece for line 51 (SyntaxError in generated code)
+2026-02-16 22:34:32,510 - WARNING - Skipping test piece for line 53 (SyntaxError in generated code)
+2026-02-16 22:34:32,511 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,511 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-16 22:34:32,512 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-16 22:34:32,513 - WARNING - Skipping test piece for line 32 (SyntaxError in generated code)
+Executing 209 remaining evaluations with 12 workers...
+Progress: 200/209 finished
+Done.
+2026-02-16 22:59:59,712 - INFO - Processing TestEval\predictions_initial\run_1\linecov_Qwen3-8B-AWQ_temp_0.0.jsonl -> evaluation_results_initial\run_1\linecov_Qwen3-8B-AWQ_temp_0.0_evaluated.jsonl
+2026-02-16 22:59:59,713 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-16 22:59:59,725 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+Executing 23 remaining evaluations with 12 workers...
+
+Done.
+2026-02-16 23:00:01,482 - INFO - Processing TestEval\predictions_initial\run_1\pynguin_results.jsonl -> evaluation_results_initial\run_1\pynguin_results_evaluated.jsonl
+2026-02-16 23:00:01,483 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 162 remaining evaluations with 12 workers...
+Progress: 150/162 finished
+Done.
+
+(venv) C:\Repos\slm-python-unit-test-benchmark>python step4_evaluation/evaluate_results.py --input-dir TestEval/predictions_realworld --output
+-dir evaluation_results_realworld --run-mutation
+2026-02-17 00:24:27,273 - INFO - Scanning TestEval\predictions_realworld recursively...
+2026-02-17 00:24:27,280 - INFO - Processing TestEval\predictions_realworld\run_1\linecov2_gemma-3-4b-it_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov2_gemma-3-4b-it_temp_0.0_evaluated.jsonl
+2026-02-17 00:24:27,281 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-17 00:24:27,315 - WARNING - Skipping test piece for line 54 (SyntaxError in generated code)
+2026-02-17 00:24:27,335 - WARNING - Skipping test piece for line 92 (SyntaxError in generated code)
+2026-02-17 00:24:27,336 - WARNING - Skipping test piece for line 144 (SyntaxError in generated code)
+Executing 50 remaining evaluations with 12 workers...
+Progress: 50/50 finished
+Done.
+2026-02-17 00:26:44,213 - INFO - Processing TestEval\predictions_realworld\run_1\linecov2_granite-4.0-micro_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov2_granite-4.0-micro_temp_0.0_evaluated.jsonl
+2026-02-17 00:26:44,213 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-17 00:26:44,241 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+Executing 50 remaining evaluations with 12 workers...
+Progress: 50/50 finished
+Done.
+2026-02-17 00:28:00,821 - INFO - Processing TestEval\predictions_realworld\run_1\linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0_evaluated.jsonl
+2026-02-17 00:28:00,822 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-17 00:28:00,852 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-17 00:28:00,852 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+Executing 47 remaining evaluations with 12 workers...
+
+Done.
+2026-02-17 00:28:57,594 - INFO - Processing TestEval\predictions_realworld\run_1\linecov2_Ministral-3-8B-Instruct-2512-AWQ-8bit_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov2_Ministral-3-8B-Instruct-2512-AWQ-8bit_temp_0.0_evaluated.jsonl
+2026-02-17 00:28:57,595 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 49 remaining evaluations with 12 workers...
+
+Done.
+2026-02-17 00:31:09,816 - INFO - Processing TestEval\predictions_realworld\run_1\linecov2_Qwen3-4B-Instruct-2507_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov2_Qwen3-4B-Instruct-2507_temp_0.0_evaluated.jsonl
+2026-02-17 00:31:09,816 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 50 remaining evaluations with 12 workers...
+Progress: 50/50 finished
+Done.
+2026-02-17 00:32:15,211 - INFO - Processing TestEval\predictions_realworld\run_1\linecov_gemma-3-4b-it_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov_gemma-3-4b-it_temp_0.0_evaluated.jsonl
+2026-02-17 00:32:15,211 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-17 00:32:15,241 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-17 00:32:15,246 - WARNING - Skipping test piece for line 54 (SyntaxError in generated code)
+2026-02-17 00:32:15,248 - WARNING - Skipping test piece for line 82 (SyntaxError in generated code)
+2026-02-17 00:32:15,263 - WARNING - Skipping test piece for line 97 (SyntaxError in generated code)
+2026-02-17 00:32:15,265 - WARNING - Skipping test piece for line 121 (SyntaxError in generated code)
+2026-02-17 00:32:15,266 - WARNING - Skipping test piece for line 124 (SyntaxError in generated code)
+2026-02-17 00:32:15,269 - WARNING - Skipping test piece for line 128 (SyntaxError in generated code)
+2026-02-17 00:32:15,278 - WARNING - Skipping test piece for line 13 (SyntaxError in generated code)
+Executing 50 remaining evaluations with 12 workers...
+Progress: 50/50 finished
+Done.
+2026-02-17 00:40:53,541 - INFO - Processing TestEval\predictions_realworld\run_1\linecov_granite-4.0-micro_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov_granite-4.0-micro_temp_0.0_evaluated.jsonl
+2026-02-17 00:40:53,541 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 50 remaining evaluations with 12 workers...
+Progress: 50/50 finished
+Done.
+2026-02-17 00:47:25,473 - INFO - Processing TestEval\predictions_realworld\run_1\linecov_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov_Ministral-3-3B-Reasoning-2512_temp_0.0_evaluated.jsonl
+2026-02-17 00:47:25,473 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-17 00:47:25,494 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-02-17 00:47:25,494 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-02-17 00:47:25,495 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-02-17 00:47:25,495 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-17 00:47:25,497 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-17 00:47:25,502 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-02-17 00:47:25,509 - WARNING - Skipping test piece for line 82 (SyntaxError in generated code)
+2026-02-17 00:47:25,509 - WARNING - Skipping test piece for line 83 (SyntaxError in generated code)
+2026-02-17 00:47:25,511 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-02-17 00:47:25,518 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-17 00:47:25,520 - WARNING - Skipping test piece for line 37 (SyntaxError in generated code)
+2026-02-17 00:47:25,524 - WARNING - Skipping test piece for line 49 (SyntaxError in generated code)
+2026-02-17 00:47:25,525 - WARNING - Skipping test piece for line 49 (SyntaxError in generated code)
+2026-02-17 00:47:25,526 - WARNING - Skipping test piece for line 92 (SyntaxError in generated code)
+2026-02-17 00:47:25,528 - WARNING - Skipping test piece for line 97 (SyntaxError in generated code)
+2026-02-17 00:47:25,528 - WARNING - Skipping test piece for line 121 (SyntaxError in generated code)
+2026-02-17 00:47:25,530 - WARNING - Skipping test piece for line 124 (SyntaxError in generated code)
+2026-02-17 00:47:25,530 - WARNING - Skipping test piece for line 125 (SyntaxError in generated code)
+2026-02-17 00:47:25,531 - WARNING - Skipping test piece for line 128 (SyntaxError in generated code)
+2026-02-17 00:47:25,532 - WARNING - Skipping test piece for line 134 (SyntaxError in generated code)
+2026-02-17 00:47:25,532 - WARNING - Skipping test piece for line 135 (SyntaxError in generated code)
+2026-02-17 00:47:25,533 - WARNING - Skipping test piece for line 144 (SyntaxError in generated code)
+2026-02-17 00:47:25,534 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-02-17 00:47:25,537 - WARNING - Skipping test piece for line 33 (SyntaxError in generated code)
+2026-02-17 00:47:25,538 - WARNING - Skipping test piece for line 34 (SyntaxError in generated code)
+2026-02-17 00:47:25,540 - WARNING - Skipping test piece for line 146 (SyntaxError in generated code)
+2026-02-17 00:47:25,543 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+Executing 50 remaining evaluations with 12 workers...
+Progress: 50/50 finished
+Done.
+2026-02-17 00:49:03,076 - INFO - Processing TestEval\predictions_realworld\run_1\linecov_Ministral-3-8B-Instruct-2512-AWQ-8bit_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov_Ministral-3-8B-Instruct-2512-AWQ-8bit_temp_0.0_evaluated.jsonl
+2026-02-17 00:49:03,076 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-17 00:49:03,102 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-17 00:49:03,103 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-02-17 00:49:03,104 - WARNING - Skipping test piece for line 49 (SyntaxError in generated code)
+2026-02-17 00:49:03,107 - WARNING - Skipping test piece for line 44 (SyntaxError in generated code)
+2026-02-17 00:49:03,108 - WARNING - Skipping test piece for line 1 (SyntaxError in generated code)
+2026-02-17 00:49:03,108 - WARNING - Skipping test piece for line 38 (SyntaxError in generated code)
+Executing 50 remaining evaluations with 12 workers...
+Progress: 50/50 finished
+Done.
+2026-02-17 00:49:42,972 - INFO - Processing TestEval\predictions_realworld\run_1\linecov_Qwen3-4B-Instruct-2507_temp_0.0.jsonl -> evaluation_results_realworld\run_1\linecov_Qwen3-4B-Instruct-2507_temp_0.0_evaluated.jsonl
+2026-02-17 00:49:42,972 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-02-17 00:49:43,026 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-02-17 00:49:43,031 - WARNING - Skipping test piece for line 49 (SyntaxError in generated code)
+2026-02-17 00:49:43,034 - WARNING - Skipping test piece for line 54 (SyntaxError in generated code)
+2026-02-17 00:49:43,037 - WARNING - Skipping test piece for line 144 (SyntaxError in generated code)
+2026-02-17 00:49:43,041 - WARNING - Skipping test piece for line 146 (SyntaxError in generated code)
+Executing 50 remaining evaluations with 12 workers...
+Progress: 50/50 finished
+Done.
+2026-02-17 00:50:45,192 - INFO - Processing TestEval\predictions_realworld\run_1\pynguin_results.jsonl -> evaluation_results_realworld\run_1\pynguin_results_evaluated.jsonl
+2026-02-17 00:50:45,192 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 42 remaining evaluations with 12 workers...
+
+Done.

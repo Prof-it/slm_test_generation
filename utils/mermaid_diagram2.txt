@@ -1,0 +1,32 @@
+graph TD
+    %% Styles
+    classDef input fill:#f4f4f5,stroke:#71717a,stroke-width:2px,color:#000,rx:6px,ry:6px
+    classDef direct fill:#e0f2fe,stroke:#0284c7,stroke-width:2px,color:#000,rx:6px,ry:6px
+    classDef reasoning fill:#fef08a,stroke:#ca8a04,stroke-width:2px,color:#000,rx:6px,ry:6px
+    classDef coding fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#000,rx:6px,ry:6px
+    classDef output fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#000,rx:6px,ry:6px
+
+    %% Input
+    START["🗐 Input Context<br/>(Source Code + Target Line)"]:::input
+
+    %% One-Step Flow
+    subgraph One-Step Approach
+        ONE["👨‍💻 Direct Generation<br/>Zero Shot<br/>(Reasoning + Coding)"]:::direct
+    end
+
+    %% Two-Step Flow
+    subgraph Two-Step Approach
+        T1["📝 Planning Phase<br/>(Map Logical Conditions)"]:::reasoning
+        T2["👨‍💻 Generation Phase<br/>CoT One-Shot<br/>(Condition-Based Test Creation)"]:::coding
+        T1 --> T2
+    end
+
+    %% Connections
+    START --> ONE
+    START --> T1
+
+    ONE --> OUT1["✅ Final Test Code"]:::output
+    T2 --> OUT2["✅ Final Test Code"]:::output
+
+    %% Styling
+    linkStyle default stroke:#71717a,stroke-width:2px;

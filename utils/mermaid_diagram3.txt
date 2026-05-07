@@ -1,0 +1,36 @@
+graph TD
+
+    %% Styling Definitions
+    classDef inputClass fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef processClass fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px;
+    classDef llmClass fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
+    classDef humanClass fill:#e8f5e9,stroke:#4caf50,stroke-width:2px;
+    classDef valClass fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px;
+    classDef finalClass fill:#ffe0b2,stroke:#ff9800,stroke-width:3px;
+
+    %% 1. Data Prep
+    C[(Test Functions)]
+
+    %% 2. LLM Evaluation
+    C --> D{Double LLM Evaluation}
+    D --> E[Score on Criteria]
+    E --> F([LLM Decision])
+
+    %% 3. Human Validation
+    C --> G[Human Review Sample]
+    G --> H([Human Consensus])
+
+    %% 4. Validation & Scaling
+    F --> I{Agreement Check - Kappa}
+    H --> I
+    I -->|High| J[Scale to Full Dataset]
+    I -->|Low| K[Refine Prompt]
+    J --> L(((Final Rankings)))
+
+    %% Class Assignments
+    class A,C inputClass;
+    class B,D,I,K processClass;
+    class E,F llmClass;
+    class G,H humanClass;
+    class J valClass;
+    class L finalClass;

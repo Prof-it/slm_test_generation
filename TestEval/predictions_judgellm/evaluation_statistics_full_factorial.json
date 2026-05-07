@@ -1,0 +1,15 @@
+{
+  "total_comparisons": 263,
+  "bias_analysis": {
+    "None": 251,
+    "Stochastic_Noise": 10,
+    "Position_Bias_Second": 1,
+    "Position_Bias_First": 1
+  },
+  "winner_distribution": {
+    "B": 55,
+    "Tie": 65,
+    "Invalid_Bias": 12,
+    "A": 131
+  }
+}

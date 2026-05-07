@@ -1,0 +1,100 @@
+==========================================================================================
+ TABLE 3: Average Assertions per Test and Pass@1 Rates
+==========================================================================================
+
+Summary:
+| Generator        | Dataset    |   Avg Asserts/Test |   Best Pass@1 |
+|------------------|------------|--------------------|---------------|
+| Pynguin          | TestEval   |               7.34 |        70.79% |
+| SLMs (avg, n=11) | TestEval   |               1.24 |        38.86% |
+| Pynguin          | Real-World |               0.48 |        68.60% |
+| SLMs (avg, n=5)  | Real-World |               1.72 |        26.96% |
+
+Per-Model Breakdown (Best Config):
+| Model                           | Dataset    | Best Config     |   Avg Asserts/Test |   Pass@1 |
+|---------------------------------|------------|-----------------|--------------------|----------|
+| granite-4.0-micro               | TestEval   | One-Step, T=0.2 |               1.24 |   54.44% |
+| Ministral-3-3B-Reasoning        | TestEval   | One-Step, T=0.2 |               0.71 |   52.06% |
+| Qwen3-4B-Instruct               | TestEval   | One-Step, T=0.8 |                2.1 |   48.41% |
+| Ministral-3-8B-Instruct         | TestEval   | One-Step, T=0.2 |                  1 |   47.78% |
+| Ministral-3-8B-Instruct-4bit    | TestEval   | Two-Step, T=0.2 |                1.6 |   42.38% |
+| Qwen3-8B-AWQ                    | TestEval   | Two-Step, T=0.2 |                1.5 |   39.52% |
+| gemma-3-4b-it                   | TestEval   | One-Step, T=0.2 |               1.12 |   39.05% |
+| Llama-3.2-3B-Instruct           | TestEval   | One-Step, T=0.2 |               0.95 |   37.46% |
+| Ministral-3-3B-Instruct         | TestEval   | One-Step, T=0.2 |               0.99 |   32.22% |
+| Meta-Llama-3.1-8B-Instruct-4bit | TestEval   | One-Step, T=0.2 |               0.83 |   27.62% |
+| Qwen3-4B-Thinking               | TestEval   | Two-Step, T=0.8 |               1.56 |    6.51% |
+| Qwen3-4B-Instruct               | Real-World | Two-Step, T=0.2 |               1.89 |   35.40% |
+| Ministral-3-8B-Instruct         | Real-World | Two-Step, T=0.2 |               1.86 |   29.20% |
+| Ministral-3-3B-Reasoning        | Real-World | Two-Step, T=0.2 |               1.48 |   25.60% |
+| granite-4.0-micro               | Real-World | Two-Step, T=0.2 |               1.19 |   23.60% |
+| gemma-3-4b-it                   | Real-World | Two-Step, T=0.2 |               2.19 |   21.00% |
+
+==========================================================================================
+ TABLE 4: Failure Mode Distribution (Manual Analysis)
+==========================================================================================
+
+--- TestEval Initial (T=0.2) (N=50) ---
+
+| Root Cause               |   Count |     % |
+|--------------------------|---------|-------|
+| IncorrectAssertion       |      27 | 54.0% |
+| MalformedSyntax          |      11 | 22.0% |
+| SemanticMisunderstanding |       5 | 10.0% |
+| APIHallucination         |       3 |  6.0% |
+| MissingDefinition        |       2 |  4.0% |
+| Unknown                  |       2 |  4.0% |
+
+--- TestEval Temperature (T=0.4/0.8) (N=50) ---
+
+| Root Cause               |   Count |     % |
+|--------------------------|---------|-------|
+| IncorrectAssertion       |      23 | 46.0% |
+| MalformedSyntax          |      11 | 22.0% |
+| Unknown                  |       8 | 16.0% |
+| SemanticMisunderstanding |       4 |  8.0% |
+| MissingDefinition        |       4 |  8.0% |
+
+--- Real-World (SLMs only, N=210 labeled) ---
+
+| Root Cause               |   Count |     % |
+|--------------------------|---------|-------|
+| MissingDefinition        |      82 | 39.0% |
+| IncorrectAssertion       |      49 | 23.3% |
+| SemanticMisunderstanding |      18 |  8.6% |
+| MissingImport            |      15 |  7.1% |
+| EnvironmentMismatch      |      14 |  6.7% |
+| Runtime                  |      10 |  4.8% |
+| MalformedSyntax          |       9 |  4.3% |
+| MockingError             |       5 |  2.4% |
+| APIHallucination         |       4 |  1.9% |
+| ModelFailure             |       3 |  1.4% |
+| HallucinatedPath         |       1 |  0.5% |
+
+--- Real-World — Pynguin only (N=14) ---
+
+| Root Cause               |   Count |     % |
+|--------------------------|---------|-------|
+| ModelFailure             |       8 | 57.1% |
+| Runtime                  |       3 | 21.4% |
+| IncorrectAssertion       |       1 |  7.1% |
+| SemanticMisunderstanding |       1 |  7.1% |
+| MissingDefinition        |       1 |  7.1% |
+
+==========================================================================================
+ TABLE 5: Failure Categories by Dataset
+==========================================================================================
+
+| Category        |   TestEval Initial (T=0.2) (N=50) |   TestEval Temperature (T=0.4/0.8) (N=50) |   Real-World (SLMs) (N=210) |
+|-----------------|-----------------------------------|-------------------------------------------|-----------------------------|
+| Logic           |                        27 (54.0%) |                                23 (46.0%) |                  49 (23.3%) |
+| Environmental   |                        13 (26.0%) |                                15 (30.0%) |                 135 (64.3%) |
+| Semantic        |                         8 (16.0%) |                                  4 (8.0%) |                  22 (10.5%) |
+| Other           |                          2 (4.0%) |                                 8 (16.0%) |                    4 (1.9%) |
+| Env/Logic Ratio |                              0.48 |                                      0.65 |                        2.76 |
+
+Category composition:
+  Logic: IncorrectAssertion
+  Environmental: MissingDefinition, MissingImport, EnvironmentMismatch, Runtime, MalformedSyntax, MockingError
+  Semantic: SemanticMisunderstanding, APIHallucination
+  Other: Unknown, ModelFailure, HallucinatedPath, NoCode

@@ -1,0 +1,49 @@
+# 1. Base Image
+FROM python:3.10-slim
+
+# 2. Environment Setup
+ENV PYTHONUNBUFFERED=1
+ENV PYNGUIN_DANGER_AWARE=true
+
+# 3. System Dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# 4. Work Directory
+WORKDIR /app
+
+
+# Upgrade pip to handle package metadata better
+RUN pip install --no-cache-dir --upgrade pip
+
+# Install typing-extensions from standard PyPI FIRST 
+# to avoid the "inconsistent Name" error with the PyTorch index.
+RUN pip install --no-cache-dir typing-extensions
+
+# Install Torch CPU (Corrected version from 2.9.1 -> 2.1.2)
+RUN pip install --no-cache-dir torch==2.1.2 --index-url https://download.pytorch.org/whl/cpu
+
+# Force numpy < 2.0 to avoid ABI conflict with Pandas/Torch binaries
+# All real-world source file dependencies must be installed for Pynguin (search-based)
+# to import and instrument the modules under test.
+RUN pip install --no-cache-dir "numpy<2.0" pynguin==0.44.0 tqdm pandas sortedcontainers cbor2 xxhash transformers \
+    requests httpx scrapy w3lib scikit-learn scipy joblib attrs dramatiq humanize apscheduler
+
+# 6. Mock VLLM/Accelerate (The Scientific Hack)
+# Create dummy packages so imports don't crash
+RUN mkdir -p /usr/local/lib/python3.10/site-packages/vllm && \
+    touch /usr/local/lib/python3.10/site-packages/vllm/__init__.py && \
+    echo "class LLM: pass\nclass SamplingParams: pass" > /usr/local/lib/python3.10/site-packages/vllm/__init__.py
+
+RUN mkdir -p /usr/local/lib/python3.10/site-packages/accelerate && \
+    touch /usr/local/lib/python3.10/site-packages/accelerate/__init__.py
+
+# 7. Copy Code
+COPY . .
+
+# 8. Output Dir
+RUN mkdir -p TestEval/predictions_realworld_pynguin
+
+# 9. Run
+CMD ["python", "step3_modelling/run_real_world_experiments_pynguin.py"]

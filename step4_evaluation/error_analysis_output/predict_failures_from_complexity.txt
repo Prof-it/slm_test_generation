@@ -1,0 +1,206 @@
+PREDICTIVE ANALYSIS: FUNCTION COMPLEXITY AS FAILURE PREDICTOR
+Real-World Dataset — T=0.0, N=1 (deterministic, balanced design)
+==========================================================================================
+
+DATASET
+  Observations : 250 (5 shared SLMs x 50 functions)
+  Tasks        : 50 unique functions
+  Source files : 14
+
+OUTCOME PREVALENCE
+  Passed                :  38/250 (15.2%)
+  MockingError          :  27/250 (10.8%)
+  Runtime Error         : 146/250 (58.4%)
+  Assertion Error       :  20/250 (8.0%)
+  No Code               :  34/250 (13.6%)
+
+PREDICTOR SUMMARY (N=50 unique tasks)
+  CC                        : mean=9.88, std=14.06, min=2.0, max=72.0
+  Halstead Difficulty       : mean=2.06, std=3.24, min=0.0, max=12.8
+  Difficulty Label          : mean=1.90, std=0.83, min=1.0, max=3.0
+  Solution Chars            : mean=2642.54, std=3636.71, min=371.0, max=20089.0
+  Solution Lines            : mean=67.24, std=84.75, min=12.0, max=439.0
+
+==========================================================================================
+  THREATS TO VALIDITY
+==========================================================================================
+
+  1. EXPERIMENTAL DESIGN (T=0.0, N=1) — CORRECT CHOICE
+     Alternative: T=0.2, N=3 TestEval vs T=0.2, N=10 Real-World.
+     Rejected because: (a) N-asymmetry confound — pass@k grows monotonically
+     with k, so Real-World would get 3.3x more attempts per task; (b) failure
+     classification is ambiguous with k>1 (which sample defines the failure?);
+     (c) stochastic sampling blurs systematic patterns with noise.
+     T=0.0, N=1 yields one deterministic outcome per (model, task) pair,
+     making both datasets directly comparable.
+
+  2. MULTICOLLINEARITY (primary threat — addressed below)
+     All five complexity predictors are strongly intercorrelated
+     (Spearman rho 0.71–0.98). Reporting five separate 'significant'
+     predictors inflates the apparent richness of findings — they all
+     measure the same latent construct. Fix: PCA composite score as
+     primary predictor; CC as interpretable single-metric reference.
+
+  3. OUTLIER INFLUENCE IN CC
+     CC ranges 2–72 (mean=9.88, SD=14.06), highly right-skewed.
+     Spearman is rank-based (handles skew), but extreme outliers can
+     dominate ranks. Fix: Winsorized (90th pct) correlation reported
+     as robustness check alongside raw Spearman.
+
+  4. FUNCTIONAL CLUSTERING (within source files)
+     50 functions from 14 source files. Functions in the same file
+     share module-level imports, global state, and style — inducing
+     within-file similarity that inflates effective N.
+     Fix: ICC / eta-squared decomposition reported; if between-file
+     variance dominates, file is not a meaningful cluster.
+
+  5. DATA CONTAMINATION (TestEval vs Real-World — not fixable statistically)
+     LeetCode problems (TestEval) are publicly indexed and likely present
+     in model training corpora. Models may partially memorize solutions,
+     generating assertion checks that reference known expected outputs.
+     This could artificially inflate IncorrectAssertion failures in TestEval
+     (model 'knows' the answer but writes the assertion incorrectly) while
+     suppressing genuine algorithmic confusion. Real-World functions from
+     niche production repositories are far less likely to be memorized.
+     This constitutes a confound for the chi-square comparison: the observed
+     TestEval/Real-World difference in root cause distributions may partly
+     reflect memorization artifacts rather than intrinsic task structure.
+     Reported as a limitation; future work should use contamination
+     detection (e.g., n-gram overlap with training data) to quantify.
+
+  6. FUNCTION ISOLATION ARTIFACT
+     Real-World functions are extracted from their original module context.
+     Mocking requirements arise partly because class-level setup, global
+     registry objects, and module-level state are stripped. MockingError
+     prevalence in Real-World may thus be partly an artefact of the
+     extraction methodology rather than intrinsic task difficulty.
+
+==========================================================================================
+  PREDICTOR INTERCORRELATION MATRIX (Spearman rho, N=50 tasks)
+  HIGH COLLINEARITY CONFIRMED — all pairs rho >= 0.71
+==========================================================================================
+
+                                CCHalstead DifficultyDifficulty LabelSolution CharsSolution Lines
+  --------------------------------------------------------------------------------
+  CC                       +1.000      +0.886*     +0.924*     +0.718*     +0.748*
+  Halstead Difficulty      +0.886*     +1.000      +0.862*     +0.707*     +0.725*
+  Difficulty Label         +0.924*     +0.862*     +1.000      +0.714*     +0.750*
+  Solution Chars           +0.718*     +0.707*     +0.714*     +1.000      +0.980*
+  Solution Lines           +0.748*     +0.725*     +0.750*     +0.980*     +1.000 
+  * |rho| >= 0.70 (high collinearity threshold)
+
+  IMPLICATION: The five predictors do not offer independent evidence.
+  Reporting five significant associations is misleading — they all
+  capture the same latent complexity construct. Solution: PCA composite.
+
+==========================================================================================
+  COMPOSITE COMPLEXITY SCORE — PCA First Principal Component
+  Variance explained by PC1: 81.6%
+==========================================================================================
+
+  PC1 Loadings (all positive → PC1 = general complexity):
+  CC                      +0.4788  +++++++++
+  Halstead Difficulty     +0.4382  ++++++++
+  Difficulty Label        +0.3664  +++++++
+  Solution Chars          +0.4675  +++++++++
+  Solution Lines          +0.4753  +++++++++
+
+  PC1 increases with all five metrics simultaneously.
+  A higher composite score = function is harder on every dimension.
+
+==========================================================================================
+  CLUSTERING: WITHIN-FILE vs BETWEEN-FILE CC VARIANCE
+==========================================================================================
+
+  Source files: 14
+  Eta-squared (between-file / total CC variance): 0.301
+
+  eta^2 0.20–0.40: Moderate between-file clustering.
+  File membership partially confounds results. Report as limitation.
+
+==========================================================================================
+  PRIMARY ANALYSIS: CC + COMPOSITE SCORE
+  Task-level (N=50) is the primary test; observation-level (N=250) is secondary.
+==========================================================================================
+
+  --- TASK-LEVEL (N=50 unique functions, PRIMARY) ---
+  Predictor                Outcome                    rho    p_raw    p_adj  Sig
+  ------------------------------------------------------------------------------
+  CC                       Passed                  -0.363   0.0096   0.0320  *
+  CC                       MockingError            +0.122   0.3984   0.3999  n.s.
+  CC                       Runtime Error           +0.127   0.3805   0.3999  n.s.
+  CC                       Assertion Error         -0.122   0.3999   0.3999  n.s.
+  CC                       No Code                 +0.375   0.0072   0.0320  *
+  Composite (PC1)          Passed                  -0.406   0.0035   0.0320  *
+  Composite (PC1)          MockingError            +0.147   0.3089   0.3999  n.s.
+  Composite (PC1)          Runtime Error           +0.138   0.3407   0.3999  n.s.
+  Composite (PC1)          Assertion Error         -0.144   0.3198   0.3999  n.s.
+  Composite (PC1)          No Code                 +0.341   0.0154   0.0385  *
+  p_adj = BH-FDR adjusted across all 20 tests (5 outcomes x 2 predictors)
+
+  --- OBSERVATION-LEVEL (N=250, secondary — note pseudo-replication) ---
+  Predictor                Outcome                 Med(+)  Med(-)     rho    r_rb    p_adj   Win_rho  Sig
+  ------------------------------------------------------------------------------------------------
+  CC                       Passed                     3.0     5.0  -0.217  +0.344   0.0032    -0.218  **
+  CC                       MockingError               6.0     4.0  +0.056  -0.102   0.4231    +0.056  n.s.
+  CC                       Runtime Error              5.0     4.0  +0.076  -0.088   0.3870    +0.080  n.s.
+  CC                       Assertion Error            4.0     4.0  -0.048  +0.101   0.4486    -0.048  n.s.
+  CC                       No Code                    5.5     4.0  +0.159  -0.264   0.0407    +0.155  *
+  Composite (PC1)          Passed                    -1.4    -0.7  -0.236  +0.380   0.0019    -0.238  **
+  Composite (PC1)          MockingError              -0.6    -0.7  +0.062  -0.115   0.4231    +0.064  n.s.
+  Composite (PC1)          Runtime Error             -0.7    -0.8  +0.083  -0.097   0.3787    +0.086  n.s.
+  Composite (PC1)          Assertion Error           -0.8    -0.7  -0.060  +0.128   0.4231    -0.060  n.s.
+  Composite (PC1)          No Code                   -0.5    -0.7  +0.149  -0.251   0.0474    +0.147  *
+  Win_rho = Spearman rho after Winsorizing at 90th percentile (outlier check)
+  r_rb = rank-biserial r (effect size for Mann-Whitney)
+
+==========================================================================================
+  CONSOLIDATED FINDINGS
+==========================================================================================
+
+  SIGNIFICANT (task-level, BH-FDR adjusted, N=50):
+    [CC] negatively associated with Passed (rho=-0.363, p_adj=0.0320 *)
+    [CC] positively associated with No Code (rho=+0.375, p_adj=0.0320 *)
+    [Composite (PC1)] negatively associated with Passed (rho=-0.406, p_adj=0.0320 *)
+    [Composite (PC1)] positively associated with No Code (rho=+0.341, p_adj=0.0385 *)
+
+  MARGINAL (p_raw < .10, not surviving correction):
+    None.
+
+  NON-SIGNIFICANT (informative null results):
+    MockingError rate: unpredicted by any complexity metric.
+    Interpretation: MockingError is driven by DEPENDENCY STRUCTURE
+    (external library calls, class-level state) — not cognitive complexity.
+    This partitions failure causes into two aetiological classes:
+      (A) Complexity-driven: general pass rate + No Code — amenable to
+          complexity-aware prompt engineering / function decomposition.
+      (B) Context-driven: MockingError, RuntimeError, AssertionError —
+          require richer model knowledge of library internals; complexity
+          reduction offers no remedy.
+
+  RECOMMENDED PAPER PHRASING:
+    'A composite complexity score derived from the first principal component
+    of five static metrics (CC, Halstead, difficulty label, solution length,
+    and line count; PC1 explaining X% of variance) was negatively associated
+    with pass rate (Spearman rho = ..., N=50, p_adj = ..., BH-FDR), and
+    positively associated with No Code failures (rho = ..., p_adj = ...).
+    MockingError rate was not predicted by composite complexity
+    (rho = ..., p_adj = ..., n.s.), indicating that dependency-structure
+    failures constitute a qualitatively distinct failure class not amenable
+    to complexity-aware mitigations.'
+
+==========================================================================================
+  TOP 10 FUNCTIONS BY CYCLOMATIC COMPLEXITY
+==========================================================================================
+  Function                              CC  Composite  Diff  PassRate  MockRate  NoCdRate
+  -------------------------------------------------------------------------------------
+  check_array                           72      7.855     3    20.0%     0.0%    40.0%
+  to_numeric                            49      5.374     3     0.0%     0.0%    40.0%
+  get_handle                            49      5.318     3     0.0%    20.0%    20.0%
+  naturaldelta                          34      3.598     3     0.0%    20.0%    20.0%
+  process_file                          28      1.832     3     0.0%     0.0%     0.0%
+  precisedelta                          27      3.902     3     0.0%     0.0%    40.0%
+  run_cosmic_ray_analysis               23      2.173     3    60.0%    20.0%     0.0%
+  should_bypass_proxies                 18      0.959     3     0.0%     0.0%    20.0%
+  get_environment_proxies               13      0.515     3     0.0%     0.0%    40.0%
+  evaluate_single_test_worker           13      1.533     3     0.0%    40.0%    20.0%
