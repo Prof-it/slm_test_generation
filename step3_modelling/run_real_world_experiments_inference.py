@@ -22,10 +22,11 @@ logging.basicConfig(
 )
 
 MODELS_TO_RUN = [
-    "google/gemma-3-4b-it",
-    "cyankiwi/Ministral-3-8B-Instruct-2512-AWQ-8bit",
+    "google/gemma-4-E4B-it",
+    #"cyankiwi/Ministral-3-8B-Instruct-2512-AWQ-8bit",
     "mistralai/Ministral-3-3B-Reasoning-2512",
-    "ibm-granite/granite-4.0-micro",
+    #"ibm-granite/granite-4.0-micro",
+    "Qwen/Qwen3.5-4B",
     "Qwen/Qwen3-4B-Instruct-2507",
 ]
 
