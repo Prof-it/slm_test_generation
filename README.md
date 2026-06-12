@@ -4,6 +4,54 @@ Benchmarking Small Language Models (SLMs) for automated Python unit test generat
 
 ---
 
+## Scientific Justification: Metrics, Model Scale, and SME Relevance
+
+### Why These Metrics Are Scientifically Valid and Comparable
+
+This study reports three primary metrics. The table below summarises comparability with each anchor paper before the narrative explanation.
+
+| Metric | Our definition | Wang et al. 2025a | Huang et al. 2025b | Directly comparable? |
+|---|---|---|---|---|
+| Pass@1 | Test compiles + runs + **all assertions pass** (strict) | "Execution Correctness": compiles + runs, assertions **not** required | Test compiles + runs + **all assertions pass** (strict) | **Huang only** — Wang uses a looser criterion |
+| Code Coverage | `pytest-cov` on **assertion-passing tests only** (gated) | `cov@k` on **execution-correct tests** (includes assertion failures) | `LCov@k` on **assertion-passing tests only** (gated) | **Huang only** — Wang's coverage is more lenient |
+| Mutation Score | `cosmic-ray`, gated on strict-passing tests, Cochran n=67 | Not reported | `Mut@k`, `cosmic-ray`, gated on strict-passing tests | **Huang only** |
+
+**Pass@1 — strict definition (Chen et al., 2021 + Huang et al., 2025b).** A generated test is counted as passing only when it (1) parses without a `SyntaxError`, (2) executes without a runtime exception (`ImportError`, `RuntimeError`, etc.), and (3) all assertions pass on the original, unmodified function. This is the *strict* variant of Pass@1 defined by Chen et al. (2021, "Evaluating Large Language Models Trained on Code") and adopted identically by Huang et al. (2025b, "Benchmarking LLMs for unit test generation from real-world functions"). Our results are directly comparable to Huang et al. (2025b) Table 2. Wang et al. (2025a, "TestEval") instead reports *Execution Correctness* (EC) — a test is considered passing if it runs to completion without an unhandled exception, even if every `assert` statement fails. Wang et al.'s metric is therefore more lenient than strict Pass@1. Their baseline values are included in our tables but marked `[a]` to make this incompatibility explicit; they function as an aspirational upper bound, not a same-definition comparison.
+
+For the 10-run stochastic condition (T=0.2), Pass@1 is computed using the unbiased Chen et al. (2021) estimator: pass@1 = mean(c_i / n) over all tasks, where c_i is the count of strictly passing generations and n = 10. A separate Pass@10 column reports the probability of at least one passing generation in 10 attempts using the general formula pass@k = E[1 − C(n−c, k) / C(n, k)].
+
+**Gated Code Coverage (Huang et al., 2025b).** Line coverage is measured by `pytest-cov` and attributed only to tests that satisfy the strict Pass@1 criterion above. A test that runs but fails an assertion is excluded from coverage computation, because such a test may accidentally traverse solution code rather than purposefully exercising it. This *Gated Code Coverage* matches Huang et al. (2025b)'s `LCov@k` definition exactly and is directly comparable to their Table 3. Wang et al. (2025a)'s `cov@k` applies the looser EC gating (execution-correct but potentially assertion-failing), which inflates coverage numbers relative to our metric. The two are not equivalent: our gated coverage is a strictly more conservative measurement. Wang et al.'s coverage baselines are included in our tables but carry the same `[a]` incompatibility marker.
+
+**Mutation Score (Jia & Harman, 2011; Guerino et al., 2024).** We use `cosmic-ray` to introduce syntactic mutations and compute the percentage of mutants killed. A mutant is killed when the generated test suite fails on the mutated code but passes on the original — matching Huang et al. (2025b)'s `Mut@k` kill criterion exactly. Mutation testing is gated on strict-passing tests with non-zero coverage. Wang et al. (2025a) do not report mutation scores on TestEval. To make the sample statistically defensible, the mutation subset is drawn using Cochran's finite-population formula (z = 1.96, p = 0.5, e = 0.10, N = 210), yielding n = 67 tasks at 95% confidence with a ±10% margin of error. Known limitations: equivalent mutants inflate the denominator; `cosmic-ray`'s default operator set does not cover all fault classes (Jia & Harman, 2011).
+
+---
+
+### Why Small Language Models for SMEs — and Why the DGX Spark Is Not a Practical Alternative
+
+A common objection to SLM research is: "NVIDIA now sells the DGX Spark, a desktop AI workstation capable of running a 70B model locally for roughly $4 000 — so why not just run the full-size model?" The objection sounds compelling but does not hold under scrutiny.
+
+**The DGX Spark is not a mass-market consumer product.** The DGX Spark is built around the Grace Blackwell GB10 superchip, with 128 GB of unified LPDDR5x memory, a 20-core Arm CPU, a Blackwell-class GPU, and a 240 W external power supply delivering approximately 1 petaFLOP FP4 theoretical performance. It runs models up to roughly 70B parameters under quantization and up to approximately 200B in constrained inference settings. However, it is sold exclusively through NVIDIA and select OEM partners — not through general retail channels. Real-world availability varies significantly by region: some markets face limited stock, delayed shipments, or enterprise-only allocations. US headline pricing sits at approximately $3 999–$4 699 depending on configuration, but landed cost in high-tax regions rises substantially due to VAT, import duties, currency depreciation, and reseller margins. In markets such as Turkey, the effective price can reach €6 000–€8 000 or higher. Export controls and sanctions primarily target high-end datacenter accelerators (A100/H100-class), not DGX Spark directly, but they indirectly constrain supply chains, OEM allocations, and regional distribution priorities — meaning access is uneven globally and weighted towards enterprise customers in approved markets.
+
+**The real-world alternative is consumer GPU hardware, not DGX Spark.** For the overwhelming majority of SMEs, the practical comparison is not "DGX Spark vs. 4B SLM" but "consumer RTX 30/40-series GPU (already present in many existing developer workstations) vs. cloud LLM API." RTX 30/40-series cards are widely available through standard retail, are already deployed in large numbers, and cost €300–€1 200 for a capable tier. The tradeoff is therefore not simply "more compute vs. less compute" — it is globally constrained, high-memory integrated AI hardware of uncertain availability, versus ubiquitous consumer GPU hardware with immediate retail accessibility that an SME team very likely already owns.
+
+**Data privacy eliminates cloud APIs for many SMEs regardless of cost.** GDPR, client NDAs, and sector-specific regulations (financial services, healthcare, legal) frequently prohibit transmitting source code to external APIs. A locally hosted SLM on consumer hardware processes code entirely on-premise with no data leaving the network. This constraint alone removes cloud-based LLM APIs from consideration for a substantial fraction of European SMEs — irrespective of pricing.
+
+**Per-call cost scales against cloud LLMs at CI volumes.** At approximately $0.002 per task for a frontier cloud LLM API, a CI pipeline generating tests for 10 000 tasks per day accumulates roughly $7 300 per year before retries or prompt iteration. A locally hosted 4B SLM on existing consumer hardware has zero marginal cost per call after the initial hardware purchase.
+
+---
+
+### Why Results on 4B Models Generalize — and Why Smaller Is the Right Starting Point
+
+Evaluating on sub-7B models is not a limitation — it is a deliberate methodological choice with two independent justifications.
+
+**Scaling laws predict direction, not just magnitude.** A long line of work (Kaplan et al., 2020; Hoffmann et al., 2022; Wei et al., 2022) establishes that larger models are at least as capable as smaller ones at the same task, given equal training compute. If a 4B model fails at a structured code-generation task (e.g., generating syntactically valid pytest code that targets a specific branch), a 70B model from the same family will not fail for the same structural reason — it will either solve it or face a qualitatively different failure mode. Conversely, if a 4B model demonstrates consistent success (60%+ Pass@1 on TestEval), this provides a lower bound on what the same architecture family achieves at larger scale. Our findings are therefore conservative: real-world deployments of 8B+ models from the same families can be expected to meet or exceed the pass rates we report.
+
+**Smaller models are the correct unit of comparison for SME deployment.** The research question is not "what is the absolute ceiling of LLM test generation?" — that is answered by GPT-4o (99.6% Pass@1 on TestEval, Wang et al. 2025a). The question is: "at what model size and cost point does automated test generation become viable for an SME that cannot afford cloud LLM APIs?" Evaluating 4B models directly answers this question. If a 4B model achieves 60% Pass@1 at negligible cost, the ROI argument for SME adoption is clear without needing to scale to 70B.
+
+**Fewer tokens per call means more calls per budget.** A 4B model generates tests in 200–800 tokens. A 70B model at the same task uses 500–2 000 tokens per call and often appends chain-of-thought reasoning that inflates token counts further. For a team running test generation at scale, the cost-per-useful-test ratio strongly favors smaller models. Budget that would run 1 000 GPT-4o calls can run 50 000–100 000 calls on a locally hosted 4B SLM, enabling test generation for entire codebases rather than hand-selected critical paths.
+
+---
+
 ## Repository Structure
 
 ```

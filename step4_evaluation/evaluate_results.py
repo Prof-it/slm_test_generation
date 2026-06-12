@@ -146,7 +146,7 @@ def parse_arguments():
     # Mutation Controls
     parser.add_argument("--run-mutation", action="store_true", help="Enable mutation testing for all passing tests.")
     parser.add_argument("--mutation-subset", type=str, help="Path to JSON file containing specific task_nums to mutate (overrides --run-mutation for selection).")
-    parser.add_argument("--mutation-timeout", type=int, default=3600, help="Timeout in seconds for mutation analysis per task (Default: 3600s).")
+    parser.add_argument("--mutation-timeout", type=int, default=300, help="Timeout in seconds for mutation analysis per task (Default: 300s).")
     
     return parser.parse_args()
 
@@ -559,7 +559,7 @@ def evaluate_single_test_worker(task_data):
     solution_code = task_data['solution_code']
     raw_test_code = task_data['raw_test_code']
     do_mutation = task_data.get('mutation_enabled', False)
-    mutation_timeout = task_data.get('mutation_timeout', 3600)
+    mutation_timeout = task_data.get('mutation_timeout', 300)
 
     tmp_dir = Path(tempfile.mkdtemp(prefix=f"eval_{task_id}_"))
     result = {

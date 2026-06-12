@@ -3,7 +3,7 @@ Real World Dataset Creator
 
 This script generates the 'Real World' benchmark dataset by parsing raw Python files.
 It performs the following steps:
-1.  **Code Analysis**: Calculates complexity (Radon), nesting depth, and variable counts.
+1.  **Code Analysis**: Calculates McCabe cyclomatic complexity (Radon) for difficulty classification.
 2.  **Block Extraction**: Identifies target lines (If/Else blocks) for coverage targets.
 3.  **Instrumentation**: Injects logging (optional) and wraps code in a LeetCode-style `Solution` class.
 4.  **Balancing**: Caps functions per source file and stratifies by difficulty to produce a balanced dataset.
@@ -40,73 +40,29 @@ DEFAULT_OUTPUT_ALL = PROJECT_ROOT / "TestEval" / "data" / "realworld-py-all.json
 DIFFICULTY_LABELS = {1: "Easy", 2: "Medium", 3: "Hard"}
 
 
-class DifficultyAnalyzer(ast.NodeVisitor):
-    """
-    Analyzes the Abstract Syntax Tree (AST) to estimate code complexity.
-    Tracks state space (variables) and control flow nesting depth.
-    """
-    def __init__(self):
-        self.max_depth = 0
-        self.current_depth = 0
-        self.state_vars = set()
-
-    def generic_visit(self, node):
-        if isinstance(node, (ast.If, ast.For, ast.While, ast.With, ast.Try)):
-            self.current_depth += 1
-            self.max_depth = max(self.max_depth, self.current_depth)
-            super().generic_visit(node)
-            self.current_depth -= 1
-        else:
-            super().generic_visit(node)
-
-    def visit_FunctionDef(self, node):
-        for arg in node.args.args:
-            self.state_vars.add(arg.arg)
-        self.generic_visit(node)
-
-    def visit_Assign(self, node):
-        for target in node.targets:
-            if isinstance(target, ast.Tuple):
-                for elt in target.elts:
-                    if isinstance(elt, ast.Name):
-                        self.state_vars.add(elt.id)
-            elif isinstance(target, ast.Name):
-                self.state_vars.add(target.id)
-        self.generic_visit(node)
-
 def analyze_code(source_code: str):
     """
-    Calculates a composite difficulty score (1=Easy, 2=Medium, 3=Hard).
-    Combines Cyclomatic Complexity, AST nesting depth, and Variable count.
-    Returns (difficulty_level, raw_score) for sorting purposes.
+    Assigns difficulty (1=Easy, 2=Medium, 3=Hard) using McCabe cyclomatic
+    complexity (Radon cc_visit, max over all blocks).
+    Standard thresholds: CC 1-5 -> Easy, 6-10 -> Medium, >10 -> Hard.
+    Returns (difficulty_level, max_cc) for sorting purposes.
     """
     try:
-        # Cyclomatic Complexity via Radon
         cc_results = cc_visit(source_code)
         if not cc_results:
-            return 1, 0
+            return 1, 1
 
-        complexities = [c.complexity for c in cc_results]
-        min_cc = min(complexities)
-        avg_cc = sum(complexities) / len(complexities)
+        max_cc = max(c.complexity for c in cc_results)
 
-        # AST Analysis
-        tree = ast.parse(source_code)
-        analyzer = DifficultyAnalyzer()
-        analyzer.visit(tree)
-
-        ssc = len(analyzer.state_vars)
-        cfg_depth = analyzer.max_depth
-
-        # Composite Score Calculation
-        score = (min_cc + math.ceil(avg_cc) + ssc + cfg_depth)
-
-        if score <= 7: return 1, score
-        elif score <= 12: return 2, score
-        else: return 3, score
+        if max_cc <= 5:
+            return 1, max_cc
+        elif max_cc <= 10:
+            return 2, max_cc
+        else:
+            return 3, max_cc
     except Exception as e:
         logging.warning(f"Error analyzing difficulty: {e}")
-        return 2, 0 # Default to Medium
+        return 2, 1
 
 
 class BlockExtractor(ast.NodeVisitor):
