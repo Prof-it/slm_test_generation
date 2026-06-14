@@ -400,3 +400,52 @@ Total inference time: approximately 90 hours for SLM runs, 16 hours for Pynguin 
 - Pynguin's DynaMOSA generates `@pytest.mark.xfail(strict=True)` tests for negative cases. These contribute to coverage but do not improve mutation scores because expected failures still fail under mutation. Metrics are reported separately for tests with and without `xfail` markers.
 - Models that generate assertion-free tests (e.g., `assert True`) can achieve high pass rates and coverage without meaningful fault detection. Mutation testing exists specifically to surface this failure mode.
 - The 23.81% (±0.00) result for Ministral-3-3B-Reasoning at T=0.8 is valid: five of twenty-one tasks passed consistently across two runs, with token counts varying — confirming independent executions. Zero variance on a 21-task set is a statistical artifact, not a reproducibility failure.
+
+---
+
+## How Model Performance Differences Will Be Explained in the Paper
+
+Most of the models in this benchmark are open-source but lack a published architectural paper or technical report describing their internal design in detail. Architecture-level explanation is therefore not available for these models in the same way it would be for GPT-4 or Gemini. This section documents the behavioral analysis methodology that will be used when writing the discussion section of the paper, following the precedent set by Wang et al. (2025a, "TestEval"), who similarly explained performance differences through observed output patterns rather than internal model weights.
+
+### 1. Three-Tier Failure Funnel (Wang et al. 2025a Taxonomy)
+
+Every generated test is classified at one of three failure tiers: Syntactic → Execution → Assertion. The proportion of models reaching each tier gives a per-model failure profile:
+
+- **Syntactic failure rate**: Models that frequently emit malformed Python (missing colons, mismatched brackets, truncated outputs, or redundant commas in argument lists) will show a high share of tasks stuck at tier one. This correlates with a model's instruction-following fidelity for code format — not its reasoning capability.
+- **Execution failure rate**: A model that passes syntactic checks but fails at runtime often has errors in import resolution, incorrect use of the `Solution` class wrapper, or fabricated method calls (hallucinated API usage). These failures distinguish models with shallow familiarity with Python idioms from models with stronger code understanding.
+- **Assertion failure rate**: A model that generates syntactically and executably correct tests that still fail assertions understands the structure of a test but misreasoned about the expected return value or edge case behavior. This is the most informative failure mode because it is not a formatting error — the model attempted a semantic claim and was wrong.
+
+Each model's funnel shape will be plotted and discussed individually in the paper.
+
+### 2. Output Repetition and Diversity (Pass@10 vs Pass@1 Gap)
+
+For the stochastic condition (T=0.2, 10 runs), the gap between Pass@10 and Pass@1 quantifies how much re-sampling helps a model. A small gap (Pass@10 ≈ Pass@1) means the model generates consistently — it either reliably gets a task right or reliably gets it wrong. A large gap (Pass@10 >> Pass@1) means the model has high variance: it sometimes succeeds but not repeatably, which is less useful for CI integration.
+
+A secondary signal is whether a model generates repetitive outputs across 10 runs despite stochastic decoding — analogous to what Wang et al. (2025a) observed with Starcoder-2-Instruct, which "frequently repeats previously generated cases despite being instructed to generate different ones." If any of our models show near-zero diversity at T=0.2 (identical or near-identical tests across all 10 runs), this will be flagged as a behavioral finding and compared against its Pass@10/Pass@1 gap.
+
+### 3. Reasoning Model vs Instruct Model Comparison (Ministral 3B Reasoning vs Ministral 8B Instruct)
+
+The evaluation set includes two models from the same family but different training paradigms: `Ministral-3-3B-Reasoning-2512` (reasoning-optimized, 3B) and `Ministral-3-8B-Instruct-2512-AWQ-8bit` (instruction-tuned, 8B, quantized INT8). This pairing allows a controlled behavioral comparison:
+
+- **Reasoning disconnect**: Wang et al. (2025a) found that GPT-4o, despite correctly identifying the mathematical constraints needed to cover a specific branch in its chain-of-thought, then failed to produce code that satisfied those constraints. A reasoning-optimized SLM may exhibit the same pattern at smaller scale: the `<think>` trace identifies the correct input condition but the final generated test fails the assertion. The paper will inspect reasoning model outputs on tasks where the test failed at the assertion level to check for this planning-execution disconnect.
+- **Scale vs paradigm tradeoff**: If the 3B reasoning model outperforms the 8B instruct model on structured CoT tasks despite its parameter disadvantage, this suggests that reasoning-oriented training transfers usefully to test generation even at small scale. The converse — the 8B instruct outperforming the 3B reasoning model on assertion correctness — would suggest that broader instruction coverage at larger scale matters more than reasoning specialization for this task.
+- **Quantization cost**: The 8B model is AWQ INT8 quantized, which introduces a small quality loss relative to the full-precision version. Since no full-precision 8B baseline is available for comparison, quantization impact will be discussed qualitatively (citing known INT8 degradation literature) rather than through direct measurement.
+
+### 4. Code-Specialized vs General-Instruct Models (Granite 4.0 Micro vs Gemma 3 4B and Qwen3 4B)
+
+IBM Granite 4.0 Micro is trained specifically for code tasks. Gemma-3-4B-it and Qwen3-4B-Instruct are general-purpose instruction models with code capability but without code-first pretraining at this scale. If Granite shows higher assertion correctness on structurally complex tasks (medium/hard cyclomatic complexity tier), this supports the hypothesis that code-specialization matters at sub-5B scales. If general-instruct models match or exceed Granite on simpler tasks but fall behind on harder ones, this would suggest a complexity-dependent advantage for code-specialized models — a nuanced finding relevant to SME model selection.
+
+### 5. One-Step vs Two-Step CoT Planning Effect
+
+For each model, the paper will report the pass rate delta between the one-step (direct test generation) and two-step (generate input condition first, then generate test) prompting strategies. Following Wang et al. (2025a), who found that GPT-4-series models improved by 10–15% on targeted tasks under additional reasoning guidance while smaller models did not benefit or regressed, the prediction is that reasoning-capable models will show a positive delta from two-step CoT while weaker instruction-following models may produce worse results (the intermediate reasoning step adds noise rather than precision). McNemar's test on paired pass/fail outcomes per task will determine statistical significance of the planning-step effect per model.
+
+### 6. What We Cannot Infer Without Architectural Details
+
+The following claims will be explicitly excluded from the paper's discussion because the architectural information required to support them is not publicly available:
+
+- Attention mechanism type (e.g., GQA vs MHA) and its effect on long-context coherence in test generation.
+- Training data composition and whether any model was trained on TestEval-adjacent LeetCode data, which would constitute data contamination rather than generalization.
+- RLHF/DPO alignment recipe differences between instruct variants, which affect instruction-following compliance but not raw code generation capability.
+- Tokenization differences between models that may cause consistent off-by-one errors in assertion values for numeric outputs.
+
+The discussion will explicitly state this scope limitation and recommend future work that pairs behavioral benchmarking with model internals analysis (e.g., probing studies or logit attribution) to close the gap.
