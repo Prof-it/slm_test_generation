@@ -22,24 +22,24 @@ MODELS_TO_RUN = [
     # Gemma
     "google/gemma-4-E4B-it",
     
+    # Qwen Family
+    "Qwen/Qwen3.5-4B",
+    "Qwen/Qwen3-4B-Instruct-2507",
+    "Qwen/Qwen3-4B-Thinking-2507",
+    #"Qwen/Qwen3-8B-AWQ"
+    
     # Mistral Family
     #"cyankiwi/Ministral-3-8B-Instruct-2512-AWQ-8bit",
     #"cyankiwi/Ministral-3-8B-Instruct-2512-AWQ-4bit",
     "mistralai/Ministral-3-3B-Instruct-2512",
     "mistralai/Ministral-3-3B-Reasoning-2512",
 
+    # IBM Granite
+    "ibm-granite/granite-4.0-micro",
+
     # Meta Llama Family
     #"meta-llama/Llama-3.2-3B-Instruct",
     #"hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4",
-    
-    # IBM Granite
-    #"ibm-granite/granite-4.0-micro",
-
-    # Qwen Family
-    "Qwen/Qwen3-4B-Instruct-2507",
-    "Qwen/Qwen3-4B-Thinking-2507",
-    #"Qwen/Qwen3-8B-AWQ",
-    "Qwen/Qwen3.5-4B"
 ]
 
 GLOBAL_TEMPERATURES = [0.0]

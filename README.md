@@ -1,5 +1,8 @@
 # slm-python-unit-test-benchmark
 
+Python version: 3.12.10
+Pip version: 26.1.2
+
 Benchmarking Small Language Models (SLMs) for automated Python unit test generation. Evaluates models on the TestEval benchmark (LeetCode-based) and a custom real-world dataset of production Python functions.
 
 ---
@@ -449,3 +452,75 @@ The following claims will be explicitly excluded from the paper's discussion bec
 - Tokenization differences between models that may cause consistent off-by-one errors in assertion values for numeric outputs.
 
 The discussion will explicitly state this scope limitation and recommend future work that pairs behavioral benchmarking with model internals analysis (e.g., probing studies or logit attribution) to close the gap.
+
+---
+
+### 7. Intermediate Plan Quality Analysis — Methodology and Citation Basis
+
+This section documents the scientific decisions behind the plan quality analysis so they are traceable to published work before the paper is written.
+
+#### What we measure and why
+
+The two-step CoT prompting strategy produces a step-1 natural language *condition* before generating the test (stored in prediction files under `conditions[line_num].condition_text`). Scoring this condition independently of the final test outcome makes it possible to diagnose *where* a model fails: in the reasoning phase (bad condition) or in the code translation phase (good condition → bad code). This distinction is the core of the planning analysis, following Jiang et al. (2023).
+
+#### Citation basis for every design choice
+
+| Design choice | Citation |
+|---|---|
+| LLM-as-Judge evaluation framework | Zheng et al. 2023, "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena" — foundational methodology for using a stronger LLM to score model outputs |
+| **Completeness** and **Correctness** as the two rubric dimensions | Jiang et al. 2023, "Self-planning Code Generation with Large Language Models" (arXiv:2303.06689) — explicitly evaluates whether plans contain all necessary constraints (completeness) and whether those constraints are logically valid (correctness) |
+| 3 anchor examples embedded in the judge prompt | Liu et al. 2023, "G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment" — demonstrates that including calibration examples (demonstrations) in the scoring prompt significantly reduces variance and improves LLM-human alignment vs. rubric-only prompts |
+| 4-bucket error taxonomy (High/Low plan × Pass/Fail code) | Ye et al. 2025, "Are They All Good? Evaluating the Quality of CoTs in LLM-based Code Generation" (arXiv:2507.06980) — the exact four categories (Success / Coding Bottleneck / Reasoning Bottleneck / Shortcut) used as our taxonomy |
+| Cochran sample for human validation | Cochran 1977 — same formula already applied to mutation subset; N≈3,150 plans, z=1.96, p=0.5, e=0.10 → n≈94 plans |
+| Inter-rater agreement metrics | Krippendorff 2011 (ordinal alpha), Cohen 1960 (weighted kappa) — both reported following Zheng et al. 2023's human evaluation protocol |
+
+#### The 4-bucket error taxonomy
+
+After scoring each plan and aggregating scores across target lines per task, plans are classified into tiers (High ≥ 3.5, Medium 2.5–3.4, Low < 2.5 out of 5.0) and cross-tabulated with the test execution outcome:
+
+| | Test PASS | Test FAIL |
+|---|---|---|
+| **Plan HIGH quality** | Success — reasoning and coding both work | **Coding Bottleneck** — model understood the logic but wrote incorrect code |
+| **Plan LOW quality** | **Shortcut/Memorisation** — model skipped reasoning and guessed correctly | **Reasoning Bottleneck** — model failed to understand the task |
+
+This taxonomy directly tests Wang et al. (2025a)'s observation that GPT-4o can produce correct chain-of-thought reasoning yet still generate test code that fails — the "reasoning-execution disconnect" — and investigates whether the same phenomenon occurs in SLMs at 3–8B scale.
+
+#### Human validation protocol
+
+A Cochran sample of **n ≈ 94 plans** (from N ≈ 3,150 total scored plans) is exported to `plan_quality_human_validation.csv`. Both the thesis author and the supervisor annotate the **same 94 plans** independently on Completeness (1–5) and Correctness (1–5). The CSV begins with **3 anchor rows** (marked `IS_ANCHOR=True`) containing pre-filled correct scores that serve as a calibration exercise — any annotator who disagrees with an anchor by more than 1 point should re-read the rubric before continuing. This anchor protocol follows Liu et al. (2023) G-Eval.
+
+Agreement is reported as:
+- **Cohen's Kappa (weighted)** between annotator 1 and annotator 2 — measures human-human ceiling
+- **Spearman rho** between LLM scores and the average of both human scores — measures LLM-human alignment
+- **Krippendorff's alpha (ordinal)** across all three raters (LLM + 2 humans)
+
+Acceptable thresholds per Zheng et al. (2023): rho ≥ 0.60 (acceptable), ≥ 0.80 (strong); inter-human Kappa ≥ 0.60.
+
+#### Anchor examples
+
+The 3 anchor examples in the judge prompt are drawn from **real functions in the TestEval dataset** after experiments are re-run (user decision: domain-matched anchors produce better calibration than generic examples). After running the new experiments, inspect actual step-1 outputs, pick three (function, target_line, condition_text) triples clearly representing HIGH / MEDIUM / LOW quality, and fill in the `# TODO` slots in `PLAN_QUALITY_SYSTEM_PROMPT` in [llm_as_judge.py](step3_modelling/llm_as_judge.py).
+
+#### Running the pipeline
+
+```bash
+# Score all step-1 conditions (two-step CoT only)
+python step3_modelling/llm_as_judge.py \
+  --mode plan_quality \
+  --predictions_dir TestEval/predictions_realworld_1 \
+  --eval_dir evaluation_results_realworld_1 \
+  --output_dir TestEval/predictions_judgellm \
+  --evaluation_group full_factorial
+
+# After human annotation — compute inter-rater agreement
+python step3_modelling/llm_as_judge.py \
+  --mode plan_quality \
+  --output_dir TestEval/predictions_judgellm \
+  --human_agreement_csv TestEval/predictions_judgellm/plan_quality_human_validation.csv
+
+# Run both pairwise test quality AND plan quality in one call
+python step3_modelling/llm_as_judge.py \
+  --mode both \
+  --predictions_dir TestEval/predictions_realworld_1 \
+  --eval_dir evaluation_results_realworld_1 \
+  --output_dir TestEval/predictions_judgellm
+```
