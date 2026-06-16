@@ -18,20 +18,20 @@ logging.basicConfig(
 )
 
 MODELS_TO_RUN = [
-    
+
     # Gemma
     "google/gemma-4-E4B-it",
-    
-    # Qwen Family
-    "Qwen/Qwen3.5-4B",
-    "Qwen/Qwen3-4B-Instruct-2507",
+
+    # Qwen Family - keeping the reasoning/thinking variants, dropping the plain Instruct ones
+    "Qwen/Qwen3.5-4B", # Defaults to thinking mode, run as-is (no --disable-thinking)
+    #"Qwen/Qwen3-4B-Instruct-2507", # Dropped: keeping only the Thinking variant below
     "Qwen/Qwen3-4B-Thinking-2507",
     #"Qwen/Qwen3-8B-AWQ"
-    
-    # Mistral Family
+
+    # Mistral Family - keeping the reasoning variant, dropping the plain Instruct one
     #"cyankiwi/Ministral-3-8B-Instruct-2512-AWQ-8bit",
     #"cyankiwi/Ministral-3-8B-Instruct-2512-AWQ-4bit",
-    "mistralai/Ministral-3-3B-Instruct-2512",
+    #"mistralai/Ministral-3-3B-Instruct-2512", # Dropped: keeping only the Reasoning variant below
     "mistralai/Ministral-3-3B-Reasoning-2512",
 
     # IBM Granite
@@ -172,8 +172,9 @@ def main():
                     "--dtype", current_dtype,
                     "--temperature", str(temp),
                     "--seed", str(current_run_seed),
-                    "--max-tokens", "4096",
-                    "--max-model-len", "8192",
+                    "--max-tokens", "8192",
+                    "--max-model-len", "16384",
+                    "--max-num-seqs", "4",
                     "--output-file", full_output_path_line
                 ]
 
@@ -187,8 +188,9 @@ def main():
                     "--temperature", str(temp),
                     "--seed", str(current_run_seed),
                     "--dtype", current_dtype,
-                    "--max-tokens", "4096",
-                    "--max-model-len", "8192",
+                    "--max-tokens", "8192",
+                    "--max-model-len", "16384",
+                    "--max-num-seqs", "4",
                     "--output-file", full_output_path_cot
                 ]
                 

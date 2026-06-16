@@ -25,9 +25,10 @@ MODELS_TO_RUN = [
     "google/gemma-4-E4B-it",
     #"cyankiwi/Ministral-3-8B-Instruct-2512-AWQ-8bit",
     "mistralai/Ministral-3-3B-Reasoning-2512",
-    #"ibm-granite/granite-4.0-micro",
-    "Qwen/Qwen3.5-4B",
-    "Qwen/Qwen3-4B-Instruct-2507",
+    "ibm-granite/granite-4.0-micro",
+    "Qwen/Qwen3.5-4B", # Defaults to thinking mode, run as-is (no --disable-thinking)
+    #"Qwen/Qwen3-4B-Instruct-2507", # Dropped: keeping only the Thinking variant below
+    "Qwen/Qwen3-4B-Thinking-2507",
 ]
 
 GLOBAL_TEMPERATURES = [0.0]
@@ -111,7 +112,7 @@ def main():
                          "--dataset-path", str(DATASET_BASE),
                          "--model", model, "--covmode", "line", "--dtype", dtype,
                          "--temperature", str(temp), "--seed", str(seed),
-                         "--max-tokens", "4096", "--max-model-len", "8192",
+                         "--max-tokens", "8192", "--max-model-len", "16384", "--max-num-seqs", "4",
                          "--system-prompt", str(SYSTEM_PROMPT_ONESTEP),
                          "--output-file", os.path.join(out_dir, f"linecov_{safe_name}_temp_{temp}.jsonl")]
 
@@ -120,7 +121,7 @@ def main():
                          "--dataset-path", str(DATASET_ALL),
                          "--model", model, "--temperature", str(temp), "--seed", str(seed),
                          "--dtype", dtype,
-                         "--max-tokens", "4096", "--max-model-len", "8192",
+                         "--max-tokens", "8192", "--max-model-len", "16384", "--max-num-seqs", "4",
                          "--system-prompt", str(SYSTEM_PROMPT_TWOSTEP),
                          "--output-file", os.path.join(out_dir, f"linecov2_{safe_name}_temp_{temp}.jsonl")]
                 
