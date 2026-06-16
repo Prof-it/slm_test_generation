@@ -27,6 +27,8 @@ def parse_args() -> Namespace:
     parser.add_argument("--max-tokens", type=int, default=4096, help="Max tokens for generation (SamplingParams)")
     parser.add_argument("--max-model-len", type=int, default=8192, help="Max model context length (vLLM engine)")
     parser.add_argument("--max-num-seqs", type=int, default=8, help="Max concurrent sequences (vLLM batch size)")
+    parser.add_argument("--gen-timeout", type=int, default=120, help="Wall-clock seconds allowed per task batch before forcing partial output. Must scale with --max-tokens.")
+    parser.add_argument("--repetition-penalty", type=float, default=1.05, help="vLLM repetition_penalty for SamplingParams.")
     parser.add_argument("--temperature", type=float, required=True)
     parser.add_argument("--output-file", type=str, required=True, help="Path for the output predictions file.")
     parser.add_argument(
@@ -215,7 +217,7 @@ if __name__=='__main__':
         max_tokens=args.max_tokens,
         top_p=0.95,
         top_k=-1, # Default value to not use top K
-        repetition_penalty=1.05, # Small models might stuck selecting the same token for temperatures close to zero
+        repetition_penalty=args.repetition_penalty, # Small models might stuck selecting the same token for temperatures close to zero
         stop=ALL_STOP_TOKENS,
         seed=args.seed,
     )
@@ -278,7 +280,7 @@ if __name__=='__main__':
                     start_time = time.time()
                     
                     # Use the Safe Stepper instead of llm.generate
-                    outputs, is_timeout = generate_with_timeout(llm.llm_engine, prompts_for_batch, sampling_params, time_limit=120)
+                    outputs, is_timeout = generate_with_timeout(llm.llm_engine, prompts_for_batch, sampling_params, time_limit=args.gen_timeout)
                     
                     end_time = time.time()
                     

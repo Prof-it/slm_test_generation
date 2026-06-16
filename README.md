@@ -2,6 +2,7 @@
 
 Python version: 3.12.10
 Pip version: 26.1.2
+Cuda: 13.0
 
 Benchmarking Small Language Models (SLMs) for automated Python unit test generation. Evaluates models on the TestEval benchmark (LeetCode-based) and a custom real-world dataset of production Python functions.
 

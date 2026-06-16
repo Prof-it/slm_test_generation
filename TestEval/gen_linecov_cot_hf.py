@@ -22,6 +22,8 @@ def parse_args():
     parser.add_argument("--max-tokens", type=int, default=4096, help="Max tokens for generation (SamplingParams)")
     parser.add_argument("--max-model-len", type=int, default=8192, help="Max model context length (vLLM engine)")
     parser.add_argument("--max-num-seqs", type=int, default=8, help="Max concurrent sequences (vLLM batch size)")
+    parser.add_argument("--gen-timeout", type=int, default=120, help="Wall-clock seconds allowed per task batch before forcing partial output. Must scale with --max-tokens.")
+    parser.add_argument("--repetition-penalty", type=float, default=1.05, help="vLLM repetition_penalty for SamplingParams.")
     parser.add_argument("--temperature", type=float, required=True)
     parser.add_argument("--output-file", type=str, required=True)
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility")
@@ -199,7 +201,7 @@ if __name__=='__main__':
         max_tokens=args.max_tokens,
         top_p=0.95,
         top_k=-1,
-        repetition_penalty=1.05,
+        repetition_penalty=args.repetition_penalty,
         stop=ALL_STOP_TOKENS,
         seed=args.seed,
     )
@@ -255,7 +257,7 @@ if __name__=='__main__':
                     linenos_for_task.append(lineno)
 
                 start_time_cond = time.time()
-                cond_outputs, cond_timeout = generate_with_timeout(llm.llm_engine, cond_prompts_batch, sampling_params, time_limit=120)
+                cond_outputs, cond_timeout = generate_with_timeout(llm.llm_engine, cond_prompts_batch, sampling_params, time_limit=args.gen_timeout)
                 end_time_cond = time.time()
                 
                 # Generating all tests based on conditions
@@ -285,7 +287,7 @@ if __name__=='__main__':
 
                 start_time_test = time.time()
                 if test_prompts_batch:
-                    test_outputs, test_timeout = generate_with_timeout(llm.llm_engine, test_prompts_batch, sampling_params, time_limit=120)
+                    test_outputs, test_timeout = generate_with_timeout(llm.llm_engine, test_prompts_batch, sampling_params, time_limit=args.gen_timeout)
                 else:
                     test_outputs = []
                     test_timeout = False

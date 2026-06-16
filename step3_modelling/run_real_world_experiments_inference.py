@@ -112,7 +112,7 @@ def main():
                          "--dataset-path", str(DATASET_BASE),
                          "--model", model, "--covmode", "line", "--dtype", dtype,
                          "--temperature", str(temp), "--seed", str(seed),
-                         "--max-tokens", "8192", "--max-model-len", "16384", "--max-num-seqs", "4",
+                         "--max-tokens", "8192", "--max-model-len", "16384", "--max-num-seqs", "4", "--gen-timeout", "480", "--repetition-penalty", "1.15",
                          "--system-prompt", str(SYSTEM_PROMPT_ONESTEP),
                          "--output-file", os.path.join(out_dir, f"linecov_{safe_name}_temp_{temp}.jsonl")]
 
@@ -121,7 +121,7 @@ def main():
                          "--dataset-path", str(DATASET_ALL),
                          "--model", model, "--temperature", str(temp), "--seed", str(seed),
                          "--dtype", dtype,
-                         "--max-tokens", "8192", "--max-model-len", "16384", "--max-num-seqs", "4",
+                         "--max-tokens", "8192", "--max-model-len", "16384", "--max-num-seqs", "4", "--gen-timeout", "480", "--repetition-penalty", "1.15",
                          "--system-prompt", str(SYSTEM_PROMPT_TWOSTEP),
                          "--output-file", os.path.join(out_dir, f"linecov2_{safe_name}_temp_{temp}.jsonl")]
                 

@@ -175,6 +175,8 @@ def main():
                     "--max-tokens", "8192",
                     "--max-model-len", "16384",
                     "--max-num-seqs", "4",
+                    "--gen-timeout", "480",
+                    "--repetition-penalty", "1.15",
                     "--output-file", full_output_path_line
                 ]
 
@@ -191,6 +193,8 @@ def main():
                     "--max-tokens", "8192",
                     "--max-model-len", "16384",
                     "--max-num-seqs", "4",
+                    "--gen-timeout", "480",
+                    "--repetition-penalty", "1.15",
                     "--output-file", full_output_path_cot
                 ]
                 
