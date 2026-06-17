@@ -1,0 +1,4 @@
+2026-06-17 21:46:54,350 - INFO - Scanning downloaded_predictions\run_1 recursively...
+2026-06-17 21:46:54,352 - INFO - Processing downloaded_predictions\run_1\linecov2_gemma-4-E4B-it_temp_0.0.jsonl -> evaluation_results\run_1\linecov2_gemma-4-E4B-it_temp_0.0_evaluated.jsonl
+2026-06-17 21:46:54,359 - INFO - Loaded 67 tasks for mutation testing.
+2026-06-17 21:48:06,213 - ERROR - Worker crashed: A process in the process pool was terminated abruptly while the future was running or pending.

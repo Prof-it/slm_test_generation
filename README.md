@@ -87,10 +87,10 @@ Clones the TestEval repository if absent, validates dataset integrity, installs 
 ### 2. Real-World Dataset Creation (optional)
 
 ```bash
-python step2_data_preperation/create_realworld_dataset.py --target-count 50 --max-per-file 8
+python step2_data_preperation/create_realworld_dataset.py --max-per-file 10 --seed 42
 ```
 
-Extracts and transforms public functions from source files in `TestEval/data/real_world/`. Add your own Python source files to that directory to extend the dataset.
+Extracts and transforms public functions from source files in `TestEval/data/real_world/`. Omitting `--target-count` takes all valid functions after the per-file cap (recommended: avoids manual selection bias). Add Python source files to that directory to extend N. Use `--seed` for full reproducibility.
 
 ### 3. Inference — SLM (GPU, Docker)
 
@@ -176,10 +176,12 @@ This section documents each script's algorithm, inputs, outputs, and key librari
    - **Radon** `cc_visit`: cyclomatic complexity of the function.
    - **AST node visitor** (`DifficultyAnalyzer`): maximum control-flow nesting depth and number of distinct assigned variables.
    - Combined score maps to Easy (1), Medium (2), or Hard (3).
-5. Identifies target lines for coverage-oriented evaluation (`if`, `return`, `raise`, `for`, `while`, `with` statements).
-6. Wraps each function in a `class Solution:` body, prepends imports, and deterministically assigns a `task_num` using `hashlib.md5` on the filename and function name.
-7. Balances the final dataset: applies a per-file cap (`--max-per-file`), then stratified sampling (Easy 40%, Medium 30%, Hard 30%) to reach `--target-count`.
-8. Writes two JSONL files: `realworld-py.jsonl` (balanced subset) and `realworld-py-all.jsonl` (full set).
+5. Stores `complexity_score` (raw Radon CC integer) and `num_lines` as first-class JSONL fields alongside `difficulty`, enabling continuous-variable regression and correlation analysis downstream.
+6. Stores `source_file` in each record for per-domain analysis.
+7. Identifies target lines for coverage-oriented evaluation (`if`, `return`, `raise`, `for`, `while`, `with` statements).
+8. Wraps each function in a `class Solution:` body, prepends imports, and deterministically assigns a `task_num` using `hashlib.md5` on the filename and function name.
+9. Balances the final dataset using two-phase automated stratified random sampling (seed=42): (a) per-file random cap to prevent single-source over-representation, (b) proportional stratified random sample across difficulty tiers. Selection is fully automated and reproducible — no manual ordering or complexity-ranking bias.
+10. Writes two JSONL files: `realworld-py.jsonl` (balanced subset) and `realworld-py-all.jsonl` (full set).
 
 **Libraries:** `ast`, `radon.complexity`, `hashlib`, `argparse`, `json`, `pathlib`, `collections`, `textwrap`
 

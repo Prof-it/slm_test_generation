@@ -21,6 +21,7 @@ import hashlib
 import math
 import logging
 import json
+import random
 import textwrap
 from collections import defaultdict
 from pathlib import Path
@@ -267,6 +268,9 @@ class CodeAnalyzer:
                     "task_num": int(hashlib.md5(f"{self.file_path.stem}_{node.name}".encode()).hexdigest(), 16) % 100000,
                     "task_title": f"RealWorld::{self.file_path.name}::{node.name}",
                     "difficulty": difficulty_level,
+                    "complexity_score": complexity_score,
+                    "num_lines": num_lines,
+                    "source_file": self.file_path.name,
                     "func_name": node.name,
                     "description": desc,
                     "python_solution": final_code_for_dataset,
@@ -291,103 +295,66 @@ class CodeAnalyzer:
         return tasks
 
 
-def balance_dataset(all_tasks, target_count, max_per_file=None):
+def balance_dataset(all_tasks, target_count=None, max_per_file=10, seed=42):
     """
-    Balances the dataset by limiting functions per source file and
-    stratifying selection by difficulty level.
+    Automated stratified random sampling to eliminate manual selection bias.
 
-    Strategy:
-    1. Group tasks by source file.
-    2. Limit each file to max_per_file (auto-calculated if not provided).
-    3. Within each file's limit, select for difficulty diversity:
-       - Allocate slots equally across Easy/Medium/Hard.
-       - Fill each slot by picking the highest-complexity functions first.
-       - Redistribute unused slots (e.g., file has no Hard functions) to other levels.
-    4. If total still exceeds target, trim from the largest contributors.
+    Strategy (two-phase, reproducible):
+    1. Per-file random cap: shuffle each source file's tasks with a fixed seed,
+       then take the first min(n, max_per_file) at random. This prevents any
+       single file from dominating while removing the previous complexity-ranking
+       bias (picking only the "most interesting" functions by CC).
+    2. Proportional stratified sample: if a target_count is given, allocate
+       slots to each difficulty tier proportional to its share in the post-cap
+       pool, then sample randomly within each tier. Allocation is data-driven,
+       not a fixed 40/30/30 split.
+
+    Reproducibility: all randomness is sourced from a single seeded RNG so the
+    dataset composition is fully deterministic for a given seed.
     """
-    # Group by source file
+    rng = random.Random(seed)
+
     by_file = defaultdict(list)
     for task in all_tasks:
         by_file[task[2]["source_file"]].append(task)
 
     num_files = len(by_file)
-    if max_per_file is None:
-        max_per_file = math.ceil(target_count / num_files) + 1
+    logging.info(f"Balancing: {len(all_tasks)} total functions from {num_files} files "
+                 f"(max {max_per_file}/file, seed={seed})")
 
-    logging.info(f"Balancing: {len(all_tasks)} total functions from {num_files} files -> target {target_count} (max {max_per_file}/file)")
-
-    selected = []
-
+    # Phase 1: per-file random cap
+    pool = []
     for _, file_tasks in sorted(by_file.items()):
-        if len(file_tasks) <= max_per_file:
-            # File is under the limit, take everything
-            selected.extend(file_tasks)
-            continue
+        rng.shuffle(file_tasks)
+        pool.extend(file_tasks[:max_per_file])
 
-        # File exceeds limit, select a difficulty-balanced subset
-        by_diff = defaultdict(list)
-        for t in file_tasks:
-            by_diff[t[0]["difficulty"]].append(t)
+    logging.info(f"After per-file cap: {len(pool)} candidates")
 
-        # Sort each difficulty group by complexity_score descending (pick most interesting)
-        for diff in by_diff:
-            by_diff[diff].sort(key=lambda t: t[2]["complexity_score"], reverse=True)
+    if target_count is None or len(pool) <= target_count:
+        return pool
 
-        # Allocate slots per difficulty level
-        available_diffs = [d for d in [1, 2, 3] if by_diff[d]]
-        if not available_diffs:
-            continue
+    # Phase 2: proportional stratified random sample
+    by_diff = defaultdict(list)
+    for task in pool:
+        by_diff[task[0]["difficulty"]].append(task)
 
-        base_per_diff = max_per_file // len(available_diffs)
-        remainder = max_per_file % len(available_diffs)
+    total_pool = len(pool)
+    selected = []
+    allocated = 0
+    tiers = sorted(by_diff.keys())
 
-        file_selected = []
-        leftover_slots = 0
-
-        for i, diff in enumerate(available_diffs):
-            slots = base_per_diff + (1 if i < remainder else 0)
-            taken = by_diff[diff][:slots]
-            file_selected.extend(taken)
-            leftover_slots += slots - len(taken)
-
-        # Redistribute leftover slots to difficulty levels that have more functions
-        if leftover_slots > 0:
-            already_selected_names = {t[0]["func_name"] for t in file_selected}
-            for diff in available_diffs:
-                if leftover_slots <= 0:
-                    break
-                extras = [t for t in by_diff[diff] if t[0]["func_name"] not in already_selected_names]
-                take = extras[:leftover_slots]
-                file_selected.extend(take)
-                leftover_slots -= len(take)
-
-        selected.extend(file_selected)
-
-    # If still over target, trim from largest contributors
-    if len(selected) > target_count:
-        # Count per file after initial selection
-        file_counts = defaultdict(list)
-        for t in selected:
-            file_counts[t[2]["source_file"]].append(t)
-
-        # Remove from files with most functions, keeping difficulty balance
-        over = len(selected) - target_count
-        # Sort files by count descending
-        sorted_files = sorted(file_counts.items(), key=lambda x: len(x[1]), reverse=True)
-
-        to_remove = set()
-        for _, tasks in sorted_files:
-            if over <= 0:
-                break
-            # Remove lowest-complexity functions from this file first
-            tasks_sorted = sorted(tasks, key=lambda t: t[2]["complexity_score"])
-            for t in tasks_sorted:
-                if over <= 0:
-                    break
-                to_remove.add(t[0]["task_num"])
-                over -= 1
-
-        selected = [t for t in selected if t[0]["task_num"] not in to_remove]
+    for i, diff in enumerate(tiers):
+        tier_tasks = list(by_diff[diff])
+        rng.shuffle(tier_tasks)
+        if i < len(tiers) - 1:
+            n = round(target_count * len(tier_tasks) / total_pool)
+        else:
+            # Last tier absorbs rounding remainder to hit target_count exactly
+            n = target_count - allocated
+        n = max(0, min(n, len(tier_tasks)))
+        selected.extend(tier_tasks[:n])
+        allocated += n
+        logging.info(f"  Difficulty {diff}: pool {len(tier_tasks)} -> selected {n}")
 
     return selected
 
@@ -453,7 +420,7 @@ def print_summary(all_tasks, selected_tasks):
 
 
 def generate_datasets(input_dir: Path, output_base: Path, output_all: Path,
-                      target_count=None, max_per_file=None):
+                      target_count=None, max_per_file=10, seed=42):
     if not input_dir.exists():
         logging.error(f"Input directory not found: {input_dir}")
         return False
@@ -478,10 +445,7 @@ def generate_datasets(input_dir: Path, output_base: Path, output_all: Path,
         logging.warning("No tasks extracted. Check input files.")
         return False
 
-    if target_count is not None:
-        selected = balance_dataset(all_tasks, target_count, max_per_file)
-    else:
-        selected = all_tasks
+    selected = balance_dataset(all_tasks, target_count, max_per_file, seed)
 
     print_summary(all_tasks, selected)
 
@@ -504,14 +468,18 @@ if __name__ == "__main__":
     parser.add_argument("--input-dir", type=str, default=str(DEFAULT_INPUT_DIR), help="Directory containing .py source files")
     parser.add_argument("--output-base", type=str, default=str(DEFAULT_OUTPUT_BASE), help="Output path for base JSONL")
     parser.add_argument("--output-all", type=str, default=str(DEFAULT_OUTPUT_ALL), help="Output path for enriched JSONL")
-    parser.add_argument("--target-count", type=int, default=None, help="Target number of functions in the dataset (enables balancing)")
-    parser.add_argument("--max-per-file", type=int, default=None, help="Max functions per source file (auto-calculated if not set)")
+    parser.add_argument("--target-count", type=int, default=None,
+                        help="Target N after stratified sampling. Omit to take all valid functions (recommended for publication).")
+    parser.add_argument("--max-per-file", type=int, default=10,
+                        help="Max functions sampled per source file (prevents single-domain over-representation, default=10).")
+    parser.add_argument("--seed", type=int, default=42,
+                        help="Random seed for reproducible stratified sampling (default=42).")
 
     args = parser.parse_args()
 
     success = generate_datasets(
         Path(args.input_dir), Path(args.output_base), Path(args.output_all),
-        target_count=args.target_count, max_per_file=args.max_per_file
+        target_count=args.target_count, max_per_file=args.max_per_file, seed=args.seed
     )
     if success:
         print("\n[SUCCESS] Dataset generation complete.")

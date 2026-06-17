@@ -20,12 +20,12 @@ logging.basicConfig(
 MODELS_TO_RUN = [
 
     # Gemma
-    "google/gemma-4-E4B-it",
+    "google/gemma-4-E4B-it", # Already completed under current settings, output downloaded
 
     # Qwen Family - keeping the reasoning/thinking variants, dropping the plain Instruct ones
     "Qwen/Qwen3.5-4B", # Defaults to thinking mode, run as-is (no --disable-thinking)
     #"Qwen/Qwen3-4B-Instruct-2507", # Dropped: keeping only the Thinking variant below
-    "Qwen/Qwen3-4B-Thinking-2507",
+    #"Qwen/Qwen3-4B-Thinking-2507",
     #"Qwen/Qwen3-8B-AWQ"
 
     # Mistral Family - keeping the reasoning variant, dropping the plain Instruct one

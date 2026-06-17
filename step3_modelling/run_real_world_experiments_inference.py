@@ -28,7 +28,7 @@ MODELS_TO_RUN = [
     "ibm-granite/granite-4.0-micro",
     "Qwen/Qwen3.5-4B", # Defaults to thinking mode, run as-is (no --disable-thinking)
     #"Qwen/Qwen3-4B-Instruct-2507", # Dropped: keeping only the Thinking variant below
-    "Qwen/Qwen3-4B-Thinking-2507",
+    #"Qwen/Qwen3-4B-Thinking-2507",
 ]
 
 GLOBAL_TEMPERATURES = [0.0]
