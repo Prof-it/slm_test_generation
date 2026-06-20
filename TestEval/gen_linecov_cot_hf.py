@@ -149,10 +149,18 @@ if __name__=='__main__':
     elif "GPTQ" in args.model.upper():
         quantization_config = "gptq"
 
+    # Mistral/Ministral models are detected as PixtralForConditionalGeneration (multimodal)
+    # by vLLM, which triggers a dummy image initialization that fails on newer transformers
+    # (MistralCommonImageProcessor.fetch_images no longer exists). Setting image budget to 0
+    # prevents the multimodal budget initialization while keeping the correct architecture.
+    extra_kwargs = {}
+    if "mistral" in args.model.lower() or "ministral" in args.model.lower():
+        extra_kwargs["limit_mm_per_prompt"] = {"image": 0}
+
     llm = LLM(
-        model=args.model, 
+        model=args.model,
         trust_remote_code=True,
-        tensor_parallel_size=torch.cuda.device_count(), 
+        tensor_parallel_size=torch.cuda.device_count(),
         dtype=args.dtype,
         quantization=quantization_config,
         max_model_len=args.max_model_len,
@@ -160,6 +168,7 @@ if __name__=='__main__':
         enforce_eager=False,
         max_num_seqs=args.max_num_seqs,
         seed=args.seed,
+        **extra_kwargs,
     )
 
     ALL_STOP_TOKENS = [

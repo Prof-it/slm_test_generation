@@ -20,13 +20,12 @@ logging.basicConfig(
 MODELS_TO_RUN = [
 
     # Gemma
-    "google/gemma-4-E4B-it", # Already completed under current settings, output downloaded
+    #"google/gemma-4-E4B-it", # Already completed under current settings, output downloaded
 
     # Qwen Family - keeping the reasoning/thinking variants, dropping the plain Instruct ones
-    "Qwen/Qwen3.5-4B", # Defaults to thinking mode, run as-is (no --disable-thinking)
+    #"Qwen/Qwen3.5-4B", # Defaults to thinking mode, run as-is (no --disable-thinking)
     #"Qwen/Qwen3-4B-Instruct-2507", # Dropped: keeping only the Thinking variant below
     #"Qwen/Qwen3-4B-Thinking-2507",
-    #"Qwen/Qwen3-8B-AWQ"
 
     # Mistral Family - keeping the reasoning variant, dropping the plain Instruct one
     #"cyankiwi/Ministral-3-8B-Instruct-2512-AWQ-8bit",
@@ -35,11 +34,8 @@ MODELS_TO_RUN = [
     "mistralai/Ministral-3-3B-Reasoning-2512",
 
     # IBM Granite
-    "ibm-granite/granite-4.0-micro",
+    #"ibm-granite/granite-4.0-micro",
 
-    # Meta Llama Family
-    #"meta-llama/Llama-3.2-3B-Instruct",
-    #"hugging-quants/Meta-Llama-3.1-8B-Instruct-AWQ-INT4",
 ]
 
 GLOBAL_TEMPERATURES = [0.0]

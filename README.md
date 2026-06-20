@@ -164,6 +164,80 @@ This section documents each script's algorithm, inputs, outputs, and key librari
 
 ---
 
+---
+
+## Real-World Dataset: Planned Improvements (Research Notes)
+
+> **Status: under investigation — not yet implemented.** This section records candidate methodology improvements inspired by HumanEval (Chen et al. 2021), SWE-Bench (Jimenez et al. 2024), RepoBench (Liu et al. 2023), and dataset-cartography work (Swayamdipta et al. 2020). The goal is to raise the dataset from an opportunistic N≈50 sample to a publication-quality N=200 benchmark with traceable provenance.
+
+### Target Design
+
+| Property | Current | Proposed |
+|---|---|---|
+| N | ≈50 (variable) | 200 (fixed) |
+| Source structure | Flat `real_world/*.py` | 20 repos × 10 functions, 20 distinct domains |
+| Stratification | Data-driven proportional | Fixed 25% Easy / 50% Medium / 25% Hard |
+| Domain balance | Uncontrolled | 1 repo per domain, enforced by manifest |
+| Selection bias | Per-file random cap (seed=42) | Same + manifest-driven repo-level random selection |
+| Contamination check | None | SHA-256 fingerprint + n-gram overlap against HumanEval / MBPP |
+| Quality filters | Lines ≥ 3, public function | + must contain a branch, no trivial getters, dependency-testable |
+| Output metadata | difficulty, complexity_score, num_lines, source_file | + domain, repo, license, contamination_hash |
+| Cartography report | None | JSON stats: CC distribution, domain balance, outlier flags |
+
+### Open Questions Before Implementation
+
+**1. Repository and domain selection**
+- Which 20 domains are representative of SME Python codebases? Candidates: web (Flask/Django), data pipelines, CLI tools, parsers, file I/O, scientific computing, finance/accounting, NLP preprocessing, image processing, configuration management, testing utilities, logging, serialization, networking, concurrency, cryptography, database ORM, caching, validation, build/packaging.
+- Should domain membership be defined by the repo's primary domain or the function's immediate context? A `flask` utility file might contain pure-string functions with no web dependency.
+- How do we handle multi-domain repos (e.g., `requests` covers both HTTP and auth)?
+
+**2. Contamination detection**
+- HumanEval/MBPP are Python benchmark corpora that LLMs have certainly seen. But the contamination risk for *real-world functions* is that the exact file appeared in a training crawl (e.g., GitHub public repos indexed by The Stack / StarCoder).
+- A SHA-256 hash of the normalized function body detects exact duplicates. Near-duplicates (copy-paste with minor renames) require Jaccard similarity on 4-gram token sets — need to decide a threshold (0.8? 0.9?).
+- GitHub public repos after a certain commit date are excluded from StarCoder v2 training data. Using repos with commits after 2024-01-01 reduces contamination risk.
+- Do we need to run actual contamination analysis, or is stating the hashing methodology in the paper sufficient for a workshop submission?
+
+**3. Stratification target ratios**
+- The 25/50/25 Easy/Medium/Hard split is a common convention (mirrors difficulty curves in competitive programming). But real Python codebases are heavily skewed toward Easy (CC 1–5) — a random sample from 20 repos will likely yield 60–70% Easy functions. Achieving 25% Hard requires either selecting unusually complex repos or accepting that the Hard tier is over-represented relative to the population.
+- Alternative: report the *natural* population distribution and apply Cochran sampling within tiers. This is more scientifically honest but yields fewer Hard examples.
+- The HumanEval distribution is: ~65% Easy, ~25% Medium, ~10% Hard by CC (estimated). Targeting 25% Hard is aspirational.
+
+**4. Quality filter thresholds**
+- Minimum 4 non-comment lines after stripping docstring.
+- Maximum 100 lines (beyond this, the function is hard to test in isolation without significant mocking).
+- Must contain at least one `if`, `for`, or `while` node (trivial passthrough functions add no benchmark signal).
+- Dependency testability: functions that import `torch`, `vllm`, `transformers`, or open network sockets cannot be tested in the evaluation sandbox. How do we detect this statically? `ast.Import` scan for known heavy deps is a start, but indirect imports (e.g., a helper that calls `requests.get`) are harder.
+
+**5. Dataset cartography (Swayamdipta et al. 2020)**
+- The original dataset cartography paper uses training dynamics (confidence and variability across epochs) to classify examples as easy, hard, or ambiguous for model learning. We don't train models, so direct application is not possible.
+- For a benchmark dataset, the relevant analog is: which tasks are *too easy* for all models (pass@1 ≈ 1.0) or *too hard* (pass@1 ≈ 0.0)? These tasks add no discriminative power.
+- Proposal: after the first eval run, flag tasks in the bottom/top 5% of model agreement and consider replacing them in future dataset versions.
+- This is a post-hoc analysis, not a pre-hoc filter — cannot be done before running models.
+
+**6. Data distribution shift between TestEval and real-world**
+- TestEval functions are LeetCode solutions: algorithmically dense, self-contained, no external dependencies, short (10–50 lines). Real-world functions have imports, longer bodies, and domain-specific logic.
+- We should report the distribution shift explicitly (CC histogram, line-length CDF, import count) so readers understand the two benchmarks measure different things.
+- Consider a t-SNE or PCA of function-level features (CC, lines, argument count, cyclomatic density = CC/lines) to visualize the gap.
+
+**7. Human review step**
+- The HumanEval methodology includes human validation that the reference solution and docstring are correct. For our dataset there is no reference solution to validate.
+- What human review is needed? Options: (a) verify that the function description/docstring accurately reflects the code, (b) verify that the function is testable in principle (no hidden side effects), (c) spot-check that the CC-based difficulty label matches intuition.
+- A 10-minute-per-function review of 200 functions = ~33 hours. Is this feasible before submission?
+
+**8. N=200 feasibility**
+- 20 repos × 10 functions requires finding repos that have ≥10 qualifying functions after quality filtering. Many small utility repos have only 3–5 public functions of adequate complexity.
+- Alternative: 20 repos × variable N (5–20), targeting 200 total with per-repo cap of 15. More flexible but requires re-running the manifest-based sampler.
+
+### References
+
+- Chen et al. (2021). *Evaluating Large Language Models Trained on Code.* (HumanEval)
+- Jimenez et al. (2024). *SWE-Bench: Can Language Models Resolve Real-World GitHub Issues?*
+- Liu et al. (2023). *RepoBench: Benchmarking Repository-Level Code Auto-Completion Systems.*
+- Swayamdipta et al. (2020). *Dataset Cartography: Mapping and Diagnosing Datasets with Training Dynamics.*
+- Lowell et al. (2019). *Practical Obstacles to Deploying Active Learning.* (on selection bias in dataset curation)
+
+---
+
 ### `step2_data_preperation/create_realworld_dataset.py`
 
 **Purpose:** Constructs the real-world benchmark dataset from raw Python source files.
@@ -527,3 +601,6 @@ python step3_modelling/llm_as_judge.py \
   --eval_dir evaluation_results_realworld_1 \
   --output_dir TestEval/predictions_judgellm
 ```
+# docker build
+docker build -t kastellan999/slm-test-generation:run1 . 
+docker push kastellan999/slm-test-generation:run1
