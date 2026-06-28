@@ -378,8 +378,10 @@ def get_testeval_hardware_specs(benchmark_size):
         f"• Baseline: Literature baselines from Wang et al. (2025a) and Huang et al. (2025b) for comparison.\n"
         f"• Dataset: 'TestEval' - {benchmark_size} programming problems from TestEval benchmark.\n"
         f"• Definitions:\n"
-        f"  - Pass@1: % of tasks passing assertions.\n"
-        f"  - Raw Cov: Ungated line coverage (all tasks incl. assertion failures, excl. timeouts/syntax errors/no-code). Gated Cov: Assertion-passing tasks only.\n"
+        f"  - Pass@1: % of tasks where the generated test compiles, runs, and all assertions pass (Chen et al. 2021).\n"
+        f"  - Pass@10: % of tasks with >= 1 passing generation across 10 independent attempts (T=0.2 condition only).\n"
+        f"  - Gated Cov: Line coverage on assertion-passing tasks only (Huang et al. 2025b, LCov@k).\n"
+        f"  - Mut Score: Mutation score on a stratified Cochran sample (n=67, 95% CI, e=0.10).\n"
         f"  - Total Tokens: Average total tokens generated per run."
     )
 
@@ -388,11 +390,10 @@ def get_realworld_hardware_specs(benchmark_size):
     return (
         f"EXPERIMENTAL SETUP (Real World Study):\n"
         f"• Hardware: vLLM, Single RTX 4090, FP16 precision (INT4 for quantized) 4096 max tokens.\n"
-        f"• Baseline: Pynguin (DynaMOSA) running on CPU (Python 3.10-slim Docker) with 120s budget.\n"
         f"• Dataset: 'Real World' - {benchmark_size} Python functions from this repository's own codebase.\n"
         f"• Definitions:\n"
-        f"  - Pass@1: % of tasks passing assertions.\n"
-        f"  - Raw Cov: Ungated line coverage (all tasks incl. assertion failures, excl. timeouts/syntax errors/no-code). Gated Cov: Assertion-passing tasks only.\n"
+        f"  - Pass@1: % of tasks where the generated test compiles, runs, and all assertions pass (Chen et al. 2021).\n"
+        f"  - Gated Cov: Line coverage on assertion-passing tasks only (Huang et al. 2025b, LCov@k).\n"
         f"  - Total Tokens: Average total tokens generated per run."
     )
 
@@ -1273,16 +1274,19 @@ def aggregate_config_statistics(config_runs, total_benchmark_size, dataset_type)
     # Column names for the performance table drop "(95% CI)" when N=1
     # because a single run produces no meaningful interval (t-critical = inf).
     global_n_runs = max((len(runs) for runs in config_runs.values()), default=1)
+    # Pass@10 is reported when we have exactly 10 runs (T=0.2 condition).
+    # Pass@1 = mean(c_i/n) per task = Chen et al. 2021 unbiased estimator.
+    # Pass@10 = fraction of tasks with >= 1 passing generation in 10 attempts.
+    has_pass10 = global_n_runs == 10
     if global_n_runs == 1:
         col_pass     = "Pass@1"
-        col_raw_cov  = "Raw Cov"
         col_gated    = "Gated Cov"
         col_mut      = "Mut Score"
     else:
         col_pass     = "Pass@1 (95% CI)"
-        col_raw_cov  = "Raw Cov (95% CI)"
         col_gated    = "Gated Cov (95% CI)"
         col_mut      = "Mut Score (95% CI)"
+    col_pass10 = "Pass@10" if has_pass10 else None
 
     for (model, mode, temp_str), runs in config_runs.items():
         n_runs = len(runs)
@@ -1293,6 +1297,8 @@ def aggregate_config_statistics(config_runs, total_benchmark_size, dataset_type)
         run_avg_covs_global, run_avg_muts_global = [], []
         run_total_toks, run_total_time = [], []
         avg_errs = {"as": 0, "rt": 0, "cp": 0, "nc": 0, "to": 0}
+        # Union of passed tasks across all runs — used for Pass@10 (only when has_pass10).
+        all_passed_union: set = set() if has_pass10 else None  # type: ignore[assignment]
 
         try:
             temp_val = float(temp_str.replace("T=", "")) if temp_str != "N/A" else np.nan
@@ -1302,6 +1308,8 @@ def aggregate_config_statistics(config_runs, total_benchmark_size, dataset_type)
         for r in runs:
             pr = (len(r["passed_tasks"]) / total_benchmark_size) * 100
             pass_rates.append(pr)
+            if all_passed_union is not None:
+                all_passed_union.update(r["passed_tasks"])
             cov_val = np.mean(r["cov_list"]) if r["cov_list"] else np.nan
             mut_val = np.mean(r["mut_list"]) if r["mut_list"] else np.nan
             tps_val = np.mean(r["tps_readings"]) if r["tps_readings"] else 0
@@ -1330,6 +1338,14 @@ def aggregate_config_statistics(config_runs, total_benchmark_size, dataset_type)
                 "Time Per Task (s)": r["total_duration"] / total_benchmark_size if total_benchmark_size > 0 else 0
             })
 
+        # Pass@10 = fraction of tasks with >= 1 passing generation across all runs.
+        # Chen et al. 2021: pass@k = E[1 - C(n-c,k)/C(n,k)]; for k=n=10 simplifies to 1 if c>0.
+        pass_at_10 = (
+            (len(all_passed_union) / total_benchmark_size * 100)
+            if (all_passed_union is not None and total_benchmark_size > 0)
+            else None
+        )
+
         pass_std = np.std(pass_rates)
         tok_std = np.std(run_total_toks)
         is_low_temp = temp_str in ["T=0.0", "T=0.2", "N/A"]
@@ -1347,11 +1363,12 @@ def aggregate_config_statistics(config_runs, total_benchmark_size, dataset_type)
         cov_g_std = np.std(run_avg_covs_global, ddof=1) if len(run_avg_covs_global) > 1 else np.nan
         mut_std = np.std(run_avg_muts, ddof=1) if len(run_avg_muts) > 1 else np.nan
 
+        _pass10_str = f"{pass_at_10:.2f}%" if pass_at_10 is not None else "-"
         eff_data.append({
             "Model": model, "Mode": mode, "Config": temp_str, "Runs": n_runs,
             "Avg Tokens": f"{np.mean(run_total_toks):,.0f}" if run_total_toks else "-",
             col_pass:    format_metric_with_ci(pass_mean, pass_std, pass_ci_lo, pass_ci_hi, 2, "%"),
-            col_raw_cov: format_metric_with_ci(cov_g_mean, cov_g_std, cov_g_ci_lo, cov_g_ci_hi, 1, "%"),
+            **({col_pass10: _pass10_str} if col_pass10 else {}),
             col_gated:   format_metric_with_ci(cov_mean, cov_std, cov_ci_lo, cov_ci_hi, 1, "%"),
             col_mut:     format_metric_with_ci(mut_mean, mut_std, mut_ci_lo, mut_ci_hi, 1, "%"),
             "_sort": np.mean(pass_rates) if pass_rates else 0,
@@ -1386,13 +1403,77 @@ def aggregate_config_statistics(config_runs, total_benchmark_size, dataset_type)
                 "Model": baseline['Model'], "Mode": f"Literature ({baseline['Source']})",
                 "Config": baseline["Config"], "Runs": baseline["Runs"], "Avg Tokens": "-",
                 col_pass:    sr_str,
-                col_raw_cov: "-",
+                **({col_pass10: "-"} if col_pass10 else {}),
                 col_gated:   cov_str,
                 col_mut:     f"{baseline['Mut']:.1f}%" if baseline['Mut'] is not None else "-",
                 "_sort": baseline["SR"], "_pass_rates_raw": []
             })
 
     return eff_data, rel_data, cost_data, plot_records, validation_notes, raw_pass_rates
+
+
+def plot_correctness_funnel(df_plot, rel_data_list, output_dir, total_benchmark_size, palette_dict):
+    """
+    Three-tier correctness funnel (Wang et al. 2025a style):
+      Syntactic (parses) >= Execution (runs) >= Assertion (passes) per model+mode.
+    """
+    if not rel_data_list or total_benchmark_size == 0:
+        return
+
+    # Mean pass rate per (Model, Mode) from plot_records
+    pass_means = (
+        df_plot.groupby(["Model", "Mode"])["Pass Rate"]
+        .mean()
+        .reset_index()
+        .rename(columns={"Pass Rate": "Assertion"})
+    )
+
+    rows = []
+    for row in rel_data_list:
+        n = total_benchmark_size
+        syntax  = float(row.get("Syntax",  0) or 0)
+        nocode  = float(row.get("NoCode",  0) or 0)
+        runtime = float(row.get("Runtime", 0) or 0)
+        timeout = float(row.get("Timeout", 0) or 0)
+
+        syntactic = max(0.0, (1 - (syntax + nocode) / n)) * 100
+        execution = max(0.0, (1 - (syntax + nocode + runtime + timeout) / n)) * 100
+        rows.append({"Model": row["Model"], "Mode": row["Mode"],
+                     "Syntactic": syntactic, "Execution": execution})
+
+    df_funnel = pd.DataFrame(rows).merge(pass_means, on=["Model", "Mode"], how="left")
+    df_funnel["Assertion"] = df_funnel["Assertion"].fillna(0)
+    df_funnel["_label"] = df_funnel["Model"].str.split("/").str[-1] + "\n(" + df_funnel["Mode"] + ")"
+    df_funnel = df_funnel.sort_values("Assertion", ascending=True).reset_index(drop=True)
+
+    if df_funnel.empty:
+        return
+
+    fig, ax = plt.subplots(figsize=(13, max(5, len(df_funnel) * 0.55)))
+    y = range(len(df_funnel))
+    bar_h = 0.6
+
+    ax.barh(list(y), df_funnel["Syntactic"], height=bar_h,
+            color="#4CAF50", alpha=0.45, label="Syntactic correctness")
+    ax.barh(list(y), df_funnel["Execution"], height=bar_h,
+            color="#2196F3", alpha=0.60, label="Execution correctness")
+    ax.barh(list(y), df_funnel["Assertion"], height=bar_h,
+            color="#F44336", alpha=0.85, label="Assertion correctness (Pass@1)")
+
+    ax.set_yticks(list(y))
+    ax.set_yticklabels(df_funnel["_label"].tolist(), fontsize=8)
+    ax.set_xlabel("Percentage of tasks (%)")
+    ax.set_title("Three-Tier Correctness Funnel\n(Wang et al. 2025a taxonomy)")
+    ax.legend(loc="lower right", fontsize=9)
+    ax.set_xlim(0, 108)
+    ax.axvline(x=100, color="gray", linestyle="--", alpha=0.3)
+    sns.despine(ax=ax)
+
+    plt.tight_layout()
+    out_path = Path(output_dir) / "correctness_funnel.png"
+    plt.savefig(out_path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+    print(f"  Saved: {out_path}")
 
 
 def generate_plots(plot_records, rel_data, output_dir, total_benchmark_size, n_runs):
@@ -1415,6 +1496,8 @@ def generate_plots(plot_records, rel_data, output_dir, total_benchmark_size, n_r
     plot_wall_clock_efficiency(df_plot, output_dir, pal, marks, total_benchmark_size)
     print("Generating Error Distribution Plot...")
     plot_error_distribution(rel_data, output_dir, pal, total_benchmark_size, n_runs=n_runs)
+    print("Generating Three-Tier Correctness Funnel...")
+    plot_correctness_funnel(df_plot, rel_data, output_dir, total_benchmark_size, pal)
 
 
 def find_best_model_configs(df_eff_full):
@@ -1556,14 +1639,13 @@ def compute_variance_stats(raw_pass_rates, model_best_configs):
 def build_footnotes(dataset_type, validation_notes, total_benchmark_size, n_runs, t_crit, df):
     """Step 8a: Build publication-ready footnotes with dynamic statistical parameters."""
     footnotes = [
-        "\n[1] COVERAGE METHODOLOGY: Two coverage metrics are reported. 'Raw Cov' (ungated) measures line coverage "
-        "for all test outcomes except TIMEOUT, SYNTAX_ERROR, and NO_CODE — even assertion-failing tests report "
-        "actual coverage, reflecting how much of the solution code the test exercised before failing. "
-        "'Gated Cov' measures coverage restricted to assertion-passing tasks only (our Pass@1 criterion). "
+        "\n[1] COVERAGE METHODOLOGY: 'Gated Cov' (primary metric) measures line coverage restricted to "
+        "assertion-passing tasks only, following Huang et al. (2025b) LCov@k. This is our primary coverage metric. "
+        "Ungated (raw) coverage — which includes coverage from assertion-failing tests — was also computed but is "
+        "not shown in the primary table; it is available in the evaluation JSONL files (field: coverage_all_tasks). "
         "Note: Wang et al. (2025a)'s 'Overall Line Coverage' (marked [a] in Table 1) applies a more lenient gating condition "
         "(Execution Correctness: test compiles and runs without crashing) rather than assertion passing; it is "
-        "therefore not directly equivalent to our Gated Cov but is placed in the same column as the closest analogue. "
-        "Both our metrics appear in Table 1.",
+        "therefore not directly equivalent to our Gated Cov but is placed in the same column as the closest analogue.",
 
         "\n[2] PYNGUIN TPS REPRESENTATION: Pynguin does not generate tokens; it uses evolutionary search "
         "(SBST/AST mutations). Pynguin is excluded from TPS trend plots. For cross-paradigm efficiency "
@@ -1664,9 +1746,10 @@ def assemble_text_report(dataset_type, total_benchmark_size, n_runs, df, t_crit,
         ),
         "-"*110, tabulate(df_eff, headers="keys", tablefmt="github", showindex=False),
         "\n" + "-"*110,
-        "Note: Raw Cov = ungated (all tasks, incl. failures). Gated Cov = assertion-passing tasks only (our metric).",
+        "Note: Gated Cov = line coverage on assertion-passing tasks only (Huang et al. 2025b, LCov@k).",
         "      [a] Wang et al. (2025a) baselines use Execution Correctness (EC): test compiles/runs without crash, NOT assertion-passing.",
         "          Their Gated Cov is therefore EC-gated (more lenient than our assertion-gated Gated Cov).",
+        "      Pass@10 = fraction of tasks with >= 1 passing generation across 10 independent attempts (T=0.2 condition only).",
         "      Literature baselines show point estimates only (no CI available from source papers).",
         "      See Footnote [1] for coverage methodology; Footnote [3] for literature metric definitions.",
         "\n"+"="*110, f" TABLE 2: RELIABILITY - {dataset_label} (Avg Failures)", "="*110,

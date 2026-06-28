@@ -1,0 +1,676 @@
+
+(.venv) c:\Repos\slm_test_generation>python step4_evaluation/evaluate_results.py --input-dir downloaded_predictions/run_1 --output-dir evaluation_results/run_1 --run-mutation --workers 8
+2026-06-17 23:02:15,190 - INFO - Scanning downloaded_predictions\run_1 recursively...
+2026-06-17 23:02:15,191 - INFO - Processing downloaded_predictions\run_1\linecov2_gemma-4-E4B-it_temp_0.0.jsonl -> evaluation_results\run_1\linecov2_gemma-4-E4B-it_temp_0.0_evaluated.jsonl
+2026-06-17 23:02:15,191 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 210 remaining evaluations with 8 workers...
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 50/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 100/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 150/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 200/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+
+Done.
+2026-06-18 00:03:58,118 - INFO - Processing downloaded_predictions\run_1\linecov2_granite-4.0-micro_temp_0.0.jsonl -> evaluation_results\run_1\linecov2_granite-4.0-micro_temp_0.0_evaluated.jsonl
+2026-06-18 00:03:58,118 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 210 remaining evaluations with 8 workers...
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 50/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 100/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 150/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 200/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+
+Done.
+2026-06-18 01:08:43,847 - INFO - Processing downloaded_predictions\run_1\linecov2_Qwen3.5-4B_temp_0.0.jsonl -> evaluation_results\run_1\linecov2_Qwen3.5-4B_temp_0.0_evaluated.jsonl
+2026-06-18 01:08:43,854 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-06-18 01:08:44,022 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-06-18 01:08:44,024 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-06-18 01:08:44,035 - WARNING - Skipping test piece for line 16 (SyntaxError in generated code)
+2026-06-18 01:08:44,056 - WARNING - Skipping test piece for line 37 (SyntaxError in generated code)
+2026-06-18 01:08:44,061 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-06-18 01:08:44,121 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-06-18 01:08:44,151 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-06-18 01:08:44,195 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-06-18 01:08:44,240 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-06-18 01:08:44,278 - WARNING - Skipping test piece for line 39 (SyntaxError in generated code)
+2026-06-18 01:08:44,312 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-06-18 01:08:44,348 - WARNING - Skipping test piece for line 26 (SyntaxError in generated code)
+2026-06-18 01:08:44,419 - WARNING - Skipping test piece for line 34 (SyntaxError in generated code)
+2026-06-18 01:08:44,461 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 8 workers...
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 50/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 100/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 150/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 200/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+
+Done.
+2026-06-18 02:55:49,189 - INFO - Processing downloaded_predictions\run_1\linecov_gemma-4-E4B-it_temp_0.0.jsonl -> evaluation_results\run_1\linecov_gemma-4-E4B-it_temp_0.0_evaluated.jsonl
+2026-06-18 02:55:49,192 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-06-18 02:55:49,349 - WARNING - Skipping test piece for line 15 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 8 workers...
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 50/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 100/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 150/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 200/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+
+Done.
+2026-06-18 04:13:13,240 - INFO - Processing downloaded_predictions\run_1\linecov_granite-4.0-micro_temp_0.0.jsonl -> evaluation_results\run_1\linecov_granite-4.0-micro_temp_0.0_evaluated.jsonl
+2026-06-18 04:13:13,244 - INFO - Mutation testing ENABLED for all passing tasks.
+Executing 210 remaining evaluations with 8 workers...
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 50/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 100/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 150/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 200/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+
+Done.
+2026-06-18 05:40:03,569 - INFO - Processing downloaded_predictions\run_1\linecov_Qwen3.5-4B_temp_0.0.jsonl -> evaluation_results\run_1\linecov_Qwen3.5-4B_temp_0.0_evaluated.jsonl
+2026-06-18 05:40:03,569 - INFO - Mutation testing ENABLED for all passing tasks.
+2026-06-18 05:40:04,210 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-06-18 05:40:04,219 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-06-18 05:40:04,372 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-06-18 05:40:04,480 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-06-18 05:40:04,598 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-06-18 05:40:04,703 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-06-18 05:40:04,835 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-06-18 05:40:04,967 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-06-18 05:40:05,076 - WARNING - Skipping test piece for line 24 (SyntaxError in generated code)
+2026-06-18 05:40:05,081 - WARNING - Skipping test piece for line 31 (SyntaxError in generated code)
+2026-06-18 05:40:05,092 - WARNING - Skipping test piece for line 17 (SyntaxError in generated code)
+2026-06-18 05:40:05,207 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-06-18 05:40:05,322 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-06-18 05:40:05,429 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-06-18 05:40:05,542 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+2026-06-18 05:40:05,653 - WARNING - Skipping test piece for line 22 (SyntaxError in generated code)
+2026-06-18 05:40:05,662 - WARNING - Skipping test piece for line 39 (SyntaxError in generated code)
+2026-06-18 05:40:05,679 - WARNING - Skipping test piece for line 23 (SyntaxError in generated code)
+2026-06-18 05:40:05,680 - WARNING - Skipping test piece for line 25 (SyntaxError in generated code)
+2026-06-18 05:40:05,687 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-06-18 05:40:05,695 - WARNING - Skipping test piece for line 29 (SyntaxError in generated code)
+2026-06-18 05:40:05,709 - WARNING - Skipping test piece for line 27 (SyntaxError in generated code)
+2026-06-18 05:40:05,714 - WARNING - Skipping test piece for line 20 (SyntaxError in generated code)
+2026-06-18 05:40:05,721 - WARNING - Skipping test piece for line 18 (SyntaxError in generated code)
+2026-06-18 05:40:05,729 - WARNING - Skipping test piece for line 19 (SyntaxError in generated code)
+2026-06-18 05:40:05,746 - WARNING - Skipping test piece for line 21 (SyntaxError in generated code)
+2026-06-18 05:40:05,755 - WARNING - Skipping test piece for line 28 (SyntaxError in generated code)
+2026-06-18 05:40:05,761 - WARNING - Skipping test piece for line 14 (SyntaxError in generated code)
+2026-06-18 05:40:05,778 - WARNING - Skipping test piece for line 30 (SyntaxError in generated code)
+Executing 210 remaining evaluations with 8 workers...
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 50/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 100/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 150/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+Progress: 200/210 finished  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+  [DEBUG] cosmic-ray exec timed out after 300s. Dumping partial results.
+
+Done.

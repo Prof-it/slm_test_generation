@@ -21,6 +21,9 @@ def parse_args():
     parser.add_argument("--dtype", type=str, default='float16')
     parser.add_argument("--max-tokens", type=int, default=4096, help="Max tokens for generation (SamplingParams)")
     parser.add_argument("--max-model-len", type=int, default=8192, help="Max model context length (vLLM engine)")
+    parser.add_argument("--max-num-seqs", type=int, default=8, help="Max concurrent sequences (vLLM batch size)")
+    parser.add_argument("--gen-timeout", type=int, default=120, help="Wall-clock seconds allowed per task batch before forcing partial output. Must scale with --max-tokens.")
+    parser.add_argument("--repetition-penalty", type=float, default=1.05, help="vLLM repetition_penalty for SamplingParams.")
     parser.add_argument("--temperature", type=float, required=True)
     parser.add_argument("--output-file", type=str, required=True)
     parser.add_argument("--seed", type=int, default=42, help="Random seed for reproducibility")
@@ -31,6 +34,11 @@ def parse_args():
     )
     parser.add_argument("--dataset-path", type=str, default="data/leetcode-py-all.jsonl", help="Path to input dataset")
     parser.add_argument("--system-prompt", type=str, default="prompt/system_exec.txt", help="Path to system prompt file")
+    parser.add_argument(
+        "--disable-thinking",
+        action="store_true",
+        help="Pass enable_thinking=False to the chat template (for models that default to reasoning/thinking mode)."
+    )
     return parser.parse_args()
 
 def generate_with_timeout(llm_engine, prompts, sampling_params, time_limit=120):
@@ -141,17 +149,26 @@ if __name__=='__main__':
     elif "GPTQ" in args.model.upper():
         quantization_config = "gptq"
 
+    # Mistral/Ministral models are detected as PixtralForConditionalGeneration (multimodal)
+    # by vLLM, which triggers a dummy image initialization that fails on newer transformers
+    # (MistralCommonImageProcessor.fetch_images no longer exists). Setting image budget to 0
+    # prevents the multimodal budget initialization while keeping the correct architecture.
+    extra_kwargs = {}
+    if "mistral" in args.model.lower() or "ministral" in args.model.lower():
+        extra_kwargs["limit_mm_per_prompt"] = {"image": 0}
+
     llm = LLM(
-        model=args.model, 
+        model=args.model,
         trust_remote_code=True,
-        tensor_parallel_size=torch.cuda.device_count(), 
+        tensor_parallel_size=torch.cuda.device_count(),
         dtype=args.dtype,
         quantization=quantization_config,
         max_model_len=args.max_model_len,
         gpu_memory_utilization=0.9,
         enforce_eager=False,
-        max_num_seqs=8,
+        max_num_seqs=args.max_num_seqs,
         seed=args.seed,
+        **extra_kwargs,
     )
 
     ALL_STOP_TOKENS = [
@@ -193,7 +210,7 @@ if __name__=='__main__':
         max_tokens=args.max_tokens,
         top_p=0.95,
         top_k=-1,
-        repetition_penalty=1.05,
+        repetition_penalty=args.repetition_penalty,
         stop=ALL_STOP_TOKENS,
         seed=args.seed,
     )
@@ -239,7 +256,8 @@ if __name__=='__main__':
                             messages=[{"role": "user", "content": system_message + "\n\n" + user_prompt_cond}]
                         else:
                             messages=[{"role": "system", "content": system_message}, {"role": "user", "content": user_prompt_cond}]
-                        full_prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+                        chat_template_kwargs = {"enable_thinking": False} if args.disable_thinking else {}
+                        full_prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, **chat_template_kwargs)
                         cond_prompts_batch.append(full_prompt)
                     else:
                         full_prompt_string = f"{system_message}\n\nUser: {user_prompt_cond}\n\nAssistant:"
@@ -248,7 +266,7 @@ if __name__=='__main__':
                     linenos_for_task.append(lineno)
 
                 start_time_cond = time.time()
-                cond_outputs, cond_timeout = generate_with_timeout(llm.llm_engine, cond_prompts_batch, sampling_params, time_limit=120)
+                cond_outputs, cond_timeout = generate_with_timeout(llm.llm_engine, cond_prompts_batch, sampling_params, time_limit=args.gen_timeout)
                 end_time_cond = time.time()
                 
                 # Generating all tests based on conditions
@@ -269,7 +287,8 @@ if __name__=='__main__':
                             messages=[{"role": "user", "content": system_message + "\n\n" + user_prompt_test}]
                         else:
                             messages=[{"role": "system", "content": system_message}, {"role": "user", "content": user_prompt_test}]
-                        full_prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+                        chat_template_kwargs = {"enable_thinking": False} if args.disable_thinking else {}
+                        full_prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, **chat_template_kwargs)
                         test_prompts_batch.append(full_prompt)
                     else:
                         full_prompt_string = f"{system_message}\n\nUser: {user_prompt_test}\n\nAssistant:"
@@ -277,7 +296,7 @@ if __name__=='__main__':
 
                 start_time_test = time.time()
                 if test_prompts_batch:
-                    test_outputs, test_timeout = generate_with_timeout(llm.llm_engine, test_prompts_batch, sampling_params, time_limit=120)
+                    test_outputs, test_timeout = generate_with_timeout(llm.llm_engine, test_prompts_batch, sampling_params, time_limit=args.gen_timeout)
                 else:
                     test_outputs = []
                     test_timeout = False
