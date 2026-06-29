@@ -28,6 +28,66 @@ sys.path.append(str(PROJECT_ROOT / "TestEval"))
 # Regex to match relative imports: from .foo import bar  /  from ..pkg import baz
 _RELATIVE_IMPORT_RE = re.compile(r'^(\s*)from\s+(\.+\w*)\s+import\s+(.+)$')
 
+# Stdlib module names for filtering absolute-import wrapping
+import sys as _sys
+_STDLIB_MODULES = getattr(_sys, 'stdlib_module_names', set())
+
+def fix_absolute_imports(code: str) -> str:
+    """Wrap non-stdlib absolute imports in try/except MagicMock fallback.
+
+    When under_test.py is executed standalone (without the source repo's
+    virtualenv), absolute imports like ``import datachain`` or
+    ``from pandera import X`` raise ImportError and prevent the module from
+    loading at all.  Wrapping them lets under_test.py load cleanly; the
+    model-generated test is then responsible for mocking what it needs.
+    """
+    import ast as _ast
+    out = []
+    for line in code.splitlines():
+        stripped = line.lstrip()
+        indent = line[: len(line) - len(stripped)]
+
+        # Absolute `import foo` or `import foo.bar`
+        if stripped.startswith('import ') and not stripped.startswith('import .'):
+            try:
+                stmts = _ast.parse(stripped).body
+            except SyntaxError:
+                out.append(line)
+                continue
+            if stmts and isinstance(stmts[0], _ast.Import):
+                top_mods = [alias.name.split('.')[0] for alias in stmts[0].names]
+                if any(m not in _STDLIB_MODULES and m not in ('__future__',) for m in top_mods):
+                    names = [alias.asname or alias.name.split('.')[0] for alias in stmts[0].names]
+                    out.append(f"{indent}try:")
+                    out.append(f"{indent}    {stripped}")
+                    out.append(f"{indent}except (ImportError, ModuleNotFoundError):")
+                    out.append(f"{indent}    from unittest.mock import MagicMock as _MagicMock")
+                    for name in names:
+                        out.append(f"{indent}    {name} = _MagicMock()")
+                    continue
+
+        # Absolute `from foo import bar` (non-relative)
+        if stripped.startswith('from ') and not stripped.startswith('from .'):
+            try:
+                stmts = _ast.parse(stripped).body
+            except SyntaxError:
+                out.append(line)
+                continue
+            if stmts and isinstance(stmts[0], _ast.ImportFrom):
+                mod = (stmts[0].module or '').split('.')[0]
+                if mod and mod not in _STDLIB_MODULES and mod not in ('__future__',):
+                    names = [alias.asname or alias.name for alias in stmts[0].names]
+                    out.append(f"{indent}try:")
+                    out.append(f"{indent}    {stripped}")
+                    out.append(f"{indent}except (ImportError, ModuleNotFoundError):")
+                    out.append(f"{indent}    from unittest.mock import MagicMock as _MagicMock")
+                    for name in names:
+                        out.append(f"{indent}    {name} = _MagicMock()")
+                    continue
+
+        out.append(line)
+    return '\n'.join(out)
+
 def fix_relative_imports(code: str) -> str:
     """Convert relative imports to try/except with MagicMock fallback.
 
@@ -178,15 +238,17 @@ def strip_markdown(code: str) -> str:
         code = re.sub(r'<think>.*', '', code, flags=re.DOTALL).strip()
 
     # 2. Extract Markdown Blocks (High Precision)
-    # Match ```python ... ``` ignoring case
+    # Match ```python ... ``` ignoring case — only if content is non-empty
     pattern_py = r"```python\s*(.*?)(?:```|$)"
     match_py = re.search(pattern_py, code, re.DOTALL | re.IGNORECASE)
-    if match_py: return match_py.group(1).strip()
+    if match_py and match_py.group(1).strip():
+        return match_py.group(1).strip()
 
-    # Match generic ``` ... ```
+    # Match generic ``` ... ``` — only if content is non-empty
     pattern_gen = r"```\s*(.*?)(?:```|$)"
     match_gen = re.search(pattern_gen, code, re.DOTALL)
-    if match_gen: return match_gen.group(1).strip()
+    if match_gen and match_gen.group(1).strip():
+        return match_gen.group(1).strip()
 
     # 3. Fallback: Heuristic Extraction (Chatter Removal)
     # If no markdown, look for the first line starting with common Python keywords.
@@ -202,8 +264,11 @@ def strip_markdown(code: str) -> str:
             break
             
     if start_index != -1:
-        # Rejoin from the first valid line of code
-        return "\n".join(lines[start_index:]).strip()
+        # Rejoin from the first valid line of code, strip any trailing fence
+        result = "\n".join(lines[start_index:]).strip()
+        result = re.sub(r'\n```\w*\s*$', '', result).strip()
+        result = re.sub(r'```\w*\s*$', '', result).strip()
+        return result
 
     # 4. Last Resort: clean backticks and whitespace
     return code.strip().strip("`")
@@ -600,8 +665,10 @@ def evaluate_single_test_worker(task_data):
         future_block = "\n".join(future_lines) + "\n" if future_lines else ""
         remaining_code = "\n".join(other_lines)
         # Convert relative imports (from .xxx import yyy) to try/except with
-        # MagicMock fallback so under_test.py can load as a standalone file.
+        # Wrap both relative AND absolute third-party imports so under_test.py
+        # loads cleanly without the source repo's virtualenv installed.
         remaining_code = fix_relative_imports(remaining_code)
+        remaining_code = fix_absolute_imports(remaining_code)
         full_solution = future_block + COMMON_IMPORTS + "\n" + remaining_code
         (tmp_dir / "under_test.py").write_text(full_solution, encoding='utf-8')
 
@@ -838,7 +905,9 @@ def process_file(input_path, output_path, args):
     
     for i, entry in enumerate(data):
         task_num = str(entry.get('task_num', f"task_{i}"))
-        solution = entry.get('code') or entry.get('python_solution') or ""
+        # python_solution_full is set by prepare_v2_tier_datasets.py so that
+        # evaluation always runs against the real function, not the tier card stub.
+        solution = entry.get('python_solution_full') or entry.get('code') or entry.get('python_solution') or ""
 
         if not solution:
             if task_num not in completed_ids:

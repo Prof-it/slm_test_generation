@@ -1,0 +1,59 @@
+# RealWorldTests-Py v2 — Design Parameters
+# Lock these before touching any data. Changing mid-build silently invalidates earlier work.
+
+version: "2.0"
+
+# --- Contamination boundary ---
+cutoff_date: "2026-06-10"           # repos with commits AFTER this date = unleaked
+
+# --- Dataset size ---
+target_n: 300                        # total functions in final benchmark
+target_per_level: 75                 # balanced across L0 / L1 / L2 / L3
+max_per_repo: 15                     # global cap: no single repo > 5% of dataset
+candidate_multiplier: 3              # collect >=900 before QC (3x headroom)
+
+# --- Token budget ---
+context_budget_tokens: 8192          # hard model context window
+generation_reserve_tokens: 1500      # tokens reserved for generation output
+max_input_tokens: 6500               # hard cap: any context card must fit here
+max_focal_tokens: 2000               # focal function alone must fit here
+
+# --- Function filters ---
+min_cyclomatic_complexity: 3         # radon CC; keeps non-trivial functions
+min_loc: 3                           # lines of code (body only)
+max_focal_loc: 80                    # lines of code; keeps inside token budget
+
+# --- Stratification axes ---
+dependency_levels:
+  L0: "builtins and literals only"
+  L1: "stdlib imports (sys.stdlib_module_names)"
+  L2: "third-party package imports"
+  L3: "same-file or same-class references"
+
+context_tiers:
+  A: "focal signature + docstring only"
+  B: "Tier A + dependency stubs (signature + ellipsis, NO body)"
+  C: "Tier B + mock/fixture hint comment"
+
+contamination_split:
+  - leaked      # old, famous repos in training corpora
+  - unleaked    # repos with commits after cutoff_date
+
+# --- Gold / evaluation ---
+fail_to_pass_target: 50              # minimum validated (f_buggy, f_fixed) pairs
+mutation_sample_pct: 0.20            # stratified mutation sample (Cochran formula)
+execution_timeout_sec: 120
+
+# --- Source requirements (unleaked pool) ---
+unleaked_min_stars: 40
+unleaked_max_stars: 5000
+unleaked_min_contributors: 2
+unleaked_licenses:
+  - MIT
+  - Apache-2.0
+unleaked_min_domains: 4              # web, data, ml, cli, serialization, …
+
+# --- QC gate ---
+qc_sample_size: 50
+qc_max_error_rate: 0.05              # 5% error rate ceiling before scaling
+level_audit_min_agreement: 0.90      # Cohen's kappa floor for level labels
