@@ -102,19 +102,21 @@ def check_datasets(tiers: list[str]) -> bool:
 
 def main():
     parser = argparse.ArgumentParser(description="Run v2 tier inference for all SLMs")
-    parser.add_argument("--quick-test", action="store_true",
-                        help="One model, Tier A only, first task — smoke test")
     parser.add_argument("--tiers", nargs="+", choices=["A", "B", "C"], default=TIERS,
                         help="Which tiers to run (default: A B C)")
     parser.add_argument("--models", nargs="+", default=None,
                         help="Override model list (default: all 5)")
     parser.add_argument("--temperature", type=float, default=None,
                         help="Override temperature (default: 0.0)")
+    parser.add_argument("--strategies", nargs="+", choices=["linecov", "linecov2"], default=["linecov", "linecov2"],
+                        help="Which strategies to run (default: both). Use --strategies linecov2 to run CoT only.")
     args = parser.parse_args()
 
-    tiers   = ["A"] if args.quick_test else args.tiers
-    models  = [MODELS_TO_RUN[0]] if args.quick_test else (args.models or MODELS_TO_RUN)
-    temps   = [0.2] if args.quick_test else ([args.temperature] if args.temperature else GLOBAL_TEMPERATURES)
+    tiers      = args.tiers
+    models     = args.models or MODELS_TO_RUN
+    temps      = [args.temperature] if args.temperature else GLOBAL_TEMPERATURES
+    run_linecov  = "linecov"  in args.strategies
+    run_linecov2 = "linecov2" in args.strategies
 
     logging.info("=== RealWorldTests-Py v2 Inference ===")
     logging.info(f"  Models:      {len(models)}")
@@ -141,10 +143,10 @@ def main():
             dtype = "bfloat16" if "gemma" in model.lower() else "float16"
 
             for temp in temps:
-                out_file = os.path.join(out_dir, f"linecov_{safe_name}_temp_{temp}.jsonl")
-
                 logging.info(f"\n  [{tier}] {safe_name}  T={temp}")
 
+                # ── Strategy 1: single-step line coverage ──────────────────
+                out_file = os.path.join(out_dir, f"linecov_{safe_name}_temp_{temp}.jsonl")
                 cmd = [
                     "python", "generate_targetcov_hf.py",
                     "--dataset-path",   str(dataset_path),
@@ -161,11 +163,28 @@ def main():
                     "--system-prompt",  str(system_prompt),
                     "--output-file",    out_file,
                 ]
+                if run_linecov:
+                    run_cmd(cmd)
 
-                if args.quick_test:
-                    cmd.append("--quick-test")
-
-                run_cmd(cmd)
+                # ── Strategy 2: two-step CoT ───────────────────────────────
+                out_file2 = os.path.join(out_dir, f"linecov2_{safe_name}_temp_{temp}.jsonl")
+                cmd2 = [
+                    "python", "gen_linecov_cot_hf.py",
+                    "--dataset-path",   str(dataset_path),
+                    "--model",          model,
+                    "--dtype",          dtype,
+                    "--temperature",    str(temp),
+                    "--seed",           "42",
+                    "--max-tokens",     "8192",
+                    "--max-model-len",  "16384",
+                    "--max-num-seqs",   "4",
+                    "--gen-timeout",    "480",
+                    "--repetition-penalty", "1.15",
+                    "--system-prompt",  str(TESTEVAL_DIR / "prompt" / "system_exec_realworld.txt"),
+                    "--output-file",    out_file2,
+                ]
+                if run_linecov2:
+                    run_cmd(cmd2)
 
             cleanup_disk_space()
 

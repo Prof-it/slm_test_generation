@@ -518,12 +518,18 @@ name = "local"
 
         # 5. Reporting
         # We run dump even if exec failed/timed out to capture whatever work was finished
-        report_proc = subprocess.run(
-            [python_exec, "-m", "cosmic_ray.cli", "dump", "session.sqlite"],
-            cwd=work_dir, capture_output=True, text=True, timeout=30
-        )
-        if report_proc.returncode != 0:
-            pass
+        dump_timed_out = False
+        try:
+            report_proc = subprocess.run(
+                [python_exec, "-m", "cosmic_ray.cli", "dump", "session.sqlite"],
+                cwd=work_dir, capture_output=True, text=True, timeout=120
+            )
+            if report_proc.returncode != 0:
+                pass
+        except subprocess.TimeoutExpired:
+            dump_timed_out = True
+            result_dict["error"] = "cosmic-ray dump timed out after 120s — mutation results unavailable"
+            return result_dict
 
         # Flatten lists and parse safely
         raw_output = report_proc.stdout.strip()
