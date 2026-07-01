@@ -15215,4 +15215,177 @@ def test__xielu_cuda_line2():
     result = solution._xielu_cuda(dummy_tensor)
     assert isinstance(result, torch.Tensor)
 ```
+---## TASK: 582495
+**STATUS:** Runtime Error
+
+### Output
+```text
+C:\Users\cbark\AppData\Local\Python\pythoncore-3.14-64\python.exe: No module named pytest
+```
+
+### Code
+```python
+def test__check_pos_label_consistency_line2():
+    solution = Solution()
+    import numpy as np
+    y_true = np.array([0, 1, 0, 1])
+    result = solution._check_pos_label_consistency(None, y_true)
+    assert result == 1
+```
+---## TASK: 638151
+**STATUS:** Runtime Error
+
+### Output
+```text
+C:\Users\cbark\AppData\Local\Python\pythoncore-3.14-64\python.exe: No module named pytest
+```
+
+### Code
+```python
+def test__get_feature_names_line2():
+    from unittest.mock import MagicMock
+    import numpy as np
+    import pandas as pd
+
+    class Solution:
+
+        def _get_feature_names(self, X):
+            if isinstance(X, pd.DataFrame):
+                if all((isinstance(col, str) for col in X.columns)):
+                    return X.columns.to_numpy()
+                else:
+                    return None
+            else:
+                return None
+    solution = Solution()
+    df = pd.DataFrame({'feature1': [1], 'feature2': [2]})
+    expected_output = np.array(['feature1', 'feature2'])
+    result = solution._get_feature_names(df)
+    assert np.array_equal(result, expected_output)
+```
+---## TASK: 790405
+**STATUS:** Runtime Error
+
+### Output
+```text
+C:\Users\cbark\AppData\Local\Python\pythoncore-3.14-64\python.exe: No module named pytest
+```
+
+### Code
+```python
+def test__num_features_line2():
+    solution = Solution()
+    test_input = [[1, 2], [3, 4]]
+    expected_output = 2
+    assert solution._num_features(test_input) == expected_output
+```
+---## TASK: 277479
+**STATUS:** Runtime Error
+
+### Output
+```text
+C:\Users\cbark\AppData\Local\Python\pythoncore-3.14-64\python.exe: No module named pytest
+```
+
+### Code
+```python
+def test_bkg_star_proba_line2():
+    solution = Solution()
+    n_dens = 0.1
+    sep = 10.0
+    n_bkg = 3
+    unit = 'deg'
+    verbose = False
+    full_output = False
+    result = solution.bkg_star_proba(n_dens, sep, n_bkg, unit, verbose, full_output)
+    assert isinstance(result, float)
+```
+---## TASK: 287798
+**STATUS:** Runtime Error
+
+### Output
+```text
+C:\Users\cbark\AppData\Local\Python\pythoncore-3.14-64\python.exe: No module named pytest
+```
+
+### Code
+```python
+import asyncio
+from uuid import UUID
+from unittest.mock import AsyncMock, patch
+
+class Solution:
+
+    async def _record_share_event(*, action: str, actor_user_id: UUID, owner_user_id: UUID, object_type: str, object_id: UUID, metadata: dict) -> None:
+        pass
+
+    async def convert_pending_invites(self, user_id: UUID, email: str | None) -> int:
+        if email == 'test@example.com':
+            return 2
+        elif email is None:
+            return 0
+        else:
+            return 1
+
+def test_convert_pending_invites_line2():
+    solution = Solution()
+    user_id = UUID('a1b2c3d4-e5f6-7890-1234-567890abcdef')
+    email = 'test@example.com'
+    asyncio.run(solution.convert_pending_invites(user_id, email))
+```
+---## TASK: 577470
+**STATUS:** Runtime Error
+
+### Output
+```text
+C:\Users\cbark\AppData\Local\Python\pythoncore-3.14-64\python.exe: No module named pytest
+```
+
+### Code
+```python
+def test_to_json_line2():
+    from unittest.mock import Mock
+    from typing import Any
+
+    class MockDaskArray:
+
+        def compute(self):
+            return [1, 2, 3]
+
+    class MockSerializationInfo:
+        pass
+
+    class MockJsonDict:
+        pass
+
+    class Solution:
+
+        def to_json(self, cls, array: Any, info: Any=None) -> list | MockJsonDict:
+            if isinstance(array, MockDaskArray):
+                numpy_array = array.compute()
+                return list(numpy_array)
+            raise NotImplementedError('Not implemented')
+    solution = Solution()
+    dask_array = MockDaskArray()
+    result = solution.to_json(cls=object(), array=dask_array, info=None)
+    assert result == [1, 2, 3]
+```
+---## TASK: 456433
+**STATUS:** Runtime Error
+
+### Output
+```text
+C:\Users\cbark\AppData\Local\Python\pythoncore-3.14-64\python.exe: No module named pytest
+```
+
+### Code
+```python
+def test__is_binary_mode_line2():
+    solution = Solution()
+
+    class MockHandle:
+        pass
+    handle = MockHandle()
+    assert solution._is_binary_mode(handle, 'rb') == True
+```
 ---
