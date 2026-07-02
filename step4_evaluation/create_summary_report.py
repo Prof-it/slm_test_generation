@@ -37,6 +37,29 @@ from evaluation_utils import (
     get_style_maps
 )
 
+import re as _re
+
+# Tier color encoding — replaces temperature coloring since all runs are T=0.0.
+# Categorical: Tier A (minimal context) → blue, B (+ stubs) → orange, C (+ mock hints) → green.
+# Validated colorblind-safe (Tableau 10 / CVD-separated across deuteranopia & protanopia).
+TIER_COLORS = {
+    'A': '#4E79A7',  # blue   — signature + docstring only
+    'B': '#F28E2B',  # orange — + dependency stubs
+    'C': '#59A14F',  # green  — + mock/fixture hints
+    None: '#999999', # gray   — no tier (first experiment / single-condition runs)
+}
+
+
+def _tier_from_mode(mode_str):
+    """Extract 'A', 'B', or 'C' from mode strings like 'One-Step [Tier A]'. Returns None if absent."""
+    m = _re.search(r'\[Tier ([ABC])\]', str(mode_str))
+    return m.group(1) if m else None
+
+
+def _base_mode(mode_str):
+    """Strip tier suffix: 'One-Step [Tier A]' → 'One-Step'. Gives panel-level grouping."""
+    return _re.sub(r'\s*\[Tier [ABC]\]', '', str(mode_str)).strip()
+
 
 def compute_confidence_interval(data, confidence=0.95):
     """Compute confidence interval for a list of values.
@@ -543,58 +566,41 @@ def plot_quality_quadrant(df, output_dir, palette_dict, markers_dict):
     Generates scatter plot comparing Correctness (Pass Rate) vs Quality (Mutation Score Global).
     Uses unbiased mutation score (includes failed tasks at 0%).
     NO jittering - exact data representation.
-    ENCODING: Shape = Model, Color = Temperature (6 discrete values), Fill = Mode (filled vs hollow).
+    ENCODING: Shape = Model, Color = Context Tier (A/B/C), Fill = Mode (filled vs hollow).
     """
-    # Define temperature color mapping (6 discrete colors: blue -> red)
-    # Using diverging colormap for ordered temperature values
-    temp_colors = {
-        0.0: '#2166ac',  # dark blue (cold/greedy)
-        0.2: '#67a9cf',  # light blue
-        0.4: '#d1e5f0',  # very light blue
-        0.6: '#fddbc7',  # light orange
-        0.8: '#ef8a62',  # orange
-        1.0: '#b2182b'   # dark red (hot/creative)
-    }
-
-    agg_df = df.groupby(['Model', 'Mode', 'Temperature'], dropna=False).agg({
+    agg_df = df.groupby(['Model', 'Mode'], dropna=False).agg({
         'Pass Rate': 'mean',
-        'Mutation Score Global': 'mean'  # Unbiased metric
+        'Mutation Score Global': 'mean'
     }).reset_index()
 
-    modes = [m for m in agg_df["Mode"].unique() if m != "Evolutionary Search"]
-    fig, axes = plt.subplots(1, len(modes), figsize=(9 * len(modes), 8),
+    # One panel per base mode (One-Step / Two-Step) — tier color differentiates A/B/C within each panel.
+    base_modes = sorted({_base_mode(m) for m in agg_df["Mode"].unique() if m != "Evolutionary Search"})
+    fig, axes = plt.subplots(1, len(base_modes), figsize=(9 * len(base_modes), 8),
                              sharex=True, sharey=True)
-    if len(modes) == 1:
+    if len(base_modes) == 1:
         axes = [axes]
 
     pynguin_data = agg_df[agg_df["Mode"] == "Evolutionary Search"].copy()
+    llm_data = agg_df[agg_df["Mode"] != "Evolutionary Search"]
+    global_mut_mean  = llm_data['Mutation Score Global'].mean()
+    global_pass_mean = llm_data['Pass Rate'].mean()
 
-    # Global means across all non-Pynguin modes — same reference line in every panel
-    all_modes_data   = agg_df[agg_df["Mode"].isin(modes)]
-    global_mut_mean  = all_modes_data['Mutation Score Global'].mean()
-    global_pass_mean = all_modes_data['Pass Rate'].mean()
+    for ax, bmode in zip(axes, base_modes):
+        # Include all rows whose base mode matches (covers Tier A/B/C variants)
+        panel_data = agg_df[agg_df["Mode"].apply(_base_mode) == bmode].copy()
 
-    for ax, mode in zip(axes, modes):
-        mode_data = agg_df[agg_df["Mode"] == mode].copy()
-
-        # Shape = Model, Color = Temperature, Fill = Mode
-        for model in mode_data['Model'].unique():
-            model_subset = mode_data[mode_data['Model'] == model]
+        # Shape = Model, Color = Tier, Fill = base mode (One-Step filled / Two-Step hollow)
+        for model in panel_data['Model'].unique():
+            model_subset = panel_data[panel_data['Model'] == model]
             marker = markers_dict.get(model, 'o')
 
             for _, row in model_subset.iterrows():
-                # Color based on temperature (6 discrete values)
-                temp = row['Temperature']
-                if pd.isna(temp):
-                    color = 'gray'  # Default for unknown temp
-                else:
-                    color = temp_colors.get(temp, 'gray')
+                color = TIER_COLORS[_tier_from_mode(row['Mode'])]
 
-                # Fill style based on mode: One-step = filled, Two-step = hollow
-                if 'One-Step' in mode:
+                if 'One-Step' in bmode:
                     facecolor = color
                     edgecolor = 'black'
-                else:  # Two-Step - hollow markers with colored edge
+                else:
                     facecolor = 'none'
                     edgecolor = color
 
@@ -612,42 +618,34 @@ def plot_quality_quadrant(df, output_dir, palette_dict, markers_dict):
             ax.scatter(
                 pynguin_data['Mutation Score Global'].values,
                 pynguin_data['Pass Rate'].values,
-                c='black',
-                marker='^',
-                s=400,
-                edgecolor='white',
-                alpha=0.9,
-                label='Pynguin (Baseline)',
-                linewidths=2,
-                zorder=100
+                c='black', marker='^', s=400, edgecolor='white',
+                alpha=0.9, linewidths=2, zorder=100
             )
 
         ax.axvline(global_mut_mean,  color='gray', linestyle=':', alpha=0.5)
         ax.axhline(global_pass_mean, color='gray', linestyle=':', alpha=0.5)
-        ax.set_title(f"{mode}", fontsize=12, weight='bold')
+        ax.set_title(bmode, fontsize=12, weight='bold')
         ax.set_xlabel("Global Mutation Score (%)", fontsize=11)
         ax.set_ylabel("Pass@1 (%)", fontsize=11)
         ax.set_ylim(bottom=0)
         ax.grid(True, alpha=0.3)
 
-    # Create comprehensive legend with all three encoding dimensions
+    # Legend
     handles = []
-
-    # Model markers (Shape encoding)
     handles.append(Line2D([0], [0], marker='None', color='w', label='Models (Shape):', markersize=0))
-    for model in sorted(agg_df[agg_df['Mode'].isin(modes)]['Model'].unique()):
+    for model in sorted(llm_data['Model'].unique()):
         handles.append(Line2D([0], [0], marker=markers_dict.get(model, 'o'), color='w',
                               markerfacecolor='gray', markersize=10, label=f'  {model}',
                               markeredgecolor='black', markeredgewidth=1))
 
-    # Temperature colors (Color encoding)
-    handles.append(Line2D([0], [0], marker='None', color='w', label='Temperature (Color):', markersize=0))
-    for temp in sorted(temp_colors.keys()):
+    handles.append(Line2D([0], [0], marker='None', color='w', label='Context Tier (Color):', markersize=0))
+    tier_labels = {'A': 'Tier A — sig+doc', 'B': 'Tier B — +stubs', 'C': 'Tier C — +mock hints', None: 'No tier'}
+    present_tiers = sorted({_tier_from_mode(m) for m in agg_df['Mode']}, key=lambda x: (x is None, x))
+    for t in present_tiers:
         handles.append(Line2D([0], [0], marker='o', color='w',
-                              markerfacecolor=temp_colors[temp], markersize=8,
-                              label=f'  T={temp}', markeredgecolor='black', markeredgewidth=1))
+                              markerfacecolor=TIER_COLORS[t], markersize=8,
+                              label=f'  {tier_labels[t]}', markeredgecolor='black', markeredgewidth=1))
 
-    # Mode fill styles (Fill encoding)
     handles.append(Line2D([0], [0], marker='None', color='w', label='Mode (Fill):', markersize=0))
     handles.append(Line2D([0], [0], marker='o', color='w', markerfacecolor='gray',
                           markersize=10, label='  One-Step (Filled)', fillstyle='full',
@@ -672,21 +670,11 @@ def plot_coverage_analysis(df, output_dir, palette_dict, markers_dict):
     Generates scatter plot comparing Global Coverage vs Pass Rate.
     Uses unbiased global coverage metric (includes failed tasks at 0%).
     NO jittering - exact data representation.
-    ENCODING: Shape = Model, Color = Temperature (6 discrete values), Fill = Mode (filled vs hollow).
+    ENCODING: Shape = Model, Color = Context Tier (A/B/C), Fill = Mode (filled vs hollow).
     """
-    # Define temperature color mapping (6 discrete colors: blue -> red)
-    temp_colors = {
-        0.0: '#2166ac',  # dark blue (cold/greedy)
-        0.2: '#67a9cf',  # light blue
-        0.4: '#d1e5f0',  # very light blue
-        0.6: '#fddbc7',  # light orange
-        0.8: '#ef8a62',  # orange
-        1.0: '#b2182b'   # dark red (hot/creative)
-    }
-
-    agg_df = df.groupby(['Model', 'Mode', 'Temperature'], dropna=False).agg({
+    agg_df = df.groupby(['Model', 'Mode'], dropna=False).agg({
         'Pass Rate': 'mean',
-        'Coverage Global': 'mean',  # Unbiased metric
+        'Coverage Global': 'mean',
         'N Passed': 'mean'
     }).reset_index()
 
@@ -696,40 +684,33 @@ def plot_coverage_analysis(df, output_dir, palette_dict, markers_dict):
         print("WARNING: No coverage data available for coverage analysis plot")
         return
 
-    modes = [m for m in agg_df["Mode"].unique() if m != "Evolutionary Search"]
-    fig, axes = plt.subplots(1, len(modes), figsize=(9 * len(modes), 8),
+    # One panel per base mode (One-Step / Two-Step) — tier color differentiates A/B/C within each panel.
+    base_modes = sorted({_base_mode(m) for m in agg_df["Mode"].unique() if m != "Evolutionary Search"})
+    fig, axes = plt.subplots(1, len(base_modes), figsize=(9 * len(base_modes), 8),
                              sharex=True, sharey=True)
-    if len(modes) == 1:
+    if len(base_modes) == 1:
         axes = [axes]
 
     pynguin_data = agg_df[agg_df["Mode"] == "Evolutionary Search"].copy()
+    llm_data = agg_df[agg_df["Mode"] != "Evolutionary Search"]
+    global_cov_mean  = llm_data['Coverage Global'].mean()
+    global_pass_mean = llm_data['Pass Rate'].mean()
 
-    # Global means across all non-Pynguin modes — same reference line in every panel
-    all_modes_data   = agg_df[agg_df["Mode"].isin(modes)]
-    global_cov_mean  = all_modes_data['Coverage Global'].mean()
-    global_pass_mean = all_modes_data['Pass Rate'].mean()
+    for ax, bmode in zip(axes, base_modes):
+        panel_data = agg_df[agg_df["Mode"].apply(_base_mode) == bmode].copy()
 
-    for ax, mode in zip(axes, modes):
-        mode_data = agg_df[agg_df["Mode"] == mode].copy()
-
-        # Shape = Model, Color = Temperature, Fill = Mode
-        for model in mode_data['Model'].unique():
-            model_subset = mode_data[mode_data['Model'] == model]
+        # Shape = Model, Color = Tier, Fill = base mode
+        for model in panel_data['Model'].unique():
+            model_subset = panel_data[panel_data['Model'] == model]
             marker = markers_dict.get(model, 'o')
 
             for _, row in model_subset.iterrows():
-                # Color based on temperature (6 discrete values)
-                temp = row['Temperature']
-                if pd.isna(temp):
-                    color = 'gray'  # Default for unknown temp
-                else:
-                    color = temp_colors.get(temp, 'gray')
+                color = TIER_COLORS[_tier_from_mode(row['Mode'])]
 
-                # Fill style based on mode: One-Step = filled, Two-Step = hollow
-                if 'One-Step' in mode:
+                if 'One-Step' in bmode:
                     facecolor = color
                     edgecolor = 'black'
-                else:  # Two-Step - hollow markers with colored edge
+                else:
                     facecolor = 'none'
                     edgecolor = color
 
@@ -747,43 +728,33 @@ def plot_coverage_analysis(df, output_dir, palette_dict, markers_dict):
             ax.scatter(
                 pynguin_data['Coverage Global'].values,
                 pynguin_data['Pass Rate'].values,
-                c='black',
-                marker='^',
-                s=400,
-                edgecolor='white',
-                alpha=0.9,
-                label='Pynguin (Baseline)',
-                linewidths=2,
-                zorder=100
+                c='black', marker='^', s=400, edgecolor='white',
+                alpha=0.9, linewidths=2, zorder=100
             )
 
         ax.axvline(global_cov_mean,  color='gray', linestyle=':', alpha=0.5)
         ax.axhline(global_pass_mean, color='gray', linestyle=':', alpha=0.5)
-        ax.set_title(f"{mode}", fontsize=12, weight='bold')
-
-
+        ax.set_title(bmode, fontsize=12, weight='bold')
         ax.set_xlabel("Global Line Coverage (%)", fontsize=11)
         ax.set_ylabel("Pass@1 (%)", fontsize=11)
         ax.grid(True, alpha=0.3)
 
-    # Create comprehensive legend with all three encoding dimensions
+    # Legend
     handles = []
-
-    # Model markers (Shape encoding)
     handles.append(Line2D([0], [0], marker='None', color='w', label='Models (Shape):', markersize=0))
-    for model in sorted(agg_df[agg_df['Mode'].isin(modes)]['Model'].unique()):
+    for model in sorted(llm_data['Model'].unique()):
         handles.append(Line2D([0], [0], marker=markers_dict.get(model, 'o'), color='w',
                               markerfacecolor='gray', markersize=10, label=f'  {model}',
                               markeredgecolor='black', markeredgewidth=1))
 
-    # Temperature colors (Color encoding)
-    handles.append(Line2D([0], [0], marker='None', color='w', label='Temperature (Color):', markersize=0))
-    for temp in sorted(temp_colors.keys()):
+    handles.append(Line2D([0], [0], marker='None', color='w', label='Context Tier (Color):', markersize=0))
+    tier_labels = {'A': 'Tier A — sig+doc', 'B': 'Tier B — +stubs', 'C': 'Tier C — +mock hints', None: 'No tier'}
+    present_tiers = sorted({_tier_from_mode(m) for m in agg_df['Mode']}, key=lambda x: (x is None, x))
+    for t in present_tiers:
         handles.append(Line2D([0], [0], marker='o', color='w',
-                              markerfacecolor=temp_colors[temp], markersize=8,
-                              label=f'  T={temp}', markeredgecolor='black', markeredgewidth=1))
+                              markerfacecolor=TIER_COLORS[t], markersize=8,
+                              label=f'  {tier_labels[t]}', markeredgecolor='black', markeredgewidth=1))
 
-    # Mode fill styles (Fill encoding)
     handles.append(Line2D([0], [0], marker='None', color='w', label='Mode (Fill):', markersize=0))
     handles.append(Line2D([0], [0], marker='o', color='w', markerfacecolor='gray',
                           markersize=10, label='  One-Step (Filled)', fillstyle='full',
@@ -807,23 +778,12 @@ def plot_efficiency_frontier(df, output_dir, palette_dict, markers_dict):
     """
     Generates scatter plot comparing Efficiency (TPS) vs Effectiveness (Pass Rate).
     Includes Pynguin with explanatory note about token estimation (4 chars = 1 token).
-    ENCODING: Shape = Model, Color = Temperature (6 discrete values), Fill = Mode (filled vs hollow).
+    ENCODING: Shape = Model, Color = Context Tier (A/B/C), Fill = Mode (filled vs hollow).
     """
-    # Define temperature color mapping (6 discrete colors: blue -> red)
-    temp_colors = {
-        0.0: '#2166ac',  # dark blue (cold/greedy)
-        0.2: '#67a9cf',  # light blue
-        0.4: '#d1e5f0',  # very light blue
-        0.6: '#fddbc7',  # light orange
-        0.8: '#ef8a62',  # orange
-        1.0: '#b2182b'   # dark red (hot/creative)
-    }
-
-    # Separate LLM data from Pynguin for clear visual distinction
     llm_df = df[~df['Model'].str.contains("Pynguin", case=False, na=False)].copy()
     pynguin_df = df[df['Model'].str.contains("Pynguin", case=False, na=False)].copy()
 
-    agg_llm = llm_df.groupby(['Model', 'Mode', 'Temperature'], dropna=False).agg({
+    agg_llm = llm_df.groupby(['Model', 'Mode'], dropna=False).agg({
         'Pass Rate': 'mean',
         'TPS': 'mean'
     }).reset_index()
@@ -834,24 +794,18 @@ def plot_efficiency_frontier(df, output_dir, palette_dict, markers_dict):
 
     fig, ax = plt.subplots(figsize=(10, 8))
 
-    # Shape=Model, Color=Temperature, Fill=Mode
+    # Shape=Model, Color=Tier, Fill=Mode
     for model in agg_llm['Model'].unique():
         model_data = agg_llm[agg_llm['Model'] == model]
         marker = markers_dict.get(model, 'o')
 
         for _, row in model_data.iterrows():
-            # Color based on temperature (6 discrete values)
-            temp = row['Temperature']
-            if pd.isna(temp):
-                color = 'gray'
-            else:
-                color = temp_colors.get(temp, 'gray')
+            color = TIER_COLORS[_tier_from_mode(row['Mode'])]
 
-            # Fill style based on mode: One-Step = filled, Two-Step = hollow
             if 'One-Step' in str(row['Mode']):
                 facecolor = color
                 edgecolor = 'black'
-            else:  # Two-Step - hollow markers with colored edge
+            else:
                 facecolor = 'none'
                 edgecolor = color
 
@@ -899,24 +853,22 @@ def plot_efficiency_frontier(df, output_dir, palette_dict, markers_dict):
         'See Wall-Clock Efficiency figure\n'
         'for cross-paradigm comparison.'
     )
-    # Create comprehensive legend with all three encoding dimensions
+    # Legend
     handles = []
-
-    # Model markers (Shape encoding)
     handles.append(Line2D([0], [0], marker='None', color='w', label='Models (Shape):', markersize=0))
     for model in sorted(agg_llm['Model'].unique()):
         handles.append(Line2D([0], [0], marker=markers_dict.get(model, 'o'), color='w',
                               markerfacecolor='gray', markersize=10, label=f'  {model}',
                               markeredgecolor='black', markeredgewidth=1))
 
-    # Temperature colors (Color encoding)
-    handles.append(Line2D([0], [0], marker='None', color='w', label='Temperature (Color):', markersize=0))
-    for temp in sorted(temp_colors.keys()):
+    handles.append(Line2D([0], [0], marker='None', color='w', label='Context Tier (Color):', markersize=0))
+    tier_labels = {'A': 'Tier A — sig+doc', 'B': 'Tier B — +stubs', 'C': 'Tier C — +mock hints', None: 'No tier'}
+    present_tiers = sorted({_tier_from_mode(m) for m in agg_llm['Mode']}, key=lambda x: (x is None, x))
+    for t in present_tiers:
         handles.append(Line2D([0], [0], marker='o', color='w',
-                              markerfacecolor=temp_colors[temp], markersize=8,
-                              label=f'  T={temp}', markeredgecolor='black', markeredgewidth=1))
+                              markerfacecolor=TIER_COLORS[t], markersize=8,
+                              label=f'  {tier_labels[t]}', markeredgecolor='black', markeredgewidth=1))
 
-    # Mode fill styles (Fill encoding)
     handles.append(Line2D([0], [0], marker='None', color='w', label='Mode (Fill):', markersize=0))
     handles.append(Line2D([0], [0], marker='o', color='w', markerfacecolor='gray',
                           markersize=10, label='  One-Step', fillstyle='full',
@@ -942,15 +894,6 @@ def plot_wall_clock_efficiency(df, output_dir, palette_dict, markers_dict, bench
     This is the cross-paradigm efficiency metric valid for both SLMs and Pynguin,
     framed from the user's perspective: how long to get a test for one Python function.
     """
-    temp_colors = {
-        0.0: '#2166ac',
-        0.2: '#67a9cf',
-        0.4: '#d1e5f0',
-        0.6: '#fddbc7',
-        0.8: '#ef8a62',
-        1.0: '#b2182b'
-    }
-
     if 'Time Per Task (s)' not in df.columns:
         print("WARNING: 'Time Per Task (s)' not in data, skipping wall-clock efficiency plot")
         return
@@ -958,7 +901,7 @@ def plot_wall_clock_efficiency(df, output_dir, palette_dict, markers_dict, bench
     llm_df = df[~df['Model'].str.contains("Pynguin", case=False, na=False)].copy()
     pynguin_df = df[df['Model'].str.contains("Pynguin", case=False, na=False)].copy()
 
-    agg_llm = llm_df.groupby(['Model', 'Mode', 'Temperature'], dropna=False).agg({
+    agg_llm = llm_df.groupby(['Model', 'Mode'], dropna=False).agg({
         'Pass Rate': 'mean',
         'Time Per Task (s)': 'mean'
     }).reset_index()
@@ -969,13 +912,13 @@ def plot_wall_clock_efficiency(df, output_dir, palette_dict, markers_dict, bench
 
     fig, ax = plt.subplots(figsize=(10, 8))
 
+    # Shape=Model, Color=Tier, Fill=Mode
     for model in agg_llm['Model'].unique():
         model_data = agg_llm[agg_llm['Model'] == model]
         marker = markers_dict.get(model, 'o')
 
         for _, row in model_data.iterrows():
-            temp = row['Temperature']
-            color = temp_colors.get(temp, 'gray') if not pd.isna(temp) else 'gray'
+            color = TIER_COLORS[_tier_from_mode(row['Mode'])]
 
             if 'One-Step' in str(row['Mode']):
                 facecolor = color
@@ -991,7 +934,7 @@ def plot_wall_clock_efficiency(df, output_dir, palette_dict, markers_dict, bench
             )
 
     if not pynguin_df.empty:
-        agg_pynguin = pynguin_df.groupby(['Model', 'Mode', 'Temperature'], dropna=False).agg({
+        agg_pynguin = pynguin_df.groupby(['Model', 'Mode'], dropna=False).agg({
             'Pass Rate': 'mean',
             'Time Per Task (s)': 'mean'
         }).reset_index()
@@ -1040,11 +983,13 @@ def plot_wall_clock_efficiency(df, output_dir, palette_dict, markers_dict, bench
                               markerfacecolor='gray', markersize=10, label=f'  {model}',
                               markeredgecolor='black', markeredgewidth=1))
 
-    handles.append(Line2D([0], [0], marker='None', color='w', label='Temperature (Color):', markersize=0))
-    for temp in sorted(temp_colors.keys()):
+    handles.append(Line2D([0], [0], marker='None', color='w', label='Context Tier (Color):', markersize=0))
+    tier_labels = {'A': 'Tier A — sig+doc', 'B': 'Tier B — +stubs', 'C': 'Tier C — +mock hints', None: 'No tier'}
+    present_tiers = sorted({_tier_from_mode(m) for m in agg_llm['Mode']}, key=lambda x: (x is None, x))
+    for t in present_tiers:
         handles.append(Line2D([0], [0], marker='o', color='w',
-                              markerfacecolor=temp_colors[temp], markersize=8,
-                              label=f'  T={temp}', markeredgecolor='black', markeredgewidth=1))
+                              markerfacecolor=TIER_COLORS[t], markersize=8,
+                              label=f'  {tier_labels[t]}', markeredgecolor='black', markeredgewidth=1))
 
     handles.append(Line2D([0], [0], marker='None', color='w', label='Mode (Fill):', markersize=0))
     handles.append(Line2D([0], [0], marker='o', color='w', markerfacecolor='gray',
@@ -1107,13 +1052,12 @@ def plot_error_distribution(error_data, output_dir, palette_dict, benchmark_size
         if old in df_display.columns:
             df_display[new] = df_display[old]
 
-    # Extract temperature for sorting
-    df_display['Temperature'] = df_display['Config'].str.extract(r'T=([\d.]+)').astype(float)
-    df_display['Temperature'] = df_display['Temperature'].fillna(999)  # Put N/A at end
-
-    # Group by Model first, then sort by Temperature
-    # This allows easy visual comparison of how temperature affects error rates for each model
-    df_display = df_display.sort_values(['Model', 'Mode', 'Temperature'])
+    # Sort by Model → Mode, with tier order A < B < C embedded in Mode string
+    df_display['_tier_sort'] = df_display['Mode'].apply(
+        lambda m: {'A': 0, 'B': 1, 'C': 2}.get(_tier_from_mode(m), -1)
+    )
+    df_display = df_display.sort_values(['Model', '_tier_sort', 'Mode'])
+    df_display = df_display.drop(columns=['_tier_sort'])
 
     # Create compound label: Model + Mode + Config
     df_display['Label'] = df_display['Model'] + ' (' + df_display['Mode'] + ', ' + df_display['Config'] + ')'
@@ -1153,7 +1097,7 @@ def plot_error_distribution(error_data, output_dir, palette_dict, benchmark_size
     )
 
     ax.set_title("Failure Mode Analysis", fontsize=13, weight='bold', pad=10)
-    ax.set_ylabel("Model Configuration (Grouped by Model → Mode → Temperature)", fontsize=11)
+    ax.set_ylabel("Model Configuration (Grouped by Model → Mode → Tier)", fontsize=11)
     ax.set_xlabel("Error Type (by Severity)", fontsize=11)
     ax.set_xticklabels(ax.get_xticklabels(), rotation=0)
     plt.setp(ax.get_yticklabels(), rotation=0, fontsize=10, fontweight='bold')
@@ -1183,6 +1127,13 @@ def load_evaluation_data(input_dir):
     for filepath in files:
         model, mode, temp = parse_filename_metadata(filepath, clean_name=True)
         temp_str = f"T={temp}" if not np.isnan(temp) else "N/A"
+        # If file lives inside a tier_* subdirectory, encode the tier into the mode
+        # so each tier appears as a distinct row rather than being averaged as a "run".
+        parent_dir = Path(filepath).parent.name
+        if parent_dir.startswith("tier_"):
+            tier_label = parent_dir.replace("tier_", "Tier ").upper()  # e.g. "TIER A"
+            tier_label = parent_dir.replace("tier_", "Tier ")          # e.g. "Tier A"
+            mode = f"{mode} [{tier_label}]"
         key = (model, mode, temp_str)
         if key not in config_runs: config_runs[key] = []
 
@@ -1484,8 +1435,12 @@ def generate_plots(plot_records, rel_data, output_dir, total_benchmark_size, n_r
     sns.set_theme(style="whitegrid", context="paper", font_scale=1.2)
     pal, marks = get_style_maps(df_plot)
 
-    print("Generating Stability Trend Plots...")
-    plot_stability_trends(df_plot, output_dir, pal, marks)
+    n_unique_temps = df_plot["Temperature"].nunique()
+    if n_unique_temps >= 2:
+        print("Generating Stability Trend Plots...")
+        plot_stability_trends(df_plot, output_dir, pal, marks)
+    else:
+        print("Skipping trend plots (only one temperature value — no trend to show).")
     print("Generating Quality Quadrant...")
     plot_quality_quadrant(df_plot, output_dir, pal, marks)
     print("Generating Coverage Analysis Plot...")
