@@ -1,0 +1,96 @@
+{
+  "total_comparisons": 987,
+  "bias_analysis": {
+    "None": 848,
+    "Stochastic_Noise": 119,
+    "Position_Bias_First": 17,
+    "Position_Bias_Second": 3
+  },
+  "winner_distribution": {
+    "A": 376,
+    "B": 276,
+    "Tie": 196,
+    "Invalid_Bias": 139
+  },
+  "win_counts": {
+    "gemma-4-E4B-it One-Step Tier-A": 116,
+    "Qwen3-4B-Thinking One-Step Tier-A": 97,
+    "gemma-4-E4B-it Two-Step Tier-A": 41,
+    "Ministral-3-3B-Reasoning Two-Step Tier-A": 53,
+    "granite-4.0-micro Two-Step Tier-A": 86,
+    "granite-4.0-micro One-Step Tier-A": 103,
+    "Qwen3-4B-Thinking Two-Step Tier-A": 49,
+    "Qwen3.5-4B Two-Step Tier-A": 36,
+    "Qwen3.5-4B One-Step Tier-A": 33,
+    "Ministral-3-3B-Reasoning One-Step Tier-A": 38
+  },
+  "tie_threshold_analysis": {
+    "current_threshold": 2.0,
+    "tie_percentage": 23.11,
+    "tie_count": 196,
+    "valid_comparisons": 848,
+    "score_diff_stats": {
+      "mean": 12.17,
+      "std": 9.26,
+      "min": 0.0,
+      "25%": 3.0,
+      "50%": 12.0,
+      "75%": 20.0,
+      "max": 36.0
+    },
+    "recommendation": "Threshold appears reasonable"
+  },
+  "est_cost_usd": 14.805,
+  "pass_rate_statistics": {
+    "gemma-4-E4B-it One-Step Tier-A": {
+      "pass_count": 65,
+      "total_count": 300,
+      "pass_rate": 21.666666666666668
+    },
+    "gemma-4-E4B-it Two-Step Tier-A": {
+      "pass_count": 125,
+      "total_count": 300,
+      "pass_rate": 41.66666666666667
+    },
+    "granite-4.0-micro One-Step Tier-A": {
+      "pass_count": 80,
+      "total_count": 300,
+      "pass_rate": 26.666666666666668
+    },
+    "granite-4.0-micro Two-Step Tier-A": {
+      "pass_count": 85,
+      "total_count": 300,
+      "pass_rate": 28.333333333333332
+    },
+    "Ministral-3-3B-Reasoning One-Step Tier-A": {
+      "pass_count": 33,
+      "total_count": 300,
+      "pass_rate": 11.0
+    },
+    "Ministral-3-3B-Reasoning Two-Step Tier-A": {
+      "pass_count": 54,
+      "total_count": 300,
+      "pass_rate": 18.0
+    },
+    "Qwen3-4B-Thinking One-Step Tier-A": {
+      "pass_count": 55,
+      "total_count": 300,
+      "pass_rate": 18.333333333333332
+    },
+    "Qwen3-4B-Thinking Two-Step Tier-A": {
+      "pass_count": 54,
+      "total_count": 300,
+      "pass_rate": 18.0
+    },
+    "Qwen3.5-4B One-Step Tier-A": {
+      "pass_count": 27,
+      "total_count": 300,
+      "pass_rate": 9.0
+    },
+    "Qwen3.5-4B Two-Step Tier-A": {
+      "pass_count": 83,
+      "total_count": 300,
+      "pass_rate": 27.666666666666668
+    }
+  }
+}

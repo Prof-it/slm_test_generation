@@ -1,0 +1,116 @@
+{
+  "labels": {
+    "ann1": "Ann1 (Beginner)",
+    "ann2": "Ann2 (Beginner)",
+    "ann3": "Ann3 (Intermediate)"
+  },
+  "n_ann": 3,
+  "n_total": 33,
+  "n_real": 30,
+  "n_invalid_bias": 0,
+  "verbosity_bias": {
+    "spearman_rho_length_vs_score": -0.3069253451706186,
+    "p": 0.017064899229439597,
+    "flag": false
+  },
+  "position_bias_direction": {
+    "n": 30,
+    "pass1_A_wins": 2,
+    "pass1_B_wins": 16,
+    "pass1_Tie": 12,
+    "pass1_A_fraction": 0.111
+  },
+  "iaa": {
+    "kappa_ann1_ann2": 0.5287958115183247,
+    "kappa_ann1_ann3": 0.2279411764705882,
+    "kappa_ann2_ann3": 0.11764705882352944,
+    "agree_ann1_ann2": 24,
+    "agree_ann1_ann3": 16,
+    "agree_ann2_ann3": 14,
+    "fleiss_kappa": 0.24050632911392403,
+    "n_way": 3,
+    "interpretation": "Fair",
+    "avg_agree_n": 18.0,
+    "pct_avg_agree": 0.6
+  },
+  "llm_vs_human": {
+    "n": 30,
+    "n_excluded_invalid_bias": 0,
+    "kappa_ann1": 0.27125506072874506,
+    "kappa_ann1_ci": [
+      0.0413533834586467,
+      0.5061945748565466
+    ],
+    "kappa_ann2": 0.33601609657947684,
+    "kappa_ann2_ci": [
+      0.0714285714285714,
+      0.5930625392834692
+    ],
+    "kappa_ann3": 0.014598540145985384,
+    "kappa_ann3_ci": [
+      -0.22455936920222602,
+      0.2456479690522244
+    ],
+    "pct_agree_ann1": 0.6,
+    "pct_agree_ann2": 0.6333333333333333,
+    "pct_agree_ann3": 0.4,
+    "kappa_consensus": 0.35359116022099446,
+    "kappa_consensus_ci": [
+      0.11855754725352755,
+      0.6214049528633738
+    ],
+    "n_consensus": 26,
+    "pct_agree_cons": 0.6538461538461539
+  },
+  "criterion_correlation": {
+    "robustness": {
+      "rho": 0.6438523196002007,
+      "p": 2.8652592979790387e-08,
+      "n": 60
+    },
+    "assertions": {
+      "rho": 0.8520759153137997,
+      "p": 6.003676509655614e-18,
+      "n": 60
+    },
+    "readability": {
+      "rho": 0.48831808617416456,
+      "p": 7.553086408498381e-05,
+      "n": 60
+    },
+    "conciseness": {
+      "rho": 0.5746048708641408,
+      "p": 1.5786992223429875e-06,
+      "n": 60
+    }
+  },
+  "stratum_breakdown": {
+    "Clear": {
+      "n": 12,
+      "llm_ann1": 10,
+      "llm_ann2": 10,
+      "llm_ann3": 6,
+      "avg_human_agree": 7.0
+    },
+    "Marginal": {
+      "n": 9,
+      "llm_ann1": 8,
+      "llm_ann2": 8,
+      "llm_ann3": 4,
+      "avg_human_agree": 5.0
+    },
+    "Tie": {
+      "n": 9,
+      "llm_ann1": 0,
+      "llm_ann2": 1,
+      "llm_ann3": 2,
+      "avg_human_agree": 6.0
+    }
+  },
+  "total_score_correlation": {
+    "rho": 0.7076406556141873,
+    "p": 2.586329033123286e-10,
+    "n": 60,
+    "interpretation": "Strong"
+  }
+}

@@ -56,8 +56,8 @@ ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 JUDGE_TEMPERATURE = 0.1
 
 # Pricing — claude-haiku-4-5 (USD per million tokens)
-PRICE_INPUT_PER_M = 0.80
-PRICE_OUTPUT_PER_M = 4.00
+PRICE_INPUT_PER_M = 1.00
+PRICE_OUTPUT_PER_M = 5.00
 
 if not ANTHROPIC_API_KEY:
     raise ValueError("Please set the ANTHROPIC_API_KEY environment variable.")
@@ -65,7 +65,8 @@ if not ANTHROPIC_API_KEY:
 client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 MODEL_NAME = DEFAULT_MODEL
 
-TIE_THRESHOLD = 2.0  # 5% deviation on 40-point double-pass scale
+TIE_THRESHOLD   = 2.0  # 5% deviation on 40-point double-pass scale
+CLEAR_THRESHOLD = 6.0  # Aligned with build_augmented_humaneval_csv.py assign_stratum()
 
 # ---------------------------------------------------------------------------
 # Plan Quality Scoring — LLM-as-Judge for step-1 condition outputs
@@ -232,6 +233,32 @@ EVALUATION_TEMPLATE = """
   "test_b_scores": [Robustness, Assertions, Readability, Conciseness]
 }}
 """
+
+def _sanitize_for_judge(code: str, fence_repeat_threshold: int = 5) -> str:
+    """Collapse runs of repeated backtick fences a stuck model emits.
+
+    Some models get trapped in a loop outputting only ``` lines.
+    Five or more consecutive fence-only lines are replaced with a single
+    [TRUNCATED] marker so the judge prompt stays compact.
+    """
+    import re as _re
+    _FENCE_LINE = _re.compile(r"^[ \t]*`{3,}[ \t]*(\w*)[ \t]*$")
+    lines = code.splitlines()
+    result = []
+    run = 0
+    for line in lines:
+        if _FENCE_LINE.match(line):
+            run += 1
+            if run < fence_repeat_threshold:
+                result.append(line)
+            elif run == fence_repeat_threshold:
+                result.append("[TRUNCATED: model output stuck repeating fence markers]")
+            # beyond threshold: drop silently
+        else:
+            run = 0
+            result.append(line)
+    return "\n".join(result)
+
 
 class ThreadSafeWriter:
     """Thread-safe file writer for parallel API calls."""
@@ -1342,6 +1369,7 @@ def load_data(base_dir, evaluation_group="best_configs", eval_dir=None):
                                 break
 
                         if not test_code or not test_code.strip(): continue
+                        test_code = _sanitize_for_judge(test_code)
 
                         if tid not in tasks: tasks[tid] = {}
                         tasks[tid][friendly_name] = test_code
@@ -1375,8 +1403,8 @@ def perform_stratified_sampling(df, output_dir, group_name, n_per_stratum=10, se
 
     def classify_diff(row):
         d = row['score_diff']
-        if d <= TIE_THRESHOLD: return 'Tie'  # <= 2.0 for 1-5 scale
-        if d <= 8.0: return 'Marginal'  # Adjusted for 1-5 scale (was 4.0 for 0-2 scale)
+        if d <= TIE_THRESHOLD:    return 'Tie'
+        if d < CLEAR_THRESHOLD:   return 'Marginal'
         return 'Clear'
     
     valid['stratum'] = valid.apply(classify_diff, axis=1)
@@ -1424,12 +1452,17 @@ def load_global_comparison_cache(output_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="LLM-as-Judge Evaluation System")
-    parser.add_argument("--predictions_dir", type=str, default="TestEval/predictions_realworld")
-    parser.add_argument("--eval_dir", type=str, default=None,
-                        help="Path to evaluation results directory (e.g. evaluation_results_realworld_1). "
-                             "Overrides auto-detection. Required for correct Pass-status filtering.")
+    # NOTE: the script appends /run_1/ internally, so predictions_dir must be the
+    # parent of run_1 (i.e. downloaded_predictions/second_experiment, not .../run_1).
+    parser.add_argument("--predictions_dir", type=str,
+                        default="downloaded_predictions/second_experiment")
+    parser.add_argument("--eval_dir", type=str,
+                        default="evaluation_results/second_experiment",
+                        help="Path to evaluation results directory. "
+                             "The script appends /run_1/ internally, so pass the "
+                             "parent of run_1 (e.g. evaluation_results/second_experiment).")
     parser.add_argument("--output_dir", type=str, default="TestEval/predictions_judgellm")
-    parser.add_argument("--evaluation_group", type=str, default="best_configs",
+    parser.add_argument("--evaluation_group", type=str, default="second_experiment_all",
                         choices=["best_configs", "temperature_ablation", "prompting_ablation", "full_factorial",
                                  "second_experiment_tier_A", "second_experiment_tier_B", "second_experiment_tier_C",
                                  "second_experiment_all", "all"])
@@ -1443,11 +1476,11 @@ def main():
     parser.add_argument("--max_workers", type=int, default=5,
                         help="Max parallel API requests (default: 5). Anthropic handles concurrency well.")
     # Plan quality mode (Step 6 — Jiang et al. 2023 / G-Eval / arXiv:2507.06980)
-    parser.add_argument("--mode", type=str, default="pairwise",
+    parser.add_argument("--mode", type=str, default="both",
                         choices=["pairwise", "plan_quality", "both"],
                         help="pairwise=existing test code comparison; "
                              "plan_quality=score step-1 conditions (two-step CoT only); "
-                             "both=run both pipelines")
+                             "both=run both pipelines (default for second experiment)")
     parser.add_argument("--human_agreement_csv", type=str, default=None,
                         help="Path to human-filled plan_quality_human_validation.csv "
                              "for inter-rater agreement computation (use after human annotation)")
@@ -1562,10 +1595,11 @@ def main():
         total_pairs = sum((len(m)*(len(m)-1))//2 for m in tasks.values() if len(m)>=2)
         total_calls = total_pairs * 2 # Double pass
         
-        # Heuristic: 1 char ~= 0.25 tokens. 
-        # Avg input context per call ~= Focal(300) + Doc(100) + CodeA(200) + CodeB(200) + Prompt(500) = 1300 chars
-        est_input_tokens = total_calls * 1500  # Conservative estimate
-        est_output_tokens = total_calls * 400  # Reasoning + JSON
+        # Calibrated from observed Sonnet run (987 pairs, tier_A):
+        #   actual avg input  ≈ 3,360 tokens/call  (system prompt + focal + docstring + code_a + code_b)
+        #   actual avg output ≈  760 tokens/call   (reasoning + JSON scores)
+        est_input_tokens = total_calls * 3500
+        est_output_tokens = total_calls * 800
 
         est_cost = ((est_input_tokens/1_000_000) * PRICE_INPUT_PER_M) + \
                    ((est_output_tokens/1_000_000) * PRICE_OUTPUT_PER_M)
