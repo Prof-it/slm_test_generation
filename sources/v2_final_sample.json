@@ -1,0 +1,2102 @@
+[
+  {
+    "id": "rwt2_250f6739945a",
+    "repo": "pytorch/pytorch",
+    "func_name": "_reverse_repeat_tuple",
+    "leaked": true,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_b6a044a2866c",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "_web_fetch_classifier_input",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_6de4cdaeb62e",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "_process_document",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_1da9d503f7bb",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "is_sdk_control_response",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_be024a9579bc",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "_post_token_endpoint",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_c4e5b81eb4b8",
+    "repo": "datachain-ai/datachain",
+    "func_name": "clone",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_0aa6648c3f26",
+    "repo": "tyxak/remotepower",
+    "func_name": "_chargeback_breakdown",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_eff7fe31ebe2",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "parseJson",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_8be3a08a897f",
+    "repo": "datachain-ai/datachain",
+    "func_name": "parse_dataset_with_version",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_2d0e8e0c9615",
+    "repo": "tyxak/remotepower",
+    "func_name": "device_focus_tokens",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_95768f83c368",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "_endpoint_config_info",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_27767686474f",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_is_fitted",
+    "leaked": true,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_5dad19dc76c0",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "truncate_filename",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_38372942255c",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "list_graphs",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_c3cecdc1ff09",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "near_vector",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_fe19b8b31557",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "grep",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_0ca9d3c8e360",
+    "repo": "unionai-oss/pandera",
+    "func_name": "check_sizes",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_ae78eaf6b9f7",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "_render_config_health",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_b7e4a6bb2595",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "find_popular",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_6ca6b54283f8",
+    "repo": "alexei-led/ccgram",
+    "func_name": "resolve_session_id",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_459d2344d87f",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "high_gradients",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_fe8aad5d8548",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "compute_rdkit_3d_descriptors",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_61d766dfc9df",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "_parse_allowed_modules",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_2f92cd8c16e1",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "_format_to_v2_records",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_6206351d94eb",
+    "repo": "unionai-oss/pandera",
+    "func_name": "register_backend",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_0bc185aab1b3",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "fit",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_ee9d9b0f9e3d",
+    "repo": "psf/requests",
+    "func_name": "unquote_header_value",
+    "leaked": true,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_04395d713223",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "load",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_0cde1dfc1c11",
+    "repo": "tyxak/remotepower",
+    "func_name": "_index_device_tokens",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_7d4720e472a2",
+    "repo": "alexei-led/ccgram",
+    "func_name": "set_batch_mode",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_efff8636f2cf",
+    "repo": "tyxak/remotepower",
+    "func_name": "_agent_integrity_status",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_ddd85f02d9ee",
+    "repo": "datachain-ai/datachain",
+    "func_name": "isfile",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_fc49ac8f5421",
+    "repo": "python-attrs/cattrs",
+    "func_name": "unstructure_attrs_asdict",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_b43f014e825e",
+    "repo": "datachain-ai/datachain",
+    "func_name": "verbose_name",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_da90542511c7",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "validate_subnormals",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_910927285dd0",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "_reput_alarm_with_description",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_50c4d92c9676",
+    "repo": "datachain-ai/datachain",
+    "func_name": "_init_tables",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_1181fd0114e3",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "describe_schema",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_5544b52414ad",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "_sanitize_value",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_8cf47eb8e761",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "_walk_filesystem",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_c665bed894e2",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "_excel_column_name",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_a2c19c14c016",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "build_playlist_subtitle",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_bedd9bac6223",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "apply_filter",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_2ef2057df284",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "update",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_2621893b3f04",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "output_fn",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_b13ccba8442a",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "resolve_max_output_tokens",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_a481b1c05671",
+    "repo": "tyxak/remotepower",
+    "func_name": "_summarise_metric_samples",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_e51f76c3f60a",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "_async_children",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_390cdcc66246",
+    "repo": "psf/requests",
+    "func_name": "iter_slices",
+    "leaked": true,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_4ddb5978d311",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_check_large_sparse",
+    "leaked": true,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_97c9c706be21",
+    "repo": "unionai-oss/pandera",
+    "func_name": "unique",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_5e52d52aae62",
+    "repo": "tyxak/remotepower",
+    "func_name": "_starttls_ldap",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_c43341201e5d",
+    "repo": "gmickel/flow-next",
+    "func_name": "resolve_spec",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_c249ed3a6fe4",
+    "repo": "psf/requests",
+    "func_name": "_parse_content_type_header",
+    "leaked": true,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_081308752105",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "createCollection",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_c3ce53fc3cf0",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "scrape_url",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_a15af6e156e9",
+    "repo": "unionai-oss/pandera",
+    "func_name": "__coerce_index",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_3ccbb11b8e79",
+    "repo": "unionai-oss/pandera",
+    "func_name": "check_coords",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_a0b6d264c5fd",
+    "repo": "datachain-ai/datachain",
+    "func_name": "convert_voc_bbox",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_3bc768549a6a",
+    "repo": "rocketride-org/rocketride-server",
+    "func_name": "send_command",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_35e5e2d497f7",
+    "repo": "unionai-oss/pandera",
+    "func_name": "check_nullable",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_478998d66e90",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "shares_add",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_e6c72c2709d6",
+    "repo": "sstklen/trump-code",
+    "func_name": "_check_barrage_to_relief",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_2156a7b718ec",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "toggle_shuffle",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_10f4bd2783d5",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "_aggregate",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_a6006ff43877",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "jump_to_real",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_6afe134b273e",
+    "repo": "sstklen/trump-code",
+    "func_name": "_trigger_b2",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_4d441d17ddc4",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "get_contiguous_view_for_tile",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_963b4f04b9a5",
+    "repo": "unionai-oss/pandera",
+    "func_name": "_combine_constraints",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_4fbc46e2a001",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "get_search_suggestions",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_f04dbdfc18a2",
+    "repo": "unionai-oss/pandera",
+    "func_name": "_resolve_dim_sizes",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_b5ffd166efaa",
+    "repo": "datachain-ai/datachain",
+    "func_name": "read_json_metadata",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_64b481c14561",
+    "repo": "unionai-oss/pandera",
+    "func_name": "cf_has_standard_names",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_129e2ef2fd00",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "next",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_078619e07d28",
+    "repo": "unionai-oss/pandera",
+    "func_name": "check_array_type",
+    "leaked": false,
+    "dependency_level": "L0"
+  },
+  {
+    "id": "rwt2_34f96dd88e19",
+    "repo": "alexei-led/ccgram",
+    "func_name": "_compile_deps",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_1ec3d4595a64",
+    "repo": "gmickel/flow-next",
+    "func_name": "parse",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_5e81b6124671",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "last_modified",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_7e61434b8338",
+    "repo": "pandas-dev/pandas",
+    "func_name": "infer_filename",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_9f8cc7f24703",
+    "repo": "pandas-dev/pandas",
+    "func_name": "close",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_847f719ce36c",
+    "repo": "scrapy/scrapy",
+    "func_name": "strip_url",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_261be648785f",
+    "repo": "pandas-dev/pandas",
+    "func_name": "dedup_names",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_6d08a4833b20",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "platform_specific_instructions",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_0ad51b44f3b5",
+    "repo": "tyxak/remotepower",
+    "func_name": "_save_atomic",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_d7aedebd7633",
+    "repo": "unionai-oss/pandera",
+    "func_name": "update_column",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_77ce855a4ad6",
+    "repo": "tyxak/remotepower",
+    "func_name": "build_retrieved_context",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_61138d4c0847",
+    "repo": "encode/httpx",
+    "func_name": "peek_filelike_length",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_86c2c77ae425",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "wait_for_rows",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_9b695c39414c",
+    "repo": "tyxak/remotepower",
+    "func_name": "command_argv",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_77a42f696df7",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "check_latest_version",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_b78eed99511a",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "inference_loop",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_bf54b1104e42",
+    "repo": "tyxak/remotepower",
+    "func_name": "self_sha256",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_fcc9bd69e3ad",
+    "repo": "zauberzeug/rosys",
+    "func_name": "read",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_a94842aba5f0",
+    "repo": "unionai-oss/pandera",
+    "func_name": "isin",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_b13375c12e15",
+    "repo": "datachain-ai/datachain",
+    "func_name": "is_subpath",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_5c4248326d9c",
+    "repo": "python-attrs/cattrs",
+    "func_name": "generate_unique_filename",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_7e61434b8338",
+    "repo": "pandas-dev/pandas",
+    "func_name": "infer_filename",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_2cdea090cbfa",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "_search_all",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_323a072035a4",
+    "repo": "tyxak/remotepower",
+    "func_name": "_blocked_ip",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_5bd1a6072bce",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "get_pages_with_timeout",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_642d18eee196",
+    "repo": "unionai-oss/pandera",
+    "func_name": "check_column_presence",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_83a64aabedb3",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "_is_malformed_base64_image",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_163d4effb723",
+    "repo": "alexei-led/ccgram",
+    "func_name": "from_dict",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_5336ce795efe",
+    "repo": "alexei-led/ccgram",
+    "func_name": "_format_timestamp",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_570eaa20b3d9",
+    "repo": "tyxak/remotepower",
+    "func_name": "get_gpu_status",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_cbc1c80ef778",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_check_response_method",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_f23f07573d21",
+    "repo": "SuperCowPowers/workbench",
+    "func_name": "_compress",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_3f40017b221e",
+    "repo": "zauberzeug/rosys",
+    "func_name": "scan_for_cameras",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_b018ba617366",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "remove_item",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_1f33d4b2953c",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "_collect_git_files",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_0c3443d7663d",
+    "repo": "unionai-oss/pandera",
+    "func_name": "_fill_data_var_defaults",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_bf48ded8a3d6",
+    "repo": "sstklen/trump-code",
+    "func_name": "fetch_single_post",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_1c0e7c6ea37d",
+    "repo": "sstklen/trump-code",
+    "func_name": "_load_env",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_8561e7ee11dd",
+    "repo": "datachain-ai/datachain",
+    "func_name": "_skip_udf",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_fa671934d393",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "_join_text_at_seam",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_f84ae8a9afc4",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "_get_additional_directories",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_8eaece7cd1b4",
+    "repo": "psf/requests",
+    "func_name": "is_valid_cidr",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_d235ea30c3bf",
+    "repo": "scrapy/scrapy",
+    "func_name": "add_http_if_no_scheme",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_59528da373c6",
+    "repo": "sstklen/trump-code",
+    "func_name": "get_next_trading_day",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_209505911ecb",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "type_name",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_a20e851718d7",
+    "repo": "psf/requests",
+    "func_name": "stream_decode_response_unicode",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_f299131b037a",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "fit_args",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_f2875546ac42",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "get_errors",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_f5a5857d8d54",
+    "repo": "psf/requests",
+    "func_name": "from_key_val_list",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_a31e3724954d",
+    "repo": "tyxak/remotepower",
+    "func_name": "_make_ssl_context",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_0f11c23a5583",
+    "repo": "datachain-ai/datachain",
+    "func_name": "determine_processes",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_225f9e76c873",
+    "repo": "datachain-ai/datachain",
+    "func_name": "insert_many",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_cbeccef67a1c",
+    "repo": "datachain-ai/datachain",
+    "func_name": "cleanup",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_079d2fa4415d",
+    "repo": "alexei-led/ccgram",
+    "func_name": "_extract_message_id",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_5c97a3dc9d25",
+    "repo": "rodrigo-arenas/Sklearn-genetic-opt",
+    "func_name": "load",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_8bef2b503ccb",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "add_multiple",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_6165f6904290",
+    "repo": "tyxak/remotepower",
+    "func_name": "_which",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_407f260f3097",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "parse_tsv_file",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_54d9eac2d1ca",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "_fallback_summary",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_c45d03937ac2",
+    "repo": "psf/requests",
+    "func_name": "set_environ",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_2d17ec84f840",
+    "repo": "datachain-ai/datachain",
+    "func_name": "get_or_create_input_table",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_3ab9cd990363",
+    "repo": "jmoiron/humanize",
+    "func_name": "_convert_aware_datetime",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_8c4f45fcceeb",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "_is_pid_alive",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_72dd1e9e4b35",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "get_chart_shelf_tracks",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_3a43538335fb",
+    "repo": "psf/requests",
+    "func_name": "parse_header_links",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_f2e632e791a8",
+    "repo": "gmickel/flow-next",
+    "func_name": "parse_codex_thread_id",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_f493eba9122c",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "is_eligible_bridge_message",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_739939a7153f",
+    "repo": "pytorch/pytorch",
+    "func_name": "consume_prefix_in_state_dict_if_present",
+    "leaked": true,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_4eba7af36fb8",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "get_best_solution",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_a2799b242e8a",
+    "repo": "gmickel/flow-next",
+    "func_name": "_short_src",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_34e46a2af4f0",
+    "repo": "tyxak/remotepower",
+    "func_name": "_exec_timeout_override",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_c40d89303724",
+    "repo": "agentforce314/clawcodex",
+    "func_name": "build_image_content_blocks",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_354f47f132b4",
+    "repo": "unionai-oss/pandera",
+    "func_name": "collect_schema_components",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_04629a3d7d23",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "get_path",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_d4f603dc9cc9",
+    "repo": "gmickel/flow-next",
+    "func_name": "_triage_parse_llm_output",
+    "leaked": false,
+    "dependency_level": "L1"
+  },
+  {
+    "id": "rwt2_fccaa4dea332",
+    "repo": "python-attrs/cattrs",
+    "func_name": "namedtuple_unstructure_factory",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_2efa8be1b799",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "run",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_7bafae37806a",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "_parse_spotipy_item",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_d16437497800",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "thresholding",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_c7c8c7acb4bd",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "gelman_rubin",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_a69846444e61",
+    "repo": "pandas-dev/pandas",
+    "func_name": "get_compression_method",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_85ae0d0addbf",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "_check_member",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_25db2d7e9ccd",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "stats",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_501eedf2b815",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "create_com_analysis",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_ad3943ba8273",
+    "repo": "datachain-ai/datachain",
+    "func_name": "_regenerate_system_columns",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_62b60af8b2d0",
+    "repo": "rodrigo-arenas/Sklearn-genetic-opt",
+    "func_name": "create_run",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_a9be0662c0ab",
+    "repo": "scrapy/scrapy",
+    "func_name": "url_is_from_any_domain",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_4e4bd5a9ab3d",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "bl",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_6c682ff817fd",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "run",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_55733e005bf0",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_pandas_dtype_needs_early_conversion",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_5609bf2d1f81",
+    "repo": "zauberzeug/rosys",
+    "func_name": "pack",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_ab0d7e56010f",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "coordinates",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_6bd799b6cee8",
+    "repo": "MechanicalSoup/MechanicalSoup",
+    "func_name": "_assert_valid_file_upload",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_bc9fac939352",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "_load_history",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_be87971ffc55",
+    "repo": "python-attrs/cattrs",
+    "func_name": "homo_tuple_typed_attrs",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_99a329b1f4f6",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "structure_from_task",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_ac04792c1ea5",
+    "repo": "jaswon/osu-dreamer",
+    "func_name": "predict",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_5094e06b856d",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "check_symmetric",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_40b2ec2dae27",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "check_memory",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_ad09df5c4710",
+    "repo": "p2p-ld/numpydantic",
+    "func_name": "pytest_marks",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_c430dd19ad31",
+    "repo": "alexei-led/ccgram",
+    "func_name": "get_tool_call_visibility",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_289c0c1d13f5",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "copy_item_link",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_8503838a3782",
+    "repo": "psf/requests",
+    "func_name": "to_key_val_list",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_949afa411914",
+    "repo": "psf/requests",
+    "func_name": "rewind_body",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_df72f3c0004e",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "check_non_negative",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_e2b8556e0f29",
+    "repo": "psf/requests",
+    "func_name": "select_proxy",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_4e2a53a5260a",
+    "repo": "jmoiron/humanize",
+    "func_name": "naturalday",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_c1c331fd8cbc",
+    "repo": "encode/httpx",
+    "func_name": "primitive_value_to_str",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_084eb954db4f",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "get_batch",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_41840f43ab69",
+    "repo": "datachain-ai/datachain",
+    "func_name": "expand_path",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_3ade07b5e9f9",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "save",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_a6f10bba72e0",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "allocate_for_part",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_43c974a68031",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "directory_listing",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_2acb3bb5f3e8",
+    "repo": "pandas-dev/pandas",
+    "func_name": "is_potential_multi_index",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_0ccefaca3de1",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "_find_indices_sdi",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_fbbab49c671a",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_check_pos_label_consistency",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_624ab162a8a1",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "user_can_manage",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_b77fd6414d4f",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "_leastsq_patch",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_78ae92b2aaa6",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_is_arraylike",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_a6a1a24c97bd",
+    "repo": "alexei-led/ccgram",
+    "func_name": "is_typing_throttled",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_294408378ca3",
+    "repo": "p2p-ld/numpydantic",
+    "func_name": "_build_ndarray_type",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_8dc59e180ee9",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "_column_at_edge",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_6218c0de5858",
+    "repo": "psf/requests",
+    "func_name": "guess_filename",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_834bbe783790",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "check_random_state",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_58aa0ffeadba",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "_cdr_indices",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_bb0631f63c2b",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "array_backends",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_253a4a6d0ea4",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_check_feature_names_in",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_5f3c31fc4fc4",
+    "repo": "alexei-led/ccgram",
+    "func_name": "get_last_activity_ts",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_651700ad3043",
+    "repo": "marcelwa/aigverse",
+    "func_name": "stubs",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_6b6946edc3d6",
+    "repo": "alexei-led/ccgram",
+    "func_name": "_parse_message_entry",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_3da28d898eb6",
+    "repo": "psf/requests",
+    "func_name": "prepend_scheme_if_needed",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_0ce14a853f52",
+    "repo": "alexei-led/ccgram",
+    "func_name": "restore_command",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_218891a8ae7f",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "_require_owner",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_12282093a825",
+    "repo": "alexei-led/ccgram",
+    "func_name": "record_pane_state",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_b5945eca590b",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "publish_skill",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_968e6b273101",
+    "repo": "p2p-ld/numpydantic",
+    "func_name": "get_dtype",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_ab5f9380d03c",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "load_items",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_8737546558ee",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "load_angles",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_99dd4f34c3b2",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_get_feature_names",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_6084f4eaa499",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "psf_norm_2d",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_9815d30d8ac8",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_check_monotonic_cst",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_29b660eccb8c",
+    "repo": "peternaame-boop/ytm-player",
+    "func_name": "on_playlist_sidebar_playlist_selected",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_a4d09c72b547",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "_list_sessions",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_5f0513fc92fc",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "visualize_simple",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_90dddace1e79",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "print_algo_params",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_339270886632",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "get_results",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_b6312ef8c6dc",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "_load_config",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_712e313f4132",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "get_macrotile",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_bbccf8a0891a",
+    "repo": "scikit-learn/scikit-learn",
+    "func_name": "_num_features",
+    "leaked": true,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_83c04cfee085",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "bkg_star_proba",
+    "leaked": false,
+    "dependency_level": "L2"
+  },
+  {
+    "id": "rwt2_238daa8a05cf",
+    "repo": "alexei-led/ccgram",
+    "func_name": "discover_and_register_transcript",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_8564b7926815",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "_run_async",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_f2d766b894f3",
+    "repo": "sstklen/trump-code",
+    "func_name": "cmd_models",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_5ce9cc5fbb59",
+    "repo": "alexei-led/ccgram",
+    "func_name": "check_autoclose_timers",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_41f1d3513424",
+    "repo": "jmoiron/humanize",
+    "func_name": "_date_and_delta",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_71f685ecefcf",
+    "repo": "jmoiron/humanize",
+    "func_name": "_quotient_and_remainder",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_99068b599084",
+    "repo": "python-attrs/cattrs",
+    "func_name": "namedtuple_dict_unstructure_factory",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_fe112ec6ca9a",
+    "repo": "gmickel/flow-next",
+    "func_name": "cmd_migrate_state",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_f83ffa2f638d",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "test",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_1854a29b1150",
+    "repo": "sstklen/trump-code",
+    "func_name": "post_daily_thread",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_5ac057b68ff4",
+    "repo": "gmickel/flow-next",
+    "func_name": "normalize_epic",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_d1983845bc18",
+    "repo": "encode/httpx",
+    "func_name": "get_environment_proxies",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_870874432cb5",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "get_tasksmaster",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_48a1cf64b4b7",
+    "repo": "gmickel/flow-next",
+    "func_name": "_pilot_log_lock",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_4619889a656b",
+    "repo": "p2p-ld/numpydantic",
+    "func_name": "from_options",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_0bffe86fe871",
+    "repo": "pandas-dev/pandas",
+    "func_name": "infer_compression",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_7e908635c9e8",
+    "repo": "sstklen/trump-code",
+    "func_name": "_check_message",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_c5f1780f4881",
+    "repo": "zauberzeug/rosys",
+    "func_name": "drive_spline",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_51b673ec7019",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "materialize_session",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_3874ea867139",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "get_deleted_tallies",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_3c4119d291b2",
+    "repo": "pandas-dev/pandas",
+    "func_name": "is_fsspec_url",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_4047d0c294fe",
+    "repo": "psf/requests",
+    "func_name": "parse_list_header",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_80a883292339",
+    "repo": "jmoiron/humanize",
+    "func_name": "_suppress_lower_units",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_2edd808aaa78",
+    "repo": "SoulMelody/LibreSVIP",
+    "func_name": "_process_blacklist",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_648f5af0c2e8",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "_render_child_database_block",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_2a4cb2af9a73",
+    "repo": "gmickel/flow-next",
+    "func_name": "cmd_spec_set_plan",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_02ed9a962e97",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "poll_cli_auth_session",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_12a782a830b8",
+    "repo": "gmickel/flow-next",
+    "func_name": "cmd_sync_receipt",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_f386cfd79bab",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "radial_bins",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_7feff7fc1257",
+    "repo": "pandas-dev/pandas",
+    "func_name": "_maybe_memory_map",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_c3db4ddbc999",
+    "repo": "p2p-ld/numpydantic",
+    "func_name": "check",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_d6a2787b2dbc",
+    "repo": "alexei-led/ccgram",
+    "func_name": "_tool_call_summary",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_0ec0b0006744",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "select_designs",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_d5d0434bd8a3",
+    "repo": "pandas-dev/pandas",
+    "func_name": "stringify_path",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_03b5e9e0c88c",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "normalized_stim_map",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_49608b91b9ef",
+    "repo": "gmickel/flow-next",
+    "func_name": "load_task_with_state",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_f2df588f1251",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "push_events_batch",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_9d85d8a8ce63",
+    "repo": "gmickel/flow-next",
+    "func_name": "format_tool_result",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_42d1df5fbb43",
+    "repo": "gmickel/flow-next",
+    "func_name": "format_tool_use",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_4eed68d0bf5f",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "_user_share_grants",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_70abfe838b0a",
+    "repo": "jmoiron/humanize",
+    "func_name": "_suitable_minimum_unit",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_2682f69c8875",
+    "repo": "sstklen/trump-code",
+    "func_name": "_write_health",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_0ebe10942286",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "fetch_blocklist_data",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_eb1891bc86df",
+    "repo": "p2p-ld/numpydantic",
+    "func_name": "validate_shape_expression",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_199433a8d5dd",
+    "repo": "sstklen/trump-code",
+    "func_name": "get_models",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_790387fbf0b5",
+    "repo": "p2p-ld/numpydantic",
+    "func_name": "assert_isinstance",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_6a774eda7190",
+    "repo": "gmickel/flow-next",
+    "func_name": "validate_task_spec_headings",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_3d733f018504",
+    "repo": "SoulMelody/LibreSVIP",
+    "func_name": "_check_methods",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_4032dd2798cf",
+    "repo": "pandas-dev/pandas",
+    "func_name": "file_exists",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_b673e53ab573",
+    "repo": "psf/requests",
+    "func_name": "get_encoding_from_headers",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_94c4e639c540",
+    "repo": "yukinarit/pyserde",
+    "func_name": "conv",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_e41e55e19d27",
+    "repo": "vllm-project/vllm",
+    "func_name": "get_hash_fn_by_name",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_0b76ddc5e229",
+    "repo": "jmoiron/humanize",
+    "func_name": "naturaldate",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_42552e913138",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "generate_video_masks",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_38a6c633f4a5",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "convert_pending_invites",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_67d4da131692",
+    "repo": "yukinarit/pyserde",
+    "func_name": "from_msgpack",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_b3688be886bd",
+    "repo": "modal-labs/modal-examples",
+    "func_name": "startup",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_c46ad27db3c7",
+    "repo": "LiberTEM/LiberTEM",
+    "func_name": "rebuild_nested",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_258a62578692",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "db",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_46e32d931d10",
+    "repo": "vortex-exoplanet/VIP",
+    "func_name": "iuwt_decomposition",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_b82b2f821c02",
+    "repo": "Fergana-Labs/stash",
+    "func_name": "stash_purge",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_fb7b829fc0a1",
+    "repo": "p2p-ld/numpydantic",
+    "func_name": "to_json",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_182ed8edd21c",
+    "repo": "pandas-dev/pandas",
+    "func_name": "_is_binary_mode",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_9270f85fb986",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "count",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_81662c7df437",
+    "repo": "jmoiron/humanize",
+    "func_name": "naturaltime",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_77f4595226a3",
+    "repo": "p2p-ld/numpydantic",
+    "func_name": "validate_shape_expression",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_544be99d9a2a",
+    "repo": "sstklen/trump-code",
+    "func_name": "_fetch_from_cnn",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_0c0b99d92137",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "is_banned_ip",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_40360afa0470",
+    "repo": "gmickel/flow-next",
+    "func_name": "validate_strategy_frontmatter",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_5528222e52ba",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "increment_page_visit",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_8e8edc7e551c",
+    "repo": "SoulMelody/LibreSVIP",
+    "func_name": "_check_class_method",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_06b37bc87cbb",
+    "repo": "SoulMelody/LibreSVIP",
+    "func_name": "_walk_part_events",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_16d0b0491530",
+    "repo": "BlessedRebuS/Krawl",
+    "func_name": "scard",
+    "leaked": false,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_47a33f2690eb",
+    "repo": "huggingface/transformers",
+    "func_name": "_xielu_cuda",
+    "leaked": true,
+    "dependency_level": "L3"
+  },
+  {
+    "id": "rwt2_03ff8846c494",
+    "repo": "sstklen/trump-code",
+    "func_name": "_load_analytics",
+    "leaked": false,
+    "dependency_level": "L3"
+  }
+]

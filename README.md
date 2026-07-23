@@ -74,6 +74,82 @@ slm-python-unit-test-benchmark/
 
 ---
 
+## RealWorldTests-Py v2 — Dataset Rework
+
+### What changed and why
+
+The original real-world dataset (50 functions, 14 repos) is replaced by a larger, rigorously contamination-controlled benchmark targeting ~300 functions. The v2 dataset adds dependency stratification, context-tier ablation, and a fail-to-pass subset — the three novelties of the paper. Contamination boundary: **June 10, 2026**.
+
+### Step-by-step build
+
+1. **Design freeze** (`design.yaml`) — lock all parameters before touching data: 300 functions, 4 dependency levels (L0–L3), 3 context tiers (A/B/C), 8 192-token budget, CC ≥ 3, max 80 LOC, June 10 2026 cutoff.
+
+2. **Source selection** (`collect_sources_v2.py`) — two pools:
+   - *LEAKED*: the existing 14 repos (apscheduler, dramatiq, humanize, …) — old, famous, definitely in training corpora.
+   - *UNLEAKED*: GitHub repos with latest commit after 2026-06-10, ≥ 40 stars, MIT/Apache-2.0, ≥ 2 contributors, ≥ 4 domains. Commit SHAs frozen immediately in `sources/v2_repos.json`.
+
+3. **Function extraction** (`create_v2_dataset.py`) — AST parsing over all repos; keep functions that have an English docstring, CC ≥ 3, 3–80 LOC, pass all exclusion filters (dunder/test/deprecated/getter), and fit in ≤ 2 000 tokens on every cohort tokenizer. Target candidate pool ≥ 900 (3× final N before QC losses). Output: `sources/v2_candidates.jsonl`.
+
+4. **Dependency classification** (`classify_dependency_level.py`) — jedi-based name resolution (not raw AST) assigns each function exactly one level:
+   - L0 builtins only, L1 stdlib, L2 third-party package, L3 same-file/class.
+   - Level = max across all referenced names. Manual audit of 30 items required (≥ 90% agreement). Target ~75 per level.
+
+5. **Context cards** (`build_context_cards.py`) — three strictly nested cards per function:
+   - **Tier A**: focal signature + docstring only.
+   - **Tier B**: A + dependency stubs (signature + `...`, *no body*).
+   - **Tier C**: B + mock/fixture hint comment (what to patch and how).
+   - All token-counted per cohort tokenizer; hard cap 6 500 tokens; overflow logged in `cards/trim_log.jsonl`.
+
+6. **Gold tests & fail-to-pass** (`mine_failtopass.py`) — developer tests held out in `gold/` (gitignored, never published). Mine 50–100 buggy/fixed pairs from bug-fix commits; validate that each developer test fails on `f_buggy` and passes on `f_fixed`. Store in `gold/failtopass_v2.jsonl`.
+
+7. **Docker harness** — one image per repo@commit SHA, deps pinned with `uv pip install --exclude-newer 2026-06-10` to prevent dependency drift. Reuses `evaluate_results.py` (pytest + coverage + cosmic-ray). Adds `APIHallucination` error bin.
+
+8. **Manual QC gate** — audit 40–50 items; verify level labels, tier nesting, no body leakage, gold test passes, function is unit-testable. **Do not scale past this step until sampled error rate < 5%.** Record in `sources/qc_audit_v2.csv`.
+
+9. **Package & release** (`package_v2_dataset.py`) — output `TestEval/data/realworld-py-v2.jsonl` (public, no gold tests). Maintain backward-compat fields so `evaluate_results.py` needs no changes.
+
+10. **Evaluation** — extend `run_real_world_experiments_inference.py` to loop over tiers A/B/C. Run all models × tiers × leaked/unleaked split. Metrics: Pass@1, gated coverage, mutation score (20% stratified sample), fail-to-pass rate, LLM-judge. The leaked − unleaked gap is the contamination measure.
+
+---
+
+### Dataset Validation — Green and Yellow
+
+A full pre-inference audit was run on the final 300-function dataset. Results are split into properties that are verified correct and properties that are known limitations to disclose in the paper.
+
+#### Green — Verified Correct
+
+| Property | Value | Notes |
+|---|---|---|
+| Total functions | 300 | Exactly on target |
+| Dependency level balance | L0:75 / L1:75 / L2:75 / L3:75 | Perfectly stratified |
+| Per-repo cap | Max 15 functions per repo (5%) | Prevents single-source dominance; 33 unique repos |
+| Repo balance | max=15, min=1, mean=9.1 | No repo dominates |
+| All signatures have parentheses | 300/300 | Fixed from original extraction bug |
+| License field populated | 300/300 | Falls back to clone-directory LICENSE file |
+| Token counts populated | 300/300 | Per-model counts for all 5 cohort models, all 3 tiers |
+| All context cards present | 300/300 A/B/C | Max Tier C tokens: 827 (budget: 6 500) |
+| No over-budget cards | 0 violations | All tiers fit in 6 500 tokens |
+| Evaluation uses full function | Yes | `python_solution_full` field ensures tests run against real code, not the tier card stub |
+| Non-installed imports handled | Yes | `fix_absolute_imports()` in `evaluate_results.py` wraps third-party imports (`datachain`, `pandera`, etc.) in try/except MagicMock so `under_test.py` loads cleanly |
+| Invariant checks pass | 0 violations | Tier nesting C⊃B⊃A confirmed; no implementation body in stubs |
+| Manual QC audit | 90% agreement (27/30) | 3 disagreements, none in final 300 |
+
+#### Yellow — Known Limitations (disclose in paper)
+
+| Limitation | Scope | Paper mitigation |
+|---|---|---|
+| **Tier B = Tier A for 72% of functions** (215/300) | The stub builder only extracts same-file dependencies. For L0, L1, and L2 functions, there are no same-file stubs, so Tier B adds no context over Tier A. The A→B ablation is only meaningful for the 85 L3 functions. | Report A→B effect separately for L3 (meaningful) vs L0/L1/L2 (trivially zero). Future work: extend Tier B using third-party API stubs (`pyright`/`stubgen`). |
+| **Leaked/Unleaked split is 20%/80%** (60/240), not the intended 50/50 | The leaked candidate pool has only 80 functions (12 repos). With the per-repo cap of 15, at most 60 leaked functions can be selected across 4 levels. | Report with explicit sample sizes per split. Leaked CIs will be wider (n=60). Contamination gap is still estimable; interpret leaked results as indicative rather than definitive. |
+| **Fail-to-pass subset is empty** (0 pairs) | Automated git-history mining across 25 full-history repos found 0 qualified pairs. Recently-active repos do not follow the "fix function + co-commit test" pattern reliably. | Report as future work. The regression-catching metric is not computed for v2. |
+| **Async functions (26/300) require model to use asyncio.run()** | `pytest` without `pytest-asyncio` silently skips `async def test_X()` functions. System prompts instruct models to use `asyncio.run()`, but a model that ignores this instruction produces a skipped test that is misclassified as No Code or Timeout. | Report async pass-rates as a lower bound. Flag async functions in the output via a post-hoc filter on the generated test code. |
+| **Dependency level labels are heuristic (not jedi-verified)** | AST import-map heuristic; QC found 10% error rate on the full 30-item sample (3 disagreements), but 0 errors in the final 300. L0/L3 boundary is the weakest (misses `self.x` network-client patterns). | Report Cohen's κ ≈ 0.87 from the audit. Treat L0 labels as approximate for functions that accept opaque object parameters. |
+| **Serialization domain is underrepresented** (20/300 = 7%) | Fewer recently-active Python serialization repos with permissive licenses published on GitHub after the cutoff date. | Note in dataset description. Do not draw strong conclusions from serialization-domain subgroup results. |
+| **Dependency classification uses heuristic, not jedi** | Full jedi inference would be more accurate but took >15 hours on 10k candidates. Heuristic took 3 seconds after file-context caching. | 90% QC agreement is the evidence of adequacy. Paper should note the tool choice and its speed/accuracy tradeoff. |
+
+Full details in `step0_business_understanding/threat_to_validity_v2.md`.
+
+---
+
 ## Setup and Execution
 
 ### 1. Environment Validation

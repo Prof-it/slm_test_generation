@@ -6,7 +6,8 @@ __pycache__/
 /local_test_results/*
 
 mlruns/*
-
+.gitkeep
+gold\.gitkeep
 # C extensions
 *.so
 
@@ -208,3 +209,22 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# RealWorldTests-Py v2 — held-out gold data (NEVER publish)
+gold/*
+!gold/.gitkeep
+
+# Cloned repos for v2 source collection (large, reproducible via collect_sources_v2.py)
+sources/repos/
+
+# Generated cards and candidates (reproducible via pipeline scripts)
+# Comment these out if you want to commit the generated artifacts
+cards/v2_cards.jsonl
+cards/trim_log.jsonl
+sources/v2_candidates.jsonl
+
+# LLM-as-judge runtime artifacts (generated, not source)
+step3_modelling/failed_json_response.txt
+step3_modelling/llm_as_judge_logs.log
+step3_modelling/strategy1_extracted.json
+step3_modelling/strategy2_extracted.json

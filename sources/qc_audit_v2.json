@@ -1,0 +1,37 @@
+{
+  "audit_date": "2026-06-28",
+  "auditor": "cbarkinozer",
+  "sample_size": 30,
+  "seed": 42,
+  "agree_count": 27,
+  "disagree_count": 3,
+  "agreement_rate": 0.9,
+  "error_rate": 0.1,
+  "cohens_kappa_approx": 0.87,
+  "qc_gate_pass": false,
+  "agreement_target_pass": true,
+  "disagreements_in_final_300": false,
+  "disagreements": [
+    {
+      "id": "rwt2_c3ce53fc3cf0",
+      "func_name": "scrape_url",
+      "auto": "L0",
+      "reviewer": "Disagree (L3)",
+      "note": "Network IO is required to scrape a URL"
+    },
+    {
+      "id": "rwt2_658bc8e23d3f",
+      "func_name": "download_link",
+      "auto": "L2",
+      "reviewer": "Disagree (L3)",
+      "note": "Network and File IO are required to download a link"
+    },
+    {
+      "id": "rwt2_c181558e2bdd",
+      "func_name": "list_files",
+      "auto": "L2",
+      "reviewer": "Disagree (L3)",
+      "note": "File system traversal is generally considered an L3 dependency"
+    }
+  ]
+}

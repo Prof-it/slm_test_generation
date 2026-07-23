@@ -49,15 +49,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-DEFAULT_MODEL = "claude-sonnet-4-6" 
+DEFAULT_MODEL = "claude-haiku-4-5-20251001"
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 
 # T=0.1 allows slight variance to test if the reasoning is robust.
-JUDGE_TEMPERATURE = 0.1 
+JUDGE_TEMPERATURE = 0.1
 
-# Pricing dollar
-PRICE_INPUT_PER_M = 3.00
-PRICE_OUTPUT_PER_M = 15.00
+# Pricing — claude-haiku-4-5 (USD per million tokens)
+PRICE_INPUT_PER_M = 1.00
+PRICE_OUTPUT_PER_M = 5.00
 
 if not ANTHROPIC_API_KEY:
     raise ValueError("Please set the ANTHROPIC_API_KEY environment variable.")
@@ -65,7 +65,8 @@ if not ANTHROPIC_API_KEY:
 client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 MODEL_NAME = DEFAULT_MODEL
 
-TIE_THRESHOLD = 2.0  # 5% deviation on 40-point double-pass scale
+TIE_THRESHOLD   = 2.0  # 5% deviation on 40-point double-pass scale
+CLEAR_THRESHOLD = 6.0  # Aligned with build_augmented_humaneval_csv.py assign_stratum()
 
 # ---------------------------------------------------------------------------
 # Plan Quality Scoring — LLM-as-Judge for step-1 condition outputs
@@ -85,17 +86,62 @@ Score the condition on TWO dimensions (1-5 each):
 To calibrate your scoring, study these three reference examples before scoring:
 
 --- ANCHOR EXAMPLE 1 (HIGH QUALITY — Completeness 5, Correctness 5) ---
-# TODO: FILL IN AFTER EXPERIMENTS — use a real TestEval function where a model produced
-# a clearly correct and complete condition. Copy the function, target line, and condition text here.
-# Write the score rationale: "Completeness 5 because... Correctness 5 because..."
+[FUNCTION]
+```python
+class Solution:
+    WEEKDAYS = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
+
+    def get_weekday_index(self, weekday: str) -> int:
+        try:
+            return self.WEEKDAYS.index(weekday.lower())
+        except ValueError:
+            raise ValueError(f"Invalid weekday name {weekday!r}") from None
+```
+[TARGET LINE] Line 7: `raise ValueError(f"Invalid weekday name {weekday!r}") from None`
+[CONDITION] "To execute line 7, the try block must raise a ValueError at `WEEKDAYS.index(weekday.lower())`.
+This happens when `weekday.lower()` is not present in WEEKDAYS. The input must be a string
+(so .lower() succeeds) but not a valid weekday name, e.g. weekday='invalidday'."
+[SCORES] Completeness 5 — identifies all constraints: input must be str (for .lower()), must not be in
+WEEKDAYS, and the except branch must be triggered. Correctness 5 — logically valid; matches the
+actual branch condition exactly.
 
 --- ANCHOR EXAMPLE 2 (MEDIUM QUALITY — Completeness 3, Correctness 3) ---
-# TODO: FILL IN AFTER EXPERIMENTS — use a real function where the model identified the right
-# general approach but missed edge cases or used an imprecise input.
+[FUNCTION]
+```python
+class Solution:
+    def get_encoder(self) -> "Encoder":
+        # Get the global encoder object. Returns: Encoder
+        return global_encoder
+```
+[TARGET LINE] Line 4: `return global_encoder`
+[CONDITION] "To execute line 4, the function get_encoder must reach its termination point without
+encountering any further statements. All preceding lines (1-3) must execute successfully and no
+exceptions or errors are raised. The variable global_encoder must be defined and accessible within
+the scope of the Solution class."
+[SCORES] Completeness 3 — identifies that global_encoder must exist but misses that there are NO
+preceding conditional lines; the function is a one-liner with no branches. Fails to mention that
+global_encoder is None by default and must have been set via set_encoder() first. Correctness 3 —
+not wrong, but describes an unconditional path as if it has prerequisites; the prose about "all
+preceding lines must execute" is vacuously true and adds no real insight.
 
 --- ANCHOR EXAMPLE 3 (LOW QUALITY — Completeness 1, Correctness 1) ---
-# TODO: FILL IN AFTER EXPERIMENTS — use a real function where the model's condition is
-# clearly wrong (targets a different branch or uses invalid inputs for the function signature).
+[FUNCTION]
+```python
+class Solution:
+    def set_encoder(self, encoder: "Encoder") -> None:
+        # Set the global encoder object.
+        global global_encoder
+        global_encoder = encoder
+```
+[TARGET LINE] Line 1 (module-level): `from __future__ import annotations`
+[CONDITION] "For line 1 to be executed, the script must be run in an environment where Python's
+`from __future__ import annotations` can be processed. This typically requires the interpreter to
+be invoked with `-X futures` or by importing the module in a way that activates the future."
+[SCORES] Completeness 1 — entirely misses the target: line 1 is a module-level import, always
+executed when the module loads; no special input condition is needed. The model should have said
+"call set_encoder() with any Encoder instance" for the function body. Correctness 1 — logically
+invalid; `from __future__ import annotations` is valid in Python 3.7+ with no special flags;
+the `-X futures` claim is factually wrong.
 
 Output strictly valid JSON."""
 
@@ -187,6 +233,32 @@ EVALUATION_TEMPLATE = """
   "test_b_scores": [Robustness, Assertions, Readability, Conciseness]
 }}
 """
+
+def _sanitize_for_judge(code: str, fence_repeat_threshold: int = 5) -> str:
+    """Collapse runs of repeated backtick fences a stuck model emits.
+
+    Some models get trapped in a loop outputting only ``` lines.
+    Five or more consecutive fence-only lines are replaced with a single
+    [TRUNCATED] marker so the judge prompt stays compact.
+    """
+    import re as _re
+    _FENCE_LINE = _re.compile(r"^[ \t]*`{3,}[ \t]*(\w*)[ \t]*$")
+    lines = code.splitlines()
+    result = []
+    run = 0
+    for line in lines:
+        if _FENCE_LINE.match(line):
+            run += 1
+            if run < fence_repeat_threshold:
+                result.append(line)
+            elif run == fence_repeat_threshold:
+                result.append("[TRUNCATED: model output stuck repeating fence markers]")
+            # beyond threshold: drop silently
+        else:
+            run = 0
+            result.append(line)
+    return "\n".join(result)
+
 
 class ThreadSafeWriter:
     """Thread-safe file writer for parallel API calls."""
@@ -794,7 +866,8 @@ def score_all_plans(conditions_data, output_file, max_workers=5):
     return list(cache.values())
 
 
-def _cochran_n(population_size, z=1.96, p=0.5, e=0.10):
+def _cochran_n(population_size, z=1.96, p=0.5, e=0.18):
+    # e=0.18 → ~30 items at 95% CI (fits 30-60 min for 3 annotators at ~1 min/item)
     n0 = (z ** 2 * p * (1 - p)) / (e ** 2)
     return math.ceil(n0 / (1 + (n0 - 1) / population_size))
 
@@ -851,21 +924,18 @@ def build_error_taxonomy(plan_scores):
 
 
 def export_human_validation_sample(plan_scores, output_dir, seed=42):
-    """Export a Cochran-sized stratified sample for two-annotator human validation.
+    """Export a Cochran-sized stratified sample for three-annotator human validation.
 
-    Prepends 3 anchor rows (IS_ANCHOR=True, correct scores pre-filled as placeholders)
-    that both annotators must review before starting. The anchor text should be replaced
-    with real TestEval examples after experiments run (see PLAN_QUALITY_SYSTEM_PROMPT TODO).
-
-    Cochran: N=total plans, z=1.96, p=0.5, e=0.10 → typically ~94 for N≈3,150.
-    Stratified by model × quality tier to ensure coverage.
+    Prepends 3 anchor rows (IS_ANCHOR=True) that all annotators must review first.
+    Cochran: N=total plans, z=1.96, p=0.5, e=0.18 → ~30 items (30-60 min per annotator).
+    Stratified by model × quality tier to ensure coverage across all models and tiers.
 
     Columns written:
       task_id, model, target_line, focal_code, condition_text, eval_status,
-      llm_completeness, llm_correctness, llm_reasoning,
-      IS_ANCHOR,
+      llm_completeness, llm_correctness, llm_reasoning, IS_ANCHOR,
       annotator1_completeness, annotator1_correctness,
-      annotator2_completeness, annotator2_correctness, notes
+      annotator2_completeness, annotator2_correctness,
+      annotator3_completeness, annotator3_correctness, notes
     """
     import random as _random
     _random.seed(seed)
@@ -886,7 +956,7 @@ def export_human_validation_sample(plan_scores, output_dir, seed=42):
 
     N = len(df)
     n_cochran = _cochran_n(N)
-    logger.info(f"Human validation: N={N} total plans, Cochran n={n_cochran} (95% CI, e=0.10)")
+    logger.info(f"Human validation: N={N} total plans, Cochran n={n_cochran} (95% CI, e=0.18, ~30-60 min per annotator)")
 
     # Stratified sample: proportional by (model × tier)
     sampled = []
@@ -899,46 +969,86 @@ def export_human_validation_sample(plan_scores, output_dir, seed=42):
 
     sample_df = pd.concat(sampled).sample(frac=1, random_state=seed).head(n_cochran)
 
-    # Anchor rows (placeholders — replace with real examples post-experiment)
+    # Anchor rows — real examples from predictions_realworld_1 used as calibration.
+    # All 3 annotators must score these before the main sample; scores are pre-filled
+    # as the ground truth so annotators can check their calibration.
+    _high_focal = (
+        "class Solution:\n"
+        "    WEEKDAYS = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']\n\n"
+        "    def get_weekday_index(self, weekday: str) -> int:\n"
+        "        try:\n"
+        "            return self.WEEKDAYS.index(weekday.lower())\n"
+        "        except ValueError:\n"
+        "            raise ValueError(f\"Invalid weekday name {weekday!r}\") from None"
+    )
+    _high_cond = (
+        "To execute line 7 `raise ValueError(...)`, the try block must raise a ValueError at "
+        "`WEEKDAYS.index(weekday.lower())`. This happens when `weekday.lower()` is not present "
+        "in WEEKDAYS. The input must be a string (so .lower() succeeds) but not a valid weekday "
+        "name, e.g. weekday='invalidday'."
+    )
+    _med_focal = (
+        "class Solution:\n"
+        "    def get_encoder(self):\n"
+        "        # Get the global encoder object. Returns: Encoder\n"
+        "        return global_encoder"
+    )
+    _med_cond = (
+        "To execute line 4 `return global_encoder`, the function get_encoder must reach its "
+        "termination point without encountering any further statements. All preceding lines (1-3) "
+        "must execute successfully and no exceptions or errors are raised. The variable "
+        "global_encoder must be defined and accessible within the scope of the Solution class."
+    )
+    _low_focal = (
+        "class Solution:\n"
+        "    def set_encoder(self, encoder):\n"
+        "        # Set the global encoder object.\n"
+        "        global global_encoder\n"
+        "        global_encoder = encoder"
+    )
+    _low_cond = (
+        "For line 1 `from __future__ import annotations` to be executed, the script must be run "
+        "in an environment where Python's from __future__ import annotations can be processed. "
+        "This typically requires the interpreter to be invoked with -X futures or by importing "
+        "the module in a way that activates the future."
+    )
     anchors = pd.DataFrame([
         {
-            "task_id": "ANCHOR_1", "model": "ANCHOR", "target_line": "N/A",
-            "focal_code": "# TODO: Replace with real function from TestEval dataset",
-            "condition_text": "# TODO: Replace with HIGH quality condition from real output",
-            "eval_status": "Pass",
+            "task_id": "ANCHOR_1", "model": "ANCHOR", "target_line": "7",
+            "focal_code": _high_focal, "condition_text": _high_cond, "eval_status": "Pass",
             "llm_completeness": 5, "llm_correctness": 5,
-            "llm_reasoning": "Anchor: Completeness 5 — identifies all branch conditions. Correctness 5 — logically valid.",
+            "llm_reasoning": "Completeness 5: identifies all constraints (must be str, not in WEEKDAYS, except branch triggered). Correctness 5: matches the actual branch condition exactly.",
             "IS_ANCHOR": True,
             "annotator1_completeness": 5, "annotator1_correctness": 5,
-            "annotator2_completeness": 5, "annotator2_correctness": 5, "notes": "",
+            "annotator2_completeness": 5, "annotator2_correctness": 5,
+            "annotator3_completeness": 5, "annotator3_correctness": 5, "notes": "HIGH quality anchor",
         },
         {
-            "task_id": "ANCHOR_2", "model": "ANCHOR", "target_line": "N/A",
-            "focal_code": "# TODO: Replace with real function from TestEval dataset",
-            "condition_text": "# TODO: Replace with MEDIUM quality condition from real output",
-            "eval_status": "Fail",
+            "task_id": "ANCHOR_2", "model": "ANCHOR", "target_line": "4",
+            "focal_code": _med_focal, "condition_text": _med_cond, "eval_status": "Fail",
             "llm_completeness": 3, "llm_correctness": 3,
-            "llm_reasoning": "Anchor: Completeness 3 — partial coverage. Correctness 3 — valid but imprecise.",
+            "llm_reasoning": "Completeness 3: identifies global_encoder must exist but misses there are no branches; fails to mention set_encoder() must be called first. Correctness 3: not wrong but vacuously describes an unconditional path as if it has prerequisites.",
             "IS_ANCHOR": True,
             "annotator1_completeness": 3, "annotator1_correctness": 3,
-            "annotator2_completeness": 3, "annotator2_correctness": 3, "notes": "",
+            "annotator2_completeness": 3, "annotator2_correctness": 3,
+            "annotator3_completeness": 3, "annotator3_correctness": 3, "notes": "MEDIUM quality anchor",
         },
         {
-            "task_id": "ANCHOR_3", "model": "ANCHOR", "target_line": "N/A",
-            "focal_code": "# TODO: Replace with real function from TestEval dataset",
-            "condition_text": "# TODO: Replace with LOW quality condition from real output",
-            "eval_status": "Fail",
+            "task_id": "ANCHOR_3", "model": "ANCHOR", "target_line": "1",
+            "focal_code": _low_focal, "condition_text": _low_cond, "eval_status": "Fail",
             "llm_completeness": 1, "llm_correctness": 1,
-            "llm_reasoning": "Anchor: Completeness 1 — targets wrong branch. Correctness 1 — logically invalid.",
+            "llm_reasoning": "Completeness 1: entirely misses the target — line 1 is a module-level import always executed; model should say 'call set_encoder() with any Encoder instance'. Correctness 1: factually wrong — from __future__ import annotations is valid Python 3.7+ with no special flags.",
             "IS_ANCHOR": True,
             "annotator1_completeness": 1, "annotator1_correctness": 1,
-            "annotator2_completeness": 1, "annotator2_correctness": 1, "notes": "",
+            "annotator2_completeness": 1, "annotator2_correctness": 1,
+            "annotator3_completeness": 1, "annotator3_correctness": 1, "notes": "LOW quality anchor",
         },
     ])
 
     # Add empty fill columns to main sample
     for col in ["IS_ANCHOR", "annotator1_completeness", "annotator1_correctness",
-                "annotator2_completeness", "annotator2_correctness", "notes"]:
+                "annotator2_completeness", "annotator2_correctness",
+                "annotator3_completeness", "annotator3_correctness", "notes"]:
         if col not in sample_df.columns:
             sample_df[col] = ""
     sample_df["IS_ANCHOR"] = False
@@ -947,7 +1057,8 @@ def export_human_validation_sample(plan_scores, output_dir, seed=42):
         "task_id", "model", "target_line", "focal_code", "condition_text", "eval_status",
         "llm_completeness", "llm_correctness", "llm_reasoning", "IS_ANCHOR",
         "annotator1_completeness", "annotator1_correctness",
-        "annotator2_completeness", "annotator2_correctness", "notes",
+        "annotator2_completeness", "annotator2_correctness",
+        "annotator3_completeness", "annotator3_correctness", "notes",
     ]
 
     final = pd.concat([anchors[output_cols], sample_df[output_cols]], ignore_index=True)
@@ -957,12 +1068,12 @@ def export_human_validation_sample(plan_scores, output_dir, seed=42):
 
 
 def compute_human_agreement(human_validated_csv, output_dir):
-    """Compute inter-rater agreement after both annotators fill the CSV.
+    """Compute inter-rater agreement after all three annotators fill the CSV.
 
     Metrics (per Zheng et al. 2023 / Krippendorff 2011):
-      - Inter-human Cohen's Kappa (weighted) between annotator1 and annotator2
-      - LLM-human Spearman rho (LLM scores vs average human scores)
-      - Krippendorff's alpha across all 3 raters (LLM + 2 humans)
+      - Inter-human Cohen's Kappa (weighted), averaged over all 3 annotator pairs
+      - LLM-human Spearman rho (LLM scores vs average human scores across 3 annotators)
+      - Krippendorff's alpha across all 4 raters (LLM + 3 humans)
 
     Acceptable thresholds (Zheng et al. 2023): human-LLM rho >= 0.60; inter-human Kappa >= 0.60
     """
@@ -979,7 +1090,8 @@ def compute_human_agreement(human_validated_csv, output_dir):
 
     required = ["llm_completeness", "llm_correctness",
                 "annotator1_completeness", "annotator1_correctness",
-                "annotator2_completeness", "annotator2_correctness"]
+                "annotator2_completeness", "annotator2_correctness",
+                "annotator3_completeness", "annotator3_correctness"]
     missing = [c for c in required if c not in df.columns or df[c].isna().all()]
     if missing:
         logger.error(f"Human validation CSV missing filled columns: {missing}")
@@ -995,17 +1107,21 @@ def compute_human_agreement(human_validated_csv, output_dir):
         llm  = df[f"llm_{dim}"].astype(int).values
         ann1 = df[f"annotator1_{dim}"].astype(int).values
         ann2 = df[f"annotator2_{dim}"].astype(int).values
-        avg_human = (ann1 + ann2) / 2.0
+        ann3 = df[f"annotator3_{dim}"].astype(int).values
+        avg_human = (ann1 + ann2 + ann3) / 3.0
 
         rho_llm_human, p_rho = spearmanr(llm, avg_human)
-        kappa_inter           = cohen_kappa_score(ann1, ann2, weights="quadratic")
+        # Average pairwise weighted kappa across all 3 annotator pairs
+        k12 = cohen_kappa_score(ann1, ann2, weights="quadratic")
+        k13 = cohen_kappa_score(ann1, ann3, weights="quadratic")
+        k23 = cohen_kappa_score(ann2, ann3, weights="quadratic")
+        kappa_inter = (k12 + k13 + k23) / 3.0
 
-        # Krippendorff's alpha (ordinal) — simple bootstrap-free estimate via
-        # observed/expected disagreement on ordinal scale
+        # Krippendorff's alpha (ordinal) across all 4 raters (LLM + 3 humans)
         def krippendorff_alpha_ordinal(ratings_matrix):
             n_raters, n_items = ratings_matrix.shape
-            Do = 0.0  # observed disagreement
-            De = 0.0  # expected disagreement
+            Do = 0.0
+            De = 0.0
             for i in range(n_items):
                 col = ratings_matrix[:, i]
                 pairs = [(col[r1], col[r2]) for r1 in range(n_raters) for r2 in range(r1+1, n_raters)]
@@ -1019,7 +1135,7 @@ def compute_human_agreement(human_validated_csv, output_dir):
             De /= (n_total - 1)
             return 1 - (Do / De) if De > 0 else 1.0
 
-        ratings = np.array([llm, ann1, ann2])
+        ratings = np.array([llm, ann1, ann2, ann3])
         alpha = krippendorff_alpha_ordinal(ratings)
 
         results[dim] = {
@@ -1112,7 +1228,46 @@ def select_evaluation_groups():
 
             # Baseline
             ("pynguin_results.jsonl", "Pynguin (Baseline)"),
-        ]
+        ],
+        # Second experiment: 5 models × 2 modes × 3 tiers (T=0.0 only).
+        # Predictions expected in base_dir/run_1/tier_A|B|C/*.jsonl
+        # Pass --eval_dir evaluation_results/second_experiment when running.
+        "second_experiment_tier_A": [
+            ("tier_A/linecov_gemma-4-E4B-it_temp_0.0.jsonl",            "gemma-4-E4B-it One-Step Tier-A"),
+            ("tier_A/linecov2_gemma-4-E4B-it_temp_0.0.jsonl",           "gemma-4-E4B-it Two-Step Tier-A"),
+            ("tier_A/linecov_granite-4.0-micro_temp_0.0.jsonl",          "granite-4.0-micro One-Step Tier-A"),
+            ("tier_A/linecov2_granite-4.0-micro_temp_0.0.jsonl",         "granite-4.0-micro Two-Step Tier-A"),
+            ("tier_A/linecov_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl",  "Ministral-3-3B-Reasoning One-Step Tier-A"),
+            ("tier_A/linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl", "Ministral-3-3B-Reasoning Two-Step Tier-A"),
+            ("tier_A/linecov_Qwen3-4B-Thinking-2507_temp_0.0.jsonl",    "Qwen3-4B-Thinking One-Step Tier-A"),
+            ("tier_A/linecov2_Qwen3-4B-Thinking-2507_temp_0.0.jsonl",   "Qwen3-4B-Thinking Two-Step Tier-A"),
+            ("tier_A/linecov_Qwen3.5-4B_temp_0.0.jsonl",                "Qwen3.5-4B One-Step Tier-A"),
+            ("tier_A/linecov2_Qwen3.5-4B_temp_0.0.jsonl",               "Qwen3.5-4B Two-Step Tier-A"),
+        ],
+        "second_experiment_tier_B": [
+            ("tier_B/linecov_gemma-4-E4B-it_temp_0.0.jsonl",            "gemma-4-E4B-it One-Step Tier-B"),
+            ("tier_B/linecov2_gemma-4-E4B-it_temp_0.0.jsonl",           "gemma-4-E4B-it Two-Step Tier-B"),
+            ("tier_B/linecov_granite-4.0-micro_temp_0.0.jsonl",          "granite-4.0-micro One-Step Tier-B"),
+            ("tier_B/linecov2_granite-4.0-micro_temp_0.0.jsonl",         "granite-4.0-micro Two-Step Tier-B"),
+            ("tier_B/linecov_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl",  "Ministral-3-3B-Reasoning One-Step Tier-B"),
+            ("tier_B/linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl", "Ministral-3-3B-Reasoning Two-Step Tier-B"),
+            ("tier_B/linecov_Qwen3-4B-Thinking-2507_temp_0.0.jsonl",    "Qwen3-4B-Thinking One-Step Tier-B"),
+            ("tier_B/linecov2_Qwen3-4B-Thinking-2507_temp_0.0.jsonl",   "Qwen3-4B-Thinking Two-Step Tier-B"),
+            ("tier_B/linecov_Qwen3.5-4B_temp_0.0.jsonl",                "Qwen3.5-4B One-Step Tier-B"),
+            ("tier_B/linecov2_Qwen3.5-4B_temp_0.0.jsonl",               "Qwen3.5-4B Two-Step Tier-B"),
+        ],
+        "second_experiment_tier_C": [
+            ("tier_C/linecov_gemma-4-E4B-it_temp_0.0.jsonl",            "gemma-4-E4B-it One-Step Tier-C"),
+            ("tier_C/linecov2_gemma-4-E4B-it_temp_0.0.jsonl",           "gemma-4-E4B-it Two-Step Tier-C"),
+            ("tier_C/linecov_granite-4.0-micro_temp_0.0.jsonl",          "granite-4.0-micro One-Step Tier-C"),
+            ("tier_C/linecov2_granite-4.0-micro_temp_0.0.jsonl",         "granite-4.0-micro Two-Step Tier-C"),
+            ("tier_C/linecov_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl",  "Ministral-3-3B-Reasoning One-Step Tier-C"),
+            ("tier_C/linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl", "Ministral-3-3B-Reasoning Two-Step Tier-C"),
+            ("tier_C/linecov_Qwen3-4B-Thinking-2507_temp_0.0.jsonl",    "Qwen3-4B-Thinking One-Step Tier-C"),
+            ("tier_C/linecov2_Qwen3-4B-Thinking-2507_temp_0.0.jsonl",   "Qwen3-4B-Thinking Two-Step Tier-C"),
+            ("tier_C/linecov_Qwen3.5-4B_temp_0.0.jsonl",                "Qwen3.5-4B One-Step Tier-C"),
+            ("tier_C/linecov2_Qwen3.5-4B_temp_0.0.jsonl",               "Qwen3.5-4B Two-Step Tier-C"),
+        ],
     }
 
 def load_data(base_dir, evaluation_group="best_configs", eval_dir=None):
@@ -1214,6 +1369,7 @@ def load_data(base_dir, evaluation_group="best_configs", eval_dir=None):
                                 break
 
                         if not test_code or not test_code.strip(): continue
+                        test_code = _sanitize_for_judge(test_code)
 
                         if tid not in tasks: tasks[tid] = {}
                         tasks[tid][friendly_name] = test_code
@@ -1247,8 +1403,8 @@ def perform_stratified_sampling(df, output_dir, group_name, n_per_stratum=10, se
 
     def classify_diff(row):
         d = row['score_diff']
-        if d <= TIE_THRESHOLD: return 'Tie'  # <= 2.0 for 1-5 scale
-        if d <= 8.0: return 'Marginal'  # Adjusted for 1-5 scale (was 4.0 for 0-2 scale)
+        if d <= TIE_THRESHOLD:    return 'Tie'
+        if d < CLEAR_THRESHOLD:   return 'Marginal'
         return 'Clear'
     
     valid['stratum'] = valid.apply(classify_diff, axis=1)
@@ -1296,13 +1452,20 @@ def load_global_comparison_cache(output_dir):
 
 def main():
     parser = argparse.ArgumentParser(description="LLM-as-Judge Evaluation System")
-    parser.add_argument("--predictions_dir", type=str, default="TestEval/predictions_realworld")
-    parser.add_argument("--eval_dir", type=str, default=None,
-                        help="Path to evaluation results directory (e.g. evaluation_results_realworld_1). "
-                             "Overrides auto-detection. Required for correct Pass-status filtering.")
+    # NOTE: the script appends /run_1/ internally, so predictions_dir must be the
+    # parent of run_1 (i.e. downloaded_predictions/second_experiment, not .../run_1).
+    parser.add_argument("--predictions_dir", type=str,
+                        default="downloaded_predictions/second_experiment")
+    parser.add_argument("--eval_dir", type=str,
+                        default="evaluation_results/second_experiment",
+                        help="Path to evaluation results directory. "
+                             "The script appends /run_1/ internally, so pass the "
+                             "parent of run_1 (e.g. evaluation_results/second_experiment).")
     parser.add_argument("--output_dir", type=str, default="TestEval/predictions_judgellm")
-    parser.add_argument("--evaluation_group", type=str, default="best_configs",
-                        choices=["best_configs", "temperature_ablation", "prompting_ablation", "full_factorial", "all"])
+    parser.add_argument("--evaluation_group", type=str, default="second_experiment_all",
+                        choices=["best_configs", "temperature_ablation", "prompting_ablation", "full_factorial",
+                                 "second_experiment_tier_A", "second_experiment_tier_B", "second_experiment_tier_C",
+                                 "second_experiment_all", "all"])
     parser.add_argument("--human_sample_size", type=int, default=10)
     parser.add_argument("--task_sample_size", type=int, default=None, help="Pilot study: sample N tasks")
     parser.add_argument("--seed", type=int, default=42)
@@ -1313,11 +1476,11 @@ def main():
     parser.add_argument("--max_workers", type=int, default=5,
                         help="Max parallel API requests (default: 5). Anthropic handles concurrency well.")
     # Plan quality mode (Step 6 — Jiang et al. 2023 / G-Eval / arXiv:2507.06980)
-    parser.add_argument("--mode", type=str, default="pairwise",
+    parser.add_argument("--mode", type=str, default="both",
                         choices=["pairwise", "plan_quality", "both"],
                         help="pairwise=existing test code comparison; "
                              "plan_quality=score step-1 conditions (two-step CoT only); "
-                             "both=run both pipelines")
+                             "both=run both pipelines (default for second experiment)")
     parser.add_argument("--human_agreement_csv", type=str, default=None,
                         help="Path to human-filled plan_quality_human_validation.csv "
                              "for inter-rater agreement computation (use after human annotation)")
@@ -1384,6 +1547,8 @@ def main():
     # Determine groups to run
     if args.evaluation_group == "all":
         groups_to_run = ["best_configs", "temperature_ablation", "prompting_ablation"]
+    elif args.evaluation_group == "second_experiment_all":
+        groups_to_run = ["second_experiment_tier_A", "second_experiment_tier_B", "second_experiment_tier_C"]
     else:
         groups_to_run = [args.evaluation_group]
 
@@ -1430,10 +1595,11 @@ def main():
         total_pairs = sum((len(m)*(len(m)-1))//2 for m in tasks.values() if len(m)>=2)
         total_calls = total_pairs * 2 # Double pass
         
-        # Heuristic: 1 char ~= 0.25 tokens. 
-        # Avg input context per call ~= Focal(300) + Doc(100) + CodeA(200) + CodeB(200) + Prompt(500) = 1300 chars
-        est_input_tokens = total_calls * 1500  # Conservative estimate
-        est_output_tokens = total_calls * 400  # Reasoning + JSON
+        # Calibrated from observed Sonnet run (987 pairs, tier_A):
+        #   actual avg input  ≈ 3,360 tokens/call  (system prompt + focal + docstring + code_a + code_b)
+        #   actual avg output ≈  760 tokens/call   (reasoning + JSON scores)
+        est_input_tokens = total_calls * 3500
+        est_output_tokens = total_calls * 800
 
         est_cost = ((est_input_tokens/1_000_000) * PRICE_INPUT_PER_M) + \
                    ((est_output_tokens/1_000_000) * PRICE_OUTPUT_PER_M)

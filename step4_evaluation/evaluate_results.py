@@ -14,12 +14,15 @@ import argparse
 import ast
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import logging
+import os
 from pathlib import Path
 import re
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
+import time
 import json
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -27,6 +30,66 @@ sys.path.append(str(PROJECT_ROOT / "TestEval"))
 
 # Regex to match relative imports: from .foo import bar  /  from ..pkg import baz
 _RELATIVE_IMPORT_RE = re.compile(r'^(\s*)from\s+(\.+\w*)\s+import\s+(.+)$')
+
+# Stdlib module names for filtering absolute-import wrapping
+import sys as _sys
+_STDLIB_MODULES = getattr(_sys, 'stdlib_module_names', set())
+
+def fix_absolute_imports(code: str) -> str:
+    """Wrap non-stdlib absolute imports in try/except MagicMock fallback.
+
+    When under_test.py is executed standalone (without the source repo's
+    virtualenv), absolute imports like ``import datachain`` or
+    ``from pandera import X`` raise ImportError and prevent the module from
+    loading at all.  Wrapping them lets under_test.py load cleanly; the
+    model-generated test is then responsible for mocking what it needs.
+    """
+    import ast as _ast
+    out = []
+    for line in code.splitlines():
+        stripped = line.lstrip()
+        indent = line[: len(line) - len(stripped)]
+
+        # Absolute `import foo` or `import foo.bar`
+        if stripped.startswith('import ') and not stripped.startswith('import .'):
+            try:
+                stmts = _ast.parse(stripped).body
+            except SyntaxError:
+                out.append(line)
+                continue
+            if stmts and isinstance(stmts[0], _ast.Import):
+                top_mods = [alias.name.split('.')[0] for alias in stmts[0].names]
+                if any(m not in _STDLIB_MODULES and m not in ('__future__',) for m in top_mods):
+                    names = [alias.asname or alias.name.split('.')[0] for alias in stmts[0].names]
+                    out.append(f"{indent}try:")
+                    out.append(f"{indent}    {stripped}")
+                    out.append(f"{indent}except (ImportError, ModuleNotFoundError):")
+                    out.append(f"{indent}    from unittest.mock import MagicMock as _MagicMock")
+                    for name in names:
+                        out.append(f"{indent}    {name} = _MagicMock()")
+                    continue
+
+        # Absolute `from foo import bar` (non-relative)
+        if stripped.startswith('from ') and not stripped.startswith('from .'):
+            try:
+                stmts = _ast.parse(stripped).body
+            except SyntaxError:
+                out.append(line)
+                continue
+            if stmts and isinstance(stmts[0], _ast.ImportFrom):
+                mod = (stmts[0].module or '').split('.')[0]
+                if mod and mod not in _STDLIB_MODULES and mod not in ('__future__',):
+                    names = [alias.asname or alias.name for alias in stmts[0].names]
+                    out.append(f"{indent}try:")
+                    out.append(f"{indent}    {stripped}")
+                    out.append(f"{indent}except (ImportError, ModuleNotFoundError):")
+                    out.append(f"{indent}    from unittest.mock import MagicMock as _MagicMock")
+                    for name in names:
+                        out.append(f"{indent}    {name} = _MagicMock()")
+                    continue
+
+        out.append(line)
+    return '\n'.join(out)
 
 def fix_relative_imports(code: str) -> str:
     """Convert relative imports to try/except with MagicMock fallback.
@@ -178,15 +241,17 @@ def strip_markdown(code: str) -> str:
         code = re.sub(r'<think>.*', '', code, flags=re.DOTALL).strip()
 
     # 2. Extract Markdown Blocks (High Precision)
-    # Match ```python ... ``` ignoring case
+    # Match ```python ... ``` ignoring case — only if content is non-empty
     pattern_py = r"```python\s*(.*?)(?:```|$)"
     match_py = re.search(pattern_py, code, re.DOTALL | re.IGNORECASE)
-    if match_py: return match_py.group(1).strip()
+    if match_py and match_py.group(1).strip():
+        return match_py.group(1).strip()
 
-    # Match generic ``` ... ```
+    # Match generic ``` ... ``` — only if content is non-empty
     pattern_gen = r"```\s*(.*?)(?:```|$)"
     match_gen = re.search(pattern_gen, code, re.DOTALL)
-    if match_gen: return match_gen.group(1).strip()
+    if match_gen and match_gen.group(1).strip():
+        return match_gen.group(1).strip()
 
     # 3. Fallback: Heuristic Extraction (Chatter Removal)
     # If no markdown, look for the first line starting with common Python keywords.
@@ -202,8 +267,11 @@ def strip_markdown(code: str) -> str:
             break
             
     if start_index != -1:
-        # Rejoin from the first valid line of code
-        return "\n".join(lines[start_index:]).strip()
+        # Rejoin from the first valid line of code, strip any trailing fence
+        result = "\n".join(lines[start_index:]).strip()
+        result = re.sub(r'\n```\w*\s*$', '', result).strip()
+        result = re.sub(r'```\w*\s*$', '', result).strip()
+        return result
 
     # 4. Last Resort: clean backticks and whitespace
     return code.strip().strip("`")
@@ -384,6 +452,36 @@ def _determine_failure_status(proc: subprocess.CompletedProcess) -> str:
     if "INTERNALERROR" in output: return EvaluationResult.SYNTAX_ERROR
     return EvaluationResult.RUNTIME_ERROR
 
+def _run_with_killtree(cmd, cwd, timeout):
+    """Like subprocess.run(cmd, timeout=timeout) but kills the whole process tree
+    on timeout, not just the immediate child. cosmic-ray exec spawns pytest as a
+    grandchild process; Popen.kill()/proc.kill() (what subprocess.run's timeout
+    handling uses) only terminates the immediate child on Windows, leaving the
+    pytest grandchild running. With 12 parallel workers those orphans pile up and
+    starve CPU for everyone else, which cascades into more timeouts.
+    """
+    creationflags = subprocess.CREATE_NEW_PROCESS_GROUP if sys.platform == "win32" else 0
+    proc = subprocess.Popen(
+        cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+        creationflags=creationflags
+    )
+    try:
+        stdout, stderr = proc.communicate(timeout=timeout)
+        return subprocess.CompletedProcess(cmd, proc.returncode, stdout, stderr)
+    except subprocess.TimeoutExpired:
+        if sys.platform == "win32":
+            subprocess.run(["taskkill", "/F", "/T", "/PID", str(proc.pid)], capture_output=True)
+        else:
+            try:
+                os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
+            except Exception:
+                proc.kill()
+        try:
+            proc.communicate(timeout=5)
+        except Exception:
+            pass
+        raise
+
 def run_cosmic_ray_analysis(source_code_str: str, test_code_str: str, per_test_timeout: int = 10, overall_timeout: int = 3600) -> dict:
     """
     Executes mutation testing using `cosmic-ray`.
@@ -439,9 +537,9 @@ name = "local"
         try:
             # We process ALL pending mutations in one call (not a loop).
             # We catch timeout specifically here so we can still report partial results.
-            exec_proc = subprocess.run(
+            exec_proc = _run_with_killtree(
                 [python_exec, "-m", "cosmic_ray.cli", "exec", "cr-config.toml", "session.sqlite"],
-                cwd=work_dir, capture_output=True, text=True, timeout=overall_timeout
+                cwd=work_dir, timeout=overall_timeout
             )
             if exec_proc.returncode != 0:
                 print(f"  [DEBUG] cosmic-ray exec failed: {exec_proc.returncode}")
@@ -453,12 +551,18 @@ name = "local"
 
         # 5. Reporting
         # We run dump even if exec failed/timed out to capture whatever work was finished
-        report_proc = subprocess.run(
-            [python_exec, "-m", "cosmic_ray.cli", "dump", "session.sqlite"],
-            cwd=work_dir, capture_output=True, text=True, timeout=30
-        )
-        if report_proc.returncode != 0:
-            pass
+        dump_timed_out = False
+        try:
+            report_proc = _run_with_killtree(
+                [python_exec, "-m", "cosmic_ray.cli", "dump", "session.sqlite"],
+                cwd=work_dir, timeout=120
+            )
+            if report_proc.returncode != 0:
+                pass
+        except subprocess.TimeoutExpired:
+            dump_timed_out = True
+            result_dict["error"] = "cosmic-ray dump timed out after 120s — mutation results unavailable"
+            return result_dict
 
         # Flatten lists and parse safely
         raw_output = report_proc.stdout.strip()
@@ -600,8 +704,10 @@ def evaluate_single_test_worker(task_data):
         future_block = "\n".join(future_lines) + "\n" if future_lines else ""
         remaining_code = "\n".join(other_lines)
         # Convert relative imports (from .xxx import yyy) to try/except with
-        # MagicMock fallback so under_test.py can load as a standalone file.
+        # Wrap both relative AND absolute third-party imports so under_test.py
+        # loads cleanly without the source repo's virtualenv installed.
         remaining_code = fix_relative_imports(remaining_code)
+        remaining_code = fix_absolute_imports(remaining_code)
         full_solution = future_block + COMMON_IMPORTS + "\n" + remaining_code
         (tmp_dir / "under_test.py").write_text(full_solution, encoding='utf-8')
 
@@ -838,7 +944,9 @@ def process_file(input_path, output_path, args):
     
     for i, entry in enumerate(data):
         task_num = str(entry.get('task_num', f"task_{i}"))
-        solution = entry.get('code') or entry.get('python_solution') or ""
+        # python_solution_full is set by prepare_v2_tier_datasets.py so that
+        # evaluation always runs against the real function, not the tier card stub.
+        solution = entry.get('python_solution_full') or entry.get('code') or entry.get('python_solution') or ""
 
         if not solution:
             if task_num not in completed_ids:
@@ -890,7 +998,8 @@ def process_file(input_path, output_path, args):
     else:
         print(f"Executing {total_tasks} remaining evaluations with {args.workers} workers...")
         
-        with ProcessPoolExecutor(max_workers=args.workers) as executor:
+        executor = ProcessPoolExecutor(max_workers=args.workers)
+        try:
             futures = {executor.submit(evaluate_single_test_worker, task[0]): task[1] for task in tasks}
             count = 0
             for future in as_completed(futures):
@@ -901,11 +1010,27 @@ def process_file(input_path, output_path, args):
                     final_res = result.copy()
                     final_res.update(meta)
                     out_f_handle.write(json.dumps(final_res) + "\n")
-                    out_f_handle.flush() 
+                    out_f_handle.flush()
                     if log_entry: _write_log_entry(log_f_handle, log_entry)
                     if count % 50 == 0: print(f"\rProgress: {count}/{total_tasks} finished", end="", flush=True)
                 except Exception as e:
                     logger.error(f"Worker crashed: {e}")
+        except KeyboardInterrupt:
+            print("\nInterrupted. Cancelling pending tasks and terminating worker processes...")
+            for f in futures:
+                f.cancel()
+            # cancel_futures requires Python 3.9+; worker processes (and the
+            # cosmic-ray/pytest grandchildren they spawned) are force-killed so
+            # nothing keeps running in the background after we exit.
+            for p in list(getattr(executor, "_processes", {}).values()):
+                try: p.kill()
+                except Exception: pass
+            executor.shutdown(wait=False, cancel_futures=True)
+            out_f_handle.close()
+            log_f_handle.close()
+            raise
+        else:
+            executor.shutdown(wait=True)
 
     out_f_handle.close()
     log_f_handle.close()
@@ -930,6 +1055,38 @@ def _write_log_entry(log_file, entry):
     ]
     log_file.write("\n".join(report))
     log_file.flush()
+
+class _DebouncedSigint:
+    """Swallows a single Ctrl+C / CTRL_C_EVENT and only lets it through as a real
+    KeyboardInterrupt if a second one arrives within `window` seconds.
+
+    Multi-hour mutation-testing runs are vulnerable to a single stray SIGINT
+    (a control character in pasted text, another process sharing the console
+    broadcasting CTRL_C_EVENT, etc.) killing hours of work. Requiring a
+    deliberate double press matches common CLI conventions and protects
+    against that without ignoring a genuine cancel request.
+    """
+    def __init__(self, window=3.0):
+        self.window = window
+        self.last_time = None
+        self._orig_handler = None
+
+    def __enter__(self):
+        self._orig_handler = signal.signal(signal.SIGINT, self._handle)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        signal.signal(signal.SIGINT, self._orig_handler)
+
+    def _handle(self, signum, frame):
+        now = time.monotonic()
+        if self.last_time is not None and (now - self.last_time) <= self.window:
+            self.last_time = None
+            raise KeyboardInterrupt()
+        self.last_time = now
+        print(f"\n[!] Ctrl+C received. Press it again within {self.window:.0f}s to "
+              f"actually stop the run (guards against a single stray interrupt).",
+              flush=True)
 
 def main():
     """
@@ -964,8 +1121,9 @@ def main():
             except ValueError:
                 out_path = results_dir / f"{input_f.stem}_evaluated.jsonl"
             files_to_process.append((input_f, out_path))
-    for in_f, out_f in files_to_process:
-        process_file(in_f, out_f, args)
+    with _DebouncedSigint():
+        for in_f, out_f in files_to_process:
+            process_file(in_f, out_f, args)
 
 
 if __name__ == "__main__":

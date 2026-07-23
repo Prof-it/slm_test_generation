@@ -160,7 +160,11 @@ MYSTERY_GUEST_FS_CALLS = {
 }
 
 # Numeric literals that are NOT magic numbers.
-EXEMPT_NUMBERS = {0, 0.0, 1, -1}
+# 0, 1, -1 are universally context-free; 2/-2 are nearly so (pairs, sign-flips).
+# van Deursen (2001) defines "magic" as unexplained — not every non-zero literal.
+# Keeping the set narrow avoids masking genuine smells while reducing FPs on
+# common length/index/count assertions like `assert len(result) == 2`.
+EXEMPT_NUMBERS = {0, 0.0, 1, -1, 2, -2}
 
 
 
@@ -225,16 +229,19 @@ def _get_test_functions(tree: ast.Module) -> List[ast.FunctionDef]:
       - Async top-level:         async def test_foo(): ...
       - TestCase methods:        class TestFoo(unittest.TestCase): def test_foo(self): ...
       - Async TestCase methods:  async def test_foo(self): ...
+      - Nested TestCase classes: class Outer: class Inner: def test_foo(self): ...
     """
     _TEST_FUNC_TYPES = (ast.FunctionDef, ast.AsyncFunctionDef)
-    funcs = []
-    for node in ast.iter_child_nodes(tree):
-        if isinstance(node, _TEST_FUNC_TYPES) and node.name.startswith('test'):
-            funcs.append(node)
-        elif isinstance(node, ast.ClassDef):
-            for child in ast.iter_child_nodes(node):
-                if isinstance(child, _TEST_FUNC_TYPES) and child.name.startswith('test'):
-                    funcs.append(child)
+    funcs: List[ast.FunctionDef] = []
+
+    def _collect(nodes, depth: int = 0) -> None:
+        for node in nodes:
+            if isinstance(node, _TEST_FUNC_TYPES) and node.name.startswith('test'):
+                funcs.append(node)
+            elif isinstance(node, ast.ClassDef) and depth < 3:
+                _collect(ast.iter_child_nodes(node), depth + 1)
+
+    _collect(ast.iter_child_nodes(tree))
     return funcs
 
 
@@ -330,35 +337,52 @@ def detect_mystery_guest(func: ast.FunctionDef, tree: ast.Module) -> Tuple[bool,
 
     Two complementary checks are applied:
 
-    1. Module-level import check (MYSTERY_GUEST_MODULES): network, database, and
-       process-spawning modules whose import has no plausible non-I/O use in tests.
+    1. Module-level import check: guest-module imports (network, DB, subprocess)
+       are collected at file level, but the smell fires only when a name from those
+       imports is actually *used* within this specific test function body. This
+       prevents flagging every test in a file just because one test at the top
+       imports requests.
 
     2. Function-call check (MYSTERY_GUEST_FS_CALLS): specific filesystem operations
        called anywhere in the test body, regardless of which module they originate
        from. This catches pathlib.Path.read_text(), os.listdir(), open(), etc.
-
     """
     def _is_guest_import(dotted_name: str) -> bool:
         base = dotted_name.split('.')[0]
         if base in MYSTERY_GUEST_BASE_MODULES:
             return True
-        # Check full name and all prefixes for full-module matches
         parts = dotted_name.split('.')
         for i in range(1, len(parts) + 1):
             if '.'.join(parts[:i]) in MYSTERY_GUEST_FULL_MODULES:
                 return True
         return False
 
+    # 1. Collect local names bound by guest-module imports at module level.
+    #    local_name → evidence string for reporting.
+    guest_names: Dict[str, str] = {}
     for node in ast.iter_child_nodes(tree):
         if isinstance(node, ast.Import):
             for alias in node.names:
                 if _is_guest_import(alias.name):
-                    return True, f"imports '{alias.name}'"
+                    local = alias.asname if alias.asname else alias.name.split('.')[0]
+                    guest_names[local] = f"uses '{alias.name}'"
         elif isinstance(node, ast.ImportFrom):
             if node.module and _is_guest_import(node.module):
-                return True, f"imports from '{node.module}'"
+                for alias in node.names:
+                    local = alias.asname if alias.asname else alias.name
+                    guest_names[local] = f"uses '{node.module}.{alias.name}'"
 
-    # 2. Filesystem call within the test function body
+    # Check whether this function body actually references any guest name.
+    if guest_names:
+        for node in _walk_skip_nested(func):
+            if isinstance(node, ast.Name) and node.id in guest_names:
+                return True, guest_names[node.id]
+            if (isinstance(node, ast.Attribute)
+                    and isinstance(node.value, ast.Name)
+                    and node.value.id in guest_names):
+                return True, guest_names[node.value.id]
+
+    # 2. Filesystem call within the test function body.
     for node in _walk_skip_nested(func):
         if not isinstance(node, ast.Call):
             continue
@@ -390,12 +414,23 @@ def detect_magic_number_test(func: ast.FunctionDef) -> Tuple[bool, str]:
     Magic Number Test: an assertion contains a numeric literal whose meaning
     is not self-evident.
 
-    Exempt values: 0, 0.0, 1, -1 (universally understood context-free), and booleans.
+    Exempt values: 0, 0.0, 1, -1, 2, -2 (see EXEMPT_NUMBERS), and booleans.
     Flags any other int or float found inside:
-      - pytest-style:   assert expr
-      - unittest-style: self.assertEqual(a, b) / self.assertAlmostEqual(a, b) / etc.
-
+      - pytest-style:          assert expr
+      - unittest-style:        self.assertEqual(a, b) / self.assertAlmostEqual(a, b)
+      - @pytest.mark.parametrize parameter lists (applies same standard to both styles)
     """
+    # Check @pytest.mark.parametrize argument values so parametrized tests are
+    # subject to the same standard as inline assertion tests.
+    for dec in func.decorator_list:
+        if (isinstance(dec, ast.Call)
+                and isinstance(dec.func, ast.Attribute)
+                and dec.func.attr == 'parametrize'
+                and len(dec.args) >= 2):
+            evidence = _has_magic_number(dec.args[1])
+            if evidence:
+                return True, f"magic number in @parametrize: {evidence}"
+
     for node in _walk_skip_nested(func):
         # pytest / plain assert
         if isinstance(node, ast.Assert):
@@ -450,39 +485,48 @@ def detect_obscure_test(func: ast.FunctionDef) -> Tuple[bool, str]:
     return False, ""
 
 
+_SETUP_METHODS = frozenset({
+    'setUp', 'setUpClass', 'setUpModule',
+    'setup_method', 'setup_function', 'setup',
+})
+
+
 def detect_general_fixture(tree: ast.Module) -> Tuple[bool, str]:
     """
-    General Fixture: the test setup (setUp or @pytest.fixture) initialises
-    more objects than any individual test actually needs.
+    General Fixture: the test setup initialises more objects than any individual
+    test actually needs.
 
-    Heuristic: setUp or a fixture function contains ≥3 assignments.
+    Heuristic: a setup function/method contains ≥3 assignments.
+
+    Covers setUp, setUpClass, setUpModule, setup_method, setup_function, setup,
+    and @pytest.fixture functions.
     """
     for node in ast.iter_child_nodes(tree):
         if not isinstance(node, (ast.FunctionDef, ast.ClassDef)):
             continue
 
-        # Recurse into unittest.TestCase class
+        # Recurse into unittest.TestCase class (all setup variants)
         if isinstance(node, ast.ClassDef):
             for child in ast.iter_child_nodes(node):
-                if isinstance(child, ast.FunctionDef) and child.name == 'setUp':
+                if isinstance(child, ast.FunctionDef) and child.name in _SETUP_METHODS:
                     count = sum(
                         1 for n in ast.walk(child)
                         if isinstance(n, (ast.Assign, ast.AnnAssign))
                     )
                     if count >= 3:
-                        return True, f"setUp has {count} assignments"
+                        return True, f"{child.name} has {count} assignments"
 
         if not isinstance(node, ast.FunctionDef):
             continue
 
-        # Module-level setUp
-        if node.name == 'setUp':
+        # Module-level setup functions (setUp, setUpModule, setup_function, etc.)
+        if node.name in _SETUP_METHODS:
             count = sum(
                 1 for n in ast.walk(node)
                 if isinstance(n, (ast.Assign, ast.AnnAssign))
             )
             if count >= 3:
-                return True, f"setUp has {count} assignments"
+                return True, f"{node.name} has {count} assignments"
 
         # @pytest.fixture functions
         for dec in node.decorator_list:
@@ -539,6 +583,8 @@ def detect_fragile_test(func: ast.FunctionDef, tree: ast.Module) -> Tuple[bool, 
       - Hardcoded absolute file paths in string literals
     """
 
+    # Scope seed check to this function only — a seed in another test must not
+    # suppress the fragile smell here.
     has_random_seed = any(
         isinstance(n, ast.Call)
         and isinstance(n.func, ast.Attribute)
@@ -551,7 +597,7 @@ def detect_fragile_test(func: ast.FunctionDef, tree: ast.Module) -> Tuple[bool, 
             or (isinstance(n.func.value, ast.Attribute)
                 and n.func.value.attr == 'random')
         )
-        for n in ast.walk(tree)
+        for n in _walk_skip_nested(func)
     )
 
     for node in _walk_skip_nested(func):
@@ -586,11 +632,20 @@ def detect_fragile_test(func: ast.FunctionDef, tree: ast.Module) -> Tuple[bool, 
                 return True, f"calls {caller.id}.sleep()"
 
 
-        _CLOCK_READS = {'time', 'perf_counter', 'monotonic', 'process_time', 'thread_time'}
+        _CLOCK_READS = {
+            'time', 'perf_counter', 'monotonic', 'process_time', 'thread_time',
+            'gmtime', 'localtime', 'mktime', 'strftime', 'ctime',
+        }
         if attr in _CLOCK_READS:
             caller = func_node.value
             if isinstance(caller, ast.Name) and caller.id == 'time':
                 return True, f"calls time.{attr}() (clock read)"
+
+        # uuid.*() — generates non-deterministic identifiers
+        if attr in {'uuid4', 'uuid1', 'uuid3', 'uuid5'}:
+            caller = func_node.value
+            if isinstance(caller, ast.Name) and caller.id == 'uuid':
+                return True, f"calls uuid.{attr}() (non-deterministic)"
 
         if attr == 'getenv':
             caller = func_node.value
@@ -727,8 +782,8 @@ def _is_trivial_assert(node: ast.Assert) -> bool:
         if isinstance(op, (ast.Is, ast.IsNot)) and isinstance(comp, ast.Constant) and comp.value is None:
             return True
 
-        # assert x == None
-        if isinstance(op, ast.Eq) and isinstance(comp, ast.Constant) and comp.value is None:
+        # assert x == None / assert x != None  (should use `is`/`is not`)
+        if isinstance(op, (ast.Eq, ast.NotEq)) and isinstance(comp, ast.Constant) and comp.value is None:
             return True
 
         # assert x == [] / {} / set() / ""
@@ -990,57 +1045,128 @@ def run_analysis(base_dir: Path, target_datasets: Optional[List[str]] = None) ->
 # Aggregation helpers
 def aggregate_by_model(records: List[SmellRecord], dataset_filter: Optional[str] = None) -> pd.DataFrame:
     """
-    Return a DataFrame with rows = models, columns = smells, values = % prevalence.
+    Return a DataFrame with rows = models, columns = smells + parse_error_rate.
+
+    Smell prevalence is computed over parseable records only (you cannot detect
+    smells in code that fails to parse). parse_error_rate uses all generated
+    records as the denominator so models with high syntax-error rates are not
+    artificially deflated on smell metrics.
     """
     if dataset_filter:
         records = [r for r in records if r.dataset == dataset_filter]
 
-    counts: Dict[str, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
-    totals: Dict[str, int] = defaultdict(int)
+    smell_counts: Dict[str, Dict[str, int]] = defaultdict(lambda: defaultdict(int))
+    n_parseable: Dict[str, int] = defaultdict(int)
+    n_generated: Dict[str, int] = defaultdict(int)  # all records, including unparseable
 
     for r in records:
+        key = f"{r.model} ({r.approach})"
+        n_generated[key] += 1
         if not r.parseable:
             continue
-        key = f"{r.model} ({r.approach})"
-        counts[key]["_total"] += 1
-        totals[key] += 1
+        n_parseable[key] += 1
         for smell in SMELL_NAMES:
             if r.smells.get(smell):
-                counts[key][smell] += 1
+                smell_counts[key][smell] += 1
 
-    if not counts:
+    if not n_generated:
         return pd.DataFrame()
 
     rows = []
-    for key in sorted(counts.keys()):
-        total = totals[key]
-        if total == 0:
+    for key in sorted(n_generated.keys()):
+        total_p = n_parseable[key]
+        total_g = n_generated[key]
+        if total_g == 0:
             continue
-        row = {"model": key, "total": total}
+        row = {
+            "model":            key,
+            "n_parseable":      total_p,
+            "n_generated":      total_g,
+            "parse_error_rate": round((total_g - total_p) / total_g * 100, 1),
+        }
         for smell in SMELL_NAMES:
-            row[smell] = round(counts[key][smell] / total * 100, 1)
+            row[smell] = round(smell_counts[key][smell] / total_p * 100, 1) if total_p > 0 else 0.0
         rows.append(row)
 
     return pd.DataFrame(rows).set_index("model")
 
 
 def aggregate_overall(records: List[SmellRecord]) -> Dict[str, float]:
-    """Return overall smell prevalence (%) across all records."""
-    total = sum(1 for r in records if r.parseable)
-    if total == 0:
+    """Return overall smell prevalence (%) across all parseable records."""
+    total_p = sum(1 for r in records if r.parseable)
+    total_g = len(records)
+    if total_p == 0:
         return {}
-    return {
-        smell: round(sum(1 for r in records if r.parseable and r.smells.get(smell)) / total * 100, 1)
+    result = {
+        smell: round(sum(1 for r in records if r.parseable and r.smells.get(smell)) / total_p * 100, 1)
         for smell in SMELL_NAMES
     }
+    result["_parse_error_rate"] = round((total_g - total_p) / total_g * 100, 1) if total_g > 0 else 0.0
+    result["_n_parseable"] = total_p
+    result["_n_generated"] = total_g
+    return result
+
+
+def collapse_to_task_level(records: List[SmellRecord]) -> List[SmellRecord]:
+    """
+    Collapse per-target-line SmellRecords to one record per task.
+
+    Multiple target_line records for the same (dataset, model, temperature,
+    approach, run, task_num) are not independent — they come from the same
+    model call on the same task. Collapsing them satisfies the independence
+    assumption required for valid statistical comparisons between models.
+
+    Smell present in the collapsed record if ANY target-line triggered it.
+    Parseable if ANY target-line was parseable.
+
+    Use this for all percentage statistics reported in the paper.
+    Use the raw records only for per-line granularity in the JSON export.
+    """
+    groups: Dict[tuple, List[SmellRecord]] = defaultdict(list)
+    for r in records:
+        key = (r.dataset, r.model, r.temperature, r.approach, r.run, r.task_num)
+        groups[key].append(r)
+
+    collapsed: List[SmellRecord] = []
+    for key, group in groups.items():
+        rep = group[0]
+        merged_smells = {
+            smell: any(r.smells.get(smell, False) for r in group)
+            for smell in SMELL_NAMES
+        }
+        merged_details = {
+            smell: next((r.smell_details[smell] for r in group if r.smell_details.get(smell)), "")
+            for smell in SMELL_NAMES
+        }
+        collapsed.append(SmellRecord(
+            dataset=rep.dataset,
+            model=rep.model,
+            temperature=rep.temperature,
+            approach=rep.approach,
+            run=rep.run,
+            task_num=rep.task_num,
+            task_title=rep.task_title,
+            func_name=rep.func_name,
+            target_line="(task-level)",
+            smells=merged_smells,
+            smell_details=merged_details,
+            parseable=any(r.parseable for r in group),
+        ))
+    return collapsed
 
 
 # Report generation
 def write_text_report(
     records: List[SmellRecord],
     output_dir: Path,
+    task_records: Optional[List[SmellRecord]] = None,
 ) -> None:
-    """Write a human-readable summary to test_smell_analysis_report.txt."""
+    """Write a human-readable summary to test_smell_analysis_report.txt.
+
+    task_records: pre-collapsed task-level records (from collapse_to_task_level).
+    If supplied, a second prevalence table is appended using task-level statistics,
+    which satisfy the independence assumption for statistical comparisons.
+    """
     report_path = output_dir / "test_smell_analysis_report.txt"
     ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -1067,12 +1193,18 @@ def write_text_report(
     ]
 
     # Overall summary
-    parseable = [r for r in records if r.parseable]
     overall = aggregate_overall(records)
+    n_gen  = overall.pop("_n_generated", len(records))
+    n_par  = overall.pop("_n_parseable", sum(1 for r in records if r.parseable))
+    pe_rate = overall.pop("_parse_error_rate", 0.0)
     lines += [
         "OVERALL PREVALENCE (all datasets, all models)",
         "-" * 40,
-        f"  Total analysed: {len(parseable):,}  |  Unparseable: {sum(1 for r in records if not r.parseable):,}",
+        f"  Generated:  {n_gen:,}",
+        f"  Parseable:  {n_par:,}  ({100 - pe_rate:.1f}%)",
+        f"  Parse errors: {n_gen - n_par:,}  ({pe_rate:.1f}%)",
+        f"  NOTE: smell rates are computed over parseable records only.",
+        f"        Parse error rate uses all generated records as denominator.",
         "",
     ]
     for smell in SMELL_NAMES:
@@ -1089,21 +1221,66 @@ def write_text_report(
         if not ds_records:
             continue
         df = aggregate_by_model(records, dataset_filter=ds)
+        n_gen_ds  = sum(1 for r in records if r.dataset == ds)
+        n_par_ds  = len(ds_records)
+        pe_ds     = round((n_gen_ds - n_par_ds) / n_gen_ds * 100, 1) if n_gen_ds > 0 else 0.0
         lines += [
             "",
             f"DATASET: {ds.upper()}",
             "=" * 60,
-            f"  Records: {len(ds_records):,}",
+            f"  Generated: {n_gen_ds:,}  |  Parseable: {n_par_ds:,}  |  Parse errors: {pe_ds:.1f}%",
             "",
-            f"  {'Model':<45} " + "  ".join(
+            f"  {'Model':<45} ParseErr%  " + "  ".join(
                 SMELL_LABELS[s].replace('\n', ' ')[:6] for s in SMELL_NAMES
             ),
-            "  " + "-" * 55,
+            "  " + "-" * 70,
         ]
         for model in df.index:
             row = df.loc[model]
+            pe_val = row.get("parse_error_rate", 0.0)
             vals = "  ".join(f"{row[s]:5.1f}%" for s in SMELL_NAMES)
-            lines.append(f"  {model:<45} {vals}")
+            lines.append(f"  {model:<45} {pe_val:6.1f}%    {vals}")
+
+    # Task-level prevalence table (satisfies independence for statistical tests)
+    if task_records:
+        task_overall = aggregate_overall(task_records)
+        t_n_gen  = task_overall.pop("_n_generated", len(task_records))
+        t_n_par  = task_overall.pop("_n_parseable", sum(1 for r in task_records if r.parseable))
+        t_pe     = task_overall.pop("_parse_error_rate", 0.0)
+        lines += [
+            "",
+            "=" * 72,
+            "TASK-LEVEL PREVALENCE (one record per task — use for statistical tests)",
+            "=" * 72,
+            "  Each task contributes exactly one observation regardless of how many",
+            "  target lines it has, satisfying the independence assumption.",
+            "",
+            f"  Tasks:    {t_n_gen:,}",
+            f"  Parseable:{t_n_par:,}  ({100 - t_pe:.1f}%)",
+            "",
+        ]
+        for smell in SMELL_NAMES:
+            label = SMELL_LABELS[smell].replace('\n', ' ')
+            pct = task_overall.get(smell, 0)
+            bar = "#" * int(pct / 2)
+            lines.append(f"  {label:<28} {pct:5.1f}%  {bar}")
+
+        task_datasets = sorted({r.dataset for r in task_records})
+        for ds in task_datasets:
+            tdf = aggregate_by_model(task_records, dataset_filter=ds)
+            if tdf.empty:
+                continue
+            ds_task = [r for r in task_records if r.dataset == ds and r.parseable]
+            lines += [
+                "",
+                f"  DATASET (task-level): {ds.upper()}  — {len(ds_task):,} tasks",
+                "  " + "-" * 55,
+            ]
+            for model in tdf.index:
+                row = tdf.loc[model]
+                pe_val = row.get("parse_error_rate", 0.0)
+                vals = "  ".join(f"{row[s]:5.1f}%" for s in SMELL_NAMES)
+                lines.append(f"  {model:<45} {pe_val:6.1f}%    {vals}")
 
     lines += ["", "=" * 72, "END OF REPORT", "=" * 72]
 
@@ -1123,7 +1300,7 @@ def write_heatmap(
     if df.empty:
         return
 
-    # Drop the 'total' column if present
+    # Drop metadata columns (total, n_*, parse_error_rate); keep only smell columns.
     smell_cols = [s for s in SMELL_NAMES if s in df.columns]
     heatmap_data = df[smell_cols].copy()
 
@@ -1240,7 +1417,11 @@ def main():
         print("No records found — check that prediction files exist.")
         return
 
-    write_text_report(records, args.output_dir)
+    task_records = collapse_to_task_level(records)
+    print(f"Task-level records: {len(task_records)} "
+          f"(collapsed from {len(records)} target-line records)")
+
+    write_text_report(records, args.output_dir, task_records=task_records)
     write_json_results(records, args.output_dir)
 
     # Heatmaps: one per dataset + one overall

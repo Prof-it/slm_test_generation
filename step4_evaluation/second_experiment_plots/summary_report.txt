@@ -1,0 +1,148 @@
+==============================================================================================================
+ REAL WORLD EVALUATION REPORT
+==============================================================================================================
+• Benchmark Size (N): 299 unique tasks.
+• Metric Format: point estimate (single run, N=1) — no CI reported.
+--------------------------------------------------------------------------------------------------------------
+| Model                    | Mode              | Config   |   Runs | Avg Tokens   | Pass@1   | Gated Cov   | Mut Score   |
+|--------------------------|-------------------|----------|--------|--------------|----------|-------------|-------------|
+| gemma-4-E4B-it           | Two-Step [Tier B] | T=0.0    |      1 | 136,616      | 45.15%   | 65.6%       | 6.1%        |
+| gemma-4-E4B-it           | Two-Step [Tier C] | T=0.0    |      1 | 142,900      | 43.81%   | 68.9%       | 5.4%        |
+| gemma-4-E4B-it           | One-Step [Tier C] | T=0.0    |      1 | 68,046       | 41.81%   | 64.2%       | 4.2%        |
+| gemma-4-E4B-it           | Two-Step [Tier A] | T=0.0    |      1 | 124,268      | 41.81%   | 68.5%       | 6.3%        |
+| granite-4.0-micro        | Two-Step [Tier A] | T=0.0    |      1 | 124,171      | 28.43%   | 70.8%       | 9.5%        |
+| granite-4.0-micro        | Two-Step [Tier B] | T=0.0    |      1 | 127,976      | 28.09%   | 70.4%       | 9.9%        |
+| Qwen3.5-4B               | Two-Step [Tier A] | T=0.0    |      1 | 1,409,676    | 27.76%   | 70.1%       | 7.4%        |
+| granite-4.0-micro        | Two-Step [Tier C] | T=0.0    |      1 | 135,416      | 26.76%   | 66.8%       | 8.6%        |
+| granite-4.0-micro        | One-Step [Tier A] | T=0.0    |      1 | 35,951       | 26.42%   | 71.3%       | 13.6%       |
+| Qwen3.5-4B               | Two-Step [Tier B] | T=0.0    |      1 | 1,400,991    | 24.75%   | 74.3%       | 8.4%        |
+| Qwen3.5-4B               | Two-Step [Tier C] | T=0.0    |      1 | 1,286,264    | 22.41%   | 73.0%       | 8.8%        |
+| gemma-4-E4B-it           | One-Step [Tier A] | T=0.0    |      1 | 56,180       | 21.74%   | 66.9%       | 12.9%       |
+| Qwen3.5-4B               | One-Step [Tier B] | T=0.0    |      1 | 250,025      | 21.40%   | 79.3%       | 16.4%       |
+| gemma-4-E4B-it           | One-Step [Tier B] | T=0.0    |      1 | 50,156       | 19.40%   | 67.0%       | 11.9%       |
+| Qwen3-4B-Thinking        | One-Step [Tier A] | T=0.0    |      1 | 1,135,635    | 18.39%   | 77.3%       | 16.5%       |
+| Qwen3.5-4B               | One-Step [Tier C] | T=0.0    |      1 | 608,410      | 18.39%   | 77.7%       | 15.3%       |
+| Qwen3-4B-Thinking        | Two-Step [Tier A] | T=0.0    |      1 | 1,919,494    | 18.06%   | 74.4%       | 16.1%       |
+| Qwen3-4B-Thinking        | One-Step [Tier B] | T=0.0    |      1 | 1,162,354    | 17.73%   | 75.6%       | 16.1%       |
+| Ministral-3-3B-Reasoning | Two-Step [Tier A] | T=0.0    |      1 | 330,044      | 17.73%   | 69.2%       | 4.2%        |
+| Qwen3-4B-Thinking        | One-Step [Tier C] | T=0.0    |      1 | 1,262,873    | 16.72%   | 74.9%       | 16.4%       |
+| Qwen3-4B-Thinking        | Two-Step [Tier B] | T=0.0    |      1 | 1,952,935    | 16.72%   | 74.1%       | 16.6%       |
+| Ministral-3-3B-Reasoning | Two-Step [Tier B] | T=0.0    |      1 | 369,371      | 16.39%   | 64.5%       | 5.0%        |
+| granite-4.0-micro        | One-Step [Tier C] | T=0.0    |      1 | 38,751       | 16.05%   | 68.1%       | 13.1%       |
+| Ministral-3-3B-Reasoning | Two-Step [Tier C] | T=0.0    |      1 | 412,790      | 15.05%   | 67.3%       | 9.3%        |
+| Ministral-3-3B-Reasoning | One-Step [Tier C] | T=0.0    |      1 | 61,172       | 13.38%   | 70.7%       | 14.3%       |
+| Ministral-3-3B-Reasoning | One-Step [Tier B] | T=0.0    |      1 | 57,192       | 12.71%   | 71.4%       | 13.3%       |
+| granite-4.0-micro        | One-Step [Tier B] | T=0.0    |      1 | 38,796       | 12.71%   | 68.3%       | 10.2%       |
+| Qwen3-4B-Thinking        | Two-Step [Tier C] | T=0.0    |      1 | 2,016,623    | 11.37%   | 71.4%       | 14.6%       |
+| Ministral-3-3B-Reasoning | One-Step [Tier A] | T=0.0    |      1 | 85,326       | 11.04%   | 72.3%       | 15.8%       |
+| Qwen3.5-4B               | One-Step [Tier A] | T=0.0    |      1 | 267,141      | 9.03%    | 85.6%       | 17.4%       |
+
+--------------------------------------------------------------------------------------------------------------
+Note: Gated Cov = line coverage on assertion-passing tasks only (Huang et al. 2025b, LCov@k).
+      [a] Wang et al. (2025a) baselines use Execution Correctness (EC): test compiles/runs without crash, NOT assertion-passing.
+          Their Gated Cov is therefore EC-gated (more lenient than our assertion-gated Gated Cov).
+      Pass@10 = fraction of tasks with >= 1 passing generation across 10 independent attempts (T=0.2 condition only).
+      Literature baselines show point estimates only (no CI available from source papers).
+      See Footnote [1] for coverage methodology; Footnote [3] for literature metric definitions.
+
+==============================================================================================================
+ TABLE 2: RELIABILITY - REAL WORLD (Avg Failures)
+==============================================================================================================
+--------------------------------------------------------------------------------------------------------------
+| Model                    | Mode              | Config   |   Assert |   Runtime |   Syntax |   NoCode |   Timeout |
+|--------------------------|-------------------|----------|----------|-----------|----------|----------|-----------|
+| gemma-4-E4B-it           | Two-Step [Tier B] | T=0.0    |       53 |       110 |        0 |        1 |         0 |
+| gemma-4-E4B-it           | Two-Step [Tier C] | T=0.0    |       46 |       122 |        0 |        0 |         0 |
+| gemma-4-E4B-it           | One-Step [Tier C] | T=0.0    |       61 |       108 |        1 |        4 |         0 |
+| gemma-4-E4B-it           | Two-Step [Tier A] | T=0.0    |       50 |       123 |        0 |        0 |         1 |
+| granite-4.0-micro        | Two-Step [Tier A] | T=0.0    |       33 |       178 |        0 |        3 |         0 |
+| granite-4.0-micro        | Two-Step [Tier B] | T=0.0    |       35 |       180 |        0 |        0 |         0 |
+| Qwen3.5-4B               | Two-Step [Tier A] | T=0.0    |       41 |       166 |        0 |        9 |         0 |
+| granite-4.0-micro        | Two-Step [Tier C] | T=0.0    |       61 |       154 |        0 |        4 |         0 |
+| granite-4.0-micro        | One-Step [Tier A] | T=0.0    |       44 |       171 |        2 |        3 |         0 |
+| Qwen3.5-4B               | Two-Step [Tier B] | T=0.0    |       33 |       180 |        1 |       11 |         0 |
+| Qwen3.5-4B               | Two-Step [Tier C] | T=0.0    |       38 |       179 |        1 |       14 |         0 |
+| gemma-4-E4B-it           | One-Step [Tier A] | T=0.0    |       61 |       167 |        1 |        4 |         1 |
+| Qwen3.5-4B               | One-Step [Tier B] | T=0.0    |       26 |       208 |        1 |        0 |         0 |
+| gemma-4-E4B-it           | One-Step [Tier B] | T=0.0    |       55 |       184 |        0 |        2 |         0 |
+| Qwen3-4B-Thinking        | One-Step [Tier A] | T=0.0    |       36 |       205 |        0 |        2 |         1 |
+| Qwen3.5-4B               | One-Step [Tier C] | T=0.0    |       34 |       203 |        1 |        6 |         0 |
+| Qwen3-4B-Thinking        | Two-Step [Tier A] | T=0.0    |       42 |       201 |        0 |        1 |         1 |
+| Qwen3-4B-Thinking        | One-Step [Tier B] | T=0.0    |       35 |       210 |        0 |        1 |         0 |
+| Ministral-3-3B-Reasoning | Two-Step [Tier A] | T=0.0    |       34 |       191 |        6 |       15 |         0 |
+| Qwen3-4B-Thinking        | One-Step [Tier C] | T=0.0    |       31 |       216 |        0 |        2 |         0 |
+| Qwen3-4B-Thinking        | Two-Step [Tier B] | T=0.0    |       36 |       211 |        0 |        2 |         0 |
+| Ministral-3-3B-Reasoning | Two-Step [Tier B] | T=0.0    |       33 |       197 |        5 |       15 |         0 |
+| granite-4.0-micro        | One-Step [Tier C] | T=0.0    |       38 |       202 |        3 |        7 |         1 |
+| Ministral-3-3B-Reasoning | Two-Step [Tier C] | T=0.0    |       25 |       212 |       11 |        6 |         0 |
+| Ministral-3-3B-Reasoning | One-Step [Tier C] | T=0.0    |       34 |       199 |       12 |       13 |         1 |
+| Ministral-3-3B-Reasoning | One-Step [Tier B] | T=0.0    |       33 |       200 |       20 |        8 |         0 |
+| granite-4.0-micro        | One-Step [Tier B] | T=0.0    |       42 |       215 |        1 |        2 |         1 |
+| Qwen3-4B-Thinking        | Two-Step [Tier C] | T=0.0    |       35 |       226 |        3 |        1 |         0 |
+| Ministral-3-3B-Reasoning | One-Step [Tier A] | T=0.0    |       41 |       191 |       21 |       11 |         2 |
+| Qwen3.5-4B               | One-Step [Tier A] | T=0.0    |       16 |       250 |        0 |        6 |         0 |
+
+==============================================================================================================
+ TABLE 3: EFFICIENCY - REAL WORLD
+==============================================================================================================
+--------------------------------------------------------------------------------------------------------------
+| Model                    | Mode              | Config   |   TPS | Total Tokens   | Time   | Avg Time/Task (s)   |
+|--------------------------|-------------------|----------|-------|----------------|--------|---------------------|
+| Ministral-3-3B-Reasoning | Two-Step [Tier A] | T=0.0    |   122 | 330,044        | 46.0m  | 9.2s                |
+| Ministral-3-3B-Reasoning | Two-Step [Tier B] | T=0.0    |   122 | 369,371        | 51.7m  | 10.4s               |
+| Ministral-3-3B-Reasoning | Two-Step [Tier C] | T=0.0    |   121 | 412,790        | 58.0m  | 11.6s               |
+| Ministral-3-3B-Reasoning | One-Step [Tier A] | T=0.0    |   121 | 85,326         | 11.8m  | 2.4s                |
+| Ministral-3-3B-Reasoning | One-Step [Tier C] | T=0.0    |   120 | 61,172         | 8.5m   | 1.7s                |
+| Ministral-3-3B-Reasoning | One-Step [Tier B] | T=0.0    |   120 | 57,192         | 7.9m   | 1.6s                |
+| granite-4.0-micro        | Two-Step [Tier A] | T=0.0    |   117 | 124,171        | 17.7m  | 3.6s                |
+| granite-4.0-micro        | Two-Step [Tier B] | T=0.0    |   117 | 127,976        | 18.3m  | 3.7s                |
+| granite-4.0-micro        | Two-Step [Tier C] | T=0.0    |   117 | 135,416        | 19.3m  | 3.9s                |
+| granite-4.0-micro        | One-Step [Tier C] | T=0.0    |   116 | 38,751         | 5.6m   | 1.1s                |
+| granite-4.0-micro        | One-Step [Tier B] | T=0.0    |   116 | 38,796         | 5.6m   | 1.1s                |
+| granite-4.0-micro        | One-Step [Tier A] | T=0.0    |   116 | 35,951         | 5.2m   | 1.0s                |
+| Qwen3-4B-Thinking        | One-Step [Tier A] | T=0.0    |   101 | 1,135,635      | 188.1m | 37.7s               |
+| Qwen3-4B-Thinking        | One-Step [Tier B] | T=0.0    |   101 | 1,162,354      | 192.9m | 38.7s               |
+| Qwen3-4B-Thinking        | One-Step [Tier C] | T=0.0    |   100 | 1,262,873      | 210.6m | 42.3s               |
+| Qwen3.5-4B               | One-Step [Tier A] | T=0.0    |    99 | 267,141        | 44.9m  | 9.0s                |
+| Qwen3.5-4B               | One-Step [Tier B] | T=0.0    |    99 | 250,025        | 42.1m  | 8.4s                |
+| Qwen3.5-4B               | One-Step [Tier C] | T=0.0    |    99 | 608,410        | 102.6m | 20.6s               |
+| Qwen3.5-4B               | Two-Step [Tier A] | T=0.0    |    98 | 1,409,676      | 239.5m | 48.1s               |
+| Qwen3.5-4B               | Two-Step [Tier C] | T=0.0    |    98 | 1,286,264      | 218.5m | 43.9s               |
+| Qwen3.5-4B               | Two-Step [Tier B] | T=0.0    |    98 | 1,400,991      | 238.1m | 47.8s               |
+| Qwen3-4B-Thinking        | Two-Step [Tier A] | T=0.0    |    98 | 1,919,494      | 326.5m | 65.5s               |
+| Qwen3-4B-Thinking        | Two-Step [Tier B] | T=0.0    |    98 | 1,952,935      | 332.7m | 66.8s               |
+| Qwen3-4B-Thinking        | Two-Step [Tier C] | T=0.0    |    98 | 2,016,623      | 344.4m | 69.1s               |
+| gemma-4-E4B-it           | Two-Step [Tier A] | T=0.0    |    87 | 124,268        | 23.8m  | 4.8s                |
+| gemma-4-E4B-it           | Two-Step [Tier B] | T=0.0    |    87 | 136,616        | 26.3m  | 5.3s                |
+| gemma-4-E4B-it           | Two-Step [Tier C] | T=0.0    |    87 | 142,900        | 27.5m  | 5.5s                |
+| gemma-4-E4B-it           | One-Step [Tier C] | T=0.0    |    86 | 68,046         | 13.1m  | 2.6s                |
+| gemma-4-E4B-it           | One-Step [Tier A] | T=0.0    |    86 | 56,180         | 10.8m  | 2.2s                |
+| gemma-4-E4B-it           | One-Step [Tier B] | T=0.0    |    86 | 50,156         | 9.7m   | 1.9s                |
+
+--------------------------------------------------------------------------------------------------------------
+Note: Pynguin uses evolutionary search (SBST) and does not generate tokens; excluded from TPS comparisons. See Wall-Clock Efficiency figure.
+
+==============================================================================================================
+
+==============================================================================================================
+ FOOTNOTES
+==============================================================================================================
+[1] COVERAGE METHODOLOGY: 'Gated Cov' (primary metric) measures line coverage restricted to assertion-passing tasks only, following Huang et al. (2025b) LCov@k. This is our primary coverage metric. Ungated (raw) coverage — which includes coverage from assertion-failing tests — was also computed but is not shown in the primary table; it is available in the evaluation JSONL files (field: coverage_all_tasks). Note: Wang et al. (2025a)'s 'Overall Line Coverage' (marked [a] in Table 1) applies a more lenient gating condition (Execution Correctness: test compiles and runs without crashing) rather than assertion passing; it is therefore not directly equivalent to our Gated Cov but is placed in the same column as the closest analogue.
+
+[2] PYNGUIN TPS REPRESENTATION: Pynguin does not generate tokens; it uses evolutionary search (SBST/AST mutations). Pynguin is excluded from TPS trend plots. For cross-paradigm efficiency comparison, refer to the Wall-Clock Efficiency figure.
+
+[3] STATISTICAL METHODOLOGY: All pairwise comparisons use Welch's t-test (unequal variances). P-values are Bonferroni-corrected for multiple comparisons. Effect sizes reported as Cohen's h (appropriate for proportions): |h|<0.2=negligible, 0.2-0.5=small, 0.5-0.8=medium, ≥0.8=large. 95% confidence intervals use t-distribution (N=1 runs, t-critical=inf, df=0).
+
+[4] N=1 RUNS JUSTIFICATION: 1 independent runs per configuration balances statistical rigor with computational cost. With N=1: (1) 95% CIs use t-critical value of inf (df=0); (2) Bootstrap analysis confirms ranking stability across resampling. The variance convergence table demonstrates diminishing returns for additional runs.
+
+[5] BOOTSTRAP STABILITY: Rankings assessed via 1000 bootstrap iterations resampling runs with replacement. 'Modal Rank' = most frequent rank position. 'Rank Stability' = percentage of iterations where configuration achieved its modal rank. High stability (>70%) indicates robust rankings.
+
+[6] BEST CONFIGURATION SELECTION: For Tables 4-7, 'best configuration' for each model is defined as the configuration (prompt mode + temperature) with the highest mean Pass@1 across N=1 runs, excluding configurations with zero variance (which cannot be used in statistical tests). This reduces comparisons from all temperature variants to one representative per model.
+
+EXPERIMENTAL SETUP (Real World Study):
+• Hardware: vLLM, Single RTX 4090, FP16 precision (INT4 for quantized) 4096 max tokens.
+• Dataset: 'Real World' - 299 Python functions from this repository's own codebase.
+• Definitions:
+  - Pass@1: % of tasks where the generated test compiles, runs, and all assertions pass (Chen et al. 2021).
+  - Gated Cov: Line coverage on assertion-passing tasks only (Huang et al. 2025b, LCov@k).
+  - Total Tokens: Average total tokens generated per run.
