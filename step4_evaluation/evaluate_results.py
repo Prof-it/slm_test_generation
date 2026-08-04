@@ -29,7 +29,12 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.append(str(PROJECT_ROOT / "TestEval"))
 
 # Regex to match relative imports: from .foo import bar  /  from ..pkg import baz
-_RELATIVE_IMPORT_RE = re.compile(r'^(\s*)from\s+(\.+\w*)\s+import\s+(.+)$')
+# NOTE: the module part must allow dotted submodule paths after the leading relative
+# dots (e.g. "from ..skills.frontmatter import x") -- \.+\w* only matched a single
+# identifier and silently failed to wrap multi-level relative imports, leaving them
+# to raise an uncaught "ImportError: attempted relative import with no known parent
+# package" when under_test.py is executed standalone.
+_RELATIVE_IMPORT_RE = re.compile(r'^(\s*)from\s+(\.+[\w.]*)\s+import\s+(.+)$')
 
 # Stdlib module names for filtering absolute-import wrapping
 import sys as _sys
@@ -452,6 +457,67 @@ def _determine_failure_status(proc: subprocess.CompletedProcess) -> str:
     if "INTERNALERROR" in output: return EvaluationResult.SYNTAX_ERROR
     return EvaluationResult.RUNTIME_ERROR
 
+
+_EXCEPTION_CLASS_RE = re.compile(r'^E\s+([A-Za-z_][\w.]*(?:Error|Exception|Warning))\b', re.MULTILINE)
+
+
+def _extract_exception_class(proc: subprocess.CompletedProcess) -> str | None:
+    """Pull the actual raised exception class name (e.g. 'NameError',
+    'ModuleNotFoundError') out of pytest's 'E   <Class>: msg' traceback lines.
+
+    This exists because EvaluationResult.RUNTIME_ERROR is a coarse umbrella
+    that conflates genuinely different failure causes -- a model hallucinating
+    a nonexistent API call and a harness-side under_test.py that never imports
+    both land in the same bucket today. Splitting by actual exception class
+    lets the two be told apart in reporting.
+    """
+    output = proc.stdout + "\n" + proc.stderr
+    matches = _EXCEPTION_CLASS_RE.findall(output)
+    if not matches:
+        return None
+    return matches[-1]  # last match = innermost/most specific exception in a chain
+
+
+_PYTEST_COLLECTED_RE = re.compile(r'collected (\d+) item')
+_PYTEST_SUMMARY_COUNT_RE = re.compile(r'(\d+) (passed|skipped|failed|error|xfailed|xpassed)')
+
+
+def _parse_pytest_counts(output: str) -> tuple[int | None, int | None, int | None]:
+    """Extract (n_collected, n_passed, n_skipped) from pytest's own reported
+    counts in its stdout. Exists to catch vacuous passes: a test suite made
+    entirely of skipped tests exits 0 (Pass) today with no way to tell it
+    apart from a suite that actually ran and passed real assertions."""
+    m = _PYTEST_COLLECTED_RE.search(output)
+    n_collected = int(m.group(1)) if m else None
+
+    counts = {kind: int(n) for n, kind in _PYTEST_SUMMARY_COUNT_RE.findall(output)}
+    n_passed = counts.get("passed")
+    n_skipped = counts.get("skipped")
+    return n_collected, n_passed, n_skipped
+
+
+def load_known_harness_broken_ids(path: Path | None = None) -> set:
+    """Loads the task_num set flagged as harness/dataset-broken (module fails
+    to import regardless of the model's generated test) by
+    step4_evaluation/preflight_dataset_health.py. Returns an empty set if the
+    manifest hasn't been generated yet -- callers should treat that as
+    'attribution unavailable', not 'nothing is broken'."""
+    if path is None:
+        path = PROJECT_ROOT / "step4_evaluation" / "dataset_health.json"
+    if not path.exists():
+        return set()
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        return set(str(t) for t in payload.get("broken_task_ids", []))
+    except Exception:
+        return set()
+
+
+# Loaded once per process (worker processes each import this module fresh).
+# Empty until step4_evaluation/preflight_dataset_health.py has been run at least
+# once to produce dataset_health.json -- attribution is simply unavailable until then.
+_HARNESS_BROKEN_TASK_IDS = load_known_harness_broken_ids()
+
 def _run_with_killtree(cmd, cwd, timeout):
     """Like subprocess.run(cmd, timeout=timeout) but kills the whole process tree
     on timeout, not just the immediate child. cosmic-ray exec spawns pytest as a
@@ -460,10 +526,17 @@ def _run_with_killtree(cmd, cwd, timeout):
     pytest grandchild running. With 12 parallel workers those orphans pile up and
     starve CPU for everyone else, which cascades into more timeouts.
     """
+    # On Linux, a subprocess started without start_new_session=True inherits the
+    # caller's process group. Since this runs inside a ProcessPoolExecutor worker,
+    # os.killpg() below would then kill the worker's own process group -- including
+    # the worker itself and any sibling workers sharing it -- on every timeout,
+    # rather than just the cosmic-ray subprocess tree. start_new_session=True puts
+    # the subprocess in its own group so the killpg() stays scoped to it.
     creationflags = subprocess.CREATE_NEW_PROCESS_GROUP if sys.platform == "win32" else 0
+    start_new_session = sys.platform != "win32"
     proc = subprocess.Popen(
         cmd, cwd=cwd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
-        creationflags=creationflags
+        creationflags=creationflags, start_new_session=start_new_session
     )
     try:
         stdout, stderr = proc.communicate(timeout=timeout)
@@ -670,14 +743,21 @@ def evaluate_single_test_worker(task_data):
         "status": EvaluationResult.NO_CODE,
         "coverage": 0.0,
         "has_assertions": False,
-        "has_xfail_tests": False,  
-        "num_xfail_tests": 0,      
+        "has_xfail_tests": False,
+        "num_xfail_tests": 0,
         "mutation_score": None,
         "mutation_stats": None,
         "mutation_error": None,
-        "mutation_timeout": False  
+        "mutation_timeout": False,
+        "raw_exception_class": None,   # actual exception class (e.g. NameError), not just the coarse status bucket
+        "n_collected": None,           # number of tests pytest collected
+        "n_passed": None,              # number of tests that actually passed (not skipped)
+        "n_skipped": None,             # number of tests skipped -- a suite of all-skipped tests exits 0 and would
+                                        # otherwise be silently counted as Pass
+        "all_skipped_vacuous_pass": False,
+        "harness_broken_task": str(task_id) in _HARNESS_BROKEN_TASK_IDS,  # from preflight_dataset_health.py's manifest
     }
-    log_entry = None 
+    log_entry = None
     
     try:
         clean_test = strip_markdown(raw_test_code)
@@ -754,6 +834,15 @@ sys.path.insert(0, os.getcwd())
                 )
                 result["status"] = _determine_failure_status(proc)
                 output_str = proc.stdout + "\n" + proc.stderr
+                if result["status"] != EvaluationResult.PASS:
+                    result["raw_exception_class"] = _extract_exception_class(proc)
+                n_collected, n_passed, n_skipped = _parse_pytest_counts(proc.stdout)
+                result["n_collected"] = n_collected
+                result["n_passed"] = n_passed
+                result["n_skipped"] = n_skipped
+                if (result["status"] == EvaluationResult.PASS and n_collected
+                        and n_skipped and n_skipped >= n_collected):
+                    result["all_skipped_vacuous_pass"] = True
             except subprocess.TimeoutExpired:
                 result["status"] = EvaluationResult.TIMEOUT
                 output_str = "TIMEOUT (30s limit)"
@@ -824,6 +913,15 @@ sys.path.insert(0, os.getcwd())
                 )
                 result["status"] = _determine_failure_status(proc)
                 output_str = proc.stdout + "\n" + proc.stderr
+                if result["status"] != EvaluationResult.PASS:
+                    result["raw_exception_class"] = _extract_exception_class(proc)
+                n_collected, n_passed, n_skipped = _parse_pytest_counts(proc.stdout)
+                result["n_collected"] = n_collected
+                result["n_passed"] = n_passed
+                result["n_skipped"] = n_skipped
+                if (result["status"] == EvaluationResult.PASS and n_collected
+                        and n_skipped and n_skipped >= n_collected):
+                    result["all_skipped_vacuous_pass"] = True
             except subprocess.TimeoutExpired:
                 result["status"] = EvaluationResult.TIMEOUT
                 output_str = "TIMEOUT (30s limit)"

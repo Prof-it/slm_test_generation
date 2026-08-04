@@ -1,0 +1,11 @@
+Model,Pipeline,N,n_mutation_completed,cMut_%_conditional_on_pass,uMut_%_unconditional
+Qwen3-4B-Thinking-2507,Single-call,210,181,19.35,16.68
+Qwen3-4B-Thinking-2507,Two-stage,210,157,19.79,14.8
+Qwen3.5-4B,Single-call,210,152,6.27,4.54
+Qwen3.5-4B,Two-stage,210,154,12.31,9.03
+gemma-4-E4B-it,Single-call,210,97,12.35,5.71
+gemma-4-E4B-it,Two-stage,210,143,22.15,15.08
+granite-4.0-micro,Single-call,210,110,9.91,5.19
+granite-4.0-micro,Two-stage,210,101,18.94,9.11
+Ministral-3-3B-Reasoning-2512,Single-call,210,105,10.69,5.35
+Ministral-3-3B-Reasoning-2512,Two-stage,210,76,20.24,7.32

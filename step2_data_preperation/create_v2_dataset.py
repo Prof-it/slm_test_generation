@@ -178,12 +178,28 @@ def extract_from_file(
     import_header_lines = len(import_header.splitlines()) if import_header else 0
     import_prefix = (import_header + "\n\n") if import_header else ""
 
+    # Map each function node to its qualified name (Class.method, or bare name for
+    # module-level functions) so that same-named methods in different classes in the
+    # same file don't collide when hashed into task_num/id below.
+    qualnames = {}
+    def _record_qualnames(node, scope_parts):
+        for child in ast.iter_child_nodes(node):
+            if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                qualnames[id(child)] = ".".join(scope_parts + [child.name])
+                _record_qualnames(child, scope_parts + [child.name])
+            elif isinstance(child, ast.ClassDef):
+                _record_qualnames(child, scope_parts + [child.name])
+            else:
+                _record_qualnames(child, scope_parts)
+    _record_qualnames(tree, [])
+
     candidates = []
     for node in ast.walk(tree):
         if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
             continue
         if node.end_lineno is None:
             continue
+        qualname = qualnames.get(id(node), node.name)
 
         # --- Docstring check ---
         docstring = ast.get_docstring(node)
@@ -213,15 +229,21 @@ def extract_from_file(
             continue
 
         # --- Build Solution-wrapped code (backward-compat with evaluate_results.py) ---
+        # NOTE: self-presence must be checked via the AST arg list, not by string-matching
+        # a single line. For multi-line signatures (each parameter on its own line), "self"
+        # can appear on a line AFTER the "def {name}(" line; checking only that one line
+        # wrongly concludes "no self" and inserts a duplicate "self" parameter, producing a
+        # SyntaxError ("duplicate argument 'self'") when the wrapped code is later imported.
+        already_has_self = bool(node.args.args) and node.args.args[0].arg == "self"
         wrapped_lines = func_source.splitlines()
-        for i, ln in enumerate(wrapped_lines):
-            if f"def {node.name}" in ln:
-                if "(self" not in ln:
+        if not already_has_self:
+            for i, ln in enumerate(wrapped_lines):
+                if f"def {node.name}" in ln:
                     if f"def {node.name}():" in ln:
                         wrapped_lines[i] = ln.replace(f"def {node.name}():", f"def {node.name}(self):")
                     else:
                         wrapped_lines[i] = ln.replace(f"def {node.name}(", f"def {node.name}(self, ")
-                break
+                    break
         wrapped = "class Solution:\n" + textwrap.indent("\n".join(wrapped_lines), "    ")
         python_solution = import_prefix + wrapped
 
@@ -233,8 +255,10 @@ def extract_from_file(
         focal_token_counts = _count_tokens(func_source)
 
         # --- Assemble record ---
-        uid = hashlib.md5(f"{repo_name}::{py_file.name}::{node.name}".encode()).hexdigest()[:12]
-        task_num = int(hashlib.md5(f"{repo_name}_{py_file.stem}_{node.name}".encode()).hexdigest(), 16) % 1_000_000
+        # Hash on qualname (not just node.name) so two same-named methods in different
+        # classes of the same file get distinct task_num/id instead of colliding.
+        uid = hashlib.md5(f"{repo_name}::{py_file.name}::{qualname}".encode()).hexdigest()[:12]
+        task_num = int(hashlib.md5(f"{repo_name}_{py_file.stem}_{qualname}".encode()).hexdigest(), 16) % 1_000_000
 
         record = {
             "id": f"rwt2_{uid}",

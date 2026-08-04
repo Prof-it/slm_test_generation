@@ -5,44 +5,41 @@
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_639256_kbtt55g4
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_639256_27l7jog8
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\python.py:498: in importtestmodule
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+/usr/local/lib/python3.10/site-packages/_pytest/python.py:498: in importtestmodule
     mod = import_path(
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.10/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
+<frozen importlib._bootstrap>:1050: in _gcd_import
     ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
+<frozen importlib._bootstrap>:1027: in _find_and_load
     ???
-<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+<frozen importlib._bootstrap>:1006: in _find_and_load_unlocked
     ???
-<frozen importlib._bootstrap>:935: in _load_unlocked
+<frozen importlib._bootstrap>:688: in _load_unlocked
     ???
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:177: in exec_module
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:177: in exec_module
     source_stat, co = _rewrite_test(fn, self.config)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:359: in _rewrite_test
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:359: in _rewrite_test
     co = compile(tree, strfn, "exec", dont_inherit=True)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E     File "C:\Users\cbark\AppData\Local\Temp\eval_639256_kbtt55g4\test_generated.py", line 61
+E     File "/tmp/eval_639256_27l7jog8/test_generated.py", line 61
 E       result = await solution._post_token_endpoint('https://example.com/oauth', {'client_id': 'test', 'client_secret': 'test'})
 E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E   SyntaxError: 'await' outside async function
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.42s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.28s ===============================
 ```
 
 ### Code
@@ -80,14 +77,14 @@ def test__post_token_endpoint_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_175419_o9tkjnkf
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_175419_pheb2c8x
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.15s =============================
 ```
 
 ### Code
@@ -125,14 +122,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_505574_1bdwtmpl
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_505574_nqo00nh1
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.06s ============================
+============================ no tests ran in 0.14s =============================
 ```
 
 ### Code
@@ -149,96 +146,22 @@ class Solution:
         except json.JSONDecodeError:
             raise ValueError('Invalid JSON format')
 ```
----## TASK: 28838
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_28838_fjyoun_3
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_clone_line2 FAILED                               [100%]
-
-================================== FAILURES ===================================
-______________________________ test_clone_line2 _______________________________
-
-    def test_clone_line2():
->       solution = Solution()
-                   ^^^^^^^^
-E       NameError: name 'Solution' is not defined
-
-test_generated.py:39: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_clone_line2 - NameError: name 'Solution' is no...
-============================== 1 failed in 0.18s ==============================
-```
-
-### Code
-```python
-import os
-
-def test_clone_line2():
-    solution = Solution()
-    sources = ['src/file1.txt', 'src/dir1']
-    output = 'dest'
-    solution.clone(sources, output)
-```
----## TASK: 631879
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_631879_nv0qrbth
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_device_focus_tokens_line2 FAILED                 [100%]
-
-================================== FAILURES ===================================
-_______________________ test_device_focus_tokens_line2 ________________________
-
-    def test_device_focus_tokens_line2():
-        solution = Solution()
-        result = solution.device_focus_tokens('device_123')
->       assert result == 'device_123'
-E       AssertionError: assert {'device_123'} == 'device_123'
-
-test_generated.py:39: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_device_focus_tokens_line2 - AssertionError: as...
-============================== 1 failed in 0.17s ==============================
-```
-
-### Code
-```python
-def test_device_focus_tokens_line2():
-    solution = Solution()
-    result = solution.device_focus_tokens('device_123')
-    assert result == 'device_123'
-```
 ---## TASK: 229284
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_229284_3lqw4zoy
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_229284_r4zwj7e6
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__reverse_repeat_tuple_line2 FAILED               [100%]
 
-================================== FAILURES ===================================
-______________________ test__reverse_repeat_tuple_line2 _______________________
+=================================== FAILURES ===================================
+_______________________ test__reverse_repeat_tuple_line2 _______________________
 
     def test__reverse_repeat_tuple_line2():
         solution = Solution()
@@ -255,9 +178,9 @@ E
 E         ...Full output truncated (20 lines hidden), use '-vv' to show
 
 test_generated.py:69: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__reverse_repeat_tuple_line2 - AssertionError: ...
-============================== 1 failed in 0.19s ==============================
+============================== 1 failed in 0.17s ===============================
 ```
 
 ### Code
@@ -297,22 +220,58 @@ def test__reverse_repeat_tuple_line2():
     solution = Solution()
     assert solution._reverse_repeat_tuple((1, 2, 3), 2) == ((3, 2, 1), (3, 2, 1))
 ```
+---## TASK: 631879
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_631879_p0rv_bn6
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_device_focus_tokens_line2 FAILED                 [100%]
+
+=================================== FAILURES ===================================
+________________________ test_device_focus_tokens_line2 ________________________
+
+    def test_device_focus_tokens_line2():
+        solution = Solution()
+        result = solution.device_focus_tokens('device_123')
+>       assert result == 'device_123'
+E       AssertionError: assert {'device_123'} == 'device_123'
+
+test_generated.py:39: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_device_focus_tokens_line2 - AssertionError: as...
+============================== 1 failed in 0.17s ===============================
+```
+
+### Code
+```python
+def test_device_focus_tokens_line2():
+    solution = Solution()
+    result = solution.device_focus_tokens('device_123')
+    assert result == 'device_123'
+```
 ---## TASK: 492243
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_492243_35waobcb
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_492243_b91shkhy
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_parse_dataset_with_version_line2 FAILED          [100%]
 
-================================== FAILURES ===================================
-____________________ test_parse_dataset_with_version_line2 ____________________
+=================================== FAILURES ===================================
+____________________ test_parse_dataset_with_version_line2 _____________________
 
     def test_parse_dataset_with_version_line2():
         solution = Solution()
@@ -329,9 +288,9 @@ E
 E         ...Full output truncated (5 lines hidden), use '-vv' to show
 
 test_generated.py:70: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_parse_dataset_with_version_line2 - AssertionEr...
-============================== 1 failed in 0.21s ==============================
+============================== 1 failed in 0.21s ===============================
 ```
 
 ### Code
@@ -380,17 +339,17 @@ def test_parse_dataset_with_version_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_369506_6n1owzo6
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_369506_ulo6sphw
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestSolution::test__web_fetch_classifier_input_line2 FAILED [100%]
 
-================================== FAILURES ===================================
-_____________ TestSolution.test__web_fetch_classifier_input_line2 _____________
+=================================== FAILURES ===================================
+_____________ TestSolution.test__web_fetch_classifier_input_line2 ______________
 
 self = <test_generated.TestSolution testMethod=test__web_fetch_classifier_input_line2>
 
@@ -401,9 +360,9 @@ E       AssertionError: '' != 'expected_output'
 E       + expected_output
 
 test_generated.py:42: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestSolution::test__web_fetch_classifier_input_line2
-============================== 1 failed in 0.21s ==============================
+============================== 1 failed in 0.22s ===============================
 ```
 
 ### Code
@@ -421,30 +380,28 @@ class TestSolution(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_263929_ik9xi8td
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_263929_nrh1dwvh
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
 test_generated.py:44: in <module>
     unittest.TextTestRunner().run(TestCase())
-C:\Program Files\Python312\Lib\unittest\runner.py:240: in run
+/usr/local/lib/python3.10/unittest/runner.py:184: in run
     test(result)
-C:\Program Files\Python312\Lib\unittest\case.py:690: in __call__
+/usr/local/lib/python3.10/unittest/case.py:650: in __call__
     return self.run(*args, **kwds)
-           ^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\case.py:611: in run
+/usr/local/lib/python3.10/unittest/case.py:569: in run
     testMethod = getattr(self, self._testMethodName)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E   AttributeError: 'TestCase' object has no attribute 'runTest'. Did you mean: 'subTest'?
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py - AttributeError: 'TestCase' object has no attribute ...
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.43s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.39s ===============================
 ```
 
 ### Code
@@ -459,62 +416,96 @@ class TestCase(unittest.TestCase):
         self.assertIsNotNone(result)
 unittest.TextTestRunner().run(TestCase())
 ```
----## TASK: 619902
-**STATUS:** Assertion Error
+---## TASK: 28838
+**STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_619902_rw2g69po
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_28838_vypnjxez
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
-test_generated.py::TestCase::test_truncate_filename_line2 FAILED         [100%]
+test_generated.py::test_clone_line2 FAILED                               [100%]
 
-================================== FAILURES ===================================
-____________________ TestCase.test_truncate_filename_line2 ____________________
+=================================== FAILURES ===================================
+_______________________________ test_clone_line2 _______________________________
 
-self = <test_generated.TestCase testMethod=test_truncate_filename_line2>
-
-    def test_truncate_filename_line2(self):
+    def test_clone_line2():
         solution = Solution()
->       self.assertEqual(solution.truncate_filename('long_file_name.ext', 15), 'long_fil...ext')
-E       AssertionError: 'long_fil....ext' != 'long_fil...ext'
-E       - long_fil....ext
-E       ?            -
-E       + long_fil...ext
+        sources = ['src/file1.txt', 'src/dir1']
+        output = 'dest'
+>       solution.clone(sources, output)
 
-test_generated.py:42: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestCase::test_truncate_filename_line2 - AssertionE...
-============================== 1 failed in 0.15s ==============================
+test_generated.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <under_test.Solution object at 0x7a894cc62b00>
+sources = ['src/file1.txt', 'src/dir1'], output = 'dest', force = False
+update = False, recursive = False, no_glob = False, no_cp = False
+
+    def clone(
+        self,
+        sources: list[str],
+        output: str,
+        force: bool = False,
+        update: bool = False,
+        recursive: bool = False,
+        no_glob: bool = False,
+        no_cp: bool = False,
+        *,
+        client_config=None,
+    ) -> None:
+        """
+        This command takes cloud path(s) and duplicates files and folders in
+        them into the dataset folder.
+        It also adds those files to a dataset in database, which is
+        created if doesn't exist yet
+        """
+        if not no_cp:
+>           self.cp(
+                sources,
+                output,
+                force=force,
+                update=update,
+                recursive=recursive,
+                no_glob=no_glob,
+                no_cp=no_cp,
+                client_config=client_config,
+            )
+E           AttributeError: 'Solution' object has no attribute 'cp'
+
+under_test.py:152: AttributeError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_clone_line2 - AttributeError: 'Solution' objec...
+============================== 1 failed in 0.36s ===============================
 ```
 
 ### Code
 ```python
-import unittest
+import os
 
-class TestCase(unittest.TestCase):
-
-    def test_truncate_filename_line2(self):
-        solution = Solution()
-        self.assertEqual(solution.truncate_filename('long_file_name.ext', 15), 'long_fil...ext')
+def test_clone_line2():
+    solution = Solution()
+    sources = ['src/file1.txt', 'src/dir1']
+    output = 'dest'
+    solution.clone(sources, output)
 ```
 ---## TASK: 597012
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_597012_2y260y2f
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_597012_30l5usho
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.18s =============================
 ```
 
 ### Code
@@ -537,34 +528,76 @@ class Solution:
                 raise ValueError(f'Unsupported argument type: {type(arg)}')
         return graph
 ```
+---## TASK: 619902
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_619902_vir6ve9w
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestCase::test_truncate_filename_line2 FAILED         [100%]
+
+=================================== FAILURES ===================================
+____________________ TestCase.test_truncate_filename_line2 _____________________
+
+self = <test_generated.TestCase testMethod=test_truncate_filename_line2>
+
+    def test_truncate_filename_line2(self):
+        solution = Solution()
+>       self.assertEqual(solution.truncate_filename('long_file_name.ext', 15), 'long_fil...ext')
+E       AssertionError: 'long_fil....ext' != 'long_fil...ext'
+E       - long_fil....ext
+E       ?            -
+E       + long_fil...ext
+
+test_generated.py:42: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestCase::test_truncate_filename_line2 - AssertionE...
+============================== 1 failed in 0.20s ===============================
+```
+
+### Code
+```python
+import unittest
+
+class TestCase(unittest.TestCase):
+
+    def test_truncate_filename_line2(self):
+        solution = Solution()
+        self.assertEqual(solution.truncate_filename('long_file_name.ext', 15), 'long_fil...ext')
+```
 ---## TASK: 363593
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_363593_i6fwg8ht
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_363593_39v3ymhi
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestNearVector::test_near_vector_basic_line2 FAILED   [100%]
 
-================================== FAILURES ===================================
-_________________ TestNearVector.test_near_vector_basic_line2 _________________
+=================================== FAILURES ===================================
+_________________ TestNearVector.test_near_vector_basic_line2 __________________
 
 self = <test_generated.TestNearVector testMethod=test_near_vector_basic_line2>
 
     def setUp(self):
 >       self.solution = Solution()
-                        ^^^^^^^^
 E       NameError: name 'Solution' is not defined
 
 test_generated.py:51: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestNearVector::test_near_vector_basic_line2 - Name...
-============================== 1 failed in 0.15s ==============================
+============================== 1 failed in 0.24s ===============================
 ```
 
 ### Code
@@ -597,14 +630,14 @@ class TestNearVector(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_438831_acpv45kz
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_438831_8to2esra
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.06s ============================
+============================ no tests ran in 0.19s =============================
 ```
 
 ### Code
@@ -619,22 +652,118 @@ class Solution:
         """Regex search across tracked files."""
         ...
 ```
+---## TASK: 889249
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_889249_q8k36xpx
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestCase::test__endpoint_config_info_line2 FAILED     [100%]
+
+=================================== FAILURES ===================================
+__________________ TestCase.test__endpoint_config_info_line2 ___________________
+
+self = <under_test.Solution object at 0x76b3d7b76740>
+endpoint_config_name = 'some_endpoint'
+
+    def _endpoint_config_info(self, endpoint_config_name: str) -> dict:
+        """Internal: Get the Endpoint Configuration information for the given endpoint config name.
+    
+        Args:
+            endpoint_config_name (str): The name of the endpoint configuration.
+    
+        Returns:
+            dict: The endpoint configuration details.
+        """
+    
+        # Retrieve the endpoint configuration
+        try:
+>           endpoint_config = self.sm_client.describe_endpoint_config(EndpointConfigName=endpoint_config_name)
+E           AttributeError: 'Solution' object has no attribute 'sm_client'
+
+under_test.py:57: AttributeError
+
+During handling of the above exception, another exception occurred:
+
+self = <test_generated.TestCase testMethod=test__endpoint_config_info_line2>
+
+    def test__endpoint_config_info_line2(self):
+>       result = self.solution._endpoint_config_info('some_endpoint')
+
+test_generated.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <under_test.Solution object at 0x76b3d7b76740>
+endpoint_config_name = 'some_endpoint'
+
+    def _endpoint_config_info(self, endpoint_config_name: str) -> dict:
+        """Internal: Get the Endpoint Configuration information for the given endpoint config name.
+    
+        Args:
+            endpoint_config_name (str): The name of the endpoint configuration.
+    
+        Returns:
+            dict: The endpoint configuration details.
+        """
+    
+        # Retrieve the endpoint configuration
+        try:
+            endpoint_config = self.sm_client.describe_endpoint_config(EndpointConfigName=endpoint_config_name)
+            production_variant = endpoint_config["ProductionVariants"][0]
+    
+            # Determine instance type or serverless configuration
+            instance_type = production_variant.get("InstanceType")
+            if instance_type is None:
+                # If no instance type, it's a serverless configuration
+                mem_size = production_variant["ServerlessConfig"]["MemorySizeInMB"]
+                concurrency = production_variant["ServerlessConfig"]["MaxConcurrency"]
+                instance_type = f"Serverless ({mem_size // 1024}GB/{concurrency})"
+    
+            return {"instance": instance_type, "variant": production_variant.get("VariantName", "-")}
+>       except self.sm_client.exceptions.ClientError as e:
+E       AttributeError: 'Solution' object has no attribute 'sm_client'
+
+under_test.py:69: AttributeError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestCase::test__endpoint_config_info_line2 - Attrib...
+============================== 1 failed in 0.76s ===============================
+```
+
+### Code
+```python
+import unittest
+
+class TestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.solution = Solution()
+
+    def test__endpoint_config_info_line2(self):
+        result = self.solution._endpoint_config_info('some_endpoint')
+        self.assertIsInstance(result, dict)
+```
 ---## TASK: 477443
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_477443_kik0ch7e
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_477443_le3419ml
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_check_sizes_line2 FAILED                         [100%]
 
-================================== FAILURES ===================================
-___________________________ test_check_sizes_line2 ____________________________
+=================================== FAILURES ===================================
+____________________________ test_check_sizes_line2 ____________________________
 
     def test_check_sizes_line2():
         solution = Solution()
@@ -643,26 +772,24 @@ ___________________________ test_check_sizes_line2 ____________________________
         check_obj = CheckObj()
         check_obj.get_size = lambda x: 2
 >       result = solution.check_sizes(check_obj, schema)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:63: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.Solution object at 0x000001CA9E609A60>
-check_obj = <test_generated.CheckObj object at 0x000001CA9E608050>
-schema = <test_generated.DataArraySchema object at 0x000001CA9E6080E0>
+self = <test_generated.Solution object at 0x7f56df86bf10>
+check_obj = <test_generated.CheckObj object at 0x7f56df86bfd0>
+schema = <test_generated.DataArraySchema object at 0x7f56df86bf70>
 
     def check_sizes(self, check_obj: CheckObj, schema: DataArraySchema) -> List[CoreCheckResult]:
         results = []
         for dim in schema.dimensions:
 >           if dim.size() != check_obj.get_size(dim):
-               ^^^^^^^^
 E           AttributeError: 'dict' object has no attribute 'size'
 
 test_generated.py:53: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_check_sizes_line2 - AttributeError: 'dict' obj...
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.34s ===============================
 ```
 
 ### Code
@@ -703,14 +830,14 @@ def test_check_sizes_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_44008_9dix6ike
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_44008_k31m8f53
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.14s ============================
+============================ no tests ran in 0.19s =============================
 ```
 
 ### Code
@@ -743,162 +870,58 @@ class Solution:
         except Exception as e:
             print(f'Error processing {file}: {e}')
 ```
----## TASK: 569517
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_569517_0tkq12kj
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestSolution::test_parse_allowed_modules_line2 FAILED [100%]
-
-================================== FAILURES ===================================
-________________ TestSolution.test_parse_allowed_modules_line2 ________________
-
-self = <test_generated.TestSolution testMethod=test_parse_allowed_modules_line2>
-
-    def test_parse_allowed_modules_line2(self):
-        solution = Solution()
-        cfg = {'allowed': ['math', 'sys']}
-        result = solution._parse_allowed_modules(cfg)
->       self.assertEqual(result, {'math', 'sys'})
-E       AssertionError: None != {'sys', 'math'}
-
-test_generated.py:44: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestSolution::test_parse_allowed_modules_line2 - As...
-============================== 1 failed in 0.17s ==============================
-```
-
-### Code
-```python
-import unittest
-
-class TestSolution(unittest.TestCase):
-
-    def test_parse_allowed_modules_line2(self):
-        solution = Solution()
-        cfg = {'allowed': ['math', 'sys']}
-        result = solution._parse_allowed_modules(cfg)
-        self.assertEqual(result, {'math', 'sys'})
-```
----## TASK: 889249
+---## TASK: 354515
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_889249_dxx07gku
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
+rootdir: /tmp/eval_354515_h9o4hhv5
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
 
-test_generated.py::TestCase::test__endpoint_config_info_line2 FAILED     [100%]
-
-================================== FAILURES ===================================
-__________________ TestCase.test__endpoint_config_info_line2 __________________
-
-self = <under_test.Solution object at 0x000001DF1386ECF0>
-endpoint_config_name = 'some_endpoint'
-
-    def _endpoint_config_info(self, endpoint_config_name: str) -> dict:
-        """Internal: Get the Endpoint Configuration information for the given endpoint config name.
-    
-        Args:
-            endpoint_config_name (str): The name of the endpoint configuration.
-    
-        Returns:
-            dict: The endpoint configuration details.
-        """
-    
-        # Retrieve the endpoint configuration
-        try:
->           endpoint_config = self.sm_client.describe_endpoint_config(EndpointConfigName=endpoint_config_name)
-                              ^^^^^^^^^^^^^^
-E           AttributeError: 'Solution' object has no attribute 'sm_client'
-
-under_test.py:57: AttributeError
-
-During handling of the above exception, another exception occurred:
-
-self = <test_generated.TestCase testMethod=test__endpoint_config_info_line2>
-
-    def test__endpoint_config_info_line2(self):
->       result = self.solution._endpoint_config_info('some_endpoint')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-test_generated.py:44: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = <under_test.Solution object at 0x000001DF1386ECF0>
-endpoint_config_name = 'some_endpoint'
-
-    def _endpoint_config_info(self, endpoint_config_name: str) -> dict:
-        """Internal: Get the Endpoint Configuration information for the given endpoint config name.
-    
-        Args:
-            endpoint_config_name (str): The name of the endpoint configuration.
-    
-        Returns:
-            dict: The endpoint configuration details.
-        """
-    
-        # Retrieve the endpoint configuration
-        try:
-            endpoint_config = self.sm_client.describe_endpoint_config(EndpointConfigName=endpoint_config_name)
-            production_variant = endpoint_config["ProductionVariants"][0]
-    
-            # Determine instance type or serverless configuration
-            instance_type = production_variant.get("InstanceType")
-            if instance_type is None:
-                # If no instance type, it's a serverless configuration
-                mem_size = production_variant["ServerlessConfig"]["MemorySizeInMB"]
-                concurrency = production_variant["ServerlessConfig"]["MaxConcurrency"]
-                instance_type = f"Serverless ({mem_size // 1024}GB/{concurrency})"
-    
-            return {"instance": instance_type, "variant": production_variant.get("VariantName", "-")}
->       except self.sm_client.exceptions.ClientError as e:
-               ^^^^^^^^^^^^^^
-E       AttributeError: 'Solution' object has no attribute 'sm_client'
-
-under_test.py:69: AttributeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestCase::test__endpoint_config_info_line2 - Attrib...
-============================== 1 failed in 1.23s ==============================
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_354515_h9o4hhv5/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:37: in <module>
+    from sklearn.linear_model import LinearRegression
+E   ModuleNotFoundError: No module named 'sklearn'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.67s ===============================
 ```
 
 ### Code
 ```python
 import unittest
+from sklearn.linear_model import LinearRegression
 
-class TestCase(unittest.TestCase):
+class TestIsFitted(unittest.TestCase):
 
-    def setUp(self):
-        self.solution = Solution()
-
-    def test__endpoint_config_info_line2(self):
-        result = self.solution._endpoint_config_info('some_endpoint')
-        self.assertIsInstance(result, dict)
+    def test_is_fitted_line2(self):
+        model = LinearRegression().fit(X_train, y_train)
+        self.assertTrue(model._is_fitted())
 ```
 ---## TASK: 744950
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_744950_ornaavde
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_744950_e8ej2hb7
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.36s ============================
+============================ no tests ran in 0.33s =============================
 ```
 
 ### Code
@@ -926,22 +949,108 @@ class Solution:
                 return candidate
         return ''
 ```
+---## TASK: 569517
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_569517_0cxfc4p8
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestSolution::test_parse_allowed_modules_line2 FAILED [100%]
+
+=================================== FAILURES ===================================
+________________ TestSolution.test_parse_allowed_modules_line2 _________________
+
+self = <test_generated.TestSolution testMethod=test_parse_allowed_modules_line2>
+
+    def test_parse_allowed_modules_line2(self):
+        solution = Solution()
+        cfg = {'allowed': ['math', 'sys']}
+        result = solution._parse_allowed_modules(cfg)
+>       self.assertEqual(result, {'math', 'sys'})
+E       AssertionError: None != {'math', 'sys'}
+
+test_generated.py:44: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestSolution::test_parse_allowed_modules_line2 - As...
+============================== 1 failed in 0.19s ===============================
+```
+
+### Code
+```python
+import unittest
+
+class TestSolution(unittest.TestCase):
+
+    def test_parse_allowed_modules_line2(self):
+        solution = Solution()
+        cfg = {'allowed': ['math', 'sys']}
+        result = solution._parse_allowed_modules(cfg)
+        self.assertEqual(result, {'math', 'sys'})
+```
+---## TASK: 417714
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_417714_rlhrt7nv
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.16s =============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import Type, Any
+from unittest.mock import MagicMock
+
+class BaseCheckBackend(MagicMock):
+    pass
+
+class CheckBackend(BaseCheckBackend):
+    pass
+
+class MyClass:
+
+    def __init__(self):
+        self.registered_backends = {}
+
+class Solution:
+
+    def test_line2(self, cls, type_: Type, backend: Type[BaseCheckBackend], *, force: bool=False):
+        """Register a backend for the specified type."""
+        if type_ not in self.registered_backends:
+            self.registered_backends[type_] = {'backend': backend, 'force': force}
+        elif not force:
+            raise ValueError(f'Type {type_} already has a registered backend')
+```
 ---## TASK: 386077
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_386077_a6qklmr8
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_386077_86z35iwc
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_format_to_v2_records_line2 FAILED                [100%]
 
-================================== FAILURES ===================================
-_______________________ test_format_to_v2_records_line2 _______________________
+=================================== FAILURES ===================================
+_______________________ test_format_to_v2_records_line2 ________________________
 
     def test_format_to_v2_records_line2():
         solution = Solution()
@@ -973,9 +1082,9 @@ E       assert 0 == 1
 E        +  where 0 = len([])
 
 test_generated.py:91: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_format_to_v2_records_line2 - assert 0 == 1
-============================== 1 failed in 0.44s ==============================
+============================== 1 failed in 0.37s ===============================
 ```
 
 ### Code
@@ -1044,74 +1153,31 @@ def test_format_to_v2_records_line2():
     assert output_fallback[0]['x2'] == 100
     assert output_fallback[0]['y2'] == 200
 ```
----## TASK: 417714
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_417714_iku2z74m
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.07s ============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import Type, Any
-from unittest.mock import MagicMock
-
-class BaseCheckBackend(MagicMock):
-    pass
-
-class CheckBackend(BaseCheckBackend):
-    pass
-
-class MyClass:
-
-    def __init__(self):
-        self.registered_backends = {}
-
-class Solution:
-
-    def test_line2(self, cls, type_: Type, backend: Type[BaseCheckBackend], *, force: bool=False):
-        """Register a backend for the specified type."""
-        if type_ not in self.registered_backends:
-            self.registered_backends[type_] = {'backend': backend, 'force': force}
-        elif not force:
-            raise ValueError(f'Type {type_} already has a registered backend')
-```
 ---## TASK: 748715
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_748715_xx5me0_t
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_748715_6simly67
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__index_device_tokens_line2 FAILED                [100%]
 
-================================== FAILURES ===================================
-_______________________ test__index_device_tokens_line2 _______________________
+=================================== FAILURES ===================================
+_______________________ test__index_device_tokens_line2 ________________________
 
     def test__index_device_tokens_line2():
         solution = Solution()
 >       result = solution._index_device_tokens()
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:38: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x0000016E03399730>
+self = <under_test.Solution object at 0x71e08ef04250>
 
     def _index_device_tokens(self):
         """Map each device-scoped chunk's device id to the query tokens that
@@ -1124,13 +1190,12 @@ self = <under_test.Solution object at 0x0000016E03399730>
         """
         self._device_tokens = {}
 >       for d in self.docs:
-                 ^^^^^^^^^
 E       AttributeError: 'Solution' object has no attribute 'docs'
 
 under_test.py:27: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__index_device_tokens_line2 - AttributeError: '...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.16s ===============================
 ```
 
 ### Code
@@ -1145,40 +1210,28 @@ def test__index_device_tokens_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_696476_v3ohctyi
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_696476_z57fdi1m
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestSolution::test_set_batch_mode_line2 FAILED        [100%]
 
-================================== FAILURES ===================================
-___________________ TestSolution.test_set_batch_mode_line2 ____________________
+=================================== FAILURES ===================================
+____________________ TestSolution.test_set_batch_mode_line2 ____________________
 
 self = <test_generated.TestSolution testMethod=test_set_batch_mode_line2>
 
     def test_set_batch_mode_line2(self):
-        sol = Solution()
->       sol.set_batch_mode('window_1', 'active')
+>       sol = Solution()
+E       NameError: name 'Solution' is not defined
 
-test_generated.py:42: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = <under_test.Solution object at 0x000001796C22F380>
-window_id = 'window_1', mode = 'active'
-
-    def set_batch_mode(self, window_id: str, mode: str) -> None:
-        """Set batch mode for a window."""
->       if mode not in BATCH_MODES:
-                       ^^^^^^^^^^^
-E       NameError: name 'BATCH_MODES' is not defined
-
-under_test.py:25: NameError
-=========================== short test summary info ===========================
+test_generated.py:41: NameError
+=========================== short test summary info ============================
 FAILED test_generated.py::TestSolution::test_set_batch_mode_line2 - NameError...
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.17s ===============================
 ```
 
 ### Code
@@ -1191,102 +1244,48 @@ class TestSolution(unittest.TestCase):
         sol = Solution()
         sol.set_batch_mode('window_1', 'active')
 ```
----## TASK: 483781
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_483781_hx32qf0u
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test__agent_integrity_status_line2 FAILED             [100%]
-
-================================== FAILURES ===================================
-_____________________ test__agent_integrity_status_line2 ______________________
-
-    def test__agent_integrity_status_line2():
->       sol = Solution()
-              ^^^^^^^^
-E       NameError: name 'Solution' is not defined
-
-test_generated.py:37: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test__agent_integrity_status_line2 - NameError: nam...
-============================== 1 failed in 0.17s ==============================
-```
-
-### Code
-```python
-def test__agent_integrity_status_line2():
-    sol = Solution()
-    sol._agent_integrity_status('dev1', 'sha1_canonical', 'ver1')
-```
 ---## TASK: 420569
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_420569_9jqze7nq
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_420569_9oaxtcay
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestLoad::test_load_line2 FAILED                      [100%]
 
-================================== FAILURES ===================================
-__________________________ TestLoad.test_load_line2 ___________________________
-C:\Program Files\Python312\Lib\unittest\mock.py:1393: in patched
+=================================== FAILURES ===================================
+___________________________ TestLoad.test_load_line2 ___________________________
+/usr/local/lib/python3.10/unittest/mock.py:1376: in patched
     with self.decoration_helper(patched,
-C:\Program Files\Python312\Lib\contextlib.py:137: in __enter__
+/usr/local/lib/python3.10/contextlib.py:135: in __enter__
     return next(self.gen)
-           ^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1375: in decoration_helper
+/usr/local/lib/python3.10/unittest/mock.py:1358: in decoration_helper
     arg = exit_stack.enter_context(patching)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\contextlib.py:526: in enter_context
-    result = _enter(cm)
-             ^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
+/usr/local/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
     self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-name = 'libertem', package = None
+target = 'libertem.io.jobexecutor'
 
-    def import_module(name, package=None):
-        """Import a module.
-    
-        The 'package' argument is required when performing a relative import. It
-        specifies the package to use as the anchor point from which to resolve the
-        relative import to an absolute import.
-    
-        """
-        level = 0
-        if name.startswith('.'):
-            if not package:
-                raise TypeError("the 'package' argument is required to perform a "
-                                f"relative import for {name!r}")
-            for character in name:
-                if character != '.':
-                    break
-                level += 1
->       return _bootstrap._gcd_import(name[level:], package, level)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
 E       ModuleNotFoundError: No module named 'libertem'
 
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: ModuleNotFoundError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+=========================== short test summary info ============================
 FAILED test_generated.py::TestLoad::test_load_line2 - ModuleNotFoundError: No...
-============================== 1 failed in 0.48s ==============================
+============================== 1 failed in 0.59s ===============================
 ```
 
 ### Code
@@ -1301,34 +1300,216 @@ class TestLoad(unittest.TestCase):
     def test_load_line2(self, mock_filetypes, mock_job_executor):
         self.assertEqual(Solution().load('hdf5', executor=mock_job_executor(), enable_async=True), None)
 ```
+---## TASK: 93269
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_93269_fdtdzow_
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_fit_line2 FAILED                                 [100%]
+
+=================================== FAILURES ===================================
+________________________________ test_fit_line2 ________________________________
+
+    def test_fit_line2():
+        from unittest.mock import MagicMock
+        import pandas as pd
+        import numpy as np
+        solution = MagicMock(spec=Solution)
+        ids = ['id1', 'id2']
+        y_true = np.array([1.0, 2.0])
+        predictions = np.array([0.5, 1.5])
+        prediction_std = np.array([0.1, 0.2])
+        result = solution.fit(ids, y_true, predictions, prediction_std)
+>       assert isinstance(result, Solution), f'Expected {Solution}, got {type(result)}'
+E       AssertionError: Expected <class 'under_test.Solution'>, got <class 'unittest.mock.MagicMock'>
+E       assert False
+E        +  where False = isinstance(<MagicMock name='mock.fit()' id='137873055576560'>, Solution)
+
+test_generated.py:46: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_fit_line2 - AssertionError: Expected <class 'u...
+============================== 1 failed in 0.73s ===============================
+```
+
+### Code
+```python
+def test_fit_line2():
+    from unittest.mock import MagicMock
+    import pandas as pd
+    import numpy as np
+    solution = MagicMock(spec=Solution)
+    ids = ['id1', 'id2']
+    y_true = np.array([1.0, 2.0])
+    predictions = np.array([0.5, 1.5])
+    prediction_std = np.array([0.1, 0.2])
+    result = solution.fit(ids, y_true, predictions, prediction_std)
+    assert isinstance(result, Solution), f'Expected {Solution}, got {type(result)}'
+```
+---## TASK: 277653
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_277653_9tw5pi8o
+plugins: cov-5.0.0
+collecting ... collected 4 items
+
+test_generated.py::TestHighGradients::test_high_gradients_line2 FAILED   [ 25%]
+test_generated.py::test_high_gradients_implementation_line2 FAILED       [ 50%]
+test_generated.py::test_invalid_input_line2 FAILED                       [ 75%]
+test_generated.py::test_verbose_parameter_line2 FAILED                   [100%]
+
+=================================== FAILURES ===================================
+_________________ TestHighGradients.test_high_gradients_line2 __________________
+/usr/local/lib/python3.10/unittest/mock.py:1376: in patched
+    with self.decoration_helper(patched,
+/usr/local/lib/python3.10/contextlib.py:135: in __enter__
+    return next(self.gen)
+/usr/local/lib/python3.10/unittest/mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+/usr/local/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/local/lib/python3.10/unittest/mock.py:1447: in __enter__
+    original, local = self.get_original()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <unittest.mock._patch object at 0x76f667ab4f40>
+
+    def get_original(self):
+        target = self.getter()
+        name = self.attribute
+    
+        original = DEFAULT
+        local = False
+    
+        try:
+            original = target.__dict__[name]
+        except (AttributeError, KeyError):
+            original = getattr(target, name, DEFAULT)
+        else:
+            local = True
+    
+        if name in _builtins and isinstance(target, ModuleType):
+            self.create = True
+    
+        if not self.create and original is DEFAULT:
+>           raise AttributeError(
+                "%s does not have the attribute %r" % (target, name)
+            )
+E           AttributeError: <module 'pytest.__main__' from '/usr/local/lib/python3.10/site-packages/pytest/__main__.py'> does not have the attribute 'Solution'
+
+/usr/local/lib/python3.10/unittest/mock.py:1420: AttributeError
+___________________ test_high_gradients_implementation_line2 ___________________
+
+mock_high_gradients = <MagicMock name='high_gradients' id='130800665694640'>
+
+    @patch.object(Solution, 'high_gradients', return_value=[1, 2])
+    def test_high_gradients_implementation_line2(mock_high_gradients):
+        obj = Solution()
+        result = obj.high_gradients(1.0, 0.5)
+>       self.assertEqual(result, [1, 2])
+E       NameError: name 'self' is not defined
+
+test_generated.py:51: NameError
+___________________________ test_invalid_input_line2 ___________________________
+
+mock_high_gradients = <MagicMock name='high_gradients' id='130800065067616'>
+
+    @patch.object(Solution, 'high_gradients', side_effect=ValueError('Invalid input'))
+    def test_invalid_input_line2(mock_high_gradients):
+        obj = Solution()
+>       with self.assertRaises(ValueError):
+E       NameError: name 'self' is not defined
+
+test_generated.py:56: NameError
+_________________________ test_verbose_parameter_line2 _________________________
+
+mock_high_gradients = <MagicMock name='high_gradients' id='130800063732832'>
+
+    @patch.object(Solution, 'high_gradients', return_value=['details'])
+    def test_verbose_parameter_line2(mock_high_gradients):
+        obj = Solution()
+        result = obj.high_gradients(1.0, 0.5, False)
+>       self.assertFalse(result)
+E       NameError: name 'self' is not defined
+
+test_generated.py:63: NameError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestHighGradients::test_high_gradients_line2 - Attr...
+FAILED test_generated.py::test_high_gradients_implementation_line2 - NameErro...
+FAILED test_generated.py::test_invalid_input_line2 - NameError: name 'self' i...
+FAILED test_generated.py::test_verbose_parameter_line2 - NameError: name 'sel...
+============================== 4 failed in 0.97s ===============================
+```
+
+### Code
+```python
+import unittest
+from unittest.mock import patch
+
+class TestHighGradients(unittest.TestCase):
+
+    @patch('__main__.Solution')
+    def test_high_gradients_line2(self, mock_solution):
+        obj = mock_solution.return_value
+        result = obj.high_gradients(1.0, 0.5)
+        self.assertIsInstance(result, list)
+
+@patch.object(Solution, 'high_gradients', return_value=[1, 2])
+def test_high_gradients_implementation_line2(mock_high_gradients):
+    obj = Solution()
+    result = obj.high_gradients(1.0, 0.5)
+    self.assertEqual(result, [1, 2])
+
+@patch.object(Solution, 'high_gradients', side_effect=ValueError('Invalid input'))
+def test_invalid_input_line2(mock_high_gradients):
+    obj = Solution()
+    with self.assertRaises(ValueError):
+        obj.high_gradients('not_a_float', 0.5)
+
+@patch.object(Solution, 'high_gradients', return_value=['details'])
+def test_verbose_parameter_line2(mock_high_gradients):
+    obj = Solution()
+    result = obj.high_gradients(1.0, 0.5, False)
+    self.assertFalse(result)
+```
 ---## TASK: 572070
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_572070_fgtkerwm
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_572070_esgcpffb
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_isfile_line2 FAILED                    [100%]
 
-================================== FAILURES ===================================
-_________________________ TestCase.test_isfile_line2 __________________________
+=================================== FAILURES ===================================
+__________________________ TestCase.test_isfile_line2 __________________________
 
-self = <test_generated.TestCase object at 0x000001C9AD19B1A0>
+self = <test_generated.TestCase object at 0x7d12c81d60e0>
 
     def test_isfile_line2(self):
 >       self.fs.create_file('/a/b/c.txt')
-        ^^^^^^^
 E       AttributeError: 'TestCase' object has no attribute 'fs'
 
 test_generated.py:73: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_isfile_line2 - AttributeError: 'Test...
-============================== 1 failed in 0.24s ==============================
+============================== 1 failed in 0.17s ===============================
 ```
 
 ### Code
@@ -1373,19 +1554,69 @@ class TestCase:
         self.fs.create_file('/a/b/c.txt')
         assert self.isfile(self.fs, '/a/b/c.txt') == True
 ```
+---## TASK: 483781
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_483781_9pi6e8_d
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test__agent_integrity_status_line2 FAILED             [100%]
+
+=================================== FAILURES ===================================
+______________________ test__agent_integrity_status_line2 ______________________
+
+    def test__agent_integrity_status_line2():
+        sol = Solution()
+>       sol._agent_integrity_status('dev1', 'sha1_canonical', 'ver1')
+
+test_generated.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <under_test.Solution object at 0x7078b370b610>, dev = 'dev1'
+canonical_sha = 'sha1_canonical', canonical_ver = 'ver1'
+
+    def _agent_integrity_status(self, dev, canonical_sha, canonical_ver):
+        """Per-device agent integrity verdict against the canonical served binary.
+    
+        - 'verified': the agent's self-reported hash equals the canonical hash.
+        - 'mismatch': the agent claims the current version but reports a DIFFERENT
+          hash — tamper, corruption, or a partial update. A security signal.
+        - 'unknown': no reported hash yet, or the agent is on a different version
+          (we only hold the canonical hash for the currently-published agent)."""
+>       reported = (dev.get('agent_sha256') or '').lower()
+E       AttributeError: 'str' object has no attribute 'get'
+
+under_test.py:201: AttributeError
+=========================== short test summary info ============================
+FAILED test_generated.py::test__agent_integrity_status_line2 - AttributeError...
+============================== 1 failed in 0.27s ===============================
+```
+
+### Code
+```python
+def test__agent_integrity_status_line2():
+    sol = Solution()
+    sol._agent_integrity_status('dev1', 'sha1_canonical', 'ver1')
+```
 ---## TASK: 799291
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_799291_3bj437sy
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_799291_80qgk1ud
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.15s ============================
+============================ no tests ran in 0.23s =============================
 ```
 
 ### Code
@@ -1414,7 +1645,7 @@ class Solution:
     def test_line2(self, obj: Any) -> dict[str, Any]:
         """Our version of `attrs.asdict`, so we can call back to us."""
         result = {}
-        for attr_name, value in asdict(obj).items():
+        for (attr_name, value) in asdict(obj).items():
             result[attr_name] = value
         return result
 ```
@@ -1423,14 +1654,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_876360_0cfu_87e
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_876360_03q_vhfv
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.29s ============================
+============================ no tests ran in 0.20s =============================
 ```
 
 ### Code
@@ -1444,67 +1675,22 @@ class Solution:
         self.name = 'UDF'
         return self.name
 ```
----## TASK: 93269
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_93269_nwdoeupd
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_fit_line2 FAILED                                 [100%]
-
-================================== FAILURES ===================================
-_______________________________ test_fit_line2 ________________________________
-
-    def test_fit_line2():
-        from unittest.mock import MagicMock
-        import pandas as pd
-        import numpy as np
->       solution = MagicMock(spec=Solution)
-                                  ^^^^^^^^
-E       NameError: name 'Solution' is not defined
-
-test_generated.py:40: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_fit_line2 - NameError: name 'Solution' is not ...
-============================== 1 failed in 1.13s ==============================
-```
-
-### Code
-```python
-def test_fit_line2():
-    from unittest.mock import MagicMock
-    import pandas as pd
-    import numpy as np
-    solution = MagicMock(spec=Solution)
-    ids = ['id1', 'id2']
-    y_true = np.array([1.0, 2.0])
-    predictions = np.array([0.5, 1.5])
-    prediction_std = np.array([0.1, 0.2])
-    result = solution.fit(ids, y_true, predictions, prediction_std)
-    assert isinstance(result, Solution), f'Expected {Solution}, got {type(result)}'
-```
 ---## TASK: 62481
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_62481_1oe3vfwy
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_62481_bcwahw_1
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_reput_alarm_with_description_line2 FAILED [100%]
 
-================================== FAILURES ===================================
-______________ TestCase.test_reput_alarm_with_description_line2 _______________
+=================================== FAILURES ===================================
+_______________ TestCase.test_reput_alarm_with_description_line2 _______________
 
 self = <test_generated.TestCase testMethod=test_reput_alarm_with_description_line2>
 
@@ -1513,9 +1699,9 @@ self = <test_generated.TestCase testMethod=test_reput_alarm_with_description_lin
 >       solution._reput_alarm_with_description(self.cw, self.alarm, self.description)
 
 test_generated.py:47: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x0000016797E297C0>, cw = 'config'
+self = <under_test.Solution object at 0x7a81f86f11b0>, cw = 'config'
 alarm = {'alarmName': 'my-alarm', 'description': 'old-description', 'stateValue': 'ALARM'}
 description = 'new-description'
 
@@ -1551,13 +1737,12 @@ description = 'new-description'
         kwargs = {k: alarm[k] for k in passthrough_keys if k in alarm}
         kwargs["AlarmDescription"] = description
 >       cw.put_metric_alarm(**kwargs)
-        ^^^^^^^^^^^^^^^^^^^
 E       AttributeError: 'str' object has no attribute 'put_metric_alarm'
 
 under_test.py:52: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_reput_alarm_with_description_line2
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.16s ===============================
 ```
 
 ### Code
@@ -1580,28 +1765,27 @@ class TestCase(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_342521_m1xrh5kw
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_342521_t_3ou4zo
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_init_tables_line2 FAILED                         [100%]
 
-================================== FAILURES ===================================
-___________________________ test_init_tables_line2 ____________________________
+=================================== FAILURES ===================================
+____________________________ test_init_tables_line2 ____________________________
 
     def test_init_tables_line2():
         soln = Solution()
 >       soln.some_method()
-        ^^^^^^^^^^^^^^^^
 E       AttributeError: 'Solution' object has no attribute 'some_method'
 
 test_generated.py:67: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_init_tables_line2 - AttributeError: 'Solution'...
-============================== 1 failed in 0.54s ==============================
+============================== 1 failed in 0.49s ===============================
 ```
 
 ### Code
@@ -1639,57 +1823,22 @@ def test_init_tables_line2():
     soln = Solution()
     soln.some_method()
 ```
----## TASK: 81316
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_81316_7qh7dq8x
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.40s ============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import Dict, Any, Optional
-
-class Solution:
-
-    def test_line2(self, schema: Dict[str, Any]) -> str:
-        """Format the db_schema dict into a concise text block for the LLM."""
-        result = ''
-        for key, value in schema.items():
-            if isinstance(value, dict):
-                result += f'  {key}: {{\n'
-                self.describe_schema(value)
-                result += '}\n'
-            else:
-                result += f'{key}: {value}\n'
-        return result
-```
 ---## TASK: 159066
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_159066_ktt18e8h
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_159066_pek0hqfp
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__walk_filesystem_line2 FAILED                    [100%]
 
-================================== FAILURES ===================================
-_________________________ test__walk_filesystem_line2 _________________________
+=================================== FAILURES ===================================
+_________________________ test__walk_filesystem_line2 __________________________
 
     def test__walk_filesystem_line2():
         from unittest.mock import patch, MagicMock
@@ -1708,9 +1857,9 @@ E             -     '/tmp/file2.txt',
 E             - ]
 
 test_generated.py:56: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__walk_filesystem_line2 - AssertionError: asser...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.19s ===============================
 ```
 
 ### Code
@@ -1737,96 +1886,86 @@ def test__walk_filesystem_line2():
         solution = Solution()
         assert solution._walk_filesystem(Path('/tmp')) == ['/tmp/file1.txt', '/tmp/file2.txt']
 ```
----## TASK: 263706
+---## TASK: 81316
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_263706_uo0yenmb
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_81316_woghois9
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.41s ============================
+============================ no tests ran in 0.36s =============================
 ```
 
 ### Code
 ```python
-import json
+import sys
+sys.path.append('.')
+from typing import Dict, Any, Optional
 
 class Solution:
 
-    def test_line2(self, val):
-        """Convert a single database value to a JSON-serializable type."""
-        if isinstance(val, str):
-            return val.strip().lower()
-        elif isinstance(val, bool):
-            return val
-        else:
-            try:
-                return json.loads(val)
-            except (TypeError, ValueError):
-                return None
+    def test_line2(self, schema: Dict[str, Any]) -> str:
+        """Format the db_schema dict into a concise text block for the LLM."""
+        result = ''
+        for (key, value) in schema.items():
+            if isinstance(value, dict):
+                result += f'  {key}: {{\n'
+                self.describe_schema(value)
+                result += '}\n'
+            else:
+                result += f'{key}: {value}\n'
+        return result
 ```
----## TASK: 354515
+---## TASK: 1556
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_354515_fz_g3qa6
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
+rootdir: /tmp/eval_1556_v6zg_1qu
+plugins: cov-5.0.0
+collecting ... collected 0 items
 
-test_generated.py::TestIsFitted::test_is_fitted_line2 FAILED             [100%]
-
-================================== FAILURES ===================================
-______________________ TestIsFitted.test_is_fitted_line2 ______________________
-
-self = <test_generated.TestIsFitted testMethod=test_is_fitted_line2>
-
-    def test_is_fitted_line2(self):
->       model = LinearRegression().fit(X_train, y_train)
-                                       ^^^^^^^
-E       NameError: name 'X_train' is not defined
-
-test_generated.py:42: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestIsFitted::test_is_fitted_line2 - NameError: nam...
-============================== 1 failed in 3.43s ==============================
+============================ no tests ran in 0.61s =============================
 ```
 
 ### Code
 ```python
-import unittest
-from sklearn.linear_model import LinearRegression
+import math
 
-class TestIsFitted(unittest.TestCase):
+class Solution:
 
-    def test_is_fitted_line2(self):
-        model = LinearRegression().fit(X_train, y_train)
-        self.assertTrue(model._is_fitted())
+    def test_line2(self, subnormals):
+        """Test IEEE 754 subnormal numbers"""
+        for s in subnormals:
+            if s < 0:
+                continue
+            if abs(s) <= 0.5 * sys.float_info.epsilon:
+                print('Subnormal number found:', s)
 ```
 ---## TASK: 221596
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_221596_wft31e4f
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_221596_bt4mmsbs
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_excel_column_name_line2 FAILED                   [100%]
 
-================================== FAILURES ===================================
-________________________ test_excel_column_name_line2 _________________________
+=================================== FAILURES ===================================
+_________________________ test_excel_column_name_line2 _________________________
 
     def test_excel_column_name_line2():
         solution = Solution()
@@ -1836,9 +1975,9 @@ E
 E         - A
 
 test_generated.py:63: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_excel_column_name_line2 - AssertionError: asse...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.19s ===============================
 ```
 
 ### Code
@@ -1878,74 +2017,76 @@ def test_excel_column_name_line2():
     assert solution._excel_column_name(703) == 'ZZ'
     assert solution._excel_column_name(704) == 'AAA'
 ```
----## TASK: 1556
+---## TASK: 263706
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_1556_7u489g99
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_263706_5u19q3q2
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.97s ============================
+============================ no tests ran in 0.35s =============================
 ```
 
 ### Code
 ```python
-import math
+import json
 
 class Solution:
 
-    def test_line2(self, subnormals):
-        """Test IEEE 754 subnormal numbers"""
-        for s in subnormals:
-            if s < 0:
-                continue
-            if abs(s) <= 0.5 * sys.float_info.epsilon:
-                print('Subnormal number found:', s)
+    def test_line2(self, val):
+        """Convert a single database value to a JSON-serializable type."""
+        if isinstance(val, str):
+            return val.strip().lower()
+        elif isinstance(val, bool):
+            return val
+        else:
+            try:
+                return json.loads(val)
+            except (TypeError, ValueError):
+                return None
 ```
 ---## TASK: 188702
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_188702_mqrbnp3u
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_188702_t9k_3hpt
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestSolution::test_apply_filter_line2 FAILED          [100%]
 
-================================== FAILURES ===================================
-____________________ TestSolution.test_apply_filter_line2 _____________________
+=================================== FAILURES ===================================
+_____________________ TestSolution.test_apply_filter_line2 _____________________
 
 self = <test_generated.TestSolution testMethod=test_apply_filter_line2>
 
     def test_apply_filter_line2(self):
 >       self.assertEqual(self.solution.apply_filter(''), None)
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:44: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x00000243B4DAF410>, query = ''
+self = <under_test.Solution object at 0x77d2710f71c0>, query = ''
 
     def apply_filter(self, query: str) -> None:
         """Filter visible rows by query. Empty string restores all tracks."""
         self._filter_text = query.strip().lower()
 >       if self._filter_timer is not None:
-           ^^^^^^^^^^^^^^^^^^
 E       AttributeError: 'Solution' object has no attribute '_filter_timer'. Did you mean: '_filter_text'?
 
 under_test.py:76: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestSolution::test_apply_filter_line2 - AttributeEr...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.21s ===============================
 ```
 
 ### Code
@@ -1965,14 +2106,14 @@ class TestSolution(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_860300_7l8ryub_
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_860300_e3f9lijf
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.18s =============================
 ```
 
 ### Code
@@ -1996,37 +2137,71 @@ class Solution:
         if ids is not None and where is not None and (new_metadata is not None):
             for id_ in ids:
                 for item in self.data:
-                    if all((where.get(k) == v for k, v in item.items() if k in where)):
+                    if all((where.get(k) == v for (k, v) in item.items() if k in where)):
                         item.update(new_metadata)
                         break
+```
+---## TASK: 611297
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_611297_dl7rrwz4
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.15s =============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('..')
+from typing import List
+
+class Solution:
+
+    def test_line2(self, string, slice_length):
+        """Iterate over slices of a string."""
+        result = []
+        start = 0
+        while True:
+            end = start + slice_length
+            if end > len(string):
+                break
+            result.append(string[start:end])
+            start += slice_length
+        return result
 ```
 ---## TASK: 65936
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_65936_9h_d5rj0
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_65936_7cz44ikd
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_resolve_max_output_tokens_line2 FAILED           [100%]
 
-================================== FAILURES ===================================
-____________________ test_resolve_max_output_tokens_line2 _____________________
+=================================== FAILURES ===================================
+_____________________ test_resolve_max_output_tokens_line2 _____________________
 
     def test_resolve_max_output_tokens_line2():
         solution = Solution()
         assert solution.resolve_max_output_tokens(1000, None) == 1000
 >       assert solution.resolve_max_output_tokens(None, 'model1') == 8192
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:81: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.Solution object at 0x000001AB425AC800>, override = None
+self = <test_generated.Solution object at 0x792270befd90>, override = None
 model_id = 'model1'
 
     def resolve_max_output_tokens(self, override: Optional[int], model_id: Optional[str]) -> int:
@@ -2036,7 +2211,7 @@ model_id = 'model1'
         Precedence order:
         1. Explicit override (query loop's 64K escalation)
         2. Environment variable CLAUDE_CODE_MAX_OUTPUT_TOKENOS (trusted-env)
-        3. Per-model token limit from get_model_max_output_tokens() \u2192 DEFAULT_MAX_OUTPUT_TOKENS (8192)
+        3. Per-model token limit from get_model_max_output_tokens() → DEFAULT_MAX_OUTPUT_TOKENS (8192)
     
         Note: Invalid overrides or negative values are logged and ignored.
         """
@@ -2058,13 +2233,12 @@ model_id = 'model1'
             except ValueError:
                 print(f'Debug: Invalid environment variable format {clauded_env_var}')
 >       return self.get_model_max_output_tokens()
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E       TypeError: Solution.get_model_max_output_tokens() missing 1 required positional argument: 'model_id'
 
 test_generated.py:69: TypeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_resolve_max_output_tokens_line2 - TypeError: S...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.20s ===============================
 ```
 
 ### Code
@@ -2121,63 +2295,22 @@ def test_resolve_max_output_tokens_line2():
     with patch('os.environ', {'CLAUDE_CODE_MAX_OUTPUT_TOKENS': 'invalid'}):
         assert solution.resolve_max_output_tokens(None, None) == 8192
 ```
----## TASK: 22837
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_22837_6zsopr6_
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestSolution::test_summarise_metric_samples_line2 FAILED [100%]
-
-================================== FAILURES ===================================
-______________ TestSolution.test_summarise_metric_samples_line2 _______________
-
-self = <test_generated.TestSolution testMethod=test_summarise_metric_samples_line2>
-
-    def test_summarise_metric_samples_line2(self):
->       solution = Solution()
-                   ^^^^^^^^
-E       NameError: name 'Solution' is not defined
-
-test_generated.py:41: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestSolution::test_summarise_metric_samples_line2
-============================== 1 failed in 0.18s ==============================
-```
-
-### Code
-```python
-import unittest
-
-class TestSolution(unittest.TestCase):
-
-    def test_summarise_metric_samples_line2(self):
-        solution = Solution()
-        result = solution._summarise_metric_samples('cpu', [{'ts': '2023-01-01', 'cpu': 10}, {'ts': '2023-01-02', 'cpu': 20}], 3)
-        self.assertEqual(result, 'avg: 15.0, peak: 20')
-```
 ---## TASK: 94224
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_94224_vv9_q0ym
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_94224_jlw3rstv
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestSolution::test_async_children_line2 FAILED        [100%]
 
-================================== FAILURES ===================================
-___________________ TestSolution.test_async_children_line2 ____________________
+=================================== FAILURES ===================================
+____________________ TestSolution.test_async_children_line2 ____________________
 
 self = <test_generated.TestSolution testMethod=test_async_children_line2>
 
@@ -2194,9 +2327,9 @@ E       - []
 E       + ['child1', 'child2']
 
 test_generated.py:42: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestSolution::test_async_children_line2 - Assertion...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.18s ===============================
 ```
 
 ### Code
@@ -2209,211 +2342,80 @@ class TestSolution(unittest.TestCase):
         solution = Solution()
         self.assertEqual(solution._async_children({'key': 'value'}), ['child1', 'child2'])
 ```
----## TASK: 611297
-**STATUS:** Runtime Error
+---## TASK: 22837
+**STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_611297_0soo8dhg
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
+rootdir: /tmp/eval_22837__q2zn9hs
+plugins: cov-5.0.0
+collecting ... collected 1 item
 
-============================ no tests ran in 0.13s ============================
-```
+test_generated.py::TestSolution::test_summarise_metric_samples_line2 FAILED [100%]
 
-### Code
-```python
-import sys
-sys.path.append('..')
-from typing import List
+=================================== FAILURES ===================================
+_______________ TestSolution.test_summarise_metric_samples_line2 _______________
 
-class Solution:
+self = <test_generated.TestSolution testMethod=test_summarise_metric_samples_line2>
 
-    def test_line2(self, string, slice_length):
-        """Iterate over slices of a string."""
-        result = []
-        start = 0
-        while True:
-            end = start + slice_length
-            if end > len(string):
-                break
-            result.append(string[start:end])
-            start += slice_length
-        return result
-```
----## TASK: 277653
-**STATUS:** Runtime Error
+    def test_summarise_metric_samples_line2(self):
+        solution = Solution()
+        result = solution._summarise_metric_samples('cpu', [{'ts': '2023-01-01', 'cpu': 10}, {'ts': '2023-01-02', 'cpu': 20}], 3)
+>       self.assertEqual(result, 'avg: 15.0, peak: 20')
+E       AssertionError: 'cpu resource usage over the last 3 days (2 samples) — CPU: avg 15%, peak 20%.' != 'avg: 15.0, peak: 20'
+E       - cpu resource usage over the last 3 days (2 samples) — CPU: avg 15%, peak 20%.
+E       + avg: 15.0, peak: 20
 
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_277653_11oh6vq4
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 4 items
-
-test_generated.py::TestHighGradients::test_high_gradients_line2 FAILED   [ 25%]
-test_generated.py::test_high_gradients_implementation_line2 FAILED       [ 50%]
-test_generated.py::test_invalid_input_line2 FAILED                       [ 75%]
-test_generated.py::test_verbose_parameter_line2 FAILED                   [100%]
-
-================================== FAILURES ===================================
-_________________ TestHighGradients.test_high_gradients_line2 _________________
-C:\Program Files\Python312\Lib\unittest\mock.py:1393: in patched
-    with self.decoration_helper(patched,
-C:\Program Files\Python312\Lib\contextlib.py:137: in __enter__
-    return next(self.gen)
-           ^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1375: in decoration_helper
-    arg = exit_stack.enter_context(patching)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\contextlib.py:526: in enter_context
-    result = _enter(cm)
-             ^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1467: in __enter__
-    original, local = self.get_original()
-                      ^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = <unittest.mock._patch object at 0x00000208783B20C0>
-
-    def get_original(self):
-        target = self.getter()
-        name = self.attribute
-    
-        original = DEFAULT
-        local = False
-    
-        try:
-            original = target.__dict__[name]
-        except (AttributeError, KeyError):
-            original = getattr(target, name, DEFAULT)
-        else:
-            local = True
-    
-        if name in _builtins and isinstance(target, ModuleType):
-            self.create = True
-    
-        if not self.create and original is DEFAULT:
->           raise AttributeError(
-                "%s does not have the attribute %r" % (target, name)
-            )
-E           AttributeError: <module 'pytest.__main__' from 'C:\\Repos\\slm_test_generation\\.venv\\Lib\\site-packages\\pytest\\__main__.py'> does not have the attribute 'Solution'
-
-C:\Program Files\Python312\Lib\unittest\mock.py:1437: AttributeError
-__________________ test_high_gradients_implementation_line2 ___________________
-
-mock_high_gradients = <MagicMock name='high_gradients' id='2235400257120'>
-
-    @patch.object(Solution, 'high_gradients', return_value=[1, 2])
-    def test_high_gradients_implementation_line2(mock_high_gradients):
-        obj = Solution()
-        result = obj.high_gradients(1.0, 0.5)
->       self.assertEqual(result, [1, 2])
-        ^^^^
-E       NameError: name 'self' is not defined
-
-test_generated.py:51: NameError
-__________________________ test_invalid_input_line2 ___________________________
-
-mock_high_gradients = <MagicMock name='high_gradients' id='2235400460896'>
-
-    @patch.object(Solution, 'high_gradients', side_effect=ValueError('Invalid input'))
-    def test_invalid_input_line2(mock_high_gradients):
-        obj = Solution()
->       with self.assertRaises(ValueError):
-             ^^^^
-E       NameError: name 'self' is not defined
-
-test_generated.py:56: NameError
-________________________ test_verbose_parameter_line2 _________________________
-
-mock_high_gradients = <MagicMock name='high_gradients' id='2235400465936'>
-
-    @patch.object(Solution, 'high_gradients', return_value=['details'])
-    def test_verbose_parameter_line2(mock_high_gradients):
-        obj = Solution()
-        result = obj.high_gradients(1.0, 0.5, False)
->       self.assertFalse(result)
-        ^^^^
-E       NameError: name 'self' is not defined
-
-test_generated.py:63: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestHighGradients::test_high_gradients_line2 - Attr...
-FAILED test_generated.py::test_high_gradients_implementation_line2 - NameErro...
-FAILED test_generated.py::test_invalid_input_line2 - NameError: name 'self' i...
-FAILED test_generated.py::test_verbose_parameter_line2 - NameError: name 'sel...
-============================== 4 failed in 3.71s ==============================
+test_generated.py:43: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestSolution::test_summarise_metric_samples_line2
+============================== 1 failed in 0.28s ===============================
 ```
 
 ### Code
 ```python
 import unittest
-from unittest.mock import patch
 
-class TestHighGradients(unittest.TestCase):
+class TestSolution(unittest.TestCase):
 
-    @patch('__main__.Solution')
-    def test_high_gradients_line2(self, mock_solution):
-        obj = mock_solution.return_value
-        result = obj.high_gradients(1.0, 0.5)
-        self.assertIsInstance(result, list)
-
-@patch.object(Solution, 'high_gradients', return_value=[1, 2])
-def test_high_gradients_implementation_line2(mock_high_gradients):
-    obj = Solution()
-    result = obj.high_gradients(1.0, 0.5)
-    self.assertEqual(result, [1, 2])
-
-@patch.object(Solution, 'high_gradients', side_effect=ValueError('Invalid input'))
-def test_invalid_input_line2(mock_high_gradients):
-    obj = Solution()
-    with self.assertRaises(ValueError):
-        obj.high_gradients('not_a_float', 0.5)
-
-@patch.object(Solution, 'high_gradients', return_value=['details'])
-def test_verbose_parameter_line2(mock_high_gradients):
-    obj = Solution()
-    result = obj.high_gradients(1.0, 0.5, False)
-    self.assertFalse(result)
+    def test_summarise_metric_samples_line2(self):
+        solution = Solution()
+        result = solution._summarise_metric_samples('cpu', [{'ts': '2023-01-01', 'cpu': 10}, {'ts': '2023-01-02', 'cpu': 20}], 3)
+        self.assertEqual(result, 'avg: 15.0, peak: 20')
 ```
 ---## TASK: 200541
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_200541_vnf75jde
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_200541_br4psifv
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_starttls_ldap_line2 FAILED             [100%]
 
-================================== FAILURES ===================================
-______________________ TestCase.test_starttls_ldap_line2 ______________________
+=================================== FAILURES ===================================
+______________________ TestCase.test_starttls_ldap_line2 _______________________
 
 self = <test_generated.TestCase testMethod=test_starttls_ldap_line2>
 
     def test_starttls_ldap_line2(self):
         from unittest.mock import patch, MagicMock
 >       with patch('socket.create_connection') as mock_create_conn, patch('socket.sendall', new_callable=MagicMock) as mock_sendall, patch('socket.recv', new_callable=MagicMock) as mock_recv:
-                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:49: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\unittest\mock.py:1467: in __enter__
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/unittest/mock.py:1447: in __enter__
     original, local = self.get_original()
-                      ^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <unittest.mock._patch object at 0x000002C0BD3437D0>
+self = <unittest.mock._patch object at 0x7db33dbb38e0>
 
     def get_original(self):
         target = self.getter()
@@ -2436,12 +2438,12 @@ self = <unittest.mock._patch object at 0x000002C0BD3437D0>
 >           raise AttributeError(
                 "%s does not have the attribute %r" % (target, name)
             )
-E           AttributeError: <module 'socket' from 'C:\\Program Files\\Python312\\Lib\\socket.py'> does not have the attribute 'sendall'
+E           AttributeError: <module 'socket' from '/usr/local/lib/python3.10/socket.py'> does not have the attribute 'sendall'
 
-C:\Program Files\Python312\Lib\unittest\mock.py:1437: AttributeError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/unittest/mock.py:1420: AttributeError
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_starttls_ldap_line2 - AttributeError...
-============================== 1 failed in 0.27s ==============================
+============================== 1 failed in 0.31s ===============================
 ```
 
 ### Code
@@ -2470,41 +2472,39 @@ class TestCase(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_310520_5m8id99e
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_310520_wecwwv__
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_resolve_spec_line2 FAILED              [100%]
 
-================================== FAILURES ===================================
-______________________ TestCase.test_resolve_spec_line2 _______________________
+=================================== FAILURES ===================================
+_______________________ TestCase.test_resolve_spec_line2 _______________________
 
 self = <test_generated.TestCase testMethod=test_resolve_spec_line2>
 
     def test_resolve_spec_line2(self):
         solution = Solution()
 >       result = solution.resolve_spec('task_1', 'epic_1')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:42: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x00000281BDDF9AC0>, task_key = 'task_1'
+self = <under_test.Solution object at 0x7374cb2dcee0>, task_key = 'task_1'
 epic_key = 'epic_1'
 
     def resolve_spec(self, task_key: str, epic_key: str) -> tuple:
         """Return (raw_spec, source) tuple for a given field."""
 >       task_val = task_data.get(task_key)
-                   ^^^^^^^^^
 E       NameError: name 'task_data' is not defined
 
 under_test.py:37: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_resolve_spec_line2 - NameError: name...
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.23s ===============================
 ```
 
 ### Code
@@ -2518,19 +2518,72 @@ class TestCase(unittest.TestCase):
         result = solution.resolve_spec('task_1', 'epic_1')
         self.assertIsInstance(result, tuple)
 ```
+---## TASK: 569837
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_569837_n9im26ma
+plugins: cov-5.0.0
+collecting ... collected 2 items
+
+test_generated.py::TestSolution::test_check_large_sparse_no_error_line2 PASSED [ 50%]
+test_generated.py::TestSolution::test_check_large_sparse_raises_error_line2 FAILED [100%]
+
+=================================== FAILURES ===================================
+___________ TestSolution.test_check_large_sparse_raises_error_line2 ____________
+
+self = <test_generated.TestSolution testMethod=test_check_large_sparse_raises_error_line2>
+
+    def test_check_large_sparse_raises_error_line2(self):
+>       with self.assertRaises(ValueError):
+E       AssertionError: ValueError not raised
+
+test_generated.py:44: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestSolution::test_check_large_sparse_raises_error_line2
+========================= 1 failed, 1 passed in 0.67s ==========================
+```
+
+### Code
+```python
+import unittest
+
+class TestSolution(unittest.TestCase):
+
+    def setUp(self):
+        self.solution = Solution()
+
+    def test_check_large_sparse_raises_error_line2(self):
+        with self.assertRaises(ValueError):
+            self.solution._check_large_sparse([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+    def test_check_large_sparse_no_error_line2(self):
+        self.assertTrue(self.solution._check_large_sparse([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], accept_large_sparse=True))
+
+class Solution:
+
+    def _check_large_sparse(self, X, accept_large_sparse=False):
+        if not accept_large_sparse and any((isinstance(i, int) and i > 2 ** 63 - 1 for i in X)):
+            raise ValueError('X has 64bit indices')
+        return True
+```
 ---## TASK: 760884
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_760884_qnz5nsa_
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_760884_atdq0_4t
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.12s ============================
+============================ no tests ran in 0.14s =============================
 ```
 
 ### Code
@@ -2563,23 +2616,67 @@ class Solution:
         media_type = parts[0].strip()
         params = {}
         for part in parts[1:]:
-            key, value = part.strip().split('=', 1)
+            (key, value) = part.strip().split('=', 1)
             params[key] = value
         return (media_type, params)
+```
+---## TASK: 326792
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_326792_rzpms2ne
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_326792_rzpms2ne/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:36: in <module>
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.30s ===============================
+```
+
+### Code
+```python
+import requests
+
+class Solution:
+
+    def scrape_url(self, url):
+        """Scrape a real URL."""
+        response = requests.get(url)
+        return response.text
+
+def test_scrape_url_line2():
+    solution = Solution()
+    result = solution.scrape_url('https://example.com')
+    assert result.startswith('<!doctype html>')
 ```
 ---## TASK: 896053
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_896053_zzuc4w3e
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_896053_mhlhheb3
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.08s ============================
+============================ no tests ran in 0.14s =============================
 ```
 
 ### Code
@@ -2592,8 +2689,8 @@ BBoxType = Tuple[Optional[int], Optional[int], Optional[int], Optional[int]]
 class Solution:
 
     def test_line2(self, coords: List[float], img_size: List[int], target: BBoxType) -> List[float]:
-        xmin, ymin, xmax, ymax = coords[:4]
-        w, h = img_size
+        (xmin, ymin, xmax, ymax) = coords[:4]
+        (w, h) = img_size
         x_center = (xmin + xmax) / 2
         y_center = (ymin + ymax) / 2
         x_half = (xmax - xmin) / 2
@@ -2606,28 +2703,80 @@ class Solution:
         y_final = y_scale * y_offset
         return [x_final, y_final]
 ```
+---## TASK: 980372
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_980372_z135j724
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestCase::test_check_nullable_line2 FAILED            [100%]
+
+=================================== FAILURES ===================================
+______________________ TestCase.test_check_nullable_line2 ______________________
+
+args = (<test_generated.TestCase testMethod=test_check_nullable_line2>,)
+keywargs = {}
+newargs = (<test_generated.TestCase testMethod=test_check_nullable_line2>, <MagicMock name='MagicMock' id='139711213138224'>)
+newkeywargs = {}
+
+    @wraps(func)
+    def patched(*args, **keywargs):
+        with self.decoration_helper(patched,
+                                    args,
+                                    keywargs) as (newargs, newkeywargs):
+>           return func(*newargs, **newkeywargs)
+E           TypeError: TestCase.test_check_nullable_line2() missing 2 required positional arguments: 'mock_schema' and 'mock_core_check_result'
+
+/usr/local/lib/python3.10/unittest/mock.py:1379: TypeError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestCase::test_check_nullable_line2 - TypeError: Te...
+============================== 1 failed in 0.27s ===============================
+```
+
+### Code
+```python
+import unittest
+from typing import Any
+from unittest.mock import MagicMock, patch
+
+class TestCase(unittest.TestCase):
+
+    @patch('unittest.mock.MagicMock')
+    def test_check_nullable_line2(self, mock_ibis_column, mock_schema, mock_core_check_result):
+        mock_check_obj = MagicMock(spec=MagicMock)
+        mock_check_obj.is_null = lambda self: True
+        mock_check_obj.is_nan = lambda self: False
+        mock_schema = MagicMock(spec=MagicMock)
+        result = Solution().check_nullable(mock_check_obj, mock_schema)
+        self.assertIsInstance(result, CoreCheckResult)
+```
 ---## TASK: 338744
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_338744_q0dfygkw
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_338744_522ljbu9
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
 test_generated.py:41: in <module>
     class CoreCheckResult(Generic[T]):
-                                  ^
 E   NameError: name 'T' is not defined
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py - NameError: name 'T' is not defined
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.63s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.40s ===============================
 ```
 
 ### Code
@@ -2653,68 +2802,73 @@ class Solution:
         """
         ...
 ```
+---## TASK: 606653
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_606653_uxlcbhpx
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.61s =============================
+```
+
+### Code
+```python
+import sys
+
+class Solution:
+
+    def test_line2(self, check_obj, schema, lazy):
+        """Coerce index"""
+        ...
+```
 ---## TASK: 624137
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_624137_bxz1435t
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_624137_nvpz6_3u
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_send_command_line2 FAILED              [100%]
 
-================================== FAILURES ===================================
-______________________ TestCase.test_send_command_line2 _______________________
-C:\Program Files\Python312\Lib\unittest\mock.py:1393: in patched
+=================================== FAILURES ===================================
+_______________________ TestCase.test_send_command_line2 _______________________
+/usr/local/lib/python3.10/unittest/mock.py:1376: in patched
     with self.decoration_helper(patched,
-C:\Program Files\Python312\Lib\contextlib.py:137: in __enter__
+/usr/local/lib/python3.10/contextlib.py:135: in __enter__
     return next(self.gen)
-           ^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1375: in decoration_helper
+/usr/local/lib/python3.10/unittest/mock.py:1358: in decoration_helper
     arg = exit_stack.enter_context(patching)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\contextlib.py:526: in enter_context
-    result = _enter(cm)
-             ^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
+/usr/local/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
     self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-name = 'some_module', package = None
+target = 'some_module'
 
-    def import_module(name, package=None):
-        """Import a module.
-    
-        The 'package' argument is required when performing a relative import. It
-        specifies the package to use as the anchor point from which to resolve the
-        relative import to an absolute import.
-    
-        """
-        level = 0
-        if name.startswith('.'):
-            if not package:
-                raise TypeError("the 'package' argument is required to perform a "
-                                f"relative import for {name!r}")
-            for character in name:
-                if character != '.':
-                    break
-                level += 1
->       return _bootstrap._gcd_import(name[level:], package, level)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
 E       ModuleNotFoundError: No module named 'some_module'
 
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: ModuleNotFoundError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_send_command_line2 - ModuleNotFoundE...
-============================== 1 failed in 0.38s ==============================
+============================== 1 failed in 0.37s ===============================
 ```
 
 ### Code
@@ -2738,101 +2892,61 @@ class TestCase(unittest.TestCase):
         self.assertEqual(result, mock_response.body)
         mock_solution_instance.send_dap_command.assert_called_once_with(command=command, arguments=arguments)
 ```
----## TASK: 606653
+---## TASK: 25953
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_606653_35ssrxrg
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
+rootdir: /tmp/eval_25953_tof7jwqc
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
 
-============================ no tests ran in 1.48s ============================
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_25953_tof7jwqc/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:36: in <module>
+    import typer
+E   ModuleNotFoundError: No module named 'typer'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.42s ===============================
 ```
 
 ### Code
 ```python
-import sys
+import typer
+_SHARE_OBJECT_TYPES = ['user', 'group']
+app = typer.Typer()
 
-class Solution:
-
-    def test_line2(self, check_obj, schema, lazy):
-        """Coerce index"""
-        ...
-```
----## TASK: 980372
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_980372_11or5tiu
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestCase::test_check_nullable_line2 FAILED            [100%]
-
-================================== FAILURES ===================================
-_____________________ TestCase.test_check_nullable_line2 ______________________
-
-args = (<test_generated.TestCase testMethod=test_check_nullable_line2>,)
-keywargs = {}
-newargs = (<test_generated.TestCase testMethod=test_check_nullable_line2>, <MagicMock name='MagicMock' id='2681892508528'>)
-newkeywargs = {}
-
-    @wraps(func)
-    def patched(*args, **keywargs):
-        with self.decoration_helper(patched,
-                                    args,
-                                    keywargs) as (newargs, newkeywargs):
->           return func(*newargs, **newkeywargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E           TypeError: TestCase.test_check_nullable_line2() missing 2 required positional arguments: 'mock_schema' and 'mock_core_check_result'
-
-C:\Program Files\Python312\Lib\unittest\mock.py:1396: TypeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestCase::test_check_nullable_line2 - TypeError: Te...
-============================== 1 failed in 0.25s ==============================
-```
-
-### Code
-```python
-import unittest
-from typing import Any
-from unittest.mock import MagicMock, patch
-
-class TestCase(unittest.TestCase):
-
-    @patch('unittest.mock.MagicMock')
-    def test_check_nullable_line2(self, mock_ibis_column, mock_schema, mock_core_check_result):
-        mock_check_obj = MagicMock(spec=MagicMock)
-        mock_check_obj.is_null = lambda self: True
-        mock_check_obj.is_nan = lambda self: False
-        mock_schema = MagicMock(spec=MagicMock)
-        result = Solution().check_nullable(mock_check_obj, mock_schema)
-        self.assertIsInstance(result, CoreCheckResult)
+@app.command(name='shares-add')
+def test_line2(object_type: str=typer.Argument(..., help=_SHARE_OBJECT_TYPES), object_id: str=typer.Argument(..., help='Object ID'), email: str=typer.Argument(..., help='Recipient email (pending until they sign up).'), permission: str=typer.Option('read', '--permission', help='read | comment | write'), expires: str=typer.Option(None, '--expires', help='ISO-8601 expiry, e.g. 2026-12-31T00:00:00Z (omit = never).'), as_json: bool=typer.Option(False, '--json')):
+    """Share an object with a person by email."""
+    ...
 ```
 ---## TASK: 125175
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_125175_q4gk_y6b
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_125175_16q2tp05
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_check_barrage_to_relief_line2 FAILED   [100%]
 
-================================== FAILURES ===================================
-_________________ TestCase.test_check_barrage_to_relief_line2 _________________
+=================================== FAILURES ===================================
+_________________ TestCase.test_check_barrage_to_relief_line2 __________________
 
 self = <test_generated.TestCase testMethod=test_check_barrage_to_relief_line2>
 
@@ -2840,13 +2954,12 @@ self = <test_generated.TestCase testMethod=test_check_barrage_to_relief_line2>
         solution = Solution()
         recent = [{'type': 'export', 'amount': 10}, {'type': 'import', 'amount': 5}]
 >       result = solution._check_barage_to_relief(recent)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E       AttributeError: 'Solution' object has no attribute '_check_barage_to_relief'. Did you mean: '_check_barrage_to_relief'?
 
 test_generated.py:43: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_check_barrage_to_relief_line2 - Attr...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.20s ===============================
 ```
 
 ### Code
@@ -2868,14 +2981,14 @@ if __name__ == '__main__':
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_588845_yhup3har
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_588845_qianhjgr
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.06s ============================
+============================ no tests ran in 0.14s =============================
 ```
 
 ### Code
@@ -2886,76 +2999,22 @@ class Solution:
         """Toggle shuffle mode on or off."""
         ...
 ```
----## TASK: 569837
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_569837_9y7mm5r1
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 2 items
-
-test_generated.py::TestSolution::test_check_large_sparse_no_error_line2 PASSED [ 50%]
-test_generated.py::TestSolution::test_check_large_sparse_raises_error_line2 FAILED [100%]
-
-================================== FAILURES ===================================
-___________ TestSolution.test_check_large_sparse_raises_error_line2 ___________
-
-self = <test_generated.TestSolution testMethod=test_check_large_sparse_raises_error_line2>
-
-    def test_check_large_sparse_raises_error_line2(self):
->       with self.assertRaises(ValueError):
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E       AssertionError: ValueError not raised
-
-test_generated.py:44: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestSolution::test_check_large_sparse_raises_error_line2
-========================= 1 failed, 1 passed in 3.12s =========================
-```
-
-### Code
-```python
-import unittest
-
-class TestSolution(unittest.TestCase):
-
-    def setUp(self):
-        self.solution = Solution()
-
-    def test_check_large_sparse_raises_error_line2(self):
-        with self.assertRaises(ValueError):
-            self.solution._check_large_sparse([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-
-    def test_check_large_sparse_no_error_line2(self):
-        self.assertTrue(self.solution._check_large_sparse([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], accept_large_sparse=True))
-
-class Solution:
-
-    def _check_large_sparse(self, X, accept_large_sparse=False):
-        if not accept_large_sparse and any((isinstance(i, int) and i > 2 ** 63 - 1 for i in X)):
-            raise ValueError('X has 64bit indices')
-        return True
-```
 ---## TASK: 853539
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_853539_bhzzhcm1
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_853539_9d8j2cl7
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestSolution::test__trigger_b2_line2 FAILED           [100%]
 
-================================== FAILURES ===================================
-_____________________ TestSolution.test__trigger_b2_line2 _____________________
+=================================== FAILURES ===================================
+_____________________ TestSolution.test__trigger_b2_line2 ______________________
 
 self = <test_generated.TestSolution testMethod=test__trigger_b2_line2>
 
@@ -2966,12 +3025,12 @@ self = <test_generated.TestSolution testMethod=test__trigger_b2_line2>
             day_summary = [{'day': 1, 'tariff_deal': True}, {'day': 2, 'tariff_deal': True}, {'day': 3, 'day': 3, 'tariff_deal': True}]
             result = solution._trigger_b2(day_summary)
 >           self.assertEqual(result, None)
-E           AssertionError: <MagicMock name='_trigger_b2()' id='1563528176864'> != None
+E           AssertionError: <MagicMock name='_trigger_b2()' id='124703719982224'> != None
 
 test_generated.py:46: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestSolution::test__trigger_b2_line2 - AssertionErr...
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.22s ===============================
 ```
 
 ### Code
@@ -2988,55 +3047,77 @@ class TestSolution(unittest.TestCase):
             result = solution._trigger_b2(day_summary)
             self.assertEqual(result, None)
 ```
+---## TASK: 232126
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_232126_itng_hde
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.14s =============================
+```
+
+### Code
+```python
+import json
+
+class Solution:
+
+    def test_line2(self, path):
+        """Read last_version and records from a dataset JSON file."""
+        with open(path, 'r') as f:
+            data = json.load(f)
+        last_version = data['last_version']
+        records = data['records']
+        return {'last_version': last_version, 'records': records}
+```
 ---## TASK: 160929
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_160929_lskfo1r1
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_160929_uggimoua
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_get_search_suggestions_line2 FAILED              [100%]
 
-================================== FAILURES ===================================
-______________________ test_get_search_suggestions_line2 ______________________
+=================================== FAILURES ===================================
+______________________ test_get_search_suggestions_line2 _______________________
 
     def test_get_search_suggestions_line2():
         from unittest.mock import MagicMock, patch
         import asyncio
 >       with patch('asyncio.get_event_loop') as mock_get_loop, patch('Solution.get_search_suggestions') as mock_method:
-                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:39: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
     self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
-    ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
-    ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-name = 'Solution', import_ = <function _gcd_import at 0x00000291B4EAC0E0>
+target = 'Solution'
 
->   ???
-E   ModuleNotFoundError: No module named 'Solution'
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'Solution'
 
-<frozen importlib._bootstrap>:1324: ModuleNotFoundError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+=========================== short test summary info ============================
 FAILED test_generated.py::test_get_search_suggestions_line2 - ModuleNotFoundE...
-============================== 1 failed in 0.29s ==============================
+============================== 1 failed in 0.44s ===============================
 ```
 
 ### Code
@@ -3059,115 +3140,31 @@ def test_get_search_suggestions_line2():
         loop.run_until_complete(test_coroutine())
         loop.close()
 ```
----## TASK: 232126
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_232126_ehwm87wl
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.06s ============================
-```
-
-### Code
-```python
-import json
-
-class Solution:
-
-    def test_line2(self, path):
-        """Read last_version and records from a dataset JSON file."""
-        with open(path, 'r') as f:
-            data = json.load(f)
-        last_version = data['last_version']
-        records = data['records']
-        return {'last_version': last_version, 'records': records}
-```
----## TASK: 654840
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_654840_a_7awtzk
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestSolution::test_combined_constraints_line2 FAILED  [100%]
-
-================================== FAILURES ===================================
-________________ TestSolution.test_combined_constraints_line2 _________________
-
-self = <test_generated.TestSolution testMethod=test_combined_constraints_line2>
-
-    def test_combined_constraints_line2(self):
->       result = self.solution._combine_constraints('valid_check', 1, 5)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-test_generated.py:44: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = <under_test.Solution object at 0x000002EC7292EB10>
-check_name = 'valid_check', min_constraint = 1, max_constraint = 5
-
-    def _combine_constraints(self, check_name, min_constraint, max_constraint):
-        """Catches bounded constraints where we need to combine a min and max
-        pair of constraints into a single check."""
->       if min_constraint in constraints and max_constraint in constraints:
-                             ^^^^^^^^^^^
-E       NameError: name 'constraints' is not defined
-
-under_test.py:89: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestSolution::test_combined_constraints_line2 - Nam...
-============================== 1 failed in 1.24s ==============================
-```
-
-### Code
-```python
-import unittest
-
-class TestSolution(unittest.TestCase):
-
-    def setUp(self):
-        self.solution = Solution()
-
-    def test_combined_constraints_line2(self):
-        result = self.solution._combine_constraints('valid_check', 1, 5)
-        self.assertEqual(result, 'expected_result')
-```
 ---## TASK: 162266
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_162266_cn2uzqcj
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_162266_qr3pjf6y
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_cf_has_standard_names_line2 FAILED               [100%]
 
-================================== FAILURES ===================================
-______________________ test_cf_has_standard_names_line2 _______________________
+=================================== FAILURES ===================================
+_______________________ test_cf_has_standard_names_line2 _______________________
 
     def test_cf_has_standard_names_line2():
 >       from xarray import DataArray, Dataset
 E       ModuleNotFoundError: No module named 'xarray'
 
 test_generated.py:37: ModuleNotFoundError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_cf_has_standard_names_line2 - ModuleNotFoundEr...
-============================== 1 failed in 0.34s ==============================
+============================== 1 failed in 0.28s ===============================
 ```
 
 ### Code
@@ -3192,31 +3189,29 @@ def test_cf_has_standard_names_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_250264__t9lclb_
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_250264_rpp_e2gh
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_next_line2 FAILED                                [100%]
 
-================================== FAILURES ===================================
-_______________________________ test_next_line2 _______________________________
+=================================== FAILURES ===================================
+_______________________________ test_next_line2 ________________________________
 
     def test_next_line2():
         from unittest.mock import patch, MagicMock
 >       with patch('__main__.get_history', return_value=['x', 'y']), patch('__main__.set_history') as mock_set_history:
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:62: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\unittest\mock.py:1467: in __enter__
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/unittest/mock.py:1447: in __enter__
     original, local = self.get_original()
-                      ^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <unittest.mock._patch object at 0x0000021E3ED7E0F0>
+self = <unittest.mock._patch object at 0x703c7b5e3b50>
 
     def get_original(self):
         target = self.getter()
@@ -3239,12 +3234,12 @@ self = <unittest.mock._patch object at 0x0000021E3ED7E0F0>
 >           raise AttributeError(
                 "%s does not have the attribute %r" % (target, name)
             )
-E           AttributeError: <module 'pytest.__main__' from 'C:\\Repos\\slm_test_generation\\.venv\\Lib\\site-packages\\pytest\\__main__.py'> does not have the attribute 'get_history'
+E           AttributeError: <module 'pytest.__main__' from '/usr/local/lib/python3.10/site-packages/pytest/__main__.py'> does not have the attribute 'get_history'
 
-C:\Program Files\Python312\Lib\unittest\mock.py:1437: AttributeError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/unittest/mock.py:1420: AttributeError
+=========================== short test summary info ============================
 FAILED test_generated.py::test_next_line2 - AttributeError: <module 'pytest._...
-============================== 1 failed in 0.23s ==============================
+============================== 1 failed in 0.30s ===============================
 ```
 
 ### Code
@@ -3283,100 +3278,88 @@ def test_next_line2():
         assert result1 == 'y'
         assert result2 == None
 ```
----## TASK: 399611
-**STATUS:** Assertion Error
+---## TASK: 654840
+**STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_399611_4p1fsqwf
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_654840_symaj004
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
-test_generated.py::test_twoSum_line2 FAILED                              [100%]
+test_generated.py::TestSolution::test_combined_constraints_line2 FAILED  [100%]
 
-================================== FAILURES ===================================
-______________________________ test_twoSum_line2 ______________________________
+=================================== FAILURES ===================================
+_________________ TestSolution.test_combined_constraints_line2 _________________
 
-    def test_twoSum_line2():
-        solution = Solution()
-        assert solution.twoSum([2, 7, 11, 15], 9) == [0, 1]
->       assert solution.twoSum([3, 2, 4], 6) == []
-E       assert [1, 2] == []
-E         
-E         Left contains 2 more items, first extra item: 1
-E         
-E         Full diff:
-E         - []
-E         + [
-E         +     1,
-E         +     2,
-E         + ]
+self = <test_generated.TestSolution testMethod=test_combined_constraints_line2>
 
-test_generated.py:59: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_twoSum_line2 - assert [1, 2] == []
-============================== 1 failed in 0.17s ==============================
+    def test_combined_constraints_line2(self):
+>       result = self.solution._combine_constraints('valid_check', 1, 5)
+
+test_generated.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <under_test.Solution object at 0x74a958427910>
+check_name = 'valid_check', min_constraint = 1, max_constraint = 5
+
+    def _combine_constraints(self, check_name, min_constraint, max_constraint):
+        """Catches bounded constraints where we need to combine a min and max
+        pair of constraints into a single check."""
+>       if min_constraint in constraints and max_constraint in constraints:
+E       NameError: name 'constraints' is not defined
+
+under_test.py:89: NameError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestSolution::test_combined_constraints_line2 - Nam...
+============================== 1 failed in 0.72s ===============================
 ```
 
 ### Code
 ```python
-import sys
-from typing import List
+import unittest
 
-class Solution:
+class TestSolution(unittest.TestCase):
 
-    def __init__(self):
-        self.num_map = {}
-        self.n = 0
+    def setUp(self):
+        self.solution = Solution()
 
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-        self.n = len(nums)
-        for i in range(self.n):
-            self.num_map[nums[i]] = i
-        for i in range(self.n):
-            complement = target - nums[i]
-            if complement in self.num_map and self.num_map[complement] != i:
-                return [i, self.num_map[complement]]
-        return []
-from unittest.mock import patch, MagicMock
-
-def test_twoSum_line2():
-    solution = Solution()
-    assert solution.twoSum([2, 7, 11, 15], 9) == [0, 1]
-    assert solution.twoSum([3, 2, 4], 6) == []
+    def test_combined_constraints_line2(self):
+        result = self.solution._combine_constraints('valid_check', 1, 5)
+        self.assertEqual(result, 'expected_result')
 ```
 ---## TASK: 198226
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_198226_6z3lu6te
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_198226_lmodxsai
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_parse_line2 FAILED                               [100%]
 
-================================== FAILURES ===================================
-______________________________ test_parse_line2 _______________________________
+=================================== FAILURES ===================================
+_______________________________ test_parse_line2 _______________________________
 
     def test_parse_line2():
         solution = Solution()
 >       assert solution.parse(None, 'rpc') == BackendSpec()
-E       AssertionError: assert None == <test_generated.BackendSpec object at 0x000001D46B79F920>
+E       AssertionError: assert None == <test_generated.BackendSpec object at 0x766a5d9711b0>
 E        +  where None = parse(None, 'rpc')
-E        +    where parse = <test_generated.Solution object at 0x000001D46B79D460>.parse
-E        +  and   <test_generated.BackendSpec object at 0x000001D46B79F920> = BackendSpec()
+E        +    where parse = <test_generated.Solution object at 0x766a5d970cd0>.parse
+E        +  and   <test_generated.BackendSpec object at 0x766a5d9711b0> = BackendSpec()
 
 test_generated.py:84: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_parse_line2 - AssertionError: assert None == <...
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.16s ===============================
 ```
 
 ### Code
@@ -3432,147 +3415,147 @@ def test_parse_line2():
     assert solution.parse(None, 'rpc') == BackendSpec()
     assert solution.parse(None, 'rpc:model1:low') == BackendSpec()
 ```
----## TASK: 345874
-**STATUS:** Runtime Error
+---## TASK: 399611
+**STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_345874_6u10zu1n
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_399611_1c3y37yy
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
-test_generated.py::test_close_line2 FAILED                               [100%]
-test_generated.py::test_close_line2 ERROR                                [100%]
+test_generated.py::test_twoSum_line2 FAILED                              [100%]
 
-=================================== ERRORS ====================================
-____________________ ERROR at teardown of test_close_line2 ____________________
+=================================== FAILURES ===================================
+______________________________ test_twoSum_line2 _______________________________
 
-self = <contextlib._GeneratorContextManager object at 0x000001EF7F1906B0>
+    def test_twoSum_line2():
+        solution = Solution()
+        assert solution.twoSum([2, 7, 11, 15], 9) == [0, 1]
+>       assert solution.twoSum([3, 2, 4], 6) == []
+E       assert [1, 2] == []
+E         
+E         Left contains 2 more items, first extra item: 1
+E         
+E         Full diff:
+E         - []
+E         + [
+E         +     1,
+E         +     2,
+E         + ]
 
-    def __enter__(self):
-        # do not keep args and kwds alive unnecessarily
-        # they are only needed for recreation, which is not possible anymore
-        del self.args, self.kwds, self.func
-        try:
->           return next(self.gen)
-                   ^^^^^^^^^^^^^^
-
-C:\Program Files\Python312\Lib\contextlib.py:137: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-args = (), kwargs = {}
-
-    @_functools.wraps(func)
-    def func_wrapper(*args, **kwargs):
->       return func(*args, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^
-E       ValueError: I/O operation on closed file
-
-C:\Program Files\Python312\Lib\tempfile.py:499: ValueError
-================================== FAILURES ===================================
-______________________________ test_close_line2 _______________________________
-
-self = <contextlib._GeneratorContextManager object at 0x000001EF7F1EF740>
-typ = None, value = None, traceback = None
-
-    def __exit__(self, typ, value, traceback):
-        if typ is None:
-            try:
->               next(self.gen)
-E               ValueError: I/O operation on closed file.
-
-C:\Program Files\Python312\Lib\contextlib.py:144: ValueError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_close_line2 - ValueError: I/O operation on clo...
-ERROR test_generated.py::test_close_line2 - ValueError: I/O operation on clos...
-========================= 1 failed, 1 error in 1.31s ==========================
-
-Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\pytest\__main__.py", line 9, in <module>
-    raise SystemExit(pytest.console_main())
-                     ^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\config\__init__.py", line 201, in console_main
-    code = main()
-           ^^^^^^
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\config\__init__.py", line 175, in main
-    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\pluggy\_hooks.py", line 512, in __call__
-    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\pluggy\_manager.py", line 120, in _hookexec
-    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\pluggy\_callers.py", line 167, in _multicall
-    raise exception
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\pluggy\_callers.py", line 121, in _multicall
-    res = hook_impl.function(*args)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\main.py", line 336, in pytest_cmdline_main
-    return wrap_session(config, _main)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\main.py", line 331, in wrap_session
-    config._ensure_unconfigure()
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\config\__init__.py", line 1131, in _ensure_unconfigure
-    self._cleanup_stack.close()
-  File "C:\Program Files\Python312\Lib\contextlib.py", line 618, in close
-    self.__exit__(None, None, None)
-  File "C:\Program Files\Python312\Lib\contextlib.py", line 610, in __exit__
-    raise exc_details[1]
-  File "C:\Program Files\Python312\Lib\contextlib.py", line 595, in __exit__
-    if cb(*exc_details):
-       ^^^^^^^^^^^^^^^^
-  File "C:\Program Files\Python312\Lib\contextlib.py", line 478, in _exit_wrapper
-    callback(*args, **kwds)
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\capture.py", line 778, in stop_global_capturing
-    self._global_capturing.pop_outerr_to_orig()
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\capture.py", line 659, in pop_outerr_to_orig
-    out, err = self.readouterr()
-               ^^^^^^^^^^^^^^^^^
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\capture.py", line 706, in readouterr
-    out = self.out.snap() if self.out else ""
-          ^^^^^^^^^^^^^^^
-  File "C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\capture.py", line 591, in snap
-    self.tmpfile.seek(0)
-ValueError: I/O operation on closed file.
+test_generated.py:59: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_twoSum_line2 - assert [1, 2] == []
+============================== 1 failed in 0.21s ===============================
 ```
 
 ### Code
 ```python
 import sys
+from typing import List
 
 class Solution:
 
     def __init__(self):
-        self.buffer = sys.stdout
+        self.num_map = {}
+        self.n = 0
 
-    def close(self) -> None:
-        """Close all created buffers."""
-        self.buffer.flush()
-        self.buffer.close()
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        self.n = len(nums)
+        for i in range(self.n):
+            self.num_map[nums[i]] = i
+        for i in range(self.n):
+            complement = target - nums[i]
+            if complement in self.num_map and self.num_map[complement] != i:
+                return [i, self.num_map[complement]]
+        return []
+from unittest.mock import patch, MagicMock
 
-def test_close_line2():
-    obj = Solution()
-    obj.close()
+def test_twoSum_line2():
+    solution = Solution()
+    assert solution.twoSum([2, 7, 11, 15], 9) == [0, 1]
+    assert solution.twoSum([3, 2, 4], 6) == []
+```
+---## TASK: 359758
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_359758_33tjkpe8
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+test_generated.py:38: in <module>
+    class Solution:
+test_generated.py:40: in Solution
+    def last_modified(self, name: str) -> Optional[datetime]:
+/usr/local/lib/python3.10/typing.py:312: in inner
+    return func(*args, **kwds)
+/usr/local/lib/python3.10/typing.py:403: in __getitem__
+    return self._getitem(self, parameters)
+/usr/local/lib/python3.10/typing.py:529: in Optional
+    arg = _type_check(parameters, f"{self} requires a single type.")
+/usr/local/lib/python3.10/typing.py:176: in _type_check
+    raise TypeError(f"{msg} Got {arg!r:.100}.")
+E   TypeError: typing.Optional requires a single type. Got <module 'datetime' from '/usr/local/lib/python3.10/datetime.py'>.
+=========================== short test summary info ============================
+ERROR test_generated.py - TypeError: typing.Optional requires a single type. ...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.41s ===============================
+```
+
+### Code
+```python
+import datetime
+
+class Solution:
+
+    def last_modified(self, name: str) -> Optional[datetime]:
+        """
+        Return the LastModifiedDate of a parameter, or None if missing / unavailable.
+
+        Useful for staleness checks against upstream resources that have their own
+        modified-at timestamps (e.g. comparing a cached feature list's age to the
+        endpoint it describes).
+
+        Args:
+            name: Parameter name (e.g. ``/workbench/feature_lists/smiles-to-2d-v1``).
+        Returns:
+            datetime (UTC, tz-aware) when the parameter was last written, or None
+            if the parameter doesn't exist or the metadata call fails.
+        """
+        known_parameters = {'/workbench/feature_lists/smiles-to-2d-v1': datetime.datetime(2023, 1, 1, 12, 0), '/workbench/feature_lists/cannabis-detection-v1': datetime.datetime(2023, 1, 2, 12, 0)}
+        if name in known_parameters:
+            return known_parameters[name].replace(tzinfo=datetime.timezone.utc)
+        else:
+            return None
+
+def test_last_modified_line2():
+    solution = Solution()
+    assert solution.last_modified('/workbench/feature_lists/smiles-to-2d-v1') == datetime.datetime(2023, 1, 1, 12, 0, tzinfo=datetime.timezone.utc)
 ```
 ---## TASK: 300082
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_300082_1o3xxquj
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_300082_dyec051h
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.84s ============================
+============================ no tests ran in 0.23s =============================
 ```
 
 ### Code
@@ -3598,11 +3581,11 @@ class Solution:
             parts = re.split('://', url)
             if len(parts) < 2:
                 return url
-            scheme, rest = parts
+            (scheme, rest) = parts
             host_path = re.split('/', rest, maxsplit=1)
             if len(host_path) < 2:
                 return f'{scheme}://{rest}'
-            host, path = host_path
+            (host, path) = host_path
             new_path = re.sub('/\\?.*#.*$', '/', path)
             url = f'{scheme}://{host}/{new_path}'
         if strip_fragment:
@@ -3614,14 +3597,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_117390_nnrfljkb
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_117390_4g0okzdf
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 1.00s ============================
+============================ no tests ran in 0.66s =============================
 ```
 
 ### Code
@@ -3648,22 +3631,131 @@ class Solution:
                 result.append(new_name)
         return result
 ```
+---## TASK: 345874
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_345874_gpxt0vlb
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_close_line2 FAILED                               [100%]
+test_generated.py::test_close_line2 ERROR                                [100%]
+
+==================================== ERRORS ====================================
+____________________ ERROR at teardown of test_close_line2 _____________________
+
+self = <contextlib._GeneratorContextManager object at 0x7a1420ddbcd0>
+
+    def __enter__(self):
+        # do not keep args and kwds alive unnecessarily
+        # they are only needed for recreation, which is not possible anymore
+        del self.args, self.kwds, self.func
+        try:
+>           return next(self.gen)
+E           ValueError: I/O operation on closed file
+
+/usr/local/lib/python3.10/contextlib.py:135: ValueError
+=================================== FAILURES ===================================
+_______________________________ test_close_line2 _______________________________
+
+self = <contextlib._GeneratorContextManager object at 0x7a144521d090>
+typ = None, value = None, traceback = None
+
+    def __exit__(self, typ, value, traceback):
+        if typ is None:
+            try:
+>               next(self.gen)
+E               ValueError: I/O operation on closed file.
+
+/usr/local/lib/python3.10/contextlib.py:142: ValueError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_close_line2 - ValueError: I/O operation on clo...
+ERROR test_generated.py::test_close_line2 - ValueError: I/O operation on clos...
+========================== 1 failed, 1 error in 0.89s ==========================
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/local/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/usr/local/lib/python3.10/site-packages/pytest/__main__.py", line 9, in <module>
+    raise SystemExit(pytest.console_main())
+  File "/usr/local/lib/python3.10/site-packages/_pytest/config/__init__.py", line 201, in console_main
+    code = main()
+  File "/usr/local/lib/python3.10/site-packages/_pytest/config/__init__.py", line 175, in main
+    ret: ExitCode | int = config.hook.pytest_cmdline_main(config=config)
+  File "/usr/local/lib/python3.10/site-packages/pluggy/_hooks.py", line 512, in __call__
+    return self._hookexec(self.name, self._hookimpls.copy(), kwargs, firstresult)
+  File "/usr/local/lib/python3.10/site-packages/pluggy/_manager.py", line 120, in _hookexec
+    return self._inner_hookexec(hook_name, methods, kwargs, firstresult)
+  File "/usr/local/lib/python3.10/site-packages/pluggy/_callers.py", line 167, in _multicall
+    raise exception
+  File "/usr/local/lib/python3.10/site-packages/pluggy/_callers.py", line 121, in _multicall
+    res = hook_impl.function(*args)
+  File "/usr/local/lib/python3.10/site-packages/_pytest/main.py", line 336, in pytest_cmdline_main
+    return wrap_session(config, _main)
+  File "/usr/local/lib/python3.10/site-packages/_pytest/main.py", line 331, in wrap_session
+    config._ensure_unconfigure()
+  File "/usr/local/lib/python3.10/site-packages/_pytest/config/__init__.py", line 1131, in _ensure_unconfigure
+    self._cleanup_stack.close()
+  File "/usr/local/lib/python3.10/contextlib.py", line 584, in close
+    self.__exit__(None, None, None)
+  File "/usr/local/lib/python3.10/contextlib.py", line 576, in __exit__
+    raise exc_details[1]
+  File "/usr/local/lib/python3.10/contextlib.py", line 561, in __exit__
+    if cb(*exc_details):
+  File "/usr/local/lib/python3.10/contextlib.py", line 449, in _exit_wrapper
+    callback(*args, **kwds)
+  File "/usr/local/lib/python3.10/site-packages/_pytest/capture.py", line 778, in stop_global_capturing
+    self._global_capturing.pop_outerr_to_orig()
+  File "/usr/local/lib/python3.10/site-packages/_pytest/capture.py", line 659, in pop_outerr_to_orig
+    out, err = self.readouterr()
+  File "/usr/local/lib/python3.10/site-packages/_pytest/capture.py", line 706, in readouterr
+    out = self.out.snap() if self.out else ""
+  File "/usr/local/lib/python3.10/site-packages/_pytest/capture.py", line 591, in snap
+    self.tmpfile.seek(0)
+ValueError: I/O operation on closed file.
+```
+
+### Code
+```python
+import sys
+
+class Solution:
+
+    def __init__(self):
+        self.buffer = sys.stdout
+
+    def close(self) -> None:
+        """Close all created buffers."""
+        self.buffer.flush()
+        self.buffer.close()
+
+def test_close_line2():
+    obj = Solution()
+    obj.close()
+```
 ---## TASK: 124282
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_124282_mgob1bw_
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_124282_mcd1aynu
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__save_atomic_line2 FAILED                        [100%]
 
-================================== FAILURES ===================================
-___________________________ test__save_atomic_line2 ___________________________
+=================================== FAILURES ===================================
+___________________________ test__save_atomic_line2 ____________________________
 
     def test__save_atomic_line2():
         solution = Solution()
@@ -3672,10 +3764,10 @@ ___________________________ test__save_atomic_line2 ___________________________
 >       solution._save_atomic(test_path, test_data)
 
 test_generated.py:57: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.Solution object at 0x00000263F216D280>
-path = WindowsPath('/tmp/test_file'), data = {'key': 'value'}
+self = <test_generated.Solution object at 0x785cb2ca16f0>
+path = PosixPath('/tmp/test_file'), data = {'key': 'value'}
 
     def _save_atomic(self, path: Path, data: dict) -> None:
         """
@@ -3687,13 +3779,12 @@ path = WindowsPath('/tmp/test_file'), data = {'key': 'value'}
         with open(temp_path, 'w') as f:
             json.dump(data, f)
 >       os.fsync(f.fileno())
-                 ^^^^^^^^^^
 E       ValueError: I/O operation on closed file
 
 test_generated.py:50: ValueError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__save_atomic_line2 - ValueError: I/O operation...
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.25s ===============================
 ```
 
 ### Code
@@ -3726,29 +3817,28 @@ def test__save_atomic_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_653235_rb4r5_al
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_653235_ea1db7t8
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestBuildRetrievedContext::test_build_retrieved_context_line2 FAILED [100%]
 
-================================== FAILURES ===================================
-________ TestBuildRetrievedContext.test_build_retrieved_context_line2 _________
+=================================== FAILURES ===================================
+_________ TestBuildRetrievedContext.test_build_retrieved_context_line2 _________
 
 self = <test_generated.TestBuildRetrievedContext testMethod=test_build_retrieved_context_line2>
 
     def test_build_retrieved_context_line2(self):
         chunks = [{'id': 'doc1', 'title': 'Title 1', 'ts': '2023-01-01', 'text': 'Text 1'}, {'id': 'doc2', 'title': 'Title 2', 'ts': '2023-01-02', 'text': 'Text 2'}]
 >       result = self.solution.build_retrieved_context(chunks)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:45: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000001CE7B49A210>
+self = <under_test.Solution object at 0x7037d288eaa0>
 chunks = [{'id': 'doc1', 'text': 'Text 1', 'title': 'Title 1', 'ts': '2023-01-01'}, {'id': 'doc2', 'text': 'Text 2', 'title': 'Title 2', 'ts': '2023-01-02'}]
 
     def build_retrieved_context(self, chunks):
@@ -3782,13 +3872,12 @@ chunks = [{'id': 'doc1', 'text': 'Text 1', 'title': 'Title 1', 'ts': '2023-01-01
         for c in chunks:
             ts = c.get('ts') or 0
 >           when = time.strftime('%Y-%m-%d', time.gmtime(ts)) if ts else 'static'
-                                             ^^^^^^^^^^^^^^^
 E           TypeError: 'str' object cannot be interpreted as an integer
 
 under_test.py:46: TypeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestBuildRetrievedContext::test_build_retrieved_context_line2
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.20s ===============================
 ```
 
 ### Code
@@ -3810,14 +3899,14 @@ class TestBuildRetrievedContext(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_398617_hbv7354e
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_398617_0hehzsgr
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.08s ============================
+============================ no tests ran in 0.22s =============================
 ```
 
 ### Code
@@ -3839,53 +3928,50 @@ class Solution:
         except Exception as e:
             return None
 ```
----## TASK: 893258
+---## TASK: 601955
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_893258_hrc7g760
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_601955_txm87pyb
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.92s ============================
+============================ no tests ran in 0.18s =============================
 ```
 
 ### Code
 ```python
-import sys
+import hashlib
 
 class Solution:
 
-    def test_line2(self, expected_rows: int):
-        """Wait for AWS Feature Group to fully populate the Offline Storage"""
-        self.rows = []
-        while True:
-            current_rows = self.get_rows()
-            if current_rows == expected_rows:
-                break
-            else:
-                time.sleep(1)
+    def test_line2(self):
+        """SHA-256 of this agent file (frozen exe path under PyInstaller)."""
+        with open('agent.py', 'rb') as f:
+            data = f.read()
+        sha256_hash = hashlib.sha256(data).hexdigest()
+        return sha256_hash
 ```
 ---## TASK: 894422
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_894422_oipvuf7w
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_894422_6t1pf2h9
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_inference_loop_line2 FAILED                      [100%]
 
-================================== FAILURES ===================================
-__________________________ test_inference_loop_line2 __________________________
+=================================== FAILURES ===================================
+__________________________ test_inference_loop_line2 ___________________________
 
     def test_inference_loop_line2():
         solution = Solution()
@@ -3914,33 +4000,27 @@ __________________________ test_inference_loop_line2 __________________________
 >       asyncio.run(main())
 
 test_generated.py:74: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\asyncio\runners.py:195: in run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\asyncio\runners.py:118: in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\asyncio\base_events.py:691: in run_until_complete
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/asyncio/runners.py:44: in run
+    return loop.run_until_complete(main)
+/usr/local/lib/python3.10/asyncio/base_events.py:649: in run_until_complete
     return future.result()
-           ^^^^^^^^^^^^^^^
 test_generated.py:73: in main
     await solution.inference_loop()
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.Solution object at 0x00000271B82DD0D0>
+self = <test_generated.Solution object at 0x78dd9471fd60>
 
     async def inference_loop(self):
         """Runs streaming inference on inbound data, and if any response audio is created, appends it to the outbound stream."""
         while True:
->           data = await asyncio.get_event_loop().run_in_thread(lambda: input_data.read())
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E           AttributeError: 'ProactorEventLoop' object has no attribute 'run_in_thread'
+>           data = await asyncio.get_event_loop().run_in_thread(lambda : input_data.read())
+E           AttributeError: '_UnixSelectorEventLoop' object has no attribute 'run_in_thread'
 
 test_generated.py:43: AttributeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_inference_loop_line2 - AttributeError: 'Proact...
-============================== 1 failed in 0.24s ==============================
+=========================== short test summary info ============================
+FAILED test_generated.py::test_inference_loop_line2 - AttributeError: '_UnixS...
+============================== 1 failed in 0.27s ===============================
 ```
 
 ### Code
@@ -3952,7 +4032,7 @@ class Solution:
     async def inference_loop(self):
         """Runs streaming inference on inbound data, and if any response audio is created, appends it to the outbound stream."""
         while True:
-            data = await asyncio.get_event_loop().run_in_thread(lambda: input_data.read())
+            data = await asyncio.get_event_loop().run_in_thread(lambda : input_data.read())
             if data is None:
                 break
             output_audio = process_data(data)
@@ -3985,50 +4065,22 @@ def test_inference_loop_line2():
         await solution.inference_loop()
     asyncio.run(main())
 ```
----## TASK: 601955
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_601955_l5d7501k
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.06s ============================
-```
-
-### Code
-```python
-import hashlib
-
-class Solution:
-
-    def test_line2(self):
-        """SHA-256 of this agent file (frozen exe path under PyInstaller)."""
-        with open('agent.py', 'rb') as f:
-            data = f.read()
-        sha256_hash = hashlib.sha256(data).hexdigest()
-        return sha256_hash
-```
 ---## TASK: 221252
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_221252_yulbm9e5
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_221252_i4i8m448
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_read_line2 FAILED                                [100%]
 
-================================== FAILURES ===================================
-_______________________________ test_read_line2 _______________________________
+=================================== FAILURES ===================================
+_______________________________ test_read_line2 ________________________________
 
     def test_read_line2():
         import asyncio
@@ -4039,42 +4091,21 @@ _______________________________ test_read_line2 _______________________________
 >       asyncio.run(main())
 
 test_generated.py:42: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\asyncio\runners.py:195: in run
-    return runner.run(main)
-           ^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\asyncio\runners.py:118: in run
-    return self._loop.run_until_complete(task)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\asyncio\base_events.py:691: in run_until_complete
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/asyncio/runners.py:44: in run
+    return loop.run_until_complete(main)
+/usr/local/lib/python3.10/asyncio/base_events.py:649: in run_until_complete
     return future.result()
-           ^^^^^^^^^^^^^^^
-test_generated.py:41: in main
-    result = await sol.read(100)
-             ^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000001821C960EC0>, n_bytes = 100
-timeout_s = 3
+    async def main():
+>       sol = Solution()
+E       NameError: name 'Solution' is not defined
 
-    async def read(self, n_bytes: int, timeout_s: float = 3) -> bytes:
-        """Read n_bytes from the server with a timeout.
-    
-        :param n_bytes: Number of bytes to read
-        :param timeout_s: Timeout in seconds
-        :return: Bytes read from the server
-    
-        :raises TimeoutError: If no response is received within the timeout
-        :raises RuntimeError: If the response length is not equal to n_bytes
-        """
->       assert self.reader is not None
-               ^^^^^^^^^^^
-E       AttributeError: 'Solution' object has no attribute 'reader'. Did you mean: 'read'?
-
-under_test.py:28: AttributeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_read_line2 - AttributeError: 'Solution' object...
-============================== 1 failed in 0.22s ==============================
+test_generated.py:40: NameError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_read_line2 - NameError: name 'Solution' is not...
+============================== 1 failed in 0.30s ===============================
 ```
 
 ### Code
@@ -4087,33 +4118,63 @@ def test_read_line2():
         result = await sol.read(100)
     asyncio.run(main())
 ```
+---## TASK: 893258
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_893258_nwf3giyh
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.69s =============================
+```
+
+### Code
+```python
+import sys
+
+class Solution:
+
+    def test_line2(self, expected_rows: int):
+        """Wait for AWS Feature Group to fully populate the Offline Storage"""
+        self.rows = []
+        while True:
+            current_rows = self.get_rows()
+            if current_rows == expected_rows:
+                break
+            else:
+                time.sleep(1)
+```
 ---## TASK: 898900
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_898900_zzunw9x4
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_898900_t5v9mynz
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_898900_zzunw9x4\test_generated.py'.
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_898900_t5v9mynz/test_generated.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test_generated.py:36: in <module>
     import ibis
 E   ModuleNotFoundError: No module named 'ibis'
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.33s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.38s ===============================
 ```
 
 ### Code
@@ -4148,55 +4209,78 @@ class Solution:
         filtered_col = col.isin(allowed_set)
         return table.filter(filtered_col)
 ```
+---## TASK: 836656
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_836656_bo5jxmdv
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.16s =============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import List
+
+class Solution:
+
+    def test_line2(self, cls: type, func_name: str, lines: list[str]=[]) -> str:
+        """Create a "filename" suitable for a function being generated.  #3
+  #4
+        If *lines* are provided, insert them in the first free spot or stop  #5
+        if a duplicate is found."""
+        ...
+```
 ---## TASK: 322363
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_322363_249p9wuj
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_322363_5o647fyq
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_is_subpath_line2 FAILED                          [100%]
 
-================================== FAILURES ===================================
-____________________________ test_is_subpath_line2 ____________________________
+=================================== FAILURES ===================================
+____________________________ test_is_subpath_line2 _____________________________
 
     def test_is_subpath_line2():
         from unittest.mock import patch, MagicMock
         solution = Solution()
 >       with patch('Solution._resolve_path', side_effect=_mock_resolve_path), patch.object(solution, '_is_subpath') as mock_method:
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:92: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
     self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
-    ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
-    ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-name = 'Solution', import_ = <function _gcd_import at 0x000001B320F1C0E0>
+target = 'Solution'
 
->   ???
-E   ModuleNotFoundError: No module named 'Solution'
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'Solution'
 
-<frozen importlib._bootstrap>:1324: ModuleNotFoundError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+=========================== short test summary info ============================
 FAILED test_generated.py::test_is_subpath_line2 - ModuleNotFoundError: No mod...
-============================== 1 failed in 0.30s ==============================
+============================== 1 failed in 0.39s ===============================
 ```
 
 ### Code
@@ -4219,7 +4303,7 @@ class Solution:
         elif len(child_parts) < len(parent_parts):
             return True
         else:
-            for p, c in zip(parent_parts, child_parts):
+            for (p, c) in zip(parent_parts, child_parts):
                 if p.lower() != c.lower():
                     return False
             return False
@@ -4249,7 +4333,7 @@ def _mock_is_subpath(self, parent: str, child: str) -> bool:
     elif len(child_parts) < len(parent_parts):
         return True
     else:
-        for p, c in zip(parent_parts, child_parts):
+        for (p, c) in zip(parent_parts, child_parts):
             if p.lower() != c.lower():
                 return False
         return False
@@ -4270,58 +4354,110 @@ def test_is_subpath_line2():
         except ValueError:
             pass
 ```
----## TASK: 836656
+---## TASK: 437415
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_836656_g6aekw6c
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_437415_8s4eyyh0
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.21s =============================
 ```
 
 ### Code
 ```python
-import sys
-sys.path.append('.')
-from typing import List
+import time
 
 class Solution:
 
-    def test_line2(self, cls: type, func_name: str, lines: list[str]=[]) -> str:
-        """Create a "filename" suitable for a function being generated.  #3
-  #4
-        If *lines* are provided, insert them in the first free spot or stop  #5
-        if a duplicate is found."""
-        ...
+    def __init__(self):
+        self.pages = {}
+
+    def test_line2(self) -> dict:
+        """
+        Retrieve a dict of plugin pages with a timeout mechanism using threads.
+
+        Returns:
+            dict: A dict of instantiated plugin pages or excludes pages that take too long.
+        """
+        start_time = time.time()
+        result = {}
+        for (page_id, page) in self.pages.items():
+            try:
+                time.sleep(1)
+                result[page_id] = page
+            except Exception as e:
+                print(f'Error processing {page_id}: {str(e)}')
+                continue
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        if elapsed_time > 1:
+            print('Timeout reached!')
+            return {}
+        else:
+            return result
+```
+---## TASK: 648043
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_648043_xv5at1ec
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.21s =============================
+```
+
+### Code
+```python
+import re
+
+class Solution:
+
+    def __init__(self):
+        self.blocked_ips = ['192.168.1.0/24', '10.0.0.0/8']
+
+    def test_line2(self, ip):
+        """True for addresses an authoritative NS must not point at (SSRF guard)."""
+        for pattern in self.blocked_ips:
+            if re.match(pattern, ip):
+                return True
+        return False
 ```
 ---## TASK: 597643
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_597643_8gfdf6oo
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_597643_iqp1pzvr
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-test_generated.py:51: in <module>
-    @asyncio.coroutine
-     ^^^^^^^^^^^^^^^^^
-E   AttributeError: module 'asyncio' has no attribute 'coroutine'. Did you mean: 'coroutines'?
-=========================== short test summary info ===========================
-ERROR test_generated.py - AttributeError: module 'asyncio' has no attribute '...
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.29s ===============================
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+'yield' keyword is allowed in fixtures, but not in tests (test_line2)
+=============================== warnings summary ===============================
+test_generated.py:52
+  /tmp/eval_597643_iqp1pzvr/test_generated.py:52: DeprecationWarning: "@coroutine" decorator is deprecated since Python 3.8, use "async def" instead
+    def test_line2():
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR test_generated.py - Failed: 'yield' keyword is allowed in fixtures, but...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+========================= 1 warning, 1 error in 0.38s ==========================
 ```
 
 ### Code
@@ -4345,101 +4481,22 @@ some_data_source = asyncio.Queue()
 def test_line2():
     yield from some_data_source.get()
 ```
----## TASK: 648043
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_648043_lqgznk5q
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.07s ============================
-```
-
-### Code
-```python
-import re
-
-class Solution:
-
-    def __init__(self):
-        self.blocked_ips = ['192.168.1.0/24', '10.0.0.0/8']
-
-    def test_line2(self, ip):
-        """True for addresses an authoritative NS must not point at (SSRF guard)."""
-        for pattern in self.blocked_ips:
-            if re.match(pattern, ip):
-                return True
-        return False
-```
----## TASK: 437415
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_437415_w96dce72
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.06s ============================
-```
-
-### Code
-```python
-import time
-
-class Solution:
-
-    def __init__(self):
-        self.pages = {}
-
-    def test_line2(self) -> dict:
-        """
-        Retrieve a dict of plugin pages with a timeout mechanism using threads.
-
-        Returns:
-            dict: A dict of instantiated plugin pages or excludes pages that take too long.
-        """
-        start_time = time.time()
-        result = {}
-        for page_id, page in self.pages.items():
-            try:
-                time.sleep(1)
-                result[page_id] = page
-            except Exception as e:
-                print(f'Error processing {page_id}: {str(e)}')
-                continue
-        end_time = time.time()
-        elapsed_time = end_time - start_time
-        if elapsed_time > 1:
-            print('Timeout reached!')
-            return {}
-        else:
-            return result
-```
 ---## TASK: 913773
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_913773_0m1mxyz7
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_913773_sx7nj2c3
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_is_malformed_base64_image_line2 FAILED [100%]
 
-================================== FAILURES ===================================
-________________ TestCase.test_is_malformed_base64_image_line2 ________________
+=================================== FAILURES ===================================
+________________ TestCase.test_is_malformed_base64_image_line2 _________________
 
 self = <test_generated.TestCase testMethod=test_is_malformed_base64_image_line2>
 
@@ -4451,9 +4508,9 @@ self = <test_generated.TestCase testMethod=test_is_malformed_base64_image_line2>
 E       AssertionError: False is not true
 
 test_generated.py:44: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_is_malformed_base64_image_line2 - As...
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.23s ===============================
 ```
 
 ### Code
@@ -4473,14 +4530,14 @@ class TestCase(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_222449_gqzmox4i
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_222449__kdtl7ri
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.21s =============================
 ```
 
 ### Code
@@ -4502,14 +4559,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_9242_h2p0c5o6
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_9242_2wy639q4
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.20s =============================
 ```
 
 ### Code
@@ -4529,33 +4586,91 @@ class Solution:
         for i in range(1, 11):
             yield f'camera_{i}'
 ```
+---## TASK: 244830
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_244830_z034fh3_
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestSolution::test_check_response_method_line2 FAILED [100%]
+
+=================================== FAILURES ===================================
+________________ TestSolution.test_check_response_method_line2 _________________
+/usr/local/lib/python3.10/unittest/mock.py:1376: in patched
+    with self.decoration_helper(patched,
+/usr/local/lib/python3.10/contextlib.py:135: in __enter__
+    return next(self.gen)
+/usr/local/lib/python3.10/unittest/mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+/usr/local/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+target = 'some_module'
+
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'some_module'
+
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestSolution::test_check_response_method_line2 - Mo...
+============================== 1 failed in 1.09s ===============================
+```
+
+### Code
+```python
+import unittest
+from unittest.mock import patch
+
+class TestSolution(unittest.TestCase):
+
+    @patch('some_module.Solution')
+    def test_check_response_method_line2(self, mock_solution):
+        mock_estimator = MagicMock()
+        mock_estimator.predict = MagicMock(return_value='prediction')
+        mock_estimator.predict_proba = MagicMock(return_value='probability')
+        self.assertEqual(mock_solution._check_response_method(mock_estimator, 'predict'), mock_estimator.predict)
+        self.assertEqual(mock_solution._check_response_method(mock_estimator, ['predict_proba', 'predict']), mock_estimator.predict_proba)
+```
 ---## TASK: 845432
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_845432_43yyz64w
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_845432_cho5epvt
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestRemoveItem::test_remove_item_line2 FAILED         [100%]
 
-================================== FAILURES ===================================
-____________________ TestRemoveItem.test_remove_item_line2 ____________________
+=================================== FAILURES ===================================
+____________________ TestRemoveItem.test_remove_item_line2 _____________________
 
 self = <test_generated.TestRemoveItem testMethod=test_remove_item_line2>
 
     def test_remove_item_line2(self):
 >       self.assertIsNone(self.solution.remove_item('abc'))
-                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:44: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x0000014F73F49DC0>, playlist_id = 'abc'
+self = <under_test.Solution object at 0x73d8bcfa6f80>, playlist_id = 'abc'
 
     def remove_item(self, playlist_id: str) -> None:
         """Optimistically remove the item with *playlist_id* from the panel."""
@@ -4565,13 +4680,12 @@ self = <under_test.Solution object at 0x0000014F73F49DC0>, playlist_id = 'abc'
             return pid == playlist_id or pid == f"VL{playlist_id}"
     
 >       self._items = [i for i in self._items if not matches(i)]
-                                  ^^^^^^^^^^^
 E       AttributeError: 'Solution' object has no attribute '_items'
 
 under_test.py:81: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestRemoveItem::test_remove_item_line2 - AttributeE...
-============================== 1 failed in 0.18s ==============================
+============================== 1 failed in 0.25s ===============================
 ```
 
 ### Code
@@ -4586,52 +4700,19 @@ class TestRemoveItem(unittest.TestCase):
     def test_remove_item_line2(self):
         self.assertIsNone(self.solution.remove_item('abc'))
 ```
----## TASK: 318908
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_318908_oied5jyq
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.07s ============================
-```
-
-### Code
-```python
-import os
-
-class Solution:
-
-    def test_line2(self, cwd: str) -> list[str]:
-        """Get files modified or created during the session via git."""
-        git_dir = os.path.join(cwd, '.git')
-        if not os.path.exists(git_dir):
-            return []
-        files = []
-        for root, dirs, files_list in os.walk(cwd):
-            for file in files_list:
-                if file.startswith('.git'):
-                    files.append(os.path.join(root, file))
-        return files
-```
 ---## TASK: 678386
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_678386_bimw23gg
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_678386_1ej_pcm3
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.45s =============================
 ```
 
 ### Code
@@ -4658,19 +4739,65 @@ class Solution:
     def test_line2(self):
         self._fill_data_var_defaults(ds=self.data, schema=DatasetSchema(), logical_to_actual={'key': 'value'}, error_handler=ErrorHandler())
 ```
+---## TASK: 318908
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_318908_xa3ol182
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.33s =============================
+```
+
+### Code
+```python
+import os
+
+class Solution:
+
+    def test_line2(self, cwd: str) -> list[str]:
+        """Get files modified or created during the session via git."""
+        git_dir = os.path.join(cwd, '.git')
+        if not os.path.exists(git_dir):
+            return []
+        files = []
+        for (root, dirs, files_list) in os.walk(cwd):
+            for file in files_list:
+                if file.startswith('.git'):
+                    files.append(os.path.join(root, file))
+        return files
+```
 ---## TASK: 153038
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_153038_aijhmn69
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
+rootdir: /tmp/eval_153038_7epmgr_q
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
 
-============================ no tests ran in 0.32s ============================
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_153038_7epmgr_q/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:36: in <module>
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.57s ===============================
 ```
 
 ### Code
@@ -4687,22 +4814,86 @@ class Solution:
         post = data['post']
         return post
 ```
+---## TASK: 15584
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_15584_pqc5sgz9
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestSolution::test_join_text_at_seam_line2 FAILED     [100%]
+
+=================================== FAILURES ===================================
+__________________ TestSolution.test_join_text_at_seam_line2 ___________________
+
+self = <test_generated.TestSolution testMethod=test_join_text_at_seam_line2>
+
+    def test_join_text_at_seam_line2(self):
+        a = [{'key': 'value', 'id': 1}, {'key2': 'value2', 'id': 2}]
+        b = [{'key3': 'value3', 'id': 3}, {'key4': 'value4', 'id': 4}]
+        result = Solution()._join_text_at_seam(a, b)
+>       self.assertEqual(result, [{'key': 'value\n', 'id': 1}, {'key2': 'value2\n', 'id': 2}, {'key3': 'value3', 'id': 3}, {'key4': 'seam', 'id': 4}])
+E       AssertionError: Lists differ: [{'key': 'value', 'id': 1}, {'key2': 'value2', 'id': 2},[53 chars]: 4}] != [{'key': 'value\n', 'id': 1}, {'key2': 'value2\n', 'id':[55 chars]: 4}]
+E       
+E       First differing element 0:
+E       {'key': 'value', 'id': 1}
+E       {'key': 'value\n', 'id': 1}
+E       
+E       - [{'id': 1, 'key': 'value'},
+E       + [{'id': 1, 'key': 'value\n'},
+E       ?                         ++
+E       
+E       -  {'id': 2, 'key2': 'value2'},
+E       +  {'id': 2, 'key2': 'value2\n'},
+E       ?                           ++
+E       
+E          {'id': 3, 'key3': 'value3'},
+E       -  {'id': 4, 'key4': 'value4'}]
+E       ?                     ^ ^^^^
+E       
+E       +  {'id': 4, 'key4': 'seam'}]
+E       ?                     ^^ ^
+
+test_generated.py:45: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestSolution::test_join_text_at_seam_line2 - Assert...
+============================== 1 failed in 0.20s ===============================
+```
+
+### Code
+```python
+import unittest
+from typing import List, Dict, Any
+
+class TestSolution(unittest.TestCase):
+
+    def test_join_text_at_seam_line2(self):
+        a = [{'key': 'value', 'id': 1}, {'key2': 'value2', 'id': 2}]
+        b = [{'key3': 'value3', 'id': 3}, {'key4': 'value4', 'id': 4}]
+        result = Solution()._join_text_at_seam(a, b)
+        self.assertEqual(result, [{'key': 'value\n', 'id': 1}, {'key2': 'value2\n', 'id': 2}, {'key3': 'value3', 'id': 3}, {'key4': 'seam', 'id': 4}])
+```
 ---## TASK: 242826
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_242826_uy2on9qi
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_242826_038busoz
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__skip_udf_line2 FAILED                           [100%]
 
-================================== FAILURES ===================================
-____________________________ test__skip_udf_line2 _____________________________
+=================================== FAILURES ===================================
+_____________________________ test__skip_udf_line2 _____________________________
 
     def test__skip_udf_line2():
         solution = Solution()
@@ -4711,27 +4902,25 @@ ____________________________ test__skip_udf_line2 _____________________________
         query = Query()
         job = Job()
 >       result = solution._skip_udf(checkpoint, hash_input, query, job)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:65: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.Solution object at 0x00000266EFC1BB00>
-checkpoint = <test_generated.Checkpoint object at 0x00000266EFC191C0>
+self = <test_generated.Solution object at 0x7a6498d90af0>
+checkpoint = <test_generated.Checkpoint object at 0x7a6498d91660>
 hash_input = 'some_hash'
-query = <test_generated.Query object at 0x00000266EFC1BB90>
-job = <test_generated.Job object at 0x00000266EFC19190>
+query = <test_generated.Query object at 0x7a64967a18a0>
+job = <test_generated.Job object at 0x7a64967a1870>
 
     def _skip_udf(self, checkpoint: Checkpoint, hash_input: str, query: Query, job: Job) -> Tuple[Table, Table]:
         """Skip UDF by reusing existing output table from checkpoint."""
 >       return (checkpoint.output_table, checkpoint.input_table)
-                                         ^^^^^^^^^^^^^^^^^^^^^^
 E       AttributeError: 'Checkpoint' object has no attribute 'input_table'. Did you mean: 'output_table'?
 
 test_generated.py:57: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__skip_udf_line2 - AttributeError: 'Checkpoint'...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.72s ===============================
 ```
 
 ### Code
@@ -4769,162 +4958,19 @@ def test__skip_udf_line2():
     assert isinstance(result[0], Table), f'Expected first table to be of type Table, got {type(result[0])}'
     assert isinstance(result[1], Table), f'Expected second table to return a table, got {type(result[1])}'
 ```
----## TASK: 15584
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_15584_4o04bytc
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestSolution::test_join_text_at_seam_line2 FAILED     [100%]
-
-================================== FAILURES ===================================
-__________________ TestSolution.test_join_text_at_seam_line2 __________________
-
-self = <test_generated.TestSolution testMethod=test_join_text_at_seam_line2>
-
-    def test_join_text_at_seam_line2(self):
-        a = [{'key': 'value', 'id': 1}, {'key2': 'value2', 'id': 2}]
-        b = [{'key3': 'value3', 'id': 3}, {'key4': 'value4', 'id': 4}]
-        result = Solution()._join_text_at_seam(a, b)
->       self.assertEqual(result, [{'key': 'value\n', 'id': 1}, {'key2': 'value2\n', 'id': 2}, {'key3': 'value3', 'id': 3}, {'key4': 'seam', 'id': 4}])
-E       AssertionError: Lists differ: [{'key': 'value', 'id': 1}, {'key2': 'value2', 'id': 2},[53 chars]: 4}] != [{'key': 'value\n', 'id': 1}, {'key2': 'value2\n', 'id':[55 chars]: 4}]
-E       
-E       First differing element 0:
-E       {'key': 'value', 'id': 1}
-E       {'key': 'value\n', 'id': 1}
-E       
-E       - [{'id': 1, 'key': 'value'},
-E       + [{'id': 1, 'key': 'value\n'},
-E       ?                         ++
-E       
-E       -  {'id': 2, 'key2': 'value2'},
-E       +  {'id': 2, 'key2': 'value2\n'},
-E       ?                           ++
-E       
-E          {'id': 3, 'key3': 'value3'},
-E       -  {'id': 4, 'key4': 'value4'}]
-E       ?                     ^ ^^^^
-E       
-E       +  {'id': 4, 'key4': 'seam'}]
-E       ?                     ^^ ^
-
-test_generated.py:45: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestSolution::test_join_text_at_seam_line2 - Assert...
-============================== 1 failed in 0.16s ==============================
-```
-
-### Code
-```python
-import unittest
-from typing import List, Dict, Any
-
-class TestSolution(unittest.TestCase):
-
-    def test_join_text_at_seam_line2(self):
-        a = [{'key': 'value', 'id': 1}, {'key2': 'value2', 'id': 2}]
-        b = [{'key3': 'value3', 'id': 3}, {'key4': 'value4', 'id': 4}]
-        result = Solution()._join_text_at_seam(a, b)
-        self.assertEqual(result, [{'key': 'value\n', 'id': 1}, {'key2': 'value2\n', 'id': 2}, {'key3': 'value3', 'id': 3}, {'key4': 'seam', 'id': 4}])
-```
----## TASK: 244830
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_244830_6ix9t8k1
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestSolution::test_check_response_method_line2 FAILED [100%]
-
-================================== FAILURES ===================================
-________________ TestSolution.test_check_response_method_line2 ________________
-C:\Program Files\Python312\Lib\unittest\mock.py:1393: in patched
-    with self.decoration_helper(patched,
-C:\Program Files\Python312\Lib\contextlib.py:137: in __enter__
-    return next(self.gen)
-           ^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1375: in decoration_helper
-    arg = exit_stack.enter_context(patching)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\contextlib.py:526: in enter_context
-    result = _enter(cm)
-             ^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
-    self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-name = 'some_module', package = None
-
-    def import_module(name, package=None):
-        """Import a module.
-    
-        The 'package' argument is required when performing a relative import. It
-        specifies the package to use as the anchor point from which to resolve the
-        relative import to an absolute import.
-    
-        """
-        level = 0
-        if name.startswith('.'):
-            if not package:
-                raise TypeError("the 'package' argument is required to perform a "
-                                f"relative import for {name!r}")
-            for character in name:
-                if character != '.':
-                    break
-                level += 1
->       return _bootstrap._gcd_import(name[level:], package, level)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E       ModuleNotFoundError: No module named 'some_module'
-
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: ModuleNotFoundError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestSolution::test_check_response_method_line2 - Mo...
-============================== 1 failed in 3.16s ==============================
-```
-
-### Code
-```python
-import unittest
-from unittest.mock import patch
-
-class TestSolution(unittest.TestCase):
-
-    @patch('some_module.Solution')
-    def test_check_response_method_line2(self, mock_solution):
-        mock_estimator = MagicMock()
-        mock_estimator.predict = MagicMock(return_value='prediction')
-        mock_estimator.predict_proba = MagicMock(return_value='probability')
-        self.assertEqual(mock_solution._check_response_method(mock_estimator, 'predict'), mock_estimator.predict)
-        self.assertEqual(mock_solution._check_response_method(mock_estimator, ['predict_proba', 'predict']), mock_estimator.predict_proba)
-```
 ---## TASK: 935316
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_935316_763tpkrc
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_935316_mnbzb5ry
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.13s ============================
+============================ no tests ran in 0.20s =============================
 ```
 
 ### Code
@@ -4943,7 +4989,7 @@ class Solution:
         Returns:
             bool: True if the string is a valid CIDR block, False otherwise.
         """
-        ip_part, prefix_len_str = string_network.split(' ', 1)
+        (ip_part, prefix_len_str) = string_network.split(' ', 1)
         prefix_len = int(prefix_len_str)
         if prefix_len < 0 or prefix_len > 32:
             return False
@@ -4958,14 +5004,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_117944_x0e92dg0
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_117944_tz3xo6z5
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.18s =============================
 ```
 
 ### Code
@@ -4992,14 +5038,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_279464_93oc5ll9
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_279464_d2dtn8ti
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.17s =============================
 ```
 
 ### Code
@@ -5025,19 +5071,19 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_961559_7bg6i5_2
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_961559_vczehkpy
+plugins: cov-5.0.0
 collecting ... collected 3 items
 
 test_generated.py::TestCase::test_get_errors_invalid_arguments_line2 FAILED [ 33%]
 test_generated.py::TestCase::test_get_errors_no_args_line2 FAILED        [ 66%]
 test_generated.py::TestCase::test_get_errors_with_file_path_line2 FAILED [100%]
 
-================================== FAILURES ===================================
-______________ TestCase.test_get_errors_invalid_arguments_line2 _______________
+=================================== FAILURES ===================================
+_______________ TestCase.test_get_errors_invalid_arguments_line2 _______________
 
 self = <test_generated.TestCase testMethod=test_get_errors_invalid_arguments_line2>
 
@@ -5046,7 +5092,7 @@ self = <test_generated.TestCase testMethod=test_get_errors_invalid_arguments_lin
 >           self.solution.get_errors(123)
 
 test_generated.py:60: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
     def get_errors(self, file_path: str | None = None) -> list[IDEDiagnostic]:
         """Get error-severity diagnostics, optionally filtered by file."""
@@ -5054,45 +5100,40 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
         files = [file_path] if file_path else list(self._diagnostics.keys())
         for f in files:
 >           for d in self._diagnostics.get(f, []):
-                     ^^^^^^^^^^^^^^^^^
 E           AttributeError: 'Solution' object has no attribute '_diagnostics'
 
 under_test.py:30: AttributeError
-___________________ TestCase.test_get_errors_no_args_line2 ____________________
+____________________ TestCase.test_get_errors_no_args_line2 ____________________
 
 self = <test_generated.TestCase testMethod=test_get_errors_no_args_line2>
 
     def test_get_errors_no_args_line2(self):
 >       result = self.solution.get_errors()
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:48: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x0000013F50770C80>, file_path = None
+self = <under_test.Solution object at 0x7782784ba170>, file_path = None
 
     def get_errors(self, file_path: str | None = None) -> list[IDEDiagnostic]:
         """Get error-severity diagnostics, optionally filtered by file."""
         result: list[IDEDiagnostic] = []
 >       files = [file_path] if file_path else list(self._diagnostics.keys())
-                                                   ^^^^^^^^^^^^^^^^^
 E       AttributeError: 'Solution' object has no attribute '_diagnostics'
 
 under_test.py:28: AttributeError
-________________ TestCase.test_get_errors_with_file_path_line2 ________________
+________________ TestCase.test_get_errors_with_file_path_line2 _________________
 
 self = <test_generated.TestCase testMethod=test_get_errors_with_file_path_line2>
 
     def test_get_errors_with_file_path_line2(self):
         file_path = 'example.txt'
 >       result = self.solution.get_errors(file_path)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:54: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x0000013F50771310>
-file_path = 'example.txt'
+self = <under_test.Solution object at 0x778276620370>, file_path = 'example.txt'
 
     def get_errors(self, file_path: str | None = None) -> list[IDEDiagnostic]:
         """Get error-severity diagnostics, optionally filtered by file."""
@@ -5100,15 +5141,14 @@ file_path = 'example.txt'
         files = [file_path] if file_path else list(self._diagnostics.keys())
         for f in files:
 >           for d in self._diagnostics.get(f, []):
-                     ^^^^^^^^^^^^^^^^^
 E           AttributeError: 'Solution' object has no attribute '_diagnostics'
 
 under_test.py:30: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_get_errors_invalid_arguments_line2
 FAILED test_generated.py::TestCase::test_get_errors_no_args_line2 - Attribute...
 FAILED test_generated.py::TestCase::test_get_errors_with_file_path_line2 - At...
-============================== 3 failed in 0.16s ==============================
+============================== 3 failed in 0.25s ===============================
 ```
 
 ### Code
@@ -5144,14 +5184,14 @@ class TestCase(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_294222_mglh6jag
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_294222_tqat5vpy
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.13s ============================
+============================ no tests ran in 0.30s =============================
 ```
 
 ### Code
@@ -5192,39 +5232,38 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_81775_uf9hfi_d
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_81775_zpww8tv4
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__make_ssl_context_line2 FAILED                   [100%]
 
-================================== FAILURES ===================================
-________________________ test__make_ssl_context_line2 _________________________
+=================================== FAILURES ===================================
+_________________________ test__make_ssl_context_line2 _________________________
 
     def test__make_ssl_context_line2():
         solution = Solution()
 >       solution._make_ssl_context()
 
 test_generated.py:71: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.Solution object at 0x000001D998BAA210>
+self = <test_generated.Solution object at 0x751573448850>
 
     def _make_ssl_context(self):
         """Strict TLS context: cert verification on, TLS 1.2 floor — parity with the
         Linux agent (v4.4.0). RP_CA_BUNDLE trusts an internal CA without weakening
         verification."""
 >       self.context = ssl.create_default_context(ca_bundle=self.ca_bundle)
-                                                            ^^^^^^^^^^^^^^
 E       AttributeError: 'Solution' object has no attribute 'ca_bundle'
 
 test_generated.py:60: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__make_ssl_context_line2 - AttributeError: 'Sol...
-============================== 1 failed in 0.18s ==============================
+============================== 1 failed in 0.28s ===============================
 ```
 
 ### Code
@@ -5272,14 +5311,14 @@ def test__make_ssl_context_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_76899_l6cs77o7
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_76899_r4z21rpe
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.23s ============================
+============================ no tests ran in 0.16s =============================
 ```
 
 ### Code
@@ -5306,14 +5345,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_137116_7vj0owpz
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_137116_bgcc7dos
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.22s =============================
 ```
 
 ### Code
@@ -5334,19 +5373,51 @@ class Solution:
             print(f'Would delete {len(os.listdir(plan_path))} .json files')
         return deleted_count
 ```
+---## TASK: 845554
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_845554_vo9_626y
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.15s =============================
+```
+
+### Code
+```python
+import sys
+
+class Solution:
+
+    def __init__(self):
+        self.data = []
+
+    def test_line2(self, filepath):
+        """Load an estimator instance from a file."""
+        with open(filepath, 'r') as f:
+            lines = f.readlines()
+            for line in lines:
+                data = line.strip().split(',')
+                self.data.append(data)
+```
 ---## TASK: 309037
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_309037_ltajdgz2
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_309037_wxva3xft
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.25s =============================
 ```
 
 ### Code
@@ -5368,29 +5439,31 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_550884_miqrk7lx
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_550884_44j0x4zi
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_which_line2 FAILED                               [100%]
 
-================================== FAILURES ===================================
-______________________________ test_which_line2 _______________________________
+=================================== FAILURES ===================================
+_______________________________ test_which_line2 _______________________________
 
     def test_which_line2():
         solution = Solution()
 >       assert solution._which('ls') == '/bin/ls'
-E       AssertionError: assert None == '/bin/ls'
-E        +  where None = _which('ls')
-E        +    where _which = <under_test.Solution object at 0x000001B8DF92E300>._which
+E       AssertionError: assert '/usr/bin/ls' == '/bin/ls'
+E         
+E         - /bin/ls
+E         + /usr/bin/ls
+E         ? ++++
 
 test_generated.py:40: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_which_line2 - AssertionError: assert None == '...
-============================== 1 failed in 0.18s ==============================
+=========================== short test summary info ============================
+FAILED test_generated.py::test_which_line2 - AssertionError: assert '/usr/bin...
+============================== 1 failed in 0.22s ===============================
 ```
 
 ### Code
@@ -5406,14 +5479,14 @@ def test_which_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_778238_f6wi8hok
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_778238_fxxgaux1
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.08s ============================
+============================ no tests ran in 0.19s =============================
 ```
 
 ### Code
@@ -5455,25 +5528,24 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_160070_6i8pjcan
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_160070_txtw8v3m
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
 test_generated.py:42: in <module>
     class TestFallbackSummary(unittest.TestTypeCase):
-                              ^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\__init__.py:85: in __getattr__
+/usr/local/lib/python3.10/unittest/__init__.py:95: in __getattr__
     raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 E   AttributeError: module 'unittest' has no attribute 'TestTypeCase'
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py - AttributeError: module 'unittest' has no attribute ...
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.32s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.36s ===============================
 ```
 
 ### Code
@@ -5500,14 +5572,14 @@ class TestFallbackSummary(unittest.TestTypeCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_252302_dcg8tkch
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_252302__eh41owa
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.14s ============================
+============================ no tests ran in 0.17s =============================
 ```
 
 ### Code
@@ -5529,51 +5601,71 @@ class Solution:
         else:
             pass
 ```
----## TASK: 845554
-**STATUS:** Runtime Error
+---## TASK: 615718
+**STATUS:** Pytest Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_845554_d55uimcs
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
+rootdir: /tmp/eval_615718_kq2etmuq
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
 
-============================ no tests ran in 2.57s ============================
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+/usr/local/lib/python3.10/site-packages/_pytest/python.py:498: in importtestmodule
+    mod = import_path(
+/usr/local/lib/python3.10/site-packages/_pytest/pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1050: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1027: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1006: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:688: in _load_unlocked
+    ???
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:177: in exec_module
+    source_stat, co = _rewrite_test(fn, self.config)
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:359: in _rewrite_test
+    co = compile(tree, strfn, "exec", dont_inherit=True)
+E     File "/tmp/eval_615718_kq2etmuq/test_generated.py", line 40
+E       result = await solution.get_chart_shelf_tracks('OLAK5-123', 20)
+E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   SyntaxError: 'await' outside async function
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.30s ===============================
 ```
 
 ### Code
 ```python
-import sys
+import asyncio
 
-class Solution:
-
-    def __init__(self):
-        self.data = []
-
-    def test_line2(self, filepath):
-        """Load an estimator instance from a file."""
-        with open(filepath, 'r') as f:
-            lines = f.readlines()
-            for line in lines:
-                data = line.strip().split(',')
-                self.data.append(data)
+def test_get_chart_shelf_tracks_line2():
+    solution = Solution()
+    result = await solution.get_chart_shelf_tracks('OLAK5-123', 20)
+    assert isinstance(result, list)
+    assert all((isinstance(track, dict) for track in result))
 ```
 ---## TASK: 951052
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_951052_ez20rb33
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_951052_oeayr85_
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.16s =============================
 ```
 
 ### Code
@@ -5596,14 +5688,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_284853_34c3mkd8
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_284853_xz3y7rr6
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.13s =============================
 ```
 
 ### Code
@@ -5620,74 +5712,55 @@ class Solution:
         except ProcessLookupError:
             return False
 ```
----## TASK: 615718
-**STATUS:** Pytest Error
+---## TASK: 816066
+**STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_615718_b1ih2mbf
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
+rootdir: /tmp/eval_816066_k24nwji7
+plugins: cov-5.0.0
+collecting ... collected 0 items
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\python.py:498: in importtestmodule
-    mod = import_path(
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
-    importlib.import_module(module_name)
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
-    ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
-    ???
-<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
-    ???
-<frozen importlib._bootstrap>:935: in _load_unlocked
-    ???
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:177: in exec_module
-    source_stat, co = _rewrite_test(fn, self.config)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:359: in _rewrite_test
-    co = compile(tree, strfn, "exec", dont_inherit=True)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E     File "C:\Users\cbark\AppData\Local\Temp\eval_615718_b1ih2mbf\test_generated.py", line 40
-E       result = await solution.get_chart_shelf_tracks('OLAK5-123', 20)
-E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E   SyntaxError: 'await' outside async function
-=========================== short test summary info ===========================
-ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.38s ===============================
+============================ no tests ran in 0.16s =============================
 ```
 
 ### Code
 ```python
-import asyncio
+import json
 
-def test_get_chart_shelf_tracks_line2():
-    solution = Solution()
-    result = await solution.get_chart_shelf_tracks('OLAK5-123', 20)
-    assert isinstance(result, list)
-    assert all((isinstance(track, dict) for track in result))
+class Solution:
+
+    def test_line2(self, output: str) -> Optional[str]:
+        """
+        Extract thread_id from codex --json output.
+
+        Looks for: {"type":"thread.started","thread_id":"019baa19-..."}
+        """
+        try:
+            data = json.loads(output)
+            if data.get('type') == 'thread.started':
+                return data['thread_id']
+            else:
+                return None
+        except json.JSONDecodeError:
+            return None
 ```
 ---## TASK: 295362
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_295362__8h2m1uf
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_295362_flzg5svn
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.13s ============================
+============================ no tests ran in 0.17s =============================
 ```
 
 ### Code
@@ -5715,69 +5788,32 @@ class Solution:
             links.append((url, rel))
         return links
 ```
----## TASK: 816066
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_816066_l41sb2hh
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.07s ============================
-```
-
-### Code
-```python
-import json
-
-class Solution:
-
-    def test_line2(self, output: str) -> Optional[str]:
-        """
-        Extract thread_id from codex --json output.
-
-        Looks for: {"type":"thread.started","thread_id":"019baa19-..."}
-        """
-        try:
-            data = json.loads(output)
-            if data.get('type') == 'thread.started':
-                return data['thread_id']
-            else:
-                return None
-        except json.JSONDecodeError:
-            return None
-```
 ---## TASK: 467622
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_467622_dtuczlko
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_467622_ooolj6rs
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_get_best_solution_line2 FAILED                   [100%]
 
-================================== FAILURES ===================================
-________________________ test_get_best_solution_line2 _________________________
+=================================== FAILURES ===================================
+_________________________ test_get_best_solution_line2 _________________________
 
     def test_get_best_solution_line2():
         solution = Solution()
 >       with asyncio.new_event_loop() as loop:
-             ^^^^^^^^^^^^^^^^^^^^^^^^
-E       TypeError: 'ProactorEventLoop' object does not support the context manager protocol
+E       AttributeError: __enter__
 
-test_generated.py:49: TypeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_get_best_solution_line2 - TypeError: 'Proactor...
-============================== 1 failed in 0.17s ==============================
+test_generated.py:49: AttributeError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_get_best_solution_line2 - AttributeError: __en...
+============================== 1 failed in 0.20s ===============================
 ```
 
 ### Code
@@ -5807,17 +5843,17 @@ def test_get_best_solution_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_775368_5pq7ci1g
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_775368_z_s69cbr
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__short_src_line2 FAILED                          [100%]
 
-================================== FAILURES ===================================
-____________________________ test__short_src_line2 ____________________________
+=================================== FAILURES ===================================
+____________________________ test__short_src_line2 _____________________________
 
     def test__short_src_line2():
         solution = Solution()
@@ -5829,9 +5865,9 @@ E         - env
 E         + some_string
 
 test_generated.py:39: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__short_src_line2 - AssertionError: assert 'som...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.19s ===============================
 ```
 
 ### Code
@@ -5846,14 +5882,14 @@ def test__short_src_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_222275_p3pr7km4
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_222275_0y9if0jb
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.16s =============================
 ```
 
 ### Code
@@ -5889,30 +5925,30 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_285912_4jo4gd14
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_285912_rzk8dy5a
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__exec_timeout_override_line2 FAILED              [100%]
 
-================================== FAILURES ===================================
-______________________ test__exec_timeout_override_line2 ______________________
+=================================== FAILURES ===================================
+______________________ test__exec_timeout_override_line2 _______________________
 
     def test__exec_timeout_override_line2():
         solution = Solution()
 >       assert some_other_function(solution, 'exec:to=5') == 5
 E       AssertionError: assert 10 == 5
-E        +  where 10 = some_other_function(<test_generated.Solution object at 0x000002628EBD9550>, 'exec:to=5')
+E        +  where 10 = some_other_function(<test_generated.Solution object at 0x74399015b3a0>, 'exec:to=5')
 
 test_generated.py:65: AssertionError
----------------------------- Captured stdout call -----------------------------
+----------------------------- Captured stdout call -----------------------------
 Timeout set to 10
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__exec_timeout_override_line2 - AssertionError:...
-============================== 1 failed in 0.18s ==============================
+============================== 1 failed in 0.25s ===============================
 ```
 
 ### Code
@@ -5951,22 +5987,67 @@ def test__exec_timeout_override_line2():
     assert some_other_function(solution, 'exec:to=-3') == 0
     assert some_other_function(solution, 'exec:to=abc') == 10
 ```
+---## TASK: 704451
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_704451__ith9m33
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test__triage_parse_llm_output_line2 FAILED            [100%]
+
+=================================== FAILURES ===================================
+_____________________ test__triage_parse_llm_output_line2 ______________________
+
+    def test__triage_parse_llm_output_line2():
+        solution = Solution()
+        result = solution._triage_parse_llm_output('SKIP')
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+        assert result[0] is None
+>       assert result[1] == 'SKIP'
+E       AssertionError: assert 'malformed LL...REVIEW: line)' == 'SKIP'
+E         
+E         - SKIP
+E         + malformed LLM response (no SKIP:/REVIEW: line)
+
+test_generated.py:42: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::test__triage_parse_llm_output_line2 - AssertionErro...
+============================== 1 failed in 0.19s ===============================
+```
+
+### Code
+```python
+def test__triage_parse_llm_output_line2():
+    solution = Solution()
+    result = solution._triage_parse_llm_output('SKIP')
+    assert isinstance(result, tuple)
+    assert len(result) == 2
+    assert result[0] is None
+    assert result[1] == 'SKIP'
+```
 ---## TASK: 848480
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_848480_7q_yovv_
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_848480_e8bnhmdo
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_collect_schema_components_line2 FAILED           [100%]
 
-================================== FAILURES ===================================
-____________________ test_collect_schema_components_line2 _____________________
+=================================== FAILURES ===================================
+_____________________ test_collect_schema_components_line2 _____________________
 
     def test_collect_schema_components_line2():
         solution = Solution()
@@ -5975,22 +6056,20 @@ ____________________ test_collect_schema_components_line2 _____________________
         column_info = ColumnInfo()
         result = solution.collect_schema_components(check_obj, schema, column_info)
 >       assert isinstance(result, Any)
-               ^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:54: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
 self = typing.Any, obj = None
 
     def __instancecheck__(self, obj):
-        if self is Any:
->           raise TypeError("typing.Any cannot be used with isinstance()")
-E           TypeError: typing.Any cannot be used with isinstance()
+>       raise TypeError(f"{self} cannot be used with isinstance()")
+E       TypeError: typing.Any cannot be used with isinstance()
 
-C:\Program Files\Python312\Lib\typing.py:530: TypeError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/typing.py:396: TypeError
+=========================== short test summary info ============================
 FAILED test_generated.py::test_collect_schema_components_line2 - TypeError: t...
-============================== 1 failed in 0.24s ==============================
+============================== 1 failed in 0.29s ===============================
 ```
 
 ### Code
@@ -6015,131 +6094,32 @@ def test_collect_schema_components_line2():
     result = solution.collect_schema_components(check_obj, schema, column_info)
     assert isinstance(result, Any)
 ```
----## TASK: 704451
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_704451_1nfibtz_
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test__triage_parse_llm_output_line2 FAILED            [100%]
-
-================================== FAILURES ===================================
-_____________________ test__triage_parse_llm_output_line2 _____________________
-
-    def test__triage_parse_llm_output_line2():
-        solution = Solution()
-        result = solution._triage_parse_llm_output('SKIP')
-        assert isinstance(result, tuple)
-        assert len(result) == 2
-        assert result[0] is None
->       assert result[1] == 'SKIP'
-E       AssertionError: assert 'malformed LL...REVIEW: line)' == 'SKIP'
-E         
-E         - SKIP
-E         + malformed LLM response (no SKIP:/REVIEW: line)
-
-test_generated.py:42: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test__triage_parse_llm_output_line2 - AssertionErro...
-============================== 1 failed in 0.17s ==============================
-```
-
-### Code
-```python
-def test__triage_parse_llm_output_line2():
-    solution = Solution()
-    result = solution._triage_parse_llm_output('SKIP')
-    assert isinstance(result, tuple)
-    assert len(result) == 2
-    assert result[0] is None
-    assert result[1] == 'SKIP'
-```
----## TASK: 210173
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_210173_i67_oifs
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestCase::test_parse_spotify_item_line2 FAILED        [100%]
-
-================================== FAILURES ===================================
-___________________ TestCase.test_parse_spotify_item_line2 ____________________
-
-self = <test_generated.TestCase testMethod=test_parse_spotify_item_line2>
-
-    def test_parse_spotify_item_line2(self):
-        item = {'name': 'Bohemian Rhapsody', 'artist': ['Queen'], 'album': 'A Night at the Opera'}
->       result = self.solution._parse_spotify_item(item)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E       AttributeError: 'Solution' object has no attribute '_parse_spotify_item'. Did you mean: '_parse_spotipy_item'?
-
-test_generated.py:45: AttributeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestCase::test_parse_spotify_item_line2 - Attribute...
-============================== 1 failed in 0.18s ==============================
-```
-
-### Code
-```python
-import unittest
-
-class TestCase(unittest.TestCase):
-
-    def setUp(self):
-        self.solution = Solution()
-
-    def test_parse_spotify_item_line2(self):
-        item = {'name': 'Bohemian Rhapsody', 'artist': ['Queen'], 'album': 'A Night at the Opera'}
-        result = self.solution._parse_spotify_item(item)
-        self.assertEqual(result['name'], 'Bohemian Rhapsody')
-        self.assertEqual(result['artist'], ['Queen'])
-        self.assertEqual(result['album'], 'album')
-        self.assertIsInstance(result, dict)
-
-def main():
-    unittest.main()
-if __name__ == '__main__':
-    main()
-```
 ---## TASK: 33700
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_33700_011ufrqv
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_33700_rhfhkdqg
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_33700_011ufrqv\test_generated.py'.
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_33700_rhfhkdqg/test_generated.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test_generated.py:42: in <module>
     from msgspec import struct, UnstructureHook, BaseConverter
 E   ModuleNotFoundError: No module named 'msgspec'
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.34s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.38s ===============================
 ```
 
 ### Code
@@ -6177,22 +6157,74 @@ class TestCase(unittest.TestCase):
         result = self.solution.namedtuple_unstructure_factory(MyNamedTuple, my_converter)
         self.assertIsInstance(result, UnstructureHook)
 ```
+---## TASK: 210173
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_210173_cu6uykoa
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestCase::test_parse_spotify_item_line2 FAILED        [100%]
+
+=================================== FAILURES ===================================
+____________________ TestCase.test_parse_spotify_item_line2 ____________________
+
+self = <test_generated.TestCase testMethod=test_parse_spotify_item_line2>
+
+    def test_parse_spotify_item_line2(self):
+        item = {'name': 'Bohemian Rhapsody', 'artist': ['Queen'], 'album': 'A Night at the Opera'}
+>       result = self.solution._parse_spotify_item(item)
+E       AttributeError: 'Solution' object has no attribute '_parse_spotify_item'. Did you mean: '_parse_spotipy_item'?
+
+test_generated.py:45: AttributeError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestCase::test_parse_spotify_item_line2 - Attribute...
+============================== 1 failed in 0.23s ===============================
+```
+
+### Code
+```python
+import unittest
+
+class TestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.solution = Solution()
+
+    def test_parse_spotify_item_line2(self):
+        item = {'name': 'Bohemian Rhapsody', 'artist': ['Queen'], 'album': 'A Night at the Opera'}
+        result = self.solution._parse_spotify_item(item)
+        self.assertEqual(result['name'], 'Bohemian Rhapsody')
+        self.assertEqual(result['artist'], ['Queen'])
+        self.assertEqual(result['album'], 'album')
+        self.assertIsInstance(result, dict)
+
+def main():
+    unittest.main()
+if __name__ == '__main__':
+    main()
+```
 ---## TASK: 232504
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_232504_6j43vsq8
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_232504_imwm4t7m
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_gelman_rubin_line2 FAILED                        [100%]
 
-================================== FAILURES ===================================
-___________________________ test_gelman_rubin_line2 ___________________________
+=================================== FAILURES ===================================
+___________________________ test_gelman_rubin_line2 ____________________________
 
     def test_gelman_rubin_line2():
         from unittest.mock import patch, MagicMock
@@ -6205,9 +6237,9 @@ E           assert False
 E            +  where False = isinstance(None, float)
 
 test_generated.py:72: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_gelman_rubin_line2 - assert False
-============================== 1 failed in 0.32s ==============================
+============================== 1 failed in 0.42s ===============================
 ```
 
 ### Code
@@ -6255,14 +6287,14 @@ def test_gelman_rubin_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_461697_kd_1r920
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_461697_tqkboy29
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.82s ============================
+============================ no tests ran in 0.55s =============================
 ```
 
 ### Code
@@ -6288,19 +6320,124 @@ class Solution:
             raise ValueError('Invalid mode')
         return result
 ```
+---## TASK: 569686
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_569686_i_f4cc7h
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestGetCompressionMethod::test_get_compression_method_string_input_line2 FAILED [100%]
+
+=================================== FAILURES ===================================
+___ TestGetCompressionMethod.test_get_compression_method_string_input_line2 ____
+
+self = <test_generated.TestGetCompressionMethod testMethod=test_get_compression_method_string_input_line2>
+
+    def test_get_compression_method_string_input_line2(self):
+        solution = Solution()
+        result = solution.get_compression_method('gzip')
+>       self.assertEqual(result, ('gzip', {'args': []}))
+E       AssertionError: Tuples differ: ('gzip', {}) != ('gzip', {'args': []})
+E       
+E       First differing element 1:
+E       {}
+E       {'args': []}
+E       
+E       - ('gzip', {})
+E       + ('gzip', {'args': []})
+
+test_generated.py:50: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestGetCompressionMethod::test_get_compression_method_string_input_line2
+============================== 1 failed in 0.84s ===============================
+```
+
+### Code
+```python
+import unittest
+from typing import Tuple, Dict, Any
+
+class CompressionOptions:
+    pass
+
+class CompressionDict:
+    pass
+
+class TestGetCompressionMethod(unittest.TestCase):
+
+    def test_get_compression_method_string_input_line2(self):
+        solution = Solution()
+        result = solution.get_compression_method('gzip')
+        self.assertEqual(result, ('gzip', {'args': []}))
+```
+---## TASK: 671240
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_671240_vtf4_nzb
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_671240_vtf4_nzb/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:38: in <module>
+    with patch('libertem.dataset.DataSet') as mock_data_set, patch('libertem.analysis.base.Analysis') as mock_analysis, patch('libertem.analysis.com.COMResultSet') as mock_resultset:
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+/usr/local/lib/python3.10/unittest/mock.py:1257: in _importer
+    thing = __import__(import_path)
+E   ModuleNotFoundError: No module named 'libertem'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.55s ===============================
+```
+
+### Code
+```python
+import unittest
+from unittest.mock import patch, MagicMock
+with patch('libertem.dataset.DataSet') as mock_data_set, patch('libertem.analysis.base.Analysis') as mock_analysis, patch('libertem.analysis.com.COMResultSet') as mock_resultset:
+
+    class TestSolution(unittest.TestCase):
+
+        def test_create_com_analysis_line2(self):
+            mock_dataset = mock_data_set.return_value
+            self.assertIsInstance(mock_dataset, DataSet)
+            result = Solution().create_com_analysis(dataset=mock_dataset)
+            self.assertIsInstance(result, COMAnalysis)
+            mock_analysis.assert_called_once_with(..., dataset=mock_dataset)
+```
 ---## TASK: 571959
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_571959_0s9lvlv7
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_571959_zbidy_76
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.24s ============================
+============================ no tests ran in 0.32s =============================
 ```
 
 ### Code
@@ -6322,7 +6459,7 @@ class Solution:
         """
         best_score = 0
         best_params = {}
-        for param_name, param_value in parameters.items():
+        for (param_name, param_value) in parameters.items():
             new_estimator = estimator.set_params(**{param_name: param_value})
             new_estimator.fit(estimator.get_params(), X, Y)
             new_score = new_estimator.score(X, Y)
@@ -6331,22 +6468,63 @@ class Solution:
                 best_params = {param_name: param_value}
         return (best_params, best_score)
 ```
+---## TASK: 833109
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_833109_fus3wi3n
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.17s =============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import List, Dict, Set, Tuple, Optional, Iterable
+
+class UrlT:
+
+    def __init__(self, domain: str):
+        self.domain = domain
+
+    def __eq__(self, other):
+        return isinstance(other, UrlT) and self.domain == other.domain
+
+    def __hash__(self):
+        return hash(self.domain)
+
+class Solution:
+
+    def test_line2(self, url: UrlT, domains: Iterable[str]) -> bool:
+        """Return True if the url belongs to any of the given domains"""
+        for domain in domains:
+            if url.domain == domain:
+                return True
+        return False
+```
 ---## TASK: 69909
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_69909_yhjgriqt
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_69909_wh6fjst2
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__regenerate_system_columns_line2 FAILED          [100%]
 
-================================== FAILURES ===================================
-____________________ test__regenerate_system_columns_line2 ____________________
+=================================== FAILURES ===================================
+____________________ test__regenerate_system_columns_line2 _____________________
 
     def test__regenerate_system_columns_line2():
         from unittest.mock import MagicMock
@@ -6354,13 +6532,43 @@ ____________________ test__regenerate_system_columns_line2 ____________________
         mock_select = MagicMock(spec=sa.Select)
         mock_regenerate_columns = ['sys__id', 'sys__rand']
 >       result = Solution()._regenerate_system_columns(selectable=mock_select, keep_existing_columns=True, regenerate_columns=mock_regenerate_columns)
-                 ^^^^^^^^
-E       NameError: name 'Solution' is not defined
 
-test_generated.py:43: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test__regenerate_system_columns_line2 - NameError: ...
-============================== 1 failed in 0.54s ==============================
+test_generated.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <under_test.Solution object at 0x7395f5d83fa0>
+selectable = <MagicMock spec='Select' id='127087911905904'>
+keep_existing_columns = True, regenerate_columns = ['sys__id', 'sys__rand']
+
+    def _regenerate_system_columns(
+        self,
+        selectable: sa.Select,
+        keep_existing_columns: bool = False,
+        regenerate_columns: Iterable[str] | None = None,
+    ) -> sa.Select:
+        """
+        Return a SELECT that regenerates system columns deterministically.
+    
+        If keep_existing_columns is True, existing system columns will be kept as-is
+        even when they are listed in ``regenerate_columns``.
+    
+        Args:
+            selectable: Base SELECT
+            keep_existing_columns: When True, reuse existing system columns even if
+                they are part of the regeneration set.
+            regenerate_columns: Names of system columns to regenerate. Defaults to
+                {"sys__id", "sys__rand"}. Columns not listed are left untouched.
+        """
+        system_columns = {
+            sys_col.name: sys_col.type
+>           for sys_col in self.schema.dataset_row_cls.sys_columns()
+        }
+E       AttributeError: 'Solution' object has no attribute 'schema'
+
+under_test.py:152: AttributeError
+=========================== short test summary info ============================
+FAILED test_generated.py::test__regenerate_system_columns_line2 - AttributeEr...
+============================== 1 failed in 0.52s ===============================
 ```
 
 ### Code
@@ -6375,143 +6583,73 @@ def test__regenerate_system_columns_line2():
     result = Solution()._regenerate_system_columns(selectable=mock_select, keep_existing_columns=True, regenerate_columns=mock_regenerate_columns)
     assert isinstance(result, sa.Select)
 ```
----## TASK: 671240
+---## TASK: 86422
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_671240_2gosiqfi
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
-
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_671240_2gosiqfi\test_generated.py'.
-Hint: make sure your test modules/packages have valid Python names.
-Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test_generated.py:38: in <module>
-    with patch('libertem.dataset.DataSet') as mock_data_set, patch('libertem.analysis.base.Analysis') as mock_analysis, patch('libertem.analysis.com.COMResultSet') as mock_resultset:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
-    self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E   ModuleNotFoundError: No module named 'libertem'
-=========================== short test summary info ===========================
-ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.69s ===============================
-```
-
-### Code
-```python
-import unittest
-from unittest.mock import patch, MagicMock
-with patch('libertem.dataset.DataSet') as mock_data_set, patch('libertem.analysis.base.Analysis') as mock_analysis, patch('libertem.analysis.com.COMResultSet') as mock_resultset:
-
-    class TestSolution(unittest.TestCase):
-
-        def test_create_com_analysis_line2(self):
-            mock_dataset = mock_data_set.return_value
-            self.assertIsInstance(mock_dataset, DataSet)
-            result = Solution().create_com_analysis(dataset=mock_dataset)
-            self.assertIsInstance(result, COMAnalysis)
-            mock_analysis.assert_called_once_with(..., dataset=mock_dataset)
-```
----## TASK: 569686
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_569686_a_y4voac
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_86422_o_4wtqsz
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
-test_generated.py::TestGetCompressionMethod::test_get_compression_method_string_input_line2 FAILED [100%]
+test_generated.py::TestPack::test_pack_line2 FAILED                      [100%]
 
-================================== FAILURES ===================================
-___ TestGetCompressionMethod.test_get_compression_method_string_input_line2 ___
+=================================== FAILURES ===================================
+___________________________ TestPack.test_pack_line2 ___________________________
 
-self = <test_generated.TestGetCompressionMethod testMethod=test_get_compression_method_string_input_line2>
+self = <test_generated.TestPack testMethod=test_pack_line2>
 
-    def test_get_compression_method_string_input_line2(self):
-        solution = Solution()
-        result = solution.get_compression_method('gzip')
->       self.assertEqual(result, ('gzip', {'args': []}))
-E       AssertionError: Tuples differ: ('gzip', {}) != ('gzip', {'args': []})
-E       
-E       First differing element 1:
-E       {}
-E       {'args': []}
-E       
-E       - ('gzip', {})
-E       + ('gzip', {'args': []})
+    def setUp(self):
+>       self.solution = Solution()
+E       NameError: name 'Solution' is not defined
 
-test_generated.py:50: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestGetCompressionMethod::test_get_compression_method_string_input_line2
-============================== 1 failed in 1.15s ==============================
+test_generated.py:41: NameError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestPack::test_pack_line2 - NameError: name 'Soluti...
+============================== 1 failed in 0.18s ===============================
 ```
 
 ### Code
 ```python
 import unittest
-from typing import Tuple, Dict, Any
 
-class CompressionOptions:
-    pass
+class TestPack(unittest.TestCase):
 
-class CompressionDict:
-    pass
+    def setUp(self):
+        self.solution = Solution()
 
-class TestGetCompressionMethod(unittest.TestCase):
-
-    def test_get_compression_method_string_input_line2(self):
-        solution = Solution()
-        result = solution.get_compression_method('gzip')
-        self.assertEqual(result, ('gzip', {'args': []}))
+    def test_pack_line2(self):
+        self.assertIsNone(self.solution.pack())
 ```
 ---## TASK: 308720
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_308720_ig1oasc2
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_308720_7hnnn0t6
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_308720_ig1oasc2\test_generated.py'.
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_308720_7hnnn0t6/test_generated.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test_generated.py:39: in <module>
     from vip_hci import preproc
 E   ModuleNotFoundError: No module named 'vip_hci'
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.31s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.36s ===============================
 ```
 
 ### Code
@@ -6547,126 +6685,47 @@ def test_run_line2():
     my_dataset = Dataset()
     assert solution.run(my_dataset) == [preproc.median_subtraction(my_dataset)]
 ```
----## TASK: 86422
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_86422_wadbuzgr
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestPack::test_pack_line2 FAILED                      [100%]
-
-================================== FAILURES ===================================
-__________________________ TestPack.test_pack_line2 ___________________________
-
-self = <test_generated.TestPack testMethod=test_pack_line2>
-
-    def test_pack_line2(self):
->       self.assertIsNone(self.solution.pack())
-                          ^^^^^^^^^^^^^^^^^^^^
-
-test_generated.py:44: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = <under_test.Solution object at 0x00000259CD9ED940>
-
-    def pack(self) -> None:
-        """pack old days into months (as long as there are at least 3 unpacked months)"""
-        while True:
->           month_groups = [list(days) for _, days in groupby(self.days, key=lambda d: d.date[:-3])]
-                                                              ^^^^^^^^^
-E           AttributeError: 'Solution' object has no attribute 'days'
-
-under_test.py:37: AttributeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestPack::test_pack_line2 - AttributeError: 'Soluti...
-============================== 1 failed in 0.17s ==============================
-```
-
-### Code
-```python
-import unittest
-
-class TestPack(unittest.TestCase):
-
-    def setUp(self):
-        self.solution = Solution()
-
-    def test_pack_line2(self):
-        self.assertIsNone(self.solution.pack())
-```
----## TASK: 833109
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_833109_j3i7ok1g
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.69s ============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import List, Dict, Set, Tuple, Optional, Iterable
-
-class UrlT:
-
-    def __init__(self, domain: str):
-        self.domain = domain
-
-    def __eq__(self, other):
-        return isinstance(other, UrlT) and self.domain == other.domain
-
-    def __hash__(self):
-        return hash(self.domain)
-
-class Solution:
-
-    def test_line2(self, url: UrlT, domains: Iterable[str]) -> bool:
-        """Return True if the url belongs to any of the given domains"""
-        for domain in domains:
-            if url.domain == domain:
-                return True
-        return False
-```
 ---## TASK: 163156
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_163156_1i4rvz3a
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_163156_ld4u15dd
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_bl_line2 FAILED                                  [100%]
 
-================================== FAILURES ===================================
-________________________________ test_bl_line2 ________________________________
+=================================== FAILURES ===================================
+________________________________ test_bl_line2 _________________________________
 
     def test_bl_line2():
->       solution = Solution()
-                   ^^^^^^^^
-E       NameError: name 'Solution' is not defined
+        solution = Solution()
+        hfl = [[1, 2], [3, 4]]
+        Cfl_inv = [[5, 6], [7, 8]]
+        r_fl = [[9, 10], [11, 12]]
+        m_fl = [[13, 14], [15, 16]]
+>       result = solution.bl(hfl, Cfl_inv, r_fl, m_fl)
 
-test_generated.py:39: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_bl_line2 - NameError: name 'Solution' is not d...
-============================== 1 failed in 1.03s ==============================
+test_generated.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+under_test.py:115: in bl
+    b = np.sum(np.array([np.dot(np.dot(Cfl_inv[i], hfl[i]).T, (r_fl[i]-m_fl[i]))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <range_iterator object at 0x71b8523eb840>
+
+>   b = np.sum(np.array([np.dot(np.dot(Cfl_inv[i], hfl[i]).T, (r_fl[i]-m_fl[i]))
+                         for i in range(len(hfl))]), axis=0)
+E   TypeError: unsupported operand type(s) for -: 'list' and 'list'
+
+under_test.py:115: TypeError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_bl_line2 - TypeError: unsupported operand type...
+============================== 1 failed in 0.71s ===============================
 ```
 
 ### Code
@@ -6684,19 +6743,71 @@ def test_bl_line2():
     assert result.shape == expected_result.shape
     assert np.allclose(result, expected_result)
 ```
+---## TASK: 211947
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_211947_9y8mjrdg
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_coordinates_line2 FAILED                         [100%]
+
+=================================== FAILURES ===================================
+____________________________ test_coordinates_line2 ____________________________
+
+    def test_coordinates_line2():
+        soln = Solution()
+        result = soln.coordinates()
+>       assert isinstance(result, np.ndarray)
+E       AssertionError: assert False
+E        +  where False = isinstance(None, <class 'numpy.ndarray'>)
+E        +    where <class 'numpy.ndarray'> = np.ndarray
+
+test_generated.py:53: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_coordinates_line2 - AssertionError: assert False
+============================== 1 failed in 0.39s ===============================
+```
+
+### Code
+```python
+import numpy as np
+
+class Solution:
+
+    def __init__(self):
+        self.data = []
+
+    def coordinates(self) -> np.ndarray:
+        """np.ndarray : Array of coordinates that correspond to the frames in the actual
+        navigation space which are part of the current tile or partition.
+        .. versionadded:: 0.6.0"""
+        ...
+        pass
+
+def test_coordinates_line2():
+    soln = Solution()
+    result = soln.coordinates()
+    assert isinstance(result, np.ndarray)
+```
 ---## TASK: 857693
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_857693_352il_z4
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_857693_gttcfsgu
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.16s =============================
 ```
 
 ### Code
@@ -6726,30 +6837,29 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_939237_m0p_vf56
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_939237_ur18llbw
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_load_history_line2 FAILED                        [100%]
 
-================================== FAILURES ===================================
-___________________________ test_load_history_line2 ___________________________
+=================================== FAILURES ===================================
+___________________________ test_load_history_line2 ____________________________
 
     def test_load_history_line2():
         mock_owner_uuid = MagicMock(spec=uuid.UUID)
         mock_session_id = 'abc123'
         mock_user_uuid = MagicMock(spec=uuid.UUID)
 >       result = asyncio.run(load_history(mock_owner_uuid, mock_session_id, mock_user_uuid, limit=2))
-                 ^^^^^^^
-E       NameError: name 'asyncio' is not defined. Did you forget to import 'asyncio'
+E       NameError: name 'asyncio' is not defined
 
 test_generated.py:51: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_load_history_line2 - NameError: name 'asyncio'...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.25s ===============================
 ```
 
 ### Code
@@ -6775,85 +6885,70 @@ def test_load_history_line2():
     assert result[0]['role'] == 'system', "First entry should have role 'system'"
     assert result[1]['role'] == 'assistant', "Second entry should have role 'assistant'"
 ```
----## TASK: 211947
-**STATUS:** Assertion Error
+---## TASK: 221711
+**STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_211947_mzsh_snf
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
+rootdir: /tmp/eval_221711_2qc5cktt
+plugins: cov-5.0.0
+collecting ... collected 0 items
 
-test_generated.py::test_coordinates_line2 FAILED                         [100%]
-
-================================== FAILURES ===================================
-___________________________ test_coordinates_line2 ____________________________
-
-    def test_coordinates_line2():
-        soln = Solution()
-        result = soln.coordinates()
->       assert isinstance(result, np.ndarray)
-E       AssertionError: assert False
-E        +  where False = isinstance(None, <class 'numpy.ndarray'>)
-E        +    where <class 'numpy.ndarray'> = np.ndarray
-
-test_generated.py:53: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_coordinates_line2 - AssertionError: assert False
-============================== 1 failed in 0.49s ==============================
+============================ no tests ran in 0.23s =============================
 ```
 
 ### Code
 ```python
-import numpy as np
+import sys
+sys.path.append('..')
+from typing import Optional, Sequence
+from pathlib import Path
 
 class Solution:
 
-    def __init__(self):
-        self.data = []
-
-    def coordinates(self) -> np.ndarray:
-        """np.ndarray : Array of coordinates that correspond to the frames in the actual
-        navigation space which are part of the current tile or partition.
-        .. versionadded:: 0.6.0"""
-        ...
-        pass
-
-def test_coordinates_line2():
-    soln = Solution()
-    result = soln.coordinates()
-    assert isinstance(result, np.ndarray)
+    def test_line2(self, model_path: Path, audio_file: Path, diff: Sequence[tuple[float, float, float, float, float]], sample_steps: int, title: Optional[str], artist: Optional[str]):
+        """generate osu!std maps from raw audio."""
+        print(f'Processing {model_path} with {audio_file}')
+        if sample_steps <= 0:
+            raise ValueError('Sample steps must be positive.')
+        if not isinstance(diff, Sequence):
+            raise TypeError('Diff must be a sequence of tuples.')
+        if not all((isinstance(tup, tuple) and len(tup) == 5 and all((isinstance(x, float) for x in tup)) for tup in diff)):
+            raise TypeError('Each tuple in diff must have exactly 5 floats.')
+        result = {'title': title, 'artist': artist, 'data': []}
+        for step in range(sample_steps):
+            result['data'].append((step * 0.1, 0.5, 0.2, 0.3, 0.4))
+        return result
 ```
 ---## TASK: 431957
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_431957__k3tdetm
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_431957_clwtp89h
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_431957__k3tdetm\test_generated.py'.
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_431957_clwtp89h/test_generated.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test_generated.py:39: in <module>
     from dask.dataframe import DataFrame as DaskDataFrame
 E   ModuleNotFoundError: No module named 'dask'
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.44s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.58s ===============================
 ```
 
 ### Code
@@ -6881,23 +6976,23 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_784104_rgd2we7z
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_784104_s2_ogy4s
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
 test_generated.py::test_validate_input_line2: in "parametrize" the number of names (2):
   ['input', 'expected']
 must be equal to the number of values (5):
   three
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py - Failed: test_generated.py::test_validate_input_line...
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.67s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.53s ===============================
 ```
 
 ### Code
@@ -6912,55 +7007,19 @@ def validation_case() -> 'ValidationCase':
 def test_validate_input_line2(input, expected):
     assert input == expected
 ```
----## TASK: 459145
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_459145_8pax63o7
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_get_tool_call_visibility_line2 FAILED            [100%]
-
-================================== FAILURES ===================================
-_____________________ test_get_tool_call_visibility_line2 _____________________
-
-    def test_get_tool_call_visibility_line2():
-        solution = Solution()
-        result = solution.get_tool_call_visibility('window1')
->       assert result == 'raw'
-E       AssertionError: assert <MagicMock id='2868724515520'> == 'raw'
-
-test_generated.py:39: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_get_tool_call_visibility_line2 - AssertionErro...
-============================== 1 failed in 0.15s ==============================
-```
-
-### Code
-```python
-def test_get_tool_call_visibility_line2():
-    solution = Solution()
-    result = solution.get_tool_call_visibility('window1')
-    assert result == 'raw'
-```
 ---## TASK: 35225
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_35225_tjun83yc
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_35225_0lq1pwh5
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.06s ============================
+============================ no tests ran in 0.24s =============================
 ```
 
 ### Code
@@ -6975,19 +7034,55 @@ class Solution:
         if 'link' in item:
             sys.stdout.write(f"{item['link']}\n")
 ```
+---## TASK: 459145
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_459145_0za75lgl
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_get_tool_call_visibility_line2 FAILED            [100%]
+
+=================================== FAILURES ===================================
+_____________________ test_get_tool_call_visibility_line2 ______________________
+
+    def test_get_tool_call_visibility_line2():
+        solution = Solution()
+        result = solution.get_tool_call_visibility('window1')
+>       assert result == 'raw'
+E       AssertionError: assert <MagicMock id='124162640684048'> == 'raw'
+
+test_generated.py:39: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_get_tool_call_visibility_line2 - AssertionErro...
+============================== 1 failed in 0.63s ===============================
+```
+
+### Code
+```python
+def test_get_tool_call_visibility_line2():
+    solution = Solution()
+    result = solution.get_tool_call_visibility('window1')
+    assert result == 'raw'
+```
 ---## TASK: 772390
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_772390_n9rz_3ba
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_772390_e5oj2ff2
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.13s ============================
+============================ no tests ran in 0.24s =============================
 ```
 
 ### Code
@@ -7003,149 +7098,100 @@ class Solution:
         """
         self.file.seek(0)
 ```
----## TASK: 214308
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_214308_3lizn5fm
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestCase::test_select_proxy_line2 FAILED              [100%]
-
-================================== FAILURES ===================================
-______________________ TestCase.test_select_proxy_line2 _______________________
-
-self = <test_generated.TestCase testMethod=test_select_proxy_line2>
-
-    def test_select_proxy_line2(self):
-        solution = Solution()
->       self.assertEqual(solution.select_proxy('https://example.com', {'http': 'proxy.example.com'}), ('http', 'proxy.example.com'))
-E       AssertionError: None != ('http', 'proxy.example.com')
-
-test_generated.py:42: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestCase::test_select_proxy_line2 - AssertionError:...
-============================== 1 failed in 0.23s ==============================
-```
-
-### Code
-```python
-import unittest
-
-class TestCase(unittest.TestCase):
-
-    def test_select_proxy_line2(self):
-        solution = Solution()
-        self.assertEqual(solution.select_proxy('https://example.com', {'http': 'proxy.example.com'}), ('http', 'proxy.example.com'))
-```
----## TASK: 221711
+---## TASK: 268069
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_221711_clbrper4
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 3.06s ============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('..')
-from typing import Optional, Sequence
-from pathlib import Path
-
-class Solution:
-
-    def test_line2(self, model_path: Path, audio_file: Path, diff: Sequence[tuple[float, float, float, float, float]], sample_steps: int, title: Optional[str], artist: Optional[str]):
-        """generate osu!std maps from raw audio."""
-        print(f'Processing {model_path} with {audio_file}')
-        if sample_steps <= 0:
-            raise ValueError('Sample steps must be positive.')
-        if not isinstance(diff, Sequence):
-            raise TypeError('Diff must be a sequence of tuples.')
-        if not all((isinstance(tup, tuple) and len(tup) == 5 and all((isinstance(x, float) for x in tup)) for tup in diff)):
-            raise TypeError('Each tuple in diff must have exactly 5 floats.')
-        result = {'title': title, 'artist': artist, 'data': []}
-        for step in range(sample_steps):
-            result['data'].append((step * 0.1, 0.5, 0.2, 0.3, 0.4))
-        return result
-```
----## TASK: 268069
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_268069_fjgo681g
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_268069_k83tlwjg
+plugins: cov-5.0.0
 collecting ... collected 3 items
 
 test_generated.py::TestCase::test_check_memory_none_line2 FAILED         [ 33%]
 test_generated.py::TestCase::test_check_memory_object_line2 FAILED       [ 66%]
 test_generated.py::TestCase::test_check_memory_string_line2 FAILED       [100%]
 
-================================== FAILURES ===================================
-____________________ TestCase.test_check_memory_none_line2 ____________________
+=================================== FAILURES ===================================
+____________________ TestCase.test_check_memory_none_line2 _____________________
+/usr/local/lib/python3.10/unittest/mock.py:1376: in patched
+    with self.decoration_helper(patched,
+/usr/local/lib/python3.10/contextlib.py:135: in __enter__
+    return next(self.gen)
+/usr/local/lib/python3.10/unittest/mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+/usr/local/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.TestCase testMethod=test_check_memory_none_line2>
-mock_check_memory = <MagicMock name='check_memory' id='2113335699520'>
+target = 'sklearn.utils.validation'
 
-    @patch('sklearn.utils.validation.check_memory')
-    def test_check_memory_none_line2(self, mock_check_memory):
-        result = mock_check_memory(None)
->       self.assertIsNone(result)
-E       AssertionError: <MagicMock name='check_memory()' id='2114155916960'> is not None
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'sklearn'
 
-test_generated.py:65: AssertionError
-___________________ TestCase.test_check_memory_object_line2 ___________________
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+___________________ TestCase.test_check_memory_object_line2 ____________________
+/usr/local/lib/python3.10/unittest/mock.py:1376: in patched
+    with self.decoration_helper(patched,
+/usr/local/lib/python3.10/contextlib.py:135: in __enter__
+    return next(self.gen)
+/usr/local/lib/python3.10/unittest/mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+/usr/local/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.TestCase testMethod=test_check_memory_object_line2>
-mock_check_memory = <MagicMock name='check_memory' id='2114156462304'>
+target = 'sklearn.utils.validation'
 
-    @patch('sklearn.utils.validation.check_memory')
-    def test_check_memory_object_line2(self, mock_check_memory):
-    
-        class MockMemory:
-    
-            def __init__(self, location=None):
-                self.location = location
-    
-            def cache(self, *args, **kwargs):
-                return self
-        mock_mem = MockMemory('some_path')
->       self.assertEqual(mock_check_memory.return_value, mock_mem)
-E       AssertionError: <MagicMock name='check_memory()' id='2114156462256'> != <test_generated.TestCase.test_check_memory[58 chars]D880>
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'sklearn'
 
-test_generated.py:58: AssertionError
-___________________ TestCase.test_check_memory_string_line2 ___________________
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+___________________ TestCase.test_check_memory_string_line2 ____________________
+/usr/local/lib/python3.10/unittest/mock.py:1376: in patched
+    with self.decoration_helper(patched,
+/usr/local/lib/python3.10/contextlib.py:135: in __enter__
+    return next(self.gen)
+/usr/local/lib/python3.10/unittest/mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+/usr/local/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.TestCase testMethod=test_check_memory_string_line2>
-mock_check_memory = <MagicMock name='check_memory' id='2114156474304'>
+target = 'sklearn.utils.validation'
 
-    @patch('sklearn.utils.validation.check_memory')
-    def test_check_memory_string_line2(self, mock_check_memory):
->       self.assertEqual(mock_check_memory.return_value, 'Memory(location=some_path)')
-E       AssertionError: <MagicMock name='check_memory()' id='2114156475168'> != 'Memory(location=some_path)'
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'sklearn'
 
-test_generated.py:43: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestCase::test_check_memory_none_line2 - AssertionE...
-FAILED test_generated.py::TestCase::test_check_memory_object_line2 - Assertio...
-FAILED test_generated.py::TestCase::test_check_memory_string_line2 - Assertio...
-============================== 3 failed in 2.86s ==============================
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestCase::test_check_memory_none_line2 - ModuleNotF...
+FAILED test_generated.py::TestCase::test_check_memory_object_line2 - ModuleNo...
+FAILED test_generated.py::TestCase::test_check_memory_string_line2 - ModuleNo...
+============================== 3 failed in 1.57s ===============================
 ```
 
 ### Code
@@ -7181,19 +7227,59 @@ class TestCase(unittest.TestCase):
         result = mock_check_memory(None)
         self.assertIsNone(result)
 ```
+---## TASK: 214308
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_214308_v3n0hm6e
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestCase::test_select_proxy_line2 FAILED              [100%]
+
+=================================== FAILURES ===================================
+_______________________ TestCase.test_select_proxy_line2 _______________________
+
+self = <test_generated.TestCase testMethod=test_select_proxy_line2>
+
+    def test_select_proxy_line2(self):
+        solution = Solution()
+>       self.assertEqual(solution.select_proxy('https://example.com', {'http': 'proxy.example.com'}), ('http', 'proxy.example.com'))
+E       AssertionError: None != ('http', 'proxy.example.com')
+
+test_generated.py:42: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestCase::test_select_proxy_line2 - AssertionError:...
+============================== 1 failed in 0.21s ===============================
+```
+
+### Code
+```python
+import unittest
+
+class TestCase(unittest.TestCase):
+
+    def test_select_proxy_line2(self):
+        solution = Solution()
+        self.assertEqual(solution.select_proxy('https://example.com', {'http': 'proxy.example.com'}), ('http', 'proxy.example.com'))
+```
 ---## TASK: 468885
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_468885_5d5znd2a
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_468885_qenhk0t6
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.16s =============================
 ```
 
 ### Code
@@ -7210,163 +7296,22 @@ class Solution:
         formatted according to `format`."""
         ...
 ```
----## TASK: 106120
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_106120_f33p_n6b
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.50s ============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import List
-
-class DataTable:
-    pass
-
-class Node:
-    pass
-
-class Solution:
-
-    def test_line2(self, dataset_rows: 'DataTable', path: str) -> list[Node]:
-        """
-        Simulates Unix-like shell expansion
-        :param dataset_rows: A data table containing rows of data
-        :param path: A path string to expand
-        """
-        expanded_paths = []
-        current_node = None
-        parts = path.split('/')
-        for part in parts:
-            if part == '.':
-                continue
-            elif part == '..':
-                if current_node is not None:
-                    current_node = current_node.parent
-            else:
-                new_node = Node()
-                new_node.parent = current_node
-                current_node = new_node
-                expanded_paths.append(current_node)
-        return expanded_paths
-```
----## TASK: 940748
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_940748_dsey4hfj
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.21s ============================
-```
-
-### Code
-```python
-import numpy as np
-
-class Solution:
-
-    def test_line2(self, filename):
-        """Save a VIP object to a npz file."""
-        vip_data = {'array': np.array([[1, 2], [3, 4]]), 'label': 'example'}
-        np.savez(filename, **vip_data)
-```
----## TASK: 608304
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_608304_n_j5w0yg
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_allocate_for_part_line2 FAILED                   [100%]
-
-================================== FAILURES ===================================
-________________________ test_allocate_for_part_line2 _________________________
-
-    def test_allocate_for_part_line2():
-        partition = Partition()
-        roi = np.array([[1, 2], [3, 4]])
-        lib = 'some_library'
-        solution = Solution()
->       solution.allocate_for_part(partition, roi, lib)
-
-test_generated.py:49: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = <under_test.Solution object at 0x000001DF54E353D0>
-partition = <test_generated.Partition object at 0x000001DF54E34140>
-roi = array([[1, 2],
-       [3, 4]]), lib = 'some_library'
-
-    def allocate_for_part(self, partition: Partition, roi: np.ndarray | None, lib=None) -> None:
-        """
-        allocate all BufferWrapper instances in this namespace.
-        for pre-allocated buffers (i.e. aux data), only set shape and roi
-        """
->       for k, buf in self._get_buffers():
-                      ^^^^^^^^^^^^^^^^^
-E       AttributeError: 'Solution' object has no attribute '_get_buffers'
-
-under_test.py:182: AttributeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_allocate_for_part_line2 - AttributeError: 'Sol...
-============================== 1 failed in 0.44s ==============================
-```
-
-### Code
-```python
-import numpy as np
-
-class Partition:
-    pass
-
-class BufferWrapper:
-    pass
-
-def test_allocate_for_part_line2():
-    partition = Partition()
-    roi = np.array([[1, 2], [3, 4]])
-    lib = 'some_library'
-    solution = Solution()
-    solution.allocate_for_part(partition, roi, lib)
-```
 ---## TASK: 601675
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_601675_btzndxdz
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_601675_andic9tg
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_check_non_negative_line2 FAILED                  [100%]
 
-================================== FAILURES ===================================
-________________________ test_check_non_negative_line2 ________________________
+=================================== FAILURES ===================================
+________________________ test_check_non_negative_line2 _________________________
 
     def test_check_non_negative_line2():
         solution = Solution()
@@ -7377,10 +7322,9 @@ ________________________ test_check_non_negative_line2 ________________________
         result = solution.check_non_negative(neg_arr, 'Bob')
         assert result is True
 >       sparse_mat = np.sparse.csr_matrix([[1, 0], [0, 2]])
-                     ^^^^^^^^^
 
 test_generated.py:77: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
 attr = 'sparse'
 
@@ -7472,16 +7416,17 @@ attr = 'sparse'
             import numpy.char as char
             return char.chararray
     
->       raise AttributeError(f"module {__name__!r} has no attribute {attr!r}")
+>       raise AttributeError("module {!r} has no attribute "
+                             "{!r}".format(__name__, attr))
 E       AttributeError: module 'numpy' has no attribute 'sparse'
 
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\numpy\__init__.py:805: AttributeError
----------------------------- Captured stdout call -----------------------------
+/usr/local/lib/python3.10/site-packages/numpy/__init__.py:414: AttributeError
+----------------------------- Captured stdout call -----------------------------
 Alice does not have negative values.
 Bob has negative values.
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_check_non_negative_line2 - AttributeError: mod...
-============================== 1 failed in 2.92s ==============================
+============================== 1 failed in 0.79s ===============================
 ```
 
 ### Code
@@ -7534,30 +7479,338 @@ def test_check_non_negative_line2():
     result = solution.check_non_negative(sparse_neg_mat, 'Dave')
     assert result is True
 ```
+---## TASK: 718439
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_718439_q7dqa_h3
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_get_batch_line2 FAILED                           [100%]
+
+=================================== FAILURES ===================================
+_____________________________ test_get_batch_line2 _____________________________
+
+args = (), keywargs = {}
+
+    @wraps(func)
+    def patched(*args, **keywargs):
+>       with self.decoration_helper(patched,
+                                    args,
+                                    keywargs) as (newargs, newkeywargs):
+
+/usr/local/lib/python3.10/unittest/mock.py:1376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/contextlib.py:135: in __enter__
+    return next(self.gen)
+/usr/local/lib/python3.10/unittest/mock.py:1358: in decoration_helper
+    arg = exit_stack.enter_context(patching)
+/usr/local/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/local/lib/python3.10/unittest/mock.py:1447: in __enter__
+    original, local = self.get_original()
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <unittest.mock._patch object at 0x7d5ca21c0280>
+
+    def get_original(self):
+        target = self.getter()
+        name = self.attribute
+    
+        original = DEFAULT
+        local = False
+    
+        try:
+            original = target.__dict__[name]
+        except (AttributeError, KeyError):
+            original = getattr(target, name, DEFAULT)
+        else:
+            local = True
+    
+        if name in _builtins and isinstance(target, ModuleType):
+            self.create = True
+    
+        if not self.create and original is DEFAULT:
+>           raise AttributeError(
+                "%s does not have the attribute %r" % (target, name)
+            )
+E           AttributeError: <module 'pytest.__main__' from '/usr/local/lib/python3.10/site-packages/pytest/__main__.py'> does not have the attribute 'Solution'
+
+/usr/local/lib/python3.10/unittest/mock.py:1420: AttributeError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_get_batch_line2 - AttributeError: <module 'pyt...
+============================== 1 failed in 0.39s ===============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import List
+from unittest.mock import patch, MagicMock
+
+class Solution:
+
+    def get_batch(self, split):
+        """Get a batch of train or validation data."""
+        self.split = split
+        if split == 'train':
+            return ['data1', 'data2']
+        elif split == 'val':
+            return ['val_data1', 'val_data2']
+
+@patch('__main__.Solution')
+def test_get_batch_line2(mock_solution):
+    sol = mock_solution.return_value
+    result = sol.get_batch('train')
+    assert result == ['data1', 'data2']
+```
+---## TASK: 106120
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_106120_dch_bz0f
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.41s =============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import List
+
+class DataTable:
+    pass
+
+class Node:
+    pass
+
+class Solution:
+
+    def test_line2(self, dataset_rows: 'DataTable', path: str) -> list[Node]:
+        """
+        Simulates Unix-like shell expansion
+        :param dataset_rows: A data table containing rows of data
+        :param path: A path string to expand
+        """
+        expanded_paths = []
+        current_node = None
+        parts = path.split('/')
+        for part in parts:
+            if part == '.':
+                continue
+            elif part == '..':
+                if current_node is not None:
+                    current_node = current_node.parent
+            else:
+                new_node = Node()
+                new_node.parent = current_node
+                current_node = new_node
+                expanded_paths.append(current_node)
+        return expanded_paths
+```
+---## TASK: 940748
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_940748_vq7my5rt
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.39s =============================
+```
+
+### Code
+```python
+import numpy as np
+
+class Solution:
+
+    def test_line2(self, filename):
+        """Save a VIP object to a npz file."""
+        vip_data = {'array': np.array([[1, 2], [3, 4]]), 'label': 'example'}
+        np.savez(filename, **vip_data)
+```
+---## TASK: 608304
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_608304_bkucnm8q
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_allocate_for_part_line2 FAILED                   [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_allocate_for_part_line2 _________________________
+
+    def test_allocate_for_part_line2():
+        partition = Partition()
+        roi = np.array([[1, 2], [3, 4]])
+        lib = 'some_library'
+        solution = Solution()
+>       solution.allocate_for_part(partition, roi, lib)
+
+test_generated.py:49: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <under_test.Solution object at 0x7650cfe0d570>
+partition = <test_generated.Partition object at 0x7650cfe0d510>
+roi = array([[1, 2],
+       [3, 4]]), lib = 'some_library'
+
+    def allocate_for_part(self, partition: Partition, roi: np.ndarray | None, lib=None) -> None:
+        """
+        allocate all BufferWrapper instances in this namespace.
+        for pre-allocated buffers (i.e. aux data), only set shape and roi
+        """
+>       for k, buf in self._get_buffers():
+E       AttributeError: 'Solution' object has no attribute '_get_buffers'
+
+under_test.py:182: AttributeError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_allocate_for_part_line2 - AttributeError: 'Sol...
+============================== 1 failed in 0.45s ===============================
+```
+
+### Code
+```python
+import numpy as np
+
+class Partition:
+    pass
+
+class BufferWrapper:
+    pass
+
+def test_allocate_for_part_line2():
+    partition = Partition()
+    roi = np.array([[1, 2], [3, 4]])
+    lib = 'some_library'
+    solution = Solution()
+    solution.allocate_for_part(partition, roi, lib)
+```
+---## TASK: 582495
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_582495_7j7zuk8q
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_check_pos_label_consistency_line2 FAILED         [100%]
+
+=================================== FAILURES ===================================
+____________________ test_check_pos_label_consistency_line2 ____________________
+
+    def test_check_pos_label_consistency_line2():
+        solution = Solution()
+        y_true_neg_one_pos_one = np.array([-1, 1])
+>       result = solution._check_pos_label_consistency(None, y_true_neg_one_pos_one)
+
+test_generated.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <under_test.Solution object at 0x7f2619850f40>, pos_label = None
+y_true = array([-1,  1])
+
+    def _check_pos_label_consistency(self, pos_label, y_true):
+        """Check if `pos_label` need to be specified or not.
+    
+        In binary classification, we fix `pos_label=1` if the labels are in the set
+        {-1, 1} or {0, 1}. Otherwise, we raise an error asking to specify the
+        `pos_label` parameters.
+    
+        Parameters
+        ----------
+        pos_label : int, float, bool, str or None
+            The positive label.
+        y_true : ndarray of shape (n_samples,)
+            The target vector.
+    
+        Returns
+        -------
+        pos_label : int, float, bool or str
+            If `pos_label` can be inferred, it will be returned.
+    
+        Raises
+        ------
+        ValueError
+            In the case that `y_true` does not have label in {-1, 1} or {0, 1},
+            it will raise a `ValueError`.
+        """
+        # ensure binary classification if pos_label is not specified
+        # classes.dtype.kind in ('O', 'U', 'S') is required to avoid
+        # triggering a FutureWarning by calling np.array_equal(a, b)
+        # when elements in the two arrays are not comparable.
+        if pos_label is None:
+            # Compute classes only if pos_label is not specified:
+>           xp, _, device = get_namespace_and_device(y_true)
+E           ValueError: not enough values to unpack (expected 3, got 0)
+
+under_test.py:113: ValueError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_check_pos_label_consistency_line2 - ValueError...
+============================== 1 failed in 0.85s ===============================
+```
+
+### Code
+```python
+import numpy as np
+
+def test_check_pos_label_consistency_line2():
+    solution = Solution()
+    y_true_neg_one_pos_one = np.array([-1, 1])
+    result = solution._check_pos_label_consistency(None, y_true_neg_one_pos_one)
+    assert result is None
+```
 ---## TASK: 571379
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_571379_gzqd19k0
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_571379_qrahb4sz
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
 test_generated.py:38: in <module>
     class Solution:
 test_generated.py:40: in Solution
     def test_line2(self, columns: Sequence[Hashable] | MultiIndex, index_col: bool | Sequence[int] | None=None) -> bool:
-                                                       ^^^^^^^^^^
 E   NameError: name 'MultiIndex' is not defined
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py - NameError: name 'MultiIndex' is not defined
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 1.44s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 1.29s ===============================
 ```
 
 ### Code
@@ -7591,170 +7844,44 @@ class Solution:
         else:
             return False
 ```
----## TASK: 298499
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_298499_1s9jebgx
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_find_indices_sdi_line2 FAILED                    [100%]
-
-================================== FAILURES ===================================
-_________________________ test_find_indices_sdi_line2 _________________________
-
-    def test_find_indices_sdi_line2():
->       solution = Solution()
-                   ^^^^^^^^
-E       NameError: name 'Solution' is not defined
-
-test_generated.py:39: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_find_indices_sdi_line2 - NameError: name 'Solu...
-============================== 1 failed in 1.38s ==============================
-```
-
-### Code
-```python
-import numpy as np
-
-def test_find_indices_sdi_line2():
-    solution = Solution()
-    scal = np.array([1.0, 2.0, 3.0])
-    dist = 2.5
-    index_ref = 1
-    fwhm = 0.5
-    result = solution._find_indices_sdi(scal, dist, index_ref, fwhm)
-    assert isinstance(result, np.ndarray), 'Result should be a numpy ndarray'
-```
----## TASK: 718439
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_718439_nc104wis
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_get_batch_line2 FAILED                           [100%]
-
-================================== FAILURES ===================================
-____________________________ test_get_batch_line2 _____________________________
-
-args = (), keywargs = {}
-
-    @wraps(func)
-    def patched(*args, **keywargs):
->       with self.decoration_helper(patched,
-                                    args,
-                                    keywargs) as (newargs, newkeywargs):
-
-C:\Program Files\Python312\Lib\unittest\mock.py:1393: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\contextlib.py:137: in __enter__
-    return next(self.gen)
-           ^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1375: in decoration_helper
-    arg = exit_stack.enter_context(patching)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\contextlib.py:526: in enter_context
-    result = _enter(cm)
-             ^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1467: in __enter__
-    original, local = self.get_original()
-                      ^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = <unittest.mock._patch object at 0x00000211589D8BC0>
-
-    def get_original(self):
-        target = self.getter()
-        name = self.attribute
-    
-        original = DEFAULT
-        local = False
-    
-        try:
-            original = target.__dict__[name]
-        except (AttributeError, KeyError):
-            original = getattr(target, name, DEFAULT)
-        else:
-            local = True
-    
-        if name in _builtins and isinstance(target, ModuleType):
-            self.create = True
-    
-        if not self.create and original is DEFAULT:
->           raise AttributeError(
-                "%s does not have the attribute %r" % (target, name)
-            )
-E           AttributeError: <module 'pytest.__main__' from 'C:\\Repos\\slm_test_generation\\.venv\\Lib\\site-packages\\pytest\\__main__.py'> does not have the attribute 'Solution'
-
-C:\Program Files\Python312\Lib\unittest\mock.py:1437: AttributeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_get_batch_line2 - AttributeError: <module 'pyt...
-============================== 1 failed in 3.22s ==============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import List
-from unittest.mock import patch, MagicMock
-
-class Solution:
-
-    def get_batch(self, split):
-        """Get a batch of train or validation data."""
-        self.split = split
-        if split == 'train':
-            return ['data1', 'data2']
-        elif split == 'val':
-            return ['val_data1', 'val_data2']
-
-@patch('__main__.Solution')
-def test_get_batch_line2(mock_solution):
-    sol = mock_solution.return_value
-    result = sol.get_batch('train')
-    assert result == ['data1', 'data2']
-```
 ---## TASK: 103977
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_103977_tyjjmj4w
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_103977_eeisyd9y
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestIsTypingThrottled::test_is_typing_throttled_line2 FAILED [100%]
 
-================================== FAILURES ===================================
-____________ TestIsTypingThrottled.test_is_typing_throttled_line2 _____________
+=================================== FAILURES ===================================
+_____________ TestIsTypingThrottled.test_is_typing_throttled_line2 _____________
 
 self = <test_generated.TestIsTypingThrottled testMethod=test_is_typing_throttled_line2>
 
     def test_is_typing_throttled_line2(self):
->       solution = Solution()
-                   ^^^^^^^^
-E       NameError: name 'Solution' is not defined
+        solution = Solution()
+>       self.assertEqual(solution.is_typing_throttled(1, 2), True)
 
-test_generated.py:41: NameError
-=========================== short test summary info ===========================
+test_generated.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <under_test.Solution object at 0x7b2ac60fda50>, user_id = 1
+thread_id = 2
+
+    def is_typing_throttled(self, user_id: int, thread_id: int) -> bool:
+        """Check if typing indicator was sent too recently."""
+>       ts = self._states.get((user_id, thread_id))
+E       AttributeError: 'Solution' object has no attribute '_states'
+
+under_test.py:57: AttributeError
+=========================== short test summary info ============================
 FAILED test_generated.py::TestIsTypingThrottled::test_is_typing_throttled_line2
-============================== 1 failed in 0.15s ==============================
+============================== 1 failed in 0.22s ===============================
 ```
 
 ### Code
@@ -7767,19 +7894,85 @@ class TestIsTypingThrottled(unittest.TestCase):
         solution = Solution()
         self.assertEqual(solution.is_typing_throttled(1, 2), True)
 ```
+---## TASK: 452563
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_452563_6v0hfp6q
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestSolution::test_least_sq_patch_line2 FAILED        [100%]
+
+=================================== FAILURES ===================================
+____________________ TestSolution.test_least_sq_patch_line2 ____________________
+
+self = <test_generated.TestSolution testMethod=test_least_sq_patch_line2>
+
+    def test_least_sq_patch_line2(self):
+        from unittest.mock import patch, MagicMock
+>       with patch('module_name.Solution._leastsq_patch') as mock_func:
+
+test_generated.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+target = 'module_name.Solution'
+
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'module_name'
+
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestSolution::test_least_sq_patch_line2 - ModuleNot...
+============================== 1 failed in 0.99s ===============================
+```
+
+### Code
+```python
+import unittest
+
+class TestSolution(unittest.TestCase):
+
+    def test_least_sq_patch_line2(self):
+        from unittest.mock import patch, MagicMock
+        with patch('module_name.Solution._leastsq_patch') as mock_func:
+            mock_func.return_value = [1, 2, 3]
+            solution = Solution()
+            ayxyx = ('data1', 'data2')
+            pa_thresholds = [[1.0, 2.0], [3.0, 4.0]]
+            angles = [0.0, 0.1]
+            metric = 'euclidean'
+            dist_threshold = 1.0
+            solver = 'scipy.optimize.least_squares'
+            tol = 1e-06
+            result = solution._leastsq_patch(ayxyx, pa_thresholds, angles, metric, dist_threshold, solver, tol)
+            self.assertEqual(result, [1, 2, 3])
+```
 ---## TASK: 635745
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_635745_f7wa3gdz
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_635745_l10rwmsg
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.27s ============================
+============================ no tests ran in 0.29s =============================
 ```
 
 ### Code
@@ -7812,14 +8005,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_604632_8samkfc7
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_604632_z8szeab1
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.27s =============================
 ```
 
 ### Code
@@ -7840,14 +8033,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_219560_1u4m63xy
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_219560_5xhppk1y
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.11s ============================
+============================ no tests ran in 0.30s =============================
 ```
 
 ### Code
@@ -7865,135 +8058,84 @@ class Solution:
         else:
             raise TypeError('Unsupported type')
 ```
----## TASK: 582495
-**STATUS:** Assertion Error
+---## TASK: 405396
+**STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_582495_7cykqjkt
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
+rootdir: /tmp/eval_405396_8ir61zrk
+plugins: cov-5.0.0
+collecting ... collected 0 items
 
-test_generated.py::test_check_pos_label_consistency_line2 FAILED         [100%]
+============================ no tests ran in 0.21s =============================
+```
 
-================================== FAILURES ===================================
-___________________ test_check_pos_label_consistency_line2 ____________________
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import List
 
-    def test_check_pos_label_consistency_line2():
-        solution = Solution()
-        y_true_neg_one_pos_one = np.array([-1, 1])
-        result = solution._check_pos_label_consistency(None, y_true_neg_one_pos_one)
->       assert result is None
-E       assert 1 is None
+class Solution:
 
-test_generated.py:42: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_check_pos_label_consistency_line2 - assert 1 i...
-============================== 1 failed in 3.08s ==============================
+    def test_line2(self, binder_sequence: str) -> list[int]:
+        """0-based binder indices for all Chothia CDRs."""
+        cdr_indices = []
+        for (idx, char) in enumerate(binder_sequence):
+            if char.isalpha() and char not in cdr_indices:
+                cdr_indices.append(idx)
+        return cdr_indices
+```
+---## TASK: 83593
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_83593_1yaylaqe
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.63s =============================
 ```
 
 ### Code
 ```python
 import numpy as np
 
-def test_check_pos_label_consistency_line2():
-    solution = Solution()
-    y_true_neg_one_pos_one = np.array([-1, 1])
-    result = solution._check_pos_label_consistency(None, y_true_neg_one_pos_one)
-    assert result is None
-```
----## TASK: 452563
-**STATUS:** Runtime Error
+class Solution:
 
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_452563_nhhi3u8n
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestSolution::test_least_sq_patch_line2 FAILED        [100%]
-
-================================== FAILURES ===================================
-___________________ TestSolution.test_least_sq_patch_line2 ____________________
-
-self = <test_generated.TestSolution testMethod=test_least_sq_patch_line2>
-
-    def test_least_sq_patch_line2(self):
-        from unittest.mock import patch, MagicMock
->       with patch('module_name.Solution._leastsq_patch') as mock_func:
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-test_generated.py:42: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
-    self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
-    ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
-    ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-name = 'module_name', import_ = <function _gcd_import at 0x000001AFCFEAC0E0>
-
->   ???
-E   ModuleNotFoundError: No module named 'module_name'
-
-<frozen importlib._bootstrap>:1324: ModuleNotFoundError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestSolution::test_least_sq_patch_line2 - ModuleNot...
-============================== 1 failed in 3.14s ==============================
-```
-
-### Code
-```python
-import unittest
-
-class TestSolution(unittest.TestCase):
-
-    def test_least_sq_patch_line2(self):
-        from unittest.mock import patch, MagicMock
-        with patch('module_name.Solution._leastsq_patch') as mock_func:
-            mock_func.return_value = [1, 2, 3]
-            solution = Solution()
-            ayxyx = ('data1', 'data2')
-            pa_thresholds = [[1.0, 2.0], [3.0, 4.0]]
-            angles = [0.0, 0.1]
-            metric = 'euclidean'
-            dist_threshold = 1.0
-            solver = 'scipy.optimize.least_squares'
-            tol = 1e-06
-            result = solution._leastsq_patch(ayxyx, pa_thresholds, angles, metric, dist_threshold, solver, tol)
-            self.assertEqual(result, [1, 2, 3])
+    def test_line2(self, seed):
+        """Turn seed into an np.random.RandomState instance."""
+        if seed is None:
+            return np.random.get_rng_state()
+        elif isinstance(seed, int):
+            rng = np.random.default_rng(seed)
+            return rng.state
+        else:
+            return seed
 ```
 ---## TASK: 17826
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_17826_d01n1dec
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_17826_tmaqgqrq
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_get_last_activity_ts_line2 FAILED                [100%]
 
-================================== FAILURES ===================================
-_______________________ test_get_last_activity_ts_line2 _______________________
+=================================== FAILURES ===================================
+_______________________ test_get_last_activity_ts_line2 ________________________
 
     def test_get_last_activity_ts_line2():
         solution = Solution()
@@ -8004,12 +8146,12 @@ _______________________ test_get_last_activity_ts_line2 _______________________
 >       assert solution.get_last_activity_ts('win_1') == 10.0
 E       AssertionError: assert None == 10.0
 E        +  where None = get_last_activity_ts('win_1')
-E        +    where get_last_activity_ts = <test_generated.Solution object at 0x00000252C5E9FE90>.get_last_activity_ts
+E        +    where get_last_activity_ts = <test_generated.Solution object at 0x76359f8ab970>.get_last_activity_ts
 
 test_generated.py:96: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_get_last_activity_ts_line2 - AssertionError: a...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.25s ===============================
 ```
 
 ### Code
@@ -8044,7 +8186,7 @@ class WindowManager:
         self.session_lifecycle[session_id] = session_data
 
     def resolve_session_id(self, window_id: str) -> Optional[str]:
-        for session_id, data in self.session_lifecycle.items():
+        for (session_id, data) in self.session_lifecycle.items():
             if 'windows' in data and window_id in data['windows']:
                 return session_id
         return None
@@ -8076,71 +8218,19 @@ def test_get_last_activity_ts_line2():
     session_monitor.add_window('win_1', 10.0)
     assert solution.get_last_activity_ts('win_1') == 10.0
 ```
----## TASK: 609979
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_609979_8sde68el
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
-
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-C:\Program Files\Python312\Lib\unittest\mock.py:1643: in _get_target
-    target, attribute = target.rsplit('.', 1)
-    ^^^^^^^^^^^^^^^^^
-E   ValueError: not enough values to unpack (expected 2, got 1)
-
-During handling of the above exception, another exception occurred:
-test_generated.py:40: in <module>
-    class TestCase(unittest.TestCase):
-test_generated.py:45: in TestCase
-    @patch('module_name', new_callable=MagicMock)
-     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1803: in patch
-    getter, attribute = _get_target(target)
-                        ^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1645: in _get_target
-    raise TypeError(
-E   TypeError: Need a valid target to patch. You supplied: 'module_name'
-=========================== short test summary info ===========================
-ERROR test_generated.py - TypeError: Need a valid target to patch. You suppli...
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.41s ===============================
-```
-
-### Code
-```python
-import unittest
-from typing import List
-from unittest.mock import patch, MagicMock
-
-class TestCase(unittest.TestCase):
-
-    def setUp(self):
-        self.solution = Solution()
-
-    @patch('module_name', new_callable=MagicMock)
-    def test_stubs_line2(self, mock_session):
-        self.assertIsNone(self.solution.stubs(mock_session))
-```
 ---## TASK: 753865
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_753865_c01i9x3f
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_753865_pddq46z7
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.20s =============================
 ```
 
 ### Code
@@ -8156,111 +8246,93 @@ class Solution:
         """Dispatch one envelope's inner ``message`` to the role-specific parser."""
         pass
 ```
----## TASK: 83593
+---## TASK: 52157
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_83593_59fsydl2
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
+rootdir: /tmp/eval_52157_2ljktxt8
+plugins: cov-5.0.0
+collecting ... collected 1 item
 
-============================ no tests ran in 2.53s ============================
+test_generated.py::test_check_feature_names_in_line2 FAILED              [100%]
+
+=================================== FAILURES ===================================
+______________________ test_check_feature_names_in_line2 _______________________
+
+    def test_check_feature_names_in_line2():
+>       from sklearn.datasets import make_regression
+E       ModuleNotFoundError: No module named 'sklearn'
+
+test_generated.py:39: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_check_feature_names_in_line2 - ModuleNotFoundE...
+============================== 1 failed in 0.85s ===============================
 ```
 
 ### Code
 ```python
 import numpy as np
 
-class Solution:
-
-    def test_line2(self, seed):
-        """Turn seed into an np.random.RandomState instance."""
-        if seed is None:
-            return np.random.get_rng_state()
-        elif isinstance(seed, int):
-            rng = np.random.default_rng(seed)
-            return rng.state
-        else:
-            return seed
-```
----## TASK: 615583
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_615583_gdolv5t6
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.13s ============================
-```
-
-### Code
-```python
-import re
-
-class Solution:
-
-    def test_line2(self, url, new_scheme):
-        """Given a URL that may or may not have a scheme, prepend the given scheme.  #3
-        Does not replace a present scheme if needed.  #4
-        :rtype: str"""
-        match = re.match('^(?P<scheme>.*):', url)
-        if match:
-            return url
-        else:
-            return f'{new_scheme}://{url}'
+def test_check_feature_names_in_line2():
+    from sklearn.datasets import make_regression
+    from sklearn.linear_model import LinearRegression
+    from sklearn.preprocessing import StandardScaler
+    estimator = LinearRegression()
+    result = estimator._check_feature_names_in(None, generate_names=True)
+    assert isinstance(result, np.ndarray) and len(result) > 0
+    scaler = StandardScaler()
+    (X_train, y_train) = make_regression(n_samples=10, n_features=3, random_state=42)
+    X_scaled = scaler.fit_transform(X_train)
+    feature_names = ['x0', 'x1', 'x2']
+    result = estimator._check_feature_names_in(feature_names, generate_names=False)
+    assert isinstance(result, np.ndarray) and len(result) == len(feature_names)
+    with pytest.raises(ValueError):
+        estimator._check_feature_names_in(['a', 'b'], generate_names=False)
 ```
 ---## TASK: 567124
 **STATUS:** Pytest Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_567124_f8k0e9jp
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_567124_wpoxp90j
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\python.py:498: in importtestmodule
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+/usr/local/lib/python3.10/site-packages/_pytest/python.py:498: in importtestmodule
     mod = import_path(
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.10/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
+<frozen importlib._bootstrap>:1050: in _gcd_import
     ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
+<frozen importlib._bootstrap>:1027: in _find_and_load
     ???
-<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+<frozen importlib._bootstrap>:1006: in _find_and_load_unlocked
     ???
-<frozen importlib._bootstrap>:935: in _load_unlocked
+<frozen importlib._bootstrap>:688: in _load_unlocked
     ???
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:177: in exec_module
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:177: in exec_module
     source_stat, co = _rewrite_test(fn, self.config)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:359: in _rewrite_test
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:359: in _rewrite_test
     co = compile(tree, strfn, "exec", dont_inherit=True)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E     File "C:\Users\cbark\AppData\Local\Temp\eval_567124_f8k0e9jp\test_generated.py", line 54
+E     File "/tmp/eval_567124_wpoxp90j/test_generated.py", line 54
 E       result = await solution._require_owner(object_type, object_id, user_id)
 E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E   SyntaxError: 'await' outside async function
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.38s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.35s ===============================
 ```
 
 ### Code
@@ -8287,68 +8359,128 @@ def test_require_owner_line2():
         assert isinstance(result, str)
         assert result.startswith('mock-')
 ```
+---## TASK: 609979
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_609979_1wfyvel7
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+/usr/local/lib/python3.10/unittest/mock.py:1614: in _get_target
+    target, attribute = target.rsplit('.', 1)
+E   ValueError: not enough values to unpack (expected 2, got 1)
+
+During handling of the above exception, another exception occurred:
+test_generated.py:40: in <module>
+    class TestCase(unittest.TestCase):
+test_generated.py:45: in TestCase
+    @patch('module_name', new_callable=MagicMock)
+/usr/local/lib/python3.10/unittest/mock.py:1775: in patch
+    getter, attribute = _get_target(target)
+/usr/local/lib/python3.10/unittest/mock.py:1616: in _get_target
+    raise TypeError(
+E   TypeError: Need a valid target to patch. You supplied: 'module_name'
+=========================== short test summary info ============================
+ERROR test_generated.py - TypeError: Need a valid target to patch. You suppli...
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.60s ===============================
+```
+
+### Code
+```python
+import unittest
+from typing import List
+from unittest.mock import patch, MagicMock
+
+class TestCase(unittest.TestCase):
+
+    def setUp(self):
+        self.solution = Solution()
+
+    @patch('module_name', new_callable=MagicMock)
+    def test_stubs_line2(self, mock_session):
+        self.assertIsNone(self.solution.stubs(mock_session))
+```
+---## TASK: 615583
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_615583_hg38grq6
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.20s =============================
+```
+
+### Code
+```python
+import re
+
+class Solution:
+
+    def test_line2(self, url, new_scheme):
+        """Given a URL that may or may not have a scheme, prepend the given scheme.  #3
+        Does not replace a present scheme if needed.  #4
+        :rtype: str"""
+        match = re.match('^(?P<scheme>.*):', url)
+        if match:
+            return url
+        else:
+            return f'{new_scheme}://{url}'
+```
 ---## TASK: 611952
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_611952_xz_i25du
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_611952_mhw_9802
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestRestoreCommand::test_restore_command_line2 FAILED [100%]
 
-================================== FAILURES ===================================
-________________ TestRestoreCommand.test_restore_command_line2 ________________
-C:\Program Files\Python312\Lib\unittest\mock.py:1393: in patched
+=================================== FAILURES ===================================
+________________ TestRestoreCommand.test_restore_command_line2 _________________
+/usr/local/lib/python3.10/unittest/mock.py:1376: in patched
     with self.decoration_helper(patched,
-C:\Program Files\Python312\Lib\contextlib.py:137: in __enter__
+/usr/local/lib/python3.10/contextlib.py:135: in __enter__
     return next(self.gen)
-           ^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1375: in decoration_helper
+/usr/local/lib/python3.10/unittest/mock.py:1358: in decoration_helper
     arg = exit_stack.enter_context(patching)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\contextlib.py:526: in enter_context
-    result = _enter(cm)
-             ^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
+/usr/local/lib/python3.10/contextlib.py:492: in enter_context
+    result = _cm_type.__enter__(cm)
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
     self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-name = 'some_module', package = None
+target = 'some_module'
 
-    def import_module(name, package=None):
-        """Import a module.
-    
-        The 'package' argument is required when performing a relative import. It
-        specifies the package to use as the anchor point from which to resolve the
-        relative import to an absolute import.
-    
-        """
-        level = 0
-        if name.startswith('.'):
-            if not package:
-                raise TypeError("the 'package' argument is required to perform a "
-                                f"relative import for {name!r}")
-            for character in name:
-                if character != '.':
-                    break
-                level += 1
->       return _bootstrap._gcd_import(name[level:], package, level)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
 E       ModuleNotFoundError: No module named 'some_module'
 
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: ModuleNotFoundError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+=========================== short test summary info ============================
 FAILED test_generated.py::TestRestoreCommand::test_restore_command_line2 - Mo...
-============================== 1 failed in 0.33s ==============================
+============================== 1 failed in 0.44s ===============================
 ```
 
 ### Code
@@ -8368,23 +8500,22 @@ class TestRestoreCommand(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_916895_zwoy8jwo
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_916895_p0u1x0d4
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
 test_generated.py:39: in <module>
     class PaneStateName(enum.Enum):
-                        ^^^^
-E   NameError: name 'enum' is not defined. Did you forget to import 'enum'
-=========================== short test summary info ===========================
-ERROR test_generated.py - NameError: name 'enum' is not defined. Did you forg...
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.26s ===============================
+E   NameError: name 'enum' is not defined
+=========================== short test summary info ============================
+ERROR test_generated.py - NameError: name 'enum' is not defined
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.50s ===============================
 ```
 
 ### Code
@@ -8421,137 +8552,32 @@ def test_record_pane_state_line2(solution):
     except TypeError as e:
         pass
 ```
----## TASK: 52157
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_52157__g645j05
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_check_feature_names_in_line2 FAILED              [100%]
-
-================================== FAILURES ===================================
-______________________ test_check_feature_names_in_line2 ______________________
-
-    def test_check_feature_names_in_line2():
-        from sklearn.datasets import make_regression
-        from sklearn.linear_model import LinearRegression
-        from sklearn.preprocessing import StandardScaler
-        estimator = LinearRegression()
->       result = estimator._check_feature_names_in(None, generate_names=True)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E       AttributeError: 'LinearRegression' object has no attribute '_check_feature_names_in'
-
-test_generated.py:43: AttributeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_check_feature_names_in_line2 - AttributeError:...
-============================== 1 failed in 3.60s ==============================
-```
-
-### Code
-```python
-import numpy as np
-
-def test_check_feature_names_in_line2():
-    from sklearn.datasets import make_regression
-    from sklearn.linear_model import LinearRegression
-    from sklearn.preprocessing import StandardScaler
-    estimator = LinearRegression()
-    result = estimator._check_feature_names_in(None, generate_names=True)
-    assert isinstance(result, np.ndarray) and len(result) > 0
-    scaler = StandardScaler()
-    X_train, y_train = make_regression(n_samples=10, n_features=3, random_state=42)
-    X_scaled = scaler.fit_transform(X_train)
-    feature_names = ['x0', 'x1', 'x2']
-    result = estimator._check_feature_names_in(feature_names, generate_names=False)
-    assert isinstance(result, np.ndarray) and len(result) == len(feature_names)
-    with pytest.raises(ValueError):
-        estimator._check_feature_names_in(['a', 'b'], generate_names=False)
-```
----## TASK: 51723
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_51723_xx1d96e6
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
-
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_51723_xx1d96e6\test_generated.py'.
-Hint: make sure your test modules/packages have valid Python names.
-Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test_generated.py:37: in <module>
-    from zarr import ZarrArray
-E   ModuleNotFoundError: No module named 'zarr'
-=========================== short test summary info ===========================
-ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.55s ===============================
-```
-
-### Code
-```python
-import numpy as np
-from zarr import ZarrArray
-
-class Solution:
-
-    def test_line2(self, array: ZarrArray) -> 'DtypeType':
-        """Override base dtype getter to handle zarr's string-as-object encoding."""
-        ...
-```
 ---## TASK: 11075
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_11075_7gwugeyw
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 2 items
+rootdir: /tmp/eval_11075_t20ge2vp
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
 
-test_generated.py::test_line2 PASSED                                     [ 50%]
-test_generated.py::test_publish_skill FAILED                             [100%]
-
-================================== FAILURES ===================================
-_____________________________ test_publish_skill ______________________________
-async def functions are not natively supported.
-You need to install a suitable plugin for your async framework, for example:
-  - anyio
-  - pytest-asyncio
-  - pytest-tornasync
-  - pytest-trio
-  - pytest-twisted
-============================== warnings summary ===============================
-test_generated.py:49
-  C:\Users\cbark\AppData\Local\Temp\eval_11075_7gwugeyw\test_generated.py:49: PytestUnknownMarkWarning: Unknown pytest.mark.asyncio - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
-    @pytest.mark.asyncio
-
-test_generated.py::test_line2
-  C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\python.py:161: PytestReturnNotNoneWarning: Test functions should return None, but test_generated.py::test_line2 returned <class 'dict'>.
-  Did you mean to use `assert` instead of `return`?
-  See https://docs.pytest.org/en/stable/how-to/assert.html#return-not-none for more information.
-    warnings.warn(
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_publish_skill - Failed: async def functions ar...
-=================== 1 failed, 1 passed, 2 warnings in 0.67s ===================
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_11075_t20ge2vp/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:37: in <module>
+    from fastapi import Depends, HTTPException
+E   ModuleNotFoundError: No module named 'fastapi'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.44s ===============================
 ```
 
 ### Code
@@ -8585,17 +8611,17 @@ async def test_publish_skill():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_529146_l12ou_uw
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_529146_3yjfdyig
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestLoadItems::test_load_items_line2 FAILED           [100%]
 
-================================== FAILURES ===================================
-_____________________ TestLoadItems.test_load_items_line2 _____________________
+=================================== FAILURES ===================================
+_____________________ TestLoadItems.test_load_items_line2 ______________________
 
 self = <test_generated.TestLoadItems testMethod=test_load_items_line2>
 
@@ -8604,22 +8630,21 @@ self = <test_generated.TestLoadItems testMethod=test_load_items_line2>
 >       self.solution.load_items(items)
 
 test_generated.py:45: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000002753EFEEBA0>
+self = <under_test.Solution object at 0x7750b5e635b0>
 items = [{'id': 'item1', 'name': 'Item One'}, {'id': 'item2', 'name': 'Item Two'}]
 
     def load_items(self, items: list[dict[str, Any]]) -> None:
         """Replace panel contents with *items*."""
         self._items = list(items)
 >       list_view = self.query_one(ListView)
-                    ^^^^^^^^^^^^^^
 E       AttributeError: 'Solution' object has no attribute 'query_one'
 
 under_test.py:89: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestLoadItems::test_load_items_line2 - AttributeErr...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.50s ===============================
 ```
 
 ### Code
@@ -8636,31 +8661,33 @@ class TestLoadItems(unittest.TestCase):
         self.solution.load_items(items)
 ```
 ---## TASK: 920695
-**STATUS:** Runtime Error
+**STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_920695_v274htcn
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_920695_czu7ffy5
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_load_angles_line2 FAILED                         [100%]
 
-================================== FAILURES ===================================
-___________________________ test_load_angles_line2 ____________________________
+=================================== FAILURES ===================================
+____________________________ test_load_angles_line2 ____________________________
 
     def test_load_angles_line2():
->       obj = Solution()
-              ^^^^^^^^
-E       NameError: name 'Solution' is not defined
+        obj = Solution()
+>       assert obj.load_angles('path/to/file.fits', hdu=1) == 'PA_vector'
+E       AssertionError: assert None == 'PA_vector'
+E        +  where None = load_angles('path/to/file.fits', hdu=1)
+E        +    where load_angles = <under_test.Solution object at 0x790d339d6a70>.load_angles
 
-test_generated.py:39: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_load_angles_line2 - NameError: name 'Solution'...
-============================== 1 failed in 0.40s ==============================
+test_generated.py:40: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_load_angles_line2 - AssertionError: assert Non...
+============================== 1 failed in 0.33s ===============================
 ```
 
 ### Code
@@ -8672,19 +8699,94 @@ def test_load_angles_line2():
     assert obj.load_angles('path/to/file.fits', hdu=1) == 'PA_vector'
     assert obj.load_angles(np.array([1, 2, 3]), hdu=0) == np.array([1, 2, 3])
 ```
+---## TASK: 51723
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_51723_feemw2h3
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_51723_feemw2h3/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:37: in <module>
+    from zarr import ZarrArray
+E   ModuleNotFoundError: No module named 'zarr'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.61s ===============================
+```
+
+### Code
+```python
+import numpy as np
+from zarr import ZarrArray
+
+class Solution:
+
+    def test_line2(self, array: ZarrArray) -> 'DtypeType':
+        """Override base dtype getter to handle zarr's string-as-object encoding."""
+        ...
+```
+---## TASK: 638151
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_638151_bee11tth
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test__get_feature_names_line2 FAILED                  [100%]
+
+=================================== FAILURES ===================================
+________________________ test__get_feature_names_line2 _________________________
+
+    def test__get_feature_names_line2():
+        import pandas as pd
+        df = pd.DataFrame({'feature1': [1, 2], 'feature2': [3, 4]})
+>       assert Solution()._get_feature_names(df) == ['feature1', 'feature2']
+E       ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+test_generated.py:39: ValueError
+=========================== short test summary info ============================
+FAILED test_generated.py::test__get_feature_names_line2 - ValueError: The tru...
+============================== 1 failed in 1.15s ===============================
+```
+
+### Code
+```python
+def test__get_feature_names_line2():
+    import pandas as pd
+    df = pd.DataFrame({'feature1': [1, 2], 'feature2': [3, 4]})
+    assert Solution()._get_feature_names(df) == ['feature1', 'feature2']
+```
 ---## TASK: 946236
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_946236_z7vxdmso
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_946236_7h8wb12q
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.61s ============================
+============================ no tests ran in 0.17s =============================
 ```
 
 ### Code
@@ -8726,121 +8828,19 @@ class Solution:
         """Sessions in this scope, sourced from history_events rows."""
         ...
 ```
----## TASK: 691
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_691_c765kp75
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 1.44s ============================
-```
-
-### Code
-```python
-import numpy as np
-
-class Solution:
-
-    def test_line2(self, psf, fwhm, threshold, mask_core, full_output, verbose):
-        """
-        Normalize PSF in the 2d case.
-
-        Parameters:
-        -----------
-        psf : array_like
-            Point spread function data.
-        fwhm : float
-            Full width at half maximum of the PSF.
-        threshold : float
-            Threshold value for normalization.
-        mask_core : bool
-            Whether to apply core masking.
-        full_output : bool
-            Whether to output the full normalized PSF.
-        verbose : bool
-            Whether to print debug information.
-
-        Returns:
-        --------
-        result : ndarray
-            Normalized PSF.
-        """
-        pass
-```
----## TASK: 405396
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_405396_xs18dmv6
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 8.27s ============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import List
-
-class Solution:
-
-    def test_line2(self, binder_sequence: str) -> list[int]:
-        """0-based binder indices for all Chothia CDRs."""
-        cdr_indices = []
-        for idx, char in enumerate(binder_sequence):
-            if char.isalpha() and char not in cdr_indices:
-                cdr_indices.append(idx)
-        return cdr_indices
-```
 ---## TASK: 91274
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_91274_cdz3wu6c
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_91274_jxtozo82
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================== warnings summary ===============================
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64
-  C:\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
-    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
-
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85
-  C:\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
-    parse = parser.parseString(pattern)
-
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
-..\..\..\..\..\..\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89
-  C:\Repos\slm_test_generation\.venv\Lib\site-packages\matplotlib\_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
-    parser.resetCache()
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-============================ 13 warnings in 0.48s =============================
+============================ no tests ran in 0.30s =============================
 ```
 
 ### Code
@@ -8891,19 +8891,66 @@ class Solution:
         import matplotlib.pyplot as plt
         return plt.cm.gist_earth
 ```
+---## TASK: 691
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_691_t7ja4491
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 1.28s =============================
+```
+
+### Code
+```python
+import numpy as np
+
+class Solution:
+
+    def test_line2(self, psf, fwhm, threshold, mask_core, full_output, verbose):
+        """
+        Normalize PSF in the 2d case.
+
+        Parameters:
+        -----------
+        psf : array_like
+            Point spread function data.
+        fwhm : float
+            Full width at half maximum of the PSF.
+        threshold : float
+            Threshold value for normalization.
+        mask_core : bool
+            Whether to apply core masking.
+        full_output : bool
+            Whether to output the full normalized PSF.
+        verbose : bool
+            Whether to print debug information.
+
+        Returns:
+        --------
+        result : ndarray
+            Normalized PSF.
+        """
+        pass
+```
 ---## TASK: 206871
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_206871_zcji38rk
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_206871_di7gvst7
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.20s =============================
 ```
 
 ### Code
@@ -8924,69 +8971,32 @@ class Solution:
         with open('wordlist.json', 'r') as f:
             data = json.load(f)
 ```
----## TASK: 638151
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_638151_f95bxzey
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test__get_feature_names_line2 FAILED                  [100%]
-
-================================== FAILURES ===================================
-________________________ test__get_feature_names_line2 ________________________
-
-    def test__get_feature_names_line2():
-        import pandas as pd
-        df = pd.DataFrame({'feature1': [1, 2], 'feature2': [3, 4]})
->       assert Solution()._get_feature_names(df) == ['feature1', 'feature2']
-E       ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
-
-test_generated.py:39: ValueError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test__get_feature_names_line2 - ValueError: The tru...
-============================== 1 failed in 2.86s ==============================
-```
-
-### Code
-```python
-def test__get_feature_names_line2():
-    import pandas as pd
-    df = pd.DataFrame({'feature1': [1, 2], 'feature2': [3, 4]})
-    assert Solution()._get_feature_names(df) == ['feature1', 'feature2']
-```
 ---## TASK: 507696
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_507696_kemhbw73
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_507696_fvyfo6tv
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_get_macrotile_line2 FAILED                       [100%]
 
-================================== FAILURES ===================================
-__________________________ test_get_macrotile_line2 ___________________________
+=================================== FAILURES ===================================
+___________________________ test_get_macrotile_line2 ___________________________
 
     def test_get_macrotile_line2():
         solution = Solution()
 >       assert solution.get_macrotile() == 'expected_result'
-               ^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:38: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000001460C0C15E0>
-dest_dtype = 'float32', roi = None, array_backend = None
+self = <under_test.Solution object at 0x79db3b163d00>, dest_dtype = 'float32'
+roi = None, array_backend = None
 
     def get_macrotile(self, dest_dtype="float32", roi=None,
             array_backend: ArrayBackend | None = None):
@@ -8999,15 +9009,14 @@ dest_dtype = 'float32', roi = None, array_backend = None
     
         tiling_scheme = TilingScheme.make_for_shape(
 >           tileshape=self.shape,
-                      ^^^^^^^^^^
             dataset_shape=self.meta.shape,
         )
 E       AttributeError: 'Solution' object has no attribute 'shape'
 
 under_test.py:88: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_get_macrotile_line2 - AttributeError: 'Solutio...
-============================== 1 failed in 0.33s ==============================
+============================== 1 failed in 0.34s ===============================
 ```
 
 ### Code
@@ -9016,71 +9025,22 @@ def test_get_macrotile_line2():
     solution = Solution()
     assert solution.get_macrotile() == 'expected_result'
 ```
----## TASK: 119665
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_119665_36q9tdds
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.08s ============================
-```
-
-### Code
-```python
-import unittest
-from typing import Optional, Union, List, Tuple, Dict, Any
-from unittest.mock import patch, MagicMock
-
-class DataSet:
-    pass
-
-class UDF:
-    pass
-
-class RoiT:
-    pass
-
-class CorrectionSet:
-    pass
-
-class ProgressReporter:
-    pass
-
-class BackendConfig:
-    pass
-
-class PlotSettings:
-    pass
-
-class Solution:
-
-    def test_line2(self, dataset: DataSet, udf: Union[UDF, List[UDF]], roi: RoiT, corrections: Optional[CorrectionSet], progress: Union[bool, ProgressReporter], backends: List[BackendConfig], plots: Optional[List[PlotSettings]], iterate: bool):
-        """Wraps :code:`_run_sync` into an asynchronous generator,
-        and either returns the generator itself, or the end result."""
-        print('Line 2 executed')
-```
 ---## TASK: 467352
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_467352_5j6ulkgy
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_467352_6eh3wepq
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_line2 FAILED                                     [100%]
 
-================================== FAILURES ===================================
-_________________________________ test_line2 __________________________________
+=================================== FAILURES ===================================
+__________________________________ test_line2 __________________________________
 
     def test_line2():
         import asyncio
@@ -9091,9 +9051,9 @@ _________________________________ test_line2 __________________________________
 E       ModuleNotFoundError: No module named 'telegram'
 
 test_generated.py:41: ModuleNotFoundError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_line2 - ModuleNotFoundError: No module named '...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.22s ===============================
 ```
 
 ### Code
@@ -9152,14 +9112,14 @@ def test_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_49235_esyzt1oo
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_49235_7_lnpu7r
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.21s =============================
 ```
 
 ### Code
@@ -9174,45 +9134,94 @@ class Solution:
         """模型排行"""
         self.models = ['AI', 'ML', 'DL']
         self.results = {'AI': 0.9, 'ML': 0.8, 'DL': 0.7}
-        sorted_results = {k: v for k, v in sorted(self.results.items(), key=lambda x: x[1])}
+        sorted_results = {k: v for (k, v) in sorted(self.results.items(), key=lambda x: x[1])}
         return sorted_results
+```
+---## TASK: 119665
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_119665_cizm1by7
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.41s =============================
+```
+
+### Code
+```python
+import unittest
+from typing import Optional, Union, List, Tuple, Dict, Any
+from unittest.mock import patch, MagicMock
+
+class DataSet:
+    pass
+
+class UDF:
+    pass
+
+class RoiT:
+    pass
+
+class CorrectionSet:
+    pass
+
+class ProgressReporter:
+    pass
+
+class BackendConfig:
+    pass
+
+class PlotSettings:
+    pass
+
+class Solution:
+
+    def test_line2(self, dataset: DataSet, udf: Union[UDF, List[UDF]], roi: RoiT, corrections: Optional[CorrectionSet], progress: Union[bool, ProgressReporter], backends: List[BackendConfig], plots: Optional[List[PlotSettings]], iterate: bool):
+        """Wraps :code:`_run_sync` into an asynchronous generator,
+        and either returns the generator itself, or the end result."""
+        print('Line 2 executed')
 ```
 ---## TASK: 670733
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_670733_3fd0r4ro
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_670733_oi1kfbzl
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__date_and_delta_line2 FAILED                     [100%]
 
-================================== FAILURES ===================================
-_________________________ test__date_and_delta_line2 __________________________
+=================================== FAILURES ===================================
+__________________________ test__date_and_delta_line2 __________________________
 
     def test__date_and_delta_line2():
         solution = Solution()
         result = solution._date_and_delta('2023-01-01', now=dt.datetime(2023, 1, 1))
 >       assert result == (dt.datetime(2023, 1, 1), dt.timedelta(days=0))
-E       assert (datetime.dat...conds=147101)) == (datetime.dat....timedelta(0))
+E       assert (datetime.dat...conds=391794)) == (datetime.dat....timedelta(0))
 E         
-E         At index 1 diff: datetime.timedelta(days=1278, seconds=37455, microseconds=147101) != datetime.timedelta(0)
+E         At index 1 diff: datetime.timedelta(days=1310, seconds=44552, microseconds=391794) != datetime.timedelta(0)
 E         
 E         Full diff:
 E           (
 E               datetime.datetime(2023, 1, 1, 0, 0),
 E         -     datetime.timedelta(0),
-E         +     datetime.timedelta(days=1278, seconds=37455, microseconds=147101),
+E         +     datetime.timedelta(days=1310, seconds=44552, microseconds=391794),
 E           )
 
 test_generated.py:67: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__date_and_delta_line2 - assert (datetime.dat.....
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.25s ===============================
 ```
 
 ### Code
@@ -9250,43 +9259,91 @@ def test__date_and_delta_line2():
     result = solution._date_and_delta('2023-01-01', now=dt.datetime(2023, 1, 1))
     assert result == (dt.datetime(2023, 1, 1), dt.timedelta(days=0))
 ```
+---## TASK: 872607
+**STATUS:** Pytest Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_872607_ajyht397
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+/usr/local/lib/python3.10/site-packages/_pytest/python.py:498: in importtestmodule
+    mod = import_path(
+/usr/local/lib/python3.10/site-packages/_pytest/pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1050: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1027: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1006: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:688: in _load_unlocked
+    ???
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:177: in exec_module
+    source_stat, co = _rewrite_test(fn, self.config)
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:359: in _rewrite_test
+    co = compile(tree, strfn, "exec", dont_inherit=True)
+E     File "/tmp/eval_872607_ajyht397/test_generated.py", line 43
+E       await solution.test()
+E       ^^^^^^^^^^^^^^^^^^^^^
+E   SyntaxError: 'await' outside async function
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.30s ===============================
+```
+
+### Code
+```python
+import asyncio
+
+def test_test_line2():
+    from unittest.mock import patch, MagicMock
+    import time
+    solution = Solution()
+    with patch('asyncio.get_event_loop') as mock_get_event_loop, patch('asyncio.run', new_callable=lambda *args, **kwargs: None):
+        await solution.test()
+```
 ---## TASK: 864158
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_864158_w8v1mum1
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_864158_7684ydfo
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_864158_w8v1mum1\test_generated.py'.
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_864158_7684ydfo/test_generated.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test_generated.py:38: in <module>
     with patch('humanize.time.Unit') as mock_Unit:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
     self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+/usr/local/lib/python3.10/unittest/mock.py:1257: in _importer
+    thing = __import__(import_path)
 E   ModuleNotFoundError: No module named 'humanize'
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.36s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.56s ===============================
 ```
 
 ### Code
@@ -9307,25 +9364,24 @@ with patch('humanize.time.Unit') as mock_Unit:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_948333_rfprwhif
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_948333_et1pbgd1
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
 test_generated.py:71: in <module>
     class Solution:
 test_generated.py:73: in Solution
     def test_line2(self, cl: type[tuple], converter: BaseConverter, omit_if_default: bool=False, use_linecache: bool=True, /, **kwargs: AttributeOverride) -> UnstructureHook:
-                                                     ^^^^^^^^^^^^^
 E   NameError: name 'BaseConverter' is not defined
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py - NameError: name 'BaseConverter' is not defined
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.33s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.38s ===============================
 ```
 
 ### Code
@@ -9377,136 +9433,120 @@ class Solution:
         .. versionadded:: 24.1.0"""
         ...
         hook = UnstructureHook()
-        for k, v in kwargs.items():
+        for (k, v) in kwargs.items():
             setattr(hook, k, v)
         return hook
 ```
----## TASK: 872607
-**STATUS:** Pytest Error
+---## TASK: 942632
+**STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_872607_komp62pq
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
+rootdir: /tmp/eval_942632_lwkleqg8
+plugins: cov-5.0.0
+collecting ... collected 1 item
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\python.py:498: in importtestmodule
-    mod = import_path(
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
-    importlib.import_module(module_name)
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
-    ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
-    ???
-<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
-    ???
-<frozen importlib._bootstrap>:935: in _load_unlocked
-    ???
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:177: in exec_module
-    source_stat, co = _rewrite_test(fn, self.config)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:359: in _rewrite_test
-    co = compile(tree, strfn, "exec", dont_inherit=True)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E     File "C:\Users\cbark\AppData\Local\Temp\eval_872607_komp62pq\test_generated.py", line 43
-E       await solution.test()
-E       ^^^^^^^^^^^^^^^^^^^^^
-E   SyntaxError: 'await' outside async function
-=========================== short test summary info ===========================
-ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.39s ===============================
+test_generated.py::TestNormalizeEpic::test_normalize_epic_line2 FAILED   [100%]
+
+=================================== FAILURES ===================================
+_________________ TestNormalizeEpic.test_normalize_epic_line2 __________________
+
+self = <test_generated.TestNormalizeEpic testMethod=test_normalize_epic_line2>
+
+    def test_normalize_epic_line2(self):
+        epic_data = {'title': 'The Epic', 'author': None}
+>       result = self.solution.normalize_epim('epic_data')
+E       AttributeError: 'Solution' object has no attribute 'normalize_epim'. Did you mean: 'normalize_epic'?
+
+test_generated.py:45: AttributeError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestNormalizeEpic::test_normalize_epic_line2 - Attr...
+============================== 1 failed in 0.25s ===============================
 ```
 
 ### Code
 ```python
-import asyncio
+import unittest
 
-def test_test_line2():
-    from unittest.mock import patch, MagicMock
-    import time
-    solution = Solution()
-    with patch('asyncio.get_event_loop') as mock_get_event_loop, patch('asyncio.run', new_callable=lambda *args, **kwargs: None):
-        await solution.test()
+class TestNormalizeEpic(unittest.TestCase):
+
+    def setUp(self):
+        self.solution = Solution()
+
+    def test_normalize_epic_line2(self):
+        epic_data = {'title': 'The Epic', 'author': None}
+        result = self.solution.normalize_epim('epic_data')
+        self.assertEqual(result, expected_result)
 ```
 ---## TASK: 273844
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_273844_29t9gyxz
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_273844_n8w5ql08
+plugins: cov-5.0.0
 collecting ... collected 2 items
 
 test_generated.py::TestSolution::test_post_daily_thread_no_args_line2 FAILED [ 50%]
 test_generated.py::TestSolution::test_post_daily_thread_one_arg_string_line2 FAILED [100%]
 
-================================== FAILURES ===================================
-______________ TestSolution.test_post_daily_thread_no_args_line2 ______________
+=================================== FAILURES ===================================
+______________ TestSolution.test_post_daily_thread_no_args_line2 _______________
 
 self = <test_generated.TestSolution testMethod=test_post_daily_thread_no_args_line2>
 
     def test_post_daily_thread_no_args_line2(self):
         solution = Solution()
 >       result = solution.post_daily_thread()
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:42: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000001CDD4BC2930>
-target_date = '2026-07-02', dry_run = False
+self = <under_test.Solution object at 0x705f536c1000>
+target_date = '2026-08-03', dry_run = False
 
     def post_daily_thread(self, target_date: str = None, dry_run: bool = False) -> dict:
-        """\u6536\u96c6\u7576\u65e5\u8cc7\u6599 \u2192 \u7d44\u6587\u6848 \u2192 \u767c\u4e09\u8a9e Thread\u3002"""
+        """收集當日資料 → 組文案 → 發三語 Thread。"""
         if not target_date:
             target_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     
->       log(f"\U0001f4ca \u6bcf\u65e5\u7e3d\u7d50\uff1a{target_date}")
-        ^^^
+>       log(f"📊 每日總結：{target_date}")
 E       NameError: name 'log' is not defined
 
 under_test.py:26: NameError
-__________ TestSolution.test_post_daily_thread_one_arg_string_line2 ___________
+___________ TestSolution.test_post_daily_thread_one_arg_string_line2 ___________
 
 self = <test_generated.TestSolution testMethod=test_post_daily_thread_one_arg_string_line2>
 
     def test_post_daily_thread_one_arg_string_line2(self):
         solution = Solution()
 >       result = solution.post_daily_thread('2023-01-01')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:47: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000001CDD4BC3590>
+self = <under_test.Solution object at 0x705f55214e80>
 target_date = '2023-01-01', dry_run = False
 
     def post_daily_thread(self, target_date: str = None, dry_run: bool = False) -> dict:
-        """\u6536\u96c6\u7576\u65e5\u8cc7\u6599 \u2192 \u7d44\u6587\u6848 \u2192 \u767c\u4e09\u8a9e Thread\u3002"""
+        """收集當日資料 → 組文案 → 發三語 Thread。"""
         if not target_date:
             target_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     
->       log(f"\U0001f4ca \u6bcf\u65e5\u7e3d\u7d50\uff1a{target_date}")
-        ^^^
+>       log(f"📊 每日總結：{target_date}")
 E       NameError: name 'log' is not defined
 
 under_test.py:26: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestSolution::test_post_daily_thread_no_args_line2
 FAILED test_generated.py::TestSolution::test_post_daily_thread_one_arg_string_line2
-============================== 2 failed in 0.16s ==============================
+============================== 2 failed in 0.27s ===============================
 ```
 
 ### Code
@@ -9525,64 +9565,19 @@ class TestSolution(unittest.TestCase):
         result = solution.post_daily_thread('2023-01-01')
         self.assertIsInstance(result, dict)
 ```
----## TASK: 942632
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_942632_7h5k_r3n
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestNormalizeEpic::test_normalize_epic_line2 FAILED   [100%]
-
-================================== FAILURES ===================================
-_________________ TestNormalizeEpic.test_normalize_epic_line2 _________________
-
-self = <test_generated.TestNormalizeEpic testMethod=test_normalize_epic_line2>
-
-    def test_normalize_epic_line2(self):
-        epic_data = {'title': 'The Epic', 'author': None}
->       result = self.solution.normalize_epim('epic_data')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E       AttributeError: 'Solution' object has no attribute 'normalize_epim'. Did you mean: 'normalize_epic'?
-
-test_generated.py:45: AttributeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestNormalizeEpic::test_normalize_epic_line2 - Attr...
-============================== 1 failed in 0.17s ==============================
-```
-
-### Code
-```python
-import unittest
-
-class TestNormalizeEpic(unittest.TestCase):
-
-    def setUp(self):
-        self.solution = Solution()
-
-    def test_normalize_epic_line2(self):
-        epic_data = {'title': 'The Epic', 'author': None}
-        result = self.solution.normalize_epim('epic_data')
-        self.assertEqual(result, expected_result)
-```
 ---## TASK: 841967
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_841967__alzxitt
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_841967_9r4y5ade
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.06s ============================
+============================ no tests ran in 0.21s =============================
 ```
 
 ### Code
@@ -9600,75 +9595,19 @@ class Solution:
         proxies['https'] = https_proxy
         return proxies
 ```
----## TASK: 718898
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_718898_azch2xrq
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
-
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_718898_azch2xrq\test_generated.py'.
-Hint: make sure your test modules/packages have valid Python names.
-Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test_generated.py:48: in <module>
-    with patch('module.TasksMaster') as mock_tasksmaster:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
-    self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E   ModuleNotFoundError: No module named 'module'
-=========================== short test summary info ===========================
-ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.36s ===============================
-```
-
-### Code
-```python
-import unittest
-from unittest.mock import patch
-
-class TestCase(unittest.TestCase):
-
-    @patch('some_module.BackgroundScheduler')
-    def test_get_tasksmaster_line2(self, mock_scheduler):
-        mock_instance = MagicMock(spec=BackgroundScheduler)
-        mock_scheduler.return_value = mock_instance
-        tasks_master = Solution().get_tasksmaster()
-        self.assertEqual(mock_scheduler.call_count, 1)
-        self.assertIsInstance(tasks_master, TasksMaster)
-with patch('module.TasksMaster') as mock_tasksmaster:
-    mock_tasksmaster.return_value = MagicMock(spec=TasksMaster)
-```
 ---## TASK: 626226
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_626226__r3hyc7e
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_626226_uy46isp7
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.16s =============================
 ```
 
 ### Code
@@ -9696,19 +9635,70 @@ class Solution:
             break
         return True
 ```
+---## TASK: 718898
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_718898_4_yj__la
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_718898_4_yj__la/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:48: in <module>
+    with patch('module.TasksMaster') as mock_tasksmaster:
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
+    self.target = self.getter()
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+/usr/local/lib/python3.10/unittest/mock.py:1257: in _importer
+    thing = __import__(import_path)
+E   ModuleNotFoundError: No module named 'module'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.47s ===============================
+```
+
+### Code
+```python
+import unittest
+from unittest.mock import patch
+
+class TestCase(unittest.TestCase):
+
+    @patch('some_module.BackgroundScheduler')
+    def test_get_tasksmaster_line2(self, mock_scheduler):
+        mock_instance = MagicMock(spec=BackgroundScheduler)
+        mock_scheduler.return_value = mock_instance
+        tasks_master = Solution().get_tasksmaster()
+        self.assertEqual(mock_scheduler.call_count, 1)
+        self.assertIsInstance(tasks_master, TasksMaster)
+with patch('module.TasksMaster') as mock_tasksmaster:
+    mock_tasksmaster.return_value = MagicMock(spec=TasksMaster)
+```
 ---## TASK: 281020
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_281020_q5kn28vk
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_281020_teavsnvl
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.12s ============================
+============================ no tests ran in 0.20s =============================
 ```
 
 ### Code
@@ -9736,42 +9726,39 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_857769_00eyw61k
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_857769_h4lsovpd
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_check_message_line2 FAILED                       [100%]
 
-================================== FAILURES ===================================
-__________________________ test_check_message_line2 ___________________________
+=================================== FAILURES ===================================
+___________________________ test_check_message_line2 ___________________________
 
     def test_check_message_line2():
         solution = Solution()
 >       result = solution._check_message('valid message')
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:38: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000002328CC4EB10>
-text = 'valid message'
+self = <under_test.Solution object at 0x729aea4a1d20>, text = 'valid message'
 
     def _check_message(self, text: str) -> str | None:
         """
-        \u6aa2\u67e5\u8a0a\u606f\u54c1\u8cea\u3002
-        \u56de\u50b3 None = \u901a\u904e\uff0c\u56de\u50b3\u5b57\u4e32 = \u88ab\u64cb\u3002
+        檢查訊息品質。
+        回傳 None = 通過，回傳字串 = 被擋。
         """
 >       if len(text) < MSG_MIN_LENGTH:
-                       ^^^^^^^^^^^^^^
 E       NameError: name 'MSG_MIN_LENGTH' is not defined
 
 under_test.py:31: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_check_message_line2 - NameError: name 'MSG_MIN...
-============================== 1 failed in 0.18s ==============================
+============================== 1 failed in 0.26s ===============================
 ```
 
 ### Code
@@ -9781,33 +9768,135 @@ def test_check_message_line2():
     result = solution._check_message('valid message')
     assert result is None
 ```
+---## TASK: 259607
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_259607_sh0h1z1d
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_line2 FAILED                                     [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_line2 __________________________________
+
+    def test_line2():
+        import asyncio
+    
+        from typing import Optional
+    
+>       from spline import Spline
+E       ModuleNotFoundError: No module named 'spline'
+
+test_generated.py:41: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_line2 - ModuleNotFoundError: No module named '...
+============================== 1 failed in 0.41s ===============================
+```
+
+### Code
+```python
+def test_line2():
+    import asyncio
+    
+    from typing import Optional
+    
+    from spline import Spline
+    
+    from spline.exceptions import DrivingAbortedException
+    
+    async def test_drive_spline():
+        solution = Solution()
+    
+        # Create a simple spline with two points
+        p1 = (0, 0)
+        p2 = (1, 1)
+    
+        spline = Spline(p1, p2)
+    
+        # Call the method asynchronously
+        await solution.drive_spline(spline=Spline(p1, p2), flip_hook=False, throttle_at_end=True, stop_at_end=True)
+```
+---## TASK: 990106
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_990106_y3cw5wg_
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_line2 FAILED                                     [100%]
+
+=================================== FAILURES ===================================
+__________________________________ test_line2 __________________________________
+
+    def test_line2():
+        import pytest
+>       from fastapi import Depends
+E       ModuleNotFoundError: No module named 'fastapi'
+
+test_generated.py:38: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_line2 - ModuleNotFoundError: No module named '...
+============================== 1 failed in 0.30s ===============================
+```
+
+### Code
+```python
+def test_line2():
+    import pytest
+    from fastapi import Depends
+    
+    @pytest.mark.asyncio
+    async def test_materialize_session():
+        from your_module import Solution, MaterializeSessionRequest, get_current_user
+    
+        # Mock the get_current_user dependency
+        with patch('your_module.get_current_user', return_value={'id': 'user1'}):
+            solution = Solution()
+    
+            # Create a dummy request object
+            req = MaterializeSessionRequest(session_id="123", data={})
+    
+            # Call the method and check its behavior
+            result = await solution.materialize_session("123", req)
+            assert isinstance(result, str)
+```
 ---## TASK: 962002
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_962002_bz56ozao
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_962002_ggkq44og
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_962002_bz56ozao\test_generated.py'.
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_962002_ggkq44og/test_generated.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test_generated.py:40: in <module>
     import zstandard as zd
 E   ModuleNotFoundError: No module named 'zstandard'
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 1.38s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.92s ===============================
 ```
 
 ### Code
@@ -9895,109 +9984,48 @@ class Solution:
                 raise ValueError(f"Invalid method '{method}' specified in compression dictionary.")
             return method
 ```
----## TASK: 259607
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_259607_d9wwres5
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_line2 FAILED                                     [100%]
-
-================================== FAILURES ===================================
-_________________________________ test_line2 __________________________________
-
-    def test_line2():
-        import asyncio
-    
-        from typing import Optional
-    
->       from spline import Spline
-E       ModuleNotFoundError: No module named 'spline'
-
-test_generated.py:41: ModuleNotFoundError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_line2 - ModuleNotFoundError: No module named '...
-============================== 1 failed in 0.30s ==============================
-```
-
-### Code
-```python
-def test_line2():
-    import asyncio
-    
-    from typing import Optional
-    
-    from spline import Spline
-    
-    from spline.exceptions import DrivingAbortedException
-    
-    async def test_drive_spline():
-        solution = Solution()
-    
-        # Create a simple spline with two points
-        p1 = (0, 0)
-        p2 = (1, 1)
-    
-        spline = Spline(p1, p2)
-    
-        # Call the method asynchronously
-        await solution.drive_spline(spline=Spline(p1, p2), flip_hook=False, throttle_at_end=True, stop_at_end=True)
-```
 ---## TASK: 254435
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_254435_88beezou
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_254435_3vssuqg7
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestSolution::test_get_deleted_tallies_line2 FAILED   [100%]
 
-================================== FAILURES ===================================
-_________________ TestSolution.test_get_deleted_tallies_line2 _________________
+=================================== FAILURES ===================================
+_________________ TestSolution.test_get_deleted_tallies_line2 __________________
 
 self = <test_generated.TestSolution testMethod=test_get_deleted_tallies_line2>
 
     def test_get_deleted_tallies_line2(self):
 >       with patch('module_name.Solution', autospec=True) as mock_sol:
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:44: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\unittest\mock.py:1451: in __enter__
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/unittest/mock.py:1431: in __enter__
     self.target = self.getter()
-                  ^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\pkgutil.py:513: in resolve_name
-    mod = importlib.import_module(modname)
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
-    ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
-    ???
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+/usr/local/lib/python3.10/unittest/mock.py:1618: in <lambda>
+    getter = lambda: _importer(target)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-name = 'module_name', import_ = <function _gcd_import at 0x000002C0BF85C0E0>
+target = 'module_name'
 
->   ???
-E   ModuleNotFoundError: No module named 'module_name'
+    def _importer(target):
+        components = target.split('.')
+        import_path = components.pop(0)
+>       thing = __import__(import_path)
+E       ModuleNotFoundError: No module named 'module_name'
 
-<frozen importlib._bootstrap>:1324: ModuleNotFoundError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/unittest/mock.py:1257: ModuleNotFoundError
+=========================== short test summary info ============================
 FAILED test_generated.py::TestSolution::test_get_deleted_tallies_line2 - Modu...
-============================== 1 failed in 0.78s ==============================
+============================== 1 failed in 0.70s ===============================
 ```
 
 ### Code
@@ -10016,134 +10044,46 @@ class TestSolution(unittest.TestCase):
             result = self.sol.get_deleted_tallies()
             self.assertEqual(result, {'retention': 100, 'churn': 50})
 ```
----## TASK: 492209
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_492209_03b1eek0
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
-
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_492209_03b1eek0\test_generated.py'.
-Hint: make sure your test modules/packages have valid Python names.
-Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-test_generated.py:38: in <module>
-    from fsspec import FilePath, BaseBuffer
-E   ImportError: cannot import name 'FilePath' from 'fsspec' (C:\Repos\slm_test_generation\.venv\Lib\site-packages\fsspec\__init__.py)
-=========================== short test summary info ===========================
-ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 1.31s ===============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('path/to/fsspec')
-from fsspec import FilePath, BaseBuffer
-
-class Solution:
-
-    def test_line2(self, url: FilePath | BaseBuffer) -> bool:
-        """Returns true if the given URL looks like  #3
-        something fsspec can handle"""
-        ...
-```
----## TASK: 632174
-**STATUS:** Assertion Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_632174_amtt7r4x
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test_parse_list_header_line2 FAILED                   [100%]
-
-================================== FAILURES ===================================
-________________________ test_parse_list_header_line2 _________________________
-
-    def test_parse_list_header_line2():
-        sol = Solution()
->       assert sol.parse_list_header('token, "quoted value"') == ['token', 'quoted value']
-E       AssertionError: assert [] == ['token', 'quoted value']
-E         
-E         Right contains 2 more items, first extra item: 'token'
-E         
-E         Full diff:
-E         + []
-E         - [
-E         -     'token',
-E         -     'quoted value',
-E         - ]
-
-test_generated.py:38: AssertionError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_parse_list_header_line2 - AssertionError: asse...
-============================== 1 failed in 0.21s ==============================
-```
-
-### Code
-```python
-def test_parse_list_header_line2():
-    sol = Solution()
-    assert sol.parse_list_header('token, "quoted value"') == ['token', 'quoted value']
-```
 ---## TASK: 625299
 **STATUS:** Pytest Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_625299_6pr32w9_
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_625299_x3p325xf
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\python.py:498: in importtestmodule
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+/usr/local/lib/python3.10/site-packages/_pytest/python.py:498: in importtestmodule
     mod = import_path(
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
+/usr/local/lib/python3.10/site-packages/_pytest/pathlib.py:587: in import_path
     importlib.import_module(module_name)
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
+<frozen importlib._bootstrap>:1050: in _gcd_import
     ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
+<frozen importlib._bootstrap>:1027: in _find_and_load
     ???
-<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
+<frozen importlib._bootstrap>:1006: in _find_and_load_unlocked
     ???
-<frozen importlib._bootstrap>:935: in _load_unlocked
+<frozen importlib._bootstrap>:688: in _load_unlocked
     ???
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:177: in exec_module
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:177: in exec_module
     source_stat, co = _rewrite_test(fn, self.config)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:359: in _rewrite_test
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:359: in _rewrite_test
     co = compile(tree, strfn, "exec", dont_inherit=True)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E     File "C:\Users\cbark\AppData\Local\Temp\eval_625299_6pr32w9_\test_generated.py", line 76
+E     File "/tmp/eval_625299_x3p325xf/test_generated.py", line 76
 E       result = await solution._render_child_database_block(mock_async_client, sample_block, 2)
 E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E   SyntaxError: 'await' outside async function
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.38s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.36s ===============================
 ```
 
 ### Code
@@ -10194,19 +10134,103 @@ def test_line2():
             assert mock_method.called_once_with(mock_async_client, sample_block, 2)
             assert isinstance(result, list)
 ```
+---## TASK: 632174
+**STATUS:** Assertion Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_632174_y0s7ko_i
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_parse_list_header_line2 FAILED                   [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_parse_list_header_line2 _________________________
+
+    def test_parse_list_header_line2():
+        sol = Solution()
+>       assert sol.parse_list_header('token, "quoted value"') == ['token', 'quoted value']
+E       AssertionError: assert [] == ['token', 'quoted value']
+E         
+E         Right contains 2 more items, first extra item: 'token'
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     'token',
+E         -     'quoted value',
+E         - ]
+
+test_generated.py:38: AssertionError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_parse_list_header_line2 - AssertionError: asse...
+============================== 1 failed in 0.35s ===============================
+```
+
+### Code
+```python
+def test_parse_list_header_line2():
+    sol = Solution()
+    assert sol.parse_list_header('token, "quoted value"') == ['token', 'quoted value']
+```
+---## TASK: 492209
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_492209_01s6h52_
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_492209_01s6h52_/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:38: in <module>
+    from fsspec import FilePath, BaseBuffer
+E   ModuleNotFoundError: No module named 'fsspec'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 1.60s ===============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('path/to/fsspec')
+from fsspec import FilePath, BaseBuffer
+
+class Solution:
+
+    def test_line2(self, url: FilePath | BaseBuffer) -> bool:
+        """Returns true if the given URL looks like  #3
+        something fsspec can handle"""
+        ...
+```
 ---## TASK: 779471
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_779471_g8yrp028
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_779471_tzl1lo5v
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.18s =============================
 ```
 
 ### Code
@@ -10233,14 +10257,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_340725_f0kx8oyu
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_340725_b7evmu4w
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.17s =============================
 ```
 
 ### Code
@@ -10258,14 +10282,27 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_872483_jprj74nm
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
+rootdir: /tmp/eval_872483_d88egqw3
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
 
-============================ no tests ran in 0.80s ============================
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_872483_d88egqw3/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:36: in <module>
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.39s ===============================
 ```
 
 ### Code
@@ -10307,14 +10344,14 @@ class ApiKeyService:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_303099_6fuhrmzz
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_303099_pzah72ej
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.77s ============================
+============================ no tests ran in 0.68s =============================
 ```
 
 ### Code
@@ -10337,41 +10374,39 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_184951_wxrntp9f
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_184951_gtq88r4q
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_tool_call_summary_line2 FAILED         [100%]
 
-================================== FAILURES ===================================
-____________________ TestCase.test_tool_call_summary_line2 ____________________
+=================================== FAILURES ===================================
+____________________ TestCase.test_tool_call_summary_line2 _____________________
 
 self = <test_generated.TestCase testMethod=test_tool_call_summary_line2>
 
     def test_tool_call_summary_line2(self):
         solution = Solution()
 >       result = solution._tool_call_summary('api', {'key': 'value'})
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:42: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x0000025C1AC5F410>, raw_name = 'api'
+self = <under_test.Solution object at 0x7aa374631db0>, raw_name = 'api'
 args = {'key': 'value'}
 
     def _tool_call_summary(self, raw_name: str, args: dict[str, Any]) -> str:
         """Pick a short, recognisable summary for a tool call."""
 >       display = canonical_tool_name(raw_name)
-                  ^^^^^^^^^^^^^^^^^^^
 E       NameError: name 'canonical_tool_name' is not defined
 
 under_test.py:34: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_tool_call_summary_line2 - NameError:...
-============================== 1 failed in 0.15s ==============================
+============================== 1 failed in 0.24s ===============================
 ```
 
 ### Code
@@ -10390,17 +10425,17 @@ class TestCase(unittest.TestCase):
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_308018_zuet6_v7
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_308018_5vf20htq
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__maybe_memory_map_line2 FAILED                   [100%]
 
-================================== FAILURES ===================================
-________________________ test__maybe_memory_map_line2 _________________________
+=================================== FAILURES ===================================
+_________________________ test__maybe_memory_map_line2 _________________________
 
     def test__maybe_memory_map_line2():
         solution = Solution()
@@ -10419,9 +10454,9 @@ E       assert False
 E        +  where False = isinstance(123, str)
 
 test_generated.py:84: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test__maybe_memory_map_line2 - assert False
-============================== 1 failed in 1.11s ==============================
+============================== 1 failed in 0.91s ===============================
 ```
 
 ### Code
@@ -10478,62 +10513,63 @@ def test__maybe_memory_map_line2():
     assert result[1] is False
     assert len(result[2]) == 0
 ```
----## TASK: 432562
+---## TASK: 932471
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_432562__fvvhdjq
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
+rootdir: /tmp/eval_932471_9atuthgl
+plugins: cov-5.0.0
+collecting ... collected 0 items
 
-test_generated.py::test_select_designs_line2 FAILED                      [100%]
-
-================================== FAILURES ===================================
-__________________________ test_select_designs_line2 __________________________
-
-    def test_select_designs_line2():
->       solution = Solution()
-                   ^^^^^^^^
-E       NameError: name 'Solution' is not defined
-
-test_generated.py:39: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test_select_designs_line2 - NameError: name 'Soluti...
-============================== 1 failed in 1.16s ==============================
+============================ no tests ran in 0.23s =============================
 ```
 
 ### Code
 ```python
-import pandas as pd
+import json
 
-def test_select_designs_line2():
-    solution = Solution()
-    configs = [{'type': 'antibody'}, {'type': 'minibinder'}]
-    raw_results = [{'ipTM': [0.5, 0.6], 'distogram_iPTM_proxies': [0.4, 0.5]}, {'ipTM': [0.7, 0.8], 'distogram_iPTM_proxies': [0.6, 0.7]}]
-    top_n = 1
-    isoelectric_point_max = 10.0
-    assert solution.select_designs(configs, raw_results, top_n, isoelectric_point_max) == [[0, 0]]
+class Solution:
+
+    def test_line2(self, task_id: str, use_json: bool=True) -> dict:
+        """
+        Load task definition merged with runtime state.
+
+        Backward compatible: if no state file exists, reads legacy runtime
+        fields from definition file.
+        """
+        self.state_file_path = f'state_{task_id}.json'
+        self.task_definition = {'id': task_id, 'name': 'Test Task', 'dependencies': []}
+        if use_json:
+            try:
+                with open(self.state_file_path, 'r') as f:
+                    self.runtime_state = json.load(f)
+            except FileNotFoundError:
+                self.runtime_state = {}
+        else:
+            self.runtime_state = {}
+        result = {**self.task_definition, **self.runtime_state}
+        return result
 ```
 ---## TASK: 408604
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_408604_y5cpxurs
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_408604_su9yracx
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_stringify_path_line2 FAILED                      [100%]
 
-================================== FAILURES ===================================
-__________________________ test_stringify_path_line2 __________________________
+=================================== FAILURES ===================================
+__________________________ test_stringify_path_line2 ___________________________
 
     def test_stringify_path_line2():
         solution = Solution()
@@ -10541,12 +10577,12 @@ __________________________ test_stringify_path_line2 __________________________
         buffer = BytesIO(b'data')
         result = solution.stringify_path(file_path)
 >       assert result == '/home/user/file.txt'
-E       AssertionError: assert WindowsPath('/home/user/file.txt') == '/home/user/file.txt'
+E       AssertionError: assert PosixPath('/home/user/file.txt') == '/home/user/file.txt'
 
 test_generated.py:64: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_stringify_path_line2 - AssertionError: assert ...
-============================== 1 failed in 1.13s ==============================
+============================== 1 failed in 0.77s ===============================
 ```
 
 ### Code
@@ -10583,37 +10619,76 @@ def test_stringify_path_line2():
     result = solution.stringify_path(buffer, True)
     assert result == 'data'
 ```
+---## TASK: 432562
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_432562_tm170ybw
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test_select_designs_line2 FAILED                      [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_select_designs_line2 ___________________________
+
+    def test_select_designs_line2():
+>       solution = Solution()
+E       NameError: name 'Solution' is not defined
+
+test_generated.py:39: NameError
+=========================== short test summary info ============================
+FAILED test_generated.py::test_select_designs_line2 - NameError: name 'Soluti...
+============================== 1 failed in 0.92s ===============================
+```
+
+### Code
+```python
+import pandas as pd
+
+def test_select_designs_line2():
+    solution = Solution()
+    configs = [{'type': 'antibody'}, {'type': 'minibinder'}]
+    raw_results = [{'ipTM': [0.5, 0.6], 'distogram_iPTM_proxies': [0.4, 0.5]}, {'ipTM': [0.7, 0.8], 'distogram_iPTM_proxies': [0.6, 0.7]}]
+    top_n = 1
+    isoelectric_point_max = 10.0
+    assert solution.select_designs(configs, raw_results, top_n, isoelectric_point_max) == [[0, 0]]
+```
 ---## TASK: 135299
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_135299_gjjykq24
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_135299_gak0kcjm
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_normalized_stim_map_line2 FAILED                 [100%]
 
-================================== FAILURES ===================================
-_______________________ test_normalized_stim_map_line2 ________________________
+=================================== FAILURES ===================================
+________________________ test_normalized_stim_map_line2 ________________________
 
     def test_normalized_stim_map_line2():
         solution = Solution()
         cube = np.random.rand(10, 10, 10)
         angle_list = np.array([0.0])
 >       result = solution.normalized_stim_map(cube, angle_list)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:42: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x0000015B9BA7A060>
-cube = array([[[0.3931793 , 0.24150633, 0.46564823, 0.92421121, 0.18552155,
-         0.38105013, 0.51855189, 0.35813173, 0.20...0.12494647, 0.6283596 , 0.58143846, 0.44458636,
-         0.16445683, 0.93847251, 0.46934644, 0.36391304, 0.58366082]]])
+self = <under_test.Solution object at 0x751fa8a95ab0>
+cube = array([[[2.70382391e-01, 6.97029404e-01, 7.84861611e-01, 6.77048029e-01,
+         4.48434539e-01, 7.07696993e-02, 6.95...1,
+         5.47975651e-01, 9.54707021e-01, 2.72821230e-01, 4.37520517e-01,
+         8.52640036e-01, 8.27274863e-01]]])
 angle_list = array([0.]), mask = None, rot_options = {}
 
     def normalized_stim_map(self, cube, angle_list, mask=None, **rot_options):
@@ -10644,13 +10719,12 @@ angle_list = array([0.]), mask = None, rot_options = {}
     
         """
 >       inv_map = inverse_stim_map(cube, angle_list, **rot_options)
-                  ^^^^^^^^^^^^^^^^
 E       NameError: name 'inverse_stim_map' is not defined
 
 under_test.py:57: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_normalized_stim_map_line2 - NameError: name 'i...
-============================== 1 failed in 0.34s ==============================
+============================== 1 failed in 0.39s ===============================
 ```
 
 ### Code
@@ -10664,63 +10738,22 @@ def test_normalized_stim_map_line2():
     result = solution.normalized_stim_map(cube, angle_list)
     assert isinstance(result, np.ndarray), f'Expected a numpy ndarray, got {type(result)}'
 ```
----## TASK: 932471
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_932471_6l9lsj1v
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.07s ============================
-```
-
-### Code
-```python
-import json
-
-class Solution:
-
-    def test_line2(self, task_id: str, use_json: bool=True) -> dict:
-        """
-        Load task definition merged with runtime state.
-
-        Backward compatible: if no state file exists, reads legacy runtime
-        fields from definition file.
-        """
-        self.state_file_path = f'state_{task_id}.json'
-        self.task_definition = {'id': task_id, 'name': 'Test Task', 'dependencies': []}
-        if use_json:
-            try:
-                with open(self.state_file_path, 'r') as f:
-                    self.runtime_state = json.load(f)
-            except FileNotFoundError:
-                self.runtime_state = {}
-        else:
-            self.runtime_state = {}
-        result = {**self.task_definition, **self.runtime_state}
-        return result
-```
 ---## TASK: 974937
 **STATUS:** Assertion Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_974937_8f7kmlsv
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_974937_y92ubkts
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_format_tool_result_line2 FAILED                  [100%]
 
-================================== FAILURES ===================================
-________________________ test_format_tool_result_line2 ________________________
+=================================== FAILURES ===================================
+________________________ test_format_tool_result_line2 _________________________
 
     def test_format_tool_result_line2():
         solution = Solution()
@@ -10730,9 +10763,9 @@ E       assert False
 E        +  where False = isinstance(None, str)
 
 test_generated.py:39: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_format_tool_result_line2 - assert False
-============================== 1 failed in 0.15s ==============================
+============================== 1 failed in 0.28s ===============================
 ```
 
 ### Code
@@ -10742,19 +10775,86 @@ def test_format_tool_result_line2():
     result = solution.format_tool_result({'error': 'something'})
     assert isinstance(result, str)
 ```
+---## TASK: 765793
+**STATUS:** Pytest Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_765793_gn7u0ccb
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+/usr/local/lib/python3.10/site-packages/_pytest/python.py:498: in importtestmodule
+    mod = import_path(
+/usr/local/lib/python3.10/site-packages/_pytest/pathlib.py:587: in import_path
+    importlib.import_module(module_name)
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+<frozen importlib._bootstrap>:1050: in _gcd_import
+    ???
+<frozen importlib._bootstrap>:1027: in _find_and_load
+    ???
+<frozen importlib._bootstrap>:1006: in _find_and_load_unlocked
+    ???
+<frozen importlib._bootstrap>:688: in _load_unlocked
+    ???
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:177: in exec_module
+    source_stat, co = _rewrite_test(fn, self.config)
+/usr/local/lib/python3.10/site-packages/_pytest/assertion/rewrite.py:359: in _rewrite_test
+    co = compile(tree, strfn, "exec", dont_inherit=True)
+E     File "/tmp/eval_765793_gn7u0ccb/test_generated.py", line 55
+E       result = await solution._user_share_grants(object_type='folder', object_id=object_uuid, user_id=user_uuid, require='read')
+E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   SyntaxError: 'await' outside async function
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.32s ===============================
+```
+
+### Code
+```python
+import uuid
+from typing import Optional
+
+class Solution:
+
+    async def _user_share_grants(self, object_type: str, object_id: UUID, user_id: UUID, require: str) -> bool:
+        """
+        A live (unexpired) user share on the object or any ancestor folder that
+        meets the required permission level.
+        """
+        ...
+from unittest.mock import AsyncMock, patch
+
+def test_user_share_grants_line2():
+    solution = Solution()
+    object_uuid = uuid.UUID('123e4567-e89b-12d3-a456-426614174000')
+    user_uuid = uuid.UUID('a1b2c3d4-e5f6-7890-1234-567890abcdef')
+    with patch('some_module.some_function', new_callable=AsyncMock) as mock_check:
+        mock_check.return_value = True
+        result = await solution._user_share_grants(object_type='folder', object_id=object_uuid, user_id=user_uuid, require='read')
+        assert result is True
+        mock_check.assert_called_once_with(object_type, object_id, user_id, require)
+```
 ---## TASK: 461140
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_461140_bg7xvux4
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_461140_odew68_u
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.68s ============================
+============================ no tests ran in 0.53s =============================
 ```
 
 ### Code
@@ -10817,17 +10917,17 @@ class PushEventsService:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_414135_l78qg2er
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_414135_52438ktv
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_format_tool_use_line2 FAILED           [100%]
 
-================================== FAILURES ===================================
-_____________________ TestCase.test_format_tool_use_line2 _____________________
+=================================== FAILURES ===================================
+_____________________ TestCase.test_format_tool_use_line2 ______________________
 
 self = <test_generated.TestCase testMethod=test_format_tool_use_line2>
 
@@ -10836,18 +10936,17 @@ self = <test_generated.TestCase testMethod=test_format_tool_use_line2>
 >           self.solution.format_tool_use(123, 'not_a_dict')
 
 test_generated.py:45: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
     def format_tool_use(self, tool_name: str, tool_input: dict) -> str:
         """Format a tool use event for TUI display."""
->       icon = ICONS.get(tool_name, "\U0001f539")
-               ^^^^^
+>       icon = ICONS.get(tool_name, "🔹")
 E       NameError: name 'ICONS' is not defined
 
 under_test.py:21: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_format_tool_use_line2 - NameError: n...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.21s ===============================
 ```
 
 ### Code
@@ -10863,89 +10962,19 @@ class TestCase(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.solution.format_tool_use(123, 'not_a_dict')
 ```
----## TASK: 765793
-**STATUS:** Pytest Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_765793_nolr8u79
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
-
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\python.py:498: in importtestmodule
-    mod = import_path(
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\pathlib.py:587: in import_path
-    importlib.import_module(module_name)
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-<frozen importlib._bootstrap>:1387: in _gcd_import
-    ???
-<frozen importlib._bootstrap>:1360: in _find_and_load
-    ???
-<frozen importlib._bootstrap>:1331: in _find_and_load_unlocked
-    ???
-<frozen importlib._bootstrap>:935: in _load_unlocked
-    ???
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:177: in exec_module
-    source_stat, co = _rewrite_test(fn, self.config)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-C:\Repos\slm_test_generation\.venv\Lib\site-packages\_pytest\assertion\rewrite.py:359: in _rewrite_test
-    co = compile(tree, strfn, "exec", dont_inherit=True)
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E     File "C:\Users\cbark\AppData\Local\Temp\eval_765793_nolr8u79\test_generated.py", line 55
-E       result = await solution._user_share_grants(object_type='folder', object_id=object_uuid, user_id=user_uuid, require='read')
-E                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E   SyntaxError: 'await' outside async function
-=========================== short test summary info ===========================
-ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.38s ===============================
-```
-
-### Code
-```python
-import uuid
-from typing import Optional
-
-class Solution:
-
-    async def _user_share_grants(self, object_type: str, object_id: UUID, user_id: UUID, require: str) -> bool:
-        """
-        A live (unexpired) user share on the object or any ancestor folder that
-        meets the required permission level.
-        """
-        ...
-from unittest.mock import AsyncMock, patch
-
-def test_user_share_grants_line2():
-    solution = Solution()
-    object_uuid = uuid.UUID('123e4567-e89b-12d3-a456-426614174000')
-    user_uuid = uuid.UUID('a1b2c3d4-e5f6-7890-1234-567890abcdef')
-    with patch('some_module.some_function', new_callable=AsyncMock) as mock_check:
-        mock_check.return_value = True
-        result = await solution._user_share_grants(object_type='folder', object_id=object_uuid, user_id=user_uuid, require='read')
-        assert result is True
-        mock_check.assert_called_once_with(object_type, object_id, user_id, require)
-```
 ---## TASK: 720865
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_720865_y8zgjs91
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_720865_xui56glc
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.34s ============================
+============================ no tests ran in 0.15s =============================
 ```
 
 ### Code
@@ -10978,14 +11007,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_195344_z5nlx5q9
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_195344__v0fdzco
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.06s ============================
+============================ no tests ran in 0.17s =============================
 ```
 
 ### Code
@@ -11008,25 +11037,24 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_234352_7dlpgt3l
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_234352_u3fd66oy
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
 test_generated.py:38: in <module>
     class Solution:
 test_generated.py:40: in Solution
     def test_line2(self, instance: T.Any, cls: T.Type[T.TYPE], message: str | None=None) -> T.TypeGuard[T.TYPE]:
-                                                      ^^^^^^
 E   AttributeError: module 'typing' has no attribute 'TYPE'. Did you mean: 'Type'?
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py - AttributeError: module 'typing' has no attribute 'T...
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.31s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.39s ===============================
 ```
 
 ### Code
@@ -11055,17 +11083,17 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_639154_fmjcpdkl
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_639154_mt84xj8v
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::TestCase::test_validate_task_spec_headings_line2 FAILED [100%]
 
-================================== FAILURES ===================================
-_______________ TestCase.test_validate_task_spec_headings_line2 _______________
+=================================== FAILURES ===================================
+_______________ TestCase.test_validate_task_spec_headings_line2 ________________
 
 self = <test_generated.TestCase testMethod=test_validate_task_spec_headings_line2>
 
@@ -11075,9 +11103,9 @@ self = <test_generated.TestCase testMethod=test_validate_task_spec_headings_line
 E       AssertionError: None != []
 
 test_generated.py:54: AssertionError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::TestCase::test_validate_task_spec_headings_line2 - ...
-============================== 1 failed in 0.15s ==============================
+============================== 1 failed in 0.28s ===============================
 ```
 
 ### Code
@@ -11102,97 +11130,19 @@ class TestCase(unittest.TestCase):
         result = self.solution.validate_task_spec_headings('Task description')
         self.assertEqual(result, [])
 ```
----## TASK: 372979
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_372979_5e17unbg
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.07s ============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import Any, Callable
-
-class Solution:
-
-    def test_line2(self, hash_fn_name: str) -> Callable[[Any], bytes]:
-        """Get a hash function by name, or raise an error if the function is not found."""
-        self.hash_functions = {'md5': lambda x: b'd41d8cd98f00b204e9800998ecf8427e', 'sha1': lambda x: b'a9993e364706816aba3e25717850c26c9cd0d89d'}
-        if hash_fn_name in self.hash_functions:
-            return self.hash_functions[hash_fn_name]
-        else:
-            raise ValueError(f"Hash function '{hash_fn_name}' not found")
-```
----## TASK: 178534
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_178534_oz20ls23
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
-
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-test_generated.py:43: in <module>
-    class Solution:
-test_generated.py:45: in Solution
-    def conv(self, f: Field[Any], case: str | None=None) -> str:
-                      ^^^^^^^^^^
-E   TypeError: type 'Field' is not subscriptable
-=========================== short test summary info ===========================
-ERROR test_generated.py - TypeError: type 'Field' is not subscriptable
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.34s ===============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import Any
-
-class Field:
-    pass
-
-class Solution:
-
-    def conv(self, f: Field[Any], case: str | None=None) -> str:
-        """Convert field name."""
-        ...
-
-def test_conv_line2():
-    obj = Solution()
-    f = Field()
-    result = obj.conv(f)
-    assert isinstance(result, str)
-```
 ---## TASK: 318568
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_318568_8up0_fpt
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_318568__btpef5q
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.96s ============================
+============================ no tests ran in 0.70s =============================
 ```
 
 ### Code
@@ -11216,19 +11166,96 @@ class Solution:
             print(f'Error: {e}')
             return False
 ```
+---## TASK: 178534
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_178534_ks9yfrz8
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+test_generated.py:43: in <module>
+    class Solution:
+test_generated.py:45: in Solution
+    def conv(self, f: Field[Any], case: str | None=None) -> str:
+E   TypeError: 'type' object is not subscriptable
+=========================== short test summary info ============================
+ERROR test_generated.py - TypeError: 'type' object is not subscriptable
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.49s ===============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import Any
+
+class Field:
+    pass
+
+class Solution:
+
+    def conv(self, f: Field[Any], case: str | None=None) -> str:
+        """Convert field name."""
+        ...
+
+def test_conv_line2():
+    obj = Solution()
+    f = Field()
+    result = obj.conv(f)
+    assert isinstance(result, str)
+```
+---## TASK: 372979
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_372979__vkw0qyz
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.17s =============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import Any, Callable
+
+class Solution:
+
+    def test_line2(self, hash_fn_name: str) -> Callable[[Any], bytes]:
+        """Get a hash function by name, or raise an error if the function is not found."""
+        self.hash_functions = {'md5': lambda x: b'd41d8cd98f00b204e9800998ecf8427e', 'sha1': lambda x: b'a9993e364706816aba3e25717850c26c9cd0d89d'}
+        if hash_fn_name in self.hash_functions:
+            return self.hash_functions[hash_fn_name]
+        else:
+            raise ValueError(f"Hash function '{hash_fn_name}' not found")
+```
 ---## TASK: 670491
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_670491_xnwuba5y
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_670491_vl22ca8y
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.16s =============================
 ```
 
 ### Code
@@ -11241,33 +11268,104 @@ class Solution:
         """Like `naturalday`, `but append a year for dates more than ~five months away."""
         ...
 ```
+---## TASK: 875127
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_875127_wf_b9r9g
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::TestCase::test_generate_video_masks_line2 FAILED      [100%]
+
+=================================== FAILURES ===================================
+___________________ TestCase.test_generate_video_masks_line2 ___________________
+
+self = <test_generated.TestCase testMethod=test_generate_video_masks_line2>
+
+    def test_generate_video_masks_line2(self):
+        sol = Solution()
+>       result = sol.generate_video_masks()
+
+test_generated.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <under_test.Solution object at 0x7e05c93743d0>
+video = '/root/videos/input.mp4', point_coords = None
+
+    def generate_video_masks(self, video="/root/videos/input.mp4", point_coords=None):
+        """Generate masks for a video."""
+        try:
+            import ffmpeg
+        except (ImportError, ModuleNotFoundError):
+            from unittest.mock import MagicMock as _MagicMock
+            ffmpeg = _MagicMock()
+        try:
+            import numpy as np
+        except (ImportError, ModuleNotFoundError):
+            from unittest.mock import MagicMock as _MagicMock
+            np = _MagicMock()
+        try:
+            import torch
+        except (ImportError, ModuleNotFoundError):
+            from unittest.mock import MagicMock as _MagicMock
+            torch = _MagicMock()
+        try:
+            from PIL import Image
+        except (ImportError, ModuleNotFoundError):
+            from unittest.mock import MagicMock as _MagicMock
+            Image = _MagicMock()
+    
+>       frames_dir = convert_video_to_frames(video)
+E       NameError: name 'convert_video_to_frames' is not defined
+
+under_test.py:43: NameError
+=========================== short test summary info ============================
+FAILED test_generated.py::TestCase::test_generate_video_masks_line2 - NameErr...
+============================== 1 failed in 0.42s ===============================
+```
+
+### Code
+```python
+import unittest
+
+class TestCase(unittest.TestCase):
+
+    def test_generate_video_masks_line2(self):
+        sol = Solution()
+        result = sol.generate_video_masks()
+        self.assertEqual(result, None)
+```
 ---## TASK: 235598
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_235598_1tuv0m75
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_235598_h7xtc_0r
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_235598_1tuv0m75\test_generated.py'.
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_235598_h7xtc_0r/test_generated.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test_generated.py:39: in <module>
     from msgpack import MsgPackDeserializer, packb, unpackb, ExtType
-E   ImportError: cannot import name 'MsgPackDeserializer' from 'msgpack' (C:\Repos\slm_test_generation\.venv\Lib\site-packages\msgpack\__init__.py)
-=========================== short test summary info ===========================
+E   ModuleNotFoundError: No module named 'msgpack'
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.30s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.39s ===============================
 ```
 
 ### Code
@@ -11310,59 +11408,31 @@ def test_from_msgpack_line2():
     packed_data = packb(data, de=MyDeserializer())
     assert solution.from_msgpack(Solution, packed_data, de=MyDeserializer(), named=True, ext_dict={}) == data
 ```
----## TASK: 360176
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_360176_dy9ul844
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.35s ============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import List
-
-class Solution:
-
-    def test_line2(self):
-        """Start the SGLang server and block until it is healthy, then warm it up and put it to sleep."""
-        ...
-```
 ---## TASK: 804045
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_804045_6fhcl_56
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_804045_qmvlgsp4
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_rebuild_nested_line2 FAILED                      [100%]
 
-================================== FAILURES ===================================
-__________________________ test_rebuild_nested_line2 __________________________
+=================================== FAILURES ===================================
+__________________________ test_rebuild_nested_line2 ___________________________
 
     def test_rebuild_nested_line2():
         solution = Solution()
 >       assert solution.rebuild_nested([[1, 2, 3], ['a', 'b']], [[(list, [1, 2]), (list, [3])], [(str, 'a'), (str, 'b')]], None) == [[1, 2, 3], ['a', 'b']]
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:38: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000001B5BD24D3A0>
+self = <under_test.Solution object at 0x71407169cca0>
 flat = [[1, 2, 3], ['a', 'b']]
 flat_mapping = [[(<class 'list'>, [1, 2]), (<class 'list'>, [3])], [(<class 'str'>, 'a'), (<class 'str'>, 'b')]]
 merge_functions = None
@@ -11391,13 +11461,12 @@ merge_functions = None
         """
         if merge_functions is None:
 >           merge_functions = default_merge_fns()
-                              ^^^^^^^^^^^^^^^^^
 E           NameError: name 'default_merge_fns' is not defined
 
 under_test.py:40: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_rebuild_nested_line2 - NameError: name 'defaul...
-============================== 1 failed in 0.15s ==============================
+============================== 1 failed in 0.27s ===============================
 ```
 
 ### Code
@@ -11406,19 +11475,46 @@ def test_rebuild_nested_line2():
     solution = Solution()
     assert solution.rebuild_nested([[1, 2, 3], ['a', 'b']], [[(list, [1, 2]), (list, [3])], [(str, 'a'), (str, 'b')]], None) == [[1, 2, 3], ['a', 'b']]
 ```
+---## TASK: 360176
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_360176_z8s368az
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.48s =============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import List
+
+class Solution:
+
+    def test_line2(self):
+        """Start the SGLang server and block until it is healthy, then warm it up and put it to sleep."""
+        ...
+```
 ---## TASK: 150400
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_150400_fpdek5pi
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_150400_edimd5wk
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.06s ============================
+============================ no tests ran in 0.22s =============================
 ```
 
 ### Code
@@ -11446,27 +11542,26 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_47677_1305eil5
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_47677_5pkai_1j
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_iuwt_decomposition_line2 FAILED                  [100%]
 
-================================== FAILURES ===================================
-________________________ test_iuwt_decomposition_line2 ________________________
+=================================== FAILURES ===================================
+________________________ test_iuwt_decomposition_line2 _________________________
 
     def test_iuwt_decomposition_line2():
         solution = Solution()
 >       result = solution.iuwt_decomposition(in1=[1, 2, 3], scale_count=3, scale_adjust=1, mode='ser', core_count=2, store_smoothed=True)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:47: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000001A58579EC90>, in1 = [1, 2, 3]
+self = <under_test.Solution object at 0x747a9eff2ef0>, in1 = [1, 2, 3]
 scale_count = 3, scale_adjust = 1, mode = 'ser', core_count = 2
 store_smoothed = True
 
@@ -11493,13 +11588,12 @@ store_smoothed = True
     
         if mode == 'ser':
 >           return ser_iuwt_decomposition(
-                   ^^^^^^^^^^^^^^^^^^^^^^
 E           NameError: name 'ser_iuwt_decomposition' is not defined
 
 under_test.py:43: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_iuwt_decomposition_line2 - NameError: name 'se...
-============================== 1 failed in 0.37s ==============================
+============================== 1 failed in 0.42s ===============================
 ```
 
 ### Code
@@ -11519,107 +11613,32 @@ def test_iuwt_decomposition_line2():
     assert isinstance(result, tuple)
     assert len(result) >= 2
 ```
----## TASK: 875127
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_875127_9seyz9mi
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::TestCase::test_generate_video_masks_line2 FAILED      [100%]
-
-================================== FAILURES ===================================
-__________________ TestCase.test_generate_video_masks_line2 ___________________
-
-self = <test_generated.TestCase testMethod=test_generate_video_masks_line2>
-
-    def test_generate_video_masks_line2(self):
-        sol = Solution()
->       result = sol.generate_video_masks()
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-test_generated.py:42: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = <under_test.Solution object at 0x000001DF87499A60>
-video = '/root/videos/input.mp4', point_coords = None
-
-    def generate_video_masks(self, video="/root/videos/input.mp4", point_coords=None):
-        """Generate masks for a video."""
-        try:
-            import ffmpeg
-        except (ImportError, ModuleNotFoundError):
-            from unittest.mock import MagicMock as _MagicMock
-            ffmpeg = _MagicMock()
-        try:
-            import numpy as np
-        except (ImportError, ModuleNotFoundError):
-            from unittest.mock import MagicMock as _MagicMock
-            np = _MagicMock()
-        try:
-            import torch
-        except (ImportError, ModuleNotFoundError):
-            from unittest.mock import MagicMock as _MagicMock
-            torch = _MagicMock()
-        try:
-            from PIL import Image
-        except (ImportError, ModuleNotFoundError):
-            from unittest.mock import MagicMock as _MagicMock
-            Image = _MagicMock()
-    
->       frames_dir = convert_video_to_frames(video)
-                     ^^^^^^^^^^^^^^^^^^^^^^^
-E       NameError: name 'convert_video_to_frames' is not defined
-
-under_test.py:43: NameError
-=========================== short test summary info ===========================
-FAILED test_generated.py::TestCase::test_generate_video_masks_line2 - NameErr...
-============================== 1 failed in 3.39s ==============================
-```
-
-### Code
-```python
-import unittest
-
-class TestCase(unittest.TestCase):
-
-    def test_generate_video_masks_line2(self):
-        sol = Solution()
-        result = sol.generate_video_masks()
-        self.assertEqual(result, None)
-```
 ---## TASK: 577470
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_577470_0lrl8839
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_577470_j1bk2_lc
+plugins: cov-5.0.0
 collecting ... collected 0 items / 1 error
 
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-ImportError while importing test module 'C:\Users\cbark\AppData\Local\Temp\eval_577470_0lrl8839\test_generated.py'.
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_577470_j1bk2_lc/test_generated.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
-C:\Program Files\Python312\Lib\importlib\__init__.py:90: in import_module
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
     return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 test_generated.py:36: in <module>
     import dask.array as da
 E   ModuleNotFoundError: No module named 'dask'
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 ERROR test_generated.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 0.67s ===============================
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.54s ===============================
 ```
 
 ### Code
@@ -11641,14 +11660,14 @@ def test_to_json_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_613377_1ljd09e5
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_613377_b7hama5j
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.05s ============================
+============================ no tests ran in 0.19s =============================
 ```
 
 ### Code
@@ -11700,71 +11719,19 @@ class Solution:
         else:
             raise TypeError("Unsupported type for 'value'")
 ```
----## TASK: 456433
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_456433_s8a0di48
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items / 1 error
-
-=================================== ERRORS ====================================
-_____________________ ERROR collecting test_generated.py ______________________
-test_generated.py:38: in <module>
-    class Solution:
-test_generated.py:44: in Solution
-    def open_file(self, path: str) -> FilePath:
-                                      ^^^^^^^^
-E   NameError: name 'FilePath' is not defined
-=========================== short test summary info ===========================
-ERROR test_generated.py - NameError: name 'FilePath' is not defined
-!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-============================== 1 error in 1.39s ===============================
-```
-
-### Code
-```python
-import os
-
-class Solution:
-
-    def __init__(self):
-        self.file_path = 'example.txt'
-        self.buffer = b'Hello, World!'
-
-    def open_file(self, path: str) -> FilePath:
-        with open(path, 'r') as f:
-            return f
-
-    def get_buffer(self) -> BaseBuffer:
-        return self.buffer
-
-    def test_line2(self, handle: FilePath | BaseBuffer, mode: str) -> bool:
-        """Whether the handle is opened in binary mode"""
-        if isinstance(handle, FilePath):
-            return mode == 'b'
-        elif isinstance(handle, BaseBuffer):
-            return True
-        else:
-            raise TypeError('Unsupported handle type')
-```
 ---## TASK: 891880
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_891880_gshggx_m
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_891880_59zifqzq
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.06s ============================
+============================ no tests ran in 0.15s =============================
 ```
 
 ### Code
@@ -11798,19 +11765,83 @@ class Solution:
         else:
             raise InvalidShapeError('Unsupported type')
 ```
+---## TASK: 456433
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_456433_b15gptiw
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+test_generated.py:38: in <module>
+    class Solution:
+test_generated.py:44: in Solution
+    def open_file(self, path: str) -> FilePath:
+E   NameError: name 'FilePath' is not defined
+=========================== short test summary info ============================
+ERROR test_generated.py - NameError: name 'FilePath' is not defined
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 1.07s ===============================
+```
+
+### Code
+```python
+import os
+
+class Solution:
+
+    def __init__(self):
+        self.file_path = 'example.txt'
+        self.buffer = b'Hello, World!'
+
+    def open_file(self, path: str) -> FilePath:
+        with open(path, 'r') as f:
+            return f
+
+    def get_buffer(self) -> BaseBuffer:
+        return self.buffer
+
+    def test_line2(self, handle: FilePath | BaseBuffer, mode: str) -> bool:
+        """Whether the handle is opened in binary mode"""
+        if isinstance(handle, FilePath):
+            return mode == 'b'
+        elif isinstance(handle, BaseBuffer):
+            return True
+        else:
+            raise TypeError('Unsupported handle type')
+```
 ---## TASK: 932061
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_932061_1eo9iskq
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
+rootdir: /tmp/eval_932061_cl59dae3
+plugins: cov-5.0.0
+collecting ... collected 0 items / 1 error
 
-============================ no tests ran in 0.35s ============================
+==================================== ERRORS ====================================
+______________________ ERROR collecting test_generated.py ______________________
+ImportError while importing test module '/tmp/eval_932061_cl59dae3/test_generated.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_generated.py:36: in <module>
+    import requests
+E   ModuleNotFoundError: No module named 'requests'
+=========================== short test summary info ============================
+ERROR test_generated.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.50s ===============================
 ```
 
 ### Code
@@ -11836,14 +11867,14 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_659174_j_ze5ulh
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_659174_rpn1nb6j
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.45s ============================
+============================ no tests ran in 0.37s =============================
 ```
 
 ### Code
@@ -11869,28 +11900,27 @@ class Solution:
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_751764_2spwhsih
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_751764_8ru3oiqt
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_validate_strategy_frontmatter_line2 FAILED       [100%]
 
-================================== FAILURES ===================================
-__________________ test_validate_strategy_frontmatter_line2 ___________________
+=================================== FAILURES ===================================
+___________________ test_validate_strategy_frontmatter_line2 ___________________
 
     def test_validate_strategy_frontmatter_line2():
         from typing import Dict, Any
         solution = Solution()
 >       assert solution.validate_strategy_frontmatter({'name': 'Test', 'last_updated': '2023-10-05', 'generator': 'flow-next-strategy'}) == []
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:39: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <under_test.Solution object at 0x000001DE87AEA8A0>
+self = <under_test.Solution object at 0x79e672e98610>
 fm = {'generator': 'flow-next-strategy', 'last_updated': '2023-10-05', 'name': 'Test'}
 
     def validate_strategy_frontmatter(self, fm: dict[str, Any]) -> list[str]:
@@ -11905,13 +11935,12 @@ fm = {'generator': 'flow-next-strategy', 'last_updated': '2023-10-05', 'name': '
             return ["frontmatter must be a dict"]
     
 >       missing = STRATEGY_FRONTMATTER_FIELDS - set(fm.keys())
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E       NameError: name 'STRATEGY_FRONTMATTER_FIELDS' is not defined
 
 under_test.py:46: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_validate_strategy_frontmatter_line2 - NameErro...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.18s ===============================
 ```
 
 ### Code
@@ -11926,30 +11955,29 @@ def test_validate_strategy_frontmatter_line2():
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_298296_u08slwk1
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_298296_xcl72qxf
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_check_class_method_line2 FAILED                  [100%]
 
-================================== FAILURES ===================================
-________________________ test_check_class_method_line2 ________________________
+=================================== FAILURES ===================================
+________________________ test_check_class_method_line2 _________________________
 
     def test_check_class_method_line2():
         base_method = BaseClass.abstract_method
         derived_method = DerivedClass.concrete_method
         solution = BaseClass()
 >       solution._check_class_method('abstract_method', base_method, derived_method)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 E       AttributeError: 'BaseClass' object has no attribute '_check_class_method'
 
 test_generated.py:55: AttributeError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_check_class_method_line2 - AttributeError: 'Ba...
-============================== 1 failed in 0.17s ==============================
+============================== 1 failed in 0.18s ===============================
 ```
 
 ### Code
@@ -11975,79 +12003,36 @@ def test_check_class_method_line2():
     solution = BaseClass()
     solution._check_class_method('abstract_method', base_method, derived_method)
 ```
----## TASK: 559139
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_559139_f1tu9fr8
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 0 items
-
-============================ no tests ran in 0.58s ============================
-```
-
-### Code
-```python
-import sys
-sys.path.append('.')
-from typing import List
-
-class Solution:
-
-    def test_line2(self, ip: str, max_pages_limit: int) -> int:
-        """Increment the page visit counter for an IP and apply ban if limit reached.  #3
-  #4
-        Args:  #5
-            ip: Client IP address  #6
-            max_pages_limit: Page visit threshold before banning  #7
-  #8
-        Returns:  #9
-            The updated page visit count"""
-        self.ip = ip
-        self.max_pages_limit = max_pages_limit
-        self.visits = 0
-        while True:
-            self.visits += 1
-            if self.visits >= self.max_pages_limit:
-                break
-        return self.visits
-```
 ---## TASK: 398609
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_398609_hc0zn0o6
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_398609_75h5lm0z
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test__walk_part_events_line2 FAILED                   [100%]
 
-================================== FAILURES ===================================
-________________________ test__walk_part_events_line2 _________________________
+=================================== FAILURES ===================================
+_________________________ test__walk_part_events_line2 _________________________
 
     def test__walk_part_events_line2():
         from unittest.mock import MagicMock, patch
         root = ET.fromstring('<root><part><divisions>1</divisions></part></root>')
         part_elem = root.find('part')
 >       with patch.object(Solution, '_get_next_element') as mock_get_next:
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:79: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-C:\Program Files\Python312\Lib\unittest\mock.py:1467: in __enter__
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.10/unittest/mock.py:1447: in __enter__
     original, local = self.get_original()
-                      ^^^^^^^^^^^^^^^^^^^
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <unittest.mock._patch object at 0x00000138B42BD280>
+self = <unittest.mock._patch object at 0x7e62c62ed390>
 
     def get_original(self):
         target = self.getter()
@@ -12072,10 +12057,10 @@ self = <unittest.mock._patch object at 0x00000138B42BD280>
             )
 E           AttributeError: <class 'test_generated.Solution'> does not have the attribute '_get_next_element'
 
-C:\Program Files\Python312\Lib\unittest\mock.py:1437: AttributeError
-=========================== short test summary info ===========================
+/usr/local/lib/python3.10/unittest/mock.py:1420: AttributeError
+=========================== short test summary info ============================
 FAILED test_generated.py::test__walk_part_events_line2 - AttributeError: <cla...
-============================== 1 failed in 0.30s ==============================
+============================== 1 failed in 0.36s ===============================
 ```
 
 ### Code
@@ -12097,7 +12082,7 @@ class Solution:
             next_event = self._get_next_element(part_elem)
             if next_event is None:
                 break
-            kind, value = next_event
+            (kind, value) = next_event
             if kind == 'division':
                 current_division += 1
                 current_measure = 0
@@ -12133,44 +12118,83 @@ def test__walk_part_events_line2():
         expected_output = [('division', 1, MagicMock()), ('measure', 1, MagicMock()), ('note', 1, MagicMock()), ('direction', 1, MagicMock()), ('sound', 1, MagicMock())]
         assert result == expected_output
 ```
+---## TASK: 559139
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_559139_ftoahouu
+plugins: cov-5.0.0
+collecting ... collected 0 items
+
+============================ no tests ran in 0.48s =============================
+```
+
+### Code
+```python
+import sys
+sys.path.append('.')
+from typing import List
+
+class Solution:
+
+    def test_line2(self, ip: str, max_pages_limit: int) -> int:
+        """Increment the page visit counter for an IP and apply ban if limit reached.  #3
+  #4
+        Args:  #5
+            ip: Client IP address  #6
+            max_pages_limit: Page visit threshold before banning  #7
+  #8
+        Returns:  #9
+            The updated page visit count"""
+        self.ip = ip
+        self.max_pages_limit = max_pages_limit
+        self.visits = 0
+        while True:
+            self.visits += 1
+            if self.visits >= self.max_pages_limit:
+                break
+        return self.visits
+```
 ---## TASK: 756876
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_756876_hbxudf2q
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_756876_7frz8rr3
+plugins: cov-5.0.0
 collecting ... collected 1 item
 
 test_generated.py::test_scard_line2 FAILED                               [100%]
 
-================================== FAILURES ===================================
-______________________________ test_scard_line2 _______________________________
+=================================== FAILURES ===================================
+_______________________________ test_scard_line2 _______________________________
 
     def test_scard_line2():
         solution = Solution()
 >       assert solution.scard('hello') == 4
-               ^^^^^^^^^^^^^^^^^^^^^^^
 
 test_generated.py:49: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <test_generated.Solution object at 0x000001117AEEDAC0>, name = 'hello'
+self = <test_generated.Solution object at 0x7da160950280>, name = 'hello'
 
     def scard(self, name: str) -> int:
         """Return the cardinality of a distinctness set."""
         unique_chars = set(name)
 >       return len(unique_characters)
-                   ^^^^^^^^^^^^^^^^^
 E       NameError: name 'unique_characters' is not defined
 
 test_generated.py:45: NameError
-=========================== short test summary info ===========================
+=========================== short test summary info ============================
 FAILED test_generated.py::test_scard_line2 - NameError: name 'unique_characte...
-============================== 1 failed in 0.16s ==============================
+============================== 1 failed in 0.21s ===============================
 ```
 
 ### Code
@@ -12190,19 +12214,57 @@ def test_scard_line2():
     solution = Solution()
     assert solution.scard('hello') == 4
 ```
+---## TASK: 558638
+**STATUS:** Runtime Error
+
+### Output
+```text
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/eval_558638_4p12e8bd
+plugins: cov-5.0.0
+collecting ... collected 1 item
+
+test_generated.py::test__xielu_cuda_line2 FAILED                         [100%]
+
+=================================== FAILURES ===================================
+____________________________ test__xielu_cuda_line2 ____________________________
+
+    def test__xielu_cuda_line2():
+        from unittest.mock import MagicMock
+>       import torch
+E       ModuleNotFoundError: No module named 'torch'
+
+test_generated.py:38: ModuleNotFoundError
+=========================== short test summary info ============================
+FAILED test_generated.py::test__xielu_cuda_line2 - ModuleNotFoundError: No mo...
+============================== 1 failed in 0.20s ===============================
+```
+
+### Code
+```python
+def test__xielu_cuda_line2():
+    from unittest.mock import MagicMock
+    import torch
+    mock_tensor = MagicMock(spec=torch.Tensor)
+    solution = Solution()
+    result = solution._xielu_cuda(mock_tensor)
+    assert isinstance(result, torch.Tensor)
+```
 ---## TASK: 278404
 **STATUS:** Runtime Error
 
 ### Output
 ```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
+============================= test session starts ==============================
+platform linux -- Python 3.10.20, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python
 cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_278404_obzmg8jo
-plugins: anyio-4.13.0, cov-5.0.0
+rootdir: /tmp/eval_278404_pfygc4gb
+plugins: cov-5.0.0
 collecting ... collected 0 items
 
-============================ no tests ran in 0.07s ============================
+============================ no tests ran in 0.24s =============================
 ```
 
 ### Code
@@ -12228,60 +12290,5 @@ class Solution:
 
     def test_line2(self):
         return self.data
-```
----## TASK: 558638
-**STATUS:** Runtime Error
-
-### Output
-```text
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-8.4.2, pluggy-1.6.0 -- C:\Repos\slm_test_generation\.venv\Scripts\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\cbark\AppData\Local\Temp\eval_558638_i1o4qmmi
-plugins: anyio-4.13.0, cov-5.0.0
-collecting ... collected 1 item
-
-test_generated.py::test__xielu_cuda_line2 FAILED                         [100%]
-
-================================== FAILURES ===================================
-___________________________ test__xielu_cuda_line2 ____________________________
-
-    def test__xielu_cuda_line2():
-        from unittest.mock import MagicMock
-        import torch
-        mock_tensor = MagicMock(spec=torch.Tensor)
-        solution = Solution()
->       result = solution._xielu_cuda(mock_tensor)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-test_generated.py:41: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-
-self = <under_test.Solution object at 0x000002C6F0F3BB90>
-x = <MagicMock spec='Tensor' id='3051853911232'>
-
-    def _xielu_cuda(self, x: Tensor) -> Tensor:
-        """Firewall function to prevent torch.compile from seeing .item() calls"""
-        original_shape = x.shape
-        # CUDA kernel expects 3D tensors, reshape if needed
->       while x.dim() < 3:
-              ^^^^^^^^^^^
-E       TypeError: '<' not supported between instances of 'MagicMock' and 'int'
-
-under_test.py:47: TypeError
-=========================== short test summary info ===========================
-FAILED test_generated.py::test__xielu_cuda_line2 - TypeError: '<' not support...
-============================== 1 failed in 7.10s ==============================
-```
-
-### Code
-```python
-def test__xielu_cuda_line2():
-    from unittest.mock import MagicMock
-    import torch
-    mock_tensor = MagicMock(spec=torch.Tensor)
-    solution = Solution()
-    result = solution._xielu_cuda(mock_tensor)
-    assert isinstance(result, torch.Tensor)
 ```
 ---

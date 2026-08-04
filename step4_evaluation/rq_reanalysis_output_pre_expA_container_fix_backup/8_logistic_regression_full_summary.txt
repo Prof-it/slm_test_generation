@@ -1,0 +1,24 @@
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                 passed   No. Observations:                 9000
+Model:                            GLM   Df Residuals:                     8993
+Model Family:                Binomial   Df Model:                            6
+Link Function:                  Logit   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -4678.4
+Date:                Mon, 03 Aug 2026   Deviance:                       9356.8
+Time:                        19:19:37   Pearson chi2:                 9.05e+03
+No. Iterations:                     5   Pseudo R-squ. (CS):            0.04379
+Covariance Type:              cluster                                         
+=============================================================================================================
+                                                coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------------------
+Intercept                                    -1.3138      0.167     -7.854      0.000      -1.642      -0.986
+C(level, Treatment(reference='L0'))[T.L1]     0.4882      0.173      2.819      0.005       0.149       0.828
+C(level, Treatment(reference='L0'))[T.L2]    -0.0254      0.162     -0.157      0.876      -0.343       0.292
+C(level, Treatment(reference='L0'))[T.L3]    -0.7289      0.166     -4.387      0.000      -1.055      -0.403
+leaked                                        0.5272      0.140      3.756      0.000       0.252       0.802
+cc                                            0.0585      0.016      3.569      0.000       0.026       0.091
+loc                                          -0.0130      0.004     -3.004      0.003      -0.022      -0.005
+=============================================================================================================
+
+N observations: 9000  |  N unique tasks (cluster groups): 300

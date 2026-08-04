@@ -16,6 +16,7 @@ scrapy==2.14.1 # For evaluation
 scipy==1.15.3 # Used for step4_evaluation/create_summary_report.py
 seaborn==0.13.2 # Used in step 1 data understanding for visualization styles.
 sortedcontainers==2.4.0 # TestEval require it
+statsmodels==0.14.6 # Used in step4_evaluation/rq_reanalysis.py for McNemar tests and cluster-robust logistic regression
 tabulate==0.9.0 # Used in step 4 evaluation step for creating summary report
 torch==2.11.0 # Used in TestEval for manual seeding and device checks
 transformers==5.12.1 # Base pin for vllm's dependency resolution; force-upgraded to 5.5.0 in Dockerfile for gemma4/qwen3_5 support

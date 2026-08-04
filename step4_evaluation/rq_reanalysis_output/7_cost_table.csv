@@ -1,0 +1,21 @@
+Experiment,Model,Pipeline,N_tasks,Total_tokens,Total_GPU_seconds,Total_GPU_hours,Avg_tokens_per_task,Avg_seconds_per_task
+Experiment A (TestEval),Qwen3-4B-Thinking-2507,Single-call,210,1087461,21377.9,5.938,5178.4,101.8
+Experiment A (TestEval),Qwen3-4B-Thinking-2507,Two-stage,210,1426225,25319.3,7.033,6791.5,120.57
+Experiment A (TestEval),Qwen3.5-4B,Single-call,210,1387909,24367.0,6.769,6609.1,116.03
+Experiment A (TestEval),Qwen3.5-4B,Two-stage,210,1611240,23505.8,6.529,7672.6,111.93
+Experiment A (TestEval),gemma-4-E4B-it,Single-call,210,22966,434.0,0.121,109.4,2.07
+Experiment A (TestEval),gemma-4-E4B-it,Two-stage,210,250172,4370.2,1.214,1191.3,20.81
+Experiment A (TestEval),granite-4.0-micro,Single-call,210,14083,186.7,0.052,67.1,0.89
+Experiment A (TestEval),granite-4.0-micro,Two-stage,210,109795,1673.7,0.465,522.8,7.97
+Experiment A (TestEval),Ministral-3-3B-Reasoning-2512,Single-call,210,128026,1094.9,0.304,609.6,5.21
+Experiment A (TestEval),Ministral-3-3B-Reasoning-2512,Two-stage,210,188497,2190.5,0.608,897.6,10.43
+Experiment B (RealWorldTests-Py v2),Qwen3-4B-Thinking-2507,Single-call,900,3571192,35590.9,9.886,3968.0,39.55
+Experiment B (RealWorldTests-Py v2),Qwen3-4B-Thinking-2507,Two-stage,900,5909114,60415.0,16.782,6565.7,67.13
+Experiment B (RealWorldTests-Py v2),Qwen3.5-4B,Single-call,900,1127020,11392.5,3.165,1252.2,12.66
+Experiment B (RealWorldTests-Py v2),Qwen3.5-4B,Two-stage,900,4112892,41929.3,11.647,4569.9,46.59
+Experiment B (RealWorldTests-Py v2),gemma-4-E4B-it,Single-call,900,174716,2017.7,0.56,194.1,2.24
+Experiment B (RealWorldTests-Py v2),gemma-4-E4B-it,Two-stage,900,404881,4669.2,1.297,449.9,5.19
+Experiment B (RealWorldTests-Py v2),granite-4.0-micro,Single-call,900,113635,979.8,0.272,126.3,1.09
+Experiment B (RealWorldTests-Py v2),granite-4.0-micro,Two-stage,900,388963,3331.1,0.925,432.2,3.7
+Experiment B (RealWorldTests-Py v2),Ministral-3-3B-Reasoning-2512,Single-call,900,203941,1691.1,0.47,226.6,1.88
+Experiment B (RealWorldTests-Py v2),Ministral-3-3B-Reasoning-2512,Two-stage,900,1113010,9348.8,2.597,1236.7,10.39
