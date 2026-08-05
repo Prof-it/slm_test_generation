@@ -46,8 +46,12 @@ ROOT = Path(__file__).resolve().parent.parent
 FIRST_EXP_DIR = ROOT / "evaluation_results" / "first_experiment" / "run_1"
 SECOND_EXP_GLOB = str(ROOT / "evaluation_results" / "second_experiment" / "run_1" / "tier_*" / "*_evaluated.jsonl")
 DATASET_PATH = ROOT / "TestEval" / "data" / "realworld-py-v2.jsonl"
+MUTATION_SUBSET_EXPA_PATH = Path(__file__).parent / "mutation_subset_ids.json"
 OUT_DIR = Path(__file__).parent / "rq_reanalysis_output"
 OUT_DIR.mkdir(exist_ok=True)
+
+with open(MUTATION_SUBSET_EXPA_PATH, encoding="utf-8") as _f:
+    MUTATION_SUBSET_EXPA = set(str(x) for x in json.load(_f))
 
 MODEL_ORDER = [
     "Qwen3-4B-Thinking-2507",
@@ -310,22 +314,38 @@ def analysis_5_mcnemar_expB(exp_b):
 # ---------------------------------------------------------------------------
 
 def analysis_6_mutation_expA(exp_a):
+    """cMut is conditional on Pass (mean mutation score over tasks that both
+    passed and completed mutation testing). uMut is unconditional on Pass but
+    still scoped to the Cochran mutation sample -- it answers "of the tasks we
+    actually measured for fault detection, what fraction of mutants were
+    killed, counting a Fail/no-mutation-data task in that sample as 0". It
+    must NOT divide by the full N (210): tasks outside the 67-task mutation
+    sample were never eligible for a mutation score at all, and diluting by
+    them silently deflates uMut by N/|subset| (previously 210/67 ~= 3.13x)
+    -- the earlier version conflated "never sampled" with "sampled, scored
+    zero" and used the same all-tasks denominator for both.
+    """
     rows = []
     for model in MODEL_ORDER:
         for pipeline in ["Single-call", "Two-stage"]:
             recs = exp_a[(model, pipeline)]
             n = len(recs)
+            in_subset = [r for r in recs if str(r.get("task_num")) in MUTATION_SUBSET_EXPA]
+            n_subset = len(in_subset)
             passed = [r for r in recs if r.get("status") == "Pass"]
             mut_vals = [r["mutation_score"] for r in passed if r.get("mutation_score") is not None]
             cmut = sum(mut_vals) / len(mut_vals) if mut_vals else float("nan")
-            # unconditional: every attempted task, failures/missing mutation = 0
-            all_mut = [(r["mutation_score"] if (r.get("status") == "Pass" and r.get("mutation_score") is not None) else 0.0)
-                       for r in recs]
-            umut = sum(all_mut) / n if n else float("nan")
+            # unconditional over the mutation sample only: Fail/missing-mutation-data
+            # within the subset counts as 0; tasks outside the subset are excluded
+            # entirely (they were never eligible).
+            subset_mut = [(r["mutation_score"] if r.get("mutation_score") is not None else 0.0)
+                          for r in in_subset]
+            umut = sum(subset_mut) / n_subset if n_subset else float("nan")
             rows.append({"Model": model, "Pipeline": pipeline, "N": n,
+                         "n_mutation_sample": n_subset,
                          "n_mutation_completed": len(mut_vals),
                          "cMut_%_conditional_on_pass": round(cmut, 2),
-                         "uMut_%_unconditional": round(umut, 2)})
+                         "uMut_%_unconditional_on_sample": round(umut, 2)})
     df = pd.DataFrame(rows)
     df.to_csv(OUT_DIR / "6_mutation_two_ways_expA.csv", index=False)
     return df

@@ -209,7 +209,13 @@ def build_unified(ann_data: list, csv_df: pd.DataFrame, jlookup: dict) -> pd.Dat
         tier      = str(csv_row.get("tier", ""))
         fa        = _stem_to_friendly(model_a, tier)
         fb        = _stem_to_friendly(model_b, tier)
-        jkey      = (task_id, frozenset([fa, fb]))
+        # Sentinel rows carry a synthetic task_id (source + 100000) that the LLM
+        # judge was never run on -- the judge only ever saw the 30 real tasks.
+        # Look the judgement up under the source task_id instead; the existing
+        # j_flipped detection below still works unmodified since it compares
+        # model identity, not task_id or code A/B order.
+        jkey_task_id = int(csv_row["sentinel_of_task_id"]) if csv_row.get("is_sentinel") else task_id
+        jkey      = (jkey_task_id, frozenset([fa, fb]))
         jrec      = jlookup.get(jkey, {})
 
         # Detect if the JSONL stored the pair with A/B swapped relative to the CSV.

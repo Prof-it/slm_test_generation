@@ -1,0 +1,11 @@
+Model,Pipeline,N,exec_Pass1,exec_lo,exec_hi,gated_Pass1,gated_lo,gated_hi
+Qwen3-4B-Thinking-2507,Single-call,900,18.56,16.15,21.23,18.11,15.73,20.76
+Qwen3-4B-Thinking-2507,Two-stage,900,16.78,14.48,19.36,15.0,12.82,17.48
+Qwen3.5-4B,Single-call,900,21.33,18.78,24.13,19.44,16.99,22.16
+Qwen3.5-4B,Two-stage,900,26.0,23.24,28.96,19.0,16.57,21.69
+gemma-4-E4B-it,Single-call,900,27.56,24.74,30.57,23.78,21.11,26.67
+gemma-4-E4B-it,Two-stage,900,43.44,40.24,46.7,26.33,23.56,29.31
+granite-4.0-micro,Single-call,900,20.33,17.83,23.09,11.78,9.83,14.05
+granite-4.0-micro,Two-stage,900,29.44,26.56,32.5,22.0,19.42,24.82
+Ministral-3-3B-Reasoning-2512,Single-call,900,12.89,10.86,15.24,6.56,5.12,8.36
+Ministral-3-3B-Reasoning-2512,Two-stage,900,16.11,13.85,18.66,10.89,9.02,13.09

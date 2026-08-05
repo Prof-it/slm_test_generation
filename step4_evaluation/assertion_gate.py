@@ -81,9 +81,16 @@ def main():
     if args.evaluated_dir:
         pass_ids_by_stem = {}
         for f in glob.glob(str(Path(args.evaluated_dir) / "**" / "*_evaluated.jsonl"), recursive=True):
+            # Key by (parent-dir, stem), not bare stem: tier_A/B/C evaluated files
+            # share identical stems (same model/pipeline filename in each tier
+            # subdirectory), so a bare-stem key let later tiers silently overwrite
+            # earlier tiers' Pass-id sets, causing tasks to be gated against the
+            # wrong tier's pass/fail outcome (undercounting total_checked and
+            # scoring some tasks under the wrong restrict_ids entirely).
             stem = Path(f).stem.replace("_evaluated", "")
+            key = (Path(f).parent.name, stem)
             recs = [json.loads(l) for l in open(f, encoding="utf-8") if l.strip()]
-            pass_ids_by_stem[stem] = {str(r["task_num"]) for r in recs if r.get("status") == "Pass"}
+            pass_ids_by_stem[key] = {str(r["task_num"]) for r in recs if r.get("status") == "Pass"}
 
     total_checked = 0
     total_with_assertion = 0
@@ -92,7 +99,8 @@ def main():
 
     for f in pred_files:
         stem = Path(f).stem
-        restrict_ids = pass_ids_by_stem.get(stem) if pass_ids_by_stem is not None else None
+        key = (Path(f).parent.name, stem)
+        restrict_ids = pass_ids_by_stem.get(key) if pass_ids_by_stem is not None else None
         if pass_ids_by_stem is not None and restrict_ids is None:
             continue  # no matching evaluated file for this prediction file -- skip
 

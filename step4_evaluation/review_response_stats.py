@@ -22,6 +22,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SEC = os.path.join(ROOT, "evaluation_results", "second_experiment", "run_1")
 DATA = os.path.join(ROOT, "TestEval", "data")
 
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "mutation_subset_v2_ids.json"), encoding="utf-8") as _f:
+    MUTATION_SUBSET_EXPB = set(str(x) for x in json.load(_f))
+
 MODELS = ["Qwen3-4B-Thinking-2507", "Qwen3.5-4B", "gemma-4-E4B-it",
           "granite-4.0-micro", "Ministral-3-3B-Reasoning-2512"]
 PREFIX = {"linecov": "Single-call", "linecov2": "Two-stage"}
@@ -97,7 +100,15 @@ for m in MODELS:
             muts = [r["mutation_score"] for r in passed
                     if r.get("mutation_score") is not None]
             cmut = statistics.mean(muts) if muts else 0.0   # conditional (already %)
-            umut = (sum(muts) / N) if N else 0.0            # unconditional (fail=0)
+            # unconditional over the mutation sample (fail/missing-in-sample = 0),
+            # NOT over all N=300: tasks outside the Cochran subset were never
+            # eligible for a mutation score, and dividing by N conflated "never
+            # sampled" with "sampled, scored zero", deflating uMut by N/|subset|.
+            in_sample = [r for r in recs if str(r.get("task_num")) in MUTATION_SUBSET_EXPB]
+            n_sample = len(in_sample)
+            sample_muts = [(r["mutation_score"] if r.get("mutation_score") is not None else 0.0)
+                           for r in in_sample]
+            umut = (sum(sample_muts) / n_sample) if n_sample else 0.0
             xf = sum(1 for r in passed if r.get("has_xfail_tests"))
             xfp = 100.0 * xf / len(passed) if passed else 0.0
             # xfail-excluded Pass@1: count as pass only if no xfail tests present
