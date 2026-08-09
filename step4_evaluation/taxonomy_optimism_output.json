@@ -1,0 +1,592 @@
+{
+  "fail_counts": [
+    {
+      "exc": "AttributeError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 287
+    },
+    {
+      "exc": "ModuleNotFoundError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 140
+    },
+    {
+      "exc": "TypeError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 74
+    },
+    {
+      "exc": "NameError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 87
+    },
+    {
+      "exc": "ValueError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 5
+    },
+    {
+      "exc": "RuntimeError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 17
+    },
+    {
+      "exc": "KeyError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 5
+    },
+    {
+      "exc": "FileNotFoundError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 16
+    },
+    {
+      "exc": "NameError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 54
+    },
+    {
+      "exc": "AttributeError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 255
+    },
+    {
+      "exc": "importlib.metadata.PackageNotFoundError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 9
+    },
+    {
+      "exc": "ModuleNotFoundError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 95
+    },
+    {
+      "exc": "TypeError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 62
+    },
+    {
+      "exc": "KeyError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 4
+    },
+    {
+      "exc": "AttributeError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 202
+    },
+    {
+      "exc": "RuntimeError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 20
+    },
+    {
+      "exc": "ValueError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 84
+    },
+    {
+      "exc": "TypeError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 121
+    },
+    {
+      "exc": "NameError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 86
+    },
+    {
+      "exc": "ModuleNotFoundError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 162
+    },
+    {
+      "exc": "RecursionError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 3
+    },
+    {
+      "exc": "ModuleNotFoundError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 185
+    },
+    {
+      "exc": "AttributeError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 201
+    },
+    {
+      "exc": "NameError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 288
+    },
+    {
+      "exc": "KeyError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 2
+    },
+    {
+      "exc": "TypeError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 94
+    },
+    {
+      "exc": "IndexError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 5
+    },
+    {
+      "exc": "UnboundLocalError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 5
+    },
+    {
+      "exc": "UnboundLocalError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 3
+    },
+    {
+      "exc": "None",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 8
+    },
+    {
+      "exc": "AttributeError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 234
+    },
+    {
+      "exc": "ModuleNotFoundError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 101
+    },
+    {
+      "exc": "TypeError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 61
+    },
+    {
+      "exc": "NameError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 101
+    },
+    {
+      "exc": "None",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 53
+    },
+    {
+      "exc": "RuntimeError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 13
+    },
+    {
+      "exc": "AttributeError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 184
+    },
+    {
+      "exc": "FileNotFoundError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 18
+    },
+    {
+      "exc": "None",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 99
+    },
+    {
+      "exc": "ModuleNotFoundError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 80
+    },
+    {
+      "exc": "TypeError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 58
+    },
+    {
+      "exc": "importlib.metadata.PackageNotFoundError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 9
+    },
+    {
+      "exc": "NameError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 40
+    },
+    {
+      "exc": "ModuleNotFoundError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 136
+    },
+    {
+      "exc": "AttributeError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 195
+    },
+    {
+      "exc": "None",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 69
+    },
+    {
+      "exc": "RuntimeError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 19
+    },
+    {
+      "exc": "TypeError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 86
+    },
+    {
+      "exc": "NameError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 52
+    },
+    {
+      "exc": "ValueError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 63
+    },
+    {
+      "exc": "ModuleNotFoundError",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 181
+    },
+    {
+      "exc": "NameError",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 250
+    },
+    {
+      "exc": "AttributeError",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 151
+    },
+    {
+      "exc": "None",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 55
+    },
+    {
+      "exc": "TypeError",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 57
+    },
+    {
+      "exc": "ImportError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "KeyError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 2
+    },
+    {
+      "exc": "ImportError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 7
+    },
+    {
+      "exc": "UnboundLocalError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "KeyError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "ImportError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 2
+    },
+    {
+      "exc": "_csv.Error",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "FileNotFoundError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 4
+    },
+    {
+      "exc": "ValueError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 8
+    },
+    {
+      "exc": "ImportError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 7
+    },
+    {
+      "exc": "None",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 5
+    },
+    {
+      "exc": "ValueError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 4
+    },
+    {
+      "exc": "None",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 9
+    },
+    {
+      "exc": "RecursionError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "KeyError",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 2
+    },
+    {
+      "exc": "ValueError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "IndexError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 4
+    },
+    {
+      "exc": "FileNotFoundError",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 4
+    },
+    {
+      "exc": "RecursionError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "ValueError",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "sqlalchemy.exc.ArgumentError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 2
+    },
+    {
+      "exc": "FileNotFoundError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "RuntimeError",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "None",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 6
+    },
+    {
+      "exc": "BrokenPipeError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "IsADirectoryError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "UnboundLocalError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 2
+    },
+    {
+      "exc": "NotImplementedError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "ImportError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "ImportError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "UnboundLocalError",
+      "level": "L3",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "sqlalchemy.exc.ArgumentError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "UnboundLocalError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 3
+    },
+    {
+      "exc": "ImportError",
+      "level": "L3",
+      "pipeline": "Two-stage",
+      "count": 2
+    },
+    {
+      "exc": "unittest.mock.InvalidSpecError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 1
+    },
+    {
+      "exc": "subprocess.CalledProcessError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 2
+    },
+    {
+      "exc": "IndexError",
+      "level": "L1",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "ImportError",
+      "level": "L2",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "json.decoder.JSONDecodeError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "unittest.mock.InvalidSpecError",
+      "level": "L0",
+      "pipeline": "Single-call",
+      "count": 1
+    },
+    {
+      "exc": "ValueError",
+      "level": "L1",
+      "pipeline": "Two-stage",
+      "count": 4
+    },
+    {
+      "exc": "UnboundLocalError",
+      "level": "L0",
+      "pipeline": "Two-stage",
+      "count": 2
+    },
+    {
+      "exc": "RecursionError",
+      "level": "L2",
+      "pipeline": "Two-stage",
+      "count": 1
+    }
+  ]
+}

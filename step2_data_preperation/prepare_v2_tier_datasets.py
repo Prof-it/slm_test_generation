@@ -41,6 +41,46 @@ V2_JSONL = PROJECT_ROOT / "TestEval" / "data" / "realworld-py-v2.jsonl"
 OUTPUT_DIR = PROJECT_ROOT / "TestEval" / "data"
 
 
+def _add_self_if_missing(text: str, func_name: str) -> str:
+    """Insert 'self' as the first parameter of func_name's signature if not
+    already present. Locates the matching closing paren for the parameter
+    list (bracket-depth counting) instead of checking only the line containing
+    "def {func_name}(" -- a single-line check wrongly concludes "no self" and
+    inserts a duplicate when the signature spans multiple lines with each
+    parameter on its own line (self then appears on a later line), producing
+    a SyntaxError ("duplicate argument 'self'") when the wrapped code is later
+    imported. See create_v2_dataset.py for the same bug, fixed via AST there.
+    """
+    open_marker = f"def {func_name}("
+    start = text.find(open_marker)
+    if start == -1:
+        return text  # signature not found as expected; leave untouched
+
+    paren_start = start + len(open_marker) - 1  # index of the opening '('
+    depth = 0
+    end = None
+    for i in range(paren_start, len(text)):
+        if text[i] == "(":
+            depth += 1
+        elif text[i] == ")":
+            depth -= 1
+            if depth == 0:
+                end = i
+                break
+    if end is None:
+        return text  # unbalanced parens; leave untouched
+
+    params = text[paren_start + 1:end]
+    stripped = params.lstrip()
+    already_has_self = stripped.startswith("self") and (
+        len(stripped) == 4 or stripped[4] in ",: )\n\t"
+    )
+    if already_has_self:
+        return text
+    new_params = "self" if stripped == "" else f"self, {params}"
+    return text[:paren_start + 1] + new_params + text[end:]
+
+
 def wrap_in_solution(tier_text: str, func_name: str) -> str:
     """
     Wrap the tier card in class Solution: so the model sees the same structure
@@ -48,19 +88,8 @@ def wrap_in_solution(tier_text: str, func_name: str) -> str:
     Also adds self to the function signature if not already present,
     matching what python_solution_full contains.
     """
-    lines = tier_text.splitlines()
-    for i, line in enumerate(lines):
-        if f"def {func_name}(" in line and "(self" not in line:
-            # Add self as first parameter
-            if f"def {func_name}():" in line:
-                lines[i] = line.replace(f"def {func_name}():", f"def {func_name}(self):")
-            else:
-                lines[i] = line.replace(f"def {func_name}(", f"def {func_name}(self, ")
-            break
-        elif f"def {func_name}(" in line:
-            # Already has self — leave as-is
-            break
-    indented = textwrap.indent("\n".join(lines), "    ")
+    fixed_text = _add_self_if_missing(tier_text, func_name)
+    indented = textwrap.indent(fixed_text, "    ")
     return f"class Solution:\n{indented}"
 
 

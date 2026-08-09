@@ -1,0 +1,9 @@
+Pipeline,Level,N,Pass,Pass_%,Pytest Error,Pytest Error_%,Assertion Error,Assertion Error_%,Runtime Error,Runtime Error_%,Timeout,Timeout_%,No Code,No Code_%,_other_statuses_seen
+Single-call,L0,1125,221,19.6,4,0.4,150,13.3,731,65.0,1,0.1,18,1.6,[]
+Single-call,L1,1125,305,27.1,10,0.9,214,19.0,574,51.0,1,0.1,21,1.9,[]
+Single-call,L2,1125,198,17.6,20,1.8,144,12.8,744,66.1,2,0.2,17,1.5,[]
+Single-call,L3,1125,106,9.4,29,2.6,79,7.0,893,79.4,3,0.3,15,1.3,[]
+Two-stage,L0,1125,267,23.7,4,0.4,172,15.3,666,59.2,0,0.0,16,1.4,[]
+Two-stage,L1,1125,396,35.2,5,0.4,166,14.8,534,47.5,0,0.0,24,2.1,[]
+Two-stage,L2,1125,299,26.6,6,0.5,148,13.2,654,58.1,2,0.2,16,1.4,[]
+Two-stage,L3,1125,189,16.8,12,1.1,110,9.8,788,70.0,0,0.0,26,2.3,[]

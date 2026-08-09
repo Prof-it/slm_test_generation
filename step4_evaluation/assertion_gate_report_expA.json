@@ -1,0 +1,94 @@
+{
+  "total_checked": 1319,
+  "with_assertion": 1174,
+  "without_assertion": 145,
+  "pct_without_assertion": 10.99,
+  "kind_counts": {
+    "assert_stmt": 1172,
+    "assert_call": 2,
+    "raises_context": 0
+  },
+  "restricted_to_pass": true,
+  "no_assertion_examples": [
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl",
+      "task_num": "73"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_Qwen3-4B-Thinking-2507_temp_0.0.jsonl",
+      "task_num": "289"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_Qwen3.5-4B_temp_0.0.jsonl",
+      "task_num": "391"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_Qwen3.5-4B_temp_0.0.jsonl",
+      "task_num": "1462"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_Qwen3.5-4B_temp_0.0.jsonl",
+      "task_num": "1631"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_Qwen3.5-4B_temp_0.0.jsonl",
+      "task_num": "2332"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_Qwen3.5-4B_temp_0.0.jsonl",
+      "task_num": "2601"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_Qwen3.5-4B_temp_0.0.jsonl",
+      "task_num": "2662"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_Qwen3.5-4B_temp_0.0.jsonl",
+      "task_num": "2844"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_gemma-4-E4B-it_temp_0.0.jsonl",
+      "task_num": "777"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_gemma-4-E4B-it_temp_0.0.jsonl",
+      "task_num": "786"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_gemma-4-E4B-it_temp_0.0.jsonl",
+      "task_num": "787"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_gemma-4-E4B-it_temp_0.0.jsonl",
+      "task_num": "1284"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_gemma-4-E4B-it_temp_0.0.jsonl",
+      "task_num": "1301"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_gemma-4-E4B-it_temp_0.0.jsonl",
+      "task_num": "1928"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov2_gemma-4-E4B-it_temp_0.0.jsonl",
+      "task_num": "2736"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl",
+      "task_num": "10"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl",
+      "task_num": "44"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl",
+      "task_num": "65"
+    },
+    {
+      "file": "downloaded_predictions\\first_experiment\\run_1\\linecov_Ministral-3-3B-Reasoning-2512_temp_0.0.jsonl",
+      "task_num": "73"
+    }
+  ]
+}

@@ -1,0 +1,2775 @@
+{
+  "n_unique_tasks": 300,
+  "n_duplicates_dropped": 0,
+  "duplicates": [],
+  "n_broken": 19,
+  "pct_broken": 6.33,
+  "by_error_class": {
+    "NameError": 13,
+    "ImportError": 4,
+    "SyntaxError": 2
+  },
+  "by_dep_level": {
+    "L0": {
+      "total": 75,
+      "broken": 5,
+      "pct_broken": 6.67
+    },
+    "L1": {
+      "total": 75,
+      "broken": 2,
+      "pct_broken": 2.67
+    },
+    "L2": {
+      "total": 75,
+      "broken": 3,
+      "pct_broken": 4.0
+    },
+    "L3": {
+      "total": 75,
+      "broken": 9,
+      "pct_broken": 12.0
+    }
+  },
+  "by_recency": {
+    "historical": {
+      "total": 60,
+      "broken": 0,
+      "pct_broken": 0.0
+    },
+    "recent": {
+      "total": 240,
+      "broken": 19,
+      "pct_broken": 7.92
+    }
+  },
+  "contamination_confound_test": {
+    "odds_ratio": 0.0,
+    "p_value": 0.017475569256957476,
+    "pct_broken_historical": 0.0,
+    "pct_broken_recent": 7.916666666666667
+  },
+  "broken_task_ids": [
+    "119665",
+    "162266",
+    "221252",
+    "234352",
+    "235598",
+    "25953",
+    "363593",
+    "432562",
+    "461140",
+    "51723",
+    "577470",
+    "696476",
+    "718898",
+    "86422",
+    "872607",
+    "894422",
+    "896053",
+    "916895",
+    "990106"
+  ],
+  "rows": [
+    {
+      "task_id": "229284",
+      "dep_level": "L0",
+      "recency": "historical",
+      "repo": "pytorch/pytorch",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "369506",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "175419",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "407629",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "639256",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "28838",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "263929",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "505574",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "492243",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "631879",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "889249",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "354515",
+      "dep_level": "L0",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "619902",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "597012",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "363593",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'Filter' is not defined"
+    },
+    {
+      "task_id": "438831",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "477443",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "44008",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "744950",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "579283",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "277653",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "871214",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "569517",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "386077",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "417714",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "93269",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "63963",
+      "dep_level": "L0",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "420569",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "748715",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "696476",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": false,
+      "error_class": "ImportError",
+      "detail": "cannot import name 'Self' from 'typing' (/usr/local/lib/python3.10/typing.py)"
+    },
+    {
+      "task_id": "483781",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "572070",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "799291",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "python-attrs/cattrs",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "876360",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "1556",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "62481",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "342521",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "81316",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "263706",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "159066",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "221596",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "548627",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "188702",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "860300",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "701185",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "65936",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "22837",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "94224",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "611297",
+      "dep_level": "L0",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "569837",
+      "dep_level": "L0",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "559560",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "200541",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "310520",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "760884",
+      "dep_level": "L0",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "599681",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "326792",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "606653",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "338744",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "896053",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'BBoxType' is not defined"
+    },
+    {
+      "task_id": "624137",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "rocketride-org/rocketride-server",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "980372",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "25953",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name '_SHARE_OBJECT_TYPES' is not defined"
+    },
+    {
+      "task_id": "125175",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "588845",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "246134",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "724375",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "853539",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "844416",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "654840",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "160929",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "538729",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "232126",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "162266",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'XrLike' is not defined"
+    },
+    {
+      "task_id": "250264",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "999968",
+      "dep_level": "L0",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "399611",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "198226",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "359758",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "316020",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "345874",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "300082",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "scrapy/scrapy",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "117390",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "60376",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "124282",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "552481",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "653235",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "398617",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "encode/httpx",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "893258",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "420954",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "360887",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "894422",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": false,
+      "error_class": "SyntaxError",
+      "detail": "no binding for nonlocal 'opus_stream_inbound' found (under_test.py, line 27)"
+    },
+    {
+      "task_id": "601955",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "221252",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "zauberzeug/rosys",
+      "importable": false,
+      "error_class": "ImportError",
+      "detail": "cannot import name 'Self' from 'typing' (/usr/local/lib/python3.10/typing.py)"
+    },
+    {
+      "task_id": "898900",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "322363",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "836656",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "python-attrs/cattrs",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "399128",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "597643",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "648043",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "437415",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "648623",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "913773",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "580093",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "330041",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "884145",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "244830",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "222449",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "SuperCowPowers/workbench",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "9242",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "zauberzeug/rosys",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "845432",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "318908",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "678386",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "153038",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "556842",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "242826",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "15584",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "37954",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "935316",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "784412",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "scrapy/scrapy",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "117944",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "764139",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "269519",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "279464",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "961559",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "294222",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "81775",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "76899",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "314239",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "137116",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "651815",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "845554",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "rodrigo-arenas/Sklearn-genetic-opt",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "309037",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "550884",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "778238",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "160070",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "252302",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "684409",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "951052",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "jmoiron/humanize",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "284853",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "615718",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "295362",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "816066",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "644701",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "929981",
+      "dep_level": "L1",
+      "recency": "historical",
+      "repo": "pytorch/pytorch",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "467622",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "775368",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "285912",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "tyxak/remotepower",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "222275",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "agentforce314/clawcodex",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "848480",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "unionai-oss/pandera",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "538302",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "704451",
+      "dep_level": "L1",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "33700",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "python-attrs/cattrs",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "105072",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "210173",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "461697",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "232504",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "569686",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "483329",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "43797",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "671240",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "69909",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "571959",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "rodrigo-arenas/Sklearn-genetic-opt",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "833109",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scrapy/scrapy",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "163156",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "308720",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "312969",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "86422",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "zauberzeug/rosys",
+      "importable": false,
+      "error_class": "ImportError",
+      "detail": "cannot import name 'UTC' from 'datetime' (/usr/local/lib/python3.10/datetime.py)"
+    },
+    {
+      "task_id": "211947",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "857693",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "MechanicalSoup/MechanicalSoup",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "939237",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "167131",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "python-attrs/cattrs",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "431957",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "221711",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "jaswon/osu-dreamer",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "753726",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "268069",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "784104",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "p2p-ld/numpydantic",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "459145",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "35225",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "864549",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "772390",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "601675",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "214308",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "468885",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "jmoiron/humanize",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "51046",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "encode/httpx",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "718439",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "106120",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "datachain-ai/datachain",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "940748",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "608304",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "645911",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "571379",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "298499",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "582495",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "407255",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "452563",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "244843",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "103977",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "635745",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "p2p-ld/numpydantic",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "604632",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "219560",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "83593",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "405396",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "49852",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "52157",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "17826",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "609979",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "marcelwa/aigverse",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "753865",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "615583",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "611952",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "567124",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "916895",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": false,
+      "error_class": "SyntaxError",
+      "detail": "'(' was never closed (under_test.py, line 67)"
+    },
+    {
+      "task_id": "11075",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "51723",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "p2p-ld/numpydantic",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'ZarrArray' is not defined"
+    },
+    {
+      "task_id": "529146",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "920695",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "638151",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "691",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "168047",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "254073",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "peternaame-boop/ytm-player",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "946236",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "91274",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "580679",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "251236",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "206871",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "507696",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "790405",
+      "dep_level": "L2",
+      "recency": "historical",
+      "repo": "scikit-learn/scikit-learn",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "277479",
+      "dep_level": "L2",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "467352",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "119665",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'RoiT' is not defined"
+    },
+    {
+      "task_id": "49235",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "181000",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "670733",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "jmoiron/humanize",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "864158",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "jmoiron/humanize",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "948333",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "python-attrs/cattrs",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "325306",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "872607",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'HOURS' is not defined"
+    },
+    {
+      "task_id": "273844",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "942632",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "841967",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "encode/httpx",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "718898",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'BackgroundScheduler' is not defined"
+    },
+    {
+      "task_id": "626226",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "281020",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "p2p-ld/numpydantic",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "962002",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "857769",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "259607",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "zauberzeug/rosys",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "990106",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'MaterializeSessionRequest' is not defined"
+    },
+    {
+      "task_id": "254435",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "492209",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "632174",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "111346",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "jmoiron/humanize",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "779471",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "SoulMelody/LibreSVIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "625299",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "993604",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "872483",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "340725",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "303099",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "308018",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "159079",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "p2p-ld/numpydantic",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "184951",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "alexei-led/ccgram",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "432562",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'TOP_N' is not defined"
+    },
+    {
+      "task_id": "408604",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "135299",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "932471",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "461140",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": false,
+      "error_class": "ImportError",
+      "detail": "cannot import name 'UTC' from 'datetime' (/usr/local/lib/python3.10/datetime.py)"
+    },
+    {
+      "task_id": "974937",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "414135",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "765793",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "61794",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "jmoiron/humanize",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "854607",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "720865",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "928406",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "p2p-ld/numpydantic",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "195344",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "234352",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "p2p-ld/numpydantic",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'TYPE' is not defined"
+    },
+    {
+      "task_id": "639154",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "525970",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "SoulMelody/LibreSVIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "318568",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "569405",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "psf/requests",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "178534",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "yukinarit/pyserde",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "372979",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "vllm-project/vllm",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "670491",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "jmoiron/humanize",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "875127",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "287798",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "235598",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "yukinarit/pyserde",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'MsgPackDeserializer' is not defined"
+    },
+    {
+      "task_id": "360176",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "modal-labs/modal-examples",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "804045",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "LiberTEM/LiberTEM",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "150400",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "47677",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "vortex-exoplanet/VIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "206473",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "Fergana-Labs/stash",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "577470",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "p2p-ld/numpydantic",
+      "importable": false,
+      "error_class": "NameError",
+      "detail": "name 'DaskArray' is not defined"
+    },
+    {
+      "task_id": "456433",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "pandas-dev/pandas",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "604853",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "613377",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "jmoiron/humanize",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "891880",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "p2p-ld/numpydantic",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "932061",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "659174",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "751764",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "gmickel/flow-next",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "559139",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "298296",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "SoulMelody/LibreSVIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "398609",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "SoulMelody/LibreSVIP",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "756876",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "BlessedRebuS/Krawl",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "558638",
+      "dep_level": "L3",
+      "recency": "historical",
+      "repo": "huggingface/transformers",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    },
+    {
+      "task_id": "278404",
+      "dep_level": "L3",
+      "recency": "recent",
+      "repo": "sstklen/trump-code",
+      "importable": true,
+      "error_class": null,
+      "detail": ""
+    }
+  ]
+}

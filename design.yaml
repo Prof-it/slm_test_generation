@@ -41,7 +41,14 @@ contamination_split:
 
 # --- Gold / evaluation ---
 fail_to_pass_target: 50              # minimum validated (f_buggy, f_fixed) pairs
-mutation_sample_pct: 0.20            # stratified mutation sample (Cochran formula)
+mutation_sample_pct: 0.244            # stratified mutation sample: n=73 of N=300, Cochran's formula
+                                       # (z=1.96, p=0.5, e=0.10), stratified across L0-L3. Previously a
+                                       # flat 0.20/n=60 was used without recomputing Cochran for N=300
+                                       # (that gives n=73, not 60) -- see
+                                       # step4_evaluation/mutation_subset_v2_ids.json. (N was briefly
+                                       # miscounted as 299 due to a task_num collision between two
+                                       # distinct pandas functions; fixed by disambiguating the hash
+                                       # key in create_v2_dataset.py by enclosing class name.)
 execution_timeout_sec: 120
 
 # --- Source requirements (unleaked pool) ---

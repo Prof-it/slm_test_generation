@@ -1,0 +1,29 @@
+# Dockerfile for the RealWorldTests-Py v2 EVALUATION step (CPU-only).
+# This is the "deterministic, network-isolated Docker sandbox running Python 3.10"
+# described in the paper's methodology -- previously there was no dedicated
+# evaluation image; at least one real run executed natively on Windows under
+# Python 3.12.10 instead, which is what this image corrects.
+#
+# Run with --network=none at `docker run` time to actually enforce isolation;
+# the image alone does not do this.
+FROM python:3.10-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+WORKDIR /app
+
+# Only the packages evaluate_results.py / rq_reanalysis.py / assertion_gate.py /
+# preflight_dataset_health.py actually need -- deliberately excludes the
+# GPU/inference-only deps (torch, vllm, transformers, accelerate) from the main
+# requirements.txt, which are irrelevant to CPU-side test execution and would
+# make this image far larger and slower to build for no benefit.
+COPY step5_deployment/requirements.evaluate_results_v2.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+COPY step4_evaluation/ /app/step4_evaluation/
+COPY TestEval/data/ /app/TestEval/data/
+COPY design.yaml /app/design.yaml
+
+ENTRYPOINT ["python", "step4_evaluation/evaluate_results.py"]
