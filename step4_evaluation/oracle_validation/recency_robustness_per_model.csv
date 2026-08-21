@@ -1,0 +1,6 @@
+Model,OR_leaked,p_value,p_value_diff_vs_reference
+Qwen3-4B-Thinking-2507 (reference),3.518,7.664052170932867e-07,
+Qwen3.5-4B,1.415,,0.0001
+gemma-4-E4B-it,1.431,,0.0
+granite-4.0-micro,1.123,,0.0
+Ministral-3-3B-Reasoning-2512,1.975,,0.0558

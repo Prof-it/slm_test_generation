@@ -1,0 +1,71 @@
+{
+  "n": 250,
+  "accuracy": 0.716,
+  "kappa_descriptive_not_interrater": 0.6132054913924602,
+  "confusion_actual_rows_predicted_columns": {
+    "TRIVIAL": {
+      "TRIVIAL": 34,
+      "WEAK": 1,
+      "STRONG": 0,
+      "UNKNOWN": 0
+    },
+    "WEAK": {
+      "TRIVIAL": 0,
+      "WEAK": 66,
+      "STRONG": 9,
+      "UNKNOWN": 20
+    },
+    "STRONG": {
+      "TRIVIAL": 1,
+      "WEAK": 2,
+      "STRONG": 62,
+      "UNKNOWN": 35
+    },
+    "UNKNOWN": {
+      "TRIVIAL": 0,
+      "WEAK": 2,
+      "STRONG": 1,
+      "UNKNOWN": 17
+    }
+  },
+  "metrics": {
+    "TRIVIAL": {
+      "support": 35,
+      "precision": 0.9714285714285714,
+      "recall": 0.9714285714285714,
+      "f1": 0.9714285714285714
+    },
+    "WEAK": {
+      "support": 95,
+      "precision": 0.9295774647887324,
+      "recall": 0.6947368421052632,
+      "f1": 0.7951807228915663
+    },
+    "STRONG": {
+      "support": 100,
+      "precision": 0.8611111111111112,
+      "recall": 0.62,
+      "f1": 0.7209302325581395
+    },
+    "UNKNOWN": {
+      "support": 20,
+      "precision": 0.2361111111111111,
+      "recall": 0.85,
+      "f1": 0.3695652173913043
+    }
+  },
+  "disagreements": 71,
+  "disagreement_reasons": {
+    "sut_derived_runtime_type": 3,
+    "opaque_predicate_call": 7,
+    "comparison_without_sut_provenance": 33,
+    "mock_contract_without_mock_provenance": 5,
+    "compound_all_sut_branches_weak": 1,
+    "sut_derived_specific_comparison": 10,
+    "coarse_check_without_sut_provenance": 8,
+    "unresolved_name_truthiness": 1,
+    "sut_derived_nullity": 1,
+    "mock_state_without_mock_provenance": 1,
+    "statically_satisfied_constant": 1
+  }
+}

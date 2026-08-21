@@ -1,0 +1,69 @@
+validation_row_id,focal_function,oracle_source,classifier_predicted,ai_audit_v4,codex_ai_labeled,n_distinct_labels
+validation_v4_0008,rewind_body,"assert hasattr(prepared_request_mock, 'headers')",UNKNOWN,TRIVIAL,WEAK,3
+validation_v4_0015,_check_monotonic_cst,"assert ""Each value"" in str(excinfo.value)",UNKNOWN,STRONG,WEAK,3
+validation_v4_0029,cf_has_standard_names,assert result == False,UNKNOWN,WEAK,STRONG,3
+validation_v4_0043,get_or_create_input_table,assert mock_hash == mock_hash,UNKNOWN,TRIVIAL,STRONG,3
+validation_v4_0069,generate_video_masks,assert mock_convert.called,STRONG,WEAK,UNKNOWN,3
+validation_v4_0084,gelman_rubin,assert x.ndim >= 1,UNKNOWN,TRIVIAL,STRONG,3
+validation_v4_0144,_resolve_dim_sizes,"assert isinstance(all_dims, set)",UNKNOWN,TRIVIAL,WEAK,3
+validation_v4_0150,_maybe_memory_map,"assert result[1] == False, ""Second element of result should be False if memory mapping failed""",UNKNOWN,WEAK,STRONG,3
+validation_v4_0175,visualize_simple,"assert expected_rgba.shape == (10, 10, 4)",UNKNOWN,TRIVIAL,STRONG,3
+validation_v4_0202,cf_has_standard_names,assert result is True,UNKNOWN,WEAK,STRONG,3
+validation_v4_0216,_assert_valid_file_upload,"assert ""must be an open file object"" in str(excinfo.value)",UNKNOWN,STRONG,WEAK,3
+validation_v4_0225,_render_child_database_block,"assert isinstance(result, list)",UNKNOWN,TRIVIAL,WEAK,3
+validation_v4_0002,_convert_aware_datetime,"assert none_result is None, ""None should return None""",UNKNOWN,WEAK,WEAK,2
+validation_v4_0009,_xielu_cuda,assert result == expected_result,UNKNOWN,STRONG,STRONG,2
+validation_v4_0016,check_non_negative,assert result is False,STRONG,WEAK,STRONG,2
+validation_v4_0024,get_gpu_status,"assert all(isinstance(row.split(','), [str] * len(mock_process_output)))",UNKNOWN,UNKNOWN,STRONG,2
+validation_v4_0026,_resolve_dim_sizes,"assert result == {}, ""Expected no resolved size dictionary""",STRONG,TRIVIAL,STRONG,2
+validation_v4_0032,_maybe_memory_map,"assert isinstance(result[0], str), ""First element of result should be string""",UNKNOWN,WEAK,WEAK,2
+validation_v4_0033,cmd_migrate_state,mock_is_task_id.assert_not_called(),UNKNOWN,UNKNOWN,STRONG,2
+validation_v4_0034,check_non_negative,assert result == True,STRONG,WEAK,STRONG,2
+validation_v4_0036,infer_filename,"assert result == ""archive"" if mock_zip.get_archive_name.return_value is None else f""{mock_zip.get_archive_name().return_value}.tar""",UNKNOWN,UNKNOWN,WEAK,2
+validation_v4_0039,read,assert result == expected_data,STRONG,TRIVIAL,STRONG,2
+validation_v4_0046,print_algo_params,solution.assert_called_once_with(params),UNKNOWN,STRONG,UNKNOWN,2
+validation_v4_0052,normalized_stim_map,"assert np.allclose(mock_inverse.call_args[0][1].shape, (1,)), ""Angle list shape mismatch""",UNKNOWN,STRONG,UNKNOWN,2
+validation_v4_0055,apply_filter,"assert mock_reload.called_once, ""Reload sorted was called once""",TRIVIAL,TRIVIAL,UNKNOWN,2
+validation_v4_0058,save,"assert np.all(saved_data['a'] == np.array([1, 2]))",UNKNOWN,STRONG,UNKNOWN,2
+validation_v4_0072,rewind_body,assert mock_file_pointer.reset == True,UNKNOWN,UNKNOWN,STRONG,2
+validation_v4_0073,check_nullable,self.assertTrue(True),TRIVIAL,TRIVIAL,WEAK,2
+validation_v4_0076,_save_atomic,assert mock_rename.called_once(),UNKNOWN,TRIVIAL,TRIVIAL,2
+validation_v4_0086,grep,assert result == 'found in file1.txt',STRONG,STRONG,WEAK,2
+validation_v4_0089,__coerce_index,"with pytest.raises(TypeError):
+        pass",UNKNOWN,UNKNOWN,STRONG,2
+validation_v4_0090,is_subpath,"assert solution.is_subpath(""/a/b/c"", ""/a/b/c/d"") == False",STRONG,WEAK,STRONG,2
+validation_v4_0095,_sanitize_value,assert solution._sanitize_value(True) == True,STRONG,WEAK,STRONG,2
+validation_v4_0102,_chargeback_breakdown,assert len(result) > 0,STRONG,WEAK,STRONG,2
+validation_v4_0104,load,assert result == None,WEAK,WEAK,STRONG,2
+validation_v4_0105,set_environ,"assert mock_env[""test_env""] == original_value",UNKNOWN,UNKNOWN,STRONG,2
+validation_v4_0106,is_typing_throttled,"assert solution.is_typing_throttled(1, 2) == True",STRONG,WEAK,STRONG,2
+validation_v4_0115,command_argv,"with pytest.raises(StopIteration): # Placeholder if the internal logic raises StopIteration due to '...'
+         pass",UNKNOWN,UNKNOWN,STRONG,2
+validation_v4_0118,_sanitize_value,"assert result == ""hello""",UNKNOWN,STRONG,STRONG,2
+validation_v4_0122,_check_methods,"assert callable(getattr(solution, '_check_methods'))",UNKNOWN,WEAK,UNKNOWN,2
+validation_v4_0124,compute_rdkit_3d_descriptors,"assert ""descriptor_name"" in result",STRONG,WEAK,WEAK,2
+validation_v4_0125,infer_filename,"assert result == ""test"" if mock_zip.get_archive_name.return_value is None else f""{mock_zip.name}.{mock_zip.get_archive_name()}""",UNKNOWN,UNKNOWN,WEAK,2
+validation_v4_0127,stash_purge,"mock_client_instance.delete.assert_called_once_with(""page"", ""abc-123"")",UNKNOWN,STRONG,STRONG,2
+validation_v4_0134,cmd_migrate_state,mock_canonicalize_task_for_write.assert_not_called(),UNKNOWN,UNKNOWN,STRONG,2
+validation_v4_0140,get_best_solution,assert result == expected_result,STRONG,TRIVIAL,STRONG,2
+validation_v4_0141,_is_arraylike,assert solution._is_arraylike(5) == False,STRONG,WEAK,STRONG,2
+validation_v4_0167,_sanitize_value,"assert solution._sanetize_value({""a"": 1}) == {""a"": 1}",UNKNOWN,STRONG,STRONG,2
+validation_v4_0169,__coerce_index,"assert isinstance(result, dict)",UNKNOWN,WEAK,WEAK,2
+validation_v4_0174,parse_dataset_with_version,"assert isinstance(result, tuple) and len(result) == 2",STRONG,STRONG,WEAK,2
+validation_v4_0179,set_environ,assert mock_env['TEST_VAR'] == 'new_value',UNKNOWN,UNKNOWN,STRONG,2
+validation_v4_0182,create_run,"solution_instance.create_run.assert_called_once_with(
+        parameters,
+        score,
+        estimator
+    )",UNKNOWN,STRONG,STRONG,2
+validation_v4_0185,_walk_filesystem,"assert all(isinstance(item, str) in result)",UNKNOWN,UNKNOWN,STRONG,2
+validation_v4_0189,stream_decode_response_unicode,"assert isinstance(result, str)",UNKNOWN,WEAK,WEAK,2
+validation_v4_0193,normalized_stim_map,"assert np.allclose(mock_inverse.call_args[0][0].shape, (2, 2)), ""Inverse map shape mismatch""",UNKNOWN,STRONG,UNKNOWN,2
+validation_v4_0204,send_command,"solution._DapClient__execute.assert_called_once_with(command, args)",UNKNOWN,STRONG,UNKNOWN,2
+validation_v4_0209,__coerce_index,assert result is None,UNKNOWN,WEAK,WEAK,2
+validation_v4_0213,iter_slices,"assert all(isinstance(item, str) for item in result)",STRONG,WEAK,STRONG,2
+validation_v4_0232,get_results,assert 'key' in result,STRONG,WEAK,WEAK,2
+validation_v4_0242,_process_blacklist,"assert (""v1"", ""pkg""), {""v1""}",TRIVIAL,TRIVIAL,UNKNOWN,2
+validation_v4_0243,get_results,"assert all(isinstance(v, np.ndarray) for v in result.values()), ""All values must be NumPy arrays""",STRONG,WEAK,STRONG,2
+validation_v4_0244,get_path,"assert all(isinstance(item, str) for item in result)",STRONG,WEAK,STRONG,2
+validation_v4_0249,device_focus_tokens,"assert solution.device_fname(""dev-1"") == ""dev""",UNKNOWN,STRONG,UNKNOWN,2

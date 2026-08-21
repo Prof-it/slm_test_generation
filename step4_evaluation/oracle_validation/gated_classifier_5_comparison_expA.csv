@@ -1,0 +1,6 @@
+Model,p_holm_static,significant_holm_0.05_static,p_holm_classifier,significant_holm_0.05_classifier,flipped
+Qwen3-4B-Thinking-2507,1.0,False,0.08834812045097351,False,False
+Qwen3.5-4B,0.0043180620266651,True,0.12547336071165696,False,True
+gemma-4-E4B-it,0.0025454511217486,True,0.005554636616874935,True,False
+granite-4.0-micro,1.0,False,0.8071946913670247,False,False
+Ministral-3-3B-Reasoning-2512,0.0256636155080802,True,0.08210773485482828,False,True

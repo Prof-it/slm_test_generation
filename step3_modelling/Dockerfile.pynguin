@@ -1,0 +1,25 @@
+# Pynguin baseline execution environment (Linux) -- fixes two Windows-only
+# failures found in local piloting: (1) fcntl is POSIX-only, absent on Windows;
+# (2) Pynguin's internal multiprocess/dill subprocess sandboxing crashes under
+# Windows fork/spawn semantics but is native on Linux. Matches the project's
+# main Dockerfile's Ubuntu-family base for consistency; Python 3.10 because
+# pynguin==0.45.0 (bytecode dependency) has no Python 3.11 build.
+FROM python:3.10-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV PYNGUIN_DANGER_AWARE=true
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY step3_modelling/requirements_pynguin.txt .
+RUN pip install --default-timeout=120 --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cpu -r requirements_pynguin.txt
+
+# Project code is bind-mounted at runtime (see run_pynguin_docker.sh), not
+# copied into the image, so code edits don't require an image rebuild.
+CMD ["sleep", "infinity"]

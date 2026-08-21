@@ -1,0 +1,15 @@
+{
+  "predictions_dir": "C:\\Repos\\slm_test_generation\\downloaded_predictions\\second_experiment\\run_1",
+  "seed": 20260820,
+  "requested_sample_size": 250,
+  "available_oracle_sites": 6879,
+  "sampled_oracle_sites": 250,
+  "runtime_fields_populated": false,
+  "artifact_suffix": "v3",
+  "class_counts": {
+    "STRONG": 72,
+    "TRIVIAL": 35,
+    "UNKNOWN": 72,
+    "WEAK": 71
+  }
+}

@@ -1,0 +1,6 @@
+Experiment,Model,n_paired,diff_Single_minus_Two_%,boot_lo,boot_hi,excludes_zero
+B (TestContextBench-Py),Qwen3-4B-Thinking-2507,73,0.43,-1.5,2.25,False
+B (TestContextBench-Py),Qwen3.5-4B,73,2.16,-0.26,4.65,False
+B (TestContextBench-Py),gemma-4-E4B-it,73,0.58,-1.68,2.77,False
+B (TestContextBench-Py),granite-4.0-micro,73,-0.01,-2.4,2.27,False
+B (TestContextBench-Py),Ministral-3-3B-Reasoning-2512,73,1.34,-1.48,4.25,False

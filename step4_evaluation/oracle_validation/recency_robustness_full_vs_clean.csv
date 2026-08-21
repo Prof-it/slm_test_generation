@@ -1,0 +1,5 @@
+Spec,N_obs,N_clusters,OR_leaked_historical,OR_ci_lo,OR_ci_hi,p_value
+"Full set (N=300 tasks, existing paper spec)",9000,300,1.694,1.287,2.231,0.00017245305254468452
+Clean set (19 broken tasks excluded),8430,281,1.667,1.264,2.198,0.0002953137628496885
+Sensitivity: exclude only 15 genuine extraction defects,8550,285,1.677,1.273,2.209,0.000236228473603505
+Sensitivity: exclude only 4 Python-3.11-only artifacts,8880,296,1.684,1.278,2.219,0.00021477519764857703

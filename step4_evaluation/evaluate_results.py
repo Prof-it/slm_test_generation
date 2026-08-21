@@ -103,13 +103,39 @@ def fix_relative_imports(code: str) -> str:
     module is executed as a standalone file.  This wraps each such import in a
     try/except that falls back to assigning MagicMock() to every imported name,
     allowing the rest of the module to load.
+
+    Multi-line parenthesized imports (``from .x import (\\n    a,\\n    b,\\n)``)
+    are consumed across lines before wrapping -- the line-by-line regex match
+    only sees the opening line, which previously produced ``names_str == "("``
+    and emitted a corrupt ``( = _MagicMock()`` statement while silently
+    orphaning the continuation lines. See TCB_DATASHEET_VERIFICATION-adjacent
+    benchmark-defect repair notes: this affected exactly one task's reference
+    module in the released corpus (task 916895), confirmed by scanning all
+    task sources for the pattern.
     """
     out = []
-    for line in code.splitlines():
+    lines = code.splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i]
         m = _RELATIVE_IMPORT_RE.match(line)
         if m:
             indent, _module, names_str = m.group(1), m.group(2), m.group(3)
-            # Parse imported names, respecting "X as Y" aliases
+            stripped = names_str.strip()
+            full_stmt_lines = [line.strip()]
+            if stripped == "(" or (stripped.startswith("(") and not _parens_balanced(stripped)):
+                # Multi-line parenthesized import: consume continuation lines
+                # up to and including the one that closes the paren.
+                j = i + 1
+                while j < len(lines):
+                    full_stmt_lines.append(lines[j].strip())
+                    names_str += " " + lines[j].strip()
+                    if ")" in lines[j]:
+                        break
+                    j += 1
+                i = j
+            # Parse imported names, respecting "X as Y" aliases and stripping parens.
+            names_str = names_str.replace("(", " ").replace(")", " ")
             names = []
             for part in names_str.split(','):
                 part = part.strip()
@@ -120,14 +146,20 @@ def fix_relative_imports(code: str) -> str:
                 else:
                     names.append(part.strip())
             out.append(f"{indent}try:")
-            out.append(f"{indent}    {line.strip()}")
+            for stmt_line in full_stmt_lines:
+                out.append(f"{indent}    {stmt_line}")
             out.append(f"{indent}except (ImportError, SystemError):")
             out.append(f"{indent}    from unittest.mock import MagicMock as _MagicMock")
             for name in names:
                 out.append(f"{indent}    {name} = _MagicMock()")
         else:
             out.append(line)
+        i += 1
     return '\n'.join(out)
+
+
+def _parens_balanced(s: str) -> bool:
+    return s.count("(") <= s.count(")")
 
 DEFAULT_PREDICTIONS_DIR = PROJECT_ROOT / "TestEval" / "predictions"
 DEFAULT_RESULTS_DIR = PROJECT_ROOT / "evaluation_results"
@@ -238,7 +270,22 @@ def strip_markdown(code: str) -> str:
     3. Conversational filler before the code starts.
     """
     if not isinstance(code, str): return ""
-    
+
+    # 0. Already-valid Python short-circuit. The fence-stripping regexes below
+    # search anywhere in the text, not just at the boundaries, so they can
+    # misfire on code that legitimately contains a ``` sequence inside a
+    # string literal (observed with Pynguin: it copies the SUT's own
+    # docstring, including any markdown usage example the docstring embeds,
+    # into a test's string-literal input data). If the code already parses
+    # as valid Python, none of the fence-stripping heuristics below are
+    # needed -- they exist only to recover code from conversational/fenced
+    # LLM wrapping, which by definition doesn't already parse cleanly.
+    try:
+        ast.parse(code)
+        return code.strip()
+    except SyntaxError:
+        pass
+
     # 1. Remove Thinking Blocks
     if "</think>" in code:
         code = code.split("</think>")[-1].strip()

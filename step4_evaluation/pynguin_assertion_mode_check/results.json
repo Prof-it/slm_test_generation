@@ -1,0 +1,148 @@
+[
+ {
+  "task_id": 229284,
+  "mode": "MUTATION_ANALYSIS",
+  "status": "DONE",
+  "num_assert_statements": 0,
+  "test_char_len": 190,
+  "stats": {
+   "TargetModule": "under_test",
+   "SearchTime": "60001710664",
+   "TotalTime": "61833740444",
+   "AlgorithmIterations": "375",
+   "Goals": "7",
+   "FinalBranchCoverage": "0.2857142857142857",
+   "FinalLineCoverage": "0.8333333333333334",
+   "Assertions": "",
+   "DeletedAssertions": "",
+   "NumberOfCreatedMutants": "0",
+   "NumberOfKilledMutants": "0",
+   "MutationScore": "1.0"
+  }
+ },
+ {
+  "task_id": 229284,
+  "mode": "SIMPLE",
+  "status": "DONE",
+  "num_assert_statements": 1,
+  "test_char_len": 328,
+  "stats": {
+   "TargetModule": "under_test",
+   "SearchTime": "60104428844",
+   "TotalTime": "61739748388",
+   "AlgorithmIterations": "373",
+   "Goals": "7",
+   "FinalBranchCoverage": "0.2857142857142857",
+   "FinalLineCoverage": "0.8333333333333334",
+   "Assertions": "",
+   "DeletedAssertions": "",
+   "NumberOfCreatedMutants": "",
+   "NumberOfKilledMutants": "",
+   "MutationScore": ""
+  }
+ },
+ {
+  "task_id": 28838,
+  "mode": "MUTATION_ANALYSIS",
+  "status": "DONE",
+  "num_assert_statements": 0,
+  "test_char_len": 1083,
+  "stats": {
+   "TargetModule": "under_test",
+   "SearchTime": "60013247064",
+   "TotalTime": "64625569413",
+   "AlgorithmIterations": "265",
+   "Goals": "39",
+   "FinalBranchCoverage": "0.48717948717948717",
+   "FinalLineCoverage": "0.8807947019867549",
+   "Assertions": "",
+   "DeletedAssertions": "",
+   "NumberOfCreatedMutants": "35",
+   "NumberOfKilledMutants": "0",
+   "MutationScore": "0.0"
+  }
+ },
+ {
+  "task_id": 28838,
+  "mode": "SIMPLE",
+  "status": "DONE",
+  "num_assert_statements": 6,
+  "test_char_len": 1600,
+  "stats": {
+   "TargetModule": "under_test",
+   "SearchTime": "60177153716",
+   "TotalTime": "63397087640",
+   "AlgorithmIterations": "265",
+   "Goals": "39",
+   "FinalBranchCoverage": "0.48717948717948717",
+   "FinalLineCoverage": "0.8807947019867549",
+   "Assertions": "",
+   "DeletedAssertions": "",
+   "NumberOfCreatedMutants": "",
+   "NumberOfKilledMutants": "",
+   "MutationScore": ""
+  }
+ },
+ {
+  "task_id": 619902,
+  "mode": "MUTATION_ANALYSIS",
+  "status": "DONE",
+  "num_assert_statements": 4,
+  "test_char_len": 2603,
+  "stats": {
+   "TargetModule": "under_test",
+   "SearchTime": "141902145",
+   "TotalTime": "934427668",
+   "AlgorithmIterations": "2",
+   "Goals": "6",
+   "FinalBranchCoverage": "1.0",
+   "FinalLineCoverage": "1.0",
+   "Assertions": "",
+   "DeletedAssertions": "",
+   "NumberOfCreatedMutants": "19",
+   "NumberOfKilledMutants": "15",
+   "MutationScore": "0.7894736842105263"
+  }
+ },
+ {
+  "task_id": 619902,
+  "mode": "SIMPLE",
+  "status": "DONE",
+  "num_assert_statements": 7,
+  "test_char_len": 2978,
+  "stats": {
+   "TargetModule": "under_test",
+   "SearchTime": "135463628",
+   "TotalTime": "765348760",
+   "AlgorithmIterations": "2",
+   "Goals": "6",
+   "FinalBranchCoverage": "1.0",
+   "FinalLineCoverage": "1.0",
+   "Assertions": "",
+   "DeletedAssertions": "",
+   "NumberOfCreatedMutants": "",
+   "NumberOfKilledMutants": "",
+   "MutationScore": ""
+  }
+ },
+ {
+  "task_id": 889249,
+  "mode": "MUTATION_ANALYSIS",
+  "status": "NO_CODE"
+ },
+ {
+  "task_id": 889249,
+  "mode": "SIMPLE",
+  "status": "NO_CODE"
+ },
+ {
+  "task_id": 363593,
+  "mode": "MUTATION_ANALYSIS",
+  "status": "NO_CODE"
+ },
+ {
+  "task_id": 363593,
+  "mode": "SIMPLE",
+  "status": "NO_CODE"
+ }
+]
