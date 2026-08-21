@@ -142,6 +142,8 @@ celerybeat.pid
 .env
 .envrc
 .venv/*
+**/.venv310_pynguin/
+**/.venv311/
 env/
 venv/*
 ENV/
@@ -228,3 +230,18 @@ step3_modelling/failed_json_response.txt
 step3_modelling/llm_as_judge_logs.log
 step3_modelling/strategy1_extracted.json
 step3_modelling/strategy2_extracted.json
+
+# Pynguin baseline: scratch debug logs (run monitoring, not results)
+step4_evaluation/_*.log
+step4_evaluation/_pynguin_mutation_numbers.json
+
+# Pynguin baseline: superseded early pilot attempts (before the reported
+# 30/60/120/600s budget pilot in step4_evaluation/pynguin_budget_pilot/ existed)
+step4_evaluation/pynguin_pilot/
+step4_evaluation/pynguin_pilot_docker/
+step4_evaluation/pynguin_pilot_retry/
+
+# Extraction-defect repair: regenerable scratch prediction subset
+# (rebuilt by step2_data_preperation/build_repair_rescoring_subset.py from
+# TestEval/data/*.jsonl + downloaded_predictions/, not a primary artifact)
+step4_evaluation/_extraction_repair_rescoring_predictions/

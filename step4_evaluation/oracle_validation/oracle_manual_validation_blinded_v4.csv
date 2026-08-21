@@ -1,0 +1,667 @@
+﻿validation_row_id,generation_id,benchmark,task_id,model,pipeline,tier,dependency_level,target,oracle_id,oracle_kind,lineno,col_offset,source_context,manual_sut_dependent,manual_class,manual_notes
+validation_v4_0001,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:159066:2,TestContextBench-Py,159066,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L0,2,oracle_0001,assert,24,8,"        solution = Solution()
+        assert solution._walk_filesystem(Path('/tmp')) == ['/tmp/file1.txt', '/tmp/file2.txt']",,,
+validation_v4_0002,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:951052:2,TestContextBench-Py,951052,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L1,2,oracle_0007,assert,31,4,"
+    assert none_result is None, ""None should return None""",,,
+validation_v4_0003,linecov2_Qwen3.5-4B_temp_0.0:467352:2,TestContextBench-Py,467352,Qwen/Qwen3.5-4B,two-step,C,L3,2,oracle_0001,assert,39,4,"    # Assertions verify the method ran without raising exceptions
+    assert True  # Basic verification that async method completed",,,
+validation_v4_0004,linecov2_Qwen3.5-4B_temp_0.0:25953:2,TestContextBench-Py,25953,Qwen/Qwen3.5-4B,two-step,A,L0,2,oracle_0003,assert,52,4,"    result = solution.shares_add()
+    assert isinstance(result, bool)
+
+def test_shares_add_empty_params(solution):",,,
+validation_v4_0005,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:613377:2,TestContextBench-Py,613377,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L3,2,oracle_0001,assert,21,8,"
+        assert result == ""yesterday""",,,
+validation_v4_0006,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:200541:2,TestContextBench-Py,200541,Qwen/Qwen3-4B-Thinking-2507,two-step,A,L0,2,oracle_0001,assert,6,4,"    # Check if the method completes without raising errors
+    assert True",,,
+validation_v4_0007,linecov_gemma-4-E4B-it_temp_0.0:252302:2,TestContextBench-Py,252302,google/gemma-4-E4B-it,single-step,C,L1,2,oracle_0006,assert,48,8,"        restored_value = os.environ.get(test_env_name)
+        assert restored_value is None
+
+    with patch.dict('os.environ', {'SOME_VAR': 'some_val'}):",,,
+validation_v4_0008,linecov2_Qwen3.5-4B_temp_0.0:772390:2,TestContextBench-Py,772390,Qwen/Qwen3.5-4B,two-step,A,L2,2,oracle_0002,assert,30,4,"    # depending on implementation specifics
+    assert hasattr(prepared_request_mock, 'headers')",,,
+validation_v4_0009,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:558638:2,TestContextBench-Py,558638,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L3,2,oracle_0001,assert,19,4,"    expected_result = torch.tensor(9.0)
+    assert result == expected_result",,,
+validation_v4_0010,linecov_Qwen3.5-4B_temp_0.0:718439:2,TestContextBench-Py,718439,Qwen/Qwen3.5-4B,single-step,B,L2,2,oracle_0001,assert,8,4,"
+    assert isinstance(result, list)",,,
+validation_v4_0011,linecov_Qwen3.5-4B_temp_0.0:285912:2,TestContextBench-Py,285912,Qwen/Qwen3.5-4B,single-step,C,L1,2,oracle_0003,assert,11,4,"    result = solution._exec_timeout_override(""just_a_normal_cmd"")
+    assert result is None",,,
+validation_v4_0012,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:548627:2,TestContextBench-Py,548627,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L0,2,oracle_0002,assert,10,4,"    result = solution.build_playlist_subtitle(""Spotify"", """", ""2023"", 5)
+    assert result == ""Spotify · 2023 · 5 tracks""
+
+    # Test case where year is empty (should be omitted)",,,
+validation_v4_0013,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:181000:2,TestContextBench-Py,181000,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L3,2,oracle_0002,assert,11,12,"            assert mock_close.called_once_with(mock_client, 1, 2, ""done"")
+            assert mock_close.called_once_with(mock_client, 1, 2, ""dead"")",,,
+validation_v4_0014,linecov2_Qwen3.5-4B_temp_0.0:340725:2,TestContextBench-Py,340725,Qwen/Qwen3.5-4B,two-step,C,L3,2,oracle_0001,assert,32,20,"                    # Assert that the method completed without raising an exception
+                    assert True
+
+                except Exception as e:",,,
+validation_v4_0015,linecov_granite-4.0-micro_temp_0.0:168047:2,TestContextBench-Py,168047,ibm-granite/granite-4.0-micro,single-step,A,L2,2,oracle_0004,assert,18,4,"        solution._check_monotonic_cst(MagicMock(), [1, 'invalid', 0])
+    assert ""Each value"" in str(excinfo.value)
+
+    # Test with dict",,,
+validation_v4_0016,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:601675:2,TestContextBench-Py,601675,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L2,2,oracle_0001,assert,40,4,"    result = solution.check_non_negative(arr, ""Alice"")
+    assert result is False
+    # Test with a negative array
+    neg_arr = np.array([[-1, 2], [-3, 4]])",,,
+validation_v4_0017,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:287798:2,TestContextBench-Py,287798,Qwen/Qwen3-4B-Thinking-2507,two-step,B,L3,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0018,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:254073:2,TestContextBench-Py,254073,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L2,2,oracle_0001,assert,15,4,"    # Assertions to check the behavior
+    assert mock_dependency.called_once_with(expected_value)",,,
+validation_v4_0019,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:597012:2,TestContextBench-Py,597012,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L0,2,oracle_0001,assert,6,8,"        result = solution.list_graphs(args)
+        assert isinstance(result, list)",,,
+validation_v4_0020,linecov_Qwen3.5-4B_temp_0.0:772390:2,TestContextBench-Py,772390,Qwen/Qwen3.5-4B,single-step,C,L2,2,oracle_0001,assert,12,4,"
+    assert True  # Basic assertion since we don't know full implementation",,,
+validation_v4_0021,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:359758:2,TestContextBench-Py,359758,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L1,2,oracle_0004,mock_contract,24,8,"        # Verify that the get method was called with the correct arguments
+        mock_get.assert_called_once_with(""example_param_name"", True, True)",,,
+validation_v4_0022,linecov2_Qwen3.5-4B_temp_0.0:778238:2,TestContextBench-Py,778238,Qwen/Qwen3.5-4B,two-step,A,L1,2,oracle_0001,assert,6,4,"    # Verify it works without throwing errors
+    assert True  # Just verify it completes without exception",,,
+validation_v4_0023,linecov_granite-4.0-micro_temp_0.0:894422:2,TestContextBench-Py,894422,ibm-granite/granite-4.0-micro,single-step,B,L1,2,oracle_0001,assert,11,8,"        await solution.inference_loop()
+        assert True",,,
+validation_v4_0024,linecov_granite-4.0-micro_temp_0.0:884145:2,TestContextBench-Py,884145,ibm-granite/granite-4.0-micro,single-step,C,L1,2,oracle_0003,assert,41,8,"        assert len(result) > 0
+        assert all(isinstance(row.split(','), [str] * len(mock_process_output)))
+
+    # Patch subprocess.run to simulate failure (e.g., nvidia-smi not found)",,,
+validation_v4_0025,linecov_Qwen3.5-4B_temp_0.0:864549:2,TestContextBench-Py,864549,Qwen/Qwen3.5-4B,single-step,A,L2,2,oracle_0001,assert,4,4,"    result = solution.to_key_val_list({'key': 'val'})
+    assert result == [('key', 'val')]",,,
+validation_v4_0026,linecov2_granite-4.0-micro_temp_0.0:538729:2,TestContextBench-Py,538729,ibm-granite/granite-4.0-micro,two-step,C,L0,2,oracle_0001,assert,8,4,"    result = sol_mock._resolve_dim_sizes({'a', 'b'}, {'a': 10}, 20)
+    assert result == {}, ""Expected no resolved size dictionary""",,,
+validation_v4_0027,linecov2_gemma-4-E4B-it_temp_0.0:117390:2,TestContextBench-Py,117390,google/gemma-4-E4B-it,two-step,A,L1,2,oracle_0001,assert,33,4,"    expected_output = [""a"", ""b"", ""a.1""]
+    assert solution.dedup_names(input_names, input_bool) == expected_output",,,
+validation_v4_0028,linecov_Qwen3.5-4B_temp_0.0:17826:2,TestContextBench-Py,17826,Qwen/Qwen3.5-4B,single-step,C,L2,2,oracle_0002,assert,18,4,"    result = solution.get_last_activity_ts(""test_window_2"")
+    assert isinstance(result, float) or result is None",,,
+validation_v4_0029,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:162266:2,TestContextBench-Py,162266,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L0,2,oracle_0002,assert,33,8,"        result = solution.cf_has_dependency_missing(data, names)
+        assert result == False",,,
+validation_v4_0030,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:360176:2,TestContextBench-Py,360176,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L3,2,oracle_0002,assert,17,8,"        assert mock_server.call_count == 1
+        assert mock_healthy.is_ready.called_once_with()
+        assert mock_warm_up.called_once_with()
+        assert mock_sleep.called_once_with(5)",,,
+validation_v4_0031,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:639256:2,TestContextBench-Py,639256,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L0,2,oracle_0001,assert,36,8,"        result = await solution._post_token_endpoint(""https://example.com/oauth"", {""client_id"": ""test"", ""client_secret"": ""test""})
+        assert result == {""access_token"": ""mock_access_token""}",,,
+validation_v4_0032,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:308018:2,TestContextBench-Py,308018,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L3,2,oracle_0001,assert,8,8,"        result = solution._maybe_memory_memory_map(""test_file"", True)
+        assert isinstance(result[0], str), ""First element of result should be string""
+        assert result[1] == True, ""Second element of result should be True if memory mapping succeeded""
+        assert len(result[2]) == 0, ""Third element of result should be empty list if no errors occurred""",,,
+validation_v4_0033,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:325306:2,TestContextBench-Py,325306,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0006,mock_contract,26,8,"        mock_save_runtime.assert_not_called()
+        mock_is_task_id.assert_not_called()
+        mock_load_runtime.assert_not_called()
+        mock_load_json.assert_not_called()",,,
+validation_v4_0034,linecov_Qwen3.5-4B_temp_0.0:601675:2,TestContextBench-Py,601675,Qwen/Qwen3.5-4B,single-step,C,L2,2,oracle_0001,assert,4,4,"    result = solution.check_non_negative([-5], ""user"")
+    assert result == True",,,
+validation_v4_0035,linecov2_gemma-4-E4B-it_temp_0.0:651815:2,TestContextBench-Py,651815,google/gemma-4-E4B-it,two-step,A,L1,2,oracle_0001,assert,23,4,"    result_dict = {""message_id"": 12345}
+    assert solution._extract_message_id(result_dict) == 12345",,,
+validation_v4_0036,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:399128:2,TestContextBench-Py,399128,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L1,2,oracle_0001,assert,11,12,"            result = solution.infer_filename()
+            assert result == ""archive"" if mock_zip.get_archive_name.return_value is None else f""{mock_zip.get_archive_name().return_value}.tar""",,,
+validation_v4_0037,linecov2_Qwen3.5-4B_temp_0.0:588845:2,TestContextBench-Py,588845,Qwen/Qwen3.5-4B,two-step,B,L0,2,oracle_0001,assert,4,4,"    solution.toggle_shuffle()
+    assert True  # Basic verification that method executes without error",,,
+validation_v4_0038,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:359758:2,TestContextBench-Py,359758,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L1,2,oracle_0001,assert,7,8,"        result = solution.last_modified(""test_name"")
+        assert result is None",,,
+validation_v4_0039,linecov_gemma-4-E4B-it_temp_0.0:221252:2,TestContextBench-Py,221252,google/gemma-4-E4B-it,single-step,B,L1,2,oracle_0001,assert,15,12,"            result = await solution.read(n_bytes=4, timeout_s=1.0)
+            assert result == expected_data
+    asyncio.run(run_test())",,,
+validation_v4_0040,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:940748:2,TestContextBench-Py,940748,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L2,2,oracle_0001,assert,11,8,"        # Assertions to check the behavior of the function
+        assert mock_savez.called_once_with(""test_file.npz"", ""vip"")
+        assert isinstance(mock_savez.call_args[0], tuple)",,,
+validation_v4_0041,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:648623:2,TestContextBench-Py,648623,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L1,2,oracle_0002,assert,13,4,"    assert isinstance(result, list)
+    assert len(result) == 1
+    assert result[0].error_code == ""missing""
+    assert result[0].message == ""col2""",,,
+validation_v4_0042,linecov_gemma-4-E4B-it_temp_0.0:613377:2,TestContextBench-Py,613377,google/gemma-4-E4B-it,single-step,A,L3,2,oracle_0002,assert,26,8,"        print(f""Test result: {result}"")
+        assert True # Placeholder assertion because the function body is empty",,,
+validation_v4_0043,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:684409:2,TestContextBench-Py,684409,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L1,2,oracle_0003,assert,16,4,"    assert mock_query == mock_query
+    assert mock_hash == mock_hash
+    assert mock_job is None",,,
+validation_v4_0044,linecov_granite-4.0-micro_temp_0.0:135299:2,TestContextBench-Py,135299,ibm-granite/granite-4.0-micro,single-step,C,L3,2,oracle_0002,assert,52,8,"        assert isinstance(result, np.ndarray)
+        assert result.shape == (100, 100)",,,
+validation_v4_0045,linecov2_granite-4.0-micro_temp_0.0:15584:2,TestContextBench-Py,15584,ibm-granite/granite-4.0-micro,two-step,A,L1,2,oracle_0001,assert,12,4,"    result = sol()._join_text_at_seam([[{""key"": ""value""}], [{""another_key"": ""another_value""}]])
+    assert result is None",,,
+validation_v4_0046,linecov2_granite-4.0-micro_temp_0.0:580679:2,TestContextBench-Py,580679,ibm-granite/granite-4.0-micro,two-step,C,L2,2,oracle_0001,mock_contract,10,4,"    solution.print_algo_params(params)
+    solution.assert_called_once_with(params)",,,
+validation_v4_0047,linecov_granite-4.0-micro_temp_0.0:857693:2,TestContextBench-Py,857693,ibm-granite/granite-4.0-micro,single-step,A,L2,2,oracle_0001,assert,11,8,"    except Exception as e:
+        assert False, str(e)
+
+    # Test invalid file upload (closed file object)",,,
+validation_v4_0048,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:431957:2,TestContextBench-Py,431957,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L2,2,oracle_0001,assert,14,4,"    result = solution.structure_from_task(udfs=[mock_udf], task=mock_task)
+    assert isinstance(result, dict)",,,
+validation_v4_0049,linecov2_granite-4.0-micro_temp_0.0:651815:2,TestContextBench-Py,651815,ibm-granite/granite-4.0-micro,two-step,C,L1,2,oracle_0003,assert,22,4,"    dummy_msg = DummyMessage()
+    assert solution._extract_message_id(dummy_msg) == 789",,,
+validation_v4_0050,linecov_Qwen3.5-4B_temp_0.0:857769:2,TestContextBench-Py,857769,Qwen/Qwen3.5-4B,single-step,A,L3,2,oracle_0001,assert,6,4,"    result = solution._check_message(""Hello World!"")
+    assert isinstance(result, type(None)) or result == None
+
+    # Test blocking message (returns string)",,,
+validation_v4_0051,linecov2_granite-4.0-micro_temp_0.0:314239:2,TestContextBench-Py,314239,ibm-granite/granite-4.0-micro,two-step,B,L1,2,oracle_0001,assert,16,4,"    # simply asserting that the call completes without raising an exception suffices.
+    assert True",,,
+validation_v4_0052,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:135299:2,TestContextBench-Py,135299,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0004,assert,24,8,"        assert np.allclose(mock_inverse.call_args[0][0].shape, (2, 2)), ""Inverse map shape mismatch""
+        assert np.allclose(mock_inverse.call_args[0][1].shape, (1,)), ""Angle list shape mismatch""
+        assert np.allclose(mock_stim.call_args[0][0].shape, (2, 2)), ""Derotated cube shape mismatch""
+        assert np.allclose(mock_stim.call_args[0][1].shape, (2, 2)), ""Detection map shape mismatch""",,,
+validation_v4_0053,linecov2_Qwen3.5-4B_temp_0.0:556842:2,TestContextBench-Py,556842,Qwen/Qwen3.5-4B,two-step,C,L1,2,oracle_0002,assert,17,12,"        except Exception as e:
+            assert False, f""_load_env failed unexpectedly: {e}""",,,
+validation_v4_0054,linecov2_granite-4.0-micro_temp_0.0:468885:2,TestContextBench-Py,468885,ibm-granite/granite-4.0-micro,two-step,A,L2,2,oracle_0001,assert,4,4,"    solution = Solution()
+    assert solution.naturalday(date.today()) == ""Oct 31""",,,
+validation_v4_0055,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:188702:2,TestContextBench-Py,188702,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L0,2,oracle_0001,assert,8,8,"        solution.apply_filter(""test"")
+        assert mock_reload.called_once, ""Reload sorted was called once""",,,
+validation_v4_0056,linecov2_granite-4.0-micro_temp_0.0:597643:2,TestContextBench-Py,597643,ibm-granite/granite-4.0-micro,two-step,B,L1,2,oracle_0001,assert,6,4,"    result = await solution._search_all(""example"")
+    assert isinstance(result, dict)",,,
+validation_v4_0057,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:106120:2,TestContextBench-Py,106120,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L2,2,oracle_0001,assert,30,4,"    # Assertions
+    assert len(result) == 1
+    assert result[0].id == ""file1.txt""",,,
+validation_v4_0058,linecov2_granite-4.0-micro_temp_0.0:940748:2,TestContextBench-Py,940748,ibm-granite/granite-4.0-micro,two-step,B,L2,2,oracle_0001,assert,8,4,"    saved_data = np.load(sol.filename)
+    assert np.all(saved_data['a'] == np.array([1, 2]))
+    assert np.all(saved_data['b'] == np.array([3, 4]))",,,
+validation_v4_0059,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:556842:2,TestContextBench-Py,556842,Qwen/Qwen3-4B-Thinking-2507,two-step,C,L1,2,oracle_0001,assert,6,8,"        # Verify that the function worked without errors
+        assert True",,,
+validation_v4_0060,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:875127:2,TestContextBench-Py,875127,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0002,assert,12,8,"        assert mock_convert.called_once_with('/test/video.mp4')
+        assert mock_save.called_once_with([], '/some/dir', '/output', ['frame1'], 5)",,,
+validation_v4_0061,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:980372:2,TestContextBench-Py,980372,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L0,2,oracle_0002,assert,17,4,"    assert isinstance(result, CoreCheckResult)
+    assert result.result == ""nullable""",,,
+validation_v4_0062,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:408604:2,TestContextBench-Py,408604,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L3,2,oracle_0001,assert,34,4,"    result = solution.stringify_path(file_path)
+    assert result == ""/home/user/file.txt""
+
+    # Test with a BaseBufferT object",,,
+validation_v4_0063,linecov_Qwen3.5-4B_temp_0.0:25953:2,TestContextBench-Py,25953,Qwen/Qwen3.5-4B,single-step,B,L0,2,oracle_0001,assert,4,4,"    result=solution.shares_add(object_type=""file"", object_id=""abc123"", email=""test@example.com"")
+    assert True",,,
+validation_v4_0064,linecov_Qwen3.5-4B_temp_0.0:854607:2,TestContextBench-Py,854607,Qwen/Qwen3.5-4B,single-step,A,L3,2,oracle_0001,assert,5,12,"            result = solution._write_health(""healthy"")
+            assert True # Just ensures execution",,,
+validation_v4_0065,linecov2_Qwen3.5-4B_temp_0.0:608304:2,TestContextBench-Py,608304,Qwen/Qwen3.5-4B,two-step,C,L2,2,oracle_0001,assert,20,8,"        # Step 5: Verify the method completed without raising an exception
+        assert True
+
+    except Exception as e:",,,
+validation_v4_0066,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:318568:2,TestContextBench-Py,318568,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L3,2,oracle_0001,assert,4,4,"    result = solution.file_exists(""example.txt"")
+    assert isinstance(result, bool)",,,
+validation_v4_0067,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:764139:2,TestContextBench-Py,764139,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L1,2,oracle_0001,assert,20,4,"    solution = Solution()
+    assert solution.type_name(""hello"") == ""string""",,,
+validation_v4_0068,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:928406:2,TestContextBench-Py,928406,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L3,2,oracle_0001,assert,17,4,"    solution = Solution()
+    assert solution.validate_shape_expression(expr_obj) == ""expected_result""  # Replace with actual expected result
+    assert solution.validate_shape_expression(expr_tuple) == ""expected_result""  # Replace with actual expected result
+    assert solution.validate_shape_expression(expr_any) == ""expected_result""  # Replace with actual expected result",,,
+validation_v4_0069,linecov_Qwen3.5-4B_temp_0.0:875127:2,TestContextBench-Py,875127,Qwen/Qwen3.5-4B,single-step,B,L3,2,oracle_0001,assert,10,12,"
+            assert mock_convert.called
+            assert mock_save.called",,,
+validation_v4_0070,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:181000:2,TestContextBench-Py,181000,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L3,2,oracle_0001,assert,10,12,"
+            assert mock_close.called_once_with(mock_client, 1, 2, ""done"")
+            assert mock_close.called_once_with(mock_client, 1, 2, ""dead"")",,,
+validation_v4_0071,linecov2_Qwen3.5-4B_temp_0.0:33700:2,TestContextBench-Py,33700,Qwen/Qwen3.5-4B,two-step,B,L2,2,oracle_0001,assert,28,4,"    # Assert that the method returned something of the expected type
+    assert isinstance(result, UnstructureHook)",,,
+validation_v4_0072,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:772390:2,TestContextBench-Py,772390,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L2,2,oracle_0001,assert,16,8,"        # Assertions - check if the file pointer was reset correctly
+        assert mock_file_pointer.reset == True",,,
+validation_v4_0073,linecov2_Qwen3.5-4B_temp_0.0:980372:2,TestContextBench-Py,980372,Qwen/Qwen3.5-4B,two-step,C,L0,2,oracle_0001,unittest_assertion,52,12,"            # Verify execution succeeded
+            self.assertTrue(True)",,,
+validation_v4_0074,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:303099:2,TestContextBench-Py,303099,Qwen/Qwen3-4B-Thinking-2507,two-step,B,L3,2,oracle_0001,assert,31,8,"        # Check the result type (we assume it returns a tuple of two arrays)
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+        assert result[0].shape == (10, 10)",,,
+validation_v4_0075,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:857769:2,TestContextBench-Py,857769,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L3,2,oracle_0001,assert,9,4,"    solution = Solution()
+    assert isinstance(solution._check_message(""valid""), str)",,,
+validation_v4_0076,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:124282:2,TestContextBench-Py,124282,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L1,2,oracle_0003,assert,23,8,"        assert mock_fsync.called_once()
+        assert mock_rename.called_once()
+
+        print(""Test passed!"")",,,
+validation_v4_0077,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:784104:2,TestContextBench-Py,784104,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L2,2,oracle_0001,assert,13,4,"def test_validate_input(input, expected):
+    assert input == expected",,,
+validation_v4_0078,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:285912:2,TestContextBench-Py,285912,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L1,2,oracle_0004,assert,37,4,"    # Test with non-integer that should be ignored
+    assert some_other_function(solution, ""exec:to=abc"") == 10",,,
+validation_v4_0079,linecov_Qwen3.5-4B_temp_0.0:876360:2,TestContextBench-Py,876360,Qwen/Qwen3.5-4B,single-step,C,L0,2,oracle_0001,assert,4,16,"                result = solution.verbose_name()
+                assert isinstance(result, str)",,,
+validation_v4_0080,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:28838:2,TestContextBench-Py,28838,Qwen/Qwen3-4B-Thinking-2507,two-step,B,L0,2,oracle_0001,assert,18,4,"    # Assuming the test passes if the method is called without raising exceptions.
+    assert True",,,
+validation_v4_0081,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:181000:2,TestContextBench-Py,181000,Qwen/Qwen3-4B-Thinking-2507,two-step,C,L3,2,oracle_0001,mock_contract,13,4,"    # Check that the helper method was called
+    mock_client.return_value._close_expired_topic.assert_called_once_with(...)",,,
+validation_v4_0082,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:303099:2,TestContextBench-Py,303099,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0001,assert,23,8,"
+        assert isinstance(result, np.ndarray)
+        assert len(result) == 10
+        assert all(np.isclose(result[i], i * (5 / 3), atol=1e-5) for i in range(10))",,,
+validation_v4_0083,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:891880:2,TestContextBench-Py,891880,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L3,2,oracle_0003,assert,25,8,"        # Assertions for invalid case
+        assert invalid_shape.is_valid.called_once_with()",,,
+validation_v4_0084,linecov2_Qwen3.5-4B_temp_0.0:232504:2,TestContextBench-Py,232504,Qwen/Qwen3.5-4B,two-step,A,L2,2,oracle_0003,assert,26,4,"    assert hasattr(solution, 'gelman_rubin')
+    assert x.ndim >= 1  # At least 1 dimension
+    assert x.shape[0] > 0
+",,,
+validation_v4_0085,linecov_Qwen3.5-4B_temp_0.0:720865:2,TestContextBench-Py,720865,Qwen/Qwen3.5-4B,single-step,B,L3,2,oracle_0002,assert,14,8,"        assert isinstance(result, dict)
+        assert result[""ip""] == ""192.168.1.1""
+
+    # Test failed API response",,,
+validation_v4_0086,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:438831:2,TestContextBench-Py,438831,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L0,2,oracle_0001,assert,9,8,"        result = solution.grep(args={'pattern': 'test'})
+        assert result == 'found in file1.txt'",,,
+validation_v4_0087,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:857769:2,TestContextBench-Py,857769,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L3,2,oracle_0001,assert,4,4,"    result = solution._check_message(""valid message"")
+    assert result is None",,,
+validation_v4_0088,linecov2_Qwen3.5-4B_temp_0.0:505574:2,TestContextBench-Py,505574,Qwen/Qwen3.5-4B,two-step,C,L0,2,oracle_0001,mock_contract,18,4,"    # Verify the mock was called with the correct input
+    mock_json_loads.assert_called_once_with('{""key"": ""value""}')
+
+    # Assert the returned value matches our mock configuration",,,
+validation_v4_0089,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:606653:2,TestContextBench-Py,606653,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L0,2,oracle_0001,exception_contract,6,4,"def mock_coerce_dtype() -> ""Solution"":
+    with pytest.raises(TypeError):
+        pass
+",,,
+validation_v4_0090,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:322363:2,TestContextBench-Py,322363,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L1,2,oracle_0002,assert,72,8,"         patch.object(solution, '_is_subpath') as mock_method:
+        assert solution.is_subpath(""/a/b/c"", ""/a/b/c/d"") == False
+
+    # Test case where child has same name but different case on Windows",,,
+validation_v4_0091,linecov_Qwen3.5-4B_temp_0.0:407255:2,TestContextBench-Py,407255,Qwen/Qwen3.5-4B,single-step,C,L2,2,oracle_0001,assert,13,8,"        result = asyncio.run(solution.user_can_manage(folder_id, user_id))
+        assert isinstance(result, bool)",,,
+validation_v4_0092,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:277479:2,TestContextBench-Py,277479,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L2,2,oracle_0001,assert,12,4,"    result = solution.bkg_star_proba(n_dens, sep, n_bkg, unit)
+    assert isinstance(result, float)",,,
+validation_v4_0093,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:221252:2,TestContextBench-Py,221252,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L1,2,oracle_0003,assert,17,16,"                solution.read(5, timeout_s=1)
+                assert False, ""Expected TimeoutError""
+            except TimeoutError:
+                pass",,,
+validation_v4_0094,linecov2_Qwen3.5-4B_temp_0.0:653235:2,TestContextBench-Py,653235,Qwen/Qwen3.5-4B,two-step,C,L1,2,oracle_0001,assert,14,4,"    # Assert that result is a non-empty string (based on docstring description)
+    assert isinstance(result, str)
+    assert len(result) > 0
+",,,
+validation_v4_0095,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:263706:2,TestContextBench-Py,263706,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L0,2,oracle_0003,assert,11,4,"    # Test with a boolean
+    assert solution._sanitize_value(True) == True
+
+    # Test with None",,,
+validation_v4_0096,linecov_gemma-4-E4B-it_temp_0.0:63963:2,TestContextBench-Py,63963,google/gemma-4-E4B-it,single-step,C,L0,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.unquote_header_value(""test%20value"") == ""test value""",,,
+validation_v4_0097,linecov_gemma-4-E4B-it_temp_0.0:168047:2,TestContextBench-Py,168047,google/gemma-4-E4B-it,single-step,A,L2,2,oracle_0001,assert,10,4,"    result = solution._check_monotonic_cst(estimator, monotonic_cst=None)
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, np.array([0, 0, 0]))
+",,,
+validation_v4_0098,linecov_Qwen3.5-4B_temp_0.0:432562:2,TestContextBench-Py,432562,Qwen/Qwen3.5-4B,single-step,A,L3,2,oracle_0001,assert,36,8,"
+        assert isinstance(df_result, pd.DataFrame)
+        assert set(df_result.columns) == {'target_name', 'binder_name'}
+        assert len(df_result) <= 2",,,
+validation_v4_0099,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:61794:2,TestContextBench-Py,61794,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L3,2,oracle_0002,assert,33,4,"    # Test case where min_unit is suppressed and the next unit is available
+    assert solution._suitable_minimum_unit(Unit.HOURS, [Unit.HOURS]) == Unit.DAYS
+
+    # Test case where min_unit is suppressed and the next two units are also suppressed",,,
+validation_v4_0100,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:571379:2,TestContextBench-Py,571379,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L2,2,oracle_0002,assert,15,4,"    result = solution.is_potential_multi_index(multi_index)
+    assert isinstance(result, bool)
+
+    # Test case where index_col is specified as a boolean",,,
+validation_v4_0101,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:242826:2,TestContextBench-Py,242826,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L1,2,oracle_0002,assert,16,4,"    assert isinstance(result, tuple)
+    assert len(result) == 2",,,
+validation_v4_0102,linecov2_Qwen3.5-4B_temp_0.0:263929:2,TestContextBench-Py,263929,Qwen/Qwen3.5-4B,two-step,B,L0,2,oracle_0002,assert,21,4,"    assert isinstance(result, dict)
+    assert len(result) > 0
+
+    print(""Chargeback breakdown completed successfully"")",,,
+validation_v4_0103,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:340725:2,TestContextBench-Py,340725,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0003,assert,20,12,"            assert mock_ensure_flow_exists.called_once_with()
+            assert mock_resolve_spec_id_arg.called_once_with(Path('/tmp/repo'), None)
+            assert mock_now_iso.called_once_with()
+            assert mock_atomic_write_json.called_once_with(",,,
+validation_v4_0104,linecov_gemma-4-E4B-it_temp_0.0:420569:2,TestContextBench-Py,420569,google/gemma-4-E4B-it,single-step,B,L0,2,oracle_0001,assert,7,8,"        result = solution.load(""csv"", ""path/to/data.csv"", enable_async=True, executor=MockExecutor())
+        assert result == None # Assuming the mocked behavior returns None if we can't inspect the actual return value easily in this setup",,,
+validation_v4_0105,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:252302:2,TestContextBench-Py,252302,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L1,2,oracle_0003,assert,25,8,"        solution.set_environ(""test_env"", None)
+        assert mock_env[""test_env""] == original_value",,,
+validation_v4_0106,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:103977:2,TestContextBench-Py,103977,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L2,2,oracle_0002,assert,8,4,"    # Test case where typing is throttled because of insufficient time has passed
+    assert solution.is_typing_throttled(1, 2) == True",,,
+validation_v4_0107,linecov2_granite-4.0-micro_temp_0.0:200541:2,TestContextBench-Py,200541,ibm-granite/granite-4.0-micro,two-step,B,L0,2,oracle_0001,assert,13,4,"    # Verify that the method was indeed called (line 2 is now reachable/executed)
+    assert True",,,
+validation_v4_0108,linecov_gemma-4-E4B-it_temp_0.0:61794:2,TestContextBench-Py,61794,google/gemma-4-E4B-it,single-step,A,L3,2,oracle_0003,assert,25,4,"    result = solution._suitable_minimum_unit(MockUnit.HOURS, [MockUnit.HOURS, MockUnit.DAYS])
+    assert result == MockUnit.MONTHS",,,
+validation_v4_0109,linecov2_granite-4.0-micro_temp_0.0:611952:2,TestContextBench-Py,611952,ibm-granite/granite-4.0-micro,two-step,B,L2,2,oracle_0001,assert,17,4,"    # Verify that no exception was raised (assuming the method runs correctly)
+    assert True",,,
+validation_v4_0110,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:891880:2,TestContextBench-Py,891880,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L3,2,oracle_0001,assert,13,12,"            solution.validate_shape_expression(valid_shape)
+            assert True
+        except Exception as e:
+            assert False, f""Unexpected exception raised: {e}""",,,
+validation_v4_0111,linecov_Qwen3.5-4B_temp_0.0:105072:2,TestContextBench-Py,105072,Qwen/Qwen3.5-4B,single-step,B,L2,2,oracle_0001,assert,4,4,"    result = solution.run(dataset=None, nproc=2)
+    assert True",,,
+validation_v4_0112,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:330041:2,TestContextBench-Py,330041,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L1,2,oracle_0001,assert,5,4,"    # Test with valid ISO timestamp
+    assert solution._format_timestamp(""2023-10-05T14:30:00"") == ""14:30""
+
+    # Test with invalid timestamp format",,,
+validation_v4_0113,linecov2_Qwen3.5-4B_temp_0.0:611952:2,TestContextBench-Py,611952,Qwen/Qwen3.5-4B,two-step,B,L2,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0114,linecov_Qwen3.5-4B_temp_0.0:784104:2,TestContextBench-Py,784104,Qwen/Qwen3.5-4B,single-step,C,L2,2,oracle_0001,assert,10,4,"    result = solution.pytest_marks()
+    assert isinstance(result, list)",,,
+validation_v4_0115,linecov2_gemma-4-E4B-it_temp_0.0:420954:2,TestContextBench-Py,420954,google/gemma-4-E4B-it,two-step,C,L1,2,oracle_0001,exception_contract,11,4,"    import pytest
+    with pytest.raises(StopIteration): # Placeholder if the internal logic raises StopIteration due to '...'
+         pass # Or assert result == [...] if we knew the mocked behavior",,,
+validation_v4_0116,linecov_Qwen3.5-4B_temp_0.0:567124:2,TestContextBench-Py,567124,Qwen/Qwen3.5-4B,single-step,B,L2,2,oracle_0001,assert,11,4,"    result = asyncio.run(solution._require_owner(obj_type, obj_uuid, user_uuid))
+    assert isinstance(result, UUID)",,,
+validation_v4_0117,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:696476:2,TestContextBench-Py,696476,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L0,2,oracle_0001,assert,6,8,"        solution.set_batch_mode(""test_window"", ""batch"")
+        assert mock_get.called_once_with(""test_window"")
+        assert mock_solution.mode == ""batch""",,,
+validation_v4_0118,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:263706:2,TestContextBench-Py,263706,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L0,2,oracle_0002,assert,10,4,"    result = solution._sanitize_json_serializable_string(""hello"")
+    assert result == ""hello""
+
+    # Test case where val is None",,,
+validation_v4_0119,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:569686:2,TestContextBench-Py,569686,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L2,2,oracle_0004,assert,9,4,"    assert result[0] == ""gzip""
+    assert result[1] is None",,,
+validation_v4_0120,linecov2_Qwen3.5-4B_temp_0.0:507696:2,TestContextBench-Py,507696,Qwen/Qwen3.5-4B,two-step,A,L2,2,oracle_0001,assert,3,8,"        solution = Solution()
+        assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0121,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:760884:2,TestContextBench-Py,760884,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L0,2,oracle_0001,assert,31,8,"        result = solution._parse_content_type_header(""text/html; charset=utf-8"")
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+        assert result[0] == ""text/html""",,,
+validation_v4_0122,linecov2_Qwen3.5-4B_temp_0.0:525970:2,TestContextBench-Py,525970,Qwen/Qwen3.5-4B,two-step,A,L3,2,oracle_0002,assert,5,4,"    assert hasattr(solution, '_check_methods')
+    assert callable(getattr(solution, '_check_methods'))
+
+    # Optionally test subclass validation",,,
+validation_v4_0123,linecov_granite-4.0-micro_temp_0.0:864158:2,TestContextBench-Py,864158,ibm-granite/granite-4.0-micro,single-step,B,L3,2,oracle_0003,assert,35,8,"        )
+        assert result == (1, 12)",,,
+validation_v4_0124,linecov2_gemma-4-E4B-it_temp_0.0:871214:2,TestContextBench-Py,871214,google/gemma-4-E4B-it,two-step,C,L0,2,oracle_0002,assert,26,4,"    assert isinstance(result, dict)
+    assert ""descriptor_name"" in result
+
+    # Optional check demonstrating passing conf_id explicitly (satisfying Step 4 alternative)",,,
+validation_v4_0125,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:316020:2,TestContextBench-Py,316020,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L1,2,oracle_0001,assert,12,8,"        result = solution.infer_filename()
+        assert result == ""test"" if mock_zip.get_archive_name.return_value is None else f""{mock_zip.name}.{mock_zip.get_archive_name()}""",,,
+validation_v4_0126,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:360176:2,TestContextBench-Py,360176,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0002,assert,13,8,"        assert mock_popen.called_once_with(""sglang"", ""server"")
+        assert mock_process.wait_ready.called_once_with(5 * 60)
+        assert mock_sleep.called_once_with(MINUTES)
+        assert mock_warmup.called_once_with()",,,
+validation_v4_0127,linecov_gemma-4-E4B-it_temp_0.0:206473:2,TestContextBench-Py,206473,google/gemma-4-E4B-it,single-step,C,L3,2,oracle_0002,mock_contract,36,4,"    assert result == ""Successfully purged page with ID abc-123: Purge successful""
+    mock_client_instance.delete.assert_called_once_with(""page"", ""abc-123"")",,,
+validation_v4_0128,linecov_gemma-4-E4B-it_temp_0.0:569405:2,TestContextBench-Py,569405,google/gemma-4-E4B-it,single-step,B,L3,2,oracle_0002,mock_contract,9,8,"        assert result == expected
+        mock_parse.assert_called_once_with(""text/html; charset=utf-8"")",,,
+validation_v4_0129,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:360176:2,TestContextBench-Py,360176,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L3,2,oracle_0004,assert,19,8,"        assert mock_warm_up.called_once_with()
+        assert mock_sleep.called_once_with(5)",,,
+validation_v4_0130,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:431957:2,TestContextBench-Py,431957,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L2,2,oracle_0002,assert,17,4,"    assert isinstance(result, dict)
+    assert len(result) == 1
+    assert ""buffer_name"" in result
+    assert isinstance(result[""buffer_name""], dict)",,,
+validation_v4_0131,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:399611:2,TestContextBench-Py,399611,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L1,2,oracle_0002,assert,27,4,"    # Test case where no two numbers add up to the target
+    assert solution.twoSum([3, 2, 4], 6) == []",,,
+validation_v4_0132,linecov_granite-4.0-micro_temp_0.0:200541:2,TestContextBench-Py,200541,ibm-granite/granite-4.0-micro,single-step,C,L0,2,oracle_0001,assert,18,4,"
+    assert sock.connect.called_once_with((""example.com"", 389))
+    assert sock.sendall.called_once",,,
+validation_v4_0133,linecov2_gemma-4-E4B-it_temp_0.0:11075:2,TestContextBench-Py,11075,google/gemma-4-E4B-it,two-step,B,L2,2,oracle_0001,assert,27,8,"        # Assertions would typically check the result or side effects here, but based purely on satisfying the execution path:
+        assert True",,,
+validation_v4_0134,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:325306:2,TestContextBench-Py,325306,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0009,mock_contract,29,8,"        mock_load_json.assert_not_called()
+        mock_canonicalize_task_for_write.assert_not_called()
+        mock_atomic_write_json.assert_not_called()",,,
+validation_v4_0135,linecov2_Qwen3.5-4B_temp_0.0:940748:2,TestContextBench-Py,940748,Qwen/Qwen3.5-4B,two-step,A,L2,2,oracle_0001,assert,5,4,"    solution = Solution()
+    assert hasattr(solution, 'save')
+
+    # Test that the method signature accepts a filename parameter",,,
+validation_v4_0136,linecov2_gemma-4-E4B-it_temp_0.0:638151:2,TestContextBench-Py,638151,google/gemma-4-E4B-it,two-step,B,L2,2,oracle_0001,assert,11,4,"    result_df = solution._get_feature_names(df)
+    assert result_df is not None # Or assert result_df == ['featureA', 'featureB'] depending on full implementation details",,,
+validation_v4_0137,linecov_gemma-4-E4B-it_temp_0.0:980372:2,TestContextBench-Py,980372,google/gemma-4-E4B-it,single-step,A,L0,2,oracle_0001,assert,13,4,"    result = solution.check_nullable(check_obj, schema)
+    assert isinstance(result, MockCoreCheckResult)",,,
+validation_v4_0138,linecov2_Qwen3.5-4B_temp_0.0:300082:2,TestContextBench-Py,300082,Qwen/Qwen3.5-4B,two-step,A,L1,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0139,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:232504:2,TestContextBench-Py,232504,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L2,2,oracle_0001,assert,18,8,"
+        assert isinstance(result, float), ""Result should be a float""
+        assert result > 0, ""Gelman-Rubin value should be positive""
+",,,
+validation_v4_0140,linecov_gemma-4-E4B-it_temp_0.0:467622:2,TestContextBench-Py,467622,google/gemma-4-E4B-it,single-step,A,L1,2,oracle_0001,assert,14,12,"            result = await solution.get_best_solution()
+            assert result == expected_result
+    asyncio.run(run_test())",,,
+validation_v4_0141,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:244843:2,TestContextBench-Py,244843,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L2,2,oracle_0006,assert,20,4,"    # Test if an integer is NOT considered array-like
+    assert solution._is_arraylike(5) == False
+
+    # Test if a float is NOT considered array-like",,,
+validation_v4_0142,linecov2_gemma-4-E4B-it_temp_0.0:579283:2,TestContextBench-Py,579283,google/gemma-4-E4B-it,two-step,B,L0,2,oracle_0001,assert,9,4,"    # A simple check ensures the call structure is correct.
+    assert isinstance(result, (str, type(None)))",,,
+validation_v4_0143,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:285912:2,TestContextBench-Py,285912,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L1,2,oracle_0002,assert,33,4,"    # Test with invalid command that doesn't change timeout
+    assert some_other_function(solution, ""invalid:command"") == 10
+    # Test with negative number that should be clamped to 0
+    assert some_other_function(solution, ""exec:to=-3"") == 0",,,
+validation_v4_0144,linecov2_Qwen3.5-4B_temp_0.0:538729:2,TestContextBench-Py,538729,Qwen/Qwen3.5-4B,two-step,B,L0,2,oracle_0002,assert,13,4,"    assert isinstance(result, dict)
+    assert isinstance(all_dims, set)
+    assert isinstance(sizes, dict)
+    assert isinstance(default_size, int)",,,
+validation_v4_0145,linecov2_Qwen3.5-4B_temp_0.0:556842:2,TestContextBench-Py,556842,Qwen/Qwen3.5-4B,two-step,C,L1,2,oracle_0001,assert,15,12,"            solution._load_env()
+            assert True
+        except Exception as e:
+            assert False, f""_load_env failed unexpectedly: {e}""",,,
+validation_v4_0146,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:242826:2,TestContextBench-Py,242826,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L1,2,oracle_0002,assert,26,8,"        assert isinstance(result, tuple)
+        assert len(result) == 2
+        assert isinstance(result[0], Table)
+        assert isinstance(result[1], Table)",,,
+validation_v4_0147,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:200541:2,TestContextBench-Py,200541,Qwen/Qwen3-4B-Thinking-2507,two-step,B,L0,2,oracle_0001,assert,6,4,"    # Check if the method completes without raising errors
+    assert True",,,
+validation_v4_0148,linecov2_Qwen3.5-4B_temp_0.0:298296:2,TestContextBench-Py,298296,Qwen/Qwen3.5-4B,two-step,C,L3,2,oracle_0001,assert,19,4,"
+    assert True  # Basic assertion to pass the test",,,
+validation_v4_0149,linecov_gemma-4-E4B-it_temp_0.0:701185:2,TestContextBench-Py,701185,google/gemma-4-E4B-it,single-step,C,L0,2,oracle_0003,mock_contract,31,8,"        result_json = solution.output_fn(output_df, ""json"")
+        mock_to_json.assert_called_once()
+        assert result_json == output_df.to_json()",,,
+validation_v4_0150,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:308018:2,TestContextBench-Py,308018,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L3,2,oracle_0005,assert,17,8,"        assert isinstance(result[0], str), ""First element of result should be string in error case too""
+        assert result[1] == False, ""Second element of result should be False if memory mapping failed""
+        assert len(result[2]) >= 1, ""Third element of result should have at least one error message when an exception occurs""",,,
+validation_v4_0151,linecov_gemma-4-E4B-it_temp_0.0:452563:2,TestContextBench-Py,452563,google/gemma-4-E4B-it,single-step,A,L2,2,oracle_0001,assert,11,4,"    result = solution._leastsq_patch(ayxyx, pa_thresholds, angles, metric, dist_threshold, solver, tol)
+    assert result is None # Assuming the function returns None if no specific return value is documented/implied by context",,,
+validation_v4_0152,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:168047:2,TestContextBench-Py,168047,Qwen/Qwen3-4B-Thinking-2507,two-step,A,L2,2,oracle_0002,assert,17,4,"    assert isinstance(result, np.ndarray)
+    assert result.shape == (2,)
+    np.testing.assert_array_equal(result, np.zeros(2))",,,
+validation_v4_0153,linecov2_Qwen3.5-4B_temp_0.0:720865:2,TestContextBench-Py,720865,Qwen/Qwen3.5-4B,two-step,A,L3,2,oracle_0004,assert,30,4,"    result = solution.fetch_blocklist_data(""10.0.0.1"")
+    assert isinstance(result, dict)
+    assert result.get(""blocked_ips"") is None",,,
+validation_v4_0154,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:844416:2,TestContextBench-Py,844416,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L0,2,oracle_0002,assert,22,8,"        assert isinstance(result, type(mock_array()))
+        assert mock_udftilemixing.process_tile.called_once_with(mock_partion, mock_tile)",,,
+validation_v4_0155,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:704451:2,TestContextBench-Py,704451,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L1,2,oracle_0003,assert,6,4,"    assert len(result) == 2
+    assert result[0] is None
+    assert result[1] == ""SKIP""",,,
+validation_v4_0156,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:285912:2,TestContextBench-Py,285912,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L1,2,oracle_0004,assert,37,4,"    # Test with non-integer that should be ignored
+    assert some_other_function(solution, ""exec:to=abc"") == 10",,,
+validation_v4_0157,linecov_granite-4.0-micro_temp_0.0:569837:2,TestContextBench-Py,569837,ibm-granite/granite-4.0-micro,single-step,B,L0,2,oracle_0001,assert,12,12,"            solution._check_large_sparse(mocked_array, accept_large_sparse=False)
+            assert False, ""Expected ValueError""
+        except ValueError:
+            pass",,,
+validation_v4_0158,linecov_Qwen3.5-4B_temp_0.0:653235:2,TestContextBench-Py,653235,Qwen/Qwen3.5-4B,single-step,B,L1,2,oracle_0002,assert,14,4,"    result_with_chunks = solution.build_retrieved_context(chunks)
+    assert isinstance(result_with_chunks, str)",,,
+validation_v4_0159,linecov2_granite-4.0-micro_temp_0.0:751764:2,TestContextBench-Py,751764,ibm-granite/granite-4.0-micro,two-step,A,L3,2,oracle_0001,assert,9,4,"    result = solution_instance.validate_strategy_frontmatter({'name': 'Test Strategy', 'last_updated': '2023-01-01'})
+    assert result == []",,,
+validation_v4_0160,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:340725:2,TestContextBench-Py,340725,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0005,assert,22,12,"            assert mock_now_iso.called_once_with()
+            assert mock_atomic_write_json.called_once_with(
+                Path('/tmp/repo/.flow/sync-runs/2023-01-01T00:00:00Z/spec-canonical.json'),
+                {'type': 'sync', 'status': 'noop'}",,,
+validation_v4_0161,linecov2_Qwen3.5-4B_temp_0.0:940748:2,TestContextBench-Py,940748,Qwen/Qwen3.5-4B,two-step,A,L2,2,oracle_0002,assert,17,4,"
+    assert True  # Class structure validation passed",,,
+validation_v4_0162,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:639154:2,TestContextBench-Py,639154,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L3,2,oracle_0001,assert,8,4,"def test_validate_task_spec_headings(solution):
+    assert isinstance(content, str)",,,
+validation_v4_0163,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:624137:2,TestContextBench-Py,624137,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L0,2,oracle_0001,assert,20,8,"        # Assertions
+        assert mock_connection.get_connection.called_once_with(""model_server"")
+        assert mock_response in [mock_connection.get_connection.call_args_list[0][0][0]]
+        assert mock_metrics.add_time.called_once_with(1.0)",,,
+validation_v4_0164,linecov2_granite-4.0-micro_temp_0.0:611952:2,TestContextBench-Py,611952,ibm-granite/granite-4.0-micro,two-step,A,L2,2,oracle_0001,assert,17,4,"    # Verify that no exception was raised (assuming the method runs correctly)
+    assert True",,,
+validation_v4_0165,linecov_gemma-4-E4B-it_temp_0.0:105072:2,TestContextBench-Py,105072,google/gemma-4-E4B-it,single-step,B,L2,2,oracle_0001,assert,9,8,"        # For now, just ensuring no immediate error occurs based on signature coverage
+        assert True",,,
+validation_v4_0166,linecov2_granite-4.0-micro_temp_0.0:615718:2,TestContextBench-Py,615718,ibm-granite/granite-4.0-micro,two-step,A,L1,2,oracle_0001,assert,6,4,"    result = await solution_instance.get_chart_shelf_tracks(""sample_playlist"", 10)
+    assert isinstance(result, list)",,,
+validation_v4_0167,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:263706:2,TestContextBench-Py,263706,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L0,2,oracle_0006,assert,20,4,"    # Test that the function converts a dictionary to a dictionary
+    assert solution._sanetize_value({""a"": 1}) == {""a"": 1}",,,
+validation_v4_0168,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:625299:2,TestContextBench-Py,625299,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L3,2,oracle_0001,assert,43,8,"        # Assert that the method was called correctly
+        assert mock_method.called_once_with(mock_async_client, sample_block, 2)
+        assert isinstance(result, list)",,,
+validation_v4_0169,linecov2_Qwen3.5-4B_temp_0.0:606653:2,TestContextBench-Py,606653,Qwen/Qwen3.5-4B,two-step,C,L0,2,oracle_0001,assert,14,8,"        )
+        assert isinstance(result, dict)",,,
+validation_v4_0170,linecov_granite-4.0-micro_temp_0.0:624137:2,TestContextBench-Py,624137,ibm-granite/granite-4.0-micro,single-step,C,L0,2,oracle_0004,mock_contract,22,4,"    solution._DapClient__execute.assert_called_once_with(command, args)
+    Metrics.add_time.assert_called_once()",,,
+validation_v4_0171,linecov2_gemma-4-E4B-it_temp_0.0:844416:2,TestContextBench-Py,844416,google/gemma-4-E4B-it,two-step,B,L0,2,oracle_0002,assert,68,8,"        print(f""Method execution failed unexpectedly: {e}"")
+        assert False",,,
+validation_v4_0172,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:567124:2,TestContextBench-Py,567124,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L2,2,oracle_0001,assert,14,4,"    )
+    assert isinstance(result, UUID)",,,
+validation_v4_0173,linecov2_gemma-4-E4B-it_temp_0.0:648623:2,TestContextBench-Py,648623,google/gemma-4-E4B-it,two-step,A,L1,2,oracle_0001,assert,24,4,"    # Assertions based on successful invocation (since internal logic is mocked/unknown)
+    assert isinstance(result, list)",,,
+validation_v4_0174,linecov2_granite-4.0-micro_temp_0.0:492243:2,TestContextBench-Py,492243,ibm-granite/granite-4.0-micro,two-step,B,L0,2,oracle_0001,assert,4,4,"    result = solution.parse_dataset_with_version(""example_dataset"")
+    assert isinstance(result, tuple) and len(result) == 2",,,
+validation_v4_0175,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:91274:2,TestContextBench-Py,91274,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L2,2,oracle_0002,assert,19,8,"        assert isinstance(expected_rgba, np.ndarray)
+        assert expected_rgba.shape == (10, 10, 4)
+        assert np.allclose(expected_rgba[:, :, 0:3], np.random.rand(10, 10)), ""RGBA values do not match""
+        assert np.isnan(expected_rgba[:, :, 3]), ""Alpha channel is not NaN""",,,
+validation_v4_0176,linecov2_granite-4.0-micro_temp_0.0:632174:2,TestContextBench-Py,632174,ibm-granite/granite-4.0-micro,two-step,B,L3,2,oracle_0001,assert,4,4,"    result = solution.parse_list_header(""token, \""quoted value\"""")
+    assert result == [""token"", ""quoted value""]",,,
+validation_v4_0177,linecov2_Qwen3.5-4B_temp_0.0:254073:2,TestContextBench-Py,254073,Qwen/Qwen3.5-4B,two-step,C,L2,2,oracle_0001,assert,15,4,"    # Assert something meaningful happened
+    assert True  # Basic assertion to show the function ran",,,
+validation_v4_0178,linecov_gemma-4-E4B-it_temp_0.0:477443:2,TestContextBench-Py,477443,google/gemma-4-E4B-it,single-step,C,L0,2,oracle_0001,assert,15,4,"    result = solution.check_sizes(mock_check_obj, mock_schema)
+    assert isinstance(result, list)",,,
+validation_v4_0179,linecov_Qwen3.5-4B_temp_0.0:252302:2,TestContextBench-Py,252302,Qwen/Qwen3.5-4B,single-step,A,L1,2,oracle_0001,assert,11,8,"
+        assert mock_env['TEST_VAR'] == 'new_value'",,,
+validation_v4_0180,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:951052:2,TestContextBench-Py,951052,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L1,2,oracle_0006,assert,27,4,"    result = solution._convert_aware_datetime(f)
+    assert isinstance(result, float)
+    assert result == f
+",,,
+validation_v4_0181,linecov2_gemma-4-E4B-it_temp_0.0:308018:2,TestContextBench-Py,308018,google/gemma-4-E4B-it,two-step,C,L3,2,oracle_0002,assert,35,8,"        result = sol_instance._maybe_memory_map(handle=mock_buffer, memory_map=memory_map_flag_false)
+        assert isinstance(result, tuple)
+    except Exception as e:
+        raise AssertionError(f""Method call failed unexpectedly with Buffer handle: {e}"")",,,
+validation_v4_0182,linecov2_granite-4.0-micro_temp_0.0:571959:2,TestContextBench-Py,571959,ibm-granite/granite-4.0-micro,two-step,C,L2,2,oracle_0001,mock_contract,16,4,"    # Verify that the method was called with correct arguments
+    solution_instance.create_run.assert_called_once_with(
+        parameters,
+        score,",,,
+validation_v4_0183,linecov_gemma-4-E4B-it_temp_0.0:932061:2,TestContextBench-Py,932061,google/gemma-4-E4B-it,single-step,A,L3,2,oracle_0001,assert,9,8,"        result = solution._fetch_from_cnn(limit=5)
+        assert result == [] # Assuming the actual implementation returns an empty list if fetching fails or based on internal logic when mocked this way
+        mock_get.assert_called_once()",,,
+validation_v4_0184,linecov2_gemma-4-E4B-it_temp_0.0:461140:2,TestContextBench-Py,461140,google/gemma-4-E4B-it,two-step,A,L3,2,oracle_0001,assert,34,4,"    # Assertions check if the structure matches what would be returned upon successful execution
+    assert isinstance(result, list)
+    assert len(result) > 0
+    assert result[0][""status""] == ""success""",,,
+validation_v4_0185,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:159066:2,TestContextBench-Py,159066,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L0,2,oracle_0002,assert,28,8,"        assert len(result) == 3
+        assert all(isinstance(item, str) in result)",,,
+validation_v4_0186,linecov2_gemma-4-E4B-it_temp_0.0:211947:2,TestContextBench-Py,211947,google/gemma-4-E4B-it,two-step,B,L2,2,oracle_0001,assert,16,4,"    result = solution_instance.coordinates()
+    assert isinstance(result, np.ndarray)",,,
+validation_v4_0187,linecov2_Qwen3.5-4B_temp_0.0:359758:2,TestContextBench-Py,359758,Qwen/Qwen3.5-4B,two-step,B,L1,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0188,linecov_Qwen3.5-4B_temp_0.0:653235:2,TestContextBench-Py,653235,Qwen/Qwen3.5-4B,single-step,C,L1,2,oracle_0001,assert,6,4,"    result_empty = solution.build_retrieved_context([])
+    assert result_empty == """"
+
+    # Test with non-empty list",,,
+validation_v4_0189,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:269519:2,TestContextBench-Py,269519,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L1,2,oracle_0001,assert,14,4,"    result = solution.stream_decode_response_unify(unicode, mock_iterator, mock_r)
+    assert isinstance(result, str)",,,
+validation_v4_0190,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:980372:2,TestContextBench-Py,980372,Qwen/Qwen3-4B-Thinking-2507,two-step,A,L0,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0191,linecov2_granite-4.0-micro_temp_0.0:211947:2,TestContextBench-Py,211947,ibm-granite/granite-4.0-micro,two-step,A,L2,2,oracle_0001,assert,6,4,"    result = sol.coordinates()
+    assert isinstance(result, np.ndarray)",,,
+validation_v4_0192,linecov2_Qwen3.5-4B_temp_0.0:277653:2,TestContextBench-Py,277653,Qwen/Qwen3.5-4B,two-step,C,L0,2,oracle_0002,assert,18,12,"            # Verify function returns empty list when no high gradients found
+            assert result == []",,,
+validation_v4_0193,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:135299:2,TestContextBench-Py,135299,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0003,assert,23,8,"        assert result.shape == (2, 2), f""Expected shape (2, 2), got {result.shape}""
+        assert np.allclose(mock_inverse.call_args[0][0].shape, (2, 2)), ""Inverse map shape mismatch""
+        assert np.allclose(mock_inverse.call_args[0][1].shape, (1,)), ""Angle list shape mismatch""
+        assert np.allclose(mock_stim.call_args[0][0].shape, (2, 2)), ""Derotated cube shape mismatch""",,,
+validation_v4_0194,linecov_Qwen3.5-4B_temp_0.0:580093:2,TestContextBench-Py,580093,Qwen/Qwen3.5-4B,single-step,A,L1,2,oracle_0001,assert,12,8,"        # Verify _schedule_save was never called
+        assert mock_schedule.call_count == 0",,,
+validation_v4_0195,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:242826:2,TestContextBench-Py,242826,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L1,2,oracle_0004,assert,28,8,"        assert isinstance(result[0], Table)
+        assert isinstance(result[1], Table)",,,
+validation_v4_0196,linecov2_gemma-4-E4B-it_temp_0.0:619902:2,TestContextBench-Py,619902,google/gemma-4-E4B-it,two-step,C,L0,2,oracle_0001,assert,5,4,"    result = solution.truncate_filename(""some_file.txt"", 10)
+    assert isinstance(result, str)",,,
+validation_v4_0197,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:386077:2,TestContextBench-Py,386077,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L0,2,oracle_0002,assert,69,4,"    assert isinstance(output, list)
+    assert len(output) == 2
+    assert output[0][""id""] == ""0_Hello""
+    assert output[0][""value""] == ""Hello""",,,
+validation_v4_0198,linecov_granite-4.0-micro_temp_0.0:993604:2,TestContextBench-Py,993604,ibm-granite/granite-4.0-micro,single-step,C,L3,2,oracle_0001,assert,31,8,"
+        assert mocked_print.called_once_with('# Example Spec Markdown')",,,
+validation_v4_0199,linecov2_gemma-4-E4B-it_temp_0.0:639154:2,TestContextBench-Py,639154,google/gemma-4-E4B-it,two-step,B,L3,2,oracle_0001,assert,6,4,"    # We provide a simple input to allow the function call path to be tested conceptually.
+    assert isinstance(solution.validate_task_spec_headings(""Some content""), list)",,,
+validation_v4_0200,linecov_gemma-4-E4B-it_temp_0.0:654840:2,TestContextBench-Py,654840,google/gemma-4-E4B-it,single-step,B,L0,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution._combine_constraints(""test_check"", 10, 20) == ""combined_constraint""",,,
+validation_v4_0201,linecov_gemma-4-E4B-it_temp_0.0:916895:2,TestContextBench-Py,916895,google/gemma-4-E4B-it,single-step,B,L2,2,oracle_0001,assert,22,4,"
+    assert isinstance(result, (MockPaneStateName, type(None)))",,,
+validation_v4_0202,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:162266:2,TestContextBench-Py,162266,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L0,2,oracle_0002,assert,33,8,"        result = solution.cf_has_loaded_dataset(mock_dataset, ('time', 'lat'))
+        assert result is True",,,
+validation_v4_0203,linecov_Qwen3.5-4B_temp_0.0:277479:2,TestContextBench-Py,277479,Qwen/Qwen3.5-4B,single-step,C,L2,2,oracle_0001,assert,4,4,"    result = solution.bkg_star_proba(n_dens=1.0, sep=10.0, n_bkg=1, verbose=False, full_output=False)
+    assert isinstance(result, float)
+    assert 0 <= result <= 100",,,
+validation_v4_0204,linecov_granite-4.0-micro_temp_0.0:624137:2,TestContextBench-Py,624137,ibm-granite/granite-4.0-micro,single-step,C,L0,2,oracle_0003,mock_contract,21,4,"    solution._DapClient__connect.assert_called_once_with(""model_server_url"")
+    solution._DapClient__execute.assert_called_once_with(command, args)
+    Metrics.add_time.assert_called_once()",,,
+validation_v4_0205,linecov_gemma-4-E4B-it_temp_0.0:893258:2,TestContextBench-Py,893258,google/gemma-4-E4B-it,single-step,A,L1,2,oracle_0001,assert,11,8,"        # Assertions would typically check if the dependency was called enough times, etc.
+        assert True # Placeholder assertion since implementation details are hidden",,,
+validation_v4_0206,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:340725:2,TestContextBench-Py,340725,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L3,2,oracle_0002,assert,19,12,"            assert mock_get_repo_root.called_once_with()
+            assert mock_ensure_flow_exists.called_once_with()
+            assert mock_resolve_spec_id_arg.called_once_with(Path('/tmp/repo'), None)
+            assert mock_now_iso.called_once_with()",,,
+validation_v4_0207,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:124282:2,TestContextBench-Py,124282,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L1,2,oracle_0002,assert,23,8,"        assert mock_fsync.called_once_with(temp_path)
+        assert mock_rename.called_once_with(temp_path, final_path)",,,
+validation_v4_0208,linecov2_Qwen3.5-4B_temp_0.0:61794:2,TestContextBench-Py,61794,Qwen/Qwen3.5-4B,two-step,C,L3,2,oracle_0002,assert,30,4,"    # Execute assertions based on documented behavior
+    assert True  # Placeholder for actual assertion logic once implementation is complete",,,
+validation_v4_0209,linecov_Qwen3.5-4B_temp_0.0:606653:2,TestContextBench-Py,606653,Qwen/Qwen3.5-4B,single-step,C,L0,2,oracle_0001,assert,7,8,"        result = solution._Solution__coerce_index(1, {""type"": int}, False)
+        assert result is None",,,
+validation_v4_0210,linecov2_Qwen3.5-4B_temp_0.0:872607:2,TestContextBench-Py,872607,Qwen/Qwen3.5-4B,two-step,C,L3,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0211,linecov2_granite-4.0-micro_temp_0.0:61794:2,TestContextBench-Py,61794,ibm-granite/granite-4.0-micro,two-step,A,L3,2,oracle_0001,assert,27,4,"    result = _suitable_minimum_unit(min_unit, suppress)
+    assert result.name == {
+        (Unit.HOURS, []): ""HOURS"",
+        (Unit.HOURS, [Unit.HOURS]): ""DAYS"",",,,
+validation_v4_0212,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:678386:2,TestContextBench-Py,678386,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L1,2,oracle_0001,assert,15,4,"    # Assert that the function returns None if no fields were filled
+    assert result is None",,,
+validation_v4_0213,linecov2_Qwen3.5-4B_temp_0.0:611297:2,TestContextBench-Py,611297,Qwen/Qwen3.5-4B,two-step,A,L0,2,oracle_0002,assert,5,4,"    assert isinstance(result, list)
+    assert all(isinstance(item, str) for item in result)",,,
+validation_v4_0214,linecov_gemma-4-E4B-it_temp_0.0:569405:2,TestContextBench-Py,569405,google/gemma-4-E4B-it,single-step,A,L3,2,oracle_0001,assert,6,4,"    result = solution.get_encoding_from_headers(headers)
+    assert result == expected",,,
+validation_v4_0215,linecov_granite-4.0-micro_temp_0.0:408604:2,TestContextBench-Py,408604,ibm-granite/granite-4.0-micro,single-step,B,L3,2,oracle_0004,assert,19,4,"    result = solution.stringify_path(raw_bytes)
+    assert result is raw_bytes, ""Expected original bytes""",,,
+validation_v4_0216,linecov_gemma-4-E4B-it_temp_0.0:857693:2,TestContextBench-Py,857693,google/gemma-4-E4B-it,single-step,C,L2,2,oracle_0002,assert,17,8,"            solution._assert_valid_file_upload(test_tag, non_file_value)
+        assert ""must be an open file object"" in str(excinfo.value)",,,
+validation_v4_0217,linecov_Qwen3-4B-Thinking-2507_temp_0.0:753865:2,TestContextBench-Py,753865,Qwen/Qwen3-4B-Thinking-2507,single-step,C,L2,2,oracle_0002,assert,16,4,"    assert isinstance(result, tuple)
+    assert isinstance(result[0], list)
+    assert len(result[0]) == 1
+    assert isinstance(result[1], MagicMock)",,,
+validation_v4_0218,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:52157:2,TestContextBench-Py,52157,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L2,2,oracle_0003,exception_contract,24,4,"    # Test case where input_features does not match feature_names_in_ (should raise error)
+    with pytest.raises(ValueError):
+        estimator._check_feature_names_in(['a', 'b'], generate_names=False)",,,
+validation_v4_0219,linecov_Qwen3.5-4B_temp_0.0:597643:2,TestContextBench-Py,597643,Qwen/Qwen3.5-4B,single-step,B,L1,2,oracle_0001,assert,4,4,"    result = asyncio.run(solution._search_all(""test_query""))
+    assert isinstance(result, dict)
+    assert all(isinstance(key, str) for key in result.keys())
+    assert all(isinstance(value, list) for value in result.values())",,,
+validation_v4_0220,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:254073:2,TestContextBench-Py,254073,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L2,2,oracle_0001,assert,20,4,"    result = await solution.on_playlist_sidebar_playlist_selected(message)
+    assert result is None",,,
+validation_v4_0221,linecov2_gemma-4-E4B-it_temp_0.0:61794:2,TestContextBench-Py,61794,google/gemma-4-E4B-it,two-step,C,L3,2,oracle_0001,assert,34,4,"    # Asserting against expected outcome for minimal execution verification
+    assert result == Unit.HOURS",,,
+validation_v4_0222,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:483329:2,TestContextBench-Py,483329,mistralai/Ministral-3-3B-Reasoning-2512,single-step,C,L2,2,oracle_0001,exception_contract,10,8,"        # Test case: Check if the function raises an exception when user_id is not valid
+        with pytest.raises(ValueError):
+            solution._check_member(owner_user_id=UUID(""00000000-0000-0000-0000-000000000000""), user_id=UUID(""invalid""))",,,
+validation_v4_0223,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:638151:2,TestContextBench-Py,638151,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L2,2,oracle_0004,assert,16,4,"    result_non_string = solution._get_feature_names(df_non_string)
+    assert result_non_string is None, ""Should return None for non-string column names""
+
+    # Test with an unrecognized array container (numpy array)",,,
+validation_v4_0224,linecov2_Qwen3.5-4B_temp_0.0:360887:2,TestContextBench-Py,360887,Qwen/Qwen3.5-4B,two-step,C,L1,2,oracle_0001,assert,3,16,"                solution = Solution()
+                assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0225,linecov_gemma-4-E4B-it_temp_0.0:625299:2,TestContextBench-Py,625299,google/gemma-4-E4B-it,single-step,A,L3,2,oracle_0001,assert,29,4,"
+    assert isinstance(result, list)
+    # In a real scenario, we would assert result == expected_output after mocking HTTP calls within the function body.
+    # Here, we just ensure the call executes without crashing and returns a list.",,,
+validation_v4_0226,linecov2_gemma-4-E4B-it_temp_0.0:294222:2,TestContextBench-Py,294222,google/gemma-4-E4B-it,two-step,B,L1,2,oracle_0001,assert,29,4,"    expected = collections.OrderedDict([('key', 'val')])
+    assert result == expected",,,
+validation_v4_0227,linecov2_Qwen3.5-4B_temp_0.0:300082:2,TestContextBench-Py,300082,Qwen/Qwen3.5-4B,two-step,B,L1,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0228,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:285912:2,TestContextBench-Py,285912,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L1,2,oracle_0001,assert,31,4,"    # Test with valid command that sets timeout to 5
+    assert some_other_function(solution, ""exec:to=5"") == 5
+    # Test with invalid command that doesn't change timeout
+    assert some_other_function(solution, ""invalid:command"") == 10",,,
+validation_v4_0229,linecov_gemma-4-E4B-it_temp_0.0:325306:2,TestContextBench-Py,325306,google/gemma-4-E4B-it,single-step,C,L3,2,oracle_0001,assert,33,8,"        # For this structure, we just ensure no exceptions occur during setup verification.
+        assert True",,,
+validation_v4_0230,linecov_gemma-4-E4B-it_temp_0.0:507696:2,TestContextBench-Py,507696,google/gemma-4-E4B-it,single-step,A,L2,2,oracle_0001,assert,7,4,"    result = solution.get_macrotile(dest_dtype='int16', roi=[0, 0, 10, 10], array_backend=DummyArrayBackend())
+    assert result is not None # Basic check that it returns something when inputs are provided",,,
+validation_v4_0231,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:360176:2,TestContextBench-Py,360176,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L3,2,oracle_0003,assert,18,8,"        assert mock_healthy.is_ready.called_once_with()
+        assert mock_warm_up.called_once_with()
+        assert mock_sleep.called_once_with(5)",,,
+validation_v4_0232,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:251236:2,TestContextBench-Py,251236,mistralai/Ministral-3-3B-Reasoning-2512,two-step,B,L2,2,oracle_0002,assert,35,4,"    assert isinstance(result, dict)
+    assert 'key' in result
+    assert np.array_equal(result['key'], expected_result['key'])",,,
+validation_v4_0233,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:744950:2,TestContextBench-Py,744950,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L0,2,oracle_0001,assert,12,4,"    result = solution.find_popular(remaining, restrict_to, preference_order)
+    assert isinstance(result, str), f""Expected string but got {type(result)}""
+    assert result in remaining, f""Result not in remaining list""",,,
+validation_v4_0234,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:569837:2,TestContextBench-Py,569837,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L0,2,oracle_0001,assert,10,12,"            solution._check_large_sparse(X)
+            assert False, ""Expected ValueError""
+        except ValueError:
+            pass",,,
+validation_v4_0235,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:916895:2,TestContextBench-Py,916895,mistralai/Ministral-3-3B-Reasoning-2512,two-step,A,L2,2,oracle_0004,assert,48,8,"        solution.record_pane_state("""", """", PaneStateName.ACTIVE)
+        assert False, ""Expected TypeError for empty window_id or pane_id""
+    except TypeError as e:
+        pass",,,
+validation_v4_0236,linecov_Qwen3.5-4B_temp_0.0:222449:2,TestContextBench-Py,222449,Qwen/Qwen3.5-4B,single-step,B,L1,2,oracle_0001,assert,5,8,"        result = solution._compress()
+        assert True",,,
+validation_v4_0237,linecov2_Qwen3.5-4B_temp_0.0:804045:2,TestContextBench-Py,804045,Qwen/Qwen3.5-4B,two-step,C,L3,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]",,,
+validation_v4_0238,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:325306:2,TestContextBench-Py,325306,mistralai/Ministral-3-3B-Reasoning-2512,single-step,A,L3,2,oracle_0001,assert,17,8,"        # Assertions to check the behavior of the function
+        assert os.path.isdir(""test_state_dir"")",,,
+validation_v4_0239,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:175419:2,TestContextBench-Py,175419,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L0,2,oracle_0001,assert,7,8,"        result = solution._process_document(b""test data"")
+        assert isinstance(result, str)",,,
+validation_v4_0240,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:309037:2,TestContextBench-Py,309037,Qwen/Qwen3-4B-Thinking-2507,two-step,C,L1,2,oracle_0001,assert,12,4,"    # Verify no exceptions occurred (since the function returns None)
+    assert True",,,
+validation_v4_0241,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:467622:2,TestContextBench-Py,467622,mistralai/Ministral-3-3B-Reasoning-2512,two-step,C,L1,2,oracle_0001,assert,8,4,"    result = await solution.get_best_solution()
+    assert isinstance(result, dict)",,,
+validation_v4_0242,linecov_granite-4.0-micro_temp_0.0:779471:2,TestContextBench-Py,779471,ibm-granite/granite-4.0-micro,single-step,C,L3,2,oracle_0003,assert,21,4,"    assert len(result) == 1
+    assert (""v1"", ""pkg""), {""v1""}",,,
+validation_v4_0243,linecov2_granite-4.0-micro_temp_0.0:251236:2,TestContextBench-Py,251236,ibm-granite/granite-4.0-micro,two-step,C,L2,2,oracle_0003,assert,12,4,"    assert all(isinstance(k, str) for k in result.keys()), ""All keys must be strings""
+    assert all(isinstance(v, np.ndarray) for v in result.values()), ""All values must be NumPy arrays""",,,
+validation_v4_0244,linecov2_gemma-4-E4B-it_temp_0.0:538302:2,TestContextBench-Py,538302,google/gemma-4-E4B-it,two-step,B,L1,2,oracle_0002,assert,15,4,"    assert isinstance(result, list)
+    assert all(isinstance(item, str) for item in result)",,,
+validation_v4_0245,linecov_Qwen3.5-4B_temp_0.0:670733:2,TestContextBench-Py,670733,Qwen/Qwen3.5-4B,single-step,B,L3,2,oracle_0001,assert,13,8,"
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+",,,
+validation_v4_0246,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:25953:2,TestContextBench-Py,25953,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L0,2,oracle_0007,assert,45,8,"        assert result.get(""expires"") == expires
+        assert result.get(""as_json"") == as_json",,,
+validation_v4_0247,linecov_gemma-4-E4B-it_temp_0.0:645911:2,TestContextBench-Py,645911,google/gemma-4-E4B-it,single-step,C,L2,2,oracle_0001,assert,7,4,"    expected_output = ""documents\nimages\nreadme.txt\nphoto.jpg""
+    assert solution.directory_listing(path, dirs, files) == expected_output",,,
+validation_v4_0248,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:198226:2,TestContextBench-Py,198226,Qwen/Qwen3-4B-Thinking-2507,two-step,B,L1,2,oracle_0003,assert,18,8,"        assert result.model is None
+        assert result.effort is None",,,
+validation_v4_0249,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:631879:2,TestContextBench-Py,631879,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L0,2,oracle_0001,assert,3,4,"    solution = Solution()
+    assert solution.device_fname(""dev-1"") == ""dev""",,,
+validation_v4_0250,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:459145:2,TestContextBench-Py,459145,mistralai/Ministral-3-3B-Reasoning-2512,single-step,B,L2,2,oracle_0001,assert,5,8,"        # Test that the dependency is called correctly
+        assert mock_dep.called_once_with(expected_arg)",,,

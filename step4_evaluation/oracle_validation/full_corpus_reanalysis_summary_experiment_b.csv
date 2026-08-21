@@ -1,0 +1,11 @@
+﻿model,pipeline,n_suites,execution_pass1_pct,nontrivial_pass1_pct,strong_pass1_pct,no_executed_oracle,trivial_only,weak_only,unknown_only,strong_present
+Qwen/Qwen3-4B-Thinking-2507,single-step,895,18.21,17.43,12.74,547,1,85,2,260
+Qwen/Qwen3-4B-Thinking-2507,two-step,896,16.63,14.29,12.39,558,2,46,5,285
+Qwen/Qwen3.5-4B,single-step,888,21.62,18.81,11.49,599,0,105,4,180
+Qwen/Qwen3.5-4B,two-step,866,26.56,15.24,5.77,556,11,183,14,102
+google/gemma-4-E4B-it,single-step,890,27.98,21.46,19.66,467,0,33,2,388
+google/gemma-4-E4B-it,two-step,899,44.27,18.80,8.23,602,0,189,3,105
+ibm-granite/granite-4.0-micro,single-step,888,20.38,2.25,1.58,780,1,20,6,81
+ibm-granite/granite-4.0-micro,two-step,893,29.79,4.48,2.24,735,0,87,6,65
+mistralai/Ministral-3-3B-Reasoning-2512,single-step,868,13.59,5.88,5.18,672,0,22,5,169
+mistralai/Ministral-3-3B-Reasoning-2512,two-step,864,17.25,8.68,6.94,676,0,38,11,139

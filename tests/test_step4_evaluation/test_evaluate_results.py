@@ -57,6 +57,66 @@ def test_strip_markdown():
     think = "<think>Some reasoning</think>```python\nx=1```"
     assert target_module.strip_markdown(think) == "x=1"
 
+    # Already-valid Python containing a ``` sequence inside a string literal
+    # (observed with Pynguin: it copies the SUT's own docstring, including
+    # any markdown usage example the docstring embeds, into a test's
+    # string-literal input data). The fence-stripping regexes below search
+    # anywhere in the text, not just at the boundaries, so without the
+    # early-return this misfires and corrupts otherwise-valid code.
+    pynguin_style = (
+        "import under_test as module_0\n\n\n"
+        "def test_case_0():\n"
+        "    str_0 = 'Usage:\\n    ```python\\n    foo()\\n    ```\\n'\n"
+        "    solution_0 = module_0.Solution()\n"
+        "    var_0 = solution_0.describe(str_0)\n"
+        "    assert var_0 == str_0\n"
+    )
+    assert target_module.strip_markdown(pynguin_style) == pynguin_style.strip()
+
+    # A genuinely fenced LLM response must still be cleaned correctly even
+    # when the code itself also contains a ``` inside a string literal --
+    # the outer response-level fence takes priority since the raw text
+    # (conversational preamble + fence markers) does not parse as valid
+    # Python on its own, so the early-return above does not fire.
+    fenced_with_inner_backticks = (
+        "Here is the test:\n"
+        "```python\n"
+        "def test_case_0():\n"
+        "    doc = 'example:\\n    ```\\n    foo()\\n    ```\\n'\n"
+        "    assert doc\n"
+        "```\n"
+    )
+    cleaned = target_module.strip_markdown(fenced_with_inner_backticks)
+    assert cleaned.startswith("def test_case_0():")
+
+def test_fix_relative_imports():
+    import ast
+
+    # Single-line relative import: existing behavior, must stay unchanged.
+    single = "from .broker import get_broker"
+    fixed = target_module.fix_relative_imports(single)
+    ast.parse(fixed)
+    assert "get_broker = _MagicMock()" in fixed
+
+    # Multi-line parenthesized relative import (observed in task 916895's
+    # reference module: a lazy `from ...pkg import (\n    a,\n    b,\n)`
+    # inside a function body). The line-by-line regex previously only saw
+    # the opening line, producing names_str == "(" and emitting a corrupt
+    # `( = _MagicMock()` statement while orphaning the continuation lines,
+    # a SyntaxError ("'(' was never closed").
+    multiline = (
+        "def f():\n"
+        "    from ...window_state_ports.pane_state import (\n"
+        "        get_pane_projection,\n"
+        "        upsert_pane,\n"
+        "    )\n"
+        "    return get_pane_projection\n"
+    )
+    fixed = target_module.fix_relative_imports(multiline)
+    ast.parse(fixed)  # must not raise SyntaxError
+    assert "get_pane_projection = _MagicMock()" in fixed
+    assert "upsert_pane = _MagicMock()" in fixed
+
 def test_check_for_assertions():
     assert target_module.check_for_assertions("assert 1 == 1") is True
     assert target_module.check_for_assertions("self.assertTrue(True)") is True

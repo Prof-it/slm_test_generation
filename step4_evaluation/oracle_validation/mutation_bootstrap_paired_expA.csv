@@ -1,0 +1,6 @@
+Experiment,Model,n_paired,diff_Single_minus_Two_%,boot_lo,boot_hi,excludes_zero
+A (TestEval),Qwen3-4B-Thinking-2507,67,-1.59,-4.73,1.58,False
+A (TestEval),Qwen3.5-4B,67,-2.42,-6.55,1.71,False
+A (TestEval),gemma-4-E4B-it,67,-3.35,-7.76,0.98,False
+A (TestEval),granite-4.0-micro,67,1.29,-2.43,5.12,False
+A (TestEval),Ministral-3-3B-Reasoning-2512,67,-0.48,-4.12,3.27,False

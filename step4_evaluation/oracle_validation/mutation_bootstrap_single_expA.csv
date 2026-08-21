@@ -1,0 +1,11 @@
+Experiment,Model,Pipeline,n_mutation_sample,uMut_%,boot_lo,boot_hi
+A (TestEval),Qwen3-4B-Thinking-2507,Single-call,67,17.41,14.37,20.43
+A (TestEval),Qwen3-4B-Thinking-2507,Two-stage,67,19.0,16.17,21.74
+A (TestEval),Qwen3.5-4B,Single-call,67,13.13,9.89,16.42
+A (TestEval),Qwen3.5-4B,Two-stage,67,15.55,12.11,19.0
+A (TestEval),gemma-4-E4B-it,Single-call,67,12.97,9.47,16.56
+A (TestEval),gemma-4-E4B-it,Two-stage,67,16.32,12.87,19.75
+A (TestEval),granite-4.0-micro,Single-call,67,12.92,9.44,16.66
+A (TestEval),granite-4.0-micro,Two-stage,67,11.63,8.26,15.11
+A (TestEval),Ministral-3-3B-Reasoning-2512,Single-call,67,7.28,4.46,10.39
+A (TestEval),Ministral-3-3B-Reasoning-2512,Two-stage,67,7.76,4.76,10.91

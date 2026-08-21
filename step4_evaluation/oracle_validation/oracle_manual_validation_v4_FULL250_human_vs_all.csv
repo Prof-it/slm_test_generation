@@ -1,0 +1,266 @@
+validation_row_id,focal_function,oracle_source,predicted_class,ai_manual_class,ai_audit2_class,human_class,human_sut_dependent,human_notes
+validation_v4_0001,_walk_filesystem,"assert solution._walk_filesystem(Path('/tmp')) == ['/tmp/file1.txt', '/tmp/file2.txt']",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0002,_convert_aware_datetime,"assert none_result is None, ""None should return None""",UNKNOWN,WEAK,WEAK,STRONG,True,"real return value compared to specific None, consistent with True/False handling"
+validation_v4_0003,discover_and_register_transcript,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0004,shares_add,"assert isinstance(result, bool)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0005,naturaltime,"assert result == ""yesterday""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0006,_starttls_ldap,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0007,set_environ,assert restored_value is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0008,rewind_body,"assert hasattr(prepared_request_mock, 'headers')",UNKNOWN,TRIVIAL,WEAK,TRIVIAL,False,hasattr on a mock object auto-creates attributes; unrelated to SUT behavior
+validation_v4_0009,_xielu_cuda,assert result == expected_result,UNKNOWN,STRONG,STRONG,STRONG,True,real output compared to a hardcoded specific expected tensor
+validation_v4_0010,get_batch,"assert isinstance(result, list)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0011,_exec_timeout_override,assert result is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0012,build_playlist_subtitle,"assert result == ""Spotify · 2023 · 5 tracks""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0013,check_autoclose_timers,"assert mock_close.called_once_with(mock_client, 1, 2, ""dead"")",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0014,cmd_sync_receipt,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0015,_check_monotonic_cst,"assert ""Each value"" in str(excinfo.value)",UNKNOWN,STRONG,WEAK,STRONG,True,specific exception message content checked inside pytest.raises
+validation_v4_0016,check_non_negative,assert result is False,STRONG,WEAK,STRONG,STRONG,True,real return value compared to a specific expected boolean
+validation_v4_0017,convert_pending_invites,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0018,on_playlist_sidebar_playlist_selected,assert mock_dependency.called_once_with(expected_value),TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0019,list_graphs,"assert isinstance(result, list)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0020,rewind_body,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0021,last_modified,"mock_get.assert_called_once_with(""example_param_name"", True, True)",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0022,parse_tsv_file,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0023,inference_loop,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0024,get_gpu_status,"assert all(isinstance(row.split(','), [str] * len(mock_process_output)))",UNKNOWN,UNKNOWN,STRONG,TRIVIAL,False,malformed isinstance() call raises TypeError; not a meaningful behavioral check
+validation_v4_0025,to_key_val_list,"assert result == [('key', 'val')]",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0026,_resolve_dim_sizes,"assert result == {}, ""Expected no resolved size dictionary""",STRONG,TRIVIAL,STRONG,TRIVIAL,False,whole Solution object is a MagicMock with return_value={} preset; real code never runs
+validation_v4_0027,dedup_names,"assert solution.dedup_names(input_names, input_bool) == expected_output",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0028,get_last_activity_ts,"assert isinstance(result, float) or result is None",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0029,cf_has_standard_names,assert result == False,UNKNOWN,WEAK,STRONG,STRONG,True,direct focal-call result compared to a specific expected boolean
+validation_v4_0030,startup,assert mock_healthy.is_ready.called_once_with(),TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0031,_post_token_endpoint,"assert result == {""access_token"": ""mock_access_token""}",STRONG,STRONG,STRONG,UNKNOWN,False,
+validation_v4_0032,_maybe_memory_map,"assert isinstance(result[0], str), ""First element of result should be string""",UNKNOWN,WEAK,WEAK,WEAK,True,type check only on derived result element
+validation_v4_0033,cmd_migrate_state,mock_is_task_id.assert_not_called(),UNKNOWN,UNKNOWN,STRONG,STRONG,True,real Mock API verifying a specific non-interaction
+validation_v4_0034,check_non_negative,assert result == True,STRONG,WEAK,STRONG,STRONG,True,real return value compared to a specific expected boolean
+validation_v4_0035,_extract_message_id,assert solution._extract_message_id(result_dict) == 12345,STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0036,infer_filename,"assert result == ""archive"" if mock_zip.get_archive_name.return_value is None else f""{mock_zip.get_archive_name().return_value}.tar""",UNKNOWN,UNKNOWN,WEAK,WEAK,True,specific comparison present but fragile due to assert-with-ternary parsing bug; downgraded
+validation_v4_0037,toggle_shuffle,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0038,last_modified,assert result is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0039,read,assert result == expected_data,STRONG,TRIVIAL,STRONG,TRIVIAL,False,Solution.read is patched with AsyncMock(return_value=expected_data); real code never runs
+validation_v4_0040,save,"assert mock_savez.called_once_with(""test_file.npz"", ""vip"")",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0041,check_column_presence,assert len(result) == 1,STRONG,STRONG,STRONG,WEAK,True,
+validation_v4_0042,naturaltime,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0043,get_or_create_input_table,assert mock_hash == mock_hash,UNKNOWN,TRIVIAL,STRONG,TRIVIAL,False,"tautological self-equality on a local variable, unrelated to SUT"
+validation_v4_0044,normalized_stim_map,"assert result.shape == (100, 100)",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0045,_join_text_at_seam,assert result is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0046,print_algo_params,solution.assert_called_once_with(params),UNKNOWN,STRONG,UNKNOWN,UNKNOWN,,cannot determine from visible context whether 'solution' fixture is mock or real; assertion also looks structurally broken either way
+validation_v4_0047,_assert_valid_file_upload,"assert False, str(e)",UNKNOWN,UNKNOWN,UNKNOWN,WEAK,True,
+validation_v4_0048,structure_from_task,"assert isinstance(result, dict)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0049,_extract_message_id,assert solution._extract_message_id(dummy_msg) == 789,STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0050,_check_message,"assert isinstance(result, type(None)) or result == None",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0051,insert_many,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0052,normalized_stim_map,"assert np.allclose(mock_inverse.call_args[0][1].shape, (1,)), ""Angle list shape mismatch""",UNKNOWN,STRONG,UNKNOWN,STRONG,True,specific structural check on argument shape passed to a mocked dependency during real execution
+validation_v4_0053,_load_env,"assert False, f""_load_env failed unexpectedly: {e}""",UNKNOWN,UNKNOWN,UNKNOWN,WEAK,True,
+validation_v4_0054,naturalday,"assert solution.naturalday(date.today()) == ""Oct 31""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0055,apply_filter,"assert mock_reload.called_once, ""Reload sorted was called once""",TRIVIAL,TRIVIAL,UNKNOWN,TRIVIAL,False,"bogus .called_once attribute (no assert_ prefix), always truthy, verifies nothing"
+validation_v4_0056,_search_all,"assert isinstance(result, dict)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0057,expand_path,assert len(result) == 1,STRONG,STRONG,STRONG,WEAK,True,
+validation_v4_0058,save,"assert np.all(saved_data['a'] == np.array([1, 2]))",UNKNOWN,STRONG,UNKNOWN,STRONG,True,data round-tripped through file compared to specific expected array
+validation_v4_0059,_load_env,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0060,generate_video_masks,"assert mock_save.called_once_with([], '/some/dir', '/output', ['frame1'], 5)",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0061,check_nullable,"assert result.result == ""nullable""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0062,stringify_path,"assert result == ""/home/user/file.txt""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0063,shares_add,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0064,_write_health,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0065,allocate_for_part,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0066,file_exists,"assert isinstance(result, bool)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0067,type_name,"assert solution.type_name(""hello"") == ""string""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0068,validate_shape_expression,"assert solution.validate_shape_expression(expr_obj) == ""expected_result""",STRONG,STRONG,STRONG,UNKNOWN,True,
+validation_v4_0069,generate_video_masks,assert mock_convert.called,STRONG,WEAK,UNKNOWN,WEAK,True,"mock.called only checks call occurred, not args/count"
+validation_v4_0070,check_autoclose_timers,"assert mock_close.called_once_with(mock_client, 1, 2, ""done"")",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0071,namedtuple_unstructure_factory,"assert isinstance(result, UnstructureHook)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0072,rewind_body,assert mock_file_pointer.reset == True,UNKNOWN,UNKNOWN,STRONG,UNKNOWN,,"compares an unwrapped mock method object (no call) to True; likely broken/meaningless as written, not cleanly classifiable"
+validation_v4_0073,check_nullable,self.assertTrue(True),TRIVIAL,TRIVIAL,WEAK,TRIVIAL,False,self.assertTrue(True) is a literal constant
+validation_v4_0074,radial_bins,"assert isinstance(result, tuple)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0075,_check_message,"assert isinstance(solution._check_message(""valid""), str)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0076,_save_atomic,assert mock_rename.called_once(),UNKNOWN,TRIVIAL,TRIVIAL,TRIVIAL,False,"called_once() not real Mock API, always-truthy auto attribute"
+validation_v4_0077,pytest_marks,assert input == expected,UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0078,_exec_timeout_override,"assert some_other_function(solution, ""exec:to=abc"") == 10",UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,False,"some_other_function(solution, ...) wrapper is undefined anywhere in scope (not imported, not defined locally); provenance cannot be conservatively resolved (not statically-satisfied so not TRIVIAL either) -- UNKNOWN per taxonomy design intent."
+validation_v4_0079,verbose_name,"assert isinstance(result, str)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0080,clone,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0081,check_autoclose_timers,mock_client.return_value._close_expired_topic.assert_called_once_with(...),STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0082,radial_bins,"assert isinstance(result, np.ndarray)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0083,validate_shape_expression,assert invalid_shape.is_valid.called_once_with(),TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0084,gelman_rubin,assert x.ndim >= 1,UNKNOWN,TRIVIAL,STRONG,TRIVIAL,False,"x is a test-constructed input array, not the function's output"
+validation_v4_0085,fetch_blocklist_data,"assert result[""ip""] == ""192.168.1.1""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0086,grep,assert result == 'found in file1.txt',STRONG,STRONG,WEAK,STRONG,True,real output compared to a specific string
+validation_v4_0087,_check_message,assert result is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0088,parseJson,"mock_json_loads.assert_called_once_with('{""key"": ""value""}')",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0089,__coerce_index,"with pytest.raises(TypeError):
+        pass",UNKNOWN,UNKNOWN,STRONG,TRIVIAL,False,pytest.raises body is just pass; can never validate real behavior
+validation_v4_0090,is_subpath,"assert solution.is_subpath(""/a/b/c"", ""/a/b/c/d"") == False",STRONG,WEAK,STRONG,STRONG,True,real call compared to specific boolean
+validation_v4_0091,user_can_manage,"assert isinstance(result, bool)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0092,bkg_star_proba,"assert isinstance(result, float)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0093,read,"assert False, ""Expected TimeoutError""",UNKNOWN,UNKNOWN,UNKNOWN,STRONG,True,
+validation_v4_0094,build_retrieved_context,"assert isinstance(result, str)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0095,_sanitize_value,assert solution._sanitize_value(True) == True,STRONG,WEAK,STRONG,STRONG,True,real call compared to specific value
+validation_v4_0096,unquote_header_value,"assert solution.unquote_header_value(""test%20value"") == ""test value""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0097,_check_monotonic_cst,"assert isinstance(result, np.ndarray)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0098,select_designs,"assert isinstance(df_result, pd.DataFrame)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0099,_suitable_minimum_unit,"assert solution._suitable_minimum_unit(Unit.HOURS, [Unit.HOURS]) == Unit.DAYS",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0100,is_potential_multi_index,"assert isinstance(result, bool)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0101,_skip_udf,assert len(result) == 2,STRONG,STRONG,STRONG,WEAK,True,
+validation_v4_0102,_chargeback_breakdown,assert len(result) > 0,STRONG,WEAK,STRONG,WEAK,True,"len(result)>0 = coarse non-emptiness, not a specific value (pattern rule)"
+validation_v4_0103,cmd_sync_receipt,"assert mock_resolve_spec_id_arg.called_once_with(Path('/tmp/repo'), None)",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0104,load,assert result == None,WEAK,WEAK,STRONG,STRONG,True,"real call compared to specific None, consistent with earlier None items"
+validation_v4_0105,set_environ,"assert mock_env[""test_env""] == original_value",UNKNOWN,UNKNOWN,STRONG,STRONG,True,specific value comparison verifying environ was NOT altered
+validation_v4_0106,is_typing_throttled,"assert solution.is_typing_throttled(1, 2) == True",STRONG,WEAK,STRONG,STRONG,True,real call compared to specific boolean
+validation_v4_0107,_starttls_ldap,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0108,_suitable_minimum_unit,assert result == MockUnit.MONTHS,STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0109,restore_command,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0110,validate_shape_expression,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0111,run,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0112,_format_timestamp,"assert solution._format_timestamp(""2023-10-05T14:30:00"") == ""14:30""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0113,restore_command,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0114,pytest_marks,"assert isinstance(result, list)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0115,command_argv,"with pytest.raises(StopIteration): # Placeholder if the internal logic raises StopIteration due to '...'
+         pass",UNKNOWN,UNKNOWN,STRONG,TRIVIAL,False,same broken empty-body pytest.raises pattern
+validation_v4_0116,_require_owner,"assert isinstance(result, UUID)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0117,set_batch_mode,"assert mock_get.called_once_with(""test_window"")",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0118,_sanitize_value,"assert result == ""hello""",UNKNOWN,STRONG,STRONG,TRIVIAL,False,"off-target method called (_sanitize_json_serializable_string, not focal _sanitize_value)"
+validation_v4_0119,get_compression_method,assert result[1] is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0120,get_macrotile,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0121,_parse_content_type_header,"assert isinstance(result, tuple)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0122,_check_methods,"assert callable(getattr(solution, '_check_methods'))",UNKNOWN,WEAK,UNKNOWN,WEAK,True,"existence/callable check only, no behavior tested"
+validation_v4_0123,_quotient_and_remainder,"assert result == (1, 12)",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0124,compute_rdkit_3d_descriptors,"assert ""descriptor_name"" in result",STRONG,WEAK,WEAK,WEAK,True,membership check on real output = coarse (pattern rule)
+validation_v4_0125,infer_filename,"assert result == ""test"" if mock_zip.get_archive_name.return_value is None else f""{mock_zip.name}.{mock_zip.get_archive_name()}""",UNKNOWN,UNKNOWN,WEAK,WEAK,True,fragile ternary-parsing assert pattern
+validation_v4_0126,startup,assert mock_process.wait_ready.called_once_with(5 * 60),TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0127,stash_purge,"mock_client_instance.delete.assert_called_once_with(""page"", ""abc-123"")",UNKNOWN,STRONG,STRONG,STRONG,True,"real Mock API, specific call-argument verification"
+validation_v4_0128,get_encoding_from_headers,"mock_parse.assert_called_once_with(""text/html; charset=utf-8"")",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0129,startup,assert mock_sleep.called_once_with(5),TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0130,structure_from_task,assert len(result) == 1,STRONG,STRONG,STRONG,WEAK,True,
+validation_v4_0131,_compile_deps,"assert solution.twoSum([3, 2, 4], 6) == []",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0132,_starttls_ldap,"assert sock.connect.called_once_with((""example.com"", 389))",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0133,publish_skill,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0134,cmd_migrate_state,mock_canonicalize_task_for_write.assert_not_called(),UNKNOWN,UNKNOWN,STRONG,STRONG,True,"real Mock API, specific non-interaction verification"
+validation_v4_0135,save,"assert hasattr(solution, 'save')",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0136,_get_feature_names,assert result_df is not None,WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0137,check_nullable,"assert isinstance(result, MockCoreCheckResult)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0138,strip_url,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0139,gelman_rubin,"assert isinstance(result, float), ""Result should be a float""",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0140,get_best_solution,assert result == expected_result,STRONG,TRIVIAL,STRONG,TRIVIAL,False,get_best_solution itself is patched with a preset return_value; real code never runs
+validation_v4_0141,_is_arraylike,assert solution._is_arraylike(5) == False,STRONG,WEAK,STRONG,STRONG,True,real call compared to specific boolean
+validation_v4_0142,resolve_session_id,"assert isinstance(result, (str, type(None)))",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0143,_exec_timeout_override,"assert some_other_function(solution, ""invalid:command"") == 10",UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,False,"some_other_function(solution, ...) wrapper is undefined anywhere in scope (not imported, not defined locally); provenance cannot be conservatively resolved (not statically-satisfied so not TRIVIAL either) -- UNKNOWN per taxonomy design intent."
+validation_v4_0144,_resolve_dim_sizes,"assert isinstance(all_dims, set)",UNKNOWN,TRIVIAL,WEAK,TRIVIAL,False,"all_dims is a test-constructed input, not the function's output"
+validation_v4_0145,_load_env,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0146,_skip_udf,assert len(result) == 2,STRONG,STRONG,STRONG,WEAK,True,
+validation_v4_0147,_starttls_ldap,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0148,_check_class_method,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0149,output_fn,mock_to_json.assert_called_once(),STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0150,_maybe_memory_map,"assert result[1] == False, ""Second element of result should be False if memory mapping failed""",UNKNOWN,WEAK,STRONG,STRONG,True,specific expected value check on indexed result
+validation_v4_0151,_leastsq_patch,assert result is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0152,_check_monotonic_cst,"assert result.shape == (2,)",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0153,fetch_blocklist_data,"assert isinstance(result, dict)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0154,get_contiguous_view_for_tile,"assert mock_udftilemixing.process_tile.called_once_with(mock_partion, mock_tile)",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0155,_triage_parse_llm_output,assert result[0] is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0156,_exec_timeout_override,"assert some_other_function(solution, ""exec:to=abc"") == 10",UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,False,"some_other_function(solution, ...) wrapper is undefined anywhere in scope (not imported, not defined locally); provenance cannot be conservatively resolved (not statically-satisfied so not TRIVIAL either) -- UNKNOWN per taxonomy design intent."
+validation_v4_0157,_check_large_sparse,"assert False, ""Expected ValueError""",UNKNOWN,UNKNOWN,UNKNOWN,STRONG,True,
+validation_v4_0158,build_retrieved_context,"assert isinstance(result_with_chunks, str)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0159,validate_strategy_frontmatter,assert result == [],STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0160,cmd_sync_receipt,"assert mock_atomic_write_json.called_once_with(
+                Path('/tmp/repo/.flow/sync-runs/2023-01-01T00:00:00Z/spec-canonical.json'),
+                {'type': 'sync', 'status': 'noop'}
+            )",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0161,save,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0162,validate_task_spec_headings,"assert isinstance(content, str)",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0163,send_command,"assert mock_connection.get_connection.called_once_with(""model_server"")",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0164,restore_command,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0165,run,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0166,get_chart_shelf_tracks,"assert isinstance(result, list)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0167,_sanitize_value,"assert solution._sanetize_value({""a"": 1}) == {""a"": 1}",UNKNOWN,STRONG,STRONG,TRIVIAL,False,"typo'd method name (_sanetize_value), likely never reaches a meaningful call"
+validation_v4_0168,_render_child_database_block,"assert mock_method.called_once_with(mock_async_client, sample_block, 2)",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0169,__coerce_index,"assert isinstance(result, dict)",UNKNOWN,WEAK,WEAK,WEAK,True,type check only on real (name-mangled) call result
+validation_v4_0170,send_command,Metrics.add_time.assert_called_once(),UNKNOWN,UNKNOWN,UNKNOWN,STRONG,True,
+validation_v4_0171,get_contiguous_view_for_tile,assert False,UNKNOWN,UNKNOWN,UNKNOWN,WEAK,True,
+validation_v4_0172,_require_owner,"assert isinstance(result, UUID)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0173,check_column_presence,"assert isinstance(result, list)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0174,parse_dataset_with_version,"assert isinstance(result, tuple) and len(result) == 2",STRONG,STRONG,WEAK,WEAK,True,type+fixed-length check = coarse (pattern rule)
+validation_v4_0175,visualize_simple,"assert expected_rgba.shape == (10, 10, 4)",UNKNOWN,TRIVIAL,STRONG,TRIVIAL,False,expected_rgba is a test-constructed input; function's real return value is discarded
+validation_v4_0176,parse_list_header,"assert result == [""token"", ""quoted value""]",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0177,on_playlist_sidebar_playlist_selected,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0178,check_sizes,"assert isinstance(result, list)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0179,set_environ,assert mock_env['TEST_VAR'] == 'new_value',UNKNOWN,UNKNOWN,STRONG,STRONG,True,specific value comparison verifying environ was set correctly
+validation_v4_0180,_convert_aware_datetime,"assert isinstance(result, float)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0181,_maybe_memory_map,"assert isinstance(result, tuple)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0182,create_run,"solution_instance.create_run.assert_called_once_with(
+        parameters,
+        score,
+        estimator
+    )",UNKNOWN,STRONG,STRONG,TRIVIAL,False,create_run itself is the mocked target being asserted on; real method never runs
+validation_v4_0183,_fetch_from_cnn,assert result == [],STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0184,push_events_batch,"assert isinstance(result, list)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0185,_walk_filesystem,"assert all(isinstance(item, str) in result)",UNKNOWN,UNKNOWN,STRONG,TRIVIAL,False,"broken syntax, undefined name, not a valid comprehension"
+validation_v4_0186,coordinates,"assert isinstance(result, np.ndarray)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0187,last_modified,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0188,build_retrieved_context,"assert result_empty == """"",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0189,stream_decode_response_unicode,"assert isinstance(result, str)",UNKNOWN,WEAK,WEAK,TRIVIAL,False,"off-target method called (stream_decode_response_unify, not focal _unicode)"
+validation_v4_0190,check_nullable,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0191,coordinates,"assert isinstance(result, np.ndarray)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0192,high_gradients,assert result == [],STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0193,normalized_stim_map,"assert np.allclose(mock_inverse.call_args[0][0].shape, (2, 2)), ""Inverse map shape mismatch""",UNKNOWN,STRONG,UNKNOWN,STRONG,True,specific shape of argument passed to mocked dependency during real execution
+validation_v4_0194,from_dict,assert mock_schedule.call_count == 0,STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0195,_skip_udf,"assert isinstance(result[1], Table)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0196,truncate_filename,"assert isinstance(result, str)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0197,_format_to_v2_records,assert len(output) == 2,STRONG,STRONG,STRONG,WEAK,True,
+validation_v4_0198,cmd_spec_set_plan,assert mocked_print.called_once_with('# Example Spec Markdown'),TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0199,validate_task_spec_headings,"assert isinstance(solution.validate_task_spec_headings(""Some content""), list)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0200,_combine_constraints,"assert solution._combine_constraints(""test_check"", 10, 20) == ""combined_constraint""",STRONG,STRONG,STRONG,UNKNOWN,True,
+validation_v4_0201,record_pane_state,"assert isinstance(result, (MockPaneStateName, type(None)))",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0202,cf_has_standard_names,assert result is True,UNKNOWN,WEAK,STRONG,STRONG,True,direct focal-call result compared to a specific expected boolean
+validation_v4_0203,bkg_star_proba,"assert isinstance(result, float)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0204,send_command,"solution._DapClient__execute.assert_called_once_with(command, args)",UNKNOWN,STRONG,UNKNOWN,STRONG,True,"real Mock API, specific call-argument verification on a dependency interaction"
+validation_v4_0205,wait_for_rows,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0206,cmd_sync_receipt,assert mock_ensure_flow_exists.called_once_with(),TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0207,_save_atomic,"assert mock_rename.called_once_with(temp_path, final_path)",TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0208,_suitable_minimum_unit,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0209,__coerce_index,assert result is None,UNKNOWN,WEAK,WEAK,STRONG,True,real call compared to specific None
+validation_v4_0210,test,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0211,_suitable_minimum_unit,"assert result.name == {
+        (Unit.HOURS, []): ""HOURS"",
+        (Unit.HOURS, [Unit.HOURS]): ""DAYS"",
+        (Unit.HOURS, [Unit.HOURS, Unit.DAYS]): ""MONTHS""
+    }[(min_unit, tuple(suppress))]",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0212,_fill_data_var_defaults,assert result is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0213,iter_slices,"assert all(isinstance(item, str) for item in result)",STRONG,WEAK,STRONG,WEAK,True,all(isinstance(...)) over real output = coarse type check (pattern rule)
+validation_v4_0214,get_encoding_from_headers,assert result == expected,STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0215,stringify_path,"assert result is raw_bytes, ""Expected original bytes""",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0216,_assert_valid_file_upload,"assert ""must be an open file object"" in str(excinfo.value)",UNKNOWN,STRONG,WEAK,STRONG,True,specific exception message content checked inside pytest.raises
+validation_v4_0217,_parse_message_entry,"assert isinstance(result[0], list)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0218,_check_feature_names_in,"with pytest.raises(ValueError):
+        estimator._check_feature_names_in(['a', 'b'], generate_names=False)",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0219,_search_all,"assert isinstance(result, dict)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0220,on_playlist_sidebar_playlist_selected,assert result is None,WEAK,WEAK,WEAK,TRIVIAL,False,
+validation_v4_0221,_suitable_minimum_unit,assert result == Unit.HOURS,STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0222,_check_member,"with pytest.raises(ValueError):
+            solution._check_member(owner_user_id=UUID(""00000000-0000-0000-0000-000000000000""), user_id=UUID(""invalid""))",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0223,_get_feature_names,"assert result_non_string is None, ""Should return None for non-string column names""",WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0224,check_latest_version,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0225,_render_child_database_block,"assert isinstance(result, list)",UNKNOWN,TRIVIAL,WEAK,WEAK,True,"real call result checked, but only type, not value"
+validation_v4_0226,from_key_val_list,assert result == expected,STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0227,strip_url,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0228,_exec_timeout_override,"assert some_other_function(solution, ""exec:to=5"") == 5",UNKNOWN,UNKNOWN,UNKNOWN,UNKNOWN,False,"some_other_function(solution, ...) wrapper is undefined anywhere in scope (not imported, not defined locally); provenance cannot be conservatively resolved (not statically-satisfied so not TRIVIAL either) -- UNKNOWN per taxonomy design intent."
+validation_v4_0229,cmd_migrate_state,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0230,get_macrotile,assert result is not None,WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0231,startup,assert mock_warm_up.called_once_with(),TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0232,get_results,assert 'key' in result,STRONG,WEAK,WEAK,WEAK,True,key-membership check on real output = coarse (pattern rule)
+validation_v4_0233,find_popular,"assert isinstance(result, str), f""Expected string but got {type(result)}""",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0234,_check_large_sparse,"assert False, ""Expected ValueError""",UNKNOWN,UNKNOWN,UNKNOWN,STRONG,True,
+validation_v4_0235,record_pane_state,"assert False, ""Expected TypeError for empty window_id or pane_id""",UNKNOWN,UNKNOWN,UNKNOWN,STRONG,True,
+validation_v4_0236,_compress,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0237,rebuild_nested,"assert solution.twoSum([2,7,11,15], 9) == [0, 1]",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0238,cmd_migrate_state,"assert os.path.isdir(""test_state_dir"")",UNKNOWN,UNKNOWN,UNKNOWN,TRIVIAL,False,
+validation_v4_0239,_process_document,"assert isinstance(result, str)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0240,add_multiple,assert True,TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
+validation_v4_0241,get_best_solution,"assert isinstance(result, dict)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0242,_process_blacklist,"assert (""v1"", ""pkg""), {""v1""}",TRIVIAL,TRIVIAL,UNKNOWN,TRIVIAL,False,"tuple literal used as assert condition; always truthy, verifies nothing"
+validation_v4_0243,get_results,"assert all(isinstance(v, np.ndarray) for v in result.values()), ""All values must be NumPy arrays""",STRONG,WEAK,STRONG,WEAK,True,all(isinstance(...)) over real output = coarse type check (pattern rule)
+validation_v4_0244,get_path,"assert all(isinstance(item, str) for item in result)",STRONG,WEAK,STRONG,WEAK,True,all(isinstance(...)) over real output = coarse type check (pattern rule)
+validation_v4_0245,_date_and_delta,"assert isinstance(result, tuple)",WEAK,WEAK,WEAK,WEAK,True,
+validation_v4_0246,shares_add,"assert result.get(""as_json"") == as_json",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0247,directory_listing,"assert solution.directory_listing(path, dirs, files) == expected_output",STRONG,STRONG,STRONG,STRONG,True,
+validation_v4_0248,parse,assert result.effort is None,WEAK,WEAK,WEAK,STRONG,True,
+validation_v4_0249,device_focus_tokens,"assert solution.device_fname(""dev-1"") == ""dev""",UNKNOWN,STRONG,UNKNOWN,TRIVIAL,False,"unrelated method called (device_fname), not focal device_focus_tokens"
+validation_v4_0250,get_tool_call_visibility,assert mock_dep.called_once_with(expected_arg),TRIVIAL,TRIVIAL,TRIVIAL,TRIVIAL,False,
