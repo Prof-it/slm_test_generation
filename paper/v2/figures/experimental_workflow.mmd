@@ -1,9 +1,11 @@
 %%{init: {
   "theme": "base",
+  "fontFamily": "Arial, sans-serif",
   "flowchart": {
     "curve": "linear",
     "nodeSpacing": 28,
     "rankSpacing": 42,
+    "padding": 20,
     "htmlLabels": false
   },
   "themeVariables": {
@@ -81,7 +83,7 @@ flowchart TB
         EST["<b>Estimation</b><br/>Pass@1 · Wilson 95% CIs"]
         PAIR["<b>Paired comparisons</b><br/>Single-step vs. Two-step<br/>McNemar tests · Effect sizes"]
         MODEL["<b>Explanatory models</b><br/>Context-tier effects<br/>Recency proxy for training exposure"]
-        AGREE["<b>Judge–human alignment</b><br/>κ agreement · Spearman ρ"]
+        AGREE["<b>Judge–human alignment</b><br/>Cohen's κ · Spearman ρ"]
 
         ANALYSES --> EST
         ANALYSES --> AGREE
