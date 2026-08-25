@@ -1,0 +1,2 @@
+N,execution_passes,execution_pct,static_passes,static_pct,xfail_excluded_passes,xfail_excluded_pct,runtime_nontrivial_passes,runtime_nontrivial_pct
+562,284,50.53,222,39.5,175,31.14,47,8.36

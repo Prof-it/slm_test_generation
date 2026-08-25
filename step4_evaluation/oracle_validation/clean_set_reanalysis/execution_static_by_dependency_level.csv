@@ -1,0 +1,9 @@
+dependency_level,metric,N,successes,rate_pct,ci_low,ci_high
+L0,Execution Pass@1,2100,496,23.62,21.85,25.48
+L0,Static assertion-presence Pass@1,2100,383,18.24,16.64,19.95
+L1,Execution Pass@1,2190,746,34.06,32.11,36.08
+L1,Static assertion-presence Pass@1,2190,593,27.08,25.26,28.98
+L2,Execution Pass@1,2160,516,23.89,22.14,25.73
+L2,Static assertion-presence Pass@1,2160,339,15.69,14.22,17.29
+L3,Execution Pass@1,1980,260,13.13,11.71,14.69
+L3,Static assertion-presence Pass@1,1980,155,7.83,6.73,9.09

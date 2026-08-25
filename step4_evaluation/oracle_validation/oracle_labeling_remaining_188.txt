@@ -1,0 +1,5180 @@
+ORACLE SITE LABELING -- 188 REMAINING (AI-consensus subset, blind human review)
+====================================================================================================
+
+TAXONOMY:
+  TRIVIAL  - SUT-independent and statically satisfied (e.g. assert True)
+  WEAK     - SUT-derived truthiness/nullity/existence/coarse type (e.g. assert result is not None)
+  STRONG   - specific expected value/content/range, exception/warning contract, or verified interaction (e.g. assert result == expected)
+  UNKNOWN  - semantics or SUT provenance cannot be resolved conservatively
+
+For each site below, fill in CLASS (TRIVIAL/WEAK/STRONG/UNKNOWN) and SUT_DEPENDENT (true/false).
+====================================================================================================
+
+--- [1/188] validation_v4_0001  (kind: assert) ---
+
+FOCAL FUNCTION:
+_walk_filesystem
+
+ORACLE SITE (the assertion being classified):
+assert solution._walk_filesystem(Path('/tmp')) == ['/tmp/file1.txt', '/tmp/file2.txt']
+
+ENCLOSING TEST:
+def test__walk_filesystem():
+    from unittest.mock import patch, MagicMock
+    with patch('os.scandir', return_value=MagicMock(side_effect=[
+        MagicMock(is_file=True, name='file1.txt'),
+        MagicMock(is_file=False),
+        MagicMock(is_file=True, name='file2.txt')
+    ])):
+        solution = Solution()
+        assert solution._walk_filesystem(Path('/tmp')) == ['/tmp/file1.txt', '/tmp/file2.txt']
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [2/188] validation_v4_0003  (kind: assert) ---
+
+FOCAL FUNCTION:
+discover_and_register_transcript
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+async def test_discover_and_register_transcript(mock_session, mock_tmux_window, mock_identity_state, mock_telegram_client):
+    """Test that discover_and_register_transcript initializes correctly"""
+
+    # Setup mocks
+    mock_session.return_value.__aenter__.return_value = MagicMock()
+    mock_session.return_value.__aexit__ = MagicMock()
+
+    mock_tmx_window_instance = MagicMock()
+    mock_tmux_window.return_value = mock_tmx_window_instance
+
+    mock_identity_projection = MagicMock()
+    mock_identity_state.IdentityProjection = MagicMock(return_value=mock_identity_projection)
+
+    mock_agent_provider = MagicMock()
+    mock_telegram_client.return_value = MagicMock()
+
+    # Create solution instance
+    solution = Solution()
+
+    # Call the method with valid parameters
+    await solution.discover_and_register_transcript(
+        window_id="test-window-id",
+        _window=mock_tmx_window_instance,
+        client=mock_telegram_client(),
+        user_id=12345,
+        thread_id=67890
+    )
+
+    # Assertions verify the method ran without raising exceptions
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [3/188] validation_v4_0004  (kind: assert) ---
+
+FOCAL FUNCTION:
+shares_add
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, bool)
+
+ENCLOSING TEST:
+def test_shares_add_default_values(solution):
+    result = solution.shares_add()
+    assert isinstance(result, bool)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [4/188] validation_v4_0005  (kind: assert) ---
+
+FOCAL FUNCTION:
+naturaltime
+
+ORACLE SITE (the assertion being classified):
+assert result == "yesterday"
+
+ENCLOSING TEST:
+def test_naturaltime():
+    solution = Solution()
+
+    with patch('__main__.dt') as mock_dt, \
+         patch('_Solution._convert_aware_datetime') as mock_convert, \
+         patch('_Solution._date_and_delta') as mock_date, \
+         patch('_Solution.naturaldelta') as mock_delta, \
+         patch('_Solution._now') as mock_now:
+
+        mock_dt.datetime.return_value = dt.datetime(2023, 1, 1, tzinfo=mock_dt.timezone)
+        mock_dt.timedelta.return_value = dt.timedelta(days=1)
+
+        mock_convert.return_value = dt.datetime(2023, 1, 1, tzinfo=mock_dt.timezone)
+        mock_date.return_value = (dt.datetime(2023, 1, 1, tzinfo=mock_dt.timezone), dt.timedelta(days=1))
+        mock_delta.return_value = "1 day"
+
+        mock_now.return_value = dt.datetime(2023, 1, 1, tzinfo=mock_dt.timezone)
+
+        result = solution.naturaltime(dt.datetime(2023, 1, 1))
+
+        assert result == "yesterday"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [5/188] validation_v4_0006  (kind: assert) ---
+
+FOCAL FUNCTION:
+_starttls_ldap
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test__starttls_ldap():
+    solution = Solution()
+    with patch('socket.socket') as mock_socket:
+        solution._starttls_ldap(mock_socket.return_value, "example.com")
+    # Check if the method completes without raising errors
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [6/188] validation_v4_0007  (kind: assert) ---
+
+FOCAL FUNCTION:
+set_environ
+
+ORACLE SITE (the assertion being classified):
+assert restored_value is None
+
+ENCLOSING TEST:
+def test_set_environ():
+    solution=Solution()
+    with patch.dict('os.environ', {'TEST_VAR': 'old_value'}):
+        test_env_name = 'TEST_VAR'
+        new_value = 'new_value'
+
+        results = []
+        for result in solution.set_environ(test_env_name, new_value):
+            results.append(result)
+
+        assert len(results) == 1
+        assert os.environ[test_env_name] == 'new_value'
+
+        # Check restoration after yielding
+        restored_value = os.environ.get(test_env_name)
+        assert restored_value == 'old_value'
+
+    with patch.dict('os.environ', {}):
+        test_env_name = 'NEW_VAR'
+        new_value = 'another_new_value'
+
+        results = []
+        for result in solution.set_environ(test_env_name, new_value):
+            results.append(result)
+
+        assert len(results) == 1
+        assert os.environ[test_env_name] == 'another_new_value'
+
+        # Check removal/restoration when key didn't exist initially
+        restored_value = os.environ.get(test_env_name)
+        assert restored_value is None
+
+    with patch.dict('os.environ', {'SOME_VAR': 'some_val'}):
+        test_env_name = 'IGNORE_ME'
+        new_value = None
+
+        # Should do nothing if value is None
+        list(solution.set_environ(test_env_name, new_value))
+
+        # Ensure no change happened
+        assert os.environ['SOME_VAR'] == 'some_val'
+        assert 'IGNORE_ME' not in os.environ
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [7/188] validation_v4_0010  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_batch
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, list)
+
+ENCLOSING TEST:
+def test_get_batch():
+    solution = Solution()
+    from unittest.mock import patch, MagicMock
+
+    # Test with different split values like "train" or "validation"
+    result = solution.get_batch("train")
+
+    assert isinstance(result, list)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [8/188] validation_v4_0011  (kind: assert) ---
+
+FOCAL FUNCTION:
+_exec_timeout_override
+
+ORACLE SITE (the assertion being classified):
+assert result is None
+
+ENCLOSING TEST:
+def test__exec_timeout_override():
+    solution = Solution()
+
+    # Test case 1: Valid exec:to=30 format
+    result = solution._exec_timeout_override("some_command exec:to=30")
+    assert isinstance(result, int)
+    assert result == 30
+
+    # Test case 2: No exec:to prefix
+    result = solution._exec_timeout_override("just_a_normal_cmd")
+    assert result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [9/188] validation_v4_0012  (kind: assert) ---
+
+FOCAL FUNCTION:
+build_playlist_subtitle
+
+ORACLE SITE (the assertion being classified):
+assert result == "Spotify · 2023 · 5 tracks"
+
+ENCLOSING TEST:
+def test_build_playlist_subtitle():
+    solution = Solution()
+
+    # Test case where all fields are provided
+    result = solution.build_playlist_subtitle("Spotify", "Public", "2023", 5)
+    assert result == "Spotify · Public · 2023 · 5 tracks"
+
+    # Test case where privacy is empty (should be omitted)
+    result = solution.build_playlist_subtitle("Spotify", "", "2023", 5)
+    assert result == "Spotify · 2023 · 5 tracks"
+
+    # Test case where year is empty (should be omitted)
+    result = solution.build_playlist_sublist("Spotify", "Public", None, 5)
+    assert result == "Spotify · Public · 5 tracks"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [10/188] validation_v4_0013  (kind: assert) ---
+
+FOCAL FUNCTION:
+check_autoclose_timers
+
+ORACLE SITE (the assertion being classified):
+assert mock_close.called_once_with(mock_client, 1, 2, "dead")
+
+ENCLOSING TEST:
+def test_check_autoclose_timer():
+    solution = Solution()
+
+    with patch('unittest.mock', create=True) as mock_unittest:
+        with patch.object(solution, '_close_expired_topic') as mock_close:
+            mock_client = MagicMock(spec=TelegramClient)
+            mock_close.return_value = None
+            solution.check_autoclose_timers(mock_client)
+
+            assert mock_close.called_once_with(mock_client, 1, 2, "done")
+            assert mock_close.called_once_with(mock_client, 1, 2, "dead")
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [11/188] validation_v4_0014  (kind: assert) ---
+
+FOCAL FUNCTION:
+cmd_sync_receipt
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_cmd_sync_receipt():
+    """Test that cmd_sync_receipt method can be called successfully with valid arguments."""
+
+    # Patch external dependencies that are used internally
+    with patch('pathlib.Path') as mock_path_class:
+        with patch.object(mock_path_class, 'exists', return_value=True):
+            with patch('os.path.exists', return_value=True):
+
+                # Setup mock Path instances
+                mock_path_obj = MagicMock()
+                mock_path_class.return_value = mock_path_obj
+
+                # Create a mock Namespace object for args
+                args = argparse.Namespace(
+                    flow_dir='.',
+                    spec_id='some-spec-id',
+                    action='sync'
+                )
+
+                # Instantiate the Solution class
+                solution = Solution()
+
+                # Verify the method accepts the correct argument type
+                try:
+                    solution.cmd_sync_receipt(args)
+
+                    # Assert that the method completed without raising an exception
+                    assert True
+
+                except Exception as e:
+                    raise AssertionError(f"Method raised unexpected exception: {e}")
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [12/188] validation_v4_0017  (kind: assert) ---
+
+FOCAL FUNCTION:
+convert_pending_invites
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [13/188] validation_v4_0018  (kind: assert) ---
+
+FOCAL FUNCTION:
+on_playlist_sidebar_playlist_selected
+
+ORACLE SITE (the assertion being classified):
+assert mock_dependency.called_once_with(expected_value)
+
+ENCLOSING TEST:
+def test_on_playlist_sidebar_playlist_selected():
+    solution = Solution()
+
+    # Mock the necessary dependencies if needed
+    with patch('some_module.dependency') as mock_dependency:
+        pass
+
+    # Create an instance of the expected type for the parameter
+    mock_message = MagicMock(spec=PlaylistSidebar.PlaylistSelected)
+
+    # Call the function under test
+    await asyncio.run(solution.on_playlist_sidebar_playlist_selected(mock_message))
+
+    # Assertions to check the behavior
+    assert mock_dependency.called_once_with(expected_value)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [14/188] validation_v4_0019  (kind: assert) ---
+
+FOCAL FUNCTION:
+list_graphs
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, list)
+
+ENCLOSING TEST:
+def test_list_graphs():
+    solution = Solution()
+
+    with patch('some_module', new_callable=MagicMock) as mock_some_module:
+        result = solution.list_graphs(args)
+        assert isinstance(result, list)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [15/188] validation_v4_0020  (kind: assert) ---
+
+FOCAL FUNCTION:
+rewind_body
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_rewind_body():
+    from unittest.mock import patch, MagicMock
+
+    solution = Solution()
+
+    # Create a mock prepared_request with appropriate attributes
+    prepared_request = MagicMock()
+    prepared_request._body = b"some content"
+
+    result = solution.rewind_body(prepared_request)
+
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [16/188] validation_v4_0021  (kind: mock_contract) ---
+
+FOCAL FUNCTION:
+last_modified
+
+ORACLE SITE (the assertion being classified):
+mock_get.assert_called_once_with("example_param_name", True, True)
+
+ENCLOSING TEST:
+def test_last_modified():
+    solution = Solution()
+
+    # Create a mock for the get method
+    with patch('Solution.get') as mock_get:
+        # Set up the mock to return a datetime object
+        mock_get.return_value = datetime.datetime(2023, 1, 1, 12, 0, 0)
+
+        # Call the function with a valid parameter name
+        result = solution.last_modified("example_param_name")
+
+        # Assert that the function returned the correct type and value
+        assert isinstance(result, Optional[datetime]), "Expected Optional[datetime]"
+        assert result is not None, "Expected a datetime object"
+        assert result == datetime.datetime(2023, 1, 1, 12, 0, 0), "Expected correct datetime"
+
+        # Verify that the get method was called with the correct arguments
+        mock_get.assert_called_once_with("example_param_name", True, True)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [17/188] validation_v4_0022  (kind: assert) ---
+
+FOCAL FUNCTION:
+parse_tsv_file
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_parse_tsv_file():
+    solution = Solution()
+    # Need to provide valid arguments for the function
+    result = solution.parse_tsv_file("some_path.tsv")
+    # Verify it works without throwing errors
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [18/188] validation_v4_0023  (kind: assert) ---
+
+FOCAL FUNCTION:
+inference_loop
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+async def _test_transcribe(mocker):
+        mocker.return_value = None
+        await solution.inference_loop()
+        assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [19/188] validation_v4_0025  (kind: assert) ---
+
+FOCAL FUNCTION:
+to_key_val_list
+
+ORACLE SITE (the assertion being classified):
+assert result == [('key', 'val')]
+
+ENCLOSING TEST:
+def test_to_key_val_list():
+    solution = Solution()
+    result = solution.to_key_val_list({'key': 'val'})
+    assert result == [('key', 'val')]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [20/188] validation_v4_0027  (kind: assert) ---
+
+FOCAL FUNCTION:
+dedup_names
+
+ORACLE SITE (the assertion being classified):
+assert solution.dedup_names(input_names, input_bool) == expected_output
+
+ENCLOSING TEST:
+def test_dedup_names():
+    solution = Solution()
+    # Test case satisfying Step 1 & 2: providing a sequence of hashables and a boolean
+    input_names = ["a", "b", "a"]
+    input_bool = False
+    expected_output = ["a", "b", "a.1"]
+    assert solution.dedup_names(input_names, input_bool) == expected_output
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [21/188] validation_v4_0028  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_last_activity_ts
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, float) or result is None
+
+ENCLOSING TEST:
+def test_get_last_activity_ts(mock_session):
+    solution = Solution()
+
+    # Test case where window has no session
+    result = solution.get_last_activity_ts("test_window")
+    assert result is None
+
+    # Test case where window has session but monitor not started
+    mock_session.return_value = MagicMock()
+    result = solution.get_last_activity_ts("test_window_2")
+    assert isinstance(result, float) or result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [22/188] validation_v4_0030  (kind: assert) ---
+
+FOCAL FUNCTION:
+startup
+
+ORACLE SITE (the assertion being classified):
+assert mock_healthy.is_ready.called_once_with()
+
+ENCLOSING TEST:
+def test_startup():
+    solution = Solution()
+
+    # Mock the necessary dependencies if needed
+    with patch('some_module.SGServer') as mock_server:
+        mock_healthy = MagicMock()
+        mock_healthy.is_ready.return_value = True
+        mock_server().is_ready.side_effect = [mock_health]
+        mock_warm_up = MagicMock()
+        mock_sleep = MagicMock()
+
+        # Call the function being tested
+        solution.startup()
+
+        # Assertions to check the behavior of the function
+        assert mock_server.call_count == 1
+        assert mock_healthy.is_ready.called_once_with()
+        assert mock_warm_up.called_once_with()
+        assert mock_sleep.called_once_with(5)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [23/188] validation_v4_0031  (kind: assert) ---
+
+FOCAL FUNCTION:
+_post_token_endpoint
+
+ORACLE SITE (the assertion being classified):
+assert result == {"access_token": "mock_access_token"}
+
+ENCLOSING TEST:
+def test__post_token_endpoint():
+    solution = Solution()
+    # Create a mock AsyncClient instance
+    mock_client = MagicMock(spec=AsyncClient)
+    mock_response = MagicMock()
+    mock_response.status_code = 200
+    mock_response.json.return_value = {"access_token": "mock_access_token"}
+    mock_client.post.return_value = mock_response
+
+    # Patch the AsyncClient class to use our mock
+    with patch('Solution._post_token_endpoint', new_callable=lambda *args, **kwargs: None), \
+         patch('httpx.AsyncClient') as mock_async_client:
+        mock_async_client.return_value = mock_client
+
+        # Call the method asynchronously
+        result = await solution._post_token_endpoint("https://example.com/oauth", {"client_id": "test", "client_secret": "test"})
+        assert result == {"access_token": "mock_access_token"}
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [24/188] validation_v4_0035  (kind: assert) ---
+
+FOCAL FUNCTION:
+_extract_message_id
+
+ORACLE SITE (the assertion being classified):
+assert solution._extract_message_id(result_dict) == 12345
+
+ENCLOSING TEST:
+def test__extract_message_id():
+    solution = Solution()
+    # Test case satisfying Step 1 & 3 by calling the method with valid inputs
+    # We choose a dictionary input here as a concrete example fulfilling the requirement
+    result_dict = {"message_id": 12345}
+    assert solution._extract_message_id(result_dict) == 12345
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [25/188] validation_v4_0037  (kind: assert) ---
+
+FOCAL FUNCTION:
+toggle_shuffle
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_toggle_shuffle():
+    solution = Solution()
+    solution.toggle_shuffle()
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [26/188] validation_v4_0038  (kind: assert) ---
+
+FOCAL FUNCTION:
+last_modified
+
+ORACLE SITE (the assertion being classified):
+assert result is None
+
+ENCLOSING TEST:
+def test_last_modified():
+    solution = Solution()
+
+    # Mock the necessary dependencies
+    with patch('some_module', return_value=None):
+        result = solution.last_modified("test_name")
+        assert result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [27/188] validation_v4_0040  (kind: assert) ---
+
+FOCAL FUNCTION:
+save
+
+ORACLE SITE (the assertion being classified):
+assert mock_savez.called_once_with("test_file.npz", "vip")
+
+ENCLOSING TEST:
+def test_save():
+    solution = Solution()
+
+    # Mock the numpy.savez_npz function if needed
+    from unittest.mock import patch
+    with patch('numpy.savez_npz') as mock_savez:
+        # Call the function being tested
+        solution.save("test_file.npz")
+
+        # Assertions to check the behavior of the function
+        assert mock_savez.called_once_with("test_file.npz", "vip")
+        assert isinstance(mock_savez.call_args[0], tuple)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [28/188] validation_v4_0041  (kind: assert) ---
+
+FOCAL FUNCTION:
+check_column_presence
+
+ORACLE SITE (the assertion being classified):
+assert len(result) == 1
+
+ENCLOSING TEST:
+def test_check_column_returns_correct_type():
+    solution = Solution()
+
+    # Mocking the necessary dependencies if needed
+    mock_schema = {"columns": ["col1", "col2"]}
+    mock_dataframe = MagicMock()
+    mock_dataframe.columns = ["col1"]
+    mock_core_check_result = CoreCheckResult("missing", "col2")
+
+    result = solution.check_column_presence(mock_dataframe, mock_schema, None)
+
+    assert isinstance(result, list)
+    assert len(result) == 1
+    assert result[0].error_code == "missing"
+    assert result[0].message == "col2"
+
+    print("All checks passed")
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [29/188] validation_v4_0042  (kind: assert) ---
+
+FOCAL FUNCTION:
+naturaltime
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_naturaltime():
+    solution = Solution()
+    # Mocking necessary components if they were fully implemented, but since we are testing the signature/basic behavior inference,
+    # we use a simple timedelta example assuming standard library usage would handle this.
+    # We expect a string output representing a duration.
+    test_delta = datetime.timedelta(days=1, hours=5, minutes=30)
+    expected_output = "in a day" # This is an assumption based on typical naturaltime behavior for ~1.2 days
+
+    with patch('datetime.datetime') as mock_dt:
+        # Set up mocks so the function doesn't crash due to missing implementation details like 'now()' calls
+        mock_dt.now.return_value = datetime.datetime.utcnow()
+
+        result = solution.naturaltime(test_delta)
+        assert isinstance(result, str)
+        # Since the actual logic is stubbed ('pass'), we assert against the type and perhaps a placeholder check if possible.
+        # Given the ambiguity, asserting the return type is the safest bet for a minimal test.
+        print(f"Test result: {result}")
+        assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [30/188] validation_v4_0044  (kind: assert) ---
+
+FOCAL FUNCTION:
+normalized_stim_map
+
+ORACLE SITE (the assertion being classified):
+assert result.shape == (100, 100)
+
+ENCLOSING TEST:
+def test_normalized_stim_map():
+    solution = Solution()
+
+    # Create sample inputs
+    cube = np.random.rand(100, 100, 100)  # Example 3D numpy array
+    angle_list = np.array([0, np.pi/2])   # Example 1D numpy array
+
+    # Patch required dependencies
+    with patch('Solution.inverse_stim_map') as mocked_inverse_stim_map,\
+         patch('Solution.stim_map') as mocked_stim_map:
+
+        # Define expected outputs
+        mocked_inverse_stim_map.return_value = np.random.rand(100, 100)  # Example 2D array
+        mocked_stim_map.return_value = np.random.rand(100, 100)          # Example 2D array
+
+        result = solution.normalized_stim_map(cube, angle_list)
+
+        assert isinstance(result, np.ndarray)
+        assert result.shape == (100, 100)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [31/188] validation_v4_0045  (kind: assert) ---
+
+FOCAL FUNCTION:
+_join_text_at_seam
+
+ORACLE SITE (the assertion being classified):
+assert result is None
+
+ENCLOSING TEST:
+def test__join_text_at_seam(sol):
+    result = sol()._join_text_at_seam([[{"key": "value"}], [{"another_key": "another_value"}]])
+    assert result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [32/188] validation_v4_0047  (kind: assert) ---
+
+FOCAL FUNCTION:
+_assert_valid_file_upload
+
+ORACLE SITE (the assertion being classified):
+assert False, str(e)
+
+ENCLOSING TEST:
+def test__assert_valid_file_upload():
+    solution = Solution()
+
+    # Test valid file upload (open file)
+    f = io.open('test.txt', 'w')
+    try:
+        solution._assert_valid_file_upload('tag', f)
+    except Exception as e:
+        assert False, str(e)
+
+    # Test invalid file upload (closed file object)
+    closed_f = io.FileIO('test.txt', mode='r')
+    closed_f.close()
+    with pytest.raises(Exception) as excinfo:
+        solution._assert_valid_file_upload('invalid_tag', closed_f)
+    assert "not an open file" in str(excinfo.value)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [33/188] validation_v4_0048  (kind: assert) ---
+
+FOCAL FUNCTION:
+structure_from_task
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, dict)
+
+ENCLOSING TEST:
+def test_structure_from_task(mock_udf, mock_task):
+    solution = Solution()
+    result = solution.structure_from_task(udfs=[mock_udf], task=mock_task)
+    assert isinstance(result, dict)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [34/188] validation_v4_0049  (kind: assert) ---
+
+FOCAL FUNCTION:
+_extract_message_id
+
+ORACLE SITE (the assertion being classified):
+assert solution._extract_message_id(dummy_msg) == 789
+
+ENCLOSING TEST:
+def test__extract_message_id():
+    solution = Solution()
+
+    # Condition 1: Function invocation occurs when _extract_message_id is called
+    # Condition 2 & 3: Result contains .message_id or "message_id" key
+    # Condition 4: Method runs on an instantiated Solution object
+
+    # Test case where result is a simple integer (will fail because missing .message_id)
+    assert solution._extract_message_id(123) is None
+
+    # Test case where result is a dictionary with "message_id"
+    assert solution._extract_message_id({"message_id": 456}) == 456
+
+    # Test case where result is an object with .message_id attribute
+    class DummyMessage:
+        def __init__(self):
+            self.message_id = 789
+
+    dummy_msg = DummyMessage()
+    assert solution._extract_message_id(dummy_msg) == 789
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [35/188] validation_v4_0050  (kind: assert) ---
+
+FOCAL FUNCTION:
+_check_message
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, type(None)) or result == None
+
+ENCLOSING TEST:
+def test__check_message():
+    solution=Solution()
+
+    # Test passing message (returns None)
+    result = solution._check_message("Hello World!")
+    assert isinstance(result, type(None)) or result == None
+
+    # Test blocking message (returns string)
+    result = solution._check_message("")
+    assert isinstance(result, str)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [36/188] validation_v4_0051  (kind: assert) ---
+
+FOCAL FUNCTION:
+insert_many
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_insert_many(solution_instance):
+    # Provide a non-empty iterable of dictionaries as input
+    entries = [{'key': 'value'}, {'another_key': 'another_value'}]
+
+    # Call the method with the fixture instance
+    solution_instance.insert_many(entries)
+
+    # Verify that nothing unexpected happens; since the method returns None,
+    # simply asserting that the call completes without raising an exception suffices.
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [37/188] validation_v4_0053  (kind: assert) ---
+
+FOCAL FUNCTION:
+_load_env
+
+ORACLE SITE (the assertion being classified):
+assert False, f"_load_env failed unexpectedly: {e}"
+
+ENCLOSING TEST:
+def test__load_env():
+    with patch.dict('os.environ', {'TEST_KEY': 'test_value'}):
+        solution = Solution()
+        try:
+            solution._load_env()
+            assert True
+        except Exception as e:
+            assert False, f"_load_env failed unexpectedly: {e}"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [38/188] validation_v4_0054  (kind: assert) ---
+
+FOCAL FUNCTION:
+naturalday
+
+ORACLE SITE (the assertion being classified):
+assert solution.naturalday(date.today()) == "Oct 31"
+
+ENCLOSING TEST:
+def test_naturalday():
+    from datetime import date
+    solution = Solution()
+    assert solution.naturalday(date.today()) == "Oct 31"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [39/188] validation_v4_0056  (kind: assert) ---
+
+FOCAL FUNCTION:
+_search_all
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, dict)
+
+ENCLOSING TEST:
+async def test_search_all():
+    solution = Solution()
+    result = await solution._search_all("example")
+    assert isinstance(result, dict)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [40/188] validation_v4_0057  (kind: assert) ---
+
+FOCAL FUNCTION:
+expand_path
+
+ORACLE SITE (the assertion being classified):
+assert len(result) == 1
+
+ENCLOSING TEST:
+def test_expand_path():
+    solution = Solution()
+
+    # Mock DataTable and Node classes if necessary
+    from unittest.mock import MagicMock
+    data_table_mock = MagicMock(spec=DataTable)
+    node_mock = MagicMock(spec=Node)
+
+    # Set up mock data
+    data_table_mock.rows = [
+        {"id": "root", "children": [{"id": "dir1"}, {"id": "dir2"}]},
+        {"id": "dir1", "children": [{"id": "file1.txt"}], "parent_id": "root"},
+        {"id": "dir2", "children": [{"id": "file2.txt"}], "parent_id": "root"}
+    ]
+
+    # Create nodes for each row in the directory structure
+    root_node = node_mock(id="root")
+    dir1_node = node_mock(id="dir1")
+    file1_node = node_mock(id="file2.txt")
+
+    # Assign parent-child relationships
+    root_node.children = [dir1_node, dir1_node]
+    dir1_node.parent = root_node
+    dir1_node.children = [file1_node]
+
+    # Call the function being tested
+    result = solution.expand_path(data_table_mock, "/home/user/dir1/file1.txt")
+
+    # Assertions
+    assert len(result) == 1
+    assert result[0].id == "file1.txt"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [41/188] validation_v4_0059  (kind: assert) ---
+
+FOCAL FUNCTION:
+_load_env
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test__load_env():
+    with patch.dict(os.environ, {"TEST_ENV": "value"}):
+        solution = Solution()
+        solution._load_env()
+        # Verify that the function worked without errors
+        assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [42/188] validation_v4_0060  (kind: assert) ---
+
+FOCAL FUNCTION:
+generate_video_masks
+
+ORACLE SITE (the assertion being classified):
+assert mock_save.called_once_with([], '/some/dir', '/output', ['frame1'], 5)
+
+ENCLOSING TEST:
+def test_generate_video_masks():
+    solution = Solution()
+
+    with patch('solution.convert_video_to_frames') as mock_convert, \
+         patch('solution.save_segmented_frames') as mock_save:
+        mock_convert.return_value = []
+        mock_save.return_value = []
+
+        result = solution.generate_video_masks('/test/video.mp4')
+
+        assert mock_convert.called_once_with('/test/video.mp4')
+        assert mock_save.called_once_with([], '/some/dir', '/output', ['frame1'], 5)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [43/188] validation_v4_0061  (kind: assert) ---
+
+FOCAL FUNCTION:
+check_nullable
+
+ORACLE SITE (the assertion being classified):
+assert result.result == "nullable"
+
+ENCLOSING TEST:
+def test_check_nullable():
+    from unittest.mock import MagicMock
+    import ibis
+    import pandas as pd
+    from ibis.core.checks import CoreCheckResult
+
+    # Mocking dependencies
+    check_obj = MagicMock(spec=ibis.Column)
+    check_obj.is_null = lambda self: True
+    check_obj.is_nan = lambda self: False
+
+    schema = MagicMock(spec=pd.DataFrame)
+
+    result = solution.check_nullable(check_obj, schema)
+
+    assert isinstance(result, CoreCheckResult)
+    assert result.result == "nullable"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [44/188] validation_v4_0062  (kind: assert) ---
+
+FOCAL FUNCTION:
+stringify_path
+
+ORACLE SITE (the assertion being classified):
+assert result == "/home/user/file.txt"
+
+ENCLOSING TEST:
+def test_stringify_path():
+    solution = Solution()
+    file_path = Path("/home/user/file.txt")
+    buffer = BytesIO(b"data")
+
+    # Test with a FilePath object
+    result = solution.stringify_path(file_path)
+    assert result == "/home/user/file.txt"
+
+    # Test with a BaseBufferT object
+    result = solution.stringify_path(buffer, True)
+    assert result == "data"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [45/188] validation_v4_0063  (kind: assert) ---
+
+FOCAL FUNCTION:
+shares_add
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_shares_add():
+    solution=Solution()
+    result=solution.shares_add(object_type="file", object_id="abc123", email="test@example.com")
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [46/188] validation_v4_0064  (kind: assert) ---
+
+FOCAL FUNCTION:
+_write_health
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test__write_health():
+            solution = Solution()
+            # Call with valid args
+            result = solution._write_health("healthy")
+            assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [47/188] validation_v4_0065  (kind: assert) ---
+
+FOCAL FUNCTION:
+allocate_for_part
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_allocate_for_part():
+    # Step 1: Create a mock Partition object
+    partition_mock = MagicMock()
+
+    # Step 2: Create a mock ROI array or pass None
+    roi_array = np.array([[1, 2], [3, 4]])
+
+    # Step 3: Create an instance of the Solution class
+    solution = Solution()
+
+    # Step 4: Call the allocate_for_part method with valid parameters
+    try:
+        solution.allocate_for_part(partition_mock, roi_array)
+
+        # Step 5: Verify the method completed without raising an exception
+        assert True
+
+    except Exception as e:
+        raise AssertionError(f"Method failed to execute: {e}")
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [48/188] validation_v4_0066  (kind: assert) ---
+
+FOCAL FUNCTION:
+file_exists
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, bool)
+
+ENCLOSING TEST:
+def test_file_exists():
+    solution = Solution()
+    result = solution.file_exists("example.txt")
+    assert isinstance(result, bool)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [49/188] validation_v4_0067  (kind: assert) ---
+
+FOCAL FUNCTION:
+type_name
+
+ORACLE SITE (the assertion being classified):
+assert solution.type_name("hello") == "string"
+
+ENCLOSING TEST:
+def test_type_name():
+    solution = Solution()
+    assert solution.type_name("hello") == "string"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [50/188] validation_v4_0068  (kind: assert) ---
+
+FOCAL FUNCTION:
+validate_shape_expression
+
+ORACLE SITE (the assertion being classified):
+assert solution.validate_shape_expression(expr_obj) == "expected_result"
+
+ENCLOSING TEST:
+def test_validate_shape_expression():
+    from typing import Any, Tuple
+
+    # Test with a ShapeExpression object
+    class ShapeExpression:
+        pass
+
+    expr_obj = ShapeExpression()
+
+    # Test with a tuple of strings
+    expr_tuple = ("a", "b")
+
+    # Test with an arbitrary type (Any)
+    expr_any = 42
+
+    solution = Solution()
+    assert solution.validate_shape_expression(expr_obj) == "expected_result"  # Replace with actual expected result
+    assert solution.validate_shape_expression(expr_tuple) == "expected_result"  # Replace with actual expected result
+    assert solution.validate_shape_expression(expr_any) == "expected_result"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [51/188] validation_v4_0070  (kind: assert) ---
+
+FOCAL FUNCTION:
+check_autoclose_timers
+
+ORACLE SITE (the assertion being classified):
+assert mock_close.called_once_with(mock_client, 1, 2, "done")
+
+ENCLOSING TEST:
+def test_check_autoclose_timer():
+    solution = Solution()
+
+    with patch('unittest.mock', create=True) as mock_unittest:
+        with patch.object(solution, '_close_expired_topic') as mock_close:
+            mock_client = MagicMock(spec=TelegramClient)
+            mock_close.return_value = None
+            solution.check_autoclose_timers(mock_client)
+
+            assert mock_close.called_once_with(mock_client, 1, 2, "done")
+            assert mock_close.called_once_with(mock_client, 1, 2, "dead")
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [52/188] validation_v4_0071  (kind: assert) ---
+
+FOCAL FUNCTION:
+namedtuple_unstructure_factory
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, UnstructureHook)
+
+ENCLOSING TEST:
+def test_namedtuple_unstructure_factory():
+    # Create a mock converter instance
+    mock_converter = MagicMock(spec=BaseConverter)
+
+    # Instantiate the Solution class
+    solution = Solution()
+
+    # Test that the method can be called with valid arguments
+    result = solution.namedtuple_unstructure_factory(tuple, mock_converter)
+
+    # Assert that the method returned something of the expected type
+    assert isinstance(result, UnstructureHook)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [53/188] validation_v4_0074  (kind: assert) ---
+
+FOCAL FUNCTION:
+radial_bins
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, tuple)
+
+ENCLOSING TEST:
+def test_radial_bins():
+    solution = Solution()
+
+    # Mock the dependencies
+    with patch.object(Solution, 'polar_map') as mock_polar_map, \
+         patch.object(Solution, 'bounding_radius') as mock_bounding_radius:
+
+        # Set up the mocks to return fixed values
+        mock_polar_map.return_value = (np.zeros((10, 10)), np.zeros((10, 10)))
+        mock_bounding_radius.return_value = 10.0
+
+        result = solution.radial_bins(
+            centerX=0.0,
+            centerY=0.0,
+            imageSizeX=10,
+            imageSizeY=10
+        )
+
+        # Check the result type (we assume it returns a tuple of two arrays)
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+        assert result[0].shape == (10, 10)
+        assert result[1].shape == (10, 10)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [54/188] validation_v4_0075  (kind: assert) ---
+
+FOCAL FUNCTION:
+_check_message
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(solution._check_message("valid"), str)
+
+ENCLOSING TEST:
+def test_check_message(mock_text):
+    solution = Solution()
+    assert isinstance(solution._check_message("valid"), str)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [55/188] validation_v4_0077  (kind: assert) ---
+
+FOCAL FUNCTION:
+pytest_marks
+
+ORACLE SITE (the assertion being classified):
+assert input == expected
+
+ENCLOSING TEST:
+def test_validate_input(input, expected):
+    assert input == expected
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [56/188] validation_v4_0078  (kind: assert) ---
+
+FOCAL FUNCTION:
+_exec_timeout_override
+
+ORACLE SITE (the assertion being classified):
+assert some_other_function(solution, "exec:to=abc") == 10
+
+ENCLOSING TEST:
+def test__exec_timeout_override():
+    solution = Solution()
+    # Test with valid command that sets timeout to 5
+    assert some_other_function(solution, "exec:to=5") == 5
+    # Test with invalid command that doesn't change timeout
+    assert some_other_function(solution, "invalid:command") == 10
+    # Test with negative number that should be clamped to 0
+    assert some_other_function(solution, "exec:to=-3") == 0
+    # Test with non-integer that should be ignored
+    assert some_other_function(solution, "exec:to=abc") == 10
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [57/188] validation_v4_0079  (kind: assert) ---
+
+FOCAL FUNCTION:
+verbose_name
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, str)
+
+ENCLOSING TEST:
+def test_verbose_name():
+                solution = Solution()
+                result = solution.verbose_name()
+                assert isinstance(result, str)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [58/188] validation_v4_0080  (kind: assert) ---
+
+FOCAL FUNCTION:
+clone
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_clone():
+    solution = Solution()
+
+    # Mock dependencies
+    with patch.object(solution, 'create_dataset_from_sources', return_value=MagicMock()):
+        with patch.object(solution, 'cp', return_value=None):
+            result = solution.clone(["cloud://example"], "/local/output")
+
+    # Assert that the method was called with expected args
+    # Depending on what the test checks...
+    # Since the problem doesn't specify exactly what to assert,
+    # but the example asserted the return value,
+    # here we might expect no exception or a specific action.
+    # However, the problem's conditions don't specify what to check beyond the function being called.
+    # Assuming the test passes if the method is called without raising exceptions.
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [59/188] validation_v4_0081  (kind: mock_contract) ---
+
+FOCAL FUNCTION:
+check_autoclose_timers
+
+ORACLE SITE (the assertion being classified):
+mock_client.return_value._close_expired_topic.assert_called_once_with(...)
+
+ENCLOSING TEST:
+def test_check_autoclose_timers(mock_client):
+    solution = Solution()
+    # Setup mock behavior
+    mock_client.return_value._close_expired_topic = MagicMock()
+
+    # Call the method
+    solution.check_autoclose_timers(mock_client.return_value)
+
+    # Check that the helper method was called
+    mock_client.return_value._close_expired_topic.assert_called_once_with(...)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [60/188] validation_v4_0082  (kind: assert) ---
+
+FOCAL FUNCTION:
+radial_bins
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, np.ndarray)
+
+ENCLOSING TEST:
+def test_radial_bins():
+    solution = Solution()
+
+    with patch('__main__.polar_map') as mock_polar_map, \
+         patch('__main__.bounding_radius') as mock_bound:
+
+        mock_polar_map.return_value = ([], [])
+        mock_bound.return_value = 10.0
+
+        result = solution.radial_bins(
+            centerX=0,
+            centerY=0,
+            imageSizeX=10,
+            imageSizeY=10,
+            radius=5,
+            radius_inner=0,
+            n_bins=3,
+            normalize=True,
+            use_sparse=False,
+            dtype='float32'
+        )
+
+        assert isinstance(result, np.ndarray)
+        assert len(result) == 10
+        assert all(np.isclose(result[i], i * (5 / 3), atol=1e-5) for i in range(10))
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [61/188] validation_v4_0083  (kind: assert) ---
+
+FOCAL FUNCTION:
+validate_shape_expression
+
+ORACLE SITE (the assertion being classified):
+assert invalid_shape.is_valid.called_once_with()
+
+ENCLOSING TEST:
+def test_validate_shape_expression():
+    from unittest.mock import patch, MagicMock
+    from your_module import Solution, ShapeExpression, InvalidShapeError
+
+    with patch('your_module.ShapeExpression') as mock_shape_expr, \
+         patch('your_module.InvalidShapeError') as mock_invalid_error:
+
+        # Test case where shape_expression is valid
+        valid_shape = MagicMock(spec=ShapeExpression)
+        valid_shape.is_valid.return_value = True
+
+        solution.validate_shape_expression(valid_shape)
+
+        # Assertions for valid case
+        assert valid_shape.is_valid.called_once_with()
+
+        # Test case where shape_expression is invalid
+        invalid_shape = MagicMock(spec=ShapeExpression)
+        invalid_shape.is_valid.return_value = False
+
+        with pytest.raises(InvalidShapeError):
+            solution.validate_shape_expression(invalid_shape)
+
+        # Assertions for invalid case
+        assert invalid_shape.is_valid.called_once_with()
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [62/188] validation_v4_0085  (kind: assert) ---
+
+FOCAL FUNCTION:
+fetch_blocklist_data
+
+ORACLE SITE (the assertion being classified):
+assert result["ip"] == "192.168.1.1"
+
+ENCLOSING TEST:
+def test_fetch_blocklist_data():
+    from unittest.mock import patch, MagicMock
+
+    # Test successful API response
+    with patch('httpx.get') as mock_get:
+        mock_response = MagicMock()
+        mock_response.json.return_value = {"ip": "192.168.1.1", "status": "blocked"}
+        mock_get.return_value = mock_response
+
+        solution = Solution()
+        result = solution.fetch_blocklist_data("192.168.1.1")
+
+        assert isinstance(result, dict)
+        assert result["ip"] == "192.168.1.1"
+
+    # Test failed API response
+    with patch('httpx.get') as mock_get:
+        mock_get.side_effect = Exception("API Error")
+
+        solution = Solution()
+        result = solution.fetch_blocklist_data("192.168.1.1")
+
+        assert result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [63/188] validation_v4_0087  (kind: assert) ---
+
+FOCAL FUNCTION:
+_check_message
+
+ORACLE SITE (the assertion being classified):
+assert result is None
+
+ENCLOSING TEST:
+def test_check_message():
+    solution = Solution()
+    result = solution._check_message("valid message")
+    assert result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [64/188] validation_v4_0088  (kind: mock_contract) ---
+
+FOCAL FUNCTION:
+parseJson
+
+ORACLE SITE (the assertion being classified):
+mock_json_loads.assert_called_once_with('{"key": "value"}')
+
+ENCLOSING TEST:
+def test_parseJson(mock_json_loads):
+    """Test the parseJson method with mocked json.loads"""
+
+    # Setup: Configure mock to return expected results
+    mock_json_loads.return_value = {"key": "value"}
+
+    # Create instance and call the method
+    solution = Solution()
+    result = solution.parseJson('{"key": "value"}')
+
+    # Verify the mock was called with the correct input
+    mock_json_loads.assert_called_once_with('{"key": "value"}')
+
+    # Assert the returned value matches our mock configuration
+    assert result == {"key": "value"}, f"Expected {{'key': 'value'}}, got {result}"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [65/188] validation_v4_0091  (kind: assert) ---
+
+FOCAL FUNCTION:
+user_can_manage
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, bool)
+
+ENCLOSING TEST:
+def test_user_can_manage():
+    from unittest.mock import patch, MagicMock
+    import asyncio
+    import uuid
+
+    solution = Solution()
+
+    with patch('db.session', MagicMock()):
+        folder_id = uuid.uuid4()
+        user_id = uuid.uuid4()
+
+        result = asyncio.run(solution.user_can_manage(folder_id, user_id))
+        assert isinstance(result, bool)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [66/188] validation_v4_0092  (kind: assert) ---
+
+FOCAL FUNCTION:
+bkg_star_proba
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, float)
+
+ENCLOSING TEST:
+def test_bkg_star_proba():
+    solution = Solution()
+    n_dens = 1.0
+    sep = 10.0
+    n_bkg = 2
+    unit = 'deg'
+    verbose = False
+    full_output = False
+    result = solution.bkg_star_proba(n_dens, sep, n_bkg, unit)
+    assert isinstance(result, float)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [67/188] validation_v4_0093  (kind: assert) ---
+
+FOCAL FUNCTION:
+read
+
+ORACLE SITE (the assertion being classified):
+assert False, "Expected TimeoutError"
+
+ENCLOSING TEST:
+def test_read():
+    solution = Solution()
+
+    # Mock the server's response
+    with patch('some_module.read') as mock_server:
+        # Test successful read
+        mock_response = b'test_data'
+        mock_server.return_value = mock_response
+        result = solution.read(5)
+        assert len(result) == 5
+        assert result == mock_response
+
+        # Test timeout
+        with patch.object(mock_server, 'timeout', side_effect=TimeoutError):
+            try:
+                solution.read(5, timeout_s=1)
+                assert False, "Expected TimeoutError"
+            except TimeoutError:
+                pass
+
+        # Test incorrect length
+        with patch.object(mock_server, 'return_value', lambda *args, **kwargs: b'too_short'):
+            try:
+                solution.read(5)
+                assert False, "Expected RuntimeError"
+            except RuntimeError:
+                pass
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [68/188] validation_v4_0094  (kind: assert) ---
+
+FOCAL FUNCTION:
+build_retrieved_context
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, str)
+
+ENCLOSING TEST:
+def test_build_retrieved_context():
+    solution = Solution()
+
+    # Test with valid chunks data
+    chunks = [
+        {"id": "doc_001", "title": "Test Document 1", "ts": "2024-01-01", "text": "Sample content"},
+        {"id": "doc_002", "title": "Test Document 2", "ts": "2024-01-02", "text": "More sample content"}
+    ]
+
+    # Verify the method can be called with valid input
+    result = solution.build_retrieved_context(chunks)
+
+    # Assert that result is a non-empty string (based on docstring description)
+    assert isinstance(result, str)
+    assert len(result) > 0
+
+    # Test with empty chunks list
+    empty_chunks = []
+    result_empty = solution.build_retrieved_context(empty_chunks)
+    assert isinstance(result_empty, str)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [69/188] validation_v4_0096  (kind: assert) ---
+
+FOCAL FUNCTION:
+unquote_header_value
+
+ORACLE SITE (the assertion being classified):
+assert solution.unquote_header_value("test%20value") == "test value"
+
+ENCLOSING TEST:
+def test_unquote_header_value():
+    solution = Solution()
+    assert solution.unquote_header_value("test%20value") == "test value"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [70/188] validation_v4_0097  (kind: assert) ---
+
+FOCAL FUNCTION:
+_check_monotonic_cst
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, np.ndarray)
+
+ENCLOSING TEST:
+def test__check_monotonic_cst():
+    class MockEstimator:
+        def __init__(self, n_features):
+            self.n_features_in_ = n_features
+            self.feature_names_in_ = [f"feature_{i}" for i in range(n_features)]
+
+    # Test case where monotonic_cst is None (should return array of zeros)
+    estimator = MockEstimator(n_features=3)
+    result = solution._check_monotonic_cst(estimator, monotonic_cst=None)
+    assert isinstance(result, np.ndarray)
+    np.testing.assert_array_equal(result, np.array([0, 0, 0]))
+
+    # Test case where monotonic_cst is an array-like list/numpy array
+    estimator = MockEstimator(n_features=3)
+    constraints_list = [-1, 0, 1]
+    expected_array = np.array([-1, 0, 1])
+    result = solution._check_monotonic_cst(estimator, monotonic_cst=constraints_list)
+    np.testing.assert_array_equal(result, expected_array)
+
+    # Test case where monotonic_cst is a dictionary
+    estimator = MockEstimator(n_features=3)
+    constraints_dict = {"feature_0": -1, "feature_1": 0, "feature_2": 1}
+    expected_array = np.array([-1, 0, 1])
+    result = solution._check_monotonic_cst(estimator, monotonic_cst=constraints_dict)
+    np.testing.assert_array_equal(result, expected_array)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [71/188] validation_v4_0098  (kind: assert) ---
+
+FOCAL FUNCTION:
+select_designs
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(df_result, pd.DataFrame)
+
+ENCLOSING TEST:
+def test_select_designs():
+    from unittest.mock import patch, MagicMock
+    import pandas as pd
+
+    # Mock undefined constants
+    with patch('solution.TOP_N', 5), \
+         patch('solution.ISOELECTRIC_POINT_MAX', 10.5):
+        solution = Solution()
+
+        # Sample configs
+        configs = [
+            {"job_id": "job_1", "design_type": "antibody"},
+            {"job_id": "job_2", "design_type": "minibinder"}
+        ]
+
+        # Sample raw results
+        raw_results = [
+            {
+                "target_name": "TARGET_A",
+                "binder_name": "BINDER_X",
+                "iptm_score": 0.85,
+                "iptm_proxy_score": 0.72,
+                "isoelectric_point": 8.2
+            },
+            {
+                "target_name": "TARGET_B",
+                "binder_name": "BINDER_Y",
+                "iptm_score": 0.91,
+                "iptm_proxy_score": None,
+                "isoelectric_point": 9.1
+            }
+        ]
+
+        df_result = solution.select_designs(configs, raw_results, top_n=2)
+
+        assert isinstance(df_result, pd.DataFrame)
+        assert set(df_result.columns) == {'target_name', 'binder_name'}
+        assert len(df_result) <= 2
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [72/188] validation_v4_0099  (kind: assert) ---
+
+FOCAL FUNCTION:
+_suitable_minimum_unit
+
+ORACLE SITE (the assertion being classified):
+assert solution._suitable_minimum_unit(Unit.HOURS, [Unit.HOURS]) == Unit.DAYS
+
+ENCLOSING TEST:
+def test_suitable_minimum_unit():
+    solution = Solution()
+
+    # Test case where min_unit is not suppressed
+    assert solution._suitable_minimum_unit(Unit.HOURS, []) == Unit.HOURS
+
+    # Test case where min_unit is suppressed and the next unit is available
+    assert solution._suitable_minimum_unit(Unit.HOURS, [Unit.HOURS]) == Unit.DAYS
+
+    # Test case where min_unit is suppressed and the next two units are also suppressed
+    assert solution._suitable_minimum_unit(Unit.HOURS, [Unit.HOURS, Unit.DAYS]) == Unit.MONTHS
+
+    # Test case where all units are suppressed (should raise an error)
+    try:
+        solution._suitable_minimum_unit(Unit.HOURS, [Unit.HOURS, Unit.DAYS, Unit.MONTHS])
+        assert False, "Expected ValueError to be raised"
+    except ValueError:
+        pass
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [73/188] validation_v4_0100  (kind: assert) ---
+
+FOCAL FUNCTION:
+is_potential_multi_index
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, bool)
+
+ENCLOSING TEST:
+def test_is_potential_multi_index():
+    from unittest.mock import patch, MagicMock
+    import pandas as pd
+    from typing import Sequence, Hashable, Optional, Union, Tuple, Any
+    from pandas.core.indexes.multi import MultiIndex
+
+    solution = Solution()
+    # Test case where columns is a simple list of hashables
+    result = solution.is_potential_multi_index([1, 2, 3])
+    assert isinstance(result, bool)
+
+    # Test case where columns is a MultiIndex
+    multi_index = pd.MultiIndex.from_tuples([('a', 1), ('b', 2)])
+    result = solution.is_potential_multi_index(multi_index)
+    assert isinstance(result, bool)
+
+    # Test case where index_col is specified as a boolean
+    result = solution.is_potential_multi_index([1, 2, 3], index_col=True)
+    assert isinstance(result, bool)
+
+    # Test case where index_col is specified as a list of integers
+    result = solution.is_potential_multi_index([1, 2, 3], index_col=[0, 1])
+    assert isinstance(result, bool)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [74/188] validation_v4_0101  (kind: assert) ---
+
+FOCAL FUNCTION:
+_skip_udf
+
+ORACLE SITE (the assertion being classified):
+assert len(result) == 2
+
+ENCLOSING TEST:
+def test__skip_udf(solution):
+    checkpoint = MagicMock(spec=Checkpoint)
+    hash_input = "some_hash"
+    query = "example_query"
+    job = MagicMock(spec=Job)
+
+    result = solution._skip_udf(checkpoint, hash_input, query, job)
+    assert isinstance(result, tuple)
+    assert len(result) == 2
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [75/188] validation_v4_0103  (kind: assert) ---
+
+FOCAL FUNCTION:
+cmd_sync_receipt
+
+ORACLE SITE (the assertion being classified):
+assert mock_resolve_spec_id_arg.called_once_with(Path('/tmp/repo'), None)
+
+ENCLOSING TEST:
+def test_cmd_sync_receipt():
+    solution = Solution()
+
+    with patch('argparse.Namespace', return_value=None):
+        with patch.object(solution, 'get_repo_root') as mock_get_repo_root, \
+             patch.object(solution, 'ensure_flow_exists') as mock_ensure_flow_exists, \
+             patch.object(solution, 'resolve_spec_id_arg') as mock_resolve_spec_id_arg, \
+             patch.object(solution, 'now_iso') as mock_now_iso, \
+             patch.object(solution, 'atomic_write_json') as mock_atomic_write_json:
+
+            mock_get_repo_root.return_value = Path('/tmp/repo')
+            mock_ensure_flow_exists.return_value = True
+            mock_resolve_spec_id_arg.return_value = 'spec-canonical'
+            mock_now_iso.return_value = '2023-01-01T00:00:00Z'
+
+            solution.cmd_sync_receipt(args=None)
+
+            assert mock_get_repo_root.called_once_with()
+            assert mock_ensure_flow_exists.called_once_with()
+            assert mock_resolve_spec_id_arg.called_once_with(Path('/tmp/repo'), None)
+            assert mock_now_iso.called_once_with()
+            assert mock_atomic_write_json.called_once_with(
+                Path('/tmp/repo/.flow/sync-runs/2023-01-01T00:00:00Z/spec-canonical.json'),
+                {'type': 'sync', 'status': 'noop'}
+            )
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [76/188] validation_v4_0107  (kind: assert) ---
+
+FOCAL FUNCTION:
+_starttls_ldap
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test__starttls_ldap():
+    sol = Solution()                     # Create an instance of Solution
+    output = io.StringIO()               # Capture stdout (not directly used here)
+
+    # Simulate calling the method with dummy arguments
+    sol._starttls_ldap(None, "example.com")  
+
+    # Verify that the method was indeed called (line 2 is now reachable/executed)
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [77/188] validation_v4_0108  (kind: assert) ---
+
+FOCAL FUNCTION:
+_suitable_minimum_unit
+
+ORACLE SITE (the assertion being classified):
+assert result == MockUnit.MONTHS
+
+ENCLOSING TEST:
+def test__suitable_minimum_unit():
+    from unittest.mock import Mock
+    class MockUnit:
+        HOURS = type('Unit', (object,), {'name': 'HOURS'})()
+        MINUTES = type('Unit', (object,), {'name': 'MINUTES'})()
+        DAYS = type('Unit', (object,), {'name': 'DAYS'})()
+        MONTHS = type('Unit', (object,), {'name': 'MONTHS'})()
+        SECONDS = type('Unit', (object,), {'name': 'SECONDS'})()
+
+    # Mocking the structure needed for comparison/ordering implicitly assumed by the logic
+    # In a real scenario, Unit would have an inherent order. Here we simulate based on examples.
+
+    solution = Solution()
+
+    # Test case derived from example 1: Not suppressed
+    result = solution._suitable_minimum_unit(MockUnit.HOURS, [])
+    assert result == MockUnit.HOURS
+
+    # Test case derived from example 2: Suppressed, next available
+    result = solution._suitable_minimum_unit(MockUnit.HOURS, [MockUnit.HOURS])
+    assert result == MockUnit.DAYS
+
+    # Test case derived from example 3: Suppressed multiple times, finds further up
+    result = solution._suitable_minimum_unit(MockUnit.HOURS, [MockUnit.HOURS, MockUnit.DAYS])
+    assert result == MockUnit.MONTHS
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [78/188] validation_v4_0109  (kind: assert) ---
+
+FOCAL FUNCTION:
+restore_command
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+async def test_restore_command():
+    # Create instances needed for the call
+    sol = Solution()
+    update = Message(chat_permissions=ChatPermissions(can_send_messages=True))
+    context = ContextTypes.DEFAULT_TYPE()
+
+    # Call the method
+    await sol.restore_command(update, context)
+
+    # Verify that no exception was raised (assuming the method runs correctly)
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [79/188] validation_v4_0110  (kind: assert) ---
+
+FOCAL FUNCTION:
+validate_shape_expression
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_validate_shape_expression():
+    solution = Solution()
+
+    # Mocking necessary dependencies (if any)
+    with patch('some_module.ShapeExpression') as mock_shape_expr, \
+         patch('some_module.InvalidShapeError') as mock_invalid_error:
+
+        # Test case where shape_expression is valid
+        valid_shape = "2x2"
+        mock_shape_expr.return_value = valid_shape
+        try:
+            solution.validate_shape_expression(valid_shape)
+            assert True
+        except Exception as e:
+            assert False, f"Unexpected exception raised: {e}"
+
+        # Test case where shape_expression is invalid
+        invalid_shape = "invalid"
+        mock_shape_expr.return_value = invalid_shape
+        try:
+            solution.validate_shape_expression(invalid_shape)
+            assert False, "Expected InvalidShapeError but no error was raised"
+        except InvalidShapeError:
+            pass
+        else:
+            assert False, "Expected InvalidShapeError but no error was raised"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [80/188] validation_v4_0111  (kind: assert) ---
+
+FOCAL FUNCTION:
+run
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_run():
+    solution = Solution()
+    result = solution.run(dataset=None, nproc=2)
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [81/188] validation_v4_0112  (kind: assert) ---
+
+FOCAL FUNCTION:
+_format_timestamp
+
+ORACLE SITE (the assertion being classified):
+assert solution._format_timestamp("2023-10-05T14:30:00") == "14:30"
+
+ENCLOSING TEST:
+def test__format_timestamp():
+    solution = Solution()
+
+    # Test with valid ISO timestamp
+    assert solution._format_timestamp("2023-10-05T14:30:00") == "14:30"
+
+    # Test with invalid timestamp format
+    assert solution._format_timestamp(None) == ""
+
+    # Test with empty string
+    assert solution._format_timestamp("") == ""
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [82/188] validation_v4_0113  (kind: assert) ---
+
+FOCAL FUNCTION:
+restore_command
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [83/188] validation_v4_0114  (kind: assert) ---
+
+FOCAL FUNCTION:
+pytest_marks
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, list)
+
+ENCLOSING TEST:
+def test_pytest_marks(mock_validation_case):
+    solution = Solution()
+    result = solution.pytest_marks()
+    assert isinstance(result, list)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [84/188] validation_v4_0116  (kind: assert) ---
+
+FOCAL FUNCTION:
+_require_owner
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, UUID)
+
+ENCLOSING TEST:
+def test__require_owner():
+    solution = Solution()
+    obj_type = "test"
+    obj_uuid = UUID("00000000-0000-0000-0000-000000000000")
+    user_uuid = UUID("00000000-0000-0000-0000-000000000000")
+
+    result = asyncio.run(solution._require_owner(obj_type, obj_uuid, user_uuid))
+    assert isinstance(result, UUID)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [85/188] validation_v4_0117  (kind: assert) ---
+
+FOCAL FUNCTION:
+set_batch_mode
+
+ORACLE SITE (the assertion being classified):
+assert mock_get.called_once_with("test_window")
+
+ENCLOSING TEST:
+def test_set_batch_window_mode():
+    with patch('unittest.mock', autospec=True) as mock_unittest:
+        mock_get = MagicMock(return_value=None)
+        mock_solution.get_window_state = mock_get
+        solution.set_batch_mode("test_window", "batch")
+        assert mock_get.called_once_with("test_window")
+        assert mock_solution.mode == "batch"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [86/188] validation_v4_0119  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_compression_method
+
+ORACLE SITE (the assertion being classified):
+assert result[1] is None
+
+ENCLOSING TEST:
+def test_get_compression_method():
+    solution = Solution()
+
+    # Test with string input
+    result = solution.get_compression_method("gzip")
+    assert isinstance(result, tuple)
+    assert len(result) == 2
+    assert result[0] == "gzip"
+    assert result[1] is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [87/188] validation_v4_0120  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_macrotile
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+        solution = Solution()
+        assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [88/188] validation_v4_0121  (kind: assert) ---
+
+FOCAL FUNCTION:
+_parse_content_type_header
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, tuple)
+
+ENCLOSING TEST:
+def test_parse_content_type_header():
+    solution = Solution()
+
+    # Example 1: Basic text/html with charset parameter
+    with patch.object(sys.modules['__main__'], 'print', side_effect=ValueError):
+        result = solution._parse_content_type_header("text/html; charset=utf-8")
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+        assert result[0] == "text/html"
+        assert result[1] == {"charset": "utf-8"}
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [89/188] validation_v4_0123  (kind: assert) ---
+
+FOCAL FUNCTION:
+_quotient_and_remainder
+
+ORACLE SITE (the assertion being classified):
+assert result == (1, 12)
+
+ENCLOSING TEST:
+def test_value_divisor_different_units_default_zero_remainder():
+        result = Solution()._quotient_and_remainder(
+            36,
+            24,
+            Unit.DAYS,
+            Unit.HOURS,
+            [],
+            "%0.2f"
+        )
+        assert result == (1, 12)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [90/188] validation_v4_0126  (kind: assert) ---
+
+FOCAL FUNCTION:
+startup
+
+ORACLE SITE (the assertion being classified):
+assert mock_process.wait_ready.called_once_with(5 * 60)
+
+ENCLOSING TEST:
+def test_startup():
+    solution = Solution()
+
+    with patch('subprocess.Popen') as mock_popen, \
+         patch('time.sleep', return_value=None) as mock_sleep:
+
+        mock_process = MagicMock()
+        mock_popen.return_value = mock_process
+
+        solution.startup()
+
+        assert mock_popen.called_once_with("sglang", "server")
+        assert mock_process.wait_ready.called_once_with(5 * 60)
+        assert mock_sleep.called_once_with(MINUTES)
+        assert mock_warmup.called_once_with()
+        assert mock_sleep.called_once_with(MINUTES)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [91/188] validation_v4_0128  (kind: mock_contract) ---
+
+FOCAL FUNCTION:
+get_encoding_from_headers
+
+ORACLE SITE (the assertion being classified):
+mock_parse.assert_called_once_with("text/html; charset=utf-8")
+
+ENCLOSING TEST:
+def test_get_encoding_from_headers():
+    solution = Solution()
+    with patch.object(solution, '_parse_content_type_header') as mock_parse:
+        mock_parse.return_value = ("text/html", {"charset": "utf-8"})
+        headers = {"Content-Type": "text/html; charset=utf-8"}
+        expected = "utf-8"
+        result = solution.get_encoding_from_headers(headers)
+        assert result == expected
+        mock_parse.assert_called_once_with("text/html; charset=utf-8")
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [92/188] validation_v4_0129  (kind: assert) ---
+
+FOCAL FUNCTION:
+startup
+
+ORACLE SITE (the assertion being classified):
+assert mock_sleep.called_once_with(5)
+
+ENCLOSING TEST:
+def test_startup():
+    solution = Solution()
+
+    # Mock the necessary dependencies if needed
+    with patch('some_module.SGServer') as mock_server:
+        mock_healthy = MagicMock()
+        mock_healthy.is_ready.return_value = True
+        mock_server().is_ready.side_effect = [mock_health]
+        mock_warm_up = MagicMock()
+        mock_sleep = MagicMock()
+
+        # Call the function being tested
+        solution.startup()
+
+        # Assertions to check the behavior of the function
+        assert mock_server.call_count == 1
+        assert mock_healthy.is_ready.called_once_with()
+        assert mock_warm_up.called_once_with()
+        assert mock_sleep.called_once_with(5)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [93/188] validation_v4_0130  (kind: assert) ---
+
+FOCAL FUNCTION:
+structure_from_task
+
+ORACLE SITE (the assertion being classified):
+assert len(result) == 1
+
+ENCLOSING TEST:
+def test_structure_from_task():
+    solution = Solution()
+
+    # Mocking dependencies if necessary
+    mock_udfs = {
+        "buffer_name": {"shape": [10], "dtype": int, "extra_shape": [], "buffer_kind": "memory"}
+    }
+    mock_task = {
+        "partition_id": 0,
+        "task_type": "example_task",
+        "output_buffer_names": ["buffer_name"]
+    }
+
+    result = solution.structure_from_task(mock_udfs, mock_task)
+
+    assert isinstance(result, dict)
+    assert len(result) == 1
+    assert "buffer_name" in result
+    assert isinstance(result["buffer_name"], dict)
+    assert "shape" in result["buffer_name"]
+    assert result["buffer_name"]["shape"] == [10]
+    assert "dtype" in result["buffer_name"]
+    assert result["buffer_name"]["dtype"] == int
+    assert "extra_shape" in result["buffer_name"]
+    assert result["buffer_name"]["extra_shape"] == []
+    assert "buffer_kind" in result["buffer_name"]
+    assert result["buffer_name"]["buffer_kind"] == "memory"
+
+    print("All assertions passed.")
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [94/188] validation_v4_0131  (kind: assert) ---
+
+FOCAL FUNCTION:
+_compile_deps
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([3, 2, 4], 6) == []
+
+ENCLOSING TEST:
+def test_twoSum():
+    solution = Solution()
+    # Test case where two numbers add up to the target
+    assert solution.twoSum([2, 7, 11, 15], 9) == [0, 1]
+    # Test case where no two numbers add up to the target
+    assert solution.twoSum([3, 2, 4], 6) == []
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [95/188] validation_v4_0132  (kind: assert) ---
+
+FOCAL FUNCTION:
+_starttls_ldap
+
+ORACLE SITE (the assertion being classified):
+assert sock.connect.called_once_with(("example.com", 389))
+
+ENCLOSING TEST:
+def test__starttls_ldap():
+    solution = Solution()
+
+    sock = MagicMock(spec=socket.socket)
+    host = "example.com"
+
+    solution._starttls_ldap(sock, host)
+
+    assert sock.connect.called_once_with(("example.com", 389))
+    assert sock.sendall.called_once
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [96/188] validation_v4_0133  (kind: assert) ---
+
+FOCAL FUNCTION:
+publish_skill
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+async def test_publish_skill():
+    solution = Solution()
+    mock_request = SkillPublishRequest()
+    mock_user = {"id": 1, "username": "test_user"}
+
+    # Since the original uses Depends(get_current_user), we simulate how FastAPI/framework handles this by passing the expected value directly
+    # or ensuring our mock setup allows the call to succeed.
+    with patch('your_module.get_current_user', return_value=mock_user): # Assuming get_current_user lives in 'your_module'
+        result = await solution.publish_skill(req=mock_request, current_user=mock_user)
+        # Assertions would typically check the result or side effects here, but based purely on satisfying the execution path:
+        assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [97/188] validation_v4_0135  (kind: assert) ---
+
+FOCAL FUNCTION:
+save
+
+ORACLE SITE (the assertion being classified):
+assert hasattr(solution, 'save')
+
+ENCLOSING TEST:
+def test_save():
+    solution = Solution()
+    assert hasattr(solution, 'save')
+
+    # Test that the method signature accepts a filename parameter
+    with open('/tmp/test.npz', 'w') as f:
+        pass
+
+    try:
+        solution.save('test_file.npz')
+    except Exception:
+        # Expected exception due to incomplete implementation
+        pass
+
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [98/188] validation_v4_0136  (kind: assert) ---
+
+FOCAL FUNCTION:
+_get_feature_names
+
+ORACLE SITE (the assertion being classified):
+assert result_df is not None
+
+ENCLOSING TEST:
+def test__get_feature_names():
+    solution = Solution()
+    # Test case for pandas DataFrame input (to satisfy the logic path described in lines 11-14 if implemented fully)
+    df = pd.DataFrame({'featureA': [1], 'featureB': [2]})
+    # Assuming the actual implementation would handle this correctly based on docstrings
+    # We provide valid inputs to trigger the method call structure.
+    result_df = solution._get_feature_names(df)
+    assert result_df is not None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [99/188] validation_v4_0137  (kind: assert) ---
+
+FOCAL FUNCTION:
+check_nullable
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, MockCoreCheckResult)
+
+ENCLOSING TEST:
+def test_check_nullable():
+    from unittest.mock import Mock
+    class MockIbisColumn:
+        pass
+    class MockSchema:
+        pass
+    class MockCoreCheckResult:
+        pass
+    solution = Solution()
+    check_obj = MockIbisColumn()
+    schema = MockSchema()
+    result = solution.check_nullable(check_obj, schema)
+    assert isinstance(result, MockCoreCheckResult)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [100/188] validation_v4_0138  (kind: assert) ---
+
+FOCAL FUNCTION:
+strip_url
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [101/188] validation_v4_0139  (kind: assert) ---
+
+FOCAL FUNCTION:
+gelman_rubin
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, float), "Result should be a float"
+
+ENCLOSING TEST:
+def test_gelman_rubin():
+    solution = Solution()
+
+    # Mocking necessary imports if needed
+    with patch('numpy.random.normal') as mock_normal:
+        x1 = np.zeros((1, 100))
+        x2 = np.ones((1, 100))
+
+        # Set up mock return values
+        mock_normal.return_value = [x1, x2]
+
+        result = solution.gelman_rubin(np.vstack((x1, x2)))
+
+        assert isinstance(result, float), "Result should be a float"
+        assert result > 0, "Gelman-Rubin value should be positive"
+
+        # Check against example output (approximate due to randomness)
+        assert abs(result - 1.0) < 0.1, "Result should be approximately 1.0 when inputs are similar"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [102/188] validation_v4_0142  (kind: assert) ---
+
+FOCAL FUNCTION:
+resolve_session_id
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, (str, type(None)))
+
+ENCLOSING TEST:
+def test_resolve_session_id():
+    solution = Solution()
+    # Since the implementation (...) is missing, we assume a scenario where it might return something based on input.
+    # We provide a valid string input as required by Step 1 & 2.
+    result = solution.resolve_session_id("valid_window_id")
+    # Depending on what the hidden logic does, we assert against possible outcomes.
+    # Assuming for testing purposes that if called correctly, it returns some value or None.
+    # A simple check ensures the call structure is correct.
+    assert isinstance(result, (str, type(None)))
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [103/188] validation_v4_0143  (kind: assert) ---
+
+FOCAL FUNCTION:
+_exec_timeout_override
+
+ORACLE SITE (the assertion being classified):
+assert some_other_function(solution, "invalid:command") == 10
+
+ENCLOSING TEST:
+def test__exec_timeout_override():
+    solution = Solution()
+    # Test with valid command that sets timeout to 5
+    assert some_other_function(solution, "exec:to=5") == 5
+    # Test with invalid command that doesn't change timeout
+    assert some_other_function(solution, "invalid:command") == 10
+    # Test with negative number that should be clamped to 0
+    assert some_other_function(solution, "exec:to=-3") == 0
+    # Test with non-integer that should be ignored
+    assert some_other_function(solution, "exec:to=abc") == 10
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [104/188] validation_v4_0145  (kind: assert) ---
+
+FOCAL FUNCTION:
+_load_env
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test__load_env():
+    with patch.dict('os.environ', {'TEST_KEY': 'test_value'}):
+        solution = Solution()
+        try:
+            solution._load_env()
+            assert True
+        except Exception as e:
+            assert False, f"_load_env failed unexpectedly: {e}"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [105/188] validation_v4_0146  (kind: assert) ---
+
+FOCAL FUNCTION:
+_skip_udf
+
+ORACLE SITE (the assertion being classified):
+assert len(result) == 2
+
+ENCLOSING TEST:
+def test__skip_20230928_123456():
+    solution = Solution()
+
+    # Mock dependencies
+    with patch('module_name.Checkpoint') as mock_checkpoint, \
+         patch('module_name.Table') as mock_table, \
+         patch('module_name.Job') as mock_job:
+
+        # Create mock objects
+        mock_checkpoint_instance = MagicMock()
+        mock_checkpoint.return_value = mock_checkpoint_instance
+        mock_table_instance = MagicMock()
+        mock_table.return_value = mock_table_instance
+        mock_job_instance = MagicMock()
+        mock_job.return_value = mock_job_instance
+
+        # Set up mock attributes
+        mock_checkpoint_instance.table = mock_table_instance
+        mock_checkpoint_instance.hash = "test_hash"
+
+        # Call the function
+        result = solution._skip_udf(mock_checkpoint_instance, "hash_input", "query", mock_job_instance)
+
+        # Assertions
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+        assert isinstance(result[0], Table)
+        assert isinstance(result[1], Table)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [106/188] validation_v4_0147  (kind: assert) ---
+
+FOCAL FUNCTION:
+_starttls_ldap
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test__starttls_ldap():
+    solution = Solution()
+    with patch('socket.socket') as mock_socket:
+        solution._starttls_ldap(mock_socket.return_value, "example.com")
+    # Check if the method completes without raising errors
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [107/188] validation_v4_0148  (kind: assert) ---
+
+FOCAL FUNCTION:
+_check_class_method
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test__check_class_method():
+    solution = Solution()
+
+    # Create mock callables for method and submethod
+    mock_method = MagicMock()
+    mock_submethod = MagicMock()
+
+    # Call the function with valid parameters
+    try:
+        solution._check_class_method("test_name", mock_method, mock_submethod)
+        print("Test passed!")
+    except Exception as e:
+        print(f"Test failed: {e}")
+
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [108/188] validation_v4_0149  (kind: mock_contract) ---
+
+FOCAL FUNCTION:
+output_fn
+
+ORACLE SITE (the assertion being classified):
+mock_to_json.assert_called_once()
+
+ENCLOSING TEST:
+def test_output_fn():
+    solution = Solution()
+    output_df = pd.DataFrame({'col1': [1], 'col2': ['a']})
+
+    with patch('pandas.DataFrame.to_csv', autospec=True) as mock_to_csv, \
+         patch('pandas.DataFrame.to_json', autospec=True) as mock_to_json:
+
+        # Test CSV output
+        result_csv = solution.output_fn(output_df, "csv")
+        mock_to_csv.assert_called_once()
+        assert result_csv == output_df.to_csv() # Check actual behavior if mocking returns original value structure
+
+        # Reset mocks for next test scenario if needed, but here we just check functionality flow
+        mock_to_csv.reset_mock()
+        mock_to_json.reset_mock()
+
+        # Test JSON output
+        result_json = solution.output_fn(output_df, "json")
+        mock_to_json.assert_called_once()
+        assert result_json == output_df.to_json()
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [109/188] validation_v4_0151  (kind: assert) ---
+
+FOCAL FUNCTION:
+_leastsq_patch
+
+ORACLE SITE (the assertion being classified):
+assert result is None
+
+ENCLOSING TEST:
+def test__leastsq_patch():
+    solution = Solution()
+    ayxyx = ([], [], [])
+    pa_thresholds = [[]]
+    angles = []
+    metric = "euclidean"
+    dist_threshold = 0.1
+    solver = "lm"
+    tol = 1e-6
+    result = solution._leastsq_patch(ayxyx, pa_thresholds, angles, metric, dist_threshold, solver, tol)
+    assert result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [110/188] validation_v4_0152  (kind: assert) ---
+
+FOCAL FUNCTION:
+_check_monotonic_cst
+
+ORACLE SITE (the assertion being classified):
+assert result.shape == (2,)
+
+ENCLOSING TEST:
+def test__check_monotonic_cst():
+    # Mock an estimator with feature_names_in_
+    est = MagicMock()
+    est.feature_names_in_ = ["feature1", "feature2"]
+
+    # Create a Solution instance
+    solution = Solution()  # Note: We assume the class is imported
+
+    # Test when monotonic_cst is None
+    result = solution._check_monotonic_cst(est)
+
+    # Check that result is a numpy array of zeros with shape (2,)
+    assert isinstance(result, np.ndarray)
+    assert result.shape == (2,)
+    np.testing.assert_array_equal(result, np.zeros(2))
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [111/188] validation_v4_0153  (kind: assert) ---
+
+FOCAL FUNCTION:
+fetch_blocklist_data
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, dict)
+
+ENCLOSING TEST:
+def test_fetch_blocklist_data(mock_lcrawl_fetch):
+    """Test that fetch_blocklist_data works correctly."""
+
+    # Setup: Mock the lcrawl API response
+    mock_response = {"blocked_ips": ["192.168.1.1"], "last_updated": "2024-01-01"}
+    mock_lcrawl_fetch.return_value = mock_response
+
+    # Instantiate the Solution class
+    solution = Solution()
+
+    # Test Case 1: Successful API call
+    result = solution.fetch_blocklist_data("192.168.1.1")
+    assert isinstance(result, dict)
+    assert result["blocked_ips"] == ["192.168.1.1"]
+
+    # Test Case 2: Invalid IP address handling
+    mock_lcrawl_fetch.side_effect = Exception("API Error")
+    result = solution.fetch_blocklist_data("invalid_ip")
+    assert result is None
+
+    # Test Case 3: Empty response
+    mock_lcrawl_fetch.return_value = {}
+    result = solution.fetch_blocklist_data("10.0.0.1")
+    assert isinstance(result, dict)
+    assert result.get("blocked_ips") is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [112/188] validation_v4_0154  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_contiguous_view_for_tile
+
+ORACLE SITE (the assertion being classified):
+assert mock_udftilemixing.process_tile.called_once_with(mock_partion, mock_tile)
+
+ENCLOSING TEST:
+def test_get_contiguous_view_for_tile():
+    solution = Solution()
+
+    # Mock the necessary dependencies
+    with patch('libertem.udf.base.UDFTileMixing') as mock_udftilemixing, \
+         patch('numpy.ndarray') as mock_array:
+
+        # Create a mock partition object
+        mock_partition = MagicMock()
+        mock_partition.kind = "data"
+
+        # Create a mock tile object
+        mock_tile = MagicMock()
+        mock_tile.tile_slice = MagicMock()
+        mock_tile.tile_slice.get.side_effect = lambda sig_only=False: None
+
+        # Call the function under test
+        result = solution.get_contiguous_view_for_tile(mock_partition, mock_tile)
+
+        # Assertions
+        assert isinstance(result, type(mock_array()))
+        assert mock_udftilemixing.process_tile.called_once_with(mock_partion, mock_tile)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [113/188] validation_v4_0155  (kind: assert) ---
+
+FOCAL FUNCTION:
+_triage_parse_llm_output
+
+ORACLE SITE (the assertion being classified):
+assert result[0] is None
+
+ENCLOSING TEST:
+def test__triage_parse_llm_output():
+    solution = Solution()
+    result = solution._triage_parse_llm_output("SKIP")
+    assert isinstance(result, tuple)
+    assert len(result) == 2
+    assert result[0] is None
+    assert result[1] == "SKIP"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [114/188] validation_v4_0156  (kind: assert) ---
+
+FOCAL FUNCTION:
+_exec_timeout_override
+
+ORACLE SITE (the assertion being classified):
+assert some_other_function(solution, "exec:to=abc") == 10
+
+ENCLOSING TEST:
+def test__exec_timeout_override():
+    solution = Solution()
+    # Test with valid command that sets timeout to 5
+    assert some_other_function(solution, "exec:to=5") == 5
+    # Test with invalid command that doesn't change timeout
+    assert some_other_function(solution, "invalid:command") == 10
+    # Test with negative number that should be clamped to 0
+    assert some_other_function(solution, "exec:to=-3") == 0
+    # Test with non-integer that should be ignored
+    assert some_other_function(solution, "exec:to=abc") == 10
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [115/188] validation_v4_0157  (kind: assert) ---
+
+FOCAL FUNCTION:
+_check_large_sparse
+
+ORACLE SITE (the assertion being classified):
+assert False, "Expected ValueError"
+
+ENCLOSING TEST:
+def test__check_large_sparse():
+    from unittest.mock import patch
+    solution = Solution()
+
+    # Test large sparse matrix with 64-bit indices
+    X_large_sparse = np.array([[0, 10], [20, 0]], dtype=np.int32)
+    with patch.object(np, 'array', return_value=X_large_sparse) as mocked_array:
+        try:
+            solution._check_large_sparse(mocked_array, accept_large_sparse=False)
+            assert False, "Expected ValueError"
+        except ValueError:
+            pass
+
+    # Test small dense matrix with 32-bit indices
+    X_small_dense = np.array([1, 2, 3])
+    solution._check_large_sparse(X_small_dense, accept_large_sparse=True)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [116/188] validation_v4_0158  (kind: assert) ---
+
+FOCAL FUNCTION:
+build_retrieved_context
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result_with_chunks, str)
+
+ENCLOSING TEST:
+def test_build_retrieved_context():
+    solution = Solution()
+
+    # Test with empty list
+    result_empty = solution.build_retrieved_context([])
+    assert result_empty == ""
+
+    # Test with valid chunks
+    chunks = [
+        {"id": "doc1", "title": "Test Title", "ts": "2024-01-01", "text": "Some content"},
+        {"id": "doc2", "title": "Another Title", "ts": "2024-01-02", "text": "More content"}
+    ]
+    result_with_chunks = solution.build_retrieved_context(chunks)
+    assert isinstance(result_with_chunks, str)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [117/188] validation_v4_0159  (kind: assert) ---
+
+FOCAL FUNCTION:
+validate_strategy_frontmatter
+
+ORACLE SITE (the assertion being classified):
+assert result == []
+
+ENCLOSING TEST:
+def test_validate_strategy_frontmatter(solution_instance):
+    result = solution_instance.validate_strategy_frontmatter({'name': 'Test Strategy', 'last_updated': '2023-01-01'})
+    assert result == []
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [118/188] validation_v4_0160  (kind: assert) ---
+
+FOCAL FUNCTION:
+cmd_sync_receipt
+
+ORACLE SITE (the assertion being classified):
+assert mock_atomic_write_json.called_once_with(
+                Path('/tmp/repo/.flow/sync-runs/2023-01-01T00:00:00Z/spec-canonical.json'),
+                {'type': 'sync', 'status': 'noop'}
+            )
+
+ENCLOSING TEST:
+def test_cmd_sync_receipt():
+    solution = Solution()
+
+    with patch('argparse.Namespace', return_value=None):
+        with patch.object(solution, 'get_repo_root') as mock_get_repo_root, \
+             patch.object(solution, 'ensure_flow_exists') as mock_ensure_flow_exists, \
+             patch.object(solution, 'resolve_spec_id_arg') as mock_resolve_spec_id_arg, \
+             patch.object(solution, 'now_iso') as mock_now_iso, \
+             patch.object(solution, 'atomic_write_json') as mock_atomic_write_json:
+
+            mock_get_repo_root.return_value = Path('/tmp/repo')
+            mock_ensure_flow_exists.return_value = True
+            mock_resolve_spec_id_arg.return_value = 'spec-canonical'
+            mock_now_iso.return_value = '2023-01-01T00:00:00Z'
+
+            solution.cmd_sync_receipt(args=None)
+
+            assert mock_get_repo_root.called_once_with()
+            assert mock_ensure_flow_exists.called_once_with()
+            assert mock_resolve_spec_id_arg.called_once_with(Path('/tmp/repo'), None)
+            assert mock_now_iso.called_once_with()
+            assert mock_atomic_write_json.called_once_with(
+                Path('/tmp/repo/.flow/sync-runs/2023-01-01T00:00:00Z/spec-canonical.json'),
+                {'type': 'sync', 'status': 'noop'}
+            )
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [119/188] validation_v4_0161  (kind: assert) ---
+
+FOCAL FUNCTION:
+save
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_save():
+    solution = Solution()
+    assert hasattr(solution, 'save')
+
+    # Test that the method signature accepts a filename parameter
+    with open('/tmp/test.npz', 'w') as f:
+        pass
+
+    try:
+        solution.save('test_file.npz')
+    except Exception:
+        # Expected exception due to incomplete implementation
+        pass
+
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [120/188] validation_v4_0162  (kind: assert) ---
+
+FOCAL FUNCTION:
+validate_task_spec_headings
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(content, str)
+
+ENCLOSING TEST:
+def test_validate_task_spec_headings(solution):
+    assert isinstance(content, str)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [121/188] validation_v4_0163  (kind: assert) ---
+
+FOCAL FUNCTION:
+send_command
+
+ORACLE SITE (the assertion being classified):
+assert mock_connection.get_connection.called_once_with("model_server")
+
+ENCLOSING TEST:
+def test_send_command():
+    from unittest.mock import patch, MagicMock
+    import pytest
+    from typing import Dict, Any
+    import asyncio
+
+    with patch('some_module.SomeClass') as mock_class, \
+         patch('some_module.metrics') as mock_metrics, \
+         patch('some_module.connection_manager') as mock_connection:
+
+        # Setup mocks
+        mock_response = MagicMock()
+        mock_response.perf = {'time': 1.0}
+        mock_connection.get_connection.return_value = mock_response
+
+        # Call the function under test
+        result = solution.send_command("test_cmd", {"arg": "value"}, retry_on_error=False)
+
+        # Assertions
+        assert mock_connection.get_connection.called_once_with("model_server")
+        assert mock_response in [mock_connection.get_connection.call_args_list[0][0][0]]
+        assert mock_metrics.add_time.called_once_with(1.0)
+        assert isinstance(result, type(mock_response))
+        assert result == mock_response
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [122/188] validation_v4_0164  (kind: assert) ---
+
+FOCAL FUNCTION:
+restore_command
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+async def test_restore_command():
+    # Create instances needed for the call
+    sol = Solution()
+    update = Message(chat_permissions=ChatPermissions(can_send_messages=True))
+    context = ContextTypes.DEFAULT_TYPE()
+
+    # Call the method
+    await sol.restore_command(update, context)
+
+    # Verify that no exception was raised (assuming the method runs correctly)
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [123/188] validation_v4_0165  (kind: assert) ---
+
+FOCAL FUNCTION:
+run
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_run():
+    solution = Solution()
+    class MockDataset:
+        pass
+    with patch('builtins.print') as mock_print:
+        solution.run(dataset=MockDataset(), nproc=4)
+        # Assertions can be added here if we knew what internal logic was expected
+        # For now, just ensuring no immediate error occurs based on signature coverage
+        assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [124/188] validation_v4_0166  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_chart_shelf_tracks
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, list)
+
+ENCLOSING TEST:
+async def test_get_chart_shelf_tracks():
+    solution_instance = Solution()
+    result = await solution_instance.get_chart_shelf_tracks("sample_playlist", 10)
+    assert isinstance(result, list)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [125/188] validation_v4_0168  (kind: assert) ---
+
+FOCAL FUNCTION:
+_render_child_database_block
+
+ORACLE SITE (the assertion being classified):
+assert mock_method.called_once_with(mock_async_client, sample_block, 2)
+
+ENCLOSING TEST:
+import httpx
+
+from typing import Dict, Any, Optional, List
+
+class Solution:
+    async def _render_child_database_block(
+        self,
+        client: httpx.AsyncClient,
+        block: Dict[str, Any],
+        depth: int
+    ) -> List[str]:
+        """
+        Inline-render the first N rows of a `child_database` block.
+
+        Without this, the agent never sees the data inside a nested database — the
+        old code emitted only `_(database)_ Title`. We cap row count so a huge
+        database doesn't bloat the parent page beyond what an agent can scan.
+        """
+        ...
+
+
+# Mocking the required dependencies
+with patch('httpx.AsyncClient') as mock_client:
+    with patch('Solution._render_child_database_block') as mock_method:
+        # Create a mock AsyncClient instance
+        mock_async_client = MagicMock(spec=httpx.AsyncClient)
+        mock_client.return_value = mock_async_client
+
+        # Create a sample block dictionary
+        sample_block = {
+            "title": "Sample Database",
+            "rows": [
+                {"id": 1, "data": "Row 1"},
+                {"id": 2, "data": "Row 2"}
+            ]
+        }
+
+        # Call the method asynchronously
+        solution = Solution()
+        result = await solution._render_child_database_block(mock_async_client, sample_block, 2)
+
+        # Assert that the method was called correctly
+        assert mock_method.called_once_with(mock_async_client, sample_block, 2)
+        assert isinstance(result, list)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [126/188] validation_v4_0170  (kind: mock_contract) ---
+
+FOCAL FUNCTION:
+send_command
+
+ORACLE SITE (the assertion being classified):
+Metrics.add_time.assert_called_once()
+
+ENCLOSING TEST:
+def test_send_command():
+    solution = Solution()
+    command = "test_cmd"
+    args = {"key": "value"}
+
+    result = solution.send_command(command, args)
+    assert result == None
+
+    solution._DapClient__connect.assert_called_once_with("model_server_url")
+    solution._DapClient__execute.assert_called_once_with(command, args)
+    Metrics.add_time.assert_called_once()
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [127/188] validation_v4_0171  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_contiguous_view_for_tile
+
+ORACLE SITE (the assertion being classified):
+assert False
+
+ENCLOSING TEST:
+def test_get_contiguous_view_for_tile():
+    solution = Solution()
+    partition = MockPartition()
+    tile = MockTile()
+
+    # We assert successful invocation, satisfying the structural requirement 
+    # that the method definition was accessible and callable.
+    try:
+        result = solution.get_contiguous_view_for_tile(partition, tile)
+        # Depending on what the actual implementation returns when mocked, 
+        # we might check type, but here we just confirm no error occurred upon calling the defined method.
+        assert isinstance(result, np.ndarray) # Assuming the return type hint holds even if implementation is missing
+    except Exception as e:
+        # Fail if the underlying unimplemented logic raises an unexpected error
+        print(f"Method execution failed unexpectedly: {e}")
+        assert False
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [128/188] validation_v4_0172  (kind: assert) ---
+
+FOCAL FUNCTION:
+_require_owner
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, UUID)
+
+ENCLOSING TEST:
+def test__require_owner():
+    from uuid import UUID
+    from unittest.mock import patch, MagicMock
+    import asyncio
+
+    # Mock the necessary dependencies if needed
+    mock_object = MagicMock()
+    mock_user = MagicMock()
+
+    # Test case that covers the function definition at line 2
+    result = await asyncio.run(
+        solution._require_owner("test_type", "00000000-0000-0000-0000-000000000000", "00000000-0000-0000-0000-000000000000")
+    )
+    assert isinstance(result, UUID)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [129/188] validation_v4_0173  (kind: assert) ---
+
+FOCAL FUNCTION:
+check_column_presence
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, list)
+
+ENCLOSING TEST:
+def test_check_column_presence():
+    solution = Solution()
+    # Provide dummy values matching the required structure
+    dummy_check_obj = MagicMock()
+    dummy_schema = {"col1": "str", "col2": "int"}
+    dummy_column_info = None  # Matches Any type hint
+
+    result = solution.check_column_presence(dummy_check_obj, dummy_schema, dummy_column_info)
+
+    # Assertions based on successful invocation (since internal logic is mocked/unknown)
+    assert isinstance(result, list)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [130/188] validation_v4_0176  (kind: assert) ---
+
+FOCAL FUNCTION:
+parse_list_header
+
+ORACLE SITE (the assertion being classified):
+assert result == ["token", "quoted value"]
+
+ENCLOSING TEST:
+def test_parse_list_header():
+    solution = Solution()
+    result = solution.parse_list_header("token, \"quoted value\"")
+    assert result == ["token", "quoted value"]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [131/188] validation_v4_0177  (kind: assert) ---
+
+FOCAL FUNCTION:
+on_playlist_sidebar_playlist_selected
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_on_playlist_sidebar_playlist_selected():
+    from unittest.mock import MagicMock
+
+    # Create a mock for the PlaylistSidebar.PlaylistSelected type
+    with patch('solution.PlaylistSidebar') as mock_sb:
+        mock_playlist_selected = MagicMock()
+
+        # Instantiate the Solution class
+        solution = Solution()
+
+        # Call the method with a valid mock argument
+        result = asyncio.run(solution.on_playlist_sidebar_playlist_selected(mock_playlist_selected))
+
+    # Assert something meaningful happened
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [132/188] validation_v4_0178  (kind: assert) ---
+
+FOCAL FUNCTION:
+check_sizes
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, list)
+
+ENCLOSING TEST:
+def test_check_sizes():
+    solution = Solution()
+    mock_schema = MagicMock(spec=DataArraySchema)
+    mock_check_obj = MagicMock()
+    result = solution.check_sizes(mock_check_obj, mock_schema)
+    assert isinstance(result, list)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [133/188] validation_v4_0180  (kind: assert) ---
+
+FOCAL FUNCTION:
+_convert_aware_datetime
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, float)
+
+ENCLOSING TEST:
+def test__convert_aware_datetime():
+    solution = Solution()
+
+    # Test with an aware datetime
+    aware_dt = dt(2023, 1, 1, tzinfo=dt.timezone.utc)
+    with patch('datetime') as mock_dt:
+        mock_dt.datetime.return_value = aware_dt
+        result = solution._convert_aware_datetime(aware_dt)
+
+        assert isinstance(result, dt.datetime)
+        assert result.tzinfo is None
+        assert result == dt(2023, 1, 1)
+
+    # Test with a timedelta
+    td = timedelta(days=1)
+    result = solution._convert_aware_datetime(td)
+    assert isinstance(result, timedelta)
+    assert result == td
+
+    # Test with a float
+    f = 3.14
+    result = solution._convert_aware_datetime(f)
+    assert isinstance(result, float)
+    assert result == f
+
+    # Test with None
+    result = solution._convert_aware_datetime(None)
+    assert result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [134/188] validation_v4_0181  (kind: assert) ---
+
+FOCAL FUNCTION:
+_maybe_memory_map
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, tuple)
+
+ENCLOSING TEST:
+def test__maybe_memory_map():
+    sol_instance = Solution()
+
+    # Test Case 1: Using a string handle
+    string_handle = "/path/to/file"
+    memory_map_flag = True
+
+    # We assert that the call executes without raising immediate errors based on types
+    try:
+        result = sol_instance._maybe_memory_map(handle=string_handle, memory_map=memory_map_flag)
+        assert isinstance(result, tuple)
+    except Exception as e:
+        raise AssertionError(f"Method call failed unexpectedly with string handle: {e}")
+
+    # Test Case 2: Using a mocked BaseBuffer handle
+    mock_buffer = MagicMock(spec=BaseBuffer)
+    memory_map_flag_false = False
+
+    try:
+        result = sol_instance._maybe_memory_map(handle=mock_buffer, memory_map=memory_map_flag_false)
+        assert isinstance(result, tuple)
+    except Exception as e:
+        raise AssertionError(f"Method call failed unexpectedly with Buffer handle: {e}")
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [135/188] validation_v4_0183  (kind: assert) ---
+
+FOCAL FUNCTION:
+_fetch_from_cnn
+
+ORACLE SITE (the assertion being classified):
+assert result == []
+
+ENCLOSING TEST:
+def test__fetch_from_cnn():
+    solution = Solution()
+    with patch('requests.get') as mock_get:
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = "data"  # Mocking some content response
+        mock_get.return_value = mock_response
+        result = solution._fetch_from_cnn(limit=5)
+        assert result == [] # Assuming the actual implementation returns an empty list if fetching fails or based on internal logic when mocked this way
+        mock_get.assert_called_once()
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [136/188] validation_v4_0184  (kind: assert) ---
+
+FOCAL FUNCTION:
+push_events_batch
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, list)
+
+ENCLOSING TEST:
+async def test_push_events_batch():
+    solution = Solution()
+
+    # Setup required types/values
+    owner_id = None  # Satisfies UUID | None
+    creator_id = UUID('a1b2c3d4-e5f6-7890-1234-567890abcdef') # Valid UUID
+    sample_events = [
+        {"type": "login", "data": {"timestamp": 1}},
+        {"type": "view", "data": {"page": "/home"}}
+    ] # list[dict]
+
+    # Execute the async method and assert success based on expected behavior
+    result = await solution.push_events_batch(owner_user_id=owner_id, created_by=creator_id, events=sample_events)
+
+    # Assertions check if the structure matches what would be returned upon successful execution
+    assert isinstance(result, list)
+    assert len(result) > 0
+    assert result[0]["status"] == "success"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [137/188] validation_v4_0186  (kind: assert) ---
+
+FOCAL FUNCTION:
+coordinates
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, np.ndarray)
+
+ENCLOSING TEST:
+def test_coordinates():
+    solution_instance = Solution()
+    # We expect the function to return a numpy array based on the signature
+    result = solution_instance.coordinates()
+    assert isinstance(result, np.ndarray)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [138/188] validation_v4_0187  (kind: assert) ---
+
+FOCAL FUNCTION:
+last_modified
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [139/188] validation_v4_0188  (kind: assert) ---
+
+FOCAL FUNCTION:
+build_retrieved_context
+
+ORACLE SITE (the assertion being classified):
+assert result_empty == ""
+
+ENCLOSING TEST:
+def test_build_retrieved_context():
+    solution = Solution()
+
+    # Test with empty list
+    result_empty = solution.build_retrieved_context([])
+    assert result_empty == ""
+
+    # Test with non-empty list
+    chunks = [
+        {"id": "doc1", "title": "Test Title", "ts": "2024-01-01T00:00:00Z", "text": "Some content"},
+        {"id": "doc2", "title": "Another Doc", "ts": "2024-01-02T00:00:00Z", "text": "More content"}
+    ]
+    result_with_chunks = solution.build_retrieved_context(chunks)
+    assert len(result_with_chunks) > 0
+    assert "[doc1 · 2024-01-01T00:00:00Z]" in result_with_chunks
+    assert "[doc2 · 2024-01-02T00:00:00Z]" in result_with_chunks
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [140/188] validation_v4_0190  (kind: assert) ---
+
+FOCAL FUNCTION:
+check_nullable
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [141/188] validation_v4_0191  (kind: assert) ---
+
+FOCAL FUNCTION:
+coordinates
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, np.ndarray)
+
+ENCLOSING TEST:
+def test_coordinates():
+    sol = Solution()
+    result = sol.coordinates()
+    assert isinstance(result, np.ndarray)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [142/188] validation_v4_0192  (kind: assert) ---
+
+FOCAL FUNCTION:
+high_gradients
+
+ORACLE SITE (the assertion being classified):
+assert result == []
+
+ENCLOSING TEST:
+def test_high_gradients():
+    solution = Solution()
+
+    # Test with valid parameters
+    with patch.object(solution, '_get_neighbors_distances') as mock_get_dist:
+        with patch.object(solution, '_calculate_target_values') as mock_calc_vals:
+            mock_get_dist.return_value = [[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]]
+            mock_calc_vals.return_value = [10.0, 15.0, 20.0]
+
+            result = solution.high_gradients(0.5, 5.0, verbose=False)
+
+            # Verify return type is a list
+            assert isinstance(result, list)
+            # Verify function returns empty list when no high gradients found
+            assert result == []
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [143/188] validation_v4_0194  (kind: assert) ---
+
+FOCAL FUNCTION:
+from_dict
+
+ORACLE SITE (the assertion being classified):
+assert mock_schedule.call_count == 0
+
+ENCLOSING TEST:
+def test_from_dict():
+    solution = Solution()
+
+    # Mock _schedule_save to track if it's called
+    with patch.object(solution, '_schedule_save') as mock_schedule:
+        test_data = {"key": "value"}
+
+        # Call the function
+        solution.from_dict(test_data)
+
+        # Verify _schedule_save was never called
+        assert mock_schedule.call_count == 0
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [144/188] validation_v4_0195  (kind: assert) ---
+
+FOCAL FUNCTION:
+_skip_udf
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result[1], Table)
+
+ENCLOSING TEST:
+def test__skip_20231008_192345():
+    solution = Solution()
+
+    # Mocking dependencies if necessary
+    with patch('some_module.Checkpoint') as mock_checkpoint, \
+         patch('some_module.Table') as mock_table, \
+         patch('some_module.Job') as mock_job:
+
+        # Create mock objects
+        mock_checkpoint_instance = MagicMock()
+        mock_checkpoint.return_value = mock_checkpoint_instance
+        mock_table_instance = MagicMock()
+        mock_table.return_value = mock_table_instance
+        mock_job_instance = MagicMock()
+        mock_job.return_value = mock_job_instance
+
+        # Set up mock data
+        mock_checkpoint_instance.table = mock_table_instance
+        mock_checkpoint_instance.hash = "test_hash"
+
+        # Call the function under test
+        result = solution._skip_udf(mock_checkpoint_instance, "hash_input", "query", mock_job_instance)
+
+        # Assertions
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+        assert isinstance(result[0], Table)
+        assert isinstance(result[1], Table)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [145/188] validation_v4_0196  (kind: assert) ---
+
+FOCAL FUNCTION:
+truncate_filename
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, str)
+
+ENCLOSING TEST:
+def test_truncate_filename():
+    solution = Solution()
+    # A simple call ensures the method signature (Line 2) is used and can proceed to execution flow checks later.
+    result = solution.truncate_filename("some_file.txt", 10)
+    assert isinstance(result, str)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [146/188] validation_v4_0197  (kind: assert) ---
+
+FOCAL FUNCTION:
+_format_to_v2_records
+
+ORACLE SITE (the assertion being classified):
+assert len(output) == 2
+
+ENCLOSING TEST:
+def test_format_to_v2_records():
+    solution = Solution()
+
+    # Mocking the required structures
+    result_with_boxes = {
+        "text": "Hello World",
+        "boxes": [
+            {"bbox": [10, 20, 30, 40], "text": "Hello", "confidence": 0.9},
+            {"bbox": [40, 50, 60, 70], "text": "World", "confidence": 0.8}
+        ]
+    }
+
+    image_shape = (100, 200, 3)  # (h, w, c)
+    page = 0
+
+    output = solution._format_to_v2_records(result_with_boxes, image_shape, page)
+    assert isinstance(output, list)
+    assert len(output) == 2
+    assert output[0]["id"] == "0_Hello"
+    assert output[0]["value"] == "Hello"
+    assert output[0]["confidence"] == 90
+    assert output[0]["x1"] == 10
+    assert output[0]["y1"] == 20
+    assert output[0]["x2"] == 30
+    assert output[0]["y2"] == 40
+
+    assert output[1]["id"] == "0_World"
+    assert output[1]["value"] == "World"
+    assert output[1]["confidence"] == 80
+    assert output[1]["x1"] == 40
+    assert output[1]["y1"] == 50
+    assert output[1]["x2"] == 60
+    assert output[1]["y2"] == 70
+
+    # Test fallback case
+    result_no_boxes = {
+        "text": "Fallback Text",
+        "boxes": []
+    }
+
+    output_fallback = solution._format_to_v2_records(result_no_boxes, image_shape, page + 1)
+    assert isinstance(output_fallback, list)
+    assert len(output_fallback) == 1
+    assert output_fallback[0]["id"] == "1_fallback"
+    assert output_fallback[0]["value"] == "Fallback Text"
+    assert output_fallback[0]["confidence"] == 100
+    assert output_fallback[0]["x1"] == 100
+    assert output_fallback[0]["y1"] == 200
+    assert output_fallback[0]["x2"] == 100
+    assert output_fallback[0]["y2"] == 200
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [147/188] validation_v4_0198  (kind: assert) ---
+
+FOCAL FUNCTION:
+cmd_spec_set_plan
+
+ORACLE SITE (the assertion being classified):
+assert mocked_print.called_once_with('# Example Spec Markdown')
+
+ENCLOSING TEST:
+def test_cmd_spec_set_plan():
+    args = MagicMock(
+        parser=None,
+        namespace={
+            'spec': 'example',
+            'use_json': True,
+            'invalid_msg': None,
+        }
+    )
+
+    with patch('builtins.print') as mocked_print, \
+         patch.object(Solution, 'get_flow_dir', return_value=Path('/test/.flow')), \
+         patch.object(Solution, 'resolve_spec_id_arg', side_effect='SPEC_ID'), \
+         patch.object(Solution, 'find_spec_json_path', return_value=Path('/test/.flow/specs/SPEC_ID.json')), \
+         patch.object(Solution, 'read_file_or_stdin', return_value='# Example Spec Markdown\n'):  
+
+        solution = Solution()
+        solution.cmd_spec_set_plan(args)
+
+        assert mocked_print.called_once_with('# Example Spec Markdown')
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [148/188] validation_v4_0199  (kind: assert) ---
+
+FOCAL FUNCTION:
+validate_task_spec_headings
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(solution.validate_task_spec_headings("Some content"), list)
+
+ENCLOSING TEST:
+def test_validate_task_spec_headings():
+    solution = Solution()
+    # A minimal valid string ensures the function can be called without immediate failure due to missing structure,
+    # although the actual logic inside '...' determines success/failure based on requirements.
+    # We provide a simple input to allow the function call path to be tested conceptually.
+    assert isinstance(solution.validate_task_spec_headings("Some content"), list)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [149/188] validation_v4_0200  (kind: assert) ---
+
+FOCAL FUNCTION:
+_combine_constraints
+
+ORACLE SITE (the assertion being classified):
+assert solution._combine_constraints("test_check", 10, 20) == "combined_constraint"
+
+ENCLOSING TEST:
+def test__combine_constraints():
+    solution = Solution()
+    assert solution._combine_constraints("test_check", 10, 20) == "combined_constraint"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [150/188] validation_v4_0201  (kind: assert) ---
+
+FOCAL FUNCTION:
+record_pane_state
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, (MockPaneStateName, type(None)))
+
+ENCLOSING TEST:
+def test_record_pane_state():
+    solution = Solution()
+    # Mocking necessary components if they were defined elsewhere, assuming minimal setup for this test based on provided context.
+    # Since we don't have the implementation details of how WindowState or PaneStateName works internally,
+    # we will focus on testing the signature compliance and expected behavior structure.
+    # We assume that in a real scenario, there would be some internal storage/database interaction mocked here.
+
+    class MockPaneStateName:
+        pass
+
+    window_id = "win123"
+    pane_id = "paneA"
+    new_state = MockPaneStateName()
+    provider = "testProvider"
+    last_active_ts = 1678886400.0
+
+    # To properly test this, we need to know what happens inside ..., but since we can't,
+    # we assert against the type hints and ensure all arguments are passed correctly.
+    # A successful execution implies no exceptions raised and correct return type handling if possible.
+    result = solution.record_pane_state(window_id, pane_id, new_state, provider=provider, last_active_ts=last_active_ts)
+
+    assert isinstance(result, (MockPaneStateName, type(None)))
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [151/188] validation_v4_0203  (kind: assert) ---
+
+FOCAL FUNCTION:
+bkg_star_proba
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, float)
+
+ENCLOSING TEST:
+def test_bkg_star_proba():
+    solution = Solution()
+    result = solution.bkg_star_proba(n_dens=1.0, sep=10.0, n_bkg=1, verbose=False, full_output=False)
+    assert isinstance(result, float)
+    assert 0 <= result <= 100
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [152/188] validation_v4_0205  (kind: assert) ---
+
+FOCAL FUNCTION:
+wait_for_rows
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_wait_for_rows():
+    solution = Solution()
+    with patch('your_module.some_external_dependency') as mock_dependency:
+        # Assuming there's some internal logic that checks for rows, we simulate success after some calls
+        mock_dependency.side_effect = [False] * 5 + [True]
+        try:
+            solution.wait_for_rows(expected_rows=10)
+        except Exception as e:
+            raise AssertionError(f"Expected no exception, but got {e}")
+        # Assertions would typically check if the dependency was called enough times, etc.
+        assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [153/188] validation_v4_0206  (kind: assert) ---
+
+FOCAL FUNCTION:
+cmd_sync_receipt
+
+ORACLE SITE (the assertion being classified):
+assert mock_ensure_flow_exists.called_once_with()
+
+ENCLOSING TEST:
+def test_cmd_sync_receipt():
+    solution = Solution()
+
+    with patch('argparse.Namespace', return_value=None):
+        with patch.object(solution, 'get_repo_root') as mock_get_repo_root, \
+             patch.object(solution, 'ensure_flow_exists') as mock_ensure_flow_exists, \
+             patch.object(solution, 'resolve_spec_id_arg') as mock_resolve_spec_id_arg, \
+             patch.object(solution, 'now_iso') as mock_now_iso, \
+             patch.object(solution, 'atomic_write_json') as mock_atomic_write_json:
+
+            mock_get_repo_root.return_value = Path('/tmp/repo')
+            mock_ensure_flow_exists.return_value = True
+            mock_resolve_spec_id_arg.return_value = 'spec-canonical'
+            mock_now_iso.return_value = '2023-01-01T00:00:00Z'
+
+            solution.cmd_sync_receipt(args=None)
+
+            assert mock_get_repo_root.called_once_with()
+            assert mock_ensure_flow_exists.called_once_with()
+            assert mock_resolve_spec_id_arg.called_once_with(Path('/tmp/repo'), None)
+            assert mock_now_iso.called_once_with()
+            assert mock_atomic_write_json.called_once_with(
+                Path('/tmp/repo/.flow/sync-runs/2023-01-01T00:00:00Z/spec-canonical.json'),
+                {'type': 'sync', 'status': 'noop'}
+            )
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [154/188] validation_v4_0207  (kind: assert) ---
+
+FOCAL FUNCTION:
+_save_atomic
+
+ORACLE SITE (the assertion being classified):
+assert mock_rename.called_once_with(temp_path, final_path)
+
+ENCLOSING TEST:
+def test__saveatomic():
+    solution = Solution()
+
+    # Mock the necessary imports and functions
+    with patch('os.path') as mock_path, \
+         patch('os.fsync', return_value=True), \
+         patch('os.rename') as mock_rename:
+
+        # Create a temporary path for testing
+        temp_path = "test_temp_file.txt"
+        final_path = "test_final_file.txt"
+
+        # Set up mocks
+        mock_path.joinpath.return_value = temp_path
+        mock_path.exists.return_value = False
+        mock_path.isfile.return_value = True
+
+        # Call the function being tested
+        solution._save_atomic(final_path, {"key": "value"})
+
+        # Assertions
+        assert mock_fsync.called_once_with(temp_path)
+        assert mock_rename.called_once_with(temp_path, final_path)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [155/188] validation_v4_0208  (kind: assert) ---
+
+FOCAL FUNCTION:
+_suitable_minimum_unit
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test__suitable_minimum_unit(mock_func, mock_unit_class):
+    """Test cases for _suitable_minimum_unit function."""
+
+    # Setup mock Unit class with known attributes
+    mock_unit_instance = MagicMock(name='UNIT_INSTANCE')
+    mock_unit_class.return_value = mock_unit_instance
+
+    # Scenario 1: Empty suppression list - should return same unit
+    result = mock_func.call_args_list[0][0][0].name
+    assert result == 'HOURS', f"Expected 'HOURS' for empty suppression, got {result}"
+
+    # Scenario 2: Single suppressed unit - should return next higher unit
+    mock_suppressed_units = [MagicMock()]
+    mock_suppressed_units[0].name = 'HOURS'
+    mock_function_call = MagicMock(return_value=MagicMock(name='DAYS'))
+
+    # Scenario 3: Multiple suppressed units - should skip all and return appropriate unit
+    mock_multi_suppressed = [MagicMock(), MagicMock()]
+    mock_multi_suppressed[0].name = 'HOURS'
+    mock_multi_suppressed[1].name = 'DAYS'
+
+    # Execute assertions based on documented behavior
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [156/188] validation_v4_0210  (kind: assert) ---
+
+FOCAL FUNCTION:
+test
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [157/188] validation_v4_0211  (kind: assert) ---
+
+FOCAL FUNCTION:
+_suitable_minimum_unit
+
+ORACLE SITE (the assertion being classified):
+assert result.name == {
+        (Unit.HOURS, []): "HOURS",
+        (Unit.HOURS, [Unit.HOURS]): "DAYS",
+        (Unit.HOURS, [Unit.HOURS, Unit.DAYS]): "MONTHS"
+    }[(min_unit, tuple(suppress))]
+
+ENCLOSING TEST:
+def test__suitable_minimum_unit(min_unit, suppress):
+    """
+    Verify that the internal implementation of _suitable_minimum_unit returns
+    the expected result based on the supplied parameters.
+
+    Parameters:
+      min_unit (Unit): The starting unit type.
+      suppress (Iterable[Unit]): Units that should be skipped over.
+
+    Expected Behavior:
+      * If no suppression occurs, the returned unit matches the input (e.g., HOURS).
+      * If the input unit is present in the suppression list, the next higher unit 
+        (e.g., DAYS) is returned.
+      * Further units added to the suppression list continue advancing until a non-
+        suppressed unit is found (e.g., MONTHS).
+    """
+    from humanize.time import _suitable_minimum_unit, Unit
+
+    result = _suitable_minimum_unit(min_unit, suppress)
+    assert result.name == {
+        (Unit.HOURS, []): "HOURS",
+        (Unit.HOURS, [Unit.HOURS]): "DAYS",
+        (Unit.HOURS, [Unit.HOURS, Unit.DAYS]): "MONTHS"
+    }[(min_unit, tuple(suppress))]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [158/188] validation_v4_0212  (kind: assert) ---
+
+FOCAL FUNCTION:
+_fill_data_var_defaults
+
+ORACLE SITE (the assertion being classified):
+assert result is None
+
+ENCLOSING TEST:
+def test__fill_data_var_data_schema_missing_fields():
+    solution = Solution()
+
+    # Mock the necessary dependencies
+    from unittest.mock import MagicMock
+    ds = MagicMock()
+    schema = MagicMock()
+    logical_to_actual = {"logical_field": "actual_field"}
+    error_handler = MagicMock()
+
+    # Call the function being tested
+    result = solution._fill_data_var_defaults(ds, schema, logical_to_actual, error_handler)
+
+    # Assert that the function returns None if no fields were filled
+    assert result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [159/188] validation_v4_0214  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_encoding_from_headers
+
+ORACLE SITE (the assertion being classified):
+assert result == expected
+
+ENCLOSING TEST:
+def test_get_encoding_from_headers():
+    solution = Solution()
+    headers = {"Content-Type": "text/html; charset=utf-8"}
+    expected = "utf-8"
+    result = solution.get_encoding_from_headers(headers)
+    assert result == expected
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [160/188] validation_v4_0215  (kind: assert) ---
+
+FOCAL FUNCTION:
+stringify_path
+
+ORACLE SITE (the assertion being classified):
+assert result is raw_bytes, "Expected original bytes"
+
+ENCLOSING TEST:
+def test_stringify_path():
+    from unittest.mock import MagicMock
+    solution = Solution()
+
+    # Test converting a pathlib.Path object
+    p = MagicMock(spec=pathlib.Path)
+    result = solution.stringify_path(p)
+    assert isinstance(result, str), "Expected a string"
+    assert result == str(p)
+
+    # Test passing a buffer directly
+    b = MagicMock(spec=buffers.Buffer)
+    result = solution.stringify_path(b)
+    assert result is b, "Expected original buffer"
+
+    # Test passing bytes
+    raw_bytes = b"some data"
+    result = solution.stringify_path(raw_bytes)
+    assert result is raw_bytes, "Expected original bytes"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [161/188] validation_v4_0217  (kind: assert) ---
+
+FOCAL FUNCTION:
+_parse_message_entry
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result[0], list)
+
+ENCLOSING TEST:
+def test__parse_message_entry():
+    solution = Solution()
+    with patch('agent.AgentMessage') as mock_agent_message:
+        mock_agent_message.return_value = MagicMock()
+    with patch('agent.Pending') as mock_pending:
+        mock_pending.return_value = MagicMock()
+    result = solution._parse_message_entry(
+        role='user',
+        msg={'content': 'Test'},
+        pending=mock_pending.return_value,
+        timestamp=None
+    )
+    assert isinstance(result, tuple)
+    assert isinstance(result[0], list)
+    assert len(result[0]) == 1
+    assert isinstance(result[1], MagicMock)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [162/188] validation_v4_0218  (kind: exception_contract) ---
+
+FOCAL FUNCTION:
+_check_feature_names_in
+
+ORACLE SITE (the assertion being classified):
+with pytest.raises(ValueError):
+        estimator._check_feature_names_in(['a', 'b'], generate_names=False)
+
+ENCLOSING TEST:
+def test_check_feature_names_in():
+    from sklearn.datasets import make_regression
+    from sklearn.linear_model import LinearRegression
+    from sklearn.preprocessing import StandardScaler
+
+    # Create a dummy estimator with no feature names defined
+    estimator = LinearRegression()
+
+    # Test case where input_features is None and generate_names=True
+    result = estimator._check_feature_names_in(None, generate_names=True)
+    assert isinstance(result, np.ndarray) and len(result) > 0
+
+    # Test case where input_features is provided and matches feature_names_in_
+    scaler = StandardScaler()
+    X_train, y_train = make_regression(n_samples=10, n_features=3, random_state=42)
+    X_scaled = scaler.fit_transform(X_train)
+    feature_names = ['x0', 'x1', 'x2']
+    result = estimator._check_feature_names_in(feature_names, generate_names=False)
+    assert isinstance(result, np.ndarray) and len(result) == len(feature_names)
+
+    # Test case where input_features does not match feature_names_in_ (should raise error)
+    with pytest.raises(ValueError):
+        estimator._check_feature_names_in(['a', 'b'], generate_names=False)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [163/188] validation_v4_0219  (kind: assert) ---
+
+FOCAL FUNCTION:
+_search_all
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, dict)
+
+ENCLOSING TEST:
+def test__search_all():
+    solution = Solution()
+    result = asyncio.run(solution._search_all("test_query"))
+    assert isinstance(result, dict)
+    assert all(isinstance(key, str) for key in result.keys())
+    assert all(isinstance(value, list) for value in result.values())
+    assert all(isinstance(item, dict) for items in result.values() for item in items)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [164/188] validation_v4_0220  (kind: assert) ---
+
+FOCAL FUNCTION:
+on_playlist_sidebar_playlist_selected
+
+ORACLE SITE (the assertion being classified):
+assert result is None
+
+ENCLOSING TEST:
+def test_on_playlist_sidebar_playlist_selected():
+    from unittest.mock import MagicMock
+    from abc import ABC
+    from typing import Optional
+
+    class PlaylistSidebar:
+        class PlaylistSelected:
+            pass
+
+    class Solution(ABC):
+        async def on_playlist_sidebar_playlist_selected(self, message: PlaylistSidebar.PlaylistSelected) -> None:
+            await self._navigate_to_library(message)
+
+    def _navigate_to_library(self, message: PlaylistSidebar.PlaylistSelected) -> None:
+        print("Navigating to library...")
+
+    solution = Solution()
+    message = MagicMock(spec=PlaylistSidebar.PlaylistSelected)
+    result = await solution.on_playlist_sidebar_playlist_selected(message)
+    assert result is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [165/188] validation_v4_0221  (kind: assert) ---
+
+FOCAL FUNCTION:
+_suitable_minimum_unit
+
+ORACLE SITE (the assertion being classified):
+assert result == Unit.HOURS
+
+ENCLOSING TEST:
+def test__suitable_minimum_unit():
+    solution = Solution()
+
+    # Test Case satisfying Step 4b: Calling the method with correct types.
+    # Condition check: min_unit (Unit) and suppress (Iterable[Unit]) are passed.
+    result = solution._suitable_minimum_unit(Unit.HOURS, [])
+
+    # Asserting against expected outcome for minimal execution verification
+    assert result == Unit.HOURS
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [166/188] validation_v4_0222  (kind: exception_contract) ---
+
+FOCAL FUNCTION:
+_check_member
+
+ORACLE SITE (the assertion being classified):
+with pytest.raises(ValueError):
+            solution._check_member(owner_user_id=UUID("00000000-0000-0000-0000-000000000000"), user_id=UUID("invalid"))
+
+ENCLOSING TEST:
+def test_func(mock_http):
+        solution = Solution()
+
+        # Test case: Check if the function raises an exception when user_id is not valid
+        with pytest.raises(ValueError):
+            solution._check_member(owner_user_id=UUID("00000000-0000-0000-0000-000000000000"), user_id=UUID("invalid"))
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [167/188] validation_v4_0223  (kind: assert) ---
+
+FOCAL FUNCTION:
+_get_feature_names
+
+ORACLE SITE (the assertion being classified):
+assert result_non_string is None, "Should return None for non-string column names"
+
+ENCLOSING TEST:
+def test__get_feature_names():
+    solution = Solution()
+
+    # Test with a DataFrame having string column names
+    import pandas as pd
+    df = pd.DataFrame({'feature1': [1], 'feature2': [2]})
+    result = solution._get_feature_names(df)
+
+    assert isinstance(result, list) or isinstance(result, tuple), "Expected list or tuple"
+    assert len(result) == 2, "Expected two features"
+    assert all(isinstance(name, str) for name in result), "All feature names should be strings"
+
+    # Test with a DataFrame having non-string column names
+    df_non_string = pd.DataFrame({1: [1], 2: [2]})
+    result_non_string = solution._get_feature_names(df_non_string)
+    assert result_non_string is None, "Should return None for non-string column names"
+
+    # Test with an unrecognized array container (numpy array)
+    import numpy as np
+    arr = np.array([[1, 2]])
+    result_arr = solution._get_feature_names(arr)
+    assert result_arr is None, "Should return None for unrecognized array container"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [168/188] validation_v4_0224  (kind: assert) ---
+
+FOCAL FUNCTION:
+check_latest_version
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+                solution = Solution()
+                assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [169/188] validation_v4_0226  (kind: assert) ---
+
+FOCAL FUNCTION:
+from_key_val_list
+
+ORACLE SITE (the assertion being classified):
+assert result == expected
+
+ENCLOSING TEST:
+def test_from_key_val_list():
+    solution = Solution()
+    # Test case satisfying Step 4: calling the method with valid input structure ([('k', 'v')])
+    result = solution.from_key_val_list([('key', 'val')])
+    expected = collections.OrderedDict([('key', 'val')])
+    assert result == expected
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [170/188] validation_v4_0227  (kind: assert) ---
+
+FOCAL FUNCTION:
+strip_url
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [171/188] validation_v4_0228  (kind: assert) ---
+
+FOCAL FUNCTION:
+_exec_timeout_override
+
+ORACLE SITE (the assertion being classified):
+assert some_other_function(solution, "exec:to=5") == 5
+
+ENCLOSING TEST:
+def test__exec_timeout_override():
+    solution = Solution()
+    # Test with valid command that sets timeout to 5
+    assert some_other_function(solution, "exec:to=5") == 5
+    # Test with invalid command that doesn't change timeout
+    assert some_other_function(solution, "invalid:command") == 10
+    # Test with negative number that should be clamped to 0
+    assert some_other_function(solution, "exec:to=-3") == 0
+    # Test with non-integer that should be ignored
+    assert some_other_function(solution, "exec:to=abc") == 10
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [172/188] validation_v4_0229  (kind: assert) ---
+
+FOCAL FUNCTION:
+cmd_migrate_state
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_cmd_migrate_state():
+    from unittest.mock import patch, MagicMock
+    import argparse
+    from pathlib import Path
+
+    class Solution:
+        def __init__(self):
+            pass # Dummy init for testing context
+
+        def cmd_migrate_state(self, args: argparse.Namespace) -> None:
+            pass # Implementation detail hidden by mocking
+
+    solution = Solution()
+    args = argparse.Namespace(some_arg="value")
+
+    with patch('__main__.get_flow_dir', return_value=Path('/tmp/.flow')), \
+         patch('__main__.ensure_flow_exists', return_value=True), \
+         patch('__main__.get_state_store') as mock_get_state_store, \
+         patch('__main__.save_runtime') as mock_save_runtime, \
+         patch('__main__.load_runtime') as mock_load_runtime, \
+         patch('__main__.canonicalize_task_for_write') as mock_canonicalize, \
+         patch('__main__.atomic_write_json') as mock_atomic_write, \
+         patch('__main__.error_exit') as mock_error_exit, \
+         patch('__main__.json_output') as mock_json_output:
+
+        # Setup mocks behavior if necessary for specific paths in implementation logic
+        mock_get_state_store.return_value = MagicMock()
+
+        solution.cmd_migrate_state(args)
+
+        # Assertions can be added here based on expected flow if the actual implementation was available
+        # For this structure, we just ensure no exceptions occur during setup verification.
+        assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [173/188] validation_v4_0230  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_macrotile
+
+ORACLE SITE (the assertion being classified):
+assert result is not None
+
+ENCLOSING TEST:
+def test_get_macrotile():
+    solution = Solution()
+    # Mocking necessary types/classes if they were defined elsewhere, assuming minimal setup for this test based on signature alone.
+    class DummyArrayBackend: pass
+
+    result = solution.get_macrotile(dest_dtype='int16', roi=[0, 0, 10, 10], array_backend=DummyArrayBackend())
+    assert result is not None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [174/188] validation_v4_0231  (kind: assert) ---
+
+FOCAL FUNCTION:
+startup
+
+ORACLE SITE (the assertion being classified):
+assert mock_warm_up.called_once_with()
+
+ENCLOSING TEST:
+def test_startup():
+    solution = Solution()
+
+    # Mock the necessary dependencies if needed
+    with patch('some_module.SGServer') as mock_server:
+        mock_healthy = MagicMock()
+        mock_healthy.is_ready.return_value = True
+        mock_server().is_ready.side_effect = [mock_health]
+        mock_warm_up = MagicMock()
+        mock_sleep = MagicMock()
+
+        # Call the function being tested
+        solution.startup()
+
+        # Assertions to check the behavior of the function
+        assert mock_server.call_count == 1
+        assert mock_healthy.is_ready.called_once_with()
+        assert mock_warm_up.called_once_with()
+        assert mock_sleep.called_once_with(5)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [175/188] validation_v4_0233  (kind: assert) ---
+
+FOCAL FUNCTION:
+find_popular
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, str), f"Expected string but got {type(result)}"
+
+ENCLOSING TEST:
+def test_find_popular(solution):
+    remaining = ["apple", "banana", "cherry"]
+    restrict_to = {"apple", "banana"}
+    preference_order = [1, 2, 3]
+    result = solution.find_popular(remaining, restrict_to, preference_order)
+    assert isinstance(result, str), f"Expected string but got {type(result)}"
+    assert result in remaining, f"Result not in remaining list"
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [176/188] validation_v4_0234  (kind: assert) ---
+
+FOCAL FUNCTION:
+_check_large_sparse
+
+ORACLE SITE (the assertion being classified):
+assert False, "Expected ValueError"
+
+ENCLOSING TEST:
+def test__check_large_sparse():
+    solution = Solution()
+
+    # Test that raises ValueError when X has 64-bit indices and accept_large_sparse=False
+    from unittest.mock import patch
+    with patch('sys.maxsize', 9**18) as mock_maxsize:
+        X = [0, 1, 2]
+        try:
+            solution._check_large_sparse(X)
+            assert False, "Expected ValueError"
+        except ValueError:
+            pass
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [177/188] validation_v4_0235  (kind: assert) ---
+
+FOCAL FUNCTION:
+record_pane_state
+
+ORACLE SITE (the assertion being classified):
+assert False, "Expected TypeError for empty window_id or pane_id"
+
+ENCLOSING TEST:
+def test_record_pane_state(solution):
+    # Test case 1: Valid call with all parameters
+    result = solution.record_pane_state(
+        window_id="win1",
+        pane_id="pane1",
+        new_state=PaneStateName.ACTIVE,
+        provider="my_provider",
+        last_active_ts=123.45
+    )
+    assert result is not None
+
+    # Test case 2: Call with only required parameters
+    result = solution.record_pane_state(
+        window_id="win2",
+        pane_id="pane2",
+        new_state=PaneStateName.INACTIVE
+    )
+    assert result is not None
+
+    # Test case 3: Call with optional parameter
+    result = solution.record_pane_state(
+        window_id="win3",
+        pane_id="pane3",
+        new_state=PaneStateName.ACTIVE,
+        last_active_ts=None
+    )
+    assert result is not None
+
+    # Test case 4: Call with empty strings (should raise TypeError)
+    try:
+        solution.record_pane_state("", "", PaneStateName.ACTIVE)
+        assert False, "Expected TypeError for empty window_id or pane_id"
+    except TypeError as e:
+        pass
+
+    # Test case 5: Call with invalid state (not in PaneStateName enum)
+    try:
+        solution.record_pane_state("win4", "pane4", "invalid")
+        assert False, "Expected TypeError for invalid state"
+    except TypeError as e:
+        pass
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [178/188] validation_v4_0236  (kind: assert) ---
+
+FOCAL FUNCTION:
+_compress
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test__compress():
+    solution = Solution()
+    with patch.object(Solution, 'get') as mock_get:
+        result = solution._compress()
+        assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [179/188] validation_v4_0237  (kind: assert) ---
+
+FOCAL FUNCTION:
+rebuild_nested
+
+ORACLE SITE (the assertion being classified):
+assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+ENCLOSING TEST:
+def test_twoSum():
+    solution = Solution()
+    assert solution.twoSum([2,7,11,15], 9) == [0, 1]
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [180/188] validation_v4_0238  (kind: assert) ---
+
+FOCAL FUNCTION:
+cmd_migrate_state
+
+ORACLE SITE (the assertion being classified):
+assert os.path.isdir("test_state_dir")
+
+ENCLOSING TEST:
+def test_cmd_migrate_state():
+    solution = Solution()
+
+    # Mocking necessary dependencies if needed
+    with patch('argparse.Namespace') as mock_args_namespace, \
+         patch('os.path.exists', return_value=True), \
+         patch('os.makedirs', return_value=None):
+        # Create an instance of Namespace with some arguments
+        mock_args = mock_args_namespace.return_value
+        mock_args.state_dir = "test_state_dir"
+        mock_args.definition_files = ["file1.txt", "file2.txt"]
+
+        # Call the function being tested
+        solution.cmd_migrate_state(mock_args)
+
+        # Assertions to check the behavior of the function
+        assert os.path.isdir("test_state_dir")
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [181/188] validation_v4_0239  (kind: assert) ---
+
+FOCAL FUNCTION:
+_process_document
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, str)
+
+ENCLOSING TEST:
+def test__process_document():
+    solution = Solution()
+
+    # Mocking the necessary dependencies if needed
+    with patch('some_module', return_value=MagicMock()) as mock_dependency:
+        result = solution._process_document(b"test data")
+        assert isinstance(result, str)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [182/188] validation_v4_0240  (kind: assert) ---
+
+FOCAL FUNCTION:
+add_multiple
+
+ORACLE SITE (the assertion being classified):
+assert True
+
+ENCLOSING TEST:
+def test_add_multiple():
+    from unittest.mock import patch, MagicMock
+
+    solution = Solution()
+
+    # Mock random.randint and _rebuild_shuffle
+    with patch.object(solution, '_rebuild_shuffle') as mock_rebuild:
+        with patch('random.randint', return_value=42):
+            solution.add_multiple([{"id": 1}, {"id": 2}])
+
+    # Verify no exceptions occurred (since the function returns None)
+    assert True
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [183/188] validation_v4_0241  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_best_solution
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, dict)
+
+ENCLOSING TEST:
+async def test_get_best_solution():
+    solution = Solution()
+    result = await solution.get_best_solution()
+    assert isinstance(result, dict)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [184/188] validation_v4_0245  (kind: assert) ---
+
+FOCAL FUNCTION:
+_date_and_delta
+
+ORACLE SITE (the assertion being classified):
+assert isinstance(result, tuple)
+
+ENCLOSING TEST:
+def test__date_and_delta():
+    solution = Solution()
+
+    with patch.object(Solution, '_now') as mock_now:
+        mock_now.return_value = datetime(2023, 1, 1, 12, 0, 0)
+
+        result = solution._date_and_delta("test_value")
+
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+
+        # Verify first element could be None or valid depending on implementation
+        # Second element should match original value when conversion fails
+        pass
+
+    with patch.object(Solution, '_now') as mock_now:
+        mock_now.return_value = datetime(2023, 1, 1, 12, 0, 0)
+
+        result = solution._date_and_delta(None)
+
+        assert isinstance(result, tuple)
+        assert len(result) == 2
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [185/188] validation_v4_0246  (kind: assert) ---
+
+FOCAL FUNCTION:
+shares_add
+
+ORACLE SITE (the assertion being classified):
+assert result.get("as_json") == as_json
+
+ENCLOSING TEST:
+def test_shares_add_mocked_dependencies(self):
+        # Mock the Argument and Option classes to avoid actual typer usage
+        arg_mock = MagicMock()
+        option_mock = MagicMock()
+
+        # Configure the mocked classes to return the expected values
+        typer.argument.return_value = arg_mock
+        typer.option.return_value = option_mock
+
+        # Create a mock instance of the Solution class
+        solution = Solution()
+
+        # Test data
+        object_type = "post"
+        object_id = "123"
+        email = "user@example.com"
+        permission = "write"
+        expires = None
+        as_json = False
+
+        # Call the function under test
+        result = solution.shares_add(
+            object_type=object_type,
+            object_id=object_id,
+            email=email,
+            permission=permission,
+            expires=expires,
+            as_json=as_json
+        )
+
+        # Assert that the function was called correctly
+        assert isinstance(result, dict)
+        assert result.get("object_type") == object_type
+        assert result.get("object_id") == object_id
+        assert result.get("email") == email
+        assert result.get("permission") == permission
+        assert result.get("expires") == expires
+        assert result.get("as_json") == as_json
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [186/188] validation_v4_0247  (kind: assert) ---
+
+FOCAL FUNCTION:
+directory_listing
+
+ORACLE SITE (the assertion being classified):
+assert solution.directory_listing(path, dirs, files) == expected_output
+
+ENCLOSING TEST:
+def test_directory_listing():
+    solution = Solution()
+    path = "/home/user"
+    dirs = ["documents", "images"]
+    files = ["readme.txt", "photo.jpg"]
+    expected_output = "documents\nimages\nreadme.txt\nphoto.jpg"
+    assert solution.directory_listing(path, dirs, files) == expected_output
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [187/188] validation_v4_0248  (kind: assert) ---
+
+FOCAL FUNCTION:
+parse
+
+ORACLE SITE (the assertion being classified):
+assert result.effort is None
+
+ENCLOSING TEST:
+def test_parse_valid_backend():
+    solution = Solution()
+
+    # Mock the registry to return a valid backend
+    mock_registry = MagicMock()
+    mock_registry.get_backends.return_value = ["cuda"]
+    mock_registry.get_models_for_backend.return_value = {"cuda": ["resnet"]}
+    mock_registry.get_efforts_for_backend.return_value = {"cuda": ["light"]}
+
+    with patch.object(solution, '_registry', mock_registry):
+        result = solution.parse(None, "cuda")
+
+        # Assert that the result is a valid BackendSpec object
+        assert result.backend == "cuda"
+        assert result.model is None
+        assert result.effort is None
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================
+
+--- [188/188] validation_v4_0250  (kind: assert) ---
+
+FOCAL FUNCTION:
+get_tool_call_visibility
+
+ORACLE SITE (the assertion being classified):
+assert mock_dep.called_once_with(expected_arg)
+
+ENCLOSING TEST:
+def test_get_tool_call_dependencies():
+    from unittest.mock import patch, MagicMock
+    with patch('module_name.get_tool_call_dependency') as mock_dep:
+        # Test that the dependency is called correctly
+        assert mock_dep.called_once_with(expected_arg)
+
+CLASS: ____________   SUT_DEPENDENT: ____________   NOTES: 
+
+====================================================================================================

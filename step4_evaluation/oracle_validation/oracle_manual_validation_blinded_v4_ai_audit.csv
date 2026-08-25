@@ -1,0 +1,251 @@
+validation_row_id,generation_id,oracle_id,ai_manual_class,ai_manual_sut_dependent,ai_manual_notes
+validation_v4_0001,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:159066:2,oracle_0001,STRONG,True,"direct focal call, exact list equality vs literal"
+validation_v4_0002,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:951052:2,oracle_0007,WEAK,True,nullity check on SUT-method return (method name differs from stated focal by typo but is still a SUT call)
+validation_v4_0003,linecov2_Qwen3.5-4B_temp_0.0:467352:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0004,linecov2_Qwen3.5-4B_temp_0.0:25953:2,oracle_0003,WEAK,True,isinstance on SUT return = coarse type
+validation_v4_0005,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:613377:2,oracle_0001,STRONG,True,exact string equality vs literal on SUT return
+validation_v4_0006,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:200541:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0007,linecov_gemma-4-E4B-it_temp_0.0:252302:2,oracle_0006,WEAK,True,nullity check on os.environ state after SUT call side effect
+validation_v4_0008,linecov2_Qwen3.5-4B_temp_0.0:772390:2,oracle_0002,TRIVIAL,False,hasattr on MagicMock auto-vivified attribute is vacuously true regardless of SUT behavior
+validation_v4_0009,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:558638:2,oracle_0001,STRONG,True,exact value equality vs expected tensor on SUT return
+validation_v4_0010,linecov_Qwen3.5-4B_temp_0.0:718439:2,oracle_0001,WEAK,True,isinstance on SUT return = coarse type
+validation_v4_0011,linecov_Qwen3.5-4B_temp_0.0:285912:2,oracle_0003,WEAK,True,nullity check on SUT return
+validation_v4_0012,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:548627:2,oracle_0002,STRONG,True,exact string equality vs literal on SUT return
+validation_v4_0013,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:181000:2,oracle_0002,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy MagicMock child, verifies nothing"
+validation_v4_0014,linecov2_Qwen3.5-4B_temp_0.0:340725:2,oracle_0001,TRIVIAL,False,"assert True inside try block after call, SUT-independent literal"
+validation_v4_0015,linecov_granite-4.0-micro_temp_0.0:168047:2,oracle_0004,STRONG,True,exception contract with specific message-content check
+validation_v4_0016,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:601675:2,oracle_0001,WEAK,True,"boolean identity check (is False) on SUT return, same information class as truthiness"
+validation_v4_0017,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:287798:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function convert_pending_invites; call target is not SUT-derived
+validation_v4_0018,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:254073:2,oracle_0001,TRIVIAL,False,"bogus '.called_once_with', and mock_dependency is never actually connected via patch (with-block body is 'pass'); vacuously truthy"
+validation_v4_0019,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:597012:2,oracle_0001,WEAK,True,isinstance on SUT return = coarse type
+validation_v4_0020,linecov_Qwen3.5-4B_temp_0.0:772390:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0021,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:359758:2,oracle_0004,STRONG,True,"real assert_called_once_with with specific args, verified interaction contract"
+validation_v4_0022,linecov2_Qwen3.5-4B_temp_0.0:778238:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0023,linecov_granite-4.0-micro_temp_0.0:894422:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0024,linecov_granite-4.0-micro_temp_0.0:884145:2,oracle_0003,UNKNOWN,True,"isinstance() second arg is an invalid list-of-types construct; semantics malformed/unresolvable, not a clean coarse-type check"
+validation_v4_0025,linecov_Qwen3.5-4B_temp_0.0:864549:2,oracle_0001,STRONG,True,"direct focal call, exact list-of-tuples equality vs literal"
+validation_v4_0026,linecov2_granite-4.0-micro_temp_0.0:538729:2,oracle_0001,TRIVIAL,False,"entire receiver is MagicMock(spec=Solution) with .return_value stubbed to {}; comparison is tautological against the stub, not real SUT logic"
+validation_v4_0027,linecov2_gemma-4-E4B-it_temp_0.0:117390:2,oracle_0001,STRONG,True,"direct focal call, exact list equality vs literal"
+validation_v4_0028,linecov_Qwen3.5-4B_temp_0.0:17826:2,oracle_0002,WEAK,True,"isinstance-or-None disjunction on SUT return, coarse type/nullity"
+validation_v4_0029,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:162266:2,oracle_0002,WEAK,True,"boolean identity check on SUT-method return, coarse"
+validation_v4_0030,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:360176:2,oracle_0002,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0031,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:639256:2,oracle_0001,STRONG,True,exact dict equality vs literal on SUT-derived return
+validation_v4_0032,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:308018:2,oracle_0001,WEAK,True,"isinstance on SUT-derived tuple element, coarse type"
+validation_v4_0033,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:325306:2,oracle_0006,UNKNOWN,False,"mock_is_task_id is never bound anywhere in the test (dangling undefined name); would raise NameError at runtime, mock provenance unresolvable"
+validation_v4_0034,linecov_Qwen3.5-4B_temp_0.0:601675:2,oracle_0001,WEAK,True,"boolean identity check on SUT return, coarse"
+validation_v4_0035,linecov2_gemma-4-E4B-it_temp_0.0:651815:2,oracle_0001,STRONG,True,"direct focal call, exact value equality vs literal"
+validation_v4_0036,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:399128:2,oracle_0001,UNKNOWN,True,"ternary-in-assert precedence bug (assert A if B else C parses as assert (A if B else C)); the False branch is vacuously truthy regardless of result, semantics not cleanly resolvable"
+validation_v4_0037,linecov2_Qwen3.5-4B_temp_0.0:588845:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0038,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:359758:2,oracle_0001,WEAK,True,nullity check on SUT return
+validation_v4_0039,linecov_gemma-4-E4B-it_temp_0.0:221252:2,oracle_0001,TRIVIAL,False,"method under test itself is patched as an AsyncMock whose return_value is set to expected_data; comparison is tautological against the stub, not real SUT logic"
+validation_v4_0040,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:940748:2,oracle_0001,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0041,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:648623:2,oracle_0002,STRONG,True,"exact cardinality check (len==1, specific number not just existence) on SUT-derived container"
+validation_v4_0042,linecov_gemma-4-E4B-it_temp_0.0:613377:2,oracle_0002,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0043,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:684409:2,oracle_0003,TRIVIAL,False,"tautological self-equality (mock_hash == mock_hash), SUT-independent"
+validation_v4_0044,linecov_granite-4.0-micro_temp_0.0:135299:2,oracle_0002,STRONG,True,exact shape-tuple equality on SUT-derived array result
+validation_v4_0045,linecov2_granite-4.0-micro_temp_0.0:15584:2,oracle_0001,WEAK,True,nullity check on SUT return
+validation_v4_0046,linecov2_granite-4.0-micro_temp_0.0:580679:2,oracle_0001,STRONG,True,"real assert_called_once_with mock-interaction contract (targets possibly the wrong mock object, a test bug, but the API itself is real and specific)"
+validation_v4_0047,linecov_granite-4.0-micro_temp_0.0:857693:2,oracle_0001,UNKNOWN,True,"assert False fail-if-reached idiom: always fails when reached, so does not meet statically-satisfied requirement for TRIVIAL; reachability itself is SUT-dependent control flow, taxonomy punts to UNKNOWN"
+validation_v4_0048,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:431957:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0049,linecov2_granite-4.0-micro_temp_0.0:651815:2,oracle_0003,STRONG,True,"direct focal call, exact value equality vs literal"
+validation_v4_0050,linecov_Qwen3.5-4B_temp_0.0:857769:2,oracle_0001,WEAK,True,"isinstance-or-equality-to-None disjunction, coarse nullity/type check"
+validation_v4_0051,linecov2_granite-4.0-micro_temp_0.0:314239:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0052,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:135299:2,oracle_0004,STRONG,True,"specific shape check on mock call_args (SUT-computed argument passed to mocked dependency), content equality via allclose"
+validation_v4_0053,linecov2_Qwen3.5-4B_temp_0.0:556842:2,oracle_0002,UNKNOWN,True,"assert False fail-if-reached idiom; always fails when reached, not statically satisfied so not TRIVIAL; reachability is SUT-dependent control flow"
+validation_v4_0054,linecov2_granite-4.0-micro_temp_0.0:468885:2,oracle_0001,STRONG,True,"direct focal call, exact string equality vs literal (though date-dependent/flaky, that is a semantic-correctness issue not a specificity issue)"
+validation_v4_0055,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:188702:2,oracle_0001,TRIVIAL,True,"bogus '.called_once' non-API attribute, vacuously truthy"
+validation_v4_0056,linecov2_granite-4.0-micro_temp_0.0:597643:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0057,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:106120:2,oracle_0001,STRONG,True,exact cardinality check (len==1) on SUT-derived return
+validation_v4_0058,linecov2_granite-4.0-micro_temp_0.0:940748:2,oracle_0001,STRONG,True,np.all content/value equality on SUT-derived saved data
+validation_v4_0059,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:556842:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0060,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:875127:2,oracle_0002,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0061,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:980372:2,oracle_0002,STRONG,True,exact string equality on attribute of SUT-derived return
+validation_v4_0062,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:408604:2,oracle_0001,STRONG,True,"direct focal call, exact string equality vs literal"
+validation_v4_0063,linecov_Qwen3.5-4B_temp_0.0:25953:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0064,linecov_Qwen3.5-4B_temp_0.0:854607:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0065,linecov2_Qwen3.5-4B_temp_0.0:608304:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0066,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:318568:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0067,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:764139:2,oracle_0001,STRONG,True,"direct focal call, exact string equality vs literal"
+validation_v4_0068,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:928406:2,oracle_0001,STRONG,True,"direct focal call, exact string equality vs literal placeholder (specificity, not semantic correctness, per taxonomy caveat)"
+validation_v4_0069,linecov_Qwen3.5-4B_temp_0.0:875127:2,oracle_0001,WEAK,True,"real .called boolean attribute, coarse truthiness of interaction (was-it-called, no specific args/count contract)"
+validation_v4_0070,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:181000:2,oracle_0001,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0071,linecov2_Qwen3.5-4B_temp_0.0:33700:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0072,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:772390:2,oracle_0001,UNKNOWN,True,"compares an unwrapped MagicMock method reference (not called) to True via == ; MagicMock default __eq__ is identity-based so this is structurally guaranteed to fail, not a resolvable coarse/specific check without modeling Mock equality semantics"
+validation_v4_0073,linecov2_Qwen3.5-4B_temp_0.0:980372:2,oracle_0001,TRIVIAL,False,"self.assertTrue(True), SUT-independent literal"
+validation_v4_0074,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:303099:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0075,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:857769:2,oracle_0001,WEAK,True,"isinstance on direct focal-call return, coarse type"
+validation_v4_0076,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:124282:2,oracle_0003,TRIVIAL,True,"bogus '.called_once()' non-API call, vacuously truthy"
+validation_v4_0077,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:784104:2,oracle_0001,UNKNOWN,False,compares two parametrize-supplied test inputs directly with no SUT call anywhere in the visible test body; SUT-independence and satisfaction cannot both be confirmed without the parametrize data
+validation_v4_0078,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:285912:2,oracle_0004,UNKNOWN,False,calls an unrelated helper function that merely takes solution as an argument; passing an SUT instance as an argument does not make the helper return value SUT-derived
+validation_v4_0079,linecov_Qwen3.5-4B_temp_0.0:876360:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0080,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:28838:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0081,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:181000:2,oracle_0001,STRONG,True,real assert_called_once_with mock-interaction contract
+validation_v4_0082,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:303099:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0083,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:891880:2,oracle_0003,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0084,linecov2_Qwen3.5-4B_temp_0.0:232504:2,oracle_0003,TRIVIAL,False,"x is a hardcoded local numpy array constructed directly in the test, never derived from any SUT call; check is on the test's own fixture data"
+validation_v4_0085,linecov_Qwen3.5-4B_temp_0.0:720865:2,oracle_0002,STRONG,True,exact dict-subscript equality vs literal on SUT-derived return
+validation_v4_0086,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:438831:2,oracle_0001,STRONG,True,exact string equality vs literal on SUT-derived return
+validation_v4_0087,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:857769:2,oracle_0001,WEAK,True,nullity check on SUT return
+validation_v4_0088,linecov2_Qwen3.5-4B_temp_0.0:505574:2,oracle_0001,STRONG,True,real assert_called_once_with mock-interaction contract with specific args
+validation_v4_0089,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:606653:2,oracle_0001,UNKNOWN,False,"pytest.raises(TypeError) block body is just pass, never invokes SUT and never raises; structurally guaranteed to fail with DID NOT RAISE, not a genuine exception-contract exercise of the SUT"
+validation_v4_0090,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:322363:2,oracle_0002,WEAK,True,"boolean identity check on direct focal-call return, coarse"
+validation_v4_0091,linecov_Qwen3.5-4B_temp_0.0:407255:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0092,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:277479:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0093,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:221252:2,oracle_0003,UNKNOWN,True,"assert False fail-if-reached idiom inside try/except; always fails when reached, not statically satisfied"
+validation_v4_0094,linecov2_Qwen3.5-4B_temp_0.0:653235:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0095,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:263706:2,oracle_0003,WEAK,True,"direct focal call, boolean identity equality, coarse"
+validation_v4_0096,linecov_gemma-4-E4B-it_temp_0.0:63963:2,oracle_0001,STRONG,True,"direct focal call, exact string equality vs literal"
+validation_v4_0097,linecov_gemma-4-E4B-it_temp_0.0:168047:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0098,linecov_Qwen3.5-4B_temp_0.0:432562:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0099,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:61794:2,oracle_0002,STRONG,True,"direct focal call, exact enum-value equality vs literal"
+validation_v4_0100,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:571379:2,oracle_0002,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0101,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:242826:2,oracle_0002,STRONG,True,exact cardinality check (len==2) on SUT-derived tuple
+validation_v4_0102,linecov2_Qwen3.5-4B_temp_0.0:263929:2,oracle_0002,WEAK,True,"len(result)>0 is a coarse existence/non-emptiness check, not a specific value"
+validation_v4_0103,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:340725:2,oracle_0003,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0104,linecov_gemma-4-E4B-it_temp_0.0:420569:2,oracle_0001,WEAK,True,nullity check (== None) on SUT return
+validation_v4_0105,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:252302:2,oracle_0003,UNKNOWN,True,"os.environ replaced wholesale via patch('os.environ') with a bare MagicMock; __setitem__/__getitem__ are auto-mocked and do not persist state by default, so whether this comparison reflects any real SUT effect depends on undocumented MagicMock magic-method defaults, not conservatively resolvable"
+validation_v4_0106,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:103977:2,oracle_0002,WEAK,True,"boolean identity check on direct focal-call return, coarse"
+validation_v4_0107,linecov2_granite-4.0-micro_temp_0.0:200541:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0108,linecov_gemma-4-E4B-it_temp_0.0:61794:2,oracle_0003,STRONG,True,"direct focal call, exact object-identity equality vs literal"
+validation_v4_0109,linecov2_granite-4.0-micro_temp_0.0:611952:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0110,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:891880:2,oracle_0001,TRIVIAL,False,"assert True inside try after successful call, SUT-independent literal"
+validation_v4_0111,linecov_Qwen3.5-4B_temp_0.0:105072:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0112,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:330041:2,oracle_0001,STRONG,True,"direct focal call, exact string equality vs literal"
+validation_v4_0113,linecov2_Qwen3.5-4B_temp_0.0:611952:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function restore_command; call target is not SUT-derived
+validation_v4_0114,linecov_Qwen3.5-4B_temp_0.0:784104:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0115,linecov2_gemma-4-E4B-it_temp_0.0:420954:2,oracle_0001,UNKNOWN,False,"pytest.raises block body is just pass, never invokes SUT and never raises; structurally guaranteed to fail, not a genuine exception-contract exercise"
+validation_v4_0116,linecov_Qwen3.5-4B_temp_0.0:567124:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0117,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:696476:2,oracle_0001,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy (also mock_solution referenced but never defined)"
+validation_v4_0118,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:263706:2,oracle_0002,STRONG,True,call target differs from stated focal by a plausible in-test typo (_sanitize_json_serializable_string vs _sanitize_value) but is clearly intended as the SUT call given surrounding identical-pattern assertions; exact string equality vs literal
+validation_v4_0119,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:569686:2,oracle_0004,WEAK,True,nullity check on SUT-derived tuple element
+validation_v4_0120,linecov2_Qwen3.5-4B_temp_0.0:507696:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function get_macrotile; call target is not SUT-derived
+validation_v4_0121,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:760884:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0122,linecov2_Qwen3.5-4B_temp_0.0:525970:2,oracle_0002,WEAK,True,"callable/attribute-existence check on SUT class, coarse structural property"
+validation_v4_0123,linecov_granite-4.0-micro_temp_0.0:864158:2,oracle_0003,STRONG,True,"direct focal call, exact tuple equality vs literal"
+validation_v4_0124,linecov2_gemma-4-E4B-it_temp_0.0:871214:2,oracle_0002,WEAK,True,membership/existence check on SUT-derived dict
+validation_v4_0125,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:316020:2,oracle_0001,UNKNOWN,True,ternary-in-assert precedence bug (assert A if B else C parses as assert (A if B else C)); False branch is vacuously truthy regardless of result
+validation_v4_0126,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:360176:2,oracle_0002,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0127,linecov_gemma-4-E4B-it_temp_0.0:206473:2,oracle_0002,STRONG,True,real assert_called_once_with mock-interaction contract with specific args
+validation_v4_0128,linecov_gemma-4-E4B-it_temp_0.0:569405:2,oracle_0002,STRONG,True,real assert_called_once_with mock-interaction contract with specific args
+validation_v4_0129,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:360176:2,oracle_0004,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0130,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:431957:2,oracle_0002,STRONG,True,exact cardinality check (len==1) on SUT-derived dict
+validation_v4_0131,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:399611:2,oracle_0002,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function _compile_deps; call target is not SUT-derived
+validation_v4_0132,linecov_granite-4.0-micro_temp_0.0:200541:2,oracle_0001,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0133,linecov2_gemma-4-E4B-it_temp_0.0:11075:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0134,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:325306:2,oracle_0009,UNKNOWN,False,mock_canonicalize_task_for_write is never bound anywhere in the test (dangling undefined name); would raise NameError at runtime
+validation_v4_0135,linecov2_Qwen3.5-4B_temp_0.0:940748:2,oracle_0001,WEAK,True,"hasattr existence check on SUT class, coarse structural property"
+validation_v4_0136,linecov2_gemma-4-E4B-it_temp_0.0:638151:2,oracle_0001,WEAK,True,nullity check on SUT return
+validation_v4_0137,linecov_gemma-4-E4B-it_temp_0.0:980372:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0138,linecov2_Qwen3.5-4B_temp_0.0:300082:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function strip_url; call target is not SUT-derived
+validation_v4_0139,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:232504:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0140,linecov_gemma-4-E4B-it_temp_0.0:467622:2,oracle_0001,TRIVIAL,False,"method under test itself is patched via patch.object(solution, get_best_solution, return_value=expected_result); comparison is tautological against the stub, not real SUT logic"
+validation_v4_0141,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:244843:2,oracle_0006,WEAK,True,"direct focal call, boolean identity equality, coarse"
+validation_v4_0142,linecov2_gemma-4-E4B-it_temp_0.0:579283:2,oracle_0001,WEAK,True,"isinstance-or-None disjunction on SUT return, coarse type/nullity"
+validation_v4_0143,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:285912:2,oracle_0002,UNKNOWN,False,calls an unrelated helper function that merely takes solution as an argument; not SUT-derived
+validation_v4_0144,linecov2_Qwen3.5-4B_temp_0.0:538729:2,oracle_0002,TRIVIAL,False,"checks the type of a hardcoded local test fixture variable (all_dims literal set), never derived from any SUT call output"
+validation_v4_0145,linecov2_Qwen3.5-4B_temp_0.0:556842:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0146,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:242826:2,oracle_0002,STRONG,True,exact cardinality check (len==2) on SUT-derived tuple
+validation_v4_0147,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:200541:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0148,linecov2_Qwen3.5-4B_temp_0.0:298296:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0149,linecov_gemma-4-E4B-it_temp_0.0:701185:2,oracle_0003,STRONG,True,real assert_called_once mock-interaction contract
+validation_v4_0150,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:308018:2,oracle_0005,WEAK,True,"boolean identity check on SUT-derived tuple element, coarse"
+validation_v4_0151,linecov_gemma-4-E4B-it_temp_0.0:452563:2,oracle_0001,WEAK,True,nullity check on SUT return
+validation_v4_0152,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:168047:2,oracle_0002,STRONG,True,exact shape-tuple equality on SUT-derived result
+validation_v4_0153,linecov2_Qwen3.5-4B_temp_0.0:720865:2,oracle_0004,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0154,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:844416:2,oracle_0002,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0155,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:704451:2,oracle_0003,WEAK,True,nullity check on SUT-derived tuple element
+validation_v4_0156,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:285912:2,oracle_0004,UNKNOWN,False,calls an unrelated helper function that merely takes solution as an argument; not SUT-derived
+validation_v4_0157,linecov_granite-4.0-micro_temp_0.0:569837:2,oracle_0001,UNKNOWN,True,"assert False fail-if-reached idiom inside try/except; always fails when reached, not statically satisfied"
+validation_v4_0158,linecov_Qwen3.5-4B_temp_0.0:653235:2,oracle_0002,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0159,linecov2_granite-4.0-micro_temp_0.0:751764:2,oracle_0001,STRONG,True,exact empty-list equality vs literal on SUT-derived return
+validation_v4_0160,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:340725:2,oracle_0005,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0161,linecov2_Qwen3.5-4B_temp_0.0:940748:2,oracle_0002,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0162,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:639154:2,oracle_0001,UNKNOWN,False,content is never defined anywhere in the test body (dangling undefined name); would raise NameError at runtime
+validation_v4_0163,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:624137:2,oracle_0001,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0164,linecov2_granite-4.0-micro_temp_0.0:611952:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0165,linecov_gemma-4-E4B-it_temp_0.0:105072:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0166,linecov2_granite-4.0-micro_temp_0.0:615718:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0167,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:263706:2,oracle_0006,STRONG,True,call target has a plausible in-test typo (_sanetize_value vs _sanitize_value) but is clearly intended as the SUT call given surrounding identical-pattern assertions; exact dict equality vs literal
+validation_v4_0168,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:625299:2,oracle_0001,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0169,linecov2_Qwen3.5-4B_temp_0.0:606653:2,oracle_0001,WEAK,True,"isinstance on SUT return (name-mangled private call), coarse type"
+validation_v4_0170,linecov_granite-4.0-micro_temp_0.0:624137:2,oracle_0004,UNKNOWN,False,Metrics is a bare class/module reference never patched or connected to any mock setup visible in this test; provenance of Metrics.add_time unresolvable
+validation_v4_0171,linecov2_gemma-4-E4B-it_temp_0.0:844416:2,oracle_0002,UNKNOWN,True,"bare assert False in except block, fail-if-reached idiom; always fails when reached"
+validation_v4_0172,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:567124:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0173,linecov2_gemma-4-E4B-it_temp_0.0:648623:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0174,linecov2_granite-4.0-micro_temp_0.0:492243:2,oracle_0001,STRONG,True,compound isinstance-and-exact-length check on SUT return; exact count makes the combined predicate specific
+validation_v4_0175,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:91274:2,oracle_0002,TRIVIAL,False,checks shape of a hardcoded local fixture array (expected_rgba = np.zeros(...)); the SUT call result is never captured into a variable at all
+validation_v4_0176,linecov2_granite-4.0-micro_temp_0.0:632174:2,oracle_0001,STRONG,True,"direct focal call, exact list equality vs literal"
+validation_v4_0177,linecov2_Qwen3.5-4B_temp_0.0:254073:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0178,linecov_gemma-4-E4B-it_temp_0.0:477443:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0179,linecov_Qwen3.5-4B_temp_0.0:252302:2,oracle_0001,UNKNOWN,True,"__getitem__ on the os.environ mock is overridden with a lambda that ignores any write and always returns original_value; whether this assertion reflects a real SUT effect depends on that overridden magic-method behavior, not conservatively resolvable"
+validation_v4_0180,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:951052:2,oracle_0006,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0181,linecov2_gemma-4-E4B-it_temp_0.0:308018:2,oracle_0002,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0182,linecov2_granite-4.0-micro_temp_0.0:571959:2,oracle_0001,STRONG,True,real assert_called_once_with mock-interaction contract with specific args
+validation_v4_0183,linecov_gemma-4-E4B-it_temp_0.0:932061:2,oracle_0001,STRONG,True,exact empty-list equality vs literal on SUT-derived return
+validation_v4_0184,linecov2_gemma-4-E4B-it_temp_0.0:461140:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0185,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:159066:2,oracle_0002,UNKNOWN,True,"malformed comprehension: all(isinstance(item, str) in result) checks a single bool is in result rather than iterating; all() on a non-iterable bool raises TypeError, semantics broken"
+validation_v4_0186,linecov2_gemma-4-E4B-it_temp_0.0:211947:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0187,linecov2_Qwen3.5-4B_temp_0.0:359758:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function last_modified; call target is not SUT-derived
+validation_v4_0188,linecov_Qwen3.5-4B_temp_0.0:653235:2,oracle_0001,STRONG,True,exact empty-string equality vs literal on SUT-derived return
+validation_v4_0189,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:269519:2,oracle_0001,WEAK,True,"call target has a plausible typo (stream_decode_response_unify vs stated focal stream_decode_response_unicode) but is clearly intended as the SUT call; isinstance result, coarse type"
+validation_v4_0190,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:980372:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function check_nullable; call target is not SUT-derived
+validation_v4_0191,linecov2_granite-4.0-micro_temp_0.0:211947:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0192,linecov2_Qwen3.5-4B_temp_0.0:277653:2,oracle_0002,STRONG,True,exact empty-list equality vs literal on SUT-derived return
+validation_v4_0193,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:135299:2,oracle_0003,STRONG,True,"specific shape check on mock call_args (SUT-computed argument passed to mocked dependency), content equality via allclose"
+validation_v4_0194,linecov_Qwen3.5-4B_temp_0.0:580093:2,oracle_0001,STRONG,True,"real .call_count attribute compared to a specific number (0), a meaningful not-called interaction contract"
+validation_v4_0195,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:242826:2,oracle_0004,WEAK,True,"isinstance on SUT-derived tuple element, coarse type"
+validation_v4_0196,linecov2_gemma-4-E4B-it_temp_0.0:619902:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0197,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:386077:2,oracle_0002,STRONG,True,exact cardinality check (len==2) on SUT-derived list
+validation_v4_0198,linecov_granite-4.0-micro_temp_0.0:993604:2,oracle_0001,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0199,linecov2_gemma-4-E4B-it_temp_0.0:639154:2,oracle_0001,WEAK,True,"isinstance on direct focal-call return, coarse type"
+validation_v4_0200,linecov_gemma-4-E4B-it_temp_0.0:654840:2,oracle_0001,STRONG,True,"direct focal call, exact string equality vs literal"
+validation_v4_0201,linecov_gemma-4-E4B-it_temp_0.0:916895:2,oracle_0001,WEAK,True,"isinstance-or-None disjunction on SUT return, coarse type/nullity"
+validation_v4_0202,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:162266:2,oracle_0002,WEAK,True,"boolean identity check on SUT-method return, coarse"
+validation_v4_0203,linecov_Qwen3.5-4B_temp_0.0:277479:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0204,linecov_granite-4.0-micro_temp_0.0:624137:2,oracle_0003,STRONG,True,real assert_called_once_with mock-interaction contract on a name-mangled instance attribute with specific args
+validation_v4_0205,linecov_gemma-4-E4B-it_temp_0.0:893258:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0206,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:340725:2,oracle_0002,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0207,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:124282:2,oracle_0002,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0208,linecov2_Qwen3.5-4B_temp_0.0:61794:2,oracle_0002,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0209,linecov_Qwen3.5-4B_temp_0.0:606653:2,oracle_0001,WEAK,True,nullity check on SUT return
+validation_v4_0210,linecov2_Qwen3.5-4B_temp_0.0:872607:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function; call target is not SUT-derived
+validation_v4_0211,linecov2_granite-4.0-micro_temp_0.0:61794:2,oracle_0001,STRONG,True,SUT-derived result.name compared to a specific expected value looked up from a parametrized mapping
+validation_v4_0212,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:678386:2,oracle_0001,WEAK,True,nullity check on SUT return
+validation_v4_0213,linecov2_Qwen3.5-4B_temp_0.0:611297:2,oracle_0002,WEAK,True,"quantified coarse type-check over SUT-derived iterable, not specific content"
+validation_v4_0214,linecov_gemma-4-E4B-it_temp_0.0:569405:2,oracle_0001,STRONG,True,exact string equality vs named literal on SUT-derived return
+validation_v4_0215,linecov_granite-4.0-micro_temp_0.0:408604:2,oracle_0004,STRONG,True,"identity check that SUT return is exactly the same input object (pass-through contract), specific"
+validation_v4_0216,linecov_gemma-4-E4B-it_temp_0.0:857693:2,oracle_0002,STRONG,True,exception contract with specific message-content check
+validation_v4_0217,linecov_Qwen3-4B-Thinking-2507_temp_0.0:753865:2,oracle_0002,WEAK,True,"isinstance on SUT-derived tuple element, coarse type"
+validation_v4_0218,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:52157:2,oracle_0003,STRONG,True,well-formed exception contract with real SUT call inside the raises block
+validation_v4_0219,linecov_Qwen3.5-4B_temp_0.0:597643:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0220,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:254073:2,oracle_0001,WEAK,True,nullity check on SUT return
+validation_v4_0221,linecov2_gemma-4-E4B-it_temp_0.0:61794:2,oracle_0001,STRONG,True,"direct focal call, exact enum-value equality vs literal"
+validation_v4_0222,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:483329:2,oracle_0001,STRONG,True,well-formed exception contract with real SUT call inside the raises block
+validation_v4_0223,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:638151:2,oracle_0004,WEAK,True,nullity check on SUT return
+validation_v4_0224,linecov2_Qwen3.5-4B_temp_0.0:360887:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function check_latest_version; call target is not SUT-derived
+validation_v4_0225,linecov_gemma-4-E4B-it_temp_0.0:625299:2,oracle_0001,TRIVIAL,False,"len(result) >= 0 is mathematically always true for any list, SUT-independent tautology"
+validation_v4_0226,linecov2_gemma-4-E4B-it_temp_0.0:294222:2,oracle_0001,STRONG,True,exact value/content equality vs a specifically constructed expected object on SUT-derived return
+validation_v4_0227,linecov2_Qwen3.5-4B_temp_0.0:300082:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function strip_url; call target is not SUT-derived
+validation_v4_0228,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:285912:2,oracle_0001,UNKNOWN,False,calls an unrelated helper function that merely takes solution as an argument; not SUT-derived
+validation_v4_0229,linecov_gemma-4-E4B-it_temp_0.0:325306:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0230,linecov_gemma-4-E4B-it_temp_0.0:507696:2,oracle_0001,WEAK,True,nullity check on SUT return
+validation_v4_0231,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:360176:2,oracle_0003,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy"
+validation_v4_0232,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:251236:2,oracle_0002,WEAK,True,membership/existence check on SUT-derived dict
+validation_v4_0233,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:744950:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0234,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:569837:2,oracle_0001,UNKNOWN,True,"assert False fail-if-reached idiom inside try/except; always fails when reached, not statically satisfied"
+validation_v4_0235,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:916895:2,oracle_0004,UNKNOWN,True,"assert False fail-if-reached idiom inside try/except; always fails when reached, not statically satisfied"
+validation_v4_0236,linecov_Qwen3.5-4B_temp_0.0:222449:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0237,linecov2_Qwen3.5-4B_temp_0.0:804045:2,oracle_0001,UNKNOWN,False,twoSum boilerplate template unrelated to stated focal function rebuild_nested; call target is not SUT-derived
+validation_v4_0238,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:325306:2,oracle_0001,UNKNOWN,False,"checks a hardcoded literal path on the real (unpatched) filesystem with no variable reference to any SUT-derived state; os.makedirs is mocked as a no-op so the check is disconnected from the SUT call, genuinely ambiguous"
+validation_v4_0239,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:175419:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0240,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:309037:2,oracle_0001,TRIVIAL,False,"assert True after call, SUT-independent literal"
+validation_v4_0241,linecov2_Ministral-3-3B-Reasoning-2512_temp_0.0:467622:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0242,linecov_granite-4.0-micro_temp_0.0:779471:2,oracle_0003,TRIVIAL,False,"assert (tuple), message form: the tested expression is a hardcoded non-empty literal tuple, always truthy regardless of anything; message operand is never evaluated"
+validation_v4_0243,linecov2_granite-4.0-micro_temp_0.0:251236:2,oracle_0003,WEAK,True,quantified coarse type-check over SUT-derived dict values
+validation_v4_0244,linecov2_gemma-4-E4B-it_temp_0.0:538302:2,oracle_0002,WEAK,True,quantified coarse type-check over SUT-derived iterable
+validation_v4_0245,linecov_Qwen3.5-4B_temp_0.0:670733:2,oracle_0001,WEAK,True,"isinstance on SUT return, coarse type"
+validation_v4_0246,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:25953:2,oracle_0007,STRONG,True,exact dict-value equality vs a known literal on SUT-derived return
+validation_v4_0247,linecov_gemma-4-E4B-it_temp_0.0:645911:2,oracle_0001,STRONG,True,"direct focal call, exact string equality vs literal"
+validation_v4_0248,linecov2_Qwen3-4B-Thinking-2507_temp_0.0:198226:2,oracle_0003,WEAK,True,nullity check on SUT-derived attribute
+validation_v4_0249,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:631879:2,oracle_0001,STRONG,True,call target differs from stated focal (device_fname vs device_focus_tokens) but is a plausible related SUT method; exact string equality vs literal
+validation_v4_0250,linecov_Ministral-3-3B-Reasoning-2512_temp_0.0:459145:2,oracle_0001,TRIVIAL,True,"bogus '.called_once_with' non-API attribute, vacuously truthy (expected_arg also undefined)"

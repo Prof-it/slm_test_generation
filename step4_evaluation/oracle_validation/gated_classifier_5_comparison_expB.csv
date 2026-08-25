@@ -1,0 +1,16 @@
+Model,Tier,p_holm_static,significant_holm_0.05_static,p_holm_classifier,significant_holm_0.05_classifier,flipped
+Qwen3-4B-Thinking-2507,A,1.0,False,1.0,False,False
+Qwen3-4B-Thinking-2507,B,1.0,False,1.0,False,False
+Qwen3-4B-Thinking-2507,C,0.0023398846387863,True,0.0006892681121826172,True,False
+Qwen3.5-4B,A,0.9844257988651132,False,1.0,False,False
+Qwen3.5-4B,B,0.6531417864582967,False,0.21039882358901885,False,False
+Qwen3.5-4B,C,1.0,False,1.0,False,False
+gemma-4-E4B-it,A,0.0476836897185815,True,1.0,False,True
+gemma-4-E4B-it,B,0.0358238782133667,True,1.0,False,True
+gemma-4-E4B-it,C,0.0478735141383152,True,0.0003355437398425889,True,False
+granite-4.0-micro,A,0.0476836897185815,True,1.0,False,True
+granite-4.0-micro,B,0.0001364259458277,True,1.0,False,True
+granite-4.0-micro,C,0.0018831971329989,True,0.006744384765625,True,False
+Ministral-3-3B-Reasoning-2512,A,0.1489906929200514,False,1.0,False,False
+Ministral-3-3B-Reasoning-2512,B,0.6624908198136837,False,1.0,False,False
+Ministral-3-3B-Reasoning-2512,C,0.61900682891428,False,1.0,False,False

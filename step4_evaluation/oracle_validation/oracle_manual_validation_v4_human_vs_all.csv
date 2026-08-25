@@ -1,0 +1,63 @@
+validation_row_id,focal_function,oracle_source,human_class,human_sut_dependent,human_notes,classifier_predicted,my_ai_audit,codex_ai_labeled
+validation_v4_0002,_convert_aware_datetime,"assert none_result is None, ""None should return None""",STRONG,True,"real return value compared to specific None, consistent with True/False handling",UNKNOWN,WEAK,WEAK
+validation_v4_0008,rewind_body,"assert hasattr(prepared_request_mock, 'headers')",TRIVIAL,False,hasattr on a mock object auto-creates attributes; unrelated to SUT behavior,UNKNOWN,TRIVIAL,WEAK
+validation_v4_0009,_xielu_cuda,assert result == expected_result,STRONG,True,real output compared to a hardcoded specific expected tensor,UNKNOWN,STRONG,STRONG
+validation_v4_0015,_check_monotonic_cst,"assert ""Each value"" in str(excinfo.value)",STRONG,True,specific exception message content checked inside pytest.raises,UNKNOWN,STRONG,WEAK
+validation_v4_0016,check_non_negative,assert result is False,STRONG,True,real return value compared to a specific expected boolean,STRONG,WEAK,STRONG
+validation_v4_0024,get_gpu_status,"assert all(isinstance(row.split(','), [str] * len(mock_process_output)))",TRIVIAL,False,malformed isinstance() call raises TypeError; not a meaningful behavioral check,UNKNOWN,UNKNOWN,STRONG
+validation_v4_0026,_resolve_dim_sizes,"assert result == {}, ""Expected no resolved size dictionary""",TRIVIAL,False,whole Solution object is a MagicMock with return_value={} preset; real code never runs,STRONG,TRIVIAL,STRONG
+validation_v4_0029,cf_has_standard_names,assert result == False,STRONG,True,direct focal-call result compared to a specific expected boolean,UNKNOWN,WEAK,STRONG
+validation_v4_0032,_maybe_memory_map,"assert isinstance(result[0], str), ""First element of result should be string""",WEAK,True,type check only on derived result element,UNKNOWN,WEAK,WEAK
+validation_v4_0033,cmd_migrate_state,mock_is_task_id.assert_not_called(),STRONG,True,real Mock API verifying a specific non-interaction,UNKNOWN,UNKNOWN,STRONG
+validation_v4_0034,check_non_negative,assert result == True,STRONG,True,real return value compared to a specific expected boolean,STRONG,WEAK,STRONG
+validation_v4_0036,infer_filename,"assert result == ""archive"" if mock_zip.get_archive_name.return_value is None else f""{mock_zip.get_archive_name().return_value}.tar""",WEAK,True,specific comparison present but fragile due to assert-with-ternary parsing bug; downgraded,UNKNOWN,UNKNOWN,WEAK
+validation_v4_0039,read,assert result == expected_data,TRIVIAL,False,Solution.read is patched with AsyncMock(return_value=expected_data); real code never runs,STRONG,TRIVIAL,STRONG
+validation_v4_0043,get_or_create_input_table,assert mock_hash == mock_hash,TRIVIAL,False,"tautological self-equality on a local variable, unrelated to SUT",UNKNOWN,TRIVIAL,STRONG
+validation_v4_0046,print_algo_params,solution.assert_called_once_with(params),UNKNOWN,,cannot determine from visible context whether 'solution' fixture is mock or real; assertion also looks structurally broken either way,UNKNOWN,STRONG,UNKNOWN
+validation_v4_0052,normalized_stim_map,"assert np.allclose(mock_inverse.call_args[0][1].shape, (1,)), ""Angle list shape mismatch""",STRONG,True,specific structural check on argument shape passed to a mocked dependency during real execution,UNKNOWN,STRONG,UNKNOWN
+validation_v4_0055,apply_filter,"assert mock_reload.called_once, ""Reload sorted was called once""",TRIVIAL,False,"bogus .called_once attribute (no assert_ prefix), always truthy, verifies nothing",TRIVIAL,TRIVIAL,UNKNOWN
+validation_v4_0058,save,"assert np.all(saved_data['a'] == np.array([1, 2]))",STRONG,True,data round-tripped through file compared to specific expected array,UNKNOWN,STRONG,UNKNOWN
+validation_v4_0069,generate_video_masks,assert mock_convert.called,WEAK,True,"mock.called only checks call occurred, not args/count",STRONG,WEAK,UNKNOWN
+validation_v4_0072,rewind_body,assert mock_file_pointer.reset == True,UNKNOWN,,"compares an unwrapped mock method object (no call) to True; likely broken/meaningless as written, not cleanly classifiable",UNKNOWN,UNKNOWN,STRONG
+validation_v4_0073,check_nullable,self.assertTrue(True),TRIVIAL,False,self.assertTrue(True) is a literal constant,TRIVIAL,TRIVIAL,WEAK
+validation_v4_0076,_save_atomic,assert mock_rename.called_once(),TRIVIAL,False,"called_once() not real Mock API, always-truthy auto attribute",UNKNOWN,TRIVIAL,TRIVIAL
+validation_v4_0084,gelman_rubin,assert x.ndim >= 1,TRIVIAL,False,"x is a test-constructed input array, not the function's output",UNKNOWN,TRIVIAL,STRONG
+validation_v4_0086,grep,assert result == 'found in file1.txt',STRONG,True,real output compared to a specific string,STRONG,STRONG,WEAK
+validation_v4_0089,__coerce_index,with pytest.raises(TypeError):         pass,TRIVIAL,False,pytest.raises body is just pass; can never validate real behavior,UNKNOWN,UNKNOWN,STRONG
+validation_v4_0090,is_subpath,"assert solution.is_subpath(""/a/b/c"", ""/a/b/c/d"") == False",STRONG,True,real call compared to specific boolean,STRONG,WEAK,STRONG
+validation_v4_0095,_sanitize_value,assert solution._sanitize_value(True) == True,STRONG,True,real call compared to specific value,STRONG,WEAK,STRONG
+validation_v4_0102,_chargeback_breakdown,assert len(result) > 0,WEAK,True,"len(result)>0 = coarse non-emptiness, not a specific value (pattern rule)",STRONG,WEAK,STRONG
+validation_v4_0104,load,assert result == None,STRONG,True,"real call compared to specific None, consistent with earlier None items",WEAK,WEAK,STRONG
+validation_v4_0105,set_environ,"assert mock_env[""test_env""] == original_value",STRONG,True,specific value comparison verifying environ was NOT altered,UNKNOWN,UNKNOWN,STRONG
+validation_v4_0106,is_typing_throttled,"assert solution.is_typing_throttled(1, 2) == True",STRONG,True,real call compared to specific boolean,STRONG,WEAK,STRONG
+validation_v4_0115,command_argv,with pytest.raises(StopIteration): # Placeholder if the internal logic raises StopIteration due to '...'          pass,TRIVIAL,False,same broken empty-body pytest.raises pattern,UNKNOWN,UNKNOWN,STRONG
+validation_v4_0118,_sanitize_value,"assert result == ""hello""",TRIVIAL,False,"off-target method called (_sanitize_json_serializable_string, not focal _sanitize_value)",UNKNOWN,STRONG,STRONG
+validation_v4_0122,_check_methods,"assert callable(getattr(solution, '_check_methods'))",WEAK,True,"existence/callable check only, no behavior tested",UNKNOWN,WEAK,UNKNOWN
+validation_v4_0124,compute_rdkit_3d_descriptors,"assert ""descriptor_name"" in result",WEAK,True,membership check on real output = coarse (pattern rule),STRONG,WEAK,WEAK
+validation_v4_0125,infer_filename,"assert result == ""test"" if mock_zip.get_archive_name.return_value is None else f""{mock_zip.name}.{mock_zip.get_archive_name()}""",WEAK,True,fragile ternary-parsing assert pattern,UNKNOWN,UNKNOWN,WEAK
+validation_v4_0127,stash_purge,"mock_client_instance.delete.assert_called_once_with(""page"", ""abc-123"")",STRONG,True,"real Mock API, specific call-argument verification",UNKNOWN,STRONG,STRONG
+validation_v4_0134,cmd_migrate_state,mock_canonicalize_task_for_write.assert_not_called(),STRONG,True,"real Mock API, specific non-interaction verification",UNKNOWN,UNKNOWN,STRONG
+validation_v4_0140,get_best_solution,assert result == expected_result,TRIVIAL,False,get_best_solution itself is patched with a preset return_value; real code never runs,STRONG,TRIVIAL,STRONG
+validation_v4_0141,_is_arraylike,assert solution._is_arraylike(5) == False,STRONG,True,real call compared to specific boolean,STRONG,WEAK,STRONG
+validation_v4_0144,_resolve_dim_sizes,"assert isinstance(all_dims, set)",TRIVIAL,False,"all_dims is a test-constructed input, not the function's output",UNKNOWN,TRIVIAL,WEAK
+validation_v4_0150,_maybe_memory_map,"assert result[1] == False, ""Second element of result should be False if memory mapping failed""",STRONG,True,specific expected value check on indexed result,UNKNOWN,WEAK,STRONG
+validation_v4_0167,_sanitize_value,"assert solution._sanetize_value({""a"": 1}) == {""a"": 1}",TRIVIAL,False,"typo'd method name (_sanetize_value), likely never reaches a meaningful call",UNKNOWN,STRONG,STRONG
+validation_v4_0169,__coerce_index,"assert isinstance(result, dict)",WEAK,True,type check only on real (name-mangled) call result,UNKNOWN,WEAK,WEAK
+validation_v4_0174,parse_dataset_with_version,"assert isinstance(result, tuple) and len(result) == 2",WEAK,True,type+fixed-length check = coarse (pattern rule),STRONG,STRONG,WEAK
+validation_v4_0175,visualize_simple,"assert expected_rgba.shape == (10, 10, 4)",TRIVIAL,False,expected_rgba is a test-constructed input; function's real return value is discarded,UNKNOWN,TRIVIAL,STRONG
+validation_v4_0179,set_environ,assert mock_env['TEST_VAR'] == 'new_value',STRONG,True,specific value comparison verifying environ was set correctly,UNKNOWN,UNKNOWN,STRONG
+validation_v4_0182,create_run,"solution_instance.create_run.assert_called_once_with(         parameters,         score,         estimator     )",TRIVIAL,False,create_run itself is the mocked target being asserted on; real method never runs,UNKNOWN,STRONG,STRONG
+validation_v4_0185,_walk_filesystem,"assert all(isinstance(item, str) in result)",TRIVIAL,False,"broken syntax, undefined name, not a valid comprehension",UNKNOWN,UNKNOWN,STRONG
+validation_v4_0189,stream_decode_response_unicode,"assert isinstance(result, str)",TRIVIAL,False,"off-target method called (stream_decode_response_unify, not focal _unicode)",UNKNOWN,WEAK,WEAK
+validation_v4_0193,normalized_stim_map,"assert np.allclose(mock_inverse.call_args[0][0].shape, (2, 2)), ""Inverse map shape mismatch""",STRONG,True,specific shape of argument passed to mocked dependency during real execution,UNKNOWN,STRONG,UNKNOWN
+validation_v4_0202,cf_has_standard_names,assert result is True,STRONG,True,direct focal-call result compared to a specific expected boolean,UNKNOWN,WEAK,STRONG
+validation_v4_0204,send_command,"solution._DapClient__execute.assert_called_once_with(command, args)",STRONG,True,"real Mock API, specific call-argument verification on a dependency interaction",UNKNOWN,STRONG,UNKNOWN
+validation_v4_0209,__coerce_index,assert result is None,STRONG,True,real call compared to specific None,UNKNOWN,WEAK,WEAK
+validation_v4_0213,iter_slices,"assert all(isinstance(item, str) for item in result)",WEAK,True,all(isinstance(...)) over real output = coarse type check (pattern rule),STRONG,WEAK,STRONG
+validation_v4_0216,_assert_valid_file_upload,"assert ""must be an open file object"" in str(excinfo.value)",STRONG,True,specific exception message content checked inside pytest.raises,UNKNOWN,STRONG,WEAK
+validation_v4_0225,_render_child_database_block,"assert isinstance(result, list)",WEAK,True,"real call result checked, but only type, not value",UNKNOWN,TRIVIAL,WEAK
+validation_v4_0232,get_results,assert 'key' in result,WEAK,True,key-membership check on real output = coarse (pattern rule),STRONG,WEAK,WEAK
+validation_v4_0242,_process_blacklist,"assert (""v1"", ""pkg""), {""v1""}",TRIVIAL,False,"tuple literal used as assert condition; always truthy, verifies nothing",TRIVIAL,TRIVIAL,UNKNOWN
+validation_v4_0243,get_results,"assert all(isinstance(v, np.ndarray) for v in result.values()), ""All values must be NumPy arrays""",WEAK,True,all(isinstance(...)) over real output = coarse type check (pattern rule),STRONG,WEAK,STRONG
+validation_v4_0244,get_path,"assert all(isinstance(item, str) for item in result)",WEAK,True,all(isinstance(...)) over real output = coarse type check (pattern rule),STRONG,WEAK,STRONG
+validation_v4_0249,device_focus_tokens,"assert solution.device_fname(""dev-1"") == ""dev""",TRIVIAL,False,"unrelated method called (device_fname), not focal device_focus_tokens",UNKNOWN,STRONG,UNKNOWN

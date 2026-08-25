@@ -1,0 +1,118 @@
+%%{init: {
+  "theme": "base",
+  "fontFamily": "Arial, sans-serif",
+  "flowchart": {
+    "curve": "linear",
+    "nodeSpacing": 28,
+    "rankSpacing": 42,
+    "padding": 20,
+    "htmlLabels": false
+  },
+  "themeVariables": {
+    "fontFamily": "Arial, sans-serif",
+    "fontSize": "17px",
+    "lineColor": "#59636E",
+    "primaryTextColor": "#1F2933"
+  }
+}}%%
+
+%% Stage-header icons are added reproducibly by render_experimental_workflow.ps1.
+flowchart TB
+
+    subgraph TOP[" "]
+    direction LR
+
+    %% 1. BENCHMARK CONSTRUCTION
+    subgraph S1["1. BENCHMARKS"]
+        direction TB
+
+        TE["<b>TestEval</b><br/>210 algorithmic tasks"]
+        TCB["<b>TestContextBench-Py</b><br/>300 real-world functions<br/>L0–L3 dependency levels<br/>Context tiers A / B / C"]
+        TASKS["<b>Evaluation tasks</b>"]
+
+        TE --> TASKS
+        TCB --> TASKS
+    end
+
+    %% 2. TEST GENERATION
+    subgraph S2["2. GENERATION"]
+        direction TB
+
+        MODELS["<b>5 local SLMs (≤5B)</b>"]
+        SINGLE["<b>Single-step</b><br/>Direct zero-shot<br/>test generation"]
+        TWO["<b>Two-step</b><br/>Plan behaviours, edge cases,<br/>and mocks → generate tests from plan"]
+        PYNGUIN["<b>Pynguin baseline</b><br/>DynaMOSA search,<br/>60s budget, 2 seeds"]
+        SUITES["<b>Generated test suites</b>"]
+
+        MODELS --> SINGLE
+        MODELS --> TWO
+        SINGLE --> SUITES
+        TWO --> SUITES
+        PYNGUIN --> SUITES
+    end
+    end
+
+    subgraph BOTTOM[" "]
+    direction RL
+
+    %% 3. AUTOMATED EVALUATION
+    subgraph S3["3. EVALUATION"]
+        direction TB
+
+        CANDIDATES["<b>Generated candidates</b>"]
+        EXEC["<b>Controlled execution</b><br/>Isolated, version-pinned pytest"]
+        GATES["<b>Sequential quality gates</b><br/>Execution<br/>↓<br/>Non-trivial assertion"]
+        METRICS["<b>Quality metrics</b><br/>Coverage · mutation score"]
+        JUDGE["<b>Qualitative evaluation</b><br/>Blinded, order-reversed<br/>pairwise LLM-as-a-Judge"]
+        HUMAN["<b>Human alignment check</b><br/>3 annotators · 30 pairs<br/>+ 3 sentinel pairs"]
+        RESULTS["<b>Evaluation results</b>"]
+
+        CANDIDATES --> EXEC
+        CANDIDATES --> JUDGE
+        EXEC --> GATES --> METRICS
+        JUDGE --> HUMAN
+        METRICS --> RESULTS
+        HUMAN --> RESULTS
+    end
+
+    %% 4. STATISTICAL ANALYSIS
+    subgraph S4["4. ANALYSIS"]
+        direction TB
+
+        ANALYSES["<b>Analysis paths</b>"]
+        EST["<b>Estimation</b><br/>Pass@1 · Wilson 95% CIs"]
+        PAIR["<b>Paired comparisons</b><br/>Single-step vs. Two-step<br/>McNemar tests · Effect sizes"]
+        MODEL["<b>Explanatory models</b><br/>Context-tier effects<br/>Recency proxy for training exposure"]
+        AGREE["<b>Judge–human alignment</b><br/>Cohen's κ · Spearman ρ"]
+
+        ANALYSES --> EST
+        ANALYSES --> AGREE
+        EST --> PAIR --> MODEL
+    end
+    end
+
+    %% MAIN EXPERIMENTAL FLOW
+    TASKS --> MODELS
+    %% Preserve row ordering; the visible stage connector is added by the renderer.
+    SUITES ~~~ CANDIDATES
+    RESULTS --> ANALYSES
+
+    %% STYLES
+    classDef benchmark fill:#FFFFFF,stroke:#3F6F99,stroke-width:1.5px,color:#1F2933;
+    classDef generation fill:#FFFFFF,stroke:#4D8061,stroke-width:1.5px,color:#1F2933;
+    classDef evaluation fill:#FFFFFF,stroke:#A96D22,stroke-width:1.5px,color:#1F2933;
+    classDef analysis fill:#FFFFFF,stroke:#75588F,stroke-width:1.5px,color:#1F2933;
+
+    class TE,TCB,TASKS benchmark;
+    class MODELS,SINGLE,TWO,PYNGUIN,SUITES generation;
+    class CANDIDATES,EXEC,GATES,METRICS,JUDGE,HUMAN,RESULTS evaluation;
+    class ANALYSES,EST,PAIR,MODEL,AGREE analysis;
+
+    style S1 fill:#F5F8FB,stroke:#3F6F99,stroke-width:2px,color:#284D6B;
+    style S2 fill:#F6FAF7,stroke:#4D8061,stroke-width:2px,color:#31573D;
+    style S3 fill:#FCF8F2,stroke:#A96D22,stroke-width:2px,color:#754B17;
+    style S4 fill:#F9F6FB,stroke:#75588F,stroke-width:2px,color:#553E69;
+    style TOP fill:transparent,stroke:transparent,color:transparent;
+    style BOTTOM fill:transparent,stroke:transparent,color:transparent;
+
+    linkStyle default stroke:#59636E,stroke-width:1.4px;

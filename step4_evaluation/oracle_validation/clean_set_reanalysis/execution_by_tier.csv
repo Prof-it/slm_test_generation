@@ -1,0 +1,4 @@
+tier,metric,N,successes,rate_pct,ci_low,ci_high
+A,Execution Pass@1,2810,710,25.27,23.69,26.91
+B,Execution Pass@1,2810,650,23.13,21.61,24.73
+C,Execution Pass@1,2810,658,23.42,21.89,25.02

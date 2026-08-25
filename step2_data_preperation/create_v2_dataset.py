@@ -5,7 +5,7 @@ Scans source files (both the existing leaked real_world/ files AND newly cloned
 unleaked repos) and produces a candidate pool of focal functions that pass all
 v2 quality filters:
 
-  - Has an English docstring
+  - Has a non-empty docstring (language is not identified)
   - Cyclomatic complexity (Radon CC) >= MIN_CC (3)
   - 3 <= LOC <= 80
   - Not a dunder / test / deprecated / trivial getter

@@ -1,0 +1,21 @@
+model_short,pipeline,metric,N,successes,rate_pct,ci_low,ci_high
+Ministral-3-3B-Reasoning-2512,Single-step,Execution Pass@1,843,115,13.64,11.49,16.12
+Ministral-3-3B-Reasoning-2512,Single-step,Non-trivial Pass@1,843,51,6.05,4.63,7.87
+Ministral-3-3B-Reasoning-2512,Two-step,Execution Pass@1,843,141,16.73,14.36,19.4
+Ministral-3-3B-Reasoning-2512,Two-step,Non-trivial Pass@1,843,75,8.9,7.16,11.01
+Qwen3-4B-Thinking-2507,Single-step,Execution Pass@1,843,167,19.81,17.26,22.64
+Qwen3-4B-Thinking-2507,Single-step,Non-trivial Pass@1,843,155,18.39,15.92,21.14
+Qwen3-4B-Thinking-2507,Two-step,Execution Pass@1,843,149,17.67,15.25,20.4
+Qwen3-4B-Thinking-2507,Two-step,Non-trivial Pass@1,843,128,15.18,12.92,17.76
+Qwen3.5-4B,Single-step,Execution Pass@1,843,192,22.78,20.07,25.73
+Qwen3.5-4B,Single-step,Non-trivial Pass@1,843,167,19.81,17.26,22.64
+Qwen3.5-4B,Two-step,Execution Pass@1,843,225,26.69,23.81,29.78
+Qwen3.5-4B,Two-step,Non-trivial Pass@1,843,128,15.18,12.92,17.76
+gemma-4-E4B-it,Single-step,Execution Pass@1,843,235,27.88,24.96,31.0
+gemma-4-E4B-it,Single-step,Non-trivial Pass@1,843,186,22.06,19.39,24.99
+gemma-4-E4B-it,Two-step,Execution Pass@1,843,367,43.53,40.22,46.9
+gemma-4-E4B-it,Two-step,Non-trivial Pass@1,843,162,19.22,16.7,22.01
+granite-4.0-micro,Single-step,Execution Pass@1,843,177,21.0,18.38,23.87
+granite-4.0-micro,Single-step,Non-trivial Pass@1,843,20,2.37,1.54,3.64
+granite-4.0-micro,Two-step,Execution Pass@1,843,250,29.66,26.67,32.83
+granite-4.0-micro,Two-step,Non-trivial Pass@1,843,39,4.63,3.4,6.26
