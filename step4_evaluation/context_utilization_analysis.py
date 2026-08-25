@@ -133,6 +133,7 @@ for m in MODELS:
                     mu = mock_used(target, source) if target else None
 
                 rows.append({
+                    "task_id": tn,
                     "model": m,
                     "pipeline": pipeline,
                     "tier": t,
@@ -177,7 +178,7 @@ summarize(lambda r: (r["tier"], r["dependency_level"]), "By tier x dependency le
 summarize(lambda r: (r["tier"], r["passed"]), "By tier x execution-pass status (associational only)")
 summarize(lambda r: (r["tier"],), "By tier (overall)")
 
-out_path = ROOT / "step4_evaluation" / "oracle_validation" / "context_utilization_rows.json"
+out_path = ROOT / "step4_evaluation" / "oracle_validation" / "context_utilization_rows_with_ids.json"
 with open(out_path, "w", encoding="utf-8") as f:
     json.dump(rows, f, indent=1)
 print(f"Per-row data written to {out_path}")

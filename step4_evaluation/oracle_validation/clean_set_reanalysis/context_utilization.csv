@@ -1,0 +1,10 @@
+tier,passed,metric,N,used,rate_pct
+B,False,dep_used,643,380,59.1
+B,True,dep_used,96,40,41.7
+C,False,dep_used,620,380,61.3
+C,False,mock_used,2101,1582,75.3
+C,True,dep_used,114,61,53.5
+C,True,mock_used,658,403,61.2
+B,all,dep_used,739,420,56.8
+C,all,dep_used,734,441,60.1
+C,all,mock_used,2759,1985,71.9

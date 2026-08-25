@@ -1,0 +1,11 @@
+model,pipeline,N_sample_observations,N_completed,uMut_pct,cMut_pct
+Ministral-3-3B-Reasoning-2512,Single-step,201,26,3.21,24.8
+Ministral-3-3B-Reasoning-2512,Two-step,201,34,1.58,9.36
+Qwen3-4B-Thinking-2507,Single-step,201,39,4.19,21.61
+Qwen3-4B-Thinking-2507,Two-step,201,50,4.93,19.83
+Qwen3.5-4B,Single-step,201,55,5.46,19.94
+Qwen3.5-4B,Two-step,201,57,3.47,12.23
+gemma-4-E4B-it,Single-step,201,55,2.96,10.82
+gemma-4-E4B-it,Two-step,201,80,2.64,6.62
+granite-4.0-micro,Single-step,201,44,3.94,17.98
+granite-4.0-micro,Two-step,201,63,4.42,14.09

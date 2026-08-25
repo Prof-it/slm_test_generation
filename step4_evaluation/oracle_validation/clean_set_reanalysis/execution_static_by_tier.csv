@@ -1,0 +1,7 @@
+tier,metric,N,successes,rate_pct,ci_low,ci_high
+A,Execution Pass@1,2810,710,25.27,23.69,26.91
+A,Static assertion-presence Pass@1,2810,527,18.75,17.35,20.24
+B,Execution Pass@1,2810,650,23.13,21.61,24.73
+B,Static assertion-presence Pass@1,2810,478,17.01,15.67,18.44
+C,Execution Pass@1,2810,658,23.42,21.89,25.02
+C,Static assertion-presence Pass@1,2810,465,16.55,15.22,17.97

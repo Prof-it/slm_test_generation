@@ -1,0 +1,21 @@
+model,pipeline,metric,N,successes,rate_pct,ci_low,ci_high
+Ministral-3-3B-Reasoning-2512,Single-step,Execution Pass@1,843,115,13.64,11.49,16.12
+Ministral-3-3B-Reasoning-2512,Single-step,Static assertion-presence Pass@1,843,57,6.76,5.26,8.66
+Ministral-3-3B-Reasoning-2512,Two-step,Execution Pass@1,843,141,16.73,14.36,19.4
+Ministral-3-3B-Reasoning-2512,Two-step,Static assertion-presence Pass@1,843,95,11.27,9.31,13.58
+Qwen3-4B-Thinking-2507,Single-step,Execution Pass@1,843,167,19.81,17.26,22.64
+Qwen3-4B-Thinking-2507,Single-step,Static assertion-presence Pass@1,843,160,18.98,16.48,21.77
+Qwen3-4B-Thinking-2507,Two-step,Execution Pass@1,843,149,17.67,15.25,20.4
+Qwen3-4B-Thinking-2507,Two-step,Static assertion-presence Pass@1,843,130,15.42,13.14,18.02
+Qwen3.5-4B,Single-step,Execution Pass@1,843,192,22.78,20.07,25.73
+Qwen3.5-4B,Single-step,Static assertion-presence Pass@1,843,175,20.76,18.16,23.63
+Qwen3.5-4B,Two-step,Execution Pass@1,843,225,26.69,23.81,29.78
+Qwen3.5-4B,Two-step,Static assertion-presence Pass@1,843,164,19.45,16.92,22.26
+gemma-4-E4B-it,Single-step,Execution Pass@1,843,235,27.88,24.96,31.0
+gemma-4-E4B-it,Single-step,Static assertion-presence Pass@1,843,191,22.66,19.96,25.6
+gemma-4-E4B-it,Two-step,Execution Pass@1,843,367,43.53,40.22,46.9
+gemma-4-E4B-it,Two-step,Static assertion-presence Pass@1,843,216,25.62,22.79,28.68
+granite-4.0-micro,Single-step,Execution Pass@1,843,177,21.0,18.38,23.87
+granite-4.0-micro,Single-step,Static assertion-presence Pass@1,843,99,11.74,9.74,14.09
+granite-4.0-micro,Two-step,Execution Pass@1,843,250,29.66,26.67,32.83
+granite-4.0-micro,Two-step,Static assertion-presence Pass@1,843,183,21.71,19.06,24.62

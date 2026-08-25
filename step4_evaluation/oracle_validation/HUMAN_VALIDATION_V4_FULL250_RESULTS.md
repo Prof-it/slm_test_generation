@@ -9,7 +9,9 @@ consensus: classifier + two independent AI audits) were previously *assumed* cor
 and reported as such, explicitly caveated as "not independently human-verified."
 That assumption has now been tested directly.
 
-Labeling was done blind (working only from `oracle_source` + `enclosing_test_source`
+The annotator was the paper's first author; this is therefore single-annotator manual
+validation, not independent external review or inter-rater validation. Labeling was
+done blind to the classifier output (working only from `oracle_source` + `enclosing_test_source`
 + `focal_function`, no AI/classifier prediction visible), using the same paper-Table-4
 taxonomy and an interactive tool built for the purpose (self-contained HTML,
 localStorage-backed, taxonomy reference embedded). Output merged with the existing

@@ -14,7 +14,7 @@ AI labeling pass `oracle_manual_validation_blinded_v4_enriched_ai_labeled.csv`) 
 deliberately oversampled for difficulty/disagreement. The other 188 rows, where all
 three methods already agreed, were not separately human-checked.
 
-The human reviewer read each row blind to all three methods' predictions (working
+The paper's first author read each row blind to all three methods' predictions (working
 directly from `oracle_source` + `enclosing_test_source` + `focal_function` in
 `oracle_manual_validation_blinded_v4_enriched.csv`), applying the same paper-Table-4
 taxonomy used throughout this project.
@@ -106,7 +106,7 @@ human, not a new independent finding.)
 ## Suggested paper wording (Limitations / Threats to Validity), replacing the
 prior AI-only framing
 
-> A human reviewer labeled every oracle site in the 250-site validation sample
+> The paper's first author manually labeled the oracle sites in the validation subset
 > (Section/Appendix reference) where the static classifier's prediction was
 > disputed by at least one of two independent AI-assisted re-applications of the
 > same written taxonomy (62 of 250 sites; the remaining 188 sites had unanimous

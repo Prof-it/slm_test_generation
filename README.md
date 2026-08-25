@@ -88,7 +88,7 @@ The original real-world dataset (50 functions, 14 repos) is replaced by a larger
    - *LEAKED*: the existing 14 repos (apscheduler, dramatiq, humanize, …) — old, famous, definitely in training corpora.
    - *UNLEAKED*: GitHub repos with latest commit after 2026-06-10, ≥ 40 stars, MIT/Apache-2.0, ≥ 2 contributors, ≥ 4 domains. Commit SHAs frozen immediately in `sources/v2_repos.json`.
 
-3. **Function extraction** (`create_v2_dataset.py`) — AST parsing over all repos; keep functions that have an English docstring, CC ≥ 3, 3–80 LOC, pass all exclusion filters (dunder/test/deprecated/getter), and fit in ≤ 2 000 tokens on every cohort tokenizer. Target candidate pool ≥ 900 (3× final N before QC losses). Output: `sources/v2_candidates.jsonl`.
+3. **Function extraction** (`create_v2_dataset.py`) — AST parsing over all repos; keep functions that have a non-empty docstring, CC ≥ 3, 3–80 LOC, pass all exclusion filters (dunder/test/deprecated/getter), and fit in ≤ 2 000 tokens on every cohort tokenizer. The pipeline does not perform language identification on docstrings. Target candidate pool ≥ 900 (3× final N before QC losses). Output: `sources/v2_candidates.jsonl`.
 
 4. **Dependency classification** (`classify_dependency_level.py`) — jedi-based name resolution (not raw AST) assigns each function exactly one level:
    - L0 builtins only, L1 stdlib, L2 third-party package, L3 same-file/class.
