@@ -7,7 +7,7 @@
   "disagree_count": 3,
   "agreement_rate": 0.9,
   "error_rate": 0.1,
-  "cohens_kappa_approx": 0.87,
+  "cohens_kappa_unweighted": 0.8450946643717727,
   "qc_gate_pass": false,
   "agreement_target_pass": true,
   "disagreements_in_final_300": false,

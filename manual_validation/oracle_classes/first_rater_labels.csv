@@ -1,0 +1,251 @@
+﻿validation_row_id,first_rater_sut_dependent,first_rater_class,first_rater_notes
+validation_v4_0001,True,STRONG,
+validation_v4_0002,True,STRONG,"real return value compared to specific None, consistent with True/False handling"
+validation_v4_0003,False,TRIVIAL,
+validation_v4_0004,True,WEAK,
+validation_v4_0005,True,STRONG,
+validation_v4_0006,False,TRIVIAL,
+validation_v4_0007,True,STRONG,
+validation_v4_0008,False,TRIVIAL,hasattr on a mock object auto-creates attributes; unrelated to SUT behavior
+validation_v4_0009,True,STRONG,real output compared to a hardcoded specific expected tensor
+validation_v4_0010,True,WEAK,
+validation_v4_0011,True,STRONG,
+validation_v4_0012,True,STRONG,
+validation_v4_0013,False,TRIVIAL,
+validation_v4_0014,False,TRIVIAL,
+validation_v4_0015,True,STRONG,specific exception message content checked inside pytest.raises
+validation_v4_0016,True,STRONG,real return value compared to a specific expected boolean
+validation_v4_0017,False,TRIVIAL,
+validation_v4_0018,False,TRIVIAL,
+validation_v4_0019,True,WEAK,
+validation_v4_0020,False,TRIVIAL,
+validation_v4_0021,True,STRONG,
+validation_v4_0022,False,TRIVIAL,
+validation_v4_0023,False,TRIVIAL,
+validation_v4_0024,False,TRIVIAL,malformed isinstance() call raises TypeError; not a meaningful behavioral check
+validation_v4_0025,True,STRONG,
+validation_v4_0026,False,TRIVIAL,whole Solution object is a MagicMock with return_value={} preset; real code never runs
+validation_v4_0027,True,STRONG,
+validation_v4_0028,True,WEAK,
+validation_v4_0029,True,STRONG,direct focal-call result compared to a specific expected boolean
+validation_v4_0030,False,TRIVIAL,
+validation_v4_0031,False,UNKNOWN,
+validation_v4_0032,True,WEAK,type check only on derived result element
+validation_v4_0033,True,STRONG,real Mock API verifying a specific non-interaction
+validation_v4_0034,True,STRONG,real return value compared to a specific expected boolean
+validation_v4_0035,True,STRONG,
+validation_v4_0036,True,WEAK,specific comparison present but fragile due to assert-with-ternary parsing bug; downgraded
+validation_v4_0037,False,TRIVIAL,
+validation_v4_0038,True,STRONG,
+validation_v4_0039,False,TRIVIAL,Solution.read is patched with AsyncMock(return_value=expected_data); real code never runs
+validation_v4_0040,False,TRIVIAL,
+validation_v4_0041,True,WEAK,
+validation_v4_0042,False,TRIVIAL,
+validation_v4_0043,False,TRIVIAL,"tautological self-equality on a local variable, unrelated to SUT"
+validation_v4_0044,True,STRONG,
+validation_v4_0045,True,STRONG,
+validation_v4_0046,,UNKNOWN,cannot determine from visible context whether 'solution' fixture is mock or real; assertion also looks structurally broken either way
+validation_v4_0047,True,WEAK,
+validation_v4_0048,True,WEAK,
+validation_v4_0049,True,STRONG,
+validation_v4_0050,True,WEAK,
+validation_v4_0051,False,TRIVIAL,
+validation_v4_0052,True,STRONG,specific structural check on argument shape passed to a mocked dependency during real execution
+validation_v4_0053,True,WEAK,
+validation_v4_0054,True,STRONG,
+validation_v4_0055,False,TRIVIAL,"bogus .called_once attribute (no assert_ prefix), always truthy, verifies nothing"
+validation_v4_0056,True,WEAK,
+validation_v4_0057,True,WEAK,
+validation_v4_0058,True,STRONG,data round-tripped through file compared to specific expected array
+validation_v4_0059,False,TRIVIAL,
+validation_v4_0060,False,TRIVIAL,
+validation_v4_0061,True,STRONG,
+validation_v4_0062,True,STRONG,
+validation_v4_0063,False,TRIVIAL,
+validation_v4_0064,False,TRIVIAL,
+validation_v4_0065,False,TRIVIAL,
+validation_v4_0066,True,WEAK,
+validation_v4_0067,True,STRONG,
+validation_v4_0068,True,UNKNOWN,
+validation_v4_0069,True,WEAK,"mock.called only checks call occurred, not args/count"
+validation_v4_0070,False,TRIVIAL,
+validation_v4_0071,True,WEAK,
+validation_v4_0072,,UNKNOWN,"compares an unwrapped mock method object (no call) to True; likely broken/meaningless as written, not cleanly classifiable"
+validation_v4_0073,False,TRIVIAL,self.assertTrue(True) is a literal constant
+validation_v4_0074,True,WEAK,
+validation_v4_0075,True,WEAK,
+validation_v4_0076,False,TRIVIAL,"called_once() not real Mock API, always-truthy auto attribute"
+validation_v4_0077,False,TRIVIAL,
+validation_v4_0078,False,UNKNOWN,"some_other_function(solution, ...) wrapper is undefined anywhere in scope (not imported, not defined locally); provenance cannot be conservatively resolved (not statically-satisfied so not TRIVIAL either) -- UNKNOWN per taxonomy design intent."
+validation_v4_0079,True,WEAK,
+validation_v4_0080,False,TRIVIAL,
+validation_v4_0081,True,STRONG,
+validation_v4_0082,True,WEAK,
+validation_v4_0083,False,TRIVIAL,
+validation_v4_0084,False,TRIVIAL,"x is a test-constructed input array, not the function's output"
+validation_v4_0085,True,STRONG,
+validation_v4_0086,True,STRONG,real output compared to a specific string
+validation_v4_0087,True,STRONG,
+validation_v4_0088,True,STRONG,
+validation_v4_0089,False,TRIVIAL,pytest.raises body is just pass; can never validate real behavior
+validation_v4_0090,True,STRONG,real call compared to specific boolean
+validation_v4_0091,True,WEAK,
+validation_v4_0092,True,WEAK,
+validation_v4_0093,True,STRONG,
+validation_v4_0094,True,WEAK,
+validation_v4_0095,True,STRONG,real call compared to specific value
+validation_v4_0096,True,STRONG,
+validation_v4_0097,True,WEAK,
+validation_v4_0098,True,WEAK,
+validation_v4_0099,True,STRONG,
+validation_v4_0100,True,WEAK,
+validation_v4_0101,True,WEAK,
+validation_v4_0102,True,WEAK,"len(result)>0 = coarse non-emptiness, not a specific value (pattern rule)"
+validation_v4_0103,False,TRIVIAL,
+validation_v4_0104,True,STRONG,"real call compared to specific None, consistent with earlier None items"
+validation_v4_0105,True,STRONG,specific value comparison verifying environ was NOT altered
+validation_v4_0106,True,STRONG,real call compared to specific boolean
+validation_v4_0107,False,TRIVIAL,
+validation_v4_0108,True,STRONG,
+validation_v4_0109,False,TRIVIAL,
+validation_v4_0110,False,TRIVIAL,
+validation_v4_0111,False,TRIVIAL,
+validation_v4_0112,True,STRONG,
+validation_v4_0113,False,TRIVIAL,
+validation_v4_0114,True,WEAK,
+validation_v4_0115,False,TRIVIAL,same broken empty-body pytest.raises pattern
+validation_v4_0116,True,WEAK,
+validation_v4_0117,False,TRIVIAL,
+validation_v4_0118,False,TRIVIAL,"off-target method called (_sanitize_json_serializable_string, not focal _sanitize_value)"
+validation_v4_0119,True,STRONG,
+validation_v4_0120,False,TRIVIAL,
+validation_v4_0121,True,WEAK,
+validation_v4_0122,True,WEAK,"existence/callable check only, no behavior tested"
+validation_v4_0123,True,STRONG,
+validation_v4_0124,True,WEAK,membership check on real output = coarse (pattern rule)
+validation_v4_0125,True,WEAK,fragile ternary-parsing assert pattern
+validation_v4_0126,False,TRIVIAL,
+validation_v4_0127,True,STRONG,"real Mock API, specific call-argument verification"
+validation_v4_0128,True,STRONG,
+validation_v4_0129,False,TRIVIAL,
+validation_v4_0130,True,WEAK,
+validation_v4_0131,False,TRIVIAL,
+validation_v4_0132,False,TRIVIAL,
+validation_v4_0133,False,TRIVIAL,
+validation_v4_0134,True,STRONG,"real Mock API, specific non-interaction verification"
+validation_v4_0135,True,WEAK,
+validation_v4_0136,True,WEAK,
+validation_v4_0137,True,WEAK,
+validation_v4_0138,False,TRIVIAL,
+validation_v4_0139,True,WEAK,
+validation_v4_0140,False,TRIVIAL,get_best_solution itself is patched with a preset return_value; real code never runs
+validation_v4_0141,True,STRONG,real call compared to specific boolean
+validation_v4_0142,True,WEAK,
+validation_v4_0143,False,UNKNOWN,"some_other_function(solution, ...) wrapper is undefined anywhere in scope (not imported, not defined locally); provenance cannot be conservatively resolved (not statically-satisfied so not TRIVIAL either) -- UNKNOWN per taxonomy design intent."
+validation_v4_0144,False,TRIVIAL,"all_dims is a test-constructed input, not the function's output"
+validation_v4_0145,False,TRIVIAL,
+validation_v4_0146,True,WEAK,
+validation_v4_0147,False,TRIVIAL,
+validation_v4_0148,False,TRIVIAL,
+validation_v4_0149,True,STRONG,
+validation_v4_0150,True,STRONG,specific expected value check on indexed result
+validation_v4_0151,True,STRONG,
+validation_v4_0152,True,STRONG,
+validation_v4_0153,True,WEAK,
+validation_v4_0154,False,TRIVIAL,
+validation_v4_0155,True,STRONG,
+validation_v4_0156,False,UNKNOWN,"some_other_function(solution, ...) wrapper is undefined anywhere in scope (not imported, not defined locally); provenance cannot be conservatively resolved (not statically-satisfied so not TRIVIAL either) -- UNKNOWN per taxonomy design intent."
+validation_v4_0157,True,STRONG,
+validation_v4_0158,True,WEAK,
+validation_v4_0159,True,STRONG,
+validation_v4_0160,False,TRIVIAL,
+validation_v4_0161,False,TRIVIAL,
+validation_v4_0162,False,TRIVIAL,
+validation_v4_0163,False,TRIVIAL,
+validation_v4_0164,False,TRIVIAL,
+validation_v4_0165,False,TRIVIAL,
+validation_v4_0166,True,WEAK,
+validation_v4_0167,False,TRIVIAL,"typo'd method name (_sanetize_value), likely never reaches a meaningful call"
+validation_v4_0168,False,TRIVIAL,
+validation_v4_0169,True,WEAK,type check only on real (name-mangled) call result
+validation_v4_0170,True,STRONG,
+validation_v4_0171,True,WEAK,
+validation_v4_0172,True,WEAK,
+validation_v4_0173,True,WEAK,
+validation_v4_0174,True,WEAK,type+fixed-length check = coarse (pattern rule)
+validation_v4_0175,False,TRIVIAL,expected_rgba is a test-constructed input; function's real return value is discarded
+validation_v4_0176,True,STRONG,
+validation_v4_0177,False,TRIVIAL,
+validation_v4_0178,True,WEAK,
+validation_v4_0179,True,STRONG,specific value comparison verifying environ was set correctly
+validation_v4_0180,True,WEAK,
+validation_v4_0181,True,WEAK,
+validation_v4_0182,False,TRIVIAL,create_run itself is the mocked target being asserted on; real method never runs
+validation_v4_0183,True,STRONG,
+validation_v4_0184,True,WEAK,
+validation_v4_0185,False,TRIVIAL,"broken syntax, undefined name, not a valid comprehension"
+validation_v4_0186,True,WEAK,
+validation_v4_0187,False,TRIVIAL,
+validation_v4_0188,True,STRONG,
+validation_v4_0189,False,TRIVIAL,"off-target method called (stream_decode_response_unify, not focal _unicode)"
+validation_v4_0190,False,TRIVIAL,
+validation_v4_0191,True,WEAK,
+validation_v4_0192,True,STRONG,
+validation_v4_0193,True,STRONG,specific shape of argument passed to mocked dependency during real execution
+validation_v4_0194,True,STRONG,
+validation_v4_0195,True,WEAK,
+validation_v4_0196,True,WEAK,
+validation_v4_0197,True,WEAK,
+validation_v4_0198,False,TRIVIAL,
+validation_v4_0199,True,WEAK,
+validation_v4_0200,True,UNKNOWN,
+validation_v4_0201,True,WEAK,
+validation_v4_0202,True,STRONG,direct focal-call result compared to a specific expected boolean
+validation_v4_0203,True,WEAK,
+validation_v4_0204,True,STRONG,"real Mock API, specific call-argument verification on a dependency interaction"
+validation_v4_0205,False,TRIVIAL,
+validation_v4_0206,False,TRIVIAL,
+validation_v4_0207,False,TRIVIAL,
+validation_v4_0208,False,TRIVIAL,
+validation_v4_0209,True,STRONG,real call compared to specific None
+validation_v4_0210,False,TRIVIAL,
+validation_v4_0211,True,STRONG,
+validation_v4_0212,True,STRONG,
+validation_v4_0213,True,WEAK,all(isinstance(...)) over real output = coarse type check (pattern rule)
+validation_v4_0214,True,STRONG,
+validation_v4_0215,True,STRONG,
+validation_v4_0216,True,STRONG,specific exception message content checked inside pytest.raises
+validation_v4_0217,True,WEAK,
+validation_v4_0218,True,STRONG,
+validation_v4_0219,True,WEAK,
+validation_v4_0220,False,TRIVIAL,
+validation_v4_0221,True,STRONG,
+validation_v4_0222,True,STRONG,
+validation_v4_0223,True,STRONG,
+validation_v4_0224,False,TRIVIAL,
+validation_v4_0225,True,WEAK,"real call result checked, but only type, not value"
+validation_v4_0226,True,STRONG,
+validation_v4_0227,False,TRIVIAL,
+validation_v4_0228,False,UNKNOWN,"some_other_function(solution, ...) wrapper is undefined anywhere in scope (not imported, not defined locally); provenance cannot be conservatively resolved (not statically-satisfied so not TRIVIAL either) -- UNKNOWN per taxonomy design intent."
+validation_v4_0229,False,TRIVIAL,
+validation_v4_0230,True,WEAK,
+validation_v4_0231,False,TRIVIAL,
+validation_v4_0232,True,WEAK,key-membership check on real output = coarse (pattern rule)
+validation_v4_0233,True,WEAK,
+validation_v4_0234,True,STRONG,
+validation_v4_0235,True,STRONG,
+validation_v4_0236,False,TRIVIAL,
+validation_v4_0237,False,TRIVIAL,
+validation_v4_0238,False,TRIVIAL,
+validation_v4_0239,True,WEAK,
+validation_v4_0240,False,TRIVIAL,
+validation_v4_0241,True,WEAK,
+validation_v4_0242,False,TRIVIAL,"tuple literal used as assert condition; always truthy, verifies nothing"
+validation_v4_0243,True,WEAK,all(isinstance(...)) over real output = coarse type check (pattern rule)
+validation_v4_0244,True,WEAK,all(isinstance(...)) over real output = coarse type check (pattern rule)
+validation_v4_0245,True,WEAK,
+validation_v4_0246,True,STRONG,
+validation_v4_0247,True,STRONG,
+validation_v4_0248,True,STRONG,
+validation_v4_0249,False,TRIVIAL,"unrelated method called (device_fname), not focal device_focus_tokens"
+validation_v4_0250,False,TRIVIAL,

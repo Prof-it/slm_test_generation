@@ -1,0 +1,14 @@
+{
+  "task": "oracle-site classification",
+  "sampling_method": "round-robin stratified by predicted class, pipeline, and context tier",
+  "seed": 20260821,
+  "source_population_file": "../../downloaded_predictions/second_experiment/run_1",
+  "available_oracle_sites": 6879,
+  "sample_size": 250,
+  "exclusions": "pynguin_results.jsonl; empty test code; test code with SyntaxError",
+  "sampling_script": "../../step4_evaluation/sample_oracles_for_validation.py",
+  "evidence_file": "../../step4_evaluation/oracle_validation/oracle_manual_validation_blinded_v4_enriched.csv",
+  "evidence_file_sha256": "fb912858e7722bb0f3345e4cde51b41510193c2d01ff345cd43d733b5bcd0141",
+  "first_rater_file": "../../step4_evaluation/oracle_validation/oracle_manual_validation_v4_FULL250_human_vs_all.csv",
+  "first_rater_file_sha256": "da412c9fbf60146596de1fa38a446c6d1bd383e264bd2c1cbc11f983047f9d67"
+}
