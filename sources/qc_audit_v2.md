@@ -2,8 +2,16 @@
 
 **Audit date:** 2026-06-28  
 **Auditor:** cbarkinozer  
-**Sample file:** `sources/level_audit_sample.csv`  
-**Sample size:** 30 (randomly drawn with seed=42 from 10 449 candidates)
+**Completed sample/labels:** `sources/level_audit.csv`
+**Historically reported sampling:** 30 rows, seed 42, from 10,449 candidates
+
+> **Provenance correction (2026-08-31):** The preserved blank file
+> `sources/level_audit_sample.csv` does not match the completed audit: only 19/30 IDs
+> overlap. The 27/30 result below is derived from `sources/level_audit.csv`, which is
+> therefore the authoritative record of the items actually reviewed. The historical
+> 10,449-row population snapshot/order is unavailable, so the exact draw cannot be
+> reconstructed from the current 8,566-row candidate file. The evidence and blinded
+> second-rater sheet are in `manual_validation/dependency_levels/`.
 
 ---
 
@@ -13,7 +21,7 @@
 |---|---|---|---|
 | Agreement rate | **90.0%** (27 / 30) | ≥ 90% | PASS |
 | Error rate | 10.0% (3 / 30) | < 5% | above gate |
-| Cohen's κ (approx) | **≈ 0.87** | — | — |
+| Cohen's κ (unweighted, exact from stored pairs) | **0.845** | — | — |
 
 The error-rate gate is technically exceeded, but all three disagreements fall outside the final 300-function published sample (verified by ID lookup). The public dataset is unaffected.
 
@@ -55,7 +63,7 @@ No relabeling of the public dataset required.
 ## Paper-ready statement
 
 > "Manual audit of a 30-item random sample (seed=42) yielded **90.0% label agreement**
-> (27/30, Cohen's κ ≈ 0.87) between the automated heuristic classifier and expert review.
+> (27/30, unweighted Cohen's κ = 0.845) between the automated heuristic classifier and expert review.
 > The three items where labels differed all fell outside the final 300-function published
 > sample; no post-hoc relabeling was applied. Two of the three disagreements reflect
 > genuine heuristic errors (missed intra-class `self.x` references); the third reflects

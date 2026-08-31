@@ -72,6 +72,13 @@ slm-python-unit-test-benchmark/
 └── requirements.txt
 ```
 
+The reproducibility-critical manual reviews are indexed in
+[`manual_validation/`](manual_validation/README.md). That directory contains the two
+blinded second-rater sheets, explicit rubrics, separated first-rater labels, sampling
+manifests, and an agreement calculator. The `gold/` directory is intentionally empty
+of data because mining produced zero qualifying fail-to-pass pairs; see
+[`gold/README.md`](gold/README.md).
+
 ---
 
 ## RealWorldTests-Py v2 — Dataset Rework
@@ -132,7 +139,7 @@ A full pre-inference audit was run on the final 300-function dataset. Results ar
 | Evaluation uses full function | Yes | `python_solution_full` field ensures tests run against real code, not the tier card stub |
 | Non-installed imports handled | Yes | `fix_absolute_imports()` in `evaluate_results.py` wraps third-party imports (`datachain`, `pandera`, etc.) in try/except MagicMock so `under_test.py` loads cleanly |
 | Invariant checks pass | 0 violations | Tier nesting C⊃B⊃A confirmed; no implementation body in stubs |
-| Manual QC audit | 90% agreement (27/30) | 3 disagreements, none in final 300 |
+| Manual QC audit | 90% agreement (27/30) | 3 disagreements, none in final 300; evidence and second-rater rubric in `manual_validation/dependency_levels/` |
 
 #### Yellow — Known Limitations (disclose in paper)
 
@@ -142,7 +149,7 @@ A full pre-inference audit was run on the final 300-function dataset. Results ar
 | **Leaked/Unleaked split is 20%/80%** (60/240), not the intended 50/50 | The leaked candidate pool has only 80 functions (12 repos). With the per-repo cap of 15, at most 60 leaked functions can be selected across 4 levels. | Report with explicit sample sizes per split. Leaked CIs will be wider (n=60). Contamination gap is still estimable; interpret leaked results as indicative rather than definitive. |
 | **Fail-to-pass subset is empty** (0 pairs) | Automated git-history mining across 25 full-history repos found 0 qualified pairs. Recently-active repos do not follow the "fix function + co-commit test" pattern reliably. | Report as future work. The regression-catching metric is not computed for v2. |
 | **Async functions (26/300) require model to use asyncio.run()** | `pytest` without `pytest-asyncio` silently skips `async def test_X()` functions. System prompts instruct models to use `asyncio.run()`, but a model that ignores this instruction produces a skipped test that is misclassified as No Code or Timeout. | Report async pass-rates as a lower bound. Flag async functions in the output via a post-hoc filter on the generated test code. |
-| **Dependency level labels are heuristic (not jedi-verified)** | AST import-map heuristic; QC found 10% error rate on the full 30-item sample (3 disagreements), but 0 errors in the final 300. L0/L3 boundary is the weakest (misses `self.x` network-client patterns). | Report Cohen's κ ≈ 0.87 from the audit. Treat L0 labels as approximate for functions that accept opaque object parameters. |
+| **Dependency level labels are heuristic (not jedi-verified)** | AST import-map heuristic; QC found 10% error rate on the full 30-item sample (3 disagreements), but 0 errors in the final 300. L0/L3 boundary is the weakest (misses `self.x` network-client patterns). | Report unweighted Cohen's κ = 0.845 from the stored audit pairs. Treat L0 labels as approximate for functions that accept opaque object parameters. |
 | **Serialization domain is underrepresented** (20/300 = 7%) | Fewer recently-active Python serialization repos with permissive licenses published on GitHub after the cutoff date. | Note in dataset description. Do not draw strong conclusions from serialization-domain subgroup results. |
 | **Dependency classification uses heuristic, not jedi** | Full jedi inference would be more accurate but took >15 hours on 10k candidates. Heuristic took 3 seconds after file-context caching. | 90% QC agreement is the evidence of adequacy. Paper should note the tool choice and its speed/accuracy tradeoff. |
 

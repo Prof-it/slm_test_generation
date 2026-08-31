@@ -1,0 +1,15 @@
+{
+  "task": "dependency-level classification",
+  "reviewed_sample_size": 30,
+  "source_population_file": "../../sources/v2_candidates.jsonl",
+  "source_population_rows_current": 8566,
+  "source_population_sha256_current": "e1236bb071c390a7e588333e02eaddf33f04a8d4180189791443811ee6385e6a",
+  "completed_first_rater_file": "../../sources/level_audit.csv",
+  "completed_first_rater_file_sha256": "bdf2a51ad89eeeb32b061ba7d2fccffe5df6fdfc0cca43d5a4a57233b526a757",
+  "evidence_rows_available": 30,
+  "evidence_rows_from_current_candidates": 24,
+  "evidence_rows_recovered_from_git": 6,
+  "evidence_rows_missing": [],
+  "declared_original_seed": 42,
+  "provenance_warning": "The completed first-rater file and preserved blank seed-42 sample overlap on 19/30 IDs. Of the other 11 completed-audit rows, five remain in the current candidate file and six were exactly recovered from audit-era nested-repository Git objects. Evidence is complete for second rating, but the historical population snapshot/order that produced the completed sample is unavailable; do not claim exact sample-draw reconstruction."
+}

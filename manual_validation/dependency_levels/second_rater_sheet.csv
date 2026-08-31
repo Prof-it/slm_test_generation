@@ -1,0 +1,2460 @@
+﻿validation_row_id,item_id,repository,source_file,function_name,qualified_symbol,commit_sha,content_sha256,provenance_status,signature,function_source,dependency_context,second_rater_label,second_rater_confidence,second_rater_notes
+dependency_0001,rwt2_9988f68bc34e,zauberzeug/rosys,arp_scan.py,find_ip,find_ip,1cc610ee998483c4875b4246b09f91103ad99a7a,26c1d3f76a0e378077fd2e84087e55588a04e2e6f956744e55ef19f1d4c6bf6f,preserved_sample_and_completed_audit,"def find_ip(mac: str, network_interface: str | None=None)","async def find_ip(mac: str, network_interface: str | None = None) -> str | None:
+    """"""Find the IP address of a camera with the given MAC address.""""""
+    async for mac_, ip in find_cameras(network_interface=network_interface):
+        if mac_ == mac:
+            return ip
+    return None","import os
+import sys
+from collections.abc import AsyncIterator
+import ifaddr
+from ... import rosys
+from .vendors import VendorType, mac_to_vendor
+
+class Solution:
+    async def find_ip(self, mac: str, network_interface: str | None = None) -> str | None:
+        """"""Find the IP address of a camera with the given MAC address.""""""
+        async for mac_, ip in find_cameras(network_interface=network_interface):
+            if mac_ == mac:
+                return ip
+        return None",,,
+dependency_0002,rwt2_0b2336a51e91,tyxak/remotepower,api.py,_record_fleet_event,_record_fleet_event,aa91ee20aa0ae0e3a826d369a3f5c735ecc68aa3,308a70d870140ad0d42bd768f556211be91ab0037628ed4943dc007197c19792,preserved_sample_and_completed_audit,"def _record_fleet_event(event, payload)","def _record_fleet_event(event, payload):
+    """"""v2.2.4: append to the dedicated fleet event log. Records every
+    fired event regardless of whether anything got delivered downstream.
+
+    Filters the payload down to a compact summary (device id+name plus
+    a few discriminator fields) — the full payload can be huge for
+    cve_found, log_alert, etc., and the Home dashboard only needs
+    enough to render a single feed item.
+
+    Bounded write: the log is capped at MAX_FLEET_EVENTS entries with
+    oldest evicted. 'test' events (operator SMTP / webhook tests) are
+    NOT recorded — they're not fleet events.
+    """"""
+    if event == 'test':
+        return    # operator-triggered tests don't belong here
+    summary = {}
+    if isinstance(payload, dict):
+        for key in ('device_id', 'device_name', 'name', 'host',
+                    'path', 'unit', 'metric', 'cve_id',
+                    'severity', 'critical', 'high',
+                    'upgradable', 'pattern', 'level',
+                    # v2.3.0: Proxmox action discriminators
+                    'guest_type', 'vmid', 'action',
+                    # v3.4.0: port discriminators so the compliance report
+                    # can name the offending port, not just the host.
+                    'proto', 'port'):
+            if key in payload and payload[key] is not None:
+                v = payload[key]
+                # Cap string lengths so a poisoned payload can't bloat
+                # the log file
+                if isinstance(v, str):
+                    v = v[:256]
+                summary[key] = v
+    entry = {
+        'ts':      int(time.time()),
+        'event':   str(event)[:64],
+        'payload': summary,
+    }
+    overflow = []
+    try:
+        # fleet_events is a cold blob on both backends (polymorphic shape — see
+        # storage.WRAPPED_LIST_FILES note), so the whole-doc locked RMW is used
+        # regardless. The log is capped at MAX_FLEET_EVENTS so the rewrite is
+        # bounded.
+        with _LockedUpdate(FLEET_EVENTS_FILE) as store:
+            events = store.setdefault('events', [])
+            events.append(entry)
+            if len(events) > MAX_FLEET_EVENTS:
+                overflow = events[:-MAX_FLEET_EVENTS]
+                del events[:-MAX_FLEET_EVENTS]
+    except Exception:
+        # Caller wraps us too, but be defensive
+        return
+    # v3.3.0 D1: archive write moved OUT of the fleet-events flock. The
+    # gzip append can be slow (open + decompress trailing block + write
+    # + flush) and previously held the file lock during that I/O —
+    # serialising every concurrent agent's heartbeat-driven event fire
+    # behind one slow archive write. The new entry is already
+    # persisted; if the archive write fails, the worst case is some
+    # overflow events stay in memory but get dropped — no data loss
+    # vs prior behaviour (which also dropped them silently on archive
+    # failure).
+    if overflow:
+        try:
+            import gzip
+            arch = DATA_DIR / 'fleet_events_archive.jsonl.gz'
+            with gzip.open(str(arch), 'at') as f:
+                for ev in overflow:
+                    f.write(json.dumps(ev) + '\n')
+        except Exception as _arch_err:
+            sys.stderr.write(
+                f'[remotepower] fleet_events archive write failed: '
+                f'{_arch_err}\n')","import os
+import re
+import sys
+import json
+import time
+import hashlib
+import hmac
+import secrets
+import socket
+import subprocess
+import shlex
+import shutil
+import fcntl
+import gzip
+import traceback
+import urllib.request
+import urllib.error
+import urllib.parse
+from pathlib import Path
+import cve_scanner
+import prometheus_export
+import smtp_notifier
+import ldap_auth
+import cmdb_vault
+import wg_access
+import openapi_spec
+import storage
+import storage_pg
+import containers as containers_mod
+import image_registry as image_registry_mod
+import proxmox_client
+import tls_monitor
+import dmarc_monitor
+import ip_reputation
+import integrations as integrations_mod
+import dns_zones as dns_zones_mod
+import dns_resolve as dns_resolve_mod
+import resolver_health as resolver_health_mod
+import backup_crypto
+import ai_provider
+import ai_context
+import rag_index
+import forecast
+import compliance
+import ai_insights
+import anomaly_stats
+import sbom as sbom_mod
+from sanitize import _sanitize_str, _sanitize_hostname, _sanitize_ip, _sanitize_mac, _sanitize_version, MAX_HOSTNAME_LEN, MAX_VERSION_LEN, MAX_IP_LEN, MAX_MAC_LEN, _IP_RE, _MAC_RE, _VER_RE
+import hmac as _hmac_mod
+import struct as _struct
+import base64 as _base64
+import http.client as _httpclient
+
+class Solution:
+    def _record_fleet_event(self, event, payload):
+        """"""v2.2.4: append to the dedicated fleet event log. Records every
+        fired event regardless of whether anything got delivered downstream.
+
+        Filters the payload down to a compact summary (device id+name plus
+        a few discriminator fields) — the full payload can be huge for
+        cve_found, log_alert, etc., and the Home dashboard only needs
+        enough to render a single feed item.
+
+        Bounded write: the log is capped at MAX_FLEET_EVENTS entries with
+        oldest evicted. 'test' events (operator SMTP / webhook tests) are
+        NOT recorded — they're not fleet events.
+        """"""
+        if event == 'test':
+            return    # operator-triggered tests don't belong here
+        summary = {}
+        if isinstance(payload, dict):
+            for key in ('device_id', 'device_name', 'name', 'host',
+                        'path', 'unit', 'metric', 'cve_id',
+                        'severity', 'critical', 'high',
+                        'upgradable', 'pattern', 'level',
+                        # v2.3.0: Proxmox action discriminators
+                        'guest_type', 'vmid', 'action',
+                        # v3.4.0: port discriminators so the compliance report
+                        # can name the offending port, not just the host.
+                        'proto', 'port'):
+                if key in payload and payload[key] is not None:
+                    v = payload[key]
+                    # Cap string lengths so a poisoned payload can't bloat
+                    # the log file
+                    if isinstance(v, str):
+                        v = v[:256]
+                    summary[key] = v
+        entry = {
+            'ts':      int(time.time()),
+            'event':   str(event)[:64],
+            'payload': summary,
+        }
+        overflow = []
+        try:
+            # fleet_events is a cold blob on both backends (polymorphic shape — see
+            # storage.WRAPPED_LIST_FILES note), so the whole-doc locked RMW is used
+            # regardless. The log is capped at MAX_FLEET_EVENTS so the rewrite is
+            # bounded.
+            with _LockedUpdate(FLEET_EVENTS_FILE) as store:
+                events = store.setdefault('events', [])
+                events.append(entry)
+                if len(events) > MAX_FLEET_EVENTS:
+                    overflow = events[:-MAX_FLEET_EVENTS]
+                    del events[:-MAX_FLEET_EVENTS]
+        except Exception:
+            # Caller wraps us too, but be defensive
+            return
+        # v3.3.0 D1: archive write moved OUT of the fleet-events flock. The
+        # gzip append can be slow (open + decompress trailing block + write
+        # + flush) and previously held the file lock during that I/O —
+        # serialising every concurrent agent's heartbeat-driven event fire
+        # behind one slow archive write. The new entry is already
+        # persisted; if the archive write fails, the worst case is some
+        # overflow events stay in memory but get dropped — no data loss
+        # vs prior behaviour (which also dropped them silently on archive
+        # failure).
+        if overflow:
+            try:
+                import gzip
+                arch = DATA_DIR / 'fleet_events_archive.jsonl.gz'
+                with gzip.open(str(arch), 'at') as f:
+                    for ev in overflow:
+                        f.write(json.dumps(ev) + '\n')
+            except Exception as _arch_err:
+                sys.stderr.write(
+                    f'[remotepower] fleet_events archive write failed: '
+                    f'{_arch_err}\n')",,,
+dependency_0003,rwt2_bd5b492372ed,sstklen/trump-code,article_generator.py,load_today_data,load_today_data,0f122fa6c59f5be7508cd3c9095538df2ef146a3,afdc2f9aa1d066437e784869a8570919af6246c1b8bf7d27e4bf7ea9970808be,completed_audit_current_candidate,def load_today_data(target_date: str),"def load_today_data(target_date: str):
+    """"""載入指定日期的推文和報告""""""
+    # 從 multi_source_fetcher 抓最新資料
+    try:
+        from multi_source_fetcher import fetch_all_sources
+        all_posts, _ = fetch_all_sources()
+    except Exception:
+        all_posts = []
+
+    # 過濾當天
+    day_posts = [p for p in all_posts if p.get(""created_at"", """").startswith(target_date)]
+
+    # 讀 daily_report
+    report_path = DATA / ""daily_report.json""
+    report = {}
+    if report_path.exists():
+        with open(report_path) as f:
+            report = json.load(f)
+
+    return day_posts, report","import json
+import os
+import sys
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+
+class Solution:
+    def load_today_data(self, target_date: str):
+        """"""載入指定日期的推文和報告""""""
+        # 從 multi_source_fetcher 抓最新資料
+        try:
+            from multi_source_fetcher import fetch_all_sources
+            all_posts, _ = fetch_all_sources()
+        except Exception:
+            all_posts = []
+
+        # 過濾當天
+        day_posts = [p for p in all_posts if p.get(""created_at"", """").startswith(target_date)]
+
+        # 讀 daily_report
+        report_path = DATA / ""daily_report.json""
+        report = {}
+        if report_path.exists():
+            with open(report_path) as f:
+                report = json.load(f)
+
+        return day_posts, report",,,
+dependency_0004,rwt2_7ae58a5c2c8f,vortex-exoplanet/VIP,svd.py,cevr_to_ncomp,cevr_to_ncomp,81abfb74aa6fd17e16394a637a5ba893a9fc2e34,fd75afa18fe0636fac71c9b441acede77b9e6014304e9db4cbbc8c85a42eeffb,preserved_sample_and_completed_audit,"def cevr_to_ncomp(self, cevr=0.9)","def cevr_to_ncomp(self, cevr=0.9):
+    """"""
+    Infer the number of principal components for a given CEVR.
+
+    Parameters
+    ----------
+    cevr : float or tuple of floats, optional
+        The desired CEVR.
+
+    Returns
+    -------
+    ncomp : int or list of ints
+        The found number(s) of PCs.
+
+    """"""
+    if not hasattr(self, 'cevr'):
+        self.get_cevr(plot=False)
+
+    if isinstance(cevr, float):
+        ncomp = np.searchsorted(self.cevr, cevr) + 1
+    elif isinstance(cevr, tuple):
+        ncomp = [np.searchsorted(self.cevr, c) + 1 for c in cevr]
+
+    return ncomp","import warnings
+import numpy as np
+from numpy import linalg
+from matplotlib import pyplot as plt
+from scipy.sparse.linalg import svds
+from sklearn.decomposition import randomized_svd
+from sklearn.utils import check_random_state
+from pandas import DataFrame
+from ..config import timing, time_ini, sep, Progressbar
+from ..var import matrix_scaling, prepare_matrix
+from ..preproc import check_scal_vector, cube_crop_frames
+from ..preproc import cube_rescaling_wavelengths as scwave
+from ..config import vip_figsize, check_array
+
+class Solution:
+    def cevr_to_ncomp(self, cevr=0.9):
+        """"""
+        Infer the number of principal components for a given CEVR.
+
+        Parameters
+        ----------
+        cevr : float or tuple of floats, optional
+            The desired CEVR.
+
+        Returns
+        -------
+        ncomp : int or list of ints
+            The found number(s) of PCs.
+
+        """"""
+        if not hasattr(self, 'cevr'):
+            self.get_cevr(plot=False)
+
+        if isinstance(cevr, float):
+            ncomp = np.searchsorted(self.cevr, cevr) + 1
+        elif isinstance(cevr, tuple):
+            ncomp = [np.searchsorted(self.cevr, c) + 1 for c in cevr]
+
+        return ncomp",,,
+dependency_0005,rwt2_99ed6aee2312,unionai-oss/pandera,container.py,check_shape,check_shape,7e437f860c286988086db208d9eb6accaea6fecb,bf21eb7452fd64df5e0cc2773dcbd320b3285020c12f36d5b7300d6a40437853,preserved_sample_and_completed_audit,"def check_shape(self, check_obj, schema: DataArraySchema)","def check_shape(
+    self, check_obj, schema: DataArraySchema
+) -> list[CoreCheckResult]:
+    """"""Check positional shape.""""""
+    results: list[CoreCheckResult] = []
+    if schema.shape is None:
+        return results
+    for i, sh in enumerate(schema.shape):
+        if sh is None:
+            continue
+        if i >= len(check_obj.shape) or check_obj.shape[i] != sh:
+            results.append(
+                CoreCheckResult(
+                    passed=False,
+                    check=""shape"",
+                    reason_code=(SchemaErrorReason.MISMATCH_INDEX),
+                    message=(
+                        f""expected shape[{i}]={sh}, ""
+                        f""got shape ""
+                        f""{check_obj.shape}""
+                    ),
+                    failure_cases=str(check_obj.shape),
+                )
+            )
+    return results","from __future__ import annotations
+import copy
+import re
+from typing import Any
+import numpy as np
+from pandera.api.base.error_handler import ErrorHandler, get_error_category
+from pandera.api.xarray.components import Coordinate, DataVar
+from pandera.api.xarray.container import DataArraySchema, DatasetSchema
+from pandera.backends.base import CoreCheckResult
+from pandera.backends.xarray.base import XarraySchemaBackend
+from pandera.config import ValidationScope
+from pandera.errors import SchemaError, SchemaErrorReason, SchemaErrors
+from pandera.validation_depth import validate_scope
+
+class Solution:
+    def check_shape(self, 
+        self, check_obj, schema: DataArraySchema
+    ) -> list[CoreCheckResult]:
+        """"""Check positional shape.""""""
+        results: list[CoreCheckResult] = []
+        if schema.shape is None:
+            return results
+        for i, sh in enumerate(schema.shape):
+            if sh is None:
+                continue
+            if i >= len(check_obj.shape) or check_obj.shape[i] != sh:
+                results.append(
+                    CoreCheckResult(
+                        passed=False,
+                        check=""shape"",
+                        reason_code=(SchemaErrorReason.MISMATCH_INDEX),
+                        message=(
+                            f""expected shape[{i}]={sh}, ""
+                            f""got shape ""
+                            f""{check_obj.shape}""
+                        ),
+                        failure_cases=str(check_obj.shape),
+                    )
+                )
+        return results",,,
+dependency_0006,rwt2_c3ce53fc3cf0,rocketride-org/rocketride-server,IInstance.py,scrape_url,scrape_url,c6c42191cc2c8cf5e64ee38a85427fe05dec5892,274a1af84b687e3e5a6226852b67136a3342feb8f793e17b11c725c80f415fe7,preserved_sample_and_completed_audit,"def scrape_url(self, args)","def scrape_url(self, args):
+    """"""Scrape a single web page.""""""
+    args = normalize_tool_input(args, tool_name='firecrawl')
+    url = args.get('url')
+    if not url:
+        raise ValueError('scrape_url requires a `url` parameter')
+
+    result = firecrawl_wrapper(lambda: self.IGlobal.app.scrape(url))
+
+    fmt = args.get('format', 'markdown')
+    content = getattr(result, fmt, None) or getattr(result, 'markdown', None) or ''
+    if not isinstance(content, str):
+        content = json.dumps(content)
+
+    metadata = getattr(result, 'metadata', None)
+    if metadata is not None and not isinstance(metadata, dict):
+        try:
+            metadata = metadata.model_dump(exclude_none=True) if hasattr(metadata, 'model_dump') else {}
+        except Exception as e:
+            warning(f'firecrawl: failed to dump metadata: {e}')
+            metadata = {}
+
+    return {'success': True, 'content': content, 'metadata': metadata or {}}","from __future__ import annotations
+import json
+from rocketlib import IInstanceBase, tool_function, warning
+from ai.common.utils import normalize_tool_input
+from .utils import firecrawl_wrapper
+from .IGlobal import IGlobal
+
+class Solution:
+    def scrape_url(self, args):
+        """"""Scrape a single web page.""""""
+        args = normalize_tool_input(args, tool_name='firecrawl')
+        url = args.get('url')
+        if not url:
+            raise ValueError('scrape_url requires a `url` parameter')
+
+        result = firecrawl_wrapper(lambda: self.IGlobal.app.scrape(url))
+
+        fmt = args.get('format', 'markdown')
+        content = getattr(result, fmt, None) or getattr(result, 'markdown', None) or ''
+        if not isinstance(content, str):
+            content = json.dumps(content)
+
+        metadata = getattr(result, 'metadata', None)
+        if metadata is not None and not isinstance(metadata, dict):
+            try:
+                metadata = metadata.model_dump(exclude_none=True) if hasattr(metadata, 'model_dump') else {}
+            except Exception as e:
+                warning(f'firecrawl: failed to dump metadata: {e}')
+                metadata = {}
+
+        return {'success': True, 'content': content, 'metadata': metadata or {}}",,,
+dependency_0007,rwt2_658bc8e23d3f,MechanicalSoup/MechanicalSoup,stateful_browser.py,download_link,download_link,439ae10be2e6157a171b9087251d8fd5dc060986,8cde2104aa73eb1dca703f3db32184587f73b4abce5d596f474b88e69b2ff316,preserved_sample_and_completed_audit,"def download_link(self, link=None, file=None, *bs4_args, bs4_kwargs={}, requests_kwargs={}, **kwargs)","def download_link(self, link=None, file=None, *bs4_args, bs4_kwargs={},
+                  requests_kwargs={}, **kwargs):
+    """"""Downloads the contents of a link to a file. This function behaves
+    similarly to :func:`follow_link`, but the browser state will
+    not change when calling this function.
+
+    :param file: Filesystem path where the page contents will be
+        downloaded. If the file already exists, it will be overwritten.
+
+    Other arguments are the same as :func:`follow_link` (``link``
+    can either be a bs4.element.Tag or a URL regex.
+    ``bs4_kwargs`` arguments are forwarded to :func:`find_link`,
+    as are any excess keyword arguments (aka ``**kwargs``) for backwards
+    compatibility).
+
+    :return: `requests.Response
+        <http://docs.python-requests.org/en/master/api/#requests.Response>`__
+        object.
+    """"""
+    link = self._find_link_internal(link, bs4_args,
+                                    {**bs4_kwargs, **kwargs})
+    url = self.absolute_url(link['href'])
+
+    requests_kwargs = self._merge_referer(**requests_kwargs)
+
+    response = self.session.get(url, **requests_kwargs)
+    if self.raise_on_404 and response.status_code == 404:
+        raise LinkNotFoundError()
+
+    # Save the response content to file
+    if file is not None:
+        with open(file, 'wb') as f:
+            f.write(response.content)
+
+    return response","import re
+import sys
+import urllib
+import bs4
+from .browser import Browser
+from .form import Form
+from .utils import LinkNotFoundError
+from requests.structures import CaseInsensitiveDict
+
+class Solution:
+    def download_link(self, link=None, file=None, *bs4_args, bs4_kwargs={},
+                      requests_kwargs={}, **kwargs):
+        """"""Downloads the contents of a link to a file. This function behaves
+        similarly to :func:`follow_link`, but the browser state will
+        not change when calling this function.
+
+        :param file: Filesystem path where the page contents will be
+            downloaded. If the file already exists, it will be overwritten.
+
+        Other arguments are the same as :func:`follow_link` (``link``
+        can either be a bs4.element.Tag or a URL regex.
+        ``bs4_kwargs`` arguments are forwarded to :func:`find_link`,
+        as are any excess keyword arguments (aka ``**kwargs``) for backwards
+        compatibility).
+
+        :return: `requests.Response
+            <http://docs.python-requests.org/en/master/api/#requests.Response>`__
+            object.
+        """"""
+        link = self._find_link_internal(link, bs4_args,
+                                        {**bs4_kwargs, **kwargs})
+        url = self.absolute_url(link['href'])
+
+        requests_kwargs = self._merge_referer(**requests_kwargs)
+
+        response = self.session.get(url, **requests_kwargs)
+        if self.raise_on_404 and response.status_code == 404:
+            raise LinkNotFoundError()
+
+        # Save the response content to file
+        if file is not None:
+            with open(file, 'wb') as f:
+                f.write(response.content)
+
+        return response",,,
+dependency_0008,rwt2_60b5ef76277b,yukinarit/pyserde,inspect.py,main,main,0cb6cad1481fc61f18115aaa86b9c6a8a034bbb5,b390e7d9afe4242f19caa39ccb74aba84c5309f0e803a9d41195e904fe4e0790,completed_audit_current_candidate,def main(arg: Any),"def main(arg: Any) -> None:
+    """"""
+    Main entrypoint of `serde.inspect`.
+    """"""
+    if arg.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+
+    try:
+        import black
+
+        assert black
+    except ImportError:
+        logger.warning(
+            (
+                'Tips: Installing ""black"" makes the output prettier! Try this command:\n'
+                ""pip install back""
+            )
+        )
+
+    dir = os.path.dirname(arg.path)
+    mod = os.path.basename(arg.path)[:-3]
+    print(f""Loading {mod}.{arg.name} from {dir}/{mod}.py"")
+    sys.path.append(dir)
+    pkg = importlib.import_module(mod)
+    cls = getattr(pkg, arg.name)
+    inspect(cls)","import argparse
+import importlib
+import logging
+import os
+import sys
+from typing import Any
+from .core import SERDE_SCOPE, init, logger
+
+class Solution:
+    def main(self, arg: Any) -> None:
+        """"""
+        Main entrypoint of `serde.inspect`.
+        """"""
+        if arg.verbose:
+            logging.basicConfig(level=logging.DEBUG)
+
+        try:
+            import black
+
+            assert black
+        except ImportError:
+            logger.warning(
+                (
+                    'Tips: Installing ""black"" makes the output prettier! Try this command:\n'
+                    ""pip install back""
+                )
+            )
+
+        dir = os.path.dirname(arg.path)
+        mod = os.path.basename(arg.path)[:-3]
+        print(f""Loading {mod}.{arg.name} from {dir}/{mod}.py"")
+        sys.path.append(dir)
+        pkg = importlib.import_module(mod)
+        cls = getattr(pkg, arg.name)
+        inspect(cls)",,,
+dependency_0009,rwt2_08b3559022bd,tyxak/remotepower,sanitize.py,_sanitize_str,_sanitize_str,aa91ee20aa0ae0e3a826d369a3f5c735ecc68aa3,d0042be1e3734e98db1bcf69fe421fa0c0e72ddebc703197c9cff56254ee7b83,preserved_sample_and_completed_audit,"def _sanitize_str(value, max_len, allow_empty=True)","def _sanitize_str(value, max_len, allow_empty=True):
+    """"""Truncate and strip a string field.""""""
+    if value is None:
+        return ''
+    s = str(value).strip()
+    if not allow_empty and not s:
+        return ''
+    return s[:max_len]","import re
+
+class Solution:
+    def _sanitize_str(self, value, max_len, allow_empty=True):
+        """"""Truncate and strip a string field.""""""
+        if value is None:
+            return ''
+        s = str(value).strip()
+        if not allow_empty and not s:
+            return ''
+        return s[:max_len]",,,
+dependency_0010,rwt2_08ace22793aa,kstevica/captain-claw,captain_claw/cli.py,print_tool_call,print_tool_call,460410901b258f89cf638f91a1a47ea10e48762d,d756b386b1a7a19efa1918d1938c95626038e5f5c2637d1cff0888c3a4918f54,completed_audit_git_recovered,"def print_tool_call(self, tool_name: str, arguments: dict[str, Any]) -> None:","def print_tool_call(self, tool_name: str, arguments: dict[str, Any]) -> None:
+        """"""Print tool call.""""""
+        if self._monitor_mode and self._sticky_footer:
+            self._append_chat_text(f""[TOOL] {tool_name}: {arguments}\n"")
+            self._render_monitor_view()
+            return
+        self._prepare_output()
+        print(f""[TOOL] {tool_name}: {arguments}"")","import atexit
+import asyncio
+from collections import deque
+from datetime import datetime
+import json
+import os
+from pathlib import Path
+import re
+import signal
+import shlex
+import shutil
+import sys
+import textwrap
+import time
+from typing import Any
+from captain_claw.config import get_config
+from captain_claw.logging import get_logger
+
+def print_tool_call(self, tool_name: str, arguments: dict[str, Any]) -> None:
+        """"""Print tool call.""""""
+        if self._monitor_mode and self._sticky_footer:
+            self._append_chat_text(f""[TOOL] {tool_name}: {arguments}\n"")
+            self._render_monitor_view()
+            return
+        self._prepare_output()
+        print(f""[TOOL] {tool_name}: {arguments}"")",,,
+dependency_0011,rwt2_e157cc9b93af,tyxak/remotepower,api.py,handle_webterm_session_audit,handle_webterm_session_audit,aa91ee20aa0ae0e3a826d369a3f5c735ecc68aa3,ee35545f066d95ffbc81696f25cfeabf60aa655fbaa9184a5435a5e051d8b4b5,preserved_sample_and_completed_audit,def handle_webterm_session_audit(),"def handle_webterm_session_audit():
+    """"""``POST /api/webterm/audit`` — daemon reports session completion.
+
+    Called by the daemon when an SSH session ends, with metadata about
+    the session (duration, byte counts, exit reason). The CGI logs it
+    to the audit log so it shows up alongside the rest of the audit
+    trail. Authenticated via a shared secret stored in config —
+    daemon and CGI both read the same config.json so this works
+    automatically once the deploy script generates the secret.
+    """"""
+    if method() != 'POST':
+        respond(405, {'error': 'Method not allowed'})
+    body = get_json_body() or {}
+
+    # Daemon authenticates with a shared secret rather than session
+    # tokens — the daemon doesn't have a session token, it's a system
+    # service. The secret is generated once by the deploy script and
+    # written to config.json (only readable by the rp-www user) and to
+    # /etc/remotepower/webterm-secret (only readable by the daemon's
+    # user). If they match, it's the legit daemon talking.
+    cfg = load(CONFIG_FILE)
+    expected = cfg.get('webterm_daemon_secret', '')
+    provided = os.environ.get('HTTP_X_WEBTERM_SECRET', '')
+    if not expected or not provided or not hmac.compare_digest(expected, provided):
+        respond(403, {'error': 'Daemon secret mismatch'})
+
+    actor       = _sanitize_str(body.get('actor', 'unknown'), 64)
+    dev_id      = _sanitize_str(body.get('device_id', ''), 64)
+    ssh_user    = _sanitize_str(body.get('ssh_user', ''), 64)
+    ssh_host    = _sanitize_str(body.get('ssh_host', ''), 256)
+    duration_s  = int(body.get('duration_s', 0)) if isinstance(body.get('duration_s'), (int, float)) else 0
+    bytes_in    = int(body.get('bytes_in', 0))   if isinstance(body.get('bytes_in'), int) else 0
+    bytes_out   = int(body.get('bytes_out', 0))  if isinstance(body.get('bytes_out'), int) else 0
+    reason      = _sanitize_str(body.get('reason', ''), 128)
+    session_id  = _sanitize_str(body.get('session_id', ''), 64)
+    detail = (f'device={dev_id} ssh_user={ssh_user}@{ssh_host} '
+              f'duration={duration_s}s bytes_in={bytes_in} bytes_out={bytes_out} '
+              f'reason={reason} session_id={session_id}')
+    audit_log(actor, 'webterm_session', detail[:600])
+    respond(200, {'ok': True})","import os
+import re
+import sys
+import json
+import time
+import hashlib
+import hmac
+import secrets
+import socket
+import subprocess
+import shlex
+import shutil
+import fcntl
+import gzip
+import traceback
+import urllib.request
+import urllib.error
+import urllib.parse
+from pathlib import Path
+import cve_scanner
+import prometheus_export
+import smtp_notifier
+import ldap_auth
+import cmdb_vault
+import wg_access
+import openapi_spec
+import storage
+import storage_pg
+import containers as containers_mod
+import image_registry as image_registry_mod
+import proxmox_client
+import tls_monitor
+import dmarc_monitor
+import ip_reputation
+import integrations as integrations_mod
+import dns_zones as dns_zones_mod
+import dns_resolve as dns_resolve_mod
+import resolver_health as resolver_health_mod
+import backup_crypto
+import ai_provider
+import ai_context
+import rag_index
+import forecast
+import compliance
+import ai_insights
+import anomaly_stats
+import sbom as sbom_mod
+from sanitize import _sanitize_str, _sanitize_hostname, _sanitize_ip, _sanitize_mac, _sanitize_version, MAX_HOSTNAME_LEN, MAX_VERSION_LEN, MAX_IP_LEN, MAX_MAC_LEN, _IP_RE, _MAC_RE, _VER_RE
+import hmac as _hmac_mod
+import struct as _struct
+import base64 as _base64
+import http.client as _httpclient
+
+class Solution:
+    def handle_webterm_session_audit(self):
+        """"""``POST /api/webterm/audit`` — daemon reports session completion.
+
+        Called by the daemon when an SSH session ends, with metadata about
+        the session (duration, byte counts, exit reason). The CGI logs it
+        to the audit log so it shows up alongside the rest of the audit
+        trail. Authenticated via a shared secret stored in config —
+        daemon and CGI both read the same config.json so this works
+        automatically once the deploy script generates the secret.
+        """"""
+        if method() != 'POST':
+            respond(405, {'error': 'Method not allowed'})
+        body = get_json_body() or {}
+
+        # Daemon authenticates with a shared secret rather than session
+        # tokens — the daemon doesn't have a session token, it's a system
+        # service. The secret is generated once by the deploy script and
+        # written to config.json (only readable by the rp-www user) and to
+        # /etc/remotepower/webterm-secret (only readable by the daemon's
+        # user). If they match, it's the legit daemon talking.
+        cfg = load(CONFIG_FILE)
+        expected = cfg.get('webterm_daemon_secret', '')
+        provided = os.environ.get('HTTP_X_WEBTERM_SECRET', '')
+        if not expected or not provided or not hmac.compare_digest(expected, provided):
+            respond(403, {'error': 'Daemon secret mismatch'})
+
+        actor       = _sanitize_str(body.get('actor', 'unknown'), 64)
+        dev_id      = _sanitize_str(body.get('device_id', ''), 64)
+        ssh_user    = _sanitize_str(body.get('ssh_user', ''), 64)
+        ssh_host    = _sanitize_str(body.get('ssh_host', ''), 256)
+        duration_s  = int(body.get('duration_s', 0)) if isinstance(body.get('duration_s'), (int, float)) else 0
+        bytes_in    = int(body.get('bytes_in', 0))   if isinstance(body.get('bytes_in'), int) else 0
+        bytes_out   = int(body.get('bytes_out', 0))  if isinstance(body.get('bytes_out'), int) else 0
+        reason      = _sanitize_str(body.get('reason', ''), 128)
+        session_id  = _sanitize_str(body.get('session_id', ''), 64)
+        detail = (f'device={dev_id} ssh_user={ssh_user}@{ssh_host} '
+                  f'duration={duration_s}s bytes_in={bytes_in} bytes_out={bytes_out} '
+                  f'reason={reason} session_id={session_id}')
+        audit_log(actor, 'webterm_session', detail[:600])
+        respond(200, {'ok': True})",,,
+dependency_0012,rwt2_75811d5a190c,tyxak/remotepower,api.py,_valid_abs_path,_valid_abs_path,aa91ee20aa0ae0e3a826d369a3f5c735ecc68aa3,a98d0054a917a57230cdfd0b7f0bfb6ead0e9b09ccdb3ec5bc5fd15f01984d9f,preserved_sample_and_completed_audit,"def _valid_abs_path(p, maxlen=4096)","def _valid_abs_path(p, maxlen=4096):
+    """"""An absolute host path with no NUL and no '..' segment. It is base64-wrapped
+    into the queued command and the agent uses pathlib (never a shell), so shell
+    metacharacters are irrelevant — the danger is traversal, guarded here AND
+    re-checked symlink-resolved on the agent.""""""
+    if not isinstance(p, str) or not (0 < len(p) <= maxlen):
+        return False
+    if not p.startswith('/') or '\x00' in p:
+        return False
+    return '..' not in p.split('/')","import os
+import re
+import sys
+import json
+import time
+import hashlib
+import hmac
+import secrets
+import socket
+import subprocess
+import shlex
+import shutil
+import fcntl
+import gzip
+import traceback
+import urllib.request
+import urllib.error
+import urllib.parse
+from pathlib import Path
+import cve_scanner
+import prometheus_export
+import smtp_notifier
+import ldap_auth
+import cmdb_vault
+import wg_access
+import openapi_spec
+import storage
+import storage_pg
+import containers as containers_mod
+import image_registry as image_registry_mod
+import proxmox_client
+import tls_monitor
+import dmarc_monitor
+import ip_reputation
+import integrations as integrations_mod
+import dns_zones as dns_zones_mod
+import dns_resolve as dns_resolve_mod
+import resolver_health as resolver_health_mod
+import backup_crypto
+import ai_provider
+import ai_context
+import rag_index
+import forecast
+import compliance
+import ai_insights
+import anomaly_stats
+import sbom as sbom_mod
+from sanitize import _sanitize_str, _sanitize_hostname, _sanitize_ip, _sanitize_mac, _sanitize_version, MAX_HOSTNAME_LEN, MAX_VERSION_LEN, MAX_IP_LEN, MAX_MAC_LEN, _IP_RE, _MAC_RE, _VER_RE
+import hmac as _hmac_mod
+import struct as _struct
+import base64 as _base64
+import http.client as _httpclient
+
+class Solution:
+    def _valid_abs_path(self, p, maxlen=4096):
+        """"""An absolute host path with no NUL and no '..' segment. It is base64-wrapped
+        into the queued command and the agent uses pathlib (never a shell), so shell
+        metacharacters are irrelevant — the danger is traversal, guarded here AND
+        re-checked symlink-resolved on the agent.""""""
+        if not isinstance(p, str) or not (0 < len(p) <= maxlen):
+            return False
+        if not p.startswith('/') or '\x00' in p:
+            return False
+        return '..' not in p.split('/')",,,
+dependency_0013,rwt2_4c639897b3dd,BlessedRebuS/Krawl,deception_responses.py,generate_fake_config_file,generate_fake_config_file,53b536c19e223df7a1d8c02a6d3f2a2eb706f3ec,e7bee4005bf6d804f5be5eeeaf7a72c89c89f8af2746bcd78aee74b332bc2150,preserved_sample_and_completed_audit,def generate_fake_config_file(filename: str),"def generate_fake_config_file(filename: str) -> str:
+    """"""Generate fake configuration file content""""""
+    configs = {
+        ""config.php"": """"""<?php
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'app_database');
+define('DB_USER', 'db_user');
+define('DB_PASSWORD', 'fake_pass_123');
+define('SECRET_KEY', 'fake_secret_key_xyz789');
+define('API_ENDPOINT', 'https://api.example.com');
+?>"""""",
+        ""application.properties"": """"""# Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/appdb
+spring.datasource.username=dbuser
+spring.datasource.password=fake_password_123
+server.port=8080
+jwt.secret=fake_jwt_secret_key_456"""""",
+        "".env"": """"""DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=production_db
+DB_USER=app_user
+DB_PASSWORD=fake_env_password_789
+API_KEY=fake_api_key_abc123
+SECRET_TOKEN=fake_secret_token_xyz"""""",
+    }
+
+    for key in configs:
+        if key.lower() in filename.lower():
+            return configs[key]
+
+    return f""""""# Configuration File
+api_endpoint = https://api.example.com
+api_key = fake_key_{_sysrand.randint(1000, 9999)}
+database_url = mysql://user:fake_pass@localhost/db
+secret = fake_secret_{_sysrand.randint(10000, 99999)}
+""""""","import json
+import logging
+import re
+import secrets
+from generators import random_email, random_password, random_username
+from wordlists import get_wordlists
+
+class Solution:
+    def generate_fake_config_file(self, filename: str) -> str:
+        """"""Generate fake configuration file content""""""
+        configs = {
+            ""config.php"": """"""<?php
+    define('DB_HOST', 'localhost');
+    define('DB_NAME', 'app_database');
+    define('DB_USER', 'db_user');
+    define('DB_PASSWORD', 'fake_pass_123');
+    define('SECRET_KEY', 'fake_secret_key_xyz789');
+    define('API_ENDPOINT', 'https://api.example.com');
+    ?>"""""",
+            ""application.properties"": """"""# Database Configuration
+    spring.datasource.url=jdbc:mysql://localhost:3306/appdb
+    spring.datasource.username=dbuser
+    spring.datasource.password=fake_password_123
+    server.port=8080
+    jwt.secret=fake_jwt_secret_key_456"""""",
+            "".env"": """"""DB_HOST=localhost
+    DB_PORT=3306
+    DB_NAME=production_db
+    DB_USER=app_user
+    DB_PASSWORD=fake_env_password_789
+    API_KEY=fake_api_key_abc123
+    SECRET_TOKEN=fake_secret_token_xyz"""""",
+        }
+
+        for key in configs:
+            if key.lower() in filename.lower():
+                return configs[key]
+
+        return f""""""# Configuration File
+    api_endpoint = https://api.example.com
+    api_key = fake_key_{_sysrand.randint(1000, 9999)}
+    database_url = mysql://user:fake_pass@localhost/db
+    secret = fake_secret_{_sysrand.randint(10000, 99999)}
+    """"""",,,
+dependency_0014,rwt2_23a838e2a8b0,unionai-oss/pandera,container.py,check_column_names_are_unique,check_column_names_are_unique,7e437f860c286988086db208d9eb6accaea6fecb,7240c5421e9ff31c70f3a3ffab0c27142806e94c1070f6e244e2b9690b5d224e,preserved_sample_and_completed_audit,"def check_column_names_are_unique(self, check_obj: DataFrame, schema)","def check_column_names_are_unique(
+    self,
+    check_obj: DataFrame,
+    schema,
+) -> CoreCheckResult:
+    """"""Check for column name uniqueness.""""""
+
+    passed = True
+    failure_cases = None
+    message = None
+
+    if not schema.unique_column_names:
+        return CoreCheckResult(
+            passed=True,
+            check=""dataframe_column_labels_unique"",
+        )
+
+    column_count_dict: dict[Any, Any] = {}
+    failed = []
+    for column_name in check_obj.columns:
+        if column_count_dict.get(column_name):
+            # Insert to the list only once
+            if column_count_dict[column_name] == 1:
+                failed.append(column_name)
+            column_count_dict[column_name] += 1
+
+        else:
+            column_count_dict[column_name] = 0
+
+    if failed:
+        passed = False
+        message = (
+            f""dataframe contains multiple columns with label(s): {failed}""
+        )
+        failure_cases = failed
+
+    return CoreCheckResult(
+        passed=passed,
+        check=""dataframe_column_labels_unique"",
+        reason_code=SchemaErrorReason.DUPLICATE_COLUMN_LABELS,
+        message=message,
+        failure_cases=failure_cases,
+    )","import copy
+import traceback
+import warnings
+from collections.abc import Callable
+from typing import Any, Optional
+from pyspark.sql import DataFrame
+from pyspark.sql.functions import col, count
+from pandera.api.base.error_handler import ErrorCategory, ErrorHandler, get_error_category
+from pandera.api.pyspark.types import is_table
+from pandera.backends.base import ColumnInfo, CoreCheckResult
+from pandera.backends.pyspark.base import PysparkSchemaBackend
+from pandera.backends.pyspark.decorators import cache_check_obj
+from pandera.backends.pyspark.error_formatters import scalar_failure_case
+from pandera.config import get_config_context
+from pandera.errors import SchemaDefinitionError, SchemaError, SchemaErrorReason, SchemaErrors
+from pandera.validation_depth import ValidationScope, validate_scope
+
+class Solution:
+    def check_column_names_are_unique(self, 
+        self,
+        check_obj: DataFrame,
+        schema,
+    ) -> CoreCheckResult:
+        """"""Check for column name uniqueness.""""""
+
+        passed = True
+        failure_cases = None
+        message = None
+
+        if not schema.unique_column_names:
+            return CoreCheckResult(
+                passed=True,
+                check=""dataframe_column_labels_unique"",
+            )
+
+        column_count_dict: dict[Any, Any] = {}
+        failed = []
+        for column_name in check_obj.columns:
+            if column_count_dict.get(column_name):
+                # Insert to the list only once
+                if column_count_dict[column_name] == 1:
+                    failed.append(column_name)
+                column_count_dict[column_name] += 1
+
+            else:
+                column_count_dict[column_name] = 0
+
+        if failed:
+            passed = False
+            message = (
+                f""dataframe contains multiple columns with label(s): {failed}""
+            )
+            failure_cases = failed
+
+        return CoreCheckResult(
+            passed=passed,
+            check=""dataframe_column_labels_unique"",
+            reason_code=SchemaErrorReason.DUPLICATE_COLUMN_LABELS,
+            message=message,
+            failure_cases=failure_cases,
+        )",,,
+dependency_0015,rwt2_9826426689ae,LiberTEM/LiberTEM,dask_inplace.py,combine_slices,combine_slices,83313ca63e5c2325ebbca5d6170ff7b1d553d678,1e61096ab60565158a32f16a3196d6f6c088fed204800f5027df0511bc15dda7,preserved_sample_and_completed_audit,"def combine_slices(slice1, slice2, length)","def combine_slices(slice1, slice2, length):
+    """"""
+    https://stackoverflow.com/a/26783035
+    Modified to support slices which are just element selection
+    i.e. an integer for slice1 or slice2
+
+
+    returns a slice that is a combination of the two slices.
+    As in
+      x[slice1][slice2]
+    becomes
+      combined_slice = slice_combine(slice1, slice2, len(x))
+      x[combined_slice]
+
+    :param slice1: The first slice
+    :param slice2: The second slice
+    :param length: The length of the first dimension of data being sliced. (eg len(x))
+    """"""
+    if isinstance(slice1, int):
+        # by definition we can't slice further on this dimension
+        assert slice2 is None or slice2 == slice(None, None, None)
+        return slice1
+
+    # First get the step sizes of the two slices.
+    slice1_step = (slice1.step if slice1.step is not None else 1)
+
+    # Use slice1.indices to get the actual indices returned from slicing with slice1
+    slice1_indices = slice1.indices(length)
+
+    if isinstance(slice2, int):
+        # Represents a single element from array[slice1]
+        return range(*slice1_indices)[slice2]
+
+    # From this point we are combining two non-integer slices
+    slice2_step = (slice2.step if slice2.step is not None else 1)
+
+    # The final step size
+    step = slice1_step * slice2_step
+
+    # We calculate the length of the first slice
+    slice1_length = (abs(slice1_indices[1] - slice1_indices[0]) - 1) // abs(slice1_indices[2])
+
+    # If we step in the same direction as the start,stop, we get at least one datapoint
+    if (slice1_indices[1] - slice1_indices[0]) * slice1_step > 0:
+        slice1_length += 1
+    else:
+        # Otherwise, The slice is zero length.
+        return slice(0, 0, step)
+
+    # Use the length after the first slice to get the indices returned from a
+    # second slice starting at 0.
+    slice2_indices = slice2.indices(slice1_length)
+
+    # if the final range length = 0, return
+    if not (slice2_indices[1] - slice2_indices[0]) * slice2_step > 0:
+        return slice(0, 0, step)
+
+    # We shift slice2_indices by the starting index in slice1 and the
+    # step size of slice1
+    start = slice1_indices[0] + slice2_indices[0] * slice1_step
+    stop = slice1_indices[0] + slice2_indices[1] * slice1_step
+
+    # slice.indices will return -1 as the stop index when slice.stop should be set to None.
+    if start > stop:
+        if stop < 0:
+            stop = None
+
+    return slice(start, stop, step)","from collections import namedtuple
+import itertools
+from numbers import Number
+import dask
+import numpy as np
+import numpy.typing as nt
+
+class Solution:
+    def combine_slices(self, slice1, slice2, length):
+        """"""
+        https://stackoverflow.com/a/26783035
+        Modified to support slices which are just element selection
+        i.e. an integer for slice1 or slice2
+
+
+        returns a slice that is a combination of the two slices.
+        As in
+          x[slice1][slice2]
+        becomes
+          combined_slice = slice_combine(slice1, slice2, len(x))
+          x[combined_slice]
+
+        :param slice1: The first slice
+        :param slice2: The second slice
+        :param length: The length of the first dimension of data being sliced. (eg len(x))
+        """"""
+        if isinstance(slice1, int):
+            # by definition we can't slice further on this dimension
+            assert slice2 is None or slice2 == slice(None, None, None)
+            return slice1
+
+        # First get the step sizes of the two slices.
+        slice1_step = (slice1.step if slice1.step is not None else 1)
+
+        # Use slice1.indices to get the actual indices returned from slicing with slice1
+        slice1_indices = slice1.indices(length)
+
+        if isinstance(slice2, int):
+            # Represents a single element from array[slice1]
+            return range(*slice1_indices)[slice2]
+
+        # From this point we are combining two non-integer slices
+        slice2_step = (slice2.step if slice2.step is not None else 1)
+
+        # The final step size
+        step = slice1_step * slice2_step
+
+        # We calculate the length of the first slice
+        slice1_length = (abs(slice1_indices[1] - slice1_indices[0]) - 1) // abs(slice1_indices[2])
+
+        # If we step in the same direction as the start,stop, we get at least one datapoint
+        if (slice1_indices[1] - slice1_indices[0]) * slice1_step > 0:
+            slice1_length += 1
+        else:
+            # Otherwise, The slice is zero length.
+            return slice(0, 0, step)
+
+        # Use the length after the first slice to get the indices returned from a
+        # second slice starting at 0.
+        slice2_indices = slice2.indices(slice1_length)
+
+        # if the final range length = 0, return
+        if not (slice2_indices[1] - slice2_indices[0]) * slice2_step > 0:
+            return slice(0, 0, step)
+
+        # We shift slice2_indices by the starting index in slice1 and the
+        # step size of slice1
+        start = slice1_indices[0] + slice2_indices[0] * slice1_step
+        stop = slice1_indices[0] + slice2_indices[1] * slice1_step
+
+        # slice.indices will return -1 as the stop index when slice.stop should be set to None.
+        if start > stop:
+            if stop < 0:
+                stop = None
+
+        return slice(start, stop, step)",,,
+dependency_0016,rwt2_7231a1f3d995,kstevica/captain-claw,captain_claw/tools/clipboard.py,_write_image,_write_image,460410901b258f89cf638f91a1a47ea10e48762d,26692399d7a871e9f2accbbb93994e2482540ca28605cc5f2bdafa78ab692d9a,completed_audit_git_recovered,"async def _write_image(self, posix_path: str, suffix: str) -> ToolResult:","async def _write_image(self, posix_path: str, suffix: str) -> ToolResult:
+        """"""Copy an image file to the clipboard as image data.""""""
+        # Determine the AppleScript clipboard class.
+        # PNG and TIFF have dedicated classes; everything else we
+        # convert to TIFF via sips first (built into macOS).
+        if suffix == "".png"":
+            as_class = ""«class PNGf»""
+        elif suffix in ("".tiff"", "".tif""):
+            as_class = ""«class TIFF»""
+        else:
+            # JPEG, GIF, BMP, WEBP — convert to PNG in-place (temp) via sips.
+            # Actually it's simpler to just use JPEG class for .jpg and
+            # fall back to converting others to PNG.
+            if suffix in ("".jpg"", "".jpeg""):
+                as_class = ""«class JPEG»""
+            else:
+                # For GIF, BMP, WEBP: read as PNG via sips conversion to
+                # a temp file, then copy that.
+                import tempfile
+                tmp = tempfile.NamedTemporaryFile(suffix="".png"", delete=False)
+                tmp.close()
+                try:
+                    await asyncio.to_thread(
+                        subprocess.run,
+                        [""sips"", ""-s"", ""format"", ""png"", posix_path, ""--out"", tmp.name],
+                        capture_output=True,
+                        timeout=_SUBPROCESS_TIMEOUT,
+                    )
+                    posix_path = tmp.name
+                    as_class = ""«class PNGf»""
+                except Exception:
+                    # Fall back to file reference if conversion fails.
+                    return await self._write_file_ref(posix_path)
+
+        script = f'set the clipboard to (read (POSIX file ""{posix_path}"") as {as_class})'
+        try:
+            await asyncio.to_thread(
+                subprocess.run,
+                [""osascript"", ""-e"", script],
+                capture_output=True,
+                timeout=_SUBPROCESS_TIMEOUT,
+                check=True,
+            )
+            return ToolResult(
+                success=True,
+                content=f""Copied image to clipboard: {Path(posix_path).name}"",
+            )
+        except Exception as exc:
+            return ToolResult(success=False, error=f""Failed to copy image to clipboard: {exc}"")","from __future__ import annotations
+import asyncio
+import subprocess
+import sys
+from pathlib import Path
+from typing import Any
+from captain_claw.logging import get_logger
+from captain_claw.tools.registry import Tool, ToolResult
+
+async def _write_image(self, posix_path: str, suffix: str) -> ToolResult:
+        """"""Copy an image file to the clipboard as image data.""""""
+        # Determine the AppleScript clipboard class.
+        # PNG and TIFF have dedicated classes; everything else we
+        # convert to TIFF via sips first (built into macOS).
+        if suffix == "".png"":
+            as_class = ""«class PNGf»""
+        elif suffix in ("".tiff"", "".tif""):
+            as_class = ""«class TIFF»""
+        else:
+            # JPEG, GIF, BMP, WEBP — convert to PNG in-place (temp) via sips.
+            # Actually it's simpler to just use JPEG class for .jpg and
+            # fall back to converting others to PNG.
+            if suffix in ("".jpg"", "".jpeg""):
+                as_class = ""«class JPEG»""
+            else:
+                # For GIF, BMP, WEBP: read as PNG via sips conversion to
+                # a temp file, then copy that.
+                import tempfile
+                tmp = tempfile.NamedTemporaryFile(suffix="".png"", delete=False)
+                tmp.close()
+                try:
+                    await asyncio.to_thread(
+                        subprocess.run,
+                        [""sips"", ""-s"", ""format"", ""png"", posix_path, ""--out"", tmp.name],
+                        capture_output=True,
+                        timeout=_SUBPROCESS_TIMEOUT,
+                    )
+                    posix_path = tmp.name
+                    as_class = ""«class PNGf»""
+                except Exception:
+                    # Fall back to file reference if conversion fails.
+                    return await self._write_file_ref(posix_path)
+
+        script = f'set the clipboard to (read (POSIX file ""{posix_path}"") as {as_class})'
+        try:
+            await asyncio.to_thread(
+                subprocess.run,
+                [""osascript"", ""-e"", script],
+                capture_output=True,
+                timeout=_SUBPROCESS_TIMEOUT,
+                check=True,
+            )
+            return ToolResult(
+                success=True,
+                content=f""Copied image to clipboard: {Path(posix_path).name}"",
+            )
+        except Exception as exc:
+            return ToolResult(success=False, error=f""Failed to copy image to clipboard: {exc}"")",,,
+dependency_0017,rwt2_5c26465c356f,tyxak/remotepower,api.py,_run_automation_action,_run_automation_action,aa91ee20aa0ae0e3a826d369a3f5c735ecc68aa3,5036ae226c7307fc6749337b7d52837b661d29d4b217454456e8ab811d176c46,preserved_sample_and_completed_audit,"def _run_automation_action(action, event, payload, dev_id, cfg, rule)","def _run_automation_action(action, event, payload, dev_id, cfg, rule):
+    """"""Run one rule action: queue a saved script on the event's device, or
+    re-dispatch the event to a named webhook destination.""""""
+    atype = (action or {}).get('type')
+    if atype == 'run_script':
+        sid = action.get('script_id')
+        if not sid or not dev_id:
+            return
+        scripts = load(SCRIPTS_FILE) or {}
+        body = next((s.get('body', '') for s in (scripts.get('scripts') or [])
+                     if s.get('id') == sid), None)
+        if not body:
+            return
+        # Queue exec exactly like the scheduler. Quarantine is enforced at the
+        # command-dispatch chokepoint, so a quarantined host still won't run it.
+        with _LockedUpdate(CMDS_FILE) as cmds:
+            q = cmds.setdefault(dev_id, [])
+            queued = f'exec:{body}'
+            if queued not in q:
+                q.append(queued)
+        nm = ((load(DEVICES_FILE) or {}).get(dev_id) or {}).get('name', dev_id)
+        log_command(f""automation({rule.get('name', 'rule')})"", dev_id, nm, f""run_script:{sid}"")
+        audit_log('automation', 'rule_run_script',
+                  f""rule={rule.get('id')} dev={dev_id} script={sid} on {event}"")
+    elif atype == 'notify':
+        dest = next((d for d in (cfg.get('webhook_urls') or [])
+                     if isinstance(d, dict) and d.get('id') == action.get('dest_id')), None)
+        if not dest or not dest.get('url'):
+            return
+        safe = {k: v for k, v in (payload or {}).items() if not str(k).startswith('_')}
+        try:
+            msg = _webhook_message(event, payload or {})
+        except Exception:
+            msg = event
+        _dispatch_one_webhook(event, dest, safe, msg,
+                              _webhook_title(event), _webhook_priority(event))","import os
+import re
+import sys
+import json
+import time
+import hashlib
+import hmac
+import secrets
+import socket
+import subprocess
+import shlex
+import shutil
+import fcntl
+import gzip
+import traceback
+import urllib.request
+import urllib.error
+import urllib.parse
+from pathlib import Path
+import cve_scanner
+import prometheus_export
+import smtp_notifier
+import ldap_auth
+import cmdb_vault
+import wg_access
+import openapi_spec
+import storage
+import storage_pg
+import containers as containers_mod
+import image_registry as image_registry_mod
+import proxmox_client
+import tls_monitor
+import dmarc_monitor
+import ip_reputation
+import integrations as integrations_mod
+import dns_zones as dns_zones_mod
+import dns_resolve as dns_resolve_mod
+import resolver_health as resolver_health_mod
+import backup_crypto
+import ai_provider
+import ai_context
+import rag_index
+import forecast
+import compliance
+import ai_insights
+import anomaly_stats
+import sbom as sbom_mod
+from sanitize import _sanitize_str, _sanitize_hostname, _sanitize_ip, _sanitize_mac, _sanitize_version, MAX_HOSTNAME_LEN, MAX_VERSION_LEN, MAX_IP_LEN, MAX_MAC_LEN, _IP_RE, _MAC_RE, _VER_RE
+import hmac as _hmac_mod
+import struct as _struct
+import base64 as _base64
+import http.client as _httpclient
+
+class Solution:
+    def _run_automation_action(self, action, event, payload, dev_id, cfg, rule):
+        """"""Run one rule action: queue a saved script on the event's device, or
+        re-dispatch the event to a named webhook destination.""""""
+        atype = (action or {}).get('type')
+        if atype == 'run_script':
+            sid = action.get('script_id')
+            if not sid or not dev_id:
+                return
+            scripts = load(SCRIPTS_FILE) or {}
+            body = next((s.get('body', '') for s in (scripts.get('scripts') or [])
+                         if s.get('id') == sid), None)
+            if not body:
+                return
+            # Queue exec exactly like the scheduler. Quarantine is enforced at the
+            # command-dispatch chokepoint, so a quarantined host still won't run it.
+            with _LockedUpdate(CMDS_FILE) as cmds:
+                q = cmds.setdefault(dev_id, [])
+                queued = f'exec:{body}'
+                if queued not in q:
+                    q.append(queued)
+            nm = ((load(DEVICES_FILE) or {}).get(dev_id) or {}).get('name', dev_id)
+            log_command(f""automation({rule.get('name', 'rule')})"", dev_id, nm, f""run_script:{sid}"")
+            audit_log('automation', 'rule_run_script',
+                      f""rule={rule.get('id')} dev={dev_id} script={sid} on {event}"")
+        elif atype == 'notify':
+            dest = next((d for d in (cfg.get('webhook_urls') or [])
+                         if isinstance(d, dict) and d.get('id') == action.get('dest_id')), None)
+            if not dest or not dest.get('url'):
+                return
+            safe = {k: v for k, v in (payload or {}).items() if not str(k).startswith('_')}
+            try:
+                msg = _webhook_message(event, payload or {})
+            except Exception:
+                msg = event
+            _dispatch_one_webhook(event, dest, safe, msg,
+                                  _webhook_title(event), _webhook_priority(event))",,,
+dependency_0018,rwt2_b03ef00b6cd0,unionai-oss/pandera,numpy_engine.py,_build_number_equivalents,_build_number_equivalents,7e437f860c286988086db208d9eb6accaea6fecb,d0fbdeec7a9c165fb41f6ebf598eebad2a2e7776debc64cc4689bacbd8baa4c9,preserved_sample_and_completed_audit,"def _build_number_equivalents(builtin_name: str, pandera_name: str, sizes: list[int])","def _build_number_equivalents(
+    builtin_name: str, pandera_name: str, sizes: list[int]
+) -> dict[int, list[Union[type, str, np.dtype, dtypes.DataType]]]:
+    """"""Return a dict of equivalent builtin, numpy, pandera dtypes
+    indexed by size in bit_width.""""""
+    builtin_type = getattr(builtins, builtin_name, None)
+    default_np_dtype = np.dtype(builtin_name)
+    default_size = int(default_np_dtype.name.replace(builtin_name, """"))
+
+    default_equivalents = [
+        # e.g.: np.int64
+        np.dtype(builtin_name).type,
+        # e.g: pandera.dtypes.Int
+        getattr(dtypes, pandera_name),
+    ]
+    if builtin_type:
+        default_equivalents.append(builtin_type)
+
+    return {
+        bit_width: list(
+            {
+                # e.g.: numpy.int64
+                getattr(np, f""{builtin_name}{bit_width}""),
+                # e.g.: pandera.dtypes.Int64
+                getattr(dtypes, f""{pandera_name}{bit_width}""),
+                getattr(dtypes, f""{pandera_name}{bit_width}"")(),
+                # e.g.: pandera.dtypes.Int()
+                getattr(dtypes, pandera_name)(),
+            }
+            | set(default_equivalents if bit_width == default_size else [])
+        )
+        for bit_width in sizes
+    }","import builtins
+import dataclasses
+import datetime
+import inspect
+import warnings
+from collections.abc import Iterable
+from typing import Any, Optional, Union, cast
+import numpy as np
+from numpy.typing import DTypeLike
+from pandera import dtypes, errors
+from pandera.dtypes import immutable
+from pandera.engines import engine, utils
+from pandera.engines.type_aliases import PandasObject
+from pandera.system import FLOAT_128_AVAILABLE
+
+class Solution:
+    def _build_number_equivalents(self, 
+        builtin_name: str, pandera_name: str, sizes: list[int]
+    ) -> dict[int, list[Union[type, str, np.dtype, dtypes.DataType]]]:
+        """"""Return a dict of equivalent builtin, numpy, pandera dtypes
+        indexed by size in bit_width.""""""
+        builtin_type = getattr(builtins, builtin_name, None)
+        default_np_dtype = np.dtype(builtin_name)
+        default_size = int(default_np_dtype.name.replace(builtin_name, """"))
+
+        default_equivalents = [
+            # e.g.: np.int64
+            np.dtype(builtin_name).type,
+            # e.g: pandera.dtypes.Int
+            getattr(dtypes, pandera_name),
+        ]
+        if builtin_type:
+            default_equivalents.append(builtin_type)
+
+        return {
+            bit_width: list(
+                {
+                    # e.g.: numpy.int64
+                    getattr(np, f""{builtin_name}{bit_width}""),
+                    # e.g.: pandera.dtypes.Int64
+                    getattr(dtypes, f""{pandera_name}{bit_width}""),
+                    getattr(dtypes, f""{pandera_name}{bit_width}"")(),
+                    # e.g.: pandera.dtypes.Int()
+                    getattr(dtypes, pandera_name)(),
+                }
+                | set(default_equivalents if bit_width == default_size else [])
+            )
+            for bit_width in sizes
+        }",,,
+dependency_0019,rwt2_69988f57d352,yukinarit/pyserde,de.py,data,data,0cb6cad1481fc61f18115aaa86b9c6a8a034bbb5,1e304f8ad9d9877e977095407aa1ad887d195feb6dd21011ae1b0ea42d131e9a,completed_audit_current_candidate,def data(self),"def data(self) -> str:
+    """"""
+    Renders the variable name that possesses the data.
+
+    e.g. tuple
+        * datavar property returns ""data""
+        * data property returns ""data[0]"".
+    e.g. Optional
+        * datavar property returns ""data""
+        * data property returns ""data.get(""field_name"")"".
+    For other types
+        * datavar property returns ""data""
+        * data property returns ""data[""field_name""]"".
+    """"""
+
+    if self.iterbased:
+        return f""{self.datavar}[{self.index}]""
+    elif is_union(self.type) and type(None) in get_args(self.type):
+        return f'{self.datavar}.get(""{self.conv_name()}"")'
+    else:
+        return f'{self.datavar}[""{self.conv_name()}""]'","from __future__ import annotations
+import abc
+import itertools
+import collections
+import dataclasses
+import functools
+import typing
+import jinja2
+from collections.abc import Callable, Sequence, Iterable
+from beartype import beartype, BeartypeConf
+from beartype.door import is_bearable
+from beartype.roar import BeartypeCallHintParamViolation
+from dataclasses import dataclass, is_dataclass
+from typing import Any, Generic, Iterator, Literal, TypeVar, cast, overload
+from typing_extensions import dataclass_transform
+from .compat import SerdeError, SerdeSkip, T, UserError, find_generic_arg, get_args, get_generic_arg, get_origin, get_type_var_names, is_any, is_bare_counter, is_bare_deque, is_bare_dict, is_bare_list, is_bare_set, is_bare_tuple, is_counter, is_datetime, is_default_dict, is_deque, is_dict, is_ellipsis, is_enum, is_flatten_dict, is_frozen_set, is_generic, is_list, is_literal, is_none, is_opt, is_primitive, is_primitive_subclass, is_set, is_str_serializable, is_tuple, is_union, is_variable_tuple, is_pep695_type_alias, iter_literals, iter_types, iter_unions, type_args, typename
+from .core import GLOBAL_CLASS_DESERIALIZER, ClassDeserializer, FROM_DICT, FROM_ITER, SERDE_SCOPE, CACHE, UNION_DE_PREFIX, DefaultTagging, Field, disabled, Scope, Tagging, TypeCheck, add_func, coerce_object, deserialize_enum, strict, get_transparent_field, has_default, has_default_factory, ensure, fields, is_instance, literal_func_name, logger, union_func_name
+
+class Solution:
+    def data(self) -> str:
+        """"""
+        Renders the variable name that possesses the data.
+
+        e.g. tuple
+            * datavar property returns ""data""
+            * data property returns ""data[0]"".
+        e.g. Optional
+            * datavar property returns ""data""
+            * data property returns ""data.get(""field_name"")"".
+        For other types
+            * datavar property returns ""data""
+            * data property returns ""data[""field_name""]"".
+        """"""
+
+        if self.iterbased:
+            return f""{self.datavar}[{self.index}]""
+        elif is_union(self.type) and type(None) in get_args(self.type):
+            return f'{self.datavar}.get(""{self.conv_name()}"")'
+        else:
+            return f'{self.datavar}[""{self.conv_name()}""]'",,,
+dependency_0020,rwt2_b706193e1edb,kstevica/captain-claw,captain_claw/botport_client.py,_receive_loop,_receive_loop,460410901b258f89cf638f91a1a47ea10e48762d,066f00ada58a5c36aa2913a07f6403d7132b67d371ba9432d6d7a255e734e6c9,completed_audit_git_recovered,async def _receive_loop(self) -> None:,"async def _receive_loop(self) -> None:
+        """"""Main WebSocket receive loop.""""""
+        assert self._ws is not None
+        try:
+            async for raw_msg in self._ws:
+                if raw_msg.type == aiohttp.WSMsgType.TEXT:
+                    try:
+                        data = json.loads(raw_msg.data)
+                        await self._handle_message(data)
+                    except json.JSONDecodeError as exc:
+                        log.warning(""Invalid JSON from BotPort: %s"", exc)
+                    except Exception as exc:
+                        log.error(""BotPort message handler error: %s"", exc)
+
+                elif raw_msg.type in (aiohttp.WSMsgType.ERROR, aiohttp.WSMsgType.CLOSED):
+                    break
+
+        except asyncio.CancelledError:
+            return
+        except Exception as exc:
+            log.error(""BotPort receive loop error: %s"", exc)
+
+        # Connection lost.
+        self._connected = False
+        log.warning(""BotPort connection lost"")
+        if self._should_run:
+            self._reconnect_task = asyncio.create_task(self._reconnect_loop())","from __future__ import annotations
+import asyncio
+import base64
+import gzip
+import json
+import os
+import re
+import tempfile
+import uuid
+from pathlib import Path
+from typing import TYPE_CHECKING, Any, Callable
+import aiohttp
+from captain_claw.ws_utils import fire_and_forget_send
+from captain_claw.config import BotPortClientConfig, get_config
+from captain_claw.instructions import InstructionLoader
+from captain_claw.logging import get_logger
+from captain_claw.personality import load_personality, personality_to_prompt_block
+from captain_claw.session import Session, get_session_manager
+
+async def _receive_loop(self) -> None:
+        """"""Main WebSocket receive loop.""""""
+        assert self._ws is not None
+        try:
+            async for raw_msg in self._ws:
+                if raw_msg.type == aiohttp.WSMsgType.TEXT:
+                    try:
+                        data = json.loads(raw_msg.data)
+                        await self._handle_message(data)
+                    except json.JSONDecodeError as exc:
+                        log.warning(""Invalid JSON from BotPort: %s"", exc)
+                    except Exception as exc:
+                        log.error(""BotPort message handler error: %s"", exc)
+
+                elif raw_msg.type in (aiohttp.WSMsgType.ERROR, aiohttp.WSMsgType.CLOSED):
+                    break
+
+        except asyncio.CancelledError:
+            return
+        except Exception as exc:
+            log.error(""BotPort receive loop error: %s"", exc)
+
+        # Connection lost.
+        self._connected = False
+        log.warning(""BotPort connection lost"")
+        if self._should_run:
+            self._reconnect_task = asyncio.create_task(self._reconnect_loop())",,,
+dependency_0021,rwt2_642d18eee196,unionai-oss/pandera,container.py,check_column_presence,check_column_presence,7e437f860c286988086db208d9eb6accaea6fecb,26af70f22b7e2e9163158c4dbef30c39de05d240e35b025d989d539d4e678aee,preserved_sample_and_completed_audit,"def check_column_presence(self, check_obj: DataFrame, schema, column_info: ColumnInfo)","def check_column_presence(
+    self,
+    check_obj: DataFrame,
+    schema,
+    column_info: ColumnInfo,
+) -> list[CoreCheckResult]:
+    """"""Check that all columns in the schema are present in the dataframe.""""""
+    results = []
+    if column_info.absent_column_names:
+        for colname in column_info.absent_column_names:
+            results.append(
+                CoreCheckResult(
+                    passed=False,
+                    check=""column_in_dataframe"",
+                    reason_code=SchemaErrorReason.COLUMN_NOT_IN_DATAFRAME,
+                    message=(
+                        f""column '{colname}' not in dataframe""
+                        f"" {check_obj.head()}""
+                    ),
+                    failure_cases=scalar_failure_case(colname),
+                )
+            )
+    else:
+        results.append(
+            CoreCheckResult(
+                passed=True,
+                check=""column_in_dataframe"",
+            )
+        )
+    return results","import copy
+import traceback
+import warnings
+from collections.abc import Callable
+from typing import Any, Optional
+from pyspark.sql import DataFrame
+from pyspark.sql.functions import col, count
+from pandera.api.base.error_handler import ErrorCategory, ErrorHandler, get_error_category
+from pandera.api.pyspark.types import is_table
+from pandera.backends.base import ColumnInfo, CoreCheckResult
+from pandera.backends.pyspark.base import PysparkSchemaBackend
+from pandera.backends.pyspark.decorators import cache_check_obj
+from pandera.backends.pyspark.error_formatters import scalar_failure_case
+from pandera.config import get_config_context
+from pandera.errors import SchemaDefinitionError, SchemaError, SchemaErrorReason, SchemaErrors
+from pandera.validation_depth import ValidationScope, validate_scope
+
+class Solution:
+    def check_column_presence(self, 
+        self,
+        check_obj: DataFrame,
+        schema,
+        column_info: ColumnInfo,
+    ) -> list[CoreCheckResult]:
+        """"""Check that all columns in the schema are present in the dataframe.""""""
+        results = []
+        if column_info.absent_column_names:
+            for colname in column_info.absent_column_names:
+                results.append(
+                    CoreCheckResult(
+                        passed=False,
+                        check=""column_in_dataframe"",
+                        reason_code=SchemaErrorReason.COLUMN_NOT_IN_DATAFRAME,
+                        message=(
+                            f""column '{colname}' not in dataframe""
+                            f"" {check_obj.head()}""
+                        ),
+                        failure_cases=scalar_failure_case(colname),
+                    )
+                )
+        else:
+            results.append(
+                CoreCheckResult(
+                    passed=True,
+                    check=""column_in_dataframe"",
+                )
+            )
+        return results",,,
+dependency_0022,rwt2_69f222f126ec,kstevica/captain-claw,captain_claw/twitter_bridge.py,get_updates,get_updates,460410901b258f89cf638f91a1a47ea10e48762d,e3cb7c5d52c33c5958f7999148703b965ded85d290c002f4e96d86cd43d1d421,completed_audit_git_recovered,"async def get_updates(self, offsets: dict[str, str] | None=None) -> tuple[list[TwitterMessage | TwitterDM], dict[str, str]]:","async def get_updates(
+        self, offsets: dict[str, str] | None = None,
+    ) -> tuple[list[TwitterMessage | TwitterDM], dict[str, str]]:
+        """"""Unified polling entry point: fetch mentions + DMs.
+
+        Returns (updates, next_offsets).
+        """"""
+        current = dict(offsets or {})
+        next_offsets = dict(current)
+        all_updates: list[TwitterMessage | TwitterDM] = []
+
+        # Mentions
+        mentions_since = current.get(""mentions_since_id"", """")
+        if self._check_rate_limit(""mentions""):
+            mentions = await self.get_mentions(since_id=mentions_since)
+            if mentions:
+                all_updates.extend(mentions)
+                # Track highest ID for next poll.
+                max_id = max(mentions, key=lambda m: int(m.id))
+                next_offsets[""mentions_since_id""] = max_id.id
+
+        # DMs
+        dm_since = current.get(""dm_since_id"", """")
+        if self._check_rate_limit(""dms""):
+            dms = await self.get_dms(since_id=dm_since)
+            if dms:
+                all_updates.extend(dms)
+                max_dm = max(dms, key=lambda d: int(d.id))
+                next_offsets[""dm_since_id""] = max_dm.id
+
+        return all_updates, next_offsets","from __future__ import annotations
+import os
+import time
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Any
+import httpx
+from captain_claw.logging import get_logger
+
+async def get_updates(
+        self, offsets: dict[str, str] | None = None,
+    ) -> tuple[list[TwitterMessage | TwitterDM], dict[str, str]]:
+        """"""Unified polling entry point: fetch mentions + DMs.
+
+        Returns (updates, next_offsets).
+        """"""
+        current = dict(offsets or {})
+        next_offsets = dict(current)
+        all_updates: list[TwitterMessage | TwitterDM] = []
+
+        # Mentions
+        mentions_since = current.get(""mentions_since_id"", """")
+        if self._check_rate_limit(""mentions""):
+            mentions = await self.get_mentions(since_id=mentions_since)
+            if mentions:
+                all_updates.extend(mentions)
+                # Track highest ID for next poll.
+                max_id = max(mentions, key=lambda m: int(m.id))
+                next_offsets[""mentions_since_id""] = max_id.id
+
+        # DMs
+        dm_since = current.get(""dm_since_id"", """")
+        if self._check_rate_limit(""dms""):
+            dms = await self.get_dms(since_id=dm_since)
+            if dms:
+                all_updates.extend(dms)
+                max_dm = max(dms, key=lambda d: int(d.id))
+                next_offsets[""dm_since_id""] = max_dm.id
+
+        return all_updates, next_offsets",,,
+dependency_0023,rwt2_3752a8dfc79f,sstklen/trump-code,mcp_server.py,get_dual_platform,get_dual_platform,0f122fa6c59f5be7508cd3c9095538df2ef146a3,9efa6beebb7350c2b122f497d2ddf6b739004e92fab5c72b8b9b93dba9cb8ea2,completed_audit_current_candidate,def get_dual_platform(),"def get_dual_platform() -> dict:
+    """"""雙平台分析（TS vs X）""""""
+    windows = _load('ts_to_x_windows.json') or []
+    active = [w for w in windows if isinstance(w, dict) and w.get('status') == 'ACTIVE']
+    return {
+        'active_windows': len(active),
+        'key_insight': 'Truth Social 是政策信號源，X 是形象窗口。TS 先發，X 晚 6.2 小時。中國信號 100% 不放 X。',
+        'china_rule': '中國相關信號加權 ×1.5（刻意隱藏 = 更真實）',
+        'x_repost_rule': '會上 X 的信號降權 ×0.8（大眾已知 = 套利空間小）',
+        'window_bias': '6 小時窗口內歷史上漲率 63%',
+    }","from __future__ import annotations
+import json
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+class Solution:
+    def get_dual_platform(self, ) -> dict:
+        """"""雙平台分析（TS vs X）""""""
+        windows = _load('ts_to_x_windows.json') or []
+        active = [w for w in windows if isinstance(w, dict) and w.get('status') == 'ACTIVE']
+        return {
+            'active_windows': len(active),
+            'key_insight': 'Truth Social 是政策信號源，X 是形象窗口。TS 先發，X 晚 6.2 小時。中國信號 100% 不放 X。',
+            'china_rule': '中國相關信號加權 ×1.5（刻意隱藏 = 更真實）',
+            'x_repost_rule': '會上 X 的信號降權 ×0.8（大眾已知 = 套利空間小）',
+            'window_bias': '6 小時窗口內歷史上漲率 63%',
+        }",,,
+dependency_0024,rwt2_b7680361bcb9,tyxak/remotepower,remotepower-agent-win.py,heartbeat_once,heartbeat_once,aa91ee20aa0ae0e3a826d369a3f5c735ecc68aa3,7655e651df9c5ae3531e47b6e21230f8bfc5e15f19ad21b470cd52e8bb3d4aba,preserved_sample_and_completed_audit,"def heartbeat_once(creds, poll_count, pending_output=None)","def heartbeat_once(creds, poll_count, pending_output=None):
+    """"""One heartbeat round-trip. Returns (response, new_pending_output).""""""
+    server = creds.get('server_url', '').rstrip('/')
+    payload = build_heartbeat(creds, poll_count, pending_output)
+    resp = _post_json(f'{server}/api/heartbeat', payload)
+    new_pending = None
+    if isinstance(resp, dict):
+        if isinstance(resp.get('poll_interval'), int):
+            if resp['poll_interval'] != creds.get('poll_interval'):
+                creds['poll_interval'] = resp['poll_interval']
+                save_creds(creds)
+        cmd = resp.get('command')
+        if cmd:
+            new_pending = handle_command(cmd)
+        # v3.14.0 #35: stash secrets-scan opt-in + paths for the next heartbeat.
+        _secrets_cfg['on'] = bool(resp.get('secrets_scan_enabled'))
+        _ssp = resp.get('secrets_scan_paths')
+        _secrets_cfg['paths'] = _ssp if isinstance(_ssp, list) and _ssp else None
+    return resp, new_pending","import argparse
+import hashlib
+import json
+import os
+import platform
+import re
+import socket
+import ssl
+import subprocess
+import sys
+import time
+import urllib.request
+
+class Solution:
+    def heartbeat_once(self, creds, poll_count, pending_output=None):
+        """"""One heartbeat round-trip. Returns (response, new_pending_output).""""""
+        server = creds.get('server_url', '').rstrip('/')
+        payload = build_heartbeat(creds, poll_count, pending_output)
+        resp = _post_json(f'{server}/api/heartbeat', payload)
+        new_pending = None
+        if isinstance(resp, dict):
+            if isinstance(resp.get('poll_interval'), int):
+                if resp['poll_interval'] != creds.get('poll_interval'):
+                    creds['poll_interval'] = resp['poll_interval']
+                    save_creds(creds)
+            cmd = resp.get('command')
+            if cmd:
+                new_pending = handle_command(cmd)
+            # v3.14.0 #35: stash secrets-scan opt-in + paths for the next heartbeat.
+            _secrets_cfg['on'] = bool(resp.get('secrets_scan_enabled'))
+            _ssp = resp.get('secrets_scan_paths')
+            _secrets_cfg['paths'] = _ssp if isinstance(_ssp, list) and _ssp else None
+        return resp, new_pending",,,
+dependency_0025,rwt2_c181558e2bdd,rocketride-org/rocketride-server,filesystem.py,list_files,list_files,c6c42191cc2c8cf5e64ee38a85427fe05dec5892,dbe55bd3a9405359ceae06b8cc3638a371f0e8b38fe8acf07e93e3c915be8334,preserved_sample_and_completed_audit,"def list_files(self, prefix: str='')","async def list_files(self, prefix: str = '') -> list:
+    """"""List all files with given prefix.""""""
+    try:
+        if prefix:
+            search_path = self._get_full_path(prefix)
+        else:
+            search_path = self._root_path
+
+        files = []
+
+        if search_path.exists():
+            if search_path.is_file():
+                # If prefix points to a file, return just that file
+                relative_path = str(search_path.relative_to(self._root_path))
+                files.append(relative_path.replace('\\', '/'))
+            elif search_path.is_dir():
+                # If prefix points to a directory, list all files recursively
+                for item in search_path.rglob('*'):
+                    if item.is_file():
+                        relative_path = str(item.relative_to(self._root_path))
+                        files.append(relative_path.replace('\\', '/'))
+
+        return sorted(files)
+
+    except Exception as e:
+        raise StorageError(f'Failed to list files with prefix {prefix}: {e}') from e","import aiofiles
+import aiofiles.os
+import asyncio
+import os
+import sys
+from pathlib import Path
+from typing import Optional
+import fnmatch
+from ..store import IStore, StorageError, VersionMismatchError
+
+class Solution:
+    async def list_files(self, prefix: str = '') -> list:
+        """"""List all files with given prefix.""""""
+        try:
+            if prefix:
+                search_path = self._get_full_path(prefix)
+            else:
+                search_path = self._root_path
+
+            files = []
+
+            if search_path.exists():
+                if search_path.is_file():
+                    # If prefix points to a file, return just that file
+                    relative_path = str(search_path.relative_to(self._root_path))
+                    files.append(relative_path.replace('\\', '/'))
+                elif search_path.is_dir():
+                    # If prefix points to a directory, list all files recursively
+                    for item in search_path.rglob('*'):
+                        if item.is_file():
+                            relative_path = str(item.relative_to(self._root_path))
+                            files.append(relative_path.replace('\\', '/'))
+
+            return sorted(files)
+
+        except Exception as e:
+            raise StorageError(f'Failed to list files with prefix {prefix}: {e}') from e",,,
+dependency_0026,rwt2_a999534aff39,kstevica/captain-claw,captain_claw/cli.py,append_tool_output,append_tool_output,460410901b258f89cf638f91a1a47ea10e48762d,97145258dd9dbb49415d01daa14702f463a1f0edcbe659ab9b831e8700e6d0f4,completed_audit_git_recovered,"def append_tool_output(self, tool_name: str, arguments: dict[str, Any] | None, raw_output: str, render: bool=True) -> None:","def append_tool_output(
+        self,
+        tool_name: str,
+        arguments: dict[str, Any] | None,
+        raw_output: str,
+        render: bool = True,
+    ) -> None:
+        """"""Append raw tool output entry to monitor pane buffer.""""""
+        args = arguments or {}
+        args_text = """"
+        if args:
+            try:
+                args_text = json.dumps(args, ensure_ascii=True, sort_keys=True)
+            except Exception:
+                args_text = str(args)
+        header = f""{tool_name} {args_text}"".strip()
+        if tool_name == ""cron"" or bool(args.get(""cron"")):
+            header = f""[CRON] {header}""
+        body = self._format_monitor_tool_body(tool_name, raw_output).rstrip(""\n"")
+        self._append_tool_text(f""{header}\n{body}\n\n"")
+        if render:
+            self._render_monitor_view()
+        # Update thinking indicator for non-silent tools (skip during history replay).
+        if not getattr(self, ""_replaying_history"", False):
+            normalized = str(tool_name or """").strip().lower()
+            if normalized not in self._THINKING_SILENT_TOOLS:
+                from captain_claw.agent_tool_loop_mixin import AgentToolLoopMixin
+                summary = AgentToolLoopMixin._tool_thinking_summary(tool_name, args)
+                self.set_thinking(summary, tool=tool_name, phase=""tool"")","import atexit
+import asyncio
+from collections import deque
+from datetime import datetime
+import json
+import os
+from pathlib import Path
+import re
+import signal
+import shlex
+import shutil
+import sys
+import textwrap
+import time
+from typing import Any
+from captain_claw.config import get_config
+from captain_claw.logging import get_logger
+
+def append_tool_output(
+        self,
+        tool_name: str,
+        arguments: dict[str, Any] | None,
+        raw_output: str,
+        render: bool = True,
+    ) -> None:
+        """"""Append raw tool output entry to monitor pane buffer.""""""
+        args = arguments or {}
+        args_text = """"
+        if args:
+            try:
+                args_text = json.dumps(args, ensure_ascii=True, sort_keys=True)
+            except Exception:
+                args_text = str(args)
+        header = f""{tool_name} {args_text}"".strip()
+        if tool_name == ""cron"" or bool(args.get(""cron"")):
+            header = f""[CRON] {header}""
+        body = self._format_monitor_tool_body(tool_name, raw_output).rstrip(""\n"")
+        self._append_tool_text(f""{header}\n{body}\n\n"")
+        if render:
+            self._render_monitor_view()
+        # Update thinking indicator for non-silent tools (skip during history replay).
+        if not getattr(self, ""_replaying_history"", False):
+            normalized = str(tool_name or """").strip().lower()
+            if normalized not in self._THINKING_SILENT_TOOLS:
+                from captain_claw.agent_tool_loop_mixin import AgentToolLoopMixin
+                summary = AgentToolLoopMixin._tool_thinking_summary(tool_name, args)
+                self.set_thinking(summary, tool=tool_name, phase=""tool"")",,,
+dependency_0027,rwt2_ff1be63bb103,gptme/gptme,gptme/llm/llm_openai_subscription.py,init,init,83dbacff2fc0732187078d5214e1b78a164dd5ae,b0450a7c73557081cb6e6a3a27a511691098899109511767e7d8bba1377f93c6,completed_audit_git_recovered,def init(config: Any) -> bool:,"def init(config: Any) -> bool:
+    """"""Initialize the OpenAI subscription provider.""""""
+    global _auth
+
+    stored_auth = _load_tokens()
+    if stored_auth is not None:
+        if time.time() < stored_auth.expires_at - 300:
+            _auth = stored_auth
+            logger.info(""OpenAI subscription provider initialized with stored tokens"")
+            return True
+
+        if stored_auth.refresh_token:
+            try:
+                _auth = _refresh_access_token(stored_auth.refresh_token)
+                logger.info(
+                    ""OpenAI subscription provider initialized with refreshed token""
+                )
+                return True
+            except Exception as e:
+                logger.debug(f""Token refresh failed during init: {e}"")
+
+    logger.info(
+        ""OpenAI subscription provider available ""
+        ""(run 'gptme auth openai-subscription' to authenticate)""
+    )
+    return True","import base64
+import hashlib
+import http.server
+import json
+import logging
+import os
+import secrets
+import socket
+import threading
+import time
+import webbrowser
+from base64 import urlsafe_b64decode
+from collections.abc import Generator
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
+from urllib.parse import parse_qs, urlencode, urlparse
+from uuid import uuid4
+import requests
+from ..message import Message
+from .openai_responses import (
+    _messages_to_responses_input,
+    _stream_responses_events,
+    _tool_spec_to_responses_tool,
+)
+
+def init(config: Any) -> bool:
+    """"""Initialize the OpenAI subscription provider.""""""
+    global _auth
+
+    stored_auth = _load_tokens()
+    if stored_auth is not None:
+        if time.time() < stored_auth.expires_at - 300:
+            _auth = stored_auth
+            logger.info(""OpenAI subscription provider initialized with stored tokens"")
+            return True
+
+        if stored_auth.refresh_token:
+            try:
+                _auth = _refresh_access_token(stored_auth.refresh_token)
+                logger.info(
+                    ""OpenAI subscription provider initialized with refreshed token""
+                )
+                return True
+            except Exception as e:
+                logger.debug(f""Token refresh failed during init: {e}"")
+
+    logger.info(
+        ""OpenAI subscription provider available ""
+        ""(run 'gptme auth openai-subscription' to authenticate)""
+    )
+    return True",,,
+dependency_0028,rwt2_aadb1dfe2c36,sstklen/trump-code,learning_engine.py,generate_learning_report,generate_learning_report,0f122fa6c59f5be7508cd3c9095538df2ef146a3,88abebb4b58733a0bedf5bf1d7156c03979ae634e286f7c199028326a8f5a4b6,completed_audit_current_candidate,"def generate_learning_report(stats: dict[str, dict], weight_adjustments: list[dict], signal_adjustments: list[dict])","def generate_learning_report(
+    stats: dict[str, dict],
+    weight_adjustments: list[dict],
+    signal_adjustments: list[dict],
+) -> dict[str, Any]:
+    """"""產出人話學習報告。""""""
+
+    # 排行榜
+    ranked = sorted(
+        stats.items(),
+        key=lambda x: (x[1]['recent_win_rate'], x[1]['avg_return']),
+        reverse=True,
+    )
+
+    # 三語摘要
+    n_promote = sum(1 for a in weight_adjustments if a['action'] == 'PROMOTE')
+    n_demote = sum(1 for a in weight_adjustments if a['action'] == 'DEMOTE')
+    n_eliminate = sum(1 for a in weight_adjustments if a['action'] == 'ELIMINATE')
+
+    best = ranked[0] if ranked else ('N/A', {'recent_win_rate': 0})
+    worst = ranked[-1] if ranked else ('N/A', {'recent_win_rate': 0})
+
+    report = {
+        'date': TODAY,
+        'generated_at': NOW,
+        'total_models': len(stats),
+        'total_verified': sum(s['total'] for s in stats.values()),
+
+        'ranking': [
+            {
+                'rank': i + 1,
+                'model_id': mid,
+                'win_rate': round(s['win_rate'], 1),
+                'recent_win_rate': round(s['recent_win_rate'], 1),
+                'streak': s['streak'],
+                'trend': s['trend'],
+                'total': s['total'],
+                'avg_return': round(s['avg_return'], 3),
+            }
+            for i, (mid, s) in enumerate(ranked)
+        ],
+
+        'adjustments': {
+            'weights': weight_adjustments,
+            'signals': signal_adjustments,
+            'summary': {
+                'promoted': n_promote,
+                'demoted': n_demote,
+                'eliminated': n_eliminate,
+                'signal_adjusted': len(signal_adjustments),
+            },
+        },
+
+        'summary': {
+            'en': (
+                f""Learning Report — {TODAY}\n""
+                f""Models: {len(stats)} | Verified: {sum(s['total'] for s in stats.values())}\n""
+                f""Best: {best[0]} ({best[1]['recent_win_rate']:.1f}% recent)\n""
+                f""Worst: {worst[0]} ({worst[1]['recent_win_rate']:.1f}% recent)\n""
+                f""Actions: {n_promote} promoted, {n_demote} demoted, {n_eliminate} eliminated\n""
+                f""Signal adjustments: {len(signal_adjustments)}""
+            ),
+            'zh': (
+                f""學習報告 — {TODAY}\n""
+                f""模型數: {len(stats)} | 已驗證: {sum(s['total'] for s in stats.values())} 筆\n""
+                f""最強: {best[0]}（近期 {best[1]['recent_win_rate']:.1f}%）\n""
+                f""最弱: {worst[0]}（近期 {worst[1]['recent_win_rate']:.1f}%）\n""
+                f""調整: {n_promote} 升級 / {n_demote} 降級 / {n_eliminate} 淘汰\n""
+                f""信號信心度調整: {len(signal_adjustments)} 項""
+            ),
+            'ja': (
+                f""学習レポート — {TODAY}\n""
+                f""モデル数: {len(stats)} | 検証済み: {sum(s['total'] for s in stats.values())}件\n""
+                f""最強: {best[0]}（直近 {best[1]['recent_win_rate']:.1f}%）\n""
+                f""最弱: {worst[0]}（直近 {worst[1]['recent_win_rate']:.1f}%）\n""
+                f""調整: {n_promote}昇格 / {n_demote}降格 / {n_eliminate}除外\n""
+                f""シグナル信頼度調整: {len(signal_adjustments)}件""
+            ),
+        },
+    }
+
+    return report","from __future__ import annotations
+import json
+import copy
+from collections import defaultdict
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any
+
+class Solution:
+    def generate_learning_report(self, 
+        stats: dict[str, dict],
+        weight_adjustments: list[dict],
+        signal_adjustments: list[dict],
+    ) -> dict[str, Any]:
+        """"""產出人話學習報告。""""""
+
+        # 排行榜
+        ranked = sorted(
+            stats.items(),
+            key=lambda x: (x[1]['recent_win_rate'], x[1]['avg_return']),
+            reverse=True,
+        )
+
+        # 三語摘要
+        n_promote = sum(1 for a in weight_adjustments if a['action'] == 'PROMOTE')
+        n_demote = sum(1 for a in weight_adjustments if a['action'] == 'DEMOTE')
+        n_eliminate = sum(1 for a in weight_adjustments if a['action'] == 'ELIMINATE')
+
+        best = ranked[0] if ranked else ('N/A', {'recent_win_rate': 0})
+        worst = ranked[-1] if ranked else ('N/A', {'recent_win_rate': 0})
+
+        report = {
+            'date': TODAY,
+            'generated_at': NOW,
+            'total_models': len(stats),
+            'total_verified': sum(s['total'] for s in stats.values()),
+
+            'ranking': [
+                {
+                    'rank': i + 1,
+                    'model_id': mid,
+                    'win_rate': round(s['win_rate'], 1),
+                    'recent_win_rate': round(s['recent_win_rate'], 1),
+                    'streak': s['streak'],
+                    'trend': s['trend'],
+                    'total': s['total'],
+                    'avg_return': round(s['avg_return'], 3),
+                }
+                for i, (mid, s) in enumerate(ranked)
+            ],
+
+            'adjustments': {
+                'weights': weight_adjustments,
+                'signals': signal_adjustments,
+                'summary': {
+                    'promoted': n_promote,
+                    'demoted': n_demote,
+                    'eliminated': n_eliminate,
+                    'signal_adjusted': len(signal_adjustments),
+                },
+            },
+
+            'summary': {
+                'en': (
+                    f""Learning Report — {TODAY}\n""
+                    f""Models: {len(stats)} | Verified: {sum(s['total'] for s in stats.values())}\n""
+                    f""Best: {best[0]} ({best[1]['recent_win_rate']:.1f}% recent)\n""
+                    f""Worst: {worst[0]} ({worst[1]['recent_win_rate']:.1f}% recent)\n""
+                    f""Actions: {n_promote} promoted, {n_demote} demoted, {n_eliminate} eliminated\n""
+                    f""Signal adjustments: {len(signal_adjustments)}""
+                ),
+                'zh': (
+                    f""學習報告 — {TODAY}\n""
+                    f""模型數: {len(stats)} | 已驗證: {sum(s['total'] for s in stats.values())} 筆\n""
+                    f""最強: {best[0]}（近期 {best[1]['recent_win_rate']:.1f}%）\n""
+                    f""最弱: {worst[0]}（近期 {worst[1]['recent_win_rate']:.1f}%）\n""
+                    f""調整: {n_promote} 升級 / {n_demote} 降級 / {n_eliminate} 淘汰\n""
+                    f""信號信心度調整: {len(signal_adjustments)} 項""
+                ),
+                'ja': (
+                    f""学習レポート — {TODAY}\n""
+                    f""モデル数: {len(stats)} | 検証済み: {sum(s['total'] for s in stats.values())}件\n""
+                    f""最強: {best[0]}（直近 {best[1]['recent_win_rate']:.1f}%）\n""
+                    f""最弱: {worst[0]}（直近 {worst[1]['recent_win_rate']:.1f}%）\n""
+                    f""調整: {n_promote}昇格 / {n_demote}降格 / {n_eliminate}除外\n""
+                    f""シグナル信頼度調整: {len(signal_adjustments)}件""
+                ),
+            },
+        }
+
+        return report",,,
+dependency_0029,rwt2_739d6a0d3524,rocketride-org/rocketride-server,chat.py,_ensure_openai_compat_reasoning_stream,_ensure_openai_compat_reasoning_stream,c6c42191cc2c8cf5e64ee38a85427fe05dec5892,63d4f61a96d82565b6ef1170c0d2b63deb57f17fa86387671a89e5fb4a117ee5,preserved_sample_and_completed_audit,def _ensure_openai_compat_reasoning_stream(self),"def _ensure_openai_compat_reasoning_stream(self) -> None:
+    """"""Lazily build the raw openai client used to stream reasoning for
+    OpenAI-compatible drivers (built here, since _llm exists after super().__init__).
+    """"""
+    if self._native_stream_provider or self._raw_openai_client is not None:
+        return
+    if not self._is_reasoning:
+        return
+    llm = getattr(self, '_llm', None)
+    base_url = getattr(llm, 'openai_api_base', None)
+    if llm is None or not base_url:
+        return  # not an OpenAI-compatible driver (e.g. plain OpenAI, Anthropic)
+    key = getattr(llm, 'openai_api_key', None)
+    api_key = key.get_secret_value() if hasattr(key, 'get_secret_value') else key
+    try:
+        from openai import OpenAI
+
+        self._raw_openai_client = OpenAI(api_key=api_key, base_url=str(base_url))
+        self._native_stream_provider = 'openai_compat_reasoning'
+    except Exception as e:  # openai SDK missing / bad client → fall back to generic stream
+        debug(f'    Native reasoning stream unavailable: {type(e).__name__}: {e}')","import time
+import json
+import importlib
+from typing import Dict, Any, Callable, Optional
+from rocketlib import debug, warning
+from ai.common.schema import Answer, Question
+from ai.common.config import Config
+from ai.common.util import parseJson
+from ai.common.validation import validate_model_name, validate_max_tokens, validate_prompt
+from ai.common.llm_native_stream import dispatch_native_chat_stream
+
+class Solution:
+    def _ensure_openai_compat_reasoning_stream(self) -> None:
+        """"""Lazily build the raw openai client used to stream reasoning for
+        OpenAI-compatible drivers (built here, since _llm exists after super().__init__).
+        """"""
+        if self._native_stream_provider or self._raw_openai_client is not None:
+            return
+        if not self._is_reasoning:
+            return
+        llm = getattr(self, '_llm', None)
+        base_url = getattr(llm, 'openai_api_base', None)
+        if llm is None or not base_url:
+            return  # not an OpenAI-compatible driver (e.g. plain OpenAI, Anthropic)
+        key = getattr(llm, 'openai_api_key', None)
+        api_key = key.get_secret_value() if hasattr(key, 'get_secret_value') else key
+        try:
+            from openai import OpenAI
+
+            self._raw_openai_client = OpenAI(api_key=api_key, base_url=str(base_url))
+            self._native_stream_provider = 'openai_compat_reasoning'
+        except Exception as e:  # openai SDK missing / bad client → fall back to generic stream
+            debug(f'    Native reasoning stream unavailable: {type(e).__name__}: {e}')",,,
+dependency_0030,rwt2_19ecfd9b1d3d,unionai-oss/pandera,checks.py,_normalize_native_output,_normalize_native_output,7e437f860c286988086db208d9eb6accaea6fecb,3d4b1784618fa0a1766adb3fa44b4ce457d03c9c57baca3bade1362fd79a13f0,preserved_sample_and_completed_audit,"def _normalize_native_output(out, check_obj: NarwhalsData)","def _normalize_native_output(out, check_obj: NarwhalsData):
+    """"""Normalize native outputs from ``native=True`` checks.
+
+    Native check functions may return any of:
+
+    - **ibis**: ``ir.BooleanScalar`` (aggregate bool), ``ir.BooleanColumn``
+      (row-level bool), or ``ibis.Table``.
+    - **polars**: ``pl.Series`` of booleans, ``pl.DataFrame``, or
+      ``pl.LazyFrame``. Single-column boolean frames are renamed to
+      ``CHECK_OUTPUT_KEY``; multi-column boolean frames are AND-reduced
+      to a single ``CHECK_OUTPUT_KEY`` column (matching
+      :class:`PolarsCheckBackend` behaviour). If the frame already
+      contains a ``CHECK_OUTPUT_KEY`` column, that column is used
+      directly.
+    - Any Python ``bool`` / scalar — passed through unchanged so
+      ``postprocess_bool_output`` can handle it.
+
+    The output shape mirrors ``postprocess_lazyframe_output``: a wide
+    Narwhals frame with the original columns plus ``CHECK_OUTPUT_KEY``.
+    """"""
+    if _HAS_IBIS:
+        if isinstance(out, ir.BooleanScalar):
+            return bool(out.execute())
+        if isinstance(out, ir.BooleanColumn):
+            # Attach the boolean column expression to the original table,
+            # producing a wide table (original columns + CHECK_OUTPUT_KEY).
+            native = nw.to_native(check_obj.frame)
+            tbl = native.mutate(**{CHECK_OUTPUT_KEY: out})
+            return nw.from_native(tbl, eager_or_interchange_only=False)
+        if isinstance(out, ir.Table):
+            return nw.from_native(out, eager_or_interchange_only=False)
+
+    # Handle polars native return types from native=True checks.
+    # Detection uses ``type(out).__module__`` and ``type(out).__name__``
+    # so polars (an optional dependency) does not need to be imported
+    # here — that would break ibis-only installs (see
+    # ``test_checks_has_no_polars_import``). All reductions / renames go
+    # through narwhals so polars-specific expression APIs stay out of
+    # this file.
+    out_mod = getattr(type(out), ""__module__"", """") or """"
+    if out_mod.startswith(""polars""):
+        out_type_name = type(out).__name__
+
+        # Collect ``pl.LazyFrame`` to ``pl.DataFrame`` so we can attach
+        # an eager boolean column to the original frame. Polars-style
+        # user checks routinely return a ``pl.LazyFrame``.
+        if out_type_name == ""LazyFrame"":
+            out = out.collect()
+            out_type_name = type(out).__name__
+
+        native = nw.to_native(check_obj.frame)
+        # native may be a LazyFrame; collect to attach an eager column.
+        if hasattr(native, ""collect""):
+            native = native.collect()
+
+        if out_type_name == ""Series"":
+            bool_col = out.alias(CHECK_OUTPUT_KEY)
+        elif out_type_name == ""DataFrame"":
+            out_cols = list(out.columns)
+            if CHECK_OUTPUT_KEY in out_cols:
+                bool_col = out[CHECK_OUTPUT_KEY].alias(CHECK_OUTPUT_KEY)
+            elif len(out_cols) == 1:
+                # Single-column boolean output — rename to the canonical
+                # check-output key (matches ``PolarsCheckBackend.apply``).
+                bool_col = out.to_series(0).alias(CHECK_OUTPUT_KEY)
+            else:
+                # Multi-column boolean output — AND-reduce to a single
+                # check-output column (matches ``PolarsCheckBackend.apply``)
+                # using narwhals operators so this file stays
+                # polars-agnostic.
+                nw_out = nw.from_native(out, eager_only=True)
+                reduced_native = nw.to_native(
+                    nw_out.select(
+                        nw.all_horizontal(
+                            [nw.col(c) for c in out_cols]
+                        ).alias(CHECK_OUTPUT_KEY)
+                    )
+                )
+                bool_col = reduced_native.to_series(0)
+        else:  # pragma: no cover — unexpected polars type
+            return out
+
+        return nw.from_native(
+            native.with_columns(bool_col), eager_only=True
+        )
+
+    return out  # bool or other scalar — handled by postprocess_bool_output","import inspect
+from functools import lru_cache, partial
+from typing import Any, Optional
+import narwhals.stable.v1 as nw
+from pandera.api.base.checks import CheckResult
+from pandera.api.checks import Check
+from pandera.api.narwhals.types import NarwhalsData
+from pandera.backends.base import BaseCheckBackend
+from pandera.constants import CHECK_OUTPUT_KEY
+
+class Solution:
+    def _normalize_native_output(self, out, check_obj: NarwhalsData):
+        """"""Normalize native outputs from ``native=True`` checks.
+
+        Native check functions may return any of:
+
+        - **ibis**: ``ir.BooleanScalar`` (aggregate bool), ``ir.BooleanColumn``
+          (row-level bool), or ``ibis.Table``.
+        - **polars**: ``pl.Series`` of booleans, ``pl.DataFrame``, or
+          ``pl.LazyFrame``. Single-column boolean frames are renamed to
+          ``CHECK_OUTPUT_KEY``; multi-column boolean frames are AND-reduced
+          to a single ``CHECK_OUTPUT_KEY`` column (matching
+          :class:`PolarsCheckBackend` behaviour). If the frame already
+          contains a ``CHECK_OUTPUT_KEY`` column, that column is used
+          directly.
+        - Any Python ``bool`` / scalar — passed through unchanged so
+          ``postprocess_bool_output`` can handle it.
+
+        The output shape mirrors ``postprocess_lazyframe_output``: a wide
+        Narwhals frame with the original columns plus ``CHECK_OUTPUT_KEY``.
+        """"""
+        if _HAS_IBIS:
+            if isinstance(out, ir.BooleanScalar):
+                return bool(out.execute())
+            if isinstance(out, ir.BooleanColumn):
+                # Attach the boolean column expression to the original table,
+                # producing a wide table (original columns + CHECK_OUTPUT_KEY).
+                native = nw.to_native(check_obj.frame)
+                tbl = native.mutate(**{CHECK_OUTPUT_KEY: out})
+                return nw.from_native(tbl, eager_or_interchange_only=False)
+            if isinstance(out, ir.Table):
+                return nw.from_native(out, eager_or_interchange_only=False)
+
+        # Handle polars native return types from native=True checks.
+        # Detection uses ``type(out).__module__`` and ``type(out).__name__``
+        # so polars (an optional dependency) does not need to be imported
+        # here — that would break ibis-only installs (see
+        # ``test_checks_has_no_polars_import``). All reductions / renames go
+        # through narwhals so polars-specific expression APIs stay out of
+        # this file.
+        out_mod = getattr(type(out), ""__module__"", """") or """"
+        if out_mod.startswith(""polars""):
+            out_type_name = type(out).__name__
+
+            # Collect ``pl.LazyFrame`` to ``pl.DataFrame`` so we can attach
+            # an eager boolean column to the original frame. Polars-style
+            # user checks routinely return a ``pl.LazyFrame``.
+            if out_type_name == ""LazyFrame"":
+                out = out.collect()
+                out_type_name = type(out).__name__
+
+            native = nw.to_native(check_obj.frame)
+            # native may be a LazyFrame; collect to attach an eager column.
+            if hasattr(native, ""collect""):
+                native = native.collect()
+
+            if out_type_name == ""Series"":
+                bool_col = out.alias(CHECK_OUTPUT_KEY)
+            elif out_type_name == ""DataFrame"":
+                out_cols = list(out.columns)
+                if CHECK_OUTPUT_KEY in out_cols:
+                    bool_col = out[CHECK_OUTPUT_KEY].alias(CHECK_OUTPUT_KEY)
+                elif len(out_cols) == 1:
+                    # Single-column boolean output — rename to the canonical
+                    # check-output key (matches ``PolarsCheckBackend.apply``).
+                    bool_col = out.to_series(0).alias(CHECK_OUTPUT_KEY)
+                else:
+                    # Multi-column boolean output — AND-reduce to a single
+                    # check-output column (matches ``PolarsCheckBackend.apply``)
+                    # using narwhals operators so this file stays
+                    # polars-agnostic.
+                    nw_out = nw.from_native(out, eager_only=True)
+                    reduced_native = nw.to_native(
+                        nw_out.select(
+                            nw.all_horizontal(
+                                [nw.col(c) for c in out_cols]
+                            ).alias(CHECK_OUTPUT_KEY)
+                        )
+                    )
+                    bool_col = reduced_native.to_series(0)
+            else:  # pragma: no cover — unexpected polars type
+                return out
+
+            return nw.from_native(
+                native.with_columns(bool_col), eager_only=True
+            )
+
+        return out  # bool or other scalar — handled by postprocess_bool_output",,,

@@ -215,6 +215,7 @@ __marimo__/
 # RealWorldTests-Py v2 — held-out gold data (NEVER publish)
 gold/*
 !gold/.gitkeep
+!gold/README.md
 
 # Cloned repos for v2 source collection (large, reproducible via collect_sources_v2.py)
 sources/repos/
