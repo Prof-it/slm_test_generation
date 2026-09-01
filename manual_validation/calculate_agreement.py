@@ -8,26 +8,37 @@ import json
 from collections import Counter
 from pathlib import Path
 
-
 NON_RATEABLE = {"NOT_RATEABLE", "NOT_RATEABLE_MISSING_EVIDENCE"}
 UNCERTAIN = {"UNSURE", "UNCERTAIN"}
 
-
-def load(path: Path) -> dict[str, dict[str, str]]:
+def load(path: Path, delimiter: str = ",") -> dict[str, dict[str, str]]:
+    # Use Python's csv module with a custom delimiter:
     with path.open(encoding="utf-8-sig", newline="") as stream:
-        rows = list(csv.DictReader(stream))
-    return {row["validation_row_id"]: row for row in rows}
-
+        if delimiter == "#,##":
+            # Work around multi-char delimiter by splitting manually
+            lines = [line.rstrip("\n") for line in stream]
+            header = [h.strip() for h in lines[0].split(delimiter)]
+            data = [
+                dict(zip(header, [v.strip() for v in row.split(delimiter)]))
+                for row in lines[1:] if row.strip()
+            ]
+            return {row["validation_row_id"]: row for row in data}
+        else:
+            reader = csv.DictReader(stream, delimiter=delimiter)
+            return {row["validation_row_id"]: row for row in reader}
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("task", choices=("dependency_levels", "oracle_classes"))
     parser.add_argument("--second-rater-file", type=Path)
     parser.add_argument("--json-output", type=Path)
+    parser.add_argument("--first-delimiter", type=str, help="Delimiter for first-rater CSV")
+    parser.add_argument("--second-delimiter", type=str, help="Delimiter for second-rater CSV")
+
     args = parser.parse_args()
     folder = Path(__file__).resolve().parent / args.task
-    first = load(folder / "first_rater_labels.csv")
-    second = load(args.second_rater_file or folder / "second_rater_sheet.csv")
+    first = load(folder / "first_rater_labels.csv", args.first_delimiter)
+    second = load(args.second_rater_file or folder / "second_rater_sheet.csv", args.second_delimiter)
     first_col = "first_rater_label" if args.task == "dependency_levels" else "first_rater_class"
     second_col = "second_rater_label" if args.task == "dependency_levels" else "second_rater_class"
     allowed = ({"L0", "L1", "L2", "L3"} if args.task == "dependency_levels"
@@ -75,7 +86,6 @@ def main() -> None:
     print(f"Cohen's kappa (unweighted): {kappa:.3f}")
     if args.json_output:
         args.json_output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-
 
 if __name__ == "__main__":
     main()

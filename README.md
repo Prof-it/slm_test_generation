@@ -105,7 +105,7 @@ configuration is recorded alongside the scripts in
 [`step4_evaluation/`](step4_evaluation/) and the Docker definitions in
 [`step5_deployment/`](step5_deployment/).
 
-### 3. Inspect or rebuild analysis artifacts
+### 3. Inspect or rebuild analysis artefacts
 
 The final paper-facing outputs are already committed. The principal analysis entry
 points are:

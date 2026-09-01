@@ -1,0 +1,31 @@
+validation_row_id#,##item_id#,##second_rater_label#,##second_rater_confidence#,##second_rater_notes
+dependency_0001#,##rwt2_9988f68bc34e#,##L3#,##high#,##Calls project-local helper ('find_cameras') and uses relative imports ('.vendors', '...rosys').
+dependency_0002#,##rwt2_0b2336a51e91#,##L3#,##high#,##Imports and references numerous project-local helpers/modules (e.g., storage, prometheus_export, containers).
+dependency_0003#,##rwt2_bd5b492372ed#,##L2#,##high#,##Uses third-party 'multi_source_fetcher', no explicit project-local helpers invoked.
+dependency_0004#,##rwt2_7ae58a5c2c8f#,##L3#,##high#,##Calls project-local helper function (self.get_cevr), relative imports (..preproc, ..config).
+dependency_0005#,##rwt2_99ed6aee2312#,##L2#,##high#,##Relies on third-party 'numpy', 'pandera' and other third-party imports. No project helpers.
+dependency_0006#,##rwt2_c3ce53fc3cf0#,##L3#,##high#,##Depends on project-local helpers: 'normalize_tool_input', 'firecrawl_wrapper', 'self.IGlobal'.
+dependency_0007#,##rwt2_658bc8e23d3f#,##L3#,##high#,##Uses class/same-file helpers (self._find_link_internal, self.absolute_url, etc.).
+dependency_0008#,##rwt2_60b5ef76277b#,##L3#,##high#,##used logger is defined from Imports project-local helpers via relative import (from .core import ...), even if also uses third-party (black).
+dependency_0009#,##rwt2_08b3559022bd#,##L0#,##high#,##Only manipulates and returns string input, no imports or external helpers needed, although context import re.
+dependency_0010#,##rwt2_08ace22793aa#,##L3#,##high#,##Uses self._monitor_mode, self._append_chat_text: class or same-file helpers.
+dependency_0011#,##rwt2_e157cc9b93af#,##L3#,##high#,##Uses project helpers (_sanitize_str, audit_log) and other same-module calls.
+dependency_0012#,##rwt2_75811d5a190c#,##L0#,##high#,##All logic is within input parameters and basic string checks; no external dependencies.
+dependency_0013#,##rwt2_4c639897b3dd#,##L0#,##high#,##pure string manipulation
+dependency_0014#,##rwt2_23a838e2a8b0#,##L2#,##high#,##Uses third-party 'pyspark', 'pandera'; no clear project-local helper use.
+dependency_0015#,##rwt2_9826426689ae#,##L0#,##high#,##Function uses only Python built-ins; third-party imports present but not called or referenced.
+dependency_0016#,##rwt2_7231a1f3d995#,##L3#,##high#,##Calls project helpers (self._write_file_ref), async/await to class local.
+dependency_0017#,##rwt2_5c26465c356f#,##L3#,##high#,##Calls helpers such as load(), log_command(), handle_command() (project-defined).
+dependency_0018#,##rwt2_b03ef00b6cd0#,##L2#,##high#,##Relies on third-party 'builtins', 'numpy', 'pandera'.
+dependency_0019#,##rwt2_69988f57d352#,##L3#,##high#,##References/returns self attributes and methods in class context.
+dependency_0020#,##rwt2_b706193e1edb#,##L3#,##high#,##Class-level method uses self attributes and helpers (class-local context).
+dependency_0021#,##rwt2_642d18eee196#,##L2#,##high#,##Uses third-party 'pyspark'; project helpers not referenced.
+dependency_0022#,##rwt2_69f222f126ec#,##L3#,##high#,##Uses self methods and helpers for project-relative logic.
+dependency_0023#,##rwt2_3752a8dfc79f#,##L3#,##high#,##_load is a project-local helper function; accessing it makes this L3 per protocol.
+dependency_0024#,##rwt2_b7680361bcb9#,##L3#,##high#,##Uses project helpers (build_heartbeat, handle_command, _post_json, save_creds, etc.).
+dependency_0025#,##rwt2_c181558e2bdd#,##L3#,##high#,##Uses self._get_full_path and same-file class methods: project-local.
+dependency_0026#,##rwt2_a999534aff39#,##L3#,##high#,##Makes repeated calls to project helpers (self._format_monitor_tool_body, self._append_tool_text).
+dependency_0027#,##rwt2_ff1be63bb103#,##L3#,##high#,##Uses project-local helper 'logger' (not direct stdlib 'logging'); project-level assignment triggers L3.
+dependency_0028#,##rwt2_aadb1dfe2c36#,##L0#,##high#,##Purely processes and summarizes data in high-level Python built-ins and containers.
+dependency_0029#,##rwt2_739d6a0d3524#,##L3#,##high#,##Returns and references self attributes and methods (project-local class context).
+dependency_0030#,##rwt2_19ecfd9b1d3d#,##L3#,##high#,##References project-local module-level variable '_HAS_IBIS'

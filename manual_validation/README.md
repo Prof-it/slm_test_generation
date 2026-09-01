@@ -27,13 +27,30 @@ subsequent package maintenance.
 After the second rater fills a sheet, calculate agreement with:
 
 ```bash
+# For both files with comma
 python manual_validation/calculate_agreement.py dependency_levels
-python manual_validation/calculate_agreement.py oracle_classes
+
+# If both files use "#,##" as delimiter
+python manual_validation/calculate_agreement.py dependency_levels --delimiter "#,##"
+
+# If your first rater file uses comma, and your second rater file uses "#,##"
+python manual_validation/calculate_agreement.py dependency_levels \
+  --first-delimiter "," --second-delimiter "#,##" \
+  --second-rater-file manual_validation/dependency_levels/second_rater_result.csv
 ```
 
 The script reports complete, non-uncertain pairs only. Report the rated denominator,
 raw agreement, and unweighted Cohen's kappa; retain disagreements for adjudication but
 do not silently replace either rater's independent labels.
+
+### Example output:
+Original sample: 30
+Rateable paired observations: 30
+Excluded missing second-rater rating: 0
+Excluded NOT_RATEABLE: 0
+Excluded genuine UNSURE: 0
+Raw agreement: 0.600 (18/30)
+Cohen's kappa (unweighted): 0.287
 
 ## Provenance caveat
 
