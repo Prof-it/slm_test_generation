@@ -67,3 +67,24 @@ population snapshot/order that generated those 30 is not preserved. See
 `NOT_RATEABLE_MISSING_EVIDENCE` is a separate administrative status. Neither enters
 kappa. Adjudication must be stored separately and never replace either independent
 rater column; agreement is always calculated before adjudication.
+
+### Calculating agreement for the oracle_classes dataset
+
+After the second rater has finished rating all rows for the oracle_classes package and their ratings are saved in a CSV, calculate the agreement between raters using:
+
+```bash
+python manual_validation/calculate_agreement.py oracle_classes \
+    --first-delimiter "," \
+    --second-delimiter "," \
+    --second-rater-file manual_validation/oracle_classes/second_rater_sheet_result.csv
+```
+
+### Example output:
+
+Original sample: 250
+Rateable paired observations: 250
+Excluded missing second-rater rating: 0
+Excluded NOT_RATEABLE: 0
+Excluded genuine UNSURE: 0
+Raw agreement: 0.752 (188/250)
+Cohen's kappa (unweighted): 0.647
