@@ -32,13 +32,17 @@ def main() -> None:
     parser.add_argument("task", choices=("dependency_levels", "oracle_classes"))
     parser.add_argument("--second-rater-file", type=Path)
     parser.add_argument("--json-output", type=Path)
+    parser.add_argument("--delimiter", type=str, default=",",
+                        help="Delimiter used by both rater CSVs unless overridden")
     parser.add_argument("--first-delimiter", type=str, help="Delimiter for first-rater CSV")
     parser.add_argument("--second-delimiter", type=str, help="Delimiter for second-rater CSV")
 
     args = parser.parse_args()
     folder = Path(__file__).resolve().parent / args.task
-    first = load(folder / "first_rater_labels.csv", args.first_delimiter)
-    second = load(args.second_rater_file or folder / "second_rater_sheet.csv", args.second_delimiter)
+    first_delimiter = args.first_delimiter or args.delimiter
+    second_delimiter = args.second_delimiter or args.delimiter
+    first = load(folder / "first_rater_labels.csv", first_delimiter)
+    second = load(args.second_rater_file or folder / "second_rater_sheet.csv", second_delimiter)
     first_col = "first_rater_label" if args.task == "dependency_levels" else "first_rater_class"
     second_col = "second_rater_label" if args.task == "dependency_levels" else "second_rater_class"
     allowed = ({"L0", "L1", "L2", "L3"} if args.task == "dependency_levels"
