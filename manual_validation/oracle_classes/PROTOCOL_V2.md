@@ -4,9 +4,11 @@
 
 This version was introduced after both independent rating rounds and after inspection
 of their pre-adjudication disagreements. The original ratings were produced under
-[`PROTOCOL.md`](PROTOCOL.md), which remains unchanged as Version 1. Neither original
-rater column was modified, and the reported raw agreement (188/250, 75.2%) and
-unweighted Cohen's kappa (0.647) were calculated from those original ratings.
+[`PROTOCOL.md`](PROTOCOL.md), which remains unchanged as Version 1. Version 2 was not
+used to revise either rater column. The initial comparison before correction of
+confirmed alignment errors yielded 188/250 agreement (75.2%) with unweighted Cohen's
+kappa 0.647. After those alignment corrections, the final pre-adjudication Version 1
+ratings yielded 190/250 agreement (76.0%) with unweighted Cohen's kappa 0.658.
 
 Version 2 clarifies the unit of classification for constant-truth assertions. It is
 intended for future annotation or for a separately identified post-clarification
