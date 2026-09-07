@@ -246,3 +246,4 @@ step4_evaluation/pynguin_pilot_retry/
 # (rebuilt by step2_data_preperation/build_repair_rescoring_subset.py from
 # TestEval/data/*.jsonl + downloaded_predictions/, not a primary artifact)
 step4_evaluation/_extraction_repair_rescoring_predictions/
+*.DS_Store
