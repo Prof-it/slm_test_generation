@@ -15,6 +15,15 @@ Each package contains a protocol, a blinded evidence-and-response CSV, the separ
 first-rater labels, and a machine-readable provenance manifest. Rebuild deterministic
 views with:
 
+The two completed oracle-rating rounds used
+[`oracle_classes/PROTOCOL.md`](oracle_classes/PROTOCOL.md), retained unchanged as the
+historical Version 1 protocol. A post-rating clarification of the unit of
+classification for constant-truth assertions is documented separately in
+[`oracle_classes/PROTOCOL_V2.md`](oracle_classes/PROTOCOL_V2.md). Version 2 was created
+after inspection of the pre-adjudication disagreements; it was not used to produce or
+revise either original rater column, and the reported agreement statistics below refer
+to the Version 1 ratings.
+
 ```bash
 python manual_validation/build_review_packages.py
 ```
