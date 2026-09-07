@@ -86,5 +86,5 @@ Rateable paired observations: 250
 Excluded missing second-rater rating: 0
 Excluded NOT_RATEABLE: 0
 Excluded genuine UNSURE: 0
-Raw agreement: 0.752 (188/250)
-Cohen's kappa (unweighted): 0.647
+Raw agreement: 0.760 (190/250)
+Cohen's kappa (unweighted): 0.658
